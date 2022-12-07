@@ -1,4 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+
+@font-face {
+  font-family: "Oswald";
+  src: local("Oswald"),
+    url("./fonts/Oswald/Oswald-VariableFont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Proxima Nova";
+  src: local("Proxima Nova"),
+    url("./fonts/ProximaNova/ProximaNovaFont.otf") format("opentype");
+}
