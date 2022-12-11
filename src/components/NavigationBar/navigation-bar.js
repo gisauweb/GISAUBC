@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ReactComponent as NavLogo } from "../../assets/gisau_white.svg";
