@@ -4,8 +4,8 @@ import { MainContainer } from "../../shared/layout/MainContainer";
 
 const Home = () => {
   return (
-    <div className="text-center text-2xl justify-center items-center h-screen">
-      <MainContainer>
+    <MainContainer>
+      <div className="text-2xl text-justify">
         <Typography variant="h4" gutterBottom className="text-red-500">
           Main Container
         </Typography>
@@ -20,8 +20,8 @@ const Home = () => {
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
         </Typography>
-      </MainContainer>
-    </div>
+      </div>
+    </MainContainer>
   );
 };
 

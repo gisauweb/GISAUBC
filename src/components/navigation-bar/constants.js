@@ -1,5 +1,5 @@
-import Home from "../../pages/home/home";
-import SignIn from "../../pages/sign-in/sign-in";
+import Home from "../../pages/home/Home";
+import SignIn from "../../pages/sign-in/SignIn";
 
 export const pages = [
   { name: "Home", path: "", element: <Home /> },

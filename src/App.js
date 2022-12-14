@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { pages } from "./components/NavigationBar/constants";
-import NavigationBar from "./components/NavigationBar/navigation-bar";
+import { pages } from "./components/navigation-bar/constants";
+import NavigationBar from "./components/navigation-bar/NavigationBar";
 
 function App() {
   return (
