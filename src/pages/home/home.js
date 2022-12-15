@@ -1,11 +1,13 @@
 import { Typography } from "@mui/material";
 import React from "react";
+import About from "../../components/about/About";
 import { MainContainer } from "../../shared/layout/MainContainer";
 
 const Home = () => {
   return (
     <MainContainer>
       <div className="text-2xl text-justify">
+        <About></About>
         <Typography variant="h4" gutterBottom className="text-red-500">
           Main Container
         </Typography>
