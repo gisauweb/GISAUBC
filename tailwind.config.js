@@ -7,6 +7,9 @@ module.exports = {
         oswald: ["Oswald", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"]
       },
+      colors: {
+        primary: "#7D0202",
+      }
     },
   },
   plugins: [],
