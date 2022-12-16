@@ -3,13 +3,14 @@ import { Typography, Box, Button } from '@mui/material'
 import about_image from './../../assets/about.svg'
 import { useNavigate } from 'react-router-dom';
 
-const typographyStyle = 'text-lg font-montserrat my-6';
+const typographyStyle = 'text-[19px] font-montserrat my-6 w-full pr-12';
 
 const buttonStyle = { 
     borderRadius: '24px', 
     textTransform: 'none', 
-    width: '27%', 
-    background: "#7D0202"
+    width: '22%', 
+    background: "#7D0202",
+    height: '3rem'
 }
 
 const About = () => {
@@ -21,7 +22,7 @@ const About = () => {
 
     return (
         <Box className='flex justify-between items-center'>
-            <Box className='w-5/12'>
+            <Box className='w-1/2'>
                 <span className='text-4xl font-bold font-oswald text-primary'>
                     WHO WE ARE
                 </span>
@@ -31,7 +32,7 @@ const About = () => {
                 <p className={typographyStyle}>
                     GISAU aims to foster an inclusive, close-knitted, and connected community that exemplifies the signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and non-Indonesian students alike.
                 </p>
-                <Button variant='contained' size='large' sx={buttonStyle} onClick={handleClickButton}>Learn More</Button>
+                <Button variant='contained' size='large' sx={buttonStyle} onClick={handleClickButton}><span className='font-oswald text-lg'>Learn More</span></Button>
             </Box>
             <Box className='w-1/2'>
                 <img src={about_image} className="w-full">
