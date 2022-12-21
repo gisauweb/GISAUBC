@@ -1,6 +1,5 @@
 import React from "react";
-import "./MainContainer.css";
 
 export const MainContainer = ({ children }) => {
-  return <div className="main-container">{children}</div>;
+  return <div className="w-4/5 mx-auto my-36">{children}</div>;
 };
