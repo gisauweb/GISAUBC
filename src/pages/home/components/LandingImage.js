@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
 import { CustomButton } from "../../../shared/components/CustomButton";
-import Gisau from "../../../assets/gisau.png";
+import Gisau from "../../../assets/gisau-logo/gisau.png";
 import LandingImg from "../../../assets/landing-image/1.JPG";
 
 const useStyles = makeStyles({
