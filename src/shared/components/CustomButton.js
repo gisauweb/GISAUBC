@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 const useStyles = makeStyles({
   button: {
-    borderRadius: "1.5rem",
+    borderRadius: "5rem",
     borderWidth: "2.5px",
     borderImageSlice: 1,
     borderColor: "#7d0202",
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
   button2: {
     color: "#000",
-    borderRadius: "1.5rem",
+    borderRadius: "5rem",
     borderWidth: "2.5px",
     borderStyle: "solid",
     borderColor: "transparent",
@@ -55,12 +55,16 @@ const useStyles = makeStyles({
   },
 });
 
-export const CustomButton = () => {
+export const CustomButton = ({ className }) => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Button variant="outlined" href="" className={`px-6 ${classes.button2}`}>
+    <div className={className}>
+      <Button
+        variant="outlined"
+        href=""
+        className={`px-8 py-3 font-oswald normal-case font-normal text-lg ${classes.button2}`}
+      >
         Become a member!
       </Button>
     </div>

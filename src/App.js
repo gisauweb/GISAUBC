@@ -5,6 +5,8 @@ import { pages } from "./shared/components/NavigationBar/constants";
 import NavigationBar from "./shared/components/NavigationBar/navigation-bar";
 import { StyledEngineProvider } from "@mui/material/styles";
 
+import "./App.css";
+
 function App() {
   return (
     <StyledEngineProvider injectFirst>
