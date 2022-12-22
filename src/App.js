@@ -1,5 +1,3 @@
-import { Home } from "./pages/home/Home";
-
 import { Route, Routes } from "react-router-dom";
 import { pages } from "./shared/components/NavigationBar/constants";
 import NavigationBar from "./shared/components/NavigationBar/navigation-bar";
