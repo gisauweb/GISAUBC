@@ -1,6 +1,7 @@
 import Home from "../../pages/home/Home";
 import SignIn from "../../pages/sign-in/SignIn";
 
+
 export const pages = [
   { name: "Home", path: "", element: <Home /> },
   { name: "About", path: "about", element: <SignIn /> },

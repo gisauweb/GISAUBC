@@ -1,5 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+/* Proxima Nova */
+@import url("https://fonts.cdnfonts.com/css/proxima-nova-2");
+/* @font-face {
+  font-family: "Proxima Nova";
+  src: local("Proxima Nova"),
+    url("./fonts/ProximaNova/ProximaNovaFont.otf") format("opentype");
+} */
+
+/* Oswald */
+/* @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap"); */
+@font-face {
+  font-family: "Oswald";
+  src: local("Oswald"),
+    url("./fonts/Oswald/Oswald-VariableFont.ttf") format("truetype");
+}

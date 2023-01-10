@@ -1,16 +1,21 @@
 import { Route, Routes } from "react-router-dom";
-import { pages } from "./components/navigation-bar/constants";
-import NavigationBar from "./components/navigation-bar/NavigationBar";
+import { pages } from "./shared/components/NavigationBar/constants";
+import NavigationBar from "./shared/components/NavigationBar/navigation-bar";
+import { StyledEngineProvider } from "@mui/material/styles";
+
+import "./App.css";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<NavigationBar />}>
-        {pages.map((page) => (
-          <Route key={page.name} path={page.path} element={page.element} />
-        ))}
-      </Route>
-    </Routes>
+    <StyledEngineProvider injectFirst>
+      <Routes>
+        <Route path="/" element={<NavigationBar />}>
+          {pages.map((page) => (
+            <Route key={page.name} path={page.path} element={page.element} />
+          ))}
+        </Route>
+      </Routes>
+    </StyledEngineProvider>
   );
 }
 
