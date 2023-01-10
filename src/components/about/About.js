@@ -1,9 +1,9 @@
 import React from 'react'
-import { Typography, Box, Button } from '@mui/material'
+import { Box, Button } from '@mui/material'
 import about_image from './../../assets/about.svg'
 import { useNavigate } from 'react-router-dom';
 
-const typographyStyle = 'text-[19px] font-montserrat my-6 w-full pr-12';
+const typographyStyle = 'text-[19px] font-proxima-nova my-6 w-full pr-12';
 
 const buttonStyle = { 
     borderRadius: '24px', 
@@ -35,7 +35,7 @@ const About = () => {
                 <Button variant='contained' size='large' sx={buttonStyle} onClick={handleClickButton}><span className='font-oswald text-lg'>Learn More</span></Button>
             </Box>
             <Box className='w-1/2'>
-                <img src={about_image} className="w-full">
+                <img src={about_image} alt="GISAU Executives" className="w-full">
                 </img>
             </Box>
         </Box>

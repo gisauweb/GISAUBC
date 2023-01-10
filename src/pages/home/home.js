@@ -1,12 +1,15 @@
 import React from "react";
 import About from "../../components/about/About";
+import { MainContainer } from "../../shared/layout/MainContainer";
 import { LandingImage } from "./components/LandingImage";
 
-export const Home = () => {
+export default function Home() {
   return (
-    <MainContainer>
+    <>
       <LandingImage />
-      <About />
-    </MainContainer>
+      <MainContainer>
+        <About />
+      </MainContainer>
+    </>
   );
 };
