@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Button } from '@mui/material'
-import about_image from './../../assets/about.svg'
+import about_image from './../../../assets/about.svg'
 import { useNavigate } from 'react-router-dom';
 
 const typographyStyle = 'text-[19px] font-proxima-nova my-6 w-full pr-12';

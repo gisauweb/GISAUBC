@@ -1,5 +1,5 @@
 import React from "react";
-import About from "../../components/about/About";
+import About from "./components/About";
 import { MainContainer } from "../../shared/layout/MainContainer";
 import { LandingImage } from "./components/LandingImage";
 
