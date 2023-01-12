@@ -14,6 +14,9 @@ module.exports = {
       lineHeight: {
         12: "3rem",
       },
+      colors: {
+        primary: "#7D0202",
+      },
     },
   },
   plugins: [],
