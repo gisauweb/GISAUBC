@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   bgImage: {
     backgroundImage: `url(${sunshine_image})`,
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "right 17% bottom 30%",
+    backgroundPosition: "right 32% bottom 30%",
   },
 });
 
@@ -38,8 +38,8 @@ const About = () => {
   return (
     <Box className="flex justify-between items-center">
       <Box className="w-1/2">
-        <Box className={`flex w-2/5 ${classes.bgImage}`}>
-          <span className="text-4xl font-bold font-oswald text-primary pt-10">
+        <Box className={`flex w-2/5 ${classes.bgImage} pt-10`}>
+          <span className="text-3xl font-bold font-oswald text-primary">
             WHO WE ARE
           </span>
         </Box>
