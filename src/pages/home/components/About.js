@@ -15,16 +15,11 @@ const useStyles = makeStyles({
     background: "linear-gradient(to left, #7D0202, #7D0202)",
     color: "white",
     height: "3rem",
+    transition: "background 300ms ease-out",
     "&:hover": {
       background: "linear-gradient(to left, #7D0202, #B25F4C)",
-      transitionTimingFunction: "ease-out",
     },
-  },
-  bgImage: {
-    backgroundImage: `url(${sunshine_image})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "right 32% bottom 30%",
-  },
+  }
 });
 
 const About = () => {
@@ -38,10 +33,11 @@ const About = () => {
   return (
     <Box className="flex justify-between items-center">
       <Box className="w-1/2">
-        <Box className={`flex w-2/5 ${classes.bgImage} pt-10`}>
-          <span className="text-3xl font-bold font-oswald text-primary">
+        <Box className={`w-full flex`}>
+          <span className="text-3xl font-bold font-oswald text-primary pt-8">
             WHO WE ARE
           </span>
+          <img src={sunshine_image} alt="Sunshine" className="h-18 relative -z-10 right-4"></img>
         </Box>
         <p className={typographyStyle}>
           Hello! We are a non-profit cultural organization centered in promoting
