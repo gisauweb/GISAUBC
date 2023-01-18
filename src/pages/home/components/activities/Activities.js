@@ -4,7 +4,7 @@ import smiley from "assets/activities/smiley.svg";
 import { activities } from "./constants";
 const Activities = () => {
   return (
-    <Box className="my-12">
+    <Box className="py-14">
       <Box className="w-full flex items-center">
         <span className="text-3xl font-bold font-oswald text-primary">
           WHAT WE DO

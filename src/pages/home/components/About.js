@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
-import about_image from "./../../../assets/about.svg";
+import about_image from "./../../../assets/about_2.png";
 import sunshine_image from "./../../../assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     width: "22%",
     background: "linear-gradient(to left, #7D0202, #7D0202)",
     color: "white",
-    height: "3rem",
+    height: "2.8rem",
+    paddingTop: "0.3rem",
     transition: "background 300ms ease-out",
     "&:hover": {
       background: "linear-gradient(to left, #7D0202, #B25F4C)",
@@ -31,9 +32,9 @@ const About = () => {
   };
 
   return (
-    <Box className="flex justify-between items-center">
-      <Box className="w-1/2">
-        <Box className={`w-full flex`}>
+    <Box className={`flex justify-between items-center py-14`}>
+      <Box className="w-1/2 h-full">
+        <Box className={`w-full flex pb-3`}>
           <span className="text-3xl font-bold font-oswald text-primary pt-8">
             WHO WE ARE
           </span>
@@ -58,11 +59,11 @@ const About = () => {
           <span className="font-oswald text-lg">Learn More</span>
         </Button>
       </Box>
-      <Box className="w-1/2">
+      <Box className="w-1/2 flex justify-center">
         <img
           src={about_image}
           alt="GISAU Executives"
-          className="w-11/12 ml-12"
+          className="w-5/6"
         />
       </Box>
     </Box>
