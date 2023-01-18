@@ -1,0 +1,30 @@
+import { Box, Typography } from "@mui/material";
+import React from "react";
+import smiley from "assets/activities/smiley.svg";
+import { activities } from "./constants";
+const Activities = () => {
+  return (
+    <Box className="my-12">
+      <Box className="w-full flex items-center">
+        <span className="text-3xl font-bold font-oswald text-primary">
+          WHAT WE DO
+        </span>
+        <img
+          src={smiley}
+          alt="Smiley"
+          className="h-18 ml-2"
+        />
+      </Box>
+      <Box className="w-full flex align text-center justify-between">
+        {activities.map((activity, index) =>
+          <Box key={index} className="w-1/3 flex flex-col items-center">
+            <img alt="Activity" src={activity.image} className="w-1/2"/>
+            <Typography variant="h5" sx={{mb: 5}}>{activity.title}</Typography>
+            <Typography variant="body1">{activity.description}</Typography>
+          </Box>
+        )}
+      </Box>
+    </Box>
+  );
+};
+export default Activities;
