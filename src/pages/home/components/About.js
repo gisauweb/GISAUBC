@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button } from "@mui/material";
-import about_image from "./../../../assets/about_2.png";
-import sunshine_image from "./../../../assets/sunshine.svg";
+import about_image from "assets/about_2.png";
+import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 

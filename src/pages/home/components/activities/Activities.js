@@ -15,12 +15,14 @@ const Activities = () => {
           className="h-18 ml-2"
         />
       </Box>
-      <Box className="w-full flex align text-center justify-between">
+      <Box className="w-full flex justify-between py-8">
         {activities.map((activity, index) =>
-          <Box key={index} className="w-1/3 flex flex-col items-center">
-            <img alt="Activity" src={activity.image} className="w-1/2"/>
-            <Typography variant="h5" sx={{mb: 5}}>{activity.title}</Typography>
-            <Typography variant="body1">{activity.description}</Typography>
+          <Box key={index} className="w-1/3 flex flex-col text-center items-center ">
+            <img alt="Activity" src={activity.image} className="w-3/4 h-full" />
+            <Box>
+              <Typography variant="h5" sx={{ py: 3 }}>{activity.title}</Typography>
+              <Typography variant="body1">{activity.description}</Typography>
+            </Box>
           </Box>
         )}
       </Box>
