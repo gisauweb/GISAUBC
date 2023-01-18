@@ -17,11 +17,13 @@ const Activities = () => {
       </Box>
       <Box className="w-full flex justify-between py-8">
         {activities.map((activity, index) =>
-          <Box key={index} className="w-1/3 flex flex-col text-center items-center ">
-            <img alt="Activity" src={activity.image} className="w-3/4 h-full" />
-            <Box>
-              <Typography variant="h5" sx={{ py: 3 }}>{activity.title}</Typography>
-              <Typography variant="body1">{activity.description}</Typography>
+          <Box key={index} className="w-1/3 flex flex-col text-center ">
+            <Box className="w-full flex justify-center">
+              <img alt="Activity" src={activity.image} className="w-3/4 h-full" />
+            </Box>
+            <Box className="px-14">
+              <Box className="font-proxima-nova text-2xl" sx={{ my: 4, fontWeight: "bold" }}>{activity.title}</Box>
+              <Box className="font-proxima-nova text-xl">{activity.description}</Box>
             </Box>
           </Box>
         )}
