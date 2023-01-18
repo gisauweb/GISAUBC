@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { pages } from "./shared/components/NavigationBar/constants";
-import NavigationBar from "./shared/components/NavigationBar/navigation-bar";
+import { pages } from "./shared/components/navigation-bar/constants";
+import NavigationBar from "./shared/components/navigation-bar/NavigationBar";
 import { StyledEngineProvider } from "@mui/material/styles";
 
 import "./App.css";
