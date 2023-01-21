@@ -5,7 +5,7 @@ import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
 
-const typographyStyle = "text-[19px] font-proxima-nova my-6 w-full pr-12";
+const typographyStyle = "text-[18px] leading-tight font-proxima-nova my-5 w-full pr-12";
 
 const About = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const About = () => {
   return (
     <Box className={`flex justify-between items-center py-14`}>
       <Box className="w-1/2 h-full">
-        <Box className={`w-full flex pb-3`}>
+        <Box className={`w-full flex pb-1.5`}>
           <span className="text-3xl font-bold font-oswald text-primary pt-8">
             WHO WE ARE
           </span>
