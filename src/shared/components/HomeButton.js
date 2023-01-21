@@ -14,6 +14,7 @@ const useStyles = makeStyles({
         "&:hover": {
             background: "linear-gradient(to left, #7D0202, #B25F4C)",
         },
+        marginTop: "0.5rem"
     }
 });
 
