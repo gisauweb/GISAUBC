@@ -28,9 +28,9 @@ const Activities = () => {
             <Box className="w-5/6">
               <img alt="Activity" id={activity.id} src={activity.image} className="h-full hover:cursor-pointer" onClick={handleClickActivity}/>
             </Box>
-            <Box className="w-5/6 text-center">
-              <Box className="font-proxima-nova text-2xl h-16" sx={{ my: 3, fontWeight: "bold"}}>{activity.title}</Box>
-              <Box className="font-proxima-nova text-lg px-2">{activity.description}</Box>
+            <Box className="w-3/4 text-center">
+              <Box className="font-proxima-nova text-2xl h-16" sx={{ my: 3, fontWeight: "bold", paddingRight: 1.5}}>{activity.title}</Box>
+              <Box className="font-proxima-nova text-lg pr-1">{activity.description}</Box>
             </Box>
           </Box>
         )}
