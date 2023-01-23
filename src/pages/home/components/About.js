@@ -1,39 +1,23 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
-import about_image from "./../../../assets/about.svg";
-import sunshine_image from "./../../../assets/sunshine.svg";
+import { Box } from "@mui/material";
+import about_image from "assets/about_2.png";
+import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
+import HomeButton from "shared/components/HomeButton";
 
-const typographyStyle = "text-[19px] font-proxima-nova my-6 w-full pr-12";
-
-const useStyles = makeStyles({
-  button: {
-    borderRadius: "24px",
-    textTransform: "none",
-    width: "22%",
-    background: "linear-gradient(to left, #7D0202, #7D0202)",
-    color: "white",
-    height: "3rem",
-    transition: "background 300ms ease-out",
-    "&:hover": {
-      background: "linear-gradient(to left, #7D0202, #B25F4C)",
-    },
-  }
-});
+const typographyStyle = "text-[18px] leading-tight font-proxima-nova my-5 w-full pr-12";
 
 const About = () => {
   const navigate = useNavigate();
-  const classes = useStyles();
 
   const handleClickButton = () => {
     navigate("about");
   };
 
   return (
-    <Box className="flex justify-between items-center">
-      <Box className="w-1/2">
-        <Box className={`w-full flex`}>
+    <Box className={`flex justify-between items-center py-14`}>
+      <Box className="w-1/2 h-full">
+        <Box className={`w-full flex pb-1.5`}>
           <span className="text-3xl font-bold font-oswald text-primary pt-8">
             WHO WE ARE
           </span>
@@ -49,20 +33,13 @@ const About = () => {
           welcomes the diverse UBC society of Indonesian and non-Indonesian
           students alike.
         </p>
-        <Button
-          variant="contained"
-          size="large"
-          className={classes.button}
-          onClick={handleClickButton}
-        >
-          <span className="font-oswald text-lg">Learn More</span>
-        </Button>
+        <HomeButton handleClickButton={handleClickButton}/>
       </Box>
-      <Box className="w-1/2">
+      <Box className="w-1/2 flex justify-center">
         <img
           src={about_image}
           alt="GISAU Executives"
-          className="w-11/12 ml-12"
+          className="w-5/6"
         />
       </Box>
     </Box>
