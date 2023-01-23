@@ -3,6 +3,7 @@ import About from "./components/About";
 import { MainContainer } from "../../shared/layout/MainContainer";
 import { LandingImage } from "./components/LandingImage";
 import Activities from "./components/activities/Activities";
+import { Events } from "./components/events/Events";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <MainContainer>
         <About />
         <Activities />
+        <Events />
       </MainContainer>
     </>
   );
