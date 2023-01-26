@@ -21,7 +21,7 @@ const About = () => {
           <span className="text-3xl font-bold font-oswald text-primary pt-8">
             WHO WE ARE
           </span>
-          <img src={sunshine_image} alt="Sunshine" className="h-18 relative -z-10 right-4"></img>
+          <img src={sunshine_image} alt="Sunshine" className="relative -z-10 right-4"></img>
         </Box>
         <p className={typographyStyle}>
           Hello! We are a non-profit cultural organization centered in promoting
