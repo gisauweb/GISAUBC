@@ -2,11 +2,11 @@ import activity_1 from "assets/activities/img_1.svg"
 import activity_2 from "assets/activities/img_2.svg"
 import activity_3 from "assets/activities/img_3.svg"
 import smiley_img from "assets/activities/smiley.svg"
-import bombay_masala from "assets/sponsors/bombay_masala.png"
-import evo from "assets/sponsors/evo.jpeg"
+import bombay from "assets/sponsors/bombay.png"
+import evo from "assets/sponsors/evo.png"
 import hellofresh from "assets/sponsors/hellofresh.png"
 import panela_lemon from "assets/sponsors/panela_lemon.jpg"
-import righteous_gelato from "assets/sponsors/righteous_gelato.png"
+import righteous from "assets/sponsors/righteous.png"
 import susgrainable from "assets/sponsors/susgrainable.png"
 import vnysa from "assets/sponsors/vnysa.png"
 
@@ -20,11 +20,11 @@ const activities = [
 const smiley = smiley_img
 
 const partners = [
-    { 'name': 'Bombay Masala', 'logo': bombay_masala },
+    { 'name': 'Bombay Masala', 'logo': bombay },
     { 'name': 'Evo', 'logo': evo },
     { 'name': 'Hello Fresh', 'logo': hellofresh },
     { 'name': 'Panela Lemon', 'logo': panela_lemon },
-    { 'name': 'Righteous', 'logo': righteous_gelato },
+    { 'name': 'Righteous', 'logo': righteous },
     { 'name': 'Susgrainable', 'logo': susgrainable },
     { 'name': 'Vnysa', 'logo': vnysa }
 ]

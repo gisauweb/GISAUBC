@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import sunshine_image from "assets/rainbow.svg";
+import rainbow from "assets/rainbow.svg";
 import React from 'react'
 import Marquee from 'react-fast-marquee';
 import { partners } from './constants';
@@ -7,21 +7,22 @@ import { partners } from './constants';
 const Partners = () => {
     return (
         <Box>
-            <Box className="w-full flex pb-1.5">
+            <Box className="w-full flex py-14 ">
                 <span className="text-3xl font-bold font-oswald text-primary pt-8">
                     OUR PARTNERS
                 </span>
-                <img src={sunshine_image} alt="Sunshine" className="w-10 relative -z-10 right-6 bottom-1.5"></img>
+                <img src={rainbow} alt="Rainbow" className="w-10 relative right-6 bottom-1.5"></img>
             </Box>
-            <Box className='w-1/2'>
-                <Marquee speed={50}>
+            <Box className='pt-8'>
+                <Marquee speed={200}>
                     <div className="flex items-center justify-around flex-wrap">
                         {partners.map((partner, i) => (
-                            <div className="">
+                            <div className="mx-8">
                                 <img
                                     src={partner.logo}
                                     key={i}
                                     alt={partner.name}
+                                    className="h-44"
                                 />
                             </div>
                         ))}
