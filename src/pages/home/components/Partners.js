@@ -13,16 +13,16 @@ const Partners = () => {
                 </span>
                 <img src={rainbow} alt="Rainbow" className="w-10 relative right-6 bottom-1.5"></img>
             </Box>
-            <Box className='pt-8'>
-                <Marquee speed={200}>
+            <Box className='pt-10'>
+                <Marquee speed={80}>
                     <div className="flex items-center justify-around flex-wrap">
                         {partners.map((partner, i) => (
-                            <div className="mx-8">
+                            <div className="mx-12">
                                 <img
                                     src={partner.logo}
                                     key={i}
                                     alt={partner.name}
-                                    className="h-44"
+                                    className="h-36"
                                 />
                             </div>
                         ))}
