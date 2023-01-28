@@ -44,7 +44,7 @@ export const EventLayout = ({
       <div className="mt-10">{content}</div>
       <div
         className={`grid justify-center ${
-          events.length == 0 ? "mt-12" : "mt-4"
+          events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
         <CustomButton name={button2.name} />
