@@ -1,8 +1,7 @@
 import { Box } from '@mui/material'
-import rainbow from "assets/rainbow.svg";
 import React from 'react'
 import Marquee from 'react-fast-marquee';
-import { partners } from './constants';
+import { partners, rainbow } from './constants';
 
 const Partners = () => {
     return (
