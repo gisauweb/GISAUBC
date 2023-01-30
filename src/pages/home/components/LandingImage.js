@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { CustomButton } from "../../../shared/components/CustomButton/CustomButton";
+import { LandingButton } from "../../../shared/components/Button/LandingButton";
 import Gisau from "../../../assets/gisau-logo/gisau.png";
 import LandingImg from "../../../assets/landing.jpg";
 
@@ -36,7 +36,7 @@ export const LandingImage = () => {
             Gado-Gado Indonesian Student Association {!isMobileView && <br />}{" "}
             of UBC
           </h1>
-          <CustomButton className="grid justify-center" />
+          <LandingButton className="grid justify-center" />
         </div>
       </div>
     </div>
