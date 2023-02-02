@@ -1,5 +1,3 @@
-// import RumahHantu from "../../../../assets/events/rumah_hantu.jpg";
-
 /**
  * events field:
  * - desc

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { EventLayout } from "shared/layout/EventLayout";
-import { UPCOMINGEVENTS, RANTANGAN } from "./events_data";
+import { UPCOMINGEVENTS, RANTANGAN } from "./constants";
 
 export const Events = () => {
   return (
