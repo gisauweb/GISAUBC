@@ -1,10 +1,14 @@
 import React from "react";
 import { LandingButton } from "./LandingButton";
 
-export const Button = ({ className, landingButton }) => {
+export const Button = ({ landingButton, className, text, transparentBg }) => {
   if (landingButton) {
-    return <LandingButton className={className} />;
+    return <LandingButton className={className} text={text} />;
   }
 
-  return <div>Button</div>;
+  return (
+    <div className={className}>
+      <div className={`button`}>{text}</div>
+    </div>
+  );
 };

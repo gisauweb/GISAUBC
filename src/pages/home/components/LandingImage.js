@@ -36,7 +36,11 @@ export const LandingImage = () => {
             Gado-Gado Indonesian Student Association {!isMobileView && <br />}{" "}
             of UBC
           </h1>
-          <Button className="grid justify-center" landingButton={true} />
+          <Button
+            className="grid justify-center"
+            text="Become a member!"
+            landingButton={true}
+          />
         </div>
       </div>
     </div>
