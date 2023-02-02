@@ -7,14 +7,14 @@ import { useMediaQuery } from 'react-responsive';
 const Partners = () => {
     const isLaptop = useMediaQuery({ query: `(max-width: 1440px) ` });
     return (
-        <Box>
-            <Box className="w-full flex py-14 ">
+        <Box className='pt-24'>
+            <Box className="w-full flex pb-3 ">
                 <span className="text-3xl font-bold font-oswald text-primary pt-8">
                     OUR PARTNERS
                 </span>
                 <img src={rainbow} alt="Rainbow" className="w-10 relative right-6 bottom-1.5"></img>
             </Box>
-            <Box className='pt-10'>
+            <Box className='py-14'>
                 <Marquee speed={isLaptop ? 50 : 80}>
                     <div className="flex items-center justify-around flex-wrap">
                         {partners.map((partner, i) => (
