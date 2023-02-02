@@ -9,4 +9,15 @@ h1 {
 
 p {
   font-family: "Proxima Nova", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.title {
+  font-size: 1.875rem /* 30px */;
+  line-height: 2.25rem /* 36px */;
+  font-weight: 700;
+  font-family: Oswald, sans-serif;
+  --tw-text-opacity: 1;
+  color: rgb(125 2 2 / var(--tw-text-opacity));
 }
