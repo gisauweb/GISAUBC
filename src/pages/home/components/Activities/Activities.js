@@ -22,9 +22,9 @@ const Activities = () => {
           className="h-18 ml-2"
         />
       </Box>
-      <Box className="w-full flex justify-between py-8">
+      <Box className="w-full flex py-8">
         {activities.map((activity, index) =>
-          <Box key={index} className="w-1/3">
+          <Box key={index} className="w-1/3 flex flex-col" sx={{alignItems: activity.alignment}}>
             <Box className="w-5/6">
               <img alt="Activity" id={activity.id} src={activity.image} className="h-full hover:cursor-pointer" onClick={handleClickActivity}/>
             </Box>
