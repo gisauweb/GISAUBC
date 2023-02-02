@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { activities, smiley } from "../Activities/constants";
+import { activities, smiley } from "./constants";
 import { useNavigate } from "react-router-dom";
 
 const Activities = () => {
