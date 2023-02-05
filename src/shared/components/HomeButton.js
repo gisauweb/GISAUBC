@@ -5,10 +5,11 @@ const useStyles = makeStyles({
     button: {
         borderRadius: "24px",
         textTransform: "none",
-        width: "22%",
+        width: "27%",
         background: "linear-gradient(to left, #7D0202, #7D0202)",
         color: "white",
         height: "2.8rem",
+        padding: "0",
         paddingTop: "0.3rem",
         transition: "background 300ms ease-out",
         "&:hover": {
@@ -16,7 +17,8 @@ const useStyles = makeStyles({
         },
         marginTop: "0.5rem",
         "@media (min-width: 1500px)": {
-            height: "3rem"
+            width: "22%",
+            height: "2.8rem",
         }
     }
 });
