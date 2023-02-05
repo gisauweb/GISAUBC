@@ -5,7 +5,7 @@ import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
 
-const typographyStyle = "text-[18px] leading-tight font-proxima-nova my-5 w-full pr-12";
+const typographyStyle = "text-[18px] leading-tight font-proxima-nova my-5 w-full sm:pr-12";
 
 const About = () => {
   const navigate = useNavigate();
@@ -15,17 +15,17 @@ const About = () => {
   };
 
   return (
-    <Box className="flex flex-col w-full items-start pt-20">
+    <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-20">
       <Box className="w-1/2 flex pb-1.5">
-        <span className="text-3xl font-bold font-oswald text-primary pt-8">
+        <span className="text-xl sm:text-3xl font-bold font-oswald text-primary pt-8">
           WHO WE ARE
         </span>
-        <img src={sunshine_image} alt="Sunshine" className="relative right-4"></img>
+        <img src={sunshine_image} alt="Sunshine" className="h-10 sm:h-full relative right-4"></img>
       </Box>
       <img
         src={about_image}
         alt="GISAU Executives"
-        className="w-1/3 absolute right-1/10"
+        className="sm:w-1/3 sm:absolute sm:right-1/10 md:w-1/4 md:right-[10%]"
       />
       <Box className="w-1/2 h-full">
         <p className={typographyStyle}>
