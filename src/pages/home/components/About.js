@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-[10px] lg:text-[18px] xl:text-[24px] leading-tight font-proxima-nova my-5 w-full lg:pr-12";
+const typographyStyle = "text-[10px] md:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full md:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -18,14 +18,14 @@ const About = () => {
   };
 
   return (
-    <Box className="flex flex-col w-full text-center lg:text-left justify-center items-center lg:items-start pt-20">
+    <Box className="flex flex-col w-full text-center md:text-left justify-center items-center md:items-start pt-20">
       <Box className="w-1/2 flex pb-1.5">
-        <span className="text-xl lg:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-4">
+        <span className="text-xl md:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-6">
           WHO WE ARE
         </span>
-        <img src={sunshine_image} alt="Sunshine" className="h-10 lg:h-full relative right-4 bottom-4"></img>
+        <img src={sunshine_image} alt="Sunshine" className="h-10 md:h-11/12 xl:h-full relative right-2 top-2 xl:top-0 "></img>
       </Box>
-      <a href="/about" className="lg:w-1/3 lg:absolute lg:right-1/10">
+      <a href="/about" className="md:w-1/3 md:absolute md:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
