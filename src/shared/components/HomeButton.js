@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         },
         "@media(max-width: 400px)": {
             width: "50%",
-            height: "1.5rem",
+            height: "1.8rem",
             paddingTop: "0",
             margin: "0"
         }
@@ -36,6 +36,6 @@ export default function HomeButton({ handleClickButton }) {
         className={classes.button}
         onClick={handleClickButton}
     >
-        <span className="font-oswald text-[10px] sm:text-sm lg:text-lg">Learn More</span>
+        <span className="font-oswald text-[12px] sm:text-sm lg:text-lg">Learn More</span>
     </Button>;
 }

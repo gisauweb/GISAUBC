@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-[10px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery({ query: `(max-width: 400px) ` });
+  const isMobile = useMediaQuery({ query: `(max-width: 500px) ` });
   const handleClickButton = () => {
     navigate("about");
   };
@@ -24,14 +24,14 @@ const About = () => {
         </span>
         <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
       </Box>
-      <a href="/about" className="sm:w-1/3 sm:absolute sm:right-1/10">
+      <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
           className="w-full"
         />
       </a>
-      <Box className="w-[55%] h-full">
+      <Box className="w-[60%] sm:w-1/2 h-full">
         <p className={typographyStyle}>
           Hello! We are a non-profit cultural organization centered in promoting
           Indonesian hospitality around the UBC Vancouver campus.
