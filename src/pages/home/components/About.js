@@ -12,27 +12,26 @@ const typographyStyle = "text-[10px] sm:text-[15px] xl:text-[20px] leading-tight
 const About = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: `(max-width: 400px) ` });
-  console.log("isMobile: ", isMobile)
   const handleClickButton = () => {
     navigate("about");
   };
 
   return (
-    <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-20">
+    <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-7 sm:pt-20">
       <Box className="w-full sm:w-1/2 flex justify-center sm:justify-start pb-4 sm:pb-1.5 pl-8 sm:pl-0">
         <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
         <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
       </Box>
-      <a href="/about" className="sm:w-5/12 lg:w-1/3 sm:absolute sm:right-1/10">
+      <a href="/about" className="sm:w-1/3 sm:absolute sm:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
           className="w-full"
         />
       </a>
-      <Box className="w-1/2 h-full">
+      <Box className="w-[55%] h-full">
         <p className={typographyStyle}>
           Hello! We are a non-profit cultural organization centered in promoting
           Indonesian hospitality around the UBC Vancouver campus.
