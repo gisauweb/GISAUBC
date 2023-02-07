@@ -11,7 +11,7 @@ const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight
 
 const About = () => {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery({ query: `(max-width: 500px) ` });
+  const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
   const handleClickButton = () => {
     navigate("about");
   };
