@@ -4,7 +4,7 @@ import about_image from "assets/about/about.png";
 import about_mobile from "assets/about/about_mobile.svg";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import HomeButton from "shared/components/HomeButton";
+import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
 const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
@@ -42,7 +42,14 @@ const About = () => {
           welcomes the diverse UBC society of Indonesian and non-Indonesian
           students alike.
         </p>
-        <HomeButton handleClickButton={handleClickButton} />
+        <Button
+          className="mt-10"
+          text="Learn More"
+          handleClickButton={handleClickButton}
+        />
+      </Box>
+      <Box className="w-1/2 flex justify-center">
+        <img src={about_image} alt="GISAU Executives" className="w-5/6" />
       </Box>
     </Box>
   );
