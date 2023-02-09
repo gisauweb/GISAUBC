@@ -47,7 +47,7 @@ export const EventLayout = ({
           events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
-        <Button text={button2.name} />
+        <Button text={button2.name} transparentBg={true} />
       </div>
     </div>
   );

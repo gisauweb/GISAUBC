@@ -7,6 +7,7 @@ export const Button = ({
   landingButton,
   className,
   text,
+  transparentBg,
   handleClickButton,
 }) => {
   if (landingButton) {
@@ -15,7 +16,10 @@ export const Button = ({
 
   return (
     <div className={className}>
-      <div className={`button`} onClick={handleClickButton}>
+      <div
+        className={`button ${transparentBg && "transparent_bg"} `}
+        onClick={handleClickButton}
+      >
         {text}
       </div>
     </div>
