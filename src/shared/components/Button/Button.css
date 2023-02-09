@@ -19,7 +19,7 @@
 .button.transparent_bg {
   color: #7d0202;
   border: solid 3px transparent;
-  background: linear-gradient(225deg, #8c1c16, #bc7059);
+  background: #7d0202;
   background-origin: border-box;
   background-clip: border-box;
   box-shadow: 2px 1000px 1px #fffdf5 inset;
@@ -49,6 +49,9 @@
 .button:hover {
   color: #fff;
   box-shadow: none;
+  background: linear-gradient(225deg, #8c1c16, #bc7059);
+  background-origin: border-box;
+  background-clip: border-box;
 }
 
 .button:hover::before {
