@@ -13,13 +13,13 @@ const Activities = () => {
   return (
     <Box className="pt-24">
       <Box className="w-full flex items-center pb-3">
-        <span className="text-3xl font-bold font-oswald text-primary">
+        <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary">
           WHAT WE DO
         </span>
         <img
           src={smiley}
           alt="Smiley"
-          className="h-18 ml-2"
+          className="h-6 sm:h-10 xl:h-full ml-1"
         />
       </Box>
       <Box className="w-full flex py-8">
