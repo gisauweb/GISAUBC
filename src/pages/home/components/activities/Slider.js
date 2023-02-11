@@ -1,11 +1,36 @@
 import React from "react";
 import Slider from "react-slick";
 
-const CustomSlide = ( props ) => {
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const CustomSlide = (props) => {
     return (
         <div {...props}>
             <h3>{index}</h3>
         </div>
+    );
+}
+
+const CustomPrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "green" }}
+            onClick={onClick}
+        />
+    );
+}
+
+const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: "red" }}
+            onClick={onClick}
+        />
     );
 }
 
