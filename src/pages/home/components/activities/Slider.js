@@ -1,13 +1,16 @@
 import React from "react";
 import Slider from "react-slick";
-
+import activity_1 from "assets/activities/img_1.svg"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const CustomSlide = (props) => {
+    const {index} = props
     return (
-        <div {...props}>
-            <h3>{index}</h3>
+        <div {...props} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}} className='bg-black text-white'>
+            <p>Activities</p>
+            <img src={activity_1} className="pl-2"/>
+            <p>Hahihu</p>
         </div>
     );
 }
@@ -23,7 +26,7 @@ const CustomPrevArrow = (props) => {
     );
 }
 
-const SampleNextArrow = (props) => {
+const CustomNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
         <div
@@ -55,17 +58,15 @@ export const SimpleSlider = () => {
         // }
         // beforeChange: (current, next) => this.setState({ activeSlide: next }),
         // afterChange: current => this.setState({ activeSlide2: current })
+        prevArrow: <CustomPrevArrow />,
+        nextArrow: <CustomNextArrow />
     };
     return (
-        <div>
-            <h2> Single Item</h2>
-            <Slider {...settings}>
+        <div className="w-1/4 mx-auto mt-40">
+            <Slider {...settings} >
                 <CustomSlide index={1} />
                 <CustomSlide index={2} />
                 <CustomSlide index={3} />
-                <CustomSlide index={4} />
-                <CustomSlide index={5} />
-                <CustomSlide index={6} />
             </Slider>
         </div>
     );
