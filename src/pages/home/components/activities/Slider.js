@@ -1,45 +1,42 @@
 import React from "react";
 import Slider from "react-slick";
-import activity_1 from "assets/activities/img_1.svg"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { activities } from "./constants";
+import { Box } from "@mui/material";
+import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 
 const CustomSlide = (props) => {
-    const {index} = props
+    const { title, image, description } = props
     return (
-        <div {...props} style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}} className='bg-black text-white'>
-            <p>Activities</p>
-            <img src={activity_1} className="pl-2"/>
-            <p>Hahihu</p>
-        </div>
+        <Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5] h-full'>
+            <span className="font-proxima-nova text-sm font-bold">{title}</span>
+            <img src={image} className="py-3 h-full w-full" />
+            <p className="pt-3 leading-none text-[12px]">{description}</p>
+        </Box>
     );
 }
 
-const CustomPrevArrow = (props) => {
-    const { className, style, onClick } = props;
+const CustomArrow = (props) => {
+    const { direction, onClick } = props;
     return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "green" }}
-            onClick={onClick}
-        />
+        direction === "left" ?
+            <ArrowBackIosNew
+                className="absolute top-24 -left-10"
+                fontSize="large"
+                onClick={onClick}
+            />
+            :   
+            <ArrowForwardIos
+                className="absolute top-24 -right-10"
+                fontSize="large"
+                onClick={onClick}
+            />
     );
 }
 
-const CustomNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-        <div
-            className={className}
-            style={{ ...style, display: "block", background: "red" }}
-            onClick={onClick}
-        />
-    );
-}
-
-export const SimpleSlider = () => {
+export const ActivitiesSlider = () => {
     const settings = {
-        dots: true,
         fade: true,
         // lazyLoad: true,
         infinite: true,
@@ -58,15 +55,15 @@ export const SimpleSlider = () => {
         // }
         // beforeChange: (current, next) => this.setState({ activeSlide: next }),
         // afterChange: current => this.setState({ activeSlide2: current })
-        prevArrow: <CustomPrevArrow />,
-        nextArrow: <CustomNextArrow />
+        prevArrow: <CustomArrow direction="left" />,
+        nextArrow: <CustomArrow direction="right" />
     };
     return (
-        <div className="w-1/4 mx-auto mt-40">
+        <div className="w-2/3 mx-auto">
             <Slider {...settings} >
-                <CustomSlide index={1} />
-                <CustomSlide index={2} />
-                <CustomSlide index={3} />
+                {activities.map((activity, i) => (
+                    <CustomSlide key={i} title={activity.title} image={activity.image} description={activity.description} />
+                ))}
             </Slider>
         </div>
     );

@@ -2,9 +2,12 @@ import React from "react";
 import { Box } from "@mui/material";
 import { activities, smiley } from "./constants";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+import { ActivitiesSlider } from "./Slider";
 
 const Activities = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
 
   const handleClickActivity = () => {
     navigate("activities");
@@ -12,7 +15,7 @@ const Activities = () => {
 
   return (
     <Box className="pt-24">
-      <Box className="w-full flex items-center pb-3">
+      <Box className="w-full flex justify-center sm:justify-start items-center sm:pb-3">
         <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary">
           WHAT WE DO
         </span>
@@ -23,17 +26,19 @@ const Activities = () => {
         />
       </Box>
       <Box className="w-full flex py-8">
-        {activities.map((activity, index) =>
-          <Box key={index} className="w-1/3 flex flex-col" sx={{alignItems: activity.alignment}}>
-            <Box className="w-5/6">
-              <img alt="Activity" id={activity.id} src={activity.image} className="h-full w-full hover:cursor-pointer" onClick={handleClickActivity}/>
+        {isMobile ? <ActivitiesSlider /> :
+          <>{activities.map((activity, index) =>
+            <Box key={index} className="w-1/3 flex flex-col" sx={{ alignItems: activity.alignment }}>
+              <Box className="w-5/6">
+                <img alt="Activity" id={activity.id} src={activity.image} className="h-full w-full hover:cursor-pointer" onClick={handleClickActivity} />
+              </Box>
+              <Box className="w-5/6 text-center" sx={{ pr: activity.padding }}>
+                <Box className="font-proxima-nova text-2xl h-16" sx={{ my: 3, fontWeight: "bold" }}>{activity.title}</Box>
+                <Box className="font-proxima-nova text-lg">{activity.description}</Box>
+              </Box>
             </Box>
-            <Box className="w-5/6 text-center" sx={{pr: activity.padding}}>
-              <Box className="font-proxima-nova text-2xl h-16" sx={{ my: 3, fontWeight: "bold"}}>{activity.title}</Box>
-              <Box className="font-proxima-nova text-lg">{activity.description}</Box>
-            </Box>
-          </Box>
-        )}
+          )}</>
+        }
       </Box>
     </Box>
   );
