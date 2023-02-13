@@ -15,7 +15,7 @@ const Activities = () => {
 
   return (
     <Box className="pt-24">
-      <Box className="w-full flex justify-center sm:justify-start items-center sm:pb-3">
+      <Box className="w-full flex justify-center sm:justify-start items-center pl-2 sm:pl-0 sm:pb-3">
         <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary">
           WHAT WE DO
         </span>

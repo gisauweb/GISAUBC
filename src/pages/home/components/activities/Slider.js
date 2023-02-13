@@ -10,7 +10,7 @@ const CustomSlide = (props) => {
     const { title, image, description } = props
     return (
         <Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5] h-full'>
-            <span className="font-proxima-nova text-sm font-bold">{title}</span>
+            <span className="font-proxima-nova text-sm font-extrabold">{title}</span>
             <img src={image} className="py-3 h-full w-full" />
             <p className="pt-3 leading-none text-[12px]">{description}</p>
         </Box>
