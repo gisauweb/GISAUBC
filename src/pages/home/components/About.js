@@ -33,7 +33,7 @@ const About = () => {
       </a>
       <Box className="w-[60%] sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          Hello! We are a non-profit cultural organization centered in promoting
+          <i className="pr-1">Halo!</i> We are a non-profit cultural organization centered in promoting
           Indonesian hospitality around the UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
