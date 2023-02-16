@@ -3,9 +3,10 @@ import { Box } from "@mui/material";
 import about_image from "assets/about_2.png";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import HomeButton from "shared/components/HomeButton";
+import { Button } from "shared/components/Button/Button";
 
-const typographyStyle = "text-[18px] leading-tight font-proxima-nova my-5 w-full pr-12";
+const typographyStyle =
+  "text-[18px] leading-tight font-proxima-nova my-5 w-full pr-12";
 
 const About = () => {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ const About = () => {
           welcomes the diverse UBC society of Indonesian and non-Indonesian
           students alike.
         </p>
-        <HomeButton handleClickButton={handleClickButton}/>
+        <Button
+          className="mt-10"
+          text="Learn More"
+          handleClickButton={handleClickButton}
+        />
       </Box>
       <Box className="w-1/2 flex justify-center">
-        <img
-          src={about_image}
-          alt="GISAU Executives"
-          className="w-5/6"
-        />
+        <img src={about_image} alt="GISAU Executives" className="w-5/6" />
       </Box>
     </Box>
   );

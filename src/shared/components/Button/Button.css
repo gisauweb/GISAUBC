@@ -1,0 +1,56 @@
+.button {
+  width: fit-content;
+  background: #7d0202;
+  border-radius: 5rem;
+  padding: 0.75rem 2rem;
+
+  position: relative;
+  z-index: 1;
+
+  /* Content (text) */
+  color: #fff;
+  font-family: Oswald, sans-serif;
+  font-weight: 400;
+  font-size: 1.125rem /* 18px */;
+  line-height: 1.75rem /* 28px */;
+  cursor: pointer;
+}
+
+.button.transparent_bg {
+  color: #7d0202;
+  border: solid 3px transparent;
+  background: linear-gradient(225deg, #8c1c16, #bc7059);
+  background-origin: border-box;
+  background-clip: border-box;
+  box-shadow: 2px 1000px 1px #fffdf5 inset;
+
+  transition: 300ms ease-out;
+  -webkit-transition: 300ms ease-out;
+  transition-property: box-shadow, color;
+  -webkit-transition-property: box-shadow, color;
+}
+
+.button::before {
+  border-radius: 5rem;
+
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(225deg, #8c1c16, #bc7059);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  -webkit-transition: opacity 300ms ease-out;
+}
+
+.button:hover {
+  color: #fff;
+  box-shadow: none;
+}
+
+.button:hover::before {
+  opacity: 1;
+}
