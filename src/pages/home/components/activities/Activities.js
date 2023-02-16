@@ -11,8 +11,8 @@ const Activities = () => {
   };
 
   return (
-    <Box className="py-14">
-      <Box className="w-full flex items-center mb-3">
+    <Box className="pt-24">
+      <Box className="w-full flex items-center pb-3">
         <span className="text-3xl font-bold font-oswald text-primary">
           WHAT WE DO
         </span>

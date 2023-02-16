@@ -5,16 +5,25 @@ const useStyles = makeStyles({
     button: {
         borderRadius: "24px",
         textTransform: "none",
-        width: "22%",
+        width: "27%",
         background: "linear-gradient(to left, #7D0202, #7D0202)",
         color: "white",
-        height: "2.8rem",
-        paddingTop: "0.3rem",
+        height: "2.5rem",
+        padding: "0",
         transition: "background 300ms ease-out",
         "&:hover": {
             background: "linear-gradient(to left, #7D0202, #B25F4C)",
         },
-        marginTop: "0.5rem"
+        marginTop: "0.5rem",
+        "@media (min-width: 1500px)": {
+            width: "22%",
+        },
+        "@media(max-width: 639px)": {
+            width: "50%",
+            height: "1.8rem",
+            paddingTop: "0",
+            margin: "0"
+        }
     }
 });
 
@@ -27,6 +36,6 @@ export default function HomeButton({ handleClickButton }) {
         className={classes.button}
         onClick={handleClickButton}
     >
-        <span className="font-oswald text-lg">Learn More</span>
+        <span className="font-oswald text-[12px] sm:text-sm lg:text-lg">Learn More</span>
     </Button>;
 }
