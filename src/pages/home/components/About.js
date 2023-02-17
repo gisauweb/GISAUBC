@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle =
+  "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -22,7 +23,11 @@ const About = () => {
         <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
-        <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
+        <img
+          src={sunshine_image}
+          alt="Sunshine"
+          className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
+        ></img>
       </Box>
       <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
@@ -33,8 +38,9 @@ const About = () => {
       </a>
       <Box className="w-[60%] sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          <i className="pr-1">Halo!</i> We are a non-profit cultural organization centered in promoting
-          Indonesian hospitality around the UBC Vancouver campus.
+          <i className="pr-1">Halo!</i> We are a non-profit cultural
+          organization centered in promoting Indonesian hospitality around the
+          UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
           GISAU aims to foster an inclusive, close-knitted, and connected
@@ -47,9 +53,6 @@ const About = () => {
           text="Learn More"
           handleClickButton={handleClickButton}
         />
-      </Box>
-      <Box className="w-1/2 flex justify-center">
-        <img src={about_image} alt="GISAU Executives" className="w-5/6" />
       </Box>
     </Box>
   );
