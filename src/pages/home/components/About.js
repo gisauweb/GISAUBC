@@ -26,7 +26,7 @@ const About = () => {
           src={sunshine_image}
           alt="Sunshine"
           className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
-        ></img>
+        />
       </Box>
       <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
