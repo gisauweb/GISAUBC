@@ -5,7 +5,7 @@ import { UPCOMINGEVENTS, RANTANGAN } from "./constants";
 
 export const Events = () => {
   return (
-    <div className="flex justify-between flex-wrap">
+    <div className="flex justify-between flex-wrap pt-24">
       <EventLayout
         className="basis-1/3"
         title={UPCOMINGEVENTS.title}
