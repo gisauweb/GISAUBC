@@ -22,7 +22,11 @@ const About = () => {
         <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
-        <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
+        <img
+          src={sunshine_image}
+          alt="Sunshine"
+          className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
+        />
       </Box>
       <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
