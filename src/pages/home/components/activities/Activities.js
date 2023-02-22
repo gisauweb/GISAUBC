@@ -25,7 +25,7 @@ const Activities = () => {
           className="h-6 sm:h-10 xl:h-full ml-1"
         />
       </Box>
-      <Box className="w-full flex py-8">
+      <Box className="w-full flex py-5 sm:py-8">
         {isMobile ? <ActivitiesSlider /> :
           <>{activities.map((activity, index) =>
             <Box key={index} className="w-1/3 flex flex-col" sx={{ alignItems: activity.alignment }}>
