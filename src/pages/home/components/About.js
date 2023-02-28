@@ -1,7 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import about_image from "assets/about/about.png";
-import about_mobile from "assets/about/about_mobile.svg";
+import about_mobile from "assets/about/about_mobile.png";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
