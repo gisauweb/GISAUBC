@@ -16,7 +16,7 @@ const Activities = () => {
   return (
     <Box className="pt-24">
       <Box className="w-full flex justify-center sm:justify-start items-center pl-2 sm:pl-0 sm:pb-3">
-        <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary">
+        <span className="text-base sm:text-3xl xl:text-4xl font-oswald text-primary">
           WHAT WE DO
         </span>
         <img
@@ -28,12 +28,12 @@ const Activities = () => {
       <Box className="w-full flex py-5 sm:py-8">
         {isMobile ? <ActivitiesSlider /> :
           <>{activities.map((activity, index) =>
-            <Box key={index} className="w-1/3 flex flex-col" sx={{ alignItems: activity.alignment }}>
+            <Box key={index} className="w-1/3 flex flex-col" sx={{ alignItems: activity.alignment}}>
               <Box className="w-5/6">
                 <img alt="Activity" id={activity.id} src={activity.image} className="h-full w-full hover:cursor-pointer" onClick={handleClickActivity} />
               </Box>
-              <Box className="w-5/6 text-center" sx={{ pr: activity.padding }}>
-                <Box className="font-proxima-nova text-2xl h-16" sx={{ my: 3, fontWeight: "bold" }}>{activity.title}</Box>
+              <Box className="w-5/6 text-center px-3">
+                <Box className="font-proxima-nova text-2xl" sx={{ my: 3, fontWeight: "bold" }}>{activity.title}</Box>
                 <Box className="font-proxima-nova text-lg">{activity.description}</Box>
               </Box>
             </Box>
