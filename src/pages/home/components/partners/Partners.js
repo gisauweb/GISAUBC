@@ -9,7 +9,7 @@ const Partners = () => {
     return (
         <Box className='pt-24'>
             <Box className="w-full flex pb-3 ">
-                <span className="text-3xl font-bold font-oswald text-primary pt-8">
+                <span className="text-3xl font-semibold font-oswald text-primary pt-8">
                     OUR PARTNERS
                 </span>
                 <img src={rainbow} alt="Rainbow" className="w-10 relative right-6 bottom-1.5"></img>

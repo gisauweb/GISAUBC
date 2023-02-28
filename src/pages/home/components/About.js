@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import HomeButton from "shared/components/HomeButton";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle = "text-xs sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const About = () => {
   return (
     <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-7 sm:pt-20">
       <Box className="w-full sm:w-1/2 flex justify-center sm:justify-start pb-4 sm:pb-1.5 pl-8 sm:pl-0">
-        <span className="text-base sm:text-3xl xl:text-4xl font-bold font-oswald text-primary pt-4 sm:pt-6">
+        <span className="text-base sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
         <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
@@ -28,7 +28,7 @@ const About = () => {
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
-          className="w-full"
+          className="w-2/3 mx-auto"
         />
       </a>
       <Box className="w-[60%] sm:w-1/2 h-full">
