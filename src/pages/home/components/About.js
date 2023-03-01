@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-xs sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle = "text-sm sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-6 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const About = () => {
 
   return (
     <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-10 sm:pt-20">
-      <Box className="w-full sm:w-1/2 flex justify-center sm:justify-start pb-5 sm:pb-1.5 pl-8 sm:pl-0">
+      <Box className="w-full sm:w-1/2 flex justify-center sm:justify-start pb-6 sm:pb-1.5 pl-6 sm:pl-0">
         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
@@ -48,6 +48,7 @@ const About = () => {
         </p>
       </Box>
       <Button
+          // className="mt-1"
           text="Learn More"
           handleClickButton={handleClickButton}
         />
