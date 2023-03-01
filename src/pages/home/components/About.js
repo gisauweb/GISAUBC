@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-sm sm:text-base xl:text-xl font-proxima-nova my-6 w-full sm:pr-6";
+const typographyStyle = "text-base sm:text-base xl:text-xl font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const About = () => {
           className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
         />
       </Box>
-      <a href="/about" className="pb-1 sm:pb-0 sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
+      <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
@@ -37,7 +37,7 @@ const About = () => {
       </a>
       <Box className="w-3/4 sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          <i className="pr-1">Halo!</i> We are a non-profit cultural organization centered in promoting
+          <i className="pr-0.5">Halo!</i> We are a non-profit cultural organization centered in promoting
           Indonesian hospitality around the UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
