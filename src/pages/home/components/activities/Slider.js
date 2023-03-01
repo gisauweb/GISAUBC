@@ -10,9 +10,9 @@ const CustomSlide = (props) => {
     const { title, image, description } = props
     return (
         <Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5] h-full'>
-            <span className="font-proxima-nova text-sm font-extrabold">{title}</span>
-            <img src={image} alt="Activities" className="py-3 h-full w-full" />
-            <p className="pt-3 leading-none text-xs font-proxima-nova">{description}</p>
+            <img src={image} alt="Activities" className="pb-3 h-full w-full" />
+            <span className="font-proxima-nova text-base font-extrabold">{title}</span>
+            <p className="pt-3 leading-none text-sm font-proxima-nova">{description}</p>
         </Box>
     );
 }
@@ -22,13 +22,13 @@ const CustomArrow = (props) => {
     return (
         direction === "left" ?
             <ArrowBackIosNew
-                className="absolute top-24 -left-10"
+                className="absolute top-[4.2rem] -left-10"
                 fontSize="large"
                 onClick={onClick}
             />
             :   
             <ArrowForwardIos
-                className="absolute top-24 -right-9"
+                className="absolute top-[4.2rem] -right-[2.32rem]"
                 fontSize="large"
                 onClick={onClick}
             />
@@ -59,7 +59,7 @@ export const ActivitiesSlider = () => {
         nextArrow: <CustomArrow direction="right" />
     };
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-3/4 mx-auto">
             <Slider {...settings} >
                 {activities.map((activity, i) => (
                     <CustomSlide key={i} title={activity.title} image={activity.image} description={activity.description} />
