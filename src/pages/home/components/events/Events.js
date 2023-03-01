@@ -19,8 +19,8 @@ export const Events = () => {
         title={RANTANGAN.title}
         events={RANTANGAN.events}
         icon={RANTANGAN.icon}
-        button1={UPCOMINGEVENTS.button1}
-        button2={UPCOMINGEVENTS.button2}
+        button1={RANTANGAN.button1}
+        button2={RANTANGAN.button2}
       />
     </div>
   );

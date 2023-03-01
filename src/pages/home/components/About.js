@@ -4,7 +4,7 @@ import about_image from "assets/about/about.png";
 import about_mobile from "assets/about/about_mobile.png";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import HomeButton from "shared/components/HomeButton";
+import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
 const typographyStyle = "text-xs sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
@@ -22,7 +22,11 @@ const About = () => {
         <span className="text-base sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
         </span>
-        <img src={sunshine_image} alt="Sunshine" className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "></img>
+        <img
+          src={sunshine_image}
+          alt="Sunshine"
+          className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
+        />
       </Box>
       <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
@@ -33,7 +37,7 @@ const About = () => {
       </a>
       <Box className="w-[60%] sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          Hello! We are a non-profit cultural organization centered in promoting
+          <i className="pr-1">Halo!</i> We are a non-profit cultural organization centered in promoting
           Indonesian hospitality around the UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
@@ -42,7 +46,11 @@ const About = () => {
           welcomes the diverse UBC society of Indonesian and non-Indonesian
           students alike.
         </p>
-        <HomeButton handleClickButton={handleClickButton} />
+        <Button
+          className="mt-10"
+          text="Learn More"
+          handleClickButton={handleClickButton}
+        />
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomButton } from "shared/components/CustomButton";
+import { Button } from "shared/components/Button/Button";
 
 import "./EventLayout.css";
 
@@ -29,7 +29,7 @@ export const EventLayout = ({
           <div className="event-img">{event.img}</div>
         </div>
         <div className="grid justify-center">
-          <CustomButton name={button1} />
+          <Button text={button1} />
         </div>
       </div>
     ));
@@ -47,7 +47,7 @@ export const EventLayout = ({
           events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
-        <CustomButton name={button2.name} />
+        <Button text={button2.name} transparentBg={true} />
       </div>
     </div>
   );
