@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-sm sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-6 w-full sm:pr-6";
+const typographyStyle = "text-sm sm:text-base xl:text-xl font-proxima-nova my-6 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -28,11 +28,11 @@ const About = () => {
           className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
         />
       </Box>
-      <a href="/about" className="pb-1 sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
+      <a href="/about" className="pb-1 sm:pb-0 sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
-          className="w-3/4 mx-auto"
+          className="w-3/4 sm:w-full mx-auto sm:mt-6"
         />
       </a>
       <Box className="w-3/4 sm:w-1/2 h-full">
