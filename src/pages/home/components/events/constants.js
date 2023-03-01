@@ -23,7 +23,7 @@ export const UPCOMINGEVENTS = {
     <img
       src={require("../../../../assets/events/upcoming_event.svg").default}
       alt=""
-      className="ml-[35%]"
+      className="ml-[25%] w-[80%] sm:ml-[35%] sm:w-full"
     />
   ),
   button1: "Register",
