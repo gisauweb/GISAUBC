@@ -23,7 +23,7 @@ export const LandingImage = () => {
   });
 
   return (
-    <div className={`h-screen justify-center items-center overflow-hidden`}>
+    <div className={`h-screen justify-center items-center`}>
       <div className={`h-full absolute w-full ${classes.bgImage}`}></div>
       <div className="relative flex justify-center items-center h-full">
         <div className="w-full mt-1/10">
