@@ -15,7 +15,7 @@ const Activities = () => {
 
   return (
     <Box className="pt-24">
-      <Box className="w-full flex justify-center sm:justify-start items-center pl-6 sm:pl-0 pb-1 sm:pb-3">
+      <Box className="w-full flex justify-center lg:justify-start items-center pl-4 lg:pl-0 pb-1 lg:pb-3">
         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary">
           WHAT WE DO
         </span>
@@ -25,7 +25,7 @@ const Activities = () => {
           className="h-6 sm:h-10 xl:h-full ml-1"
         />
       </Box>
-      <Box className="w-full flex sm:py-8">
+      <Box className="w-full flex lg:py-8">
         {isMobile ? <ActivitiesSlider /> :
           <>{activities.map((activity, index) =>
             <Box key={index} className="w-1/3 flex flex-col" sx={{ alignItems: activity.alignment}}>
