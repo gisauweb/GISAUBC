@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick-theme.css";
 import { activities } from "./constants";
 import { Box } from "@mui/material";
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
-import { useMediaQuery } from "react-responsive";
 
 const CustomSlide = (props) => {
     const { title, image, description } = props
