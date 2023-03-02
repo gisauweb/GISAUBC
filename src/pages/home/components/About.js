@@ -17,7 +17,7 @@ const About = () => {
   };
 
   return (
-    <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-7 sm:pt-20">
+    <Box className="flex flex-col w-full text-center sm:text-left justify-center items-center sm:items-start pt-10 sm:pt-20">
       <Box className="w-full sm:w-1/2 flex justify-center sm:justify-start pb-6 sm:pb-1.5 pl-6 sm:pl-0">
         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 sm:pt-6">
           WHO WE ARE
@@ -25,14 +25,14 @@ const About = () => {
         <img
           src={sunshine_image}
           alt="Sunshine"
-          className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0 "
+          className="h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:top-2 xl:top-0"
         />
       </Box>
       <a href="/about" className="sm:w-1/3 2xl:w-fit sm:absolute sm:right-1/10">
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
-          className="w-3/4 sm:w-full mx-auto sm:mt-6"
+          className="w-3/4 sm:w-full mx-auto sm:mt-6 rounded-3xl"
         />
       </a>
       <Box className="w-3/4 sm:w-1/2 h-full">
