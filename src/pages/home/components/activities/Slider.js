@@ -9,10 +9,10 @@ import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 const CustomSlide = (props) => {
     const { title, image, description } = props
     return (
-        <Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5] h-full'>
-            <span className="font-proxima-nova text-sm font-extrabold">{title}</span>
-            <img src={image} alt="Activities" className="py-3 h-full w-full" />
-            <p className="pt-3 leading-none text-xs font-proxima-nova">{description}</p>
+        <Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5]'>
+            <img src={image} alt="Activities" className="w-full" />
+            <span className="font-proxima-nova text-base sm:text-xl px-3 py-5 font-extrabold">{title}</span>
+            <p className="text-sm px-3 sm:text-lg font-proxima-nova">{description}</p>
         </Box>
     );
 }
@@ -22,14 +22,12 @@ const CustomArrow = (props) => {
     return (
         direction === "left" ?
             <ArrowBackIosNew
-                className="absolute top-24 -left-10"
-                fontSize="large"
+                className="absolute top-[4.2rem] -left-10 text-[2.2rem] sm:top-[7rem] sm:-left-[3.62rem] sm:text-[4rem]"
                 onClick={onClick}
             />
             :   
             <ArrowForwardIos
-                className="absolute top-24 -right-9"
-                fontSize="large"
+                className="absolute top-[4.2rem] -right-[2.32rem] sm:top-[7rem] sm:-right-14 sm:text-[4rem]"
                 onClick={onClick}
             />
     );
@@ -59,7 +57,7 @@ export const ActivitiesSlider = () => {
         nextArrow: <CustomArrow direction="right" />
     };
     return (
-        <div className="w-2/3 mx-auto">
+        <div className="w-3/4 sm:w-3/5 mx-auto">
             <Slider {...settings} >
                 {activities.map((activity, i) => (
                     <CustomSlide key={i} title={activity.title} image={activity.image} description={activity.description} />
