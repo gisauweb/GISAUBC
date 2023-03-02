@@ -7,7 +7,7 @@ import { ActivitiesSlider } from "./Slider";
 
 const Activities = () => {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
+  const isMobile = useMediaQuery({ query: `(max-width: 1023px) ` });
 
   const handleClickActivity = () => {
     navigate("activities");
