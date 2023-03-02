@@ -20,7 +20,6 @@ const CustomSlide = (props) => {
 
 const CustomArrow = (props) => {
     const { direction, onClick } = props;
-    const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
     return (
         direction === "left" ?
             <ArrowBackIosNew
@@ -30,7 +29,6 @@ const CustomArrow = (props) => {
             :   
             <ArrowForwardIos
                 className="absolute top-[4.2rem] -right-[2.32rem] sm:top-[7rem] sm:-right-14 sm:text-[4rem]"
-                fontSize="large"
                 onClick={onClick}
             />
     );
