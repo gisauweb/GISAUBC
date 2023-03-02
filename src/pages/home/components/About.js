@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-base sm:text-base xl:text-xl font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle = "text-base xl:text-xl font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
