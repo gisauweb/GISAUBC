@@ -41,7 +41,7 @@ export const ActivitiesSlider = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        adaptiveHeight: true,
+        // adaptiveHeight: true,
         autoplay: true,
         autoplaySpeed: 2000,
         pauseOnHover: true,
