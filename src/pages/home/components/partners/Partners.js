@@ -10,11 +10,11 @@ const Partners = () => {
 
     return (
         <Box className={`pt-24 ${isMobile && 'hidden'}`}>
-            <Box className="w-full flex pb-3 justify-center lg:justify-start">
-                <span className="text-3xl font-semibold font-oswald text-primary pt-8">
+            <Box className="w-full flex pb-3 justify-center lg:justify-start pl-9 lg:pl-0">
+                <span className="text-3xl font-semibold font-oswald text-primary pt-0">
                     OUR PARTNERS
                 </span>
-                <img src={rainbow} alt="Rainbow" className="w-10 relative right-6 bottom-1.5"></img>
+                <img src={rainbow} alt="Rainbow" className="w-10 relative right-5 -top-5"></img>
             </Box>
             <Box className='py-14'>
                 <Marquee gradient={false} speed={isBigDisplay ? 80: 50}>
