@@ -4,10 +4,11 @@ import about_image from "assets/about/about.png";
 import about_mobile from "assets/about/about_mobile.svg";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import { Button } from "shared/components/Button/Button";
+import { Button } from "shared/components/button/Button";
 import { useMediaQuery } from "react-responsive";
 
-const typographyStyle = "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
+const typographyStyle =
+  "text-[12px] sm:text-[15px] xl:text-[20px] leading-tight font-proxima-nova my-5 w-full sm:pr-6";
 
 const About = () => {
   const navigate = useNavigate();
@@ -37,8 +38,9 @@ const About = () => {
       </a>
       <Box className="w-[60%] sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          <i className="pr-1">Halo!</i> We are a non-profit cultural organization centered in promoting
-          Indonesian hospitality around the UBC Vancouver campus.
+          <i className="pr-1">Halo!</i> We are a non-profit cultural
+          organization centered in promoting Indonesian hospitality around the
+          UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
           GISAU aims to foster an inclusive, close-knitted, and connected
