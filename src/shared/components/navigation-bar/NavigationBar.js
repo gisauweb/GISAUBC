@@ -13,7 +13,11 @@ export const NavigationBar = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
   return (
     <div>
-      <Box className="flex justify-between items-center absolute z-10 w-full top-1/20">
+      <Box
+        className={`flex justify-between items-center z-10 w-full mt-1/20 ${
+          isHomePage && "absolute"
+        }`}
+      >
         <Box className="ml-20">
           <Link to="/">
             {isHomePage ? (
