@@ -1,6 +1,6 @@
 import React from "react";
 
-import { EventLayout } from "shared/layout/EventLayout";
+import { EventLayout } from "shared/layout/event-layout/EventLayout";
 import { UPCOMINGEVENTS, RANTANGAN } from "./constants";
 
 import { useMediaQuery } from "react-responsive";

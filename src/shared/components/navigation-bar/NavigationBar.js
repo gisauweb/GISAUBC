@@ -14,7 +14,7 @@ export const NavigationBar = () => {
   return (
     <div>
       <Box
-        className={`flex justify-between items-center z-10 w-full mt-1/20 ${
+        className={`flex justify-between items-center z-10 w-full mt-[5vh] ${
           isHomePage && "absolute"
         }`}
       >
