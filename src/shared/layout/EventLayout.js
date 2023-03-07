@@ -29,7 +29,7 @@ export const EventLayout = ({
           </div>
         )}
         <div>
-          <div className="event-img w-[64%] md:w-[40%] m-auto lg:w-[95%] lg:m-0">
+          <div className="event-img w-[64%] md:w-[50%] m-auto lg:w-[95%] lg:m-0">
             {event.img}
           </div>
         </div>
