@@ -4,7 +4,7 @@ import about_image from "assets/about/about.png";
 import about_mobile from "assets/about/about_mobile.png";
 import sunshine_image from "assets/sunshine.svg";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../shared/components/button/Button";
+import { Button } from "../../../shared/components/Button/Button";
 import { useMediaQuery } from "react-responsive";
 
 const typographyStyle = "text-base xl:text-xl font-proxima-nova my-5 w-full sm:pr-6";
@@ -37,8 +37,9 @@ const About = () => {
       </a>
       <Box className="w-3/4 sm:w-1/2 h-full">
         <p className={typographyStyle}>
-          <i className="pr-0.5">Halo!</i> We are a non-profit cultural organization centered in promoting
-          Indonesian hospitality around the UBC Vancouver campus.
+          <i className="pr-0.5">Halo!</i> We are a non-profit cultural
+          organization centered in promoting Indonesian hospitality around the
+          UBC Vancouver campus.
         </p>
         <p className={typographyStyle}>
           GISAU aims to foster an inclusive, close-knitted, and connected
@@ -48,10 +49,10 @@ const About = () => {
         </p>
       </Box>
       <Button
-          // className="mt-1"
-          text="Learn More"
-          handleClickButton={handleClickButton}
-        />
+        // className="mt-1"
+        text="Learn More"
+        handleClickButton={handleClickButton}
+      />
     </Box>
   );
 };

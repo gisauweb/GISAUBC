@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Button } from "../../../shared/components/button/Button";
+import { Button } from "../../../shared/components/Button/Button";
 import Gisau from "../../../assets/gisau-logo/gisau.png";
 import LandingImg from "../../../assets/landing.jpg";
 
