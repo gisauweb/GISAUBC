@@ -57,7 +57,7 @@ export const ActivitiesSlider = () => {
         nextArrow: <CustomArrow direction="right" />
     };
     return (
-        <div className="w-3/4 sm:w-3/5 mx-auto">
+        <div className="w-3/5 sm:w-1/2 mx-auto">
             <Slider {...settings} >
                 {activities.map((activity, i) => (
                     <CustomSlide key={i} title={activity.title} image={activity.image} description={activity.description} />

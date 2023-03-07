@@ -29,7 +29,7 @@ export const EventLayout = ({
           </div>
         )}
         <div>
-          <div className="event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0">
+          <div className="event-img w-[64%] md:w-[40%] m-auto lg:w-[95%] lg:m-0">
             {event.img}
           </div>
         </div>
@@ -44,10 +44,10 @@ export const EventLayout = ({
     <div className={className}>
       <div
         className={`uppercase flex items-center ${
-          isMobileView && "justify-center"
+          isMobileView && "justify-start pl-6"
         }`}
       >
-        <h1 className="title text-2xl sm:text-3xl xl:text-4xl">{title}</h1>
+        <h1 className="title text-xl sm:text-2xl xl:text-4xl">{title}</h1>
         <div className="events-icon">{icon}</div>
       </div>
       <div className="mt-10">{content}</div>
