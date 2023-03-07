@@ -27,7 +27,7 @@ const CustomArrow = (props) => {
             />
             :   
             <ArrowForwardIos
-                className="absolute top-[4.2rem] -right-[2.32rem] sm:top-[7rem] sm:-right-14 sm:text-[4rem]"
+                className="absolute top-[4.2rem] -right-[2.32rem] text-[2.2rem] sm:top-[7rem] sm:-right-14 sm:text-[4rem]"
                 onClick={onClick}
             />
     );
