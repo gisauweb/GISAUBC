@@ -7,7 +7,7 @@ import { Events } from "./components/events/Events";
 import Partners from "./components/partners/Partners";
 import { Box } from "@mui/material";
 
-export default function Home() {
+export const Home = () => {
   return (
     <Box className="bg-[#FFFDF5]">
       <LandingImage />
@@ -19,4 +19,4 @@ export default function Home() {
       </MainContainer>
     </Box>
   );
-}
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "shared/components/Button/Button";
+import { Button } from "../../components/button/Button";
 
 import "./EventLayout.css";
 
