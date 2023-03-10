@@ -17,8 +17,8 @@ export const Home = () => {
         <Activities />
         <Events />
         <Partners />
-        <Footer />
       </MainContainer>
+      <Footer />
     </Box>
   );
 };
