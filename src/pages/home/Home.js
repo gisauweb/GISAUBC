@@ -6,6 +6,7 @@ import Activities from "./components/activities/Activities";
 import { Events } from "./components/events/Events";
 import Partners from "./components/partners/Partners";
 import { Box } from "@mui/material";
+import { Footer } from "./components/footer/Footer";
 
 export const Home = () => {
   return (
@@ -16,6 +17,7 @@ export const Home = () => {
         <Activities />
         <Events />
         <Partners />
+        <Footer />
       </MainContainer>
     </Box>
   );
