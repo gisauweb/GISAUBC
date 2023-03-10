@@ -55,9 +55,17 @@
 @media only screen and (max-width: 639px) {
     .footer-title {
         margin-top: 1rem;
+        margin-bottom: 0.4rem;
     }
     .footer-icons {
-        width: 40%;
+        width: 35%;
+        margin: 0;
         margin-left: 1.7%;
+    }
+    .footer-email{
+        margin-top:1rem
+    }
+    .footer-copyright{
+        margin: 0
     }
 }
