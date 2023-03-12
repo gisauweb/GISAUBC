@@ -58,12 +58,24 @@
         margin-bottom: 0.4rem;
     }
     .footer-icons {
-        width: 35%;
+        width: 32%;
         margin: 0;
         margin-left: 1.7%;
     }
-    .footer-email{
-        margin-top:1rem
+    .footer-copyright{
+        margin-top: 0
+    }
+}
+
+@media only screen and (min-width: 639px) and (max-width: 1039px) {
+    .footer-title {
+        margin-top: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    .footer-icons {
+        width: 15%;
+        margin: 0;
+        margin-left: 1.3%;
     }
     .footer-copyright{
         margin: 0
