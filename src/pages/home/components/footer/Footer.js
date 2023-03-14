@@ -10,10 +10,10 @@ import plane from 'assets/plane.svg'
 export const Footer = () => {
     return (
         <>
-            <div className='w-4/5 mx-auto flex justify-end my-28 mb-60'>
+            <div className='w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex'>
                 <img src={plane} alt="paper-plane"/>
             </div>
-            <div className="footer">
+            <div className="footer mt-36 lg:mt-0">
                 <div className="footer-title text-lg lg:text-3xl">Connect with us!</div>
                 <div className="footer-icons">
                     <a href='https://www.instagram.com/gisaubc/' className="icon"><img src={instagramIcon} alt="instagram-icon" /></a>

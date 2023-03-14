@@ -9,7 +9,7 @@ const Partners = () => {
     const isMobile = useMediaQuery({ query: `(max-width: 639px)` });
 
     return (
-        <Box className={`pt-24 ${isMobile && 'hidden'}`}>
+        <Box className={`pt-28 ${isMobile && 'hidden'}`}>
             <Box className="w-full flex pb-3 justify-center lg:justify-start pl-9 lg:pl-0">
                 <span className="text-3xl font-semibold font-oswald text-primary pt-0">
                     OUR PARTNERS
