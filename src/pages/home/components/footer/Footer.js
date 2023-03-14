@@ -11,7 +11,7 @@ export const Footer = () => {
     return (
         <>
             <div className='w-4/5 mx-auto flex justify-end my-28 mb-60'>
-                <img src={plane} />
+                <img src={plane} alt="paper-plane"/>
             </div>
             <div className="footer">
                 <div className="footer-title text-lg lg:text-3xl">Connect with us!</div>
