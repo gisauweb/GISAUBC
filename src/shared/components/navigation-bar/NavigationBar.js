@@ -9,7 +9,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { MenuInterface } from "./MenuInterface";
 
 const NavigationBar = () => {
-  const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
+  const isMobile = useMediaQuery({ query: `(max-width: 639px)` });
+  const isNavbarMenu = useMediaQuery({ query: `(max-width: 1023px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -20,8 +21,8 @@ const NavigationBar = () => {
             <NavLogo className={`${isMobile ? `w-10` : "w-16"} h-auto`} />
           </Link>
         </Box>
-        {isMobile ? (
-          <div>
+        {isNavbarMenu ? (
+          <div className={isMobile ? `mr-6` : `mr-20`}>
             {isMenuOpen ? (
               <MenuInterface
                 className={`w-6`}
@@ -29,7 +30,7 @@ const NavigationBar = () => {
               />
             ) : (
               <MenuIcon
-                className={`text-white mr-6`}
+                className={`text-white`}
                 onClick={() => setIsMenuOpen(true)}
               />
             )}
