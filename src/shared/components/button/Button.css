@@ -16,6 +16,12 @@
   cursor: pointer;
 }
 
+@media (max-width: 639px) {
+  .button {
+    padding: 0.5rem 2rem;
+  }
+}
+
 .button.transparent_bg {
   color: #7d0202;
   border: solid 3px transparent;

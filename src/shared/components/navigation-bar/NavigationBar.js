@@ -1,23 +1,34 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { Link, Outlet } from "react-router-dom";
-
-import { ReactComponent as NavLogo } from "../../../assets/gisau-logo/gisau_white.svg";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { ReactComponent as NavLogoWhite } from "../../../assets/gisau-logo/gisau_white.svg";
+import { ReactComponent as NavLogoBlack } from "../../../assets/gisau-logo/gisau_icon.svg";
 import { pages } from "./constants";
 import { Box } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { MenuInterface } from "./MenuInterface";
 
-const NavigationBar = () => {
+export const NavigationBar = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div>
-      <Box className="flex justify-between items-center absolute z-10 w-full top-1/20">
+      <Box
+        className={`flex justify-between items-center z-10 w-full mt-[5vh] ${
+          isHomePage && "absolute"
+        }`}
+      >
         <Box className={`ml-6 sm:ml-20 md:ml-6 lg:ml-20`}>
           <Link to="/">
-            <NavLogo className={`w-10 sm:w-16 h-auto`} />
+            {isHomePage ? (
+              <NavLogoWhite className="w-16 h-16" />
+            ) : (
+              <NavLogoBlack className={`w-10 sm:w-16 h-16 h-auto`} />
+            )}
           </Link>
         </Box>
         {isMobile ? (
@@ -38,7 +49,11 @@ const NavigationBar = () => {
           <Box className="flex mr-6 lg:mr-20">
             {pages.map((page) => (
               <Link key={page.name} to={page.path} className="px-5 pt-3">
-                <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-xl">
+                <p
+                  className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
+                    isHomePage ? "text-white" : "text-black"
+                  }`}
+                >
                   {page.name}
                 </p>
               </Link>
@@ -52,5 +67,3 @@ const NavigationBar = () => {
     </div>
   );
 };
-
-export default NavigationBar;
