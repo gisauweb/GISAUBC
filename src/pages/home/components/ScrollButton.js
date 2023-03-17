@@ -28,7 +28,7 @@ export const ScrollButtonContainer = () => {
     }, []);
 
     return (
-        <div className={`sb fixed right-12 sm:right-32 2xl:right-64 z-10 bottom-48 lg:bottom-64`} style={{display: visible? 'inline' : 'none'}} >
+        <div className={`sb fixed right-12 sm:right-32 2xl:right-64 z-10 bottom-48 sm:bottom-52 lg:bottom-64`} style={{display: visible? 'inline' : 'none'}} >
             <div className='w-10 h-10 sm:w-12 sm:h-12 flex justify-center items-center rounded-full border-2 border-primary bg-red-100 hover:cursor-pointer' onClick={scrollToTop}>
                 <KeyboardArrowUp style={{ color: 'rgb(125 2 2)' }} fontSize={isMobile ? 'medium' : 'large'} />
             </div>
