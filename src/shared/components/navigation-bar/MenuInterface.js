@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import { ReactComponent as NavLogo } from "../../../assets/gisau-logo/gisau_white.svg";
 
-export const MenuInterface = ({ clickHandler }) => {
+export const MenuInterface = ({ className, clickHandler }) => {
   return (
-    <div>
+    <div className={`${className}`}>
       <div
         className="bg-black fixed top-0 left-0 w-full h-full z-10 opacity-50"
         onClick={clickHandler}

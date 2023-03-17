@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { ReactComponent as NavLogoWhite } from "../../../assets/gisau-logo/gisau_white.svg";
@@ -14,6 +14,10 @@ export const NavigationBar = () => {
 
   const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setIsMenuOpen(false); // Close the navigation panel
+  }, [location.pathname]);
 
   return (
     <div>
@@ -32,15 +36,15 @@ export const NavigationBar = () => {
           </Link>
         </Box>
         {isMobile ? (
-          <div className={`mr-6 sm:mr-20`}>
+          <div className={`mr-6 sm:mr-20 transition-all duration-1000`}>
             {isMenuOpen ? (
               <MenuInterface
-                className={`w-6`}
+                className={""}
                 clickHandler={() => setIsMenuOpen(false)}
               />
             ) : (
               <MenuIcon
-                className={`text-white`}
+                className={`${isHomePage ? "text-white" : "text-black"} `}
                 onClick={() => setIsMenuOpen(true)}
               />
             )}
