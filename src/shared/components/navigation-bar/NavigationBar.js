@@ -5,7 +5,6 @@ import { ReactComponent as NavLogoWhite } from "../../../assets/gisau-logo/gisau
 import { ReactComponent as NavLogoBlack } from "../../../assets/gisau-logo/gisau_icon.svg";
 import { pages } from "./constants";
 import { Box } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { MenuInterface } from "./MenuInterface";
 
 export const NavigationBar = () => {
@@ -36,18 +35,12 @@ export const NavigationBar = () => {
           </Link>
         </Box>
         {isMobile ? (
-          <div className={`mr-6 sm:mr-20 transition-all duration-1000`}>
-            {isMenuOpen ? (
-              <MenuInterface
-                className={""}
-                clickHandler={() => setIsMenuOpen(false)}
-              />
-            ) : (
-              <MenuIcon
-                className={`${isHomePage ? "text-white" : "text-black"} `}
-                onClick={() => setIsMenuOpen(true)}
-              />
-            )}
+          <div className={`mr-6 sm:mr-20`}>
+            <MenuInterface
+              isOpen={isMenuOpen}
+              setIsOpen={setIsMenuOpen}
+              isHomePage={isHomePage}
+            />
           </div>
         ) : (
           <Box className="flex mr-6 lg:mr-20">
