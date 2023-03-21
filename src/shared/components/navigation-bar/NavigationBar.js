@@ -14,12 +14,28 @@ export const NavigationBar = () => {
   const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleClosingMenu = () => {
+    setIsMenuOpen(false);
+
+    // Unsets Background Scrolling to use when SideDrawer/Modal is closed
+    document.body.style.overflow = "unset";
+  };
+
+  const handleOpeningMenu = () => {
+    setIsMenuOpen(true);
+
+    // Disables Background Scrolling whilst the SideDrawer/Modal is open
+    if (typeof window != "undefined" && window.document) {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   useEffect(() => {
     setIsMenuOpen(false); // Close the navigation panel
   }, [location.pathname]);
 
   return (
-    <div>
+    <div className={isMenuOpen ? "overflow-y-hidden" : "overflow-y-visible"}>
       <Box
         className={`flex justify-between items-center z-10 w-full mt-[5vh] ${
           isHomePage && "absolute"
@@ -38,7 +54,8 @@ export const NavigationBar = () => {
           <div className={`mr-6 sm:mr-20`}>
             <MenuInterface
               isOpen={isMenuOpen}
-              setIsOpen={setIsMenuOpen}
+              closeHandler={handleClosingMenu}
+              openHandler={handleOpeningMenu}
               isHomePage={isHomePage}
             />
           </div>

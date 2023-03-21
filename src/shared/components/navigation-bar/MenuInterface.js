@@ -2,7 +2,13 @@ import React from "react";
 import { pages } from "./constants";
 import { Link } from "react-router-dom";
 
-export const MenuInterface = ({ className, isOpen, setIsOpen, isHomePage }) => {
+export const MenuInterface = ({
+  className,
+  isOpen,
+  closeHandler,
+  openHandler,
+  isHomePage,
+}) => {
   let menuIconColor;
   if (!isHomePage && !isOpen) {
     menuIconColor = "bg-black";
@@ -12,7 +18,10 @@ export const MenuInterface = ({ className, isOpen, setIsOpen, isHomePage }) => {
 
   return (
     <div className={className}>
-      <div className="w-6 h-6 relative z-50" onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className="w-6 h-6 relative z-50"
+        onClick={isOpen ? closeHandler : openHandler}
+      >
         <div
           className={`w-full h-full flex flex-col flex-wrap items-center content-center`}
         >
@@ -52,7 +61,7 @@ export const MenuInterface = ({ className, isOpen, setIsOpen, isHomePage }) => {
         className={`bg-black fixed top-0 left-0 w-full h-full z-30   duration-500 ${
           isOpen ? "block visible opacity-50" : "hidden invisible opacity-0"
         }`}
-        onClick={() => setIsOpen(false)}
+        onClick={closeHandler}
       ></div>
       <div
         className={`fixed bg-primary top-0 right-0 w-[21rem] h-full z-40  duration-1000 ${
