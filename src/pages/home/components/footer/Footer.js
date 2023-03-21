@@ -19,9 +19,9 @@ export const Footer = () => {
             <div className="footer mt-36 lg:mt-0">
                 <div className="footer-title text-lg sm:text-2xl">Connect with us!</div>
                 <div className="footer-icons">
-                    <a href='https://www.instagram.com/gisaubc/' target="_blank" className="icon"><img src={instagramIcon} alt="instagram-icon" /></a>
-                    <a href='https://ca.linkedin.com/company/gisau' target="_blank" className="icon"><img src={linkedinIcon} alt="linkedin-icon" /></a>
-                    <a href='https://www.facebook.com/gisaubc/' target="_blank" className="icon"><img src={facebookIcon} alt="facebook-icon" /></a>
+                    <a href='https://www.instagram.com/gisaubc/' target="_blank" rel="noreferrer" className="icon"><img src={instagramIcon} alt="instagram-icon" /></a>
+                    <a href='https://ca.linkedin.com/company/gisau' target="_blank" rel="noreferrer" className="icon"><img src={linkedinIcon} alt="linkedin-icon" /></a>
+                    <a href='https://www.facebook.com/gisaubc/' target="_blank" rel="noreferrer" className="icon"><img src={facebookIcon} alt="facebook-icon" /></a>
                     <a href='https://open.spotify.com/show/4n3LXi2mKxLpscsIGVAgnR?si=rwRFIioeRnKj7irYurgZsQ&app_destination=copy-link' target="_blank" className="icon"><img src={spotifyIcon} alt="spotify-icon" /></a>
                 </div>
                 <div className="footer-email text-base sm:text-xl">
