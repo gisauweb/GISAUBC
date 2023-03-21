@@ -1,0 +1,85 @@
+@import url('https://fonts.cdnfonts.com/css/proxima-nova-2');
+
+.footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top: 2px solid black;
+    padding-bottom: 1rem;
+}
+
+.footer-title {
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: 700;
+    margin: 1.5rem 0 0.2rem;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.6rem 0;
+    width: 9rem;
+    margin-left: 0.7rem;
+}
+
+.icon {
+    color: #7D0202;
+    width: 100%;
+    height: auto;
+    margin: 0px 6px;
+}
+
+.footer-icons>a>img {
+    width: 100%;
+}
+
+.footer-email {
+    font-family: 'Proxima Nova', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #7D0202;
+    font-weight: 400;
+    margin: 0.5rem 0;
+}
+
+.footer-copyright {
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 639px) {
+    .footer-title {
+        margin-top: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    .footer-icons {
+        width: 7.5rem;
+        margin: 0;
+        margin-left: 1.5%;
+    }
+    .footer-email {
+        margin-bottom: 0.5px;
+    }
+    .footer-copyright{
+        margin-top: 0
+    }
+}
+
+@media only screen and (min-width: 639px) and (max-width: 1039px) {
+    .footer-title {
+        margin-top: 1rem;
+        margin-bottom: 0.4rem;
+    }
+    .footer-icons {
+        width: 9rem;
+        margin: 0.5px;
+        margin-left: 0.7rem;
+    }
+    .footer-copyright{
+        margin-top: 0
+    }
+}
