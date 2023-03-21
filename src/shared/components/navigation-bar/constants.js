@@ -1,4 +1,5 @@
 import { Home } from "pages/home/Home";
+import Polling from "pages/polling/Polling";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
 export const pages = [
@@ -8,4 +9,5 @@ export const pages = [
   { name: "Rantangan", path: "rantangan", element: <UpcomingPage /> },
   { name: "Partners", path: "partners", element: <UpcomingPage /> },
   { name: "Contact", path: "contact", element: <UpcomingPage /> },
+  { name: "Polling", path: "polling", element: <Polling />}
 ];
