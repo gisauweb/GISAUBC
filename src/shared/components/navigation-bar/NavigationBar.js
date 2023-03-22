@@ -42,6 +42,15 @@ export const NavigationBar = () => {
                 </p>
               </Link>
             ))}
+            <a href="#contact" className="px-5 pt-3">
+              <p
+                className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
+                  isHomePage ? "text-white" : "text-black"
+                }`}
+              >
+                Contact
+              </p>
+            </a>
           </Box>
         )}
       </Box>

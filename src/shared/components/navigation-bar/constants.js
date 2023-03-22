@@ -7,5 +7,5 @@ export const pages = [
   { name: "Events", path: "events", element: <UpcomingPage /> },
   { name: "Rantangan", path: "rantangan", element: <UpcomingPage /> },
   { name: "Partners", path: "partners", element: <UpcomingPage /> },
-  { name: "Contact", path: "contact", element: <UpcomingPage /> },
+  // { name: "Contact", path: "contact", element: <UpcomingPage /> },
 ];
