@@ -44,9 +44,9 @@ export const NavigationBar = () => {
         <Box className={`ml-6 sm:ml-20 md:ml-6 lg:ml-20`}>
           <Link to="/">
             {isHomePage ? (
-              <NavLogoWhite className="w-10 sm:w-16 h-auto" />
+              <NavLogoWhite className="w-14 sm:w-16 h-auto" />
             ) : (
-              <NavLogoBlack className={`w-10 sm:w-16 h-auto`} />
+              <NavLogoBlack className={`w-14 sm:w-16 h-auto`} />
             )}
           </Link>
         </Box>
