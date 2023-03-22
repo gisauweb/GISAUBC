@@ -47,7 +47,7 @@ function Polling() {
                     <Typography variant="h4" sx={{ color: '#7D0202', mb: 3 }}>
                         Gado-Gado Indonesian Students Association of UBC Elections
                     </Typography>
-                    <Button variant="contained" size='small' style={{ backgroundColor: '#7D0202', color: '#FFFFFF', display: "none" }} sx={{ my: 2 }} onClick={handleViewClicked}>
+                    <Button variant="contained" size='small' style={{ backgroundColor: '#7D0202', color: '#FFFFFF', display: "inline" }} sx={{ my: 2 }} onClick={handleViewClicked}>
                         View Result
                     </Button>
                     <form onSubmit={handleSubmit} className="flex flex-col w-full">

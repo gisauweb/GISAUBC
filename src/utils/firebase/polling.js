@@ -5,7 +5,6 @@ export const writeVote = async (studentID, options) => {
 
     // TODO: check if student id matches membership credential
 
-
     const uniqueID = studentID
     const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, uniqueID);
     const pollingSnapshot = await getDoc(pollingDocRef);
