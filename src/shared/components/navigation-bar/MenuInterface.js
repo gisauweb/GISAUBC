@@ -72,7 +72,7 @@ export const MenuInterface = ({
           <div className="text-right mr-6 mt-6 sm:mr-20">
             {pages.map((page) => (
               <Link key={page.name} to={page.path} className="px-5 pt-3">
-                <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-xl uppercase">
+                <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-2xl uppercase">
                   {page.name}
                 </p>
               </Link>
