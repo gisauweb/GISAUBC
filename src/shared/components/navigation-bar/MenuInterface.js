@@ -74,10 +74,10 @@ export const MenuInterface = ({
               <Link
                 key={page.name}
                 to={page.path}
-                className="px-5 pt-3"
+                className=""
                 onClick={closeHandler}
               >
-                <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-2xl uppercase">
+                <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[4rem] uppercase">
                   {page.name}
                 </p>
               </Link>
