@@ -71,7 +71,12 @@ export const MenuInterface = ({
         <div className="fixed right-0 mt-[4rem]">
           <div className="text-right mr-6 mt-6 sm:mr-20">
             {pages.map((page) => (
-              <Link key={page.name} to={page.path} className="px-5 pt-3">
+              <Link
+                key={page.name}
+                to={page.path}
+                className="px-5 pt-3"
+                onClick={closeHandler}
+              >
                 <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-2xl uppercase">
                   {page.name}
                 </p>

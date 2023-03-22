@@ -31,7 +31,7 @@ export const NavigationBar = () => {
   };
 
   useEffect(() => {
-    setIsMenuOpen(false); // Close the navigation panel
+    handleClosingMenu(); // Close the navigation panel
   }, [location.pathname]);
 
   return (
