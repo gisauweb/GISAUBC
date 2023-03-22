@@ -10,7 +10,11 @@ export const writeVote = async (studentID, options) => {
     const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, uniqueID);
     const pollingSnapshot = await getDoc(pollingDocRef);
 
-    if (!pollingSnapshot.exists()) {
+    if (pollingSnapshot.exists()) {
+        const error = new Error("User voted already");
+        error.code = 401;
+        throw error;
+    } else {
         const { president, vicePresident, treasurer } = options;
         const createdAt = new Date();
 
