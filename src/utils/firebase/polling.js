@@ -1,8 +1,15 @@
 import { db } from "./firebase";
 import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 
-export const writeVote = async (studentID, options) => {
+export const writeVote = async (credentials, options) => {
+    const { email, studentID } = credentials
 
+    const studentIDNumber = studentID * 1
+    if (isNaN(studentIDNumber)) {
+        const error = new Error("Invalid syntax");
+        error.code = 400;
+        throw error
+    }
     // TODO: check if student id matches membership credential
 
     const uniqueID = studentID
@@ -19,7 +26,7 @@ export const writeVote = async (studentID, options) => {
 
         try {
             await setDoc(pollingDocRef, {
-                studentID,
+                studentIDNumber: studentID,
                 president,
                 vicePresident,
                 treasurer,
@@ -35,18 +42,18 @@ export const writeVote = async (studentID, options) => {
 
 export const countVotes = async () => {
     const voteResult = {
-        presidentCounts : {
-            "Imelda Alimin" : 0,
-            "Jonathan Santoso" : 0,
-            "Abstain" : 0,
+        presidentCounts: {
+            "Candidate A": 0,
+            "Candidate B": 0,
+            "Abstain": 0,
         },
-        vicePresidentCounts : {
-            "Nadya Rei" : 0,
-            "Abstain" : 0,
+        vicePresidentCounts: {
+            "Candidate C": 0,
+            "Abstain": 0,
         },
-        treasurer : {
-            "Joanico Huang" : 0,
-            "Abstain" : 0
+        treasurer: {
+            "Candidate D": 0,
+            "Abstain": 0
         }
     }
 

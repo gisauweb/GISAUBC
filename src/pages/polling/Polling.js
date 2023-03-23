@@ -4,12 +4,13 @@ import { countVotes, writeVote } from 'utils/firebase/polling';
 import PollingDialog from './PollingDialog';
 
 function Polling() {
-    const [president, setPresident] = useState('');
-    const [vicePresident, setVicePresident] = useState('');
-    const [treasurer, setTreasurer] = useState('');
+    const [president, setPresident] = useState('Abstain');
+    const [vicePresident, setVicePresident] = useState('Abstain');
+    const [treasurer, setTreasurer] = useState('Abstain');
+    const [email, setEmail] = useState('');
     const [studentID, setStudentID] = useState('');
     const [loading, setLoading] = useState(false);
-    const [responseCode, setResponseCode] = useState(0);
+    const [responseCode, setResponseCode] = useState();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -17,10 +18,11 @@ function Polling() {
         setLoading(true);
         setResponseCode(0);
         try {
+            const credentials = {email, studentID}
             const options = { president, vicePresident, treasurer }
-            const response = await writeVote(studentID, options)
-            console.log("response: ", response)
+            await writeVote(credentials, options)
 
+            setEmail("")
             setStudentID("")
             setPresident("");
             setVicePresident("");
@@ -37,7 +39,7 @@ function Polling() {
         e.preventDefault();
 
         const voteResult = await countVotes();
-        console.log(voteResult)
+        console.log("Vote Result: ", voteResult)
     }
 
     return (
@@ -52,6 +54,17 @@ function Polling() {
                     </Button>
                     <form onSubmit={handleSubmit} className="flex flex-col w-full">
                         <TextField
+                            id="email"
+                            label="Email Address"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            sx={{ mt: 1, mb: 3 }}
+                        />
+                        <TextField
                             id="studentID"
                             label="Student ID"
                             type="text"
@@ -65,22 +78,22 @@ function Polling() {
                         <FormControl sx={{ mb: 3 }}>
                             <FormLabel sx={{ fontWeight: '700', color: '#7D0202' }}>President</FormLabel>
                             <RadioGroup row aria-label="president" name="president" value={president} onChange={(e) => setPresident(e.target.value)}>
-                                <FormControlLabel value="Imelda Alimin" control={<Radio sx={{ color: '#7D0202' }} />} label="Imelda Alimin" />
-                                <FormControlLabel value="Jonathan Santoso" control={<Radio sx={{ color: '#7D0202' }} />} label="Jonathan Santoso" />
+                                <FormControlLabel value="Candidate A" control={<Radio sx={{ color: '#7D0202' }} />} label="Candidate A" />
+                                <FormControlLabel value="Candidate B" control={<Radio sx={{ color: '#7D0202' }} />} label="Candidate B" />
                                 <FormControlLabel value="Abstain" control={<Radio sx={{ color: '#7D0202' }} />} label="Abstain" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl sx={{ mb: 3 }}>
                             <FormLabel sx={{ fontWeight: '700', color: '#7D0202' }}>Vice President</FormLabel>
                             <RadioGroup row aria-label="vice-president" name="vice-president" value={vicePresident} onChange={(e) => setVicePresident(e.target.value)}>
-                                <FormControlLabel value="Nadya Rei" control={<Radio sx={{ color: '#7D0202' }} />} label="Nadya Rei" />
+                                <FormControlLabel value="Candidate C" control={<Radio sx={{ color: '#7D0202' }} />} label="Candidate C" />
                                 <FormControlLabel value="Abstain" control={<Radio sx={{ color: '#7D0202' }} />} label="Abstain" />
                             </RadioGroup>
                         </FormControl>
                         <FormControl sx={{ mb: 3 }}>
                             <FormLabel sx={{ fontWeight: '700', color: '#7D0202' }}>Treasurer</FormLabel>
                             <RadioGroup row aria-label="treasurer" name="treasurer" value={treasurer} onChange={(e) => setTreasurer(e.target.value)}>
-                                <FormControlLabel value="Joanico Huang" control={<Radio sx={{ color: '#7D0202' }} />} label="Joanico Huang" />
+                                <FormControlLabel value="Candidate D" control={<Radio sx={{ color: '#7D0202' }} />} label="Candidate D" />
                                 <FormControlLabel value="Abstain" control={<Radio sx={{ color: '#7D0202' }} />} label="Abstain" />
                             </RadioGroup>
                         </FormControl>
