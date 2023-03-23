@@ -5,47 +5,48 @@ function ElectionBarChart({result}) {
     const {presidentCounts, vicePresidentCounts, treasurerCounts} = result
 
     console.log(result)
+    // console.log(presidentCounts["Candidate A"])
     const presidentData = [
         {
             title: "Candidate A",
-            value: 12,
+            value: presidentCounts["Candidate A"],
             color: "#196f3d",
         },
         {
             title: "Candidate B",
-            value: 10,
+            value: presidentCounts["Candidate B"],
             color: "#a93226",
         },
         {
             title: "Abstain",
-            value: 4,
-            color: " #1f618d",
+            value: presidentCounts["Abstain"],
+            color: "#1f618d",
         },
     ];
 
     const vicePresidentData = [
         {
             title: "Candidate C",
-            value: 10,
-            color: "#196f3d",
+            value: vicePresidentCounts["Candidate C"],
+            color: "#596f3d",
         },
         {
             title: "Abstain",
-            value: 4,
-            color: " #1f618d",
+            value: vicePresidentCounts["Abstain"],
+            color: "#5f618d",
         },
     ];
 
     const treasurerData = [
         {
             title: "Candidate D",
-            value: 12,
-            color: "#196f3d",
+            value: treasurerCounts["Candidate D"],
+            color: "#296f3d",
         },
         {
             title: "Abstain",
-            value: 4,
-            color: "#1f618d",
+            value: treasurerCounts["Abstain"],
+            color: "#29618d",
         },
     ];
     return (
