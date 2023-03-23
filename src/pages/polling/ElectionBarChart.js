@@ -21,65 +21,66 @@ ChartJS.register(
 );
 
 
-const positions = [
-    {
-        title: "President Counts", 
-        datasets: [
-            {
-                label: 'Imelda Alimin',
-                data: [90],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'Jonathan Santoso',
-                data: [90],
-                backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            },
-            {
-                label: 'Abstain',
-                data: [20],
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    },
-    {
-        title: "Vice President Counts", 
-        datasets: [
-            {
-                label: 'Nadya Rei',
-                data: [160],
-                backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            },
-            {
-                label: 'Abstain',
-                data: [40],
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    },
-    {
-        title: "Treasurer Counts", 
-        datasets: [
-            {
-                label: 'Joanico Huang',
-                data: [185],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'Abstain',
-                data: [15],
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
-        ],
-    },
-]
+export function ElectionBarChart({result}) {
+    const {presidentCounts, vicePresidentCounts, treasurerCounts} = result
+    console.log("result: ", result)
+    const positions = [
+        {
+            title: "President Counts", 
+            datasets: [
+                {
+                    label: 'Imelda Alimin',
+                    data: [presidentCounts["Imelda Alimin"]],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                },
+                {
+                    label: 'Jonathan Santoso',
+                    data: [presidentCounts["Jonathan Santoso"]],
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                },
+                {
+                    label: 'Abstain',
+                    data: [presidentCounts["Abstain"]],
+                    backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                },
+            ],
+        },
+        {
+            title: "Vice President Counts", 
+            datasets: [
+                {
+                    label: 'Nadya Rei',
+                    data: [vicePresidentCounts["Nadya Rei"]],
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                },
+                {
+                    label: 'Abstain',
+                    data: [vicePresidentCounts["Abstain"]],
+                    backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                },
+            ],
+        },
+        {
+            title: "Treasurer Counts", 
+            datasets: [
+                {
+                    label: 'Joanico Huang',
+                    data: [treasurerCounts["Joanico Huang"]],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                },
+                {
+                    label: 'Abstain',
+                    data: [treasurerCounts["Abstain"]],
+                    backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                },
+            ],
+        },
+    ]
 
-export function ElectionBarChart() {
     return (
         <Box className='flex flex-col lg:flex-row justify-between w-[90%] max-h-[50%] bg-white mx-auto mb-20 px-5   '>
             {positions.map((position, i) => {
                 const options = {
-                    // responsive: true,
                     plugins: {
                         legend: {
                             position: 'top',
