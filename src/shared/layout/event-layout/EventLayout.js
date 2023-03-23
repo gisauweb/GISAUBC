@@ -42,11 +42,7 @@ export const EventLayout = ({
 
   return (
     <div className={className}>
-      <div
-        className={`uppercase flex items-center ${
-          isMobileView && "justify-center"
-        }`}
-      >
+      <div className={`uppercase flex items-center justify-start`}>
         <h1 className="title text-2xl sm:text-3xl xl:text-4xl">{title}</h1>
         <div className="events-icon">{icon}</div>
       </div>
