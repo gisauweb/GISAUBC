@@ -10,7 +10,9 @@ const CustomSlide = (props) => {
   const { title, image, description } = props;
   return (
     <Box className="flex flex-col justify-center text-center items-center bg-[#FFFDF5]">
-      <img src={image} alt="Activities" className="w-full" />
+      <div className="w-full h-40 sm:h-48 flex justify-center items-center overflow-hidden">
+        <img src={image} alt="Activities" className="" />
+      </div>
       <span className="font-proxima-nova text-base sm:text-xl px-3 py-5 font-extrabold">
         {title}
       </span>
@@ -23,12 +25,12 @@ const CustomArrow = (props) => {
   const { direction, onClick } = props;
   return direction === "left" ? (
     <ArrowBackIosNew
-      className="absolute top-[4.2rem] -left-10 text-[2.2rem] sm:top-[7rem] sm:-left-[3.62rem] sm:text-[4rem]"
+      className="absolute top-16 -left-10 text-[2.2rem] sm:top-[5rem] sm:-left-14 sm:text-[3rem]"
       onClick={onClick}
     />
   ) : (
     <ArrowForwardIos
-      className="absolute top-[4.2rem] -right-[2.32rem] text-[2.2rem] sm:top-[7rem] sm:-right-14 sm:text-[4rem]"
+      className="absolute top-16 -right-10 text-[2.2rem] sm:top-[5rem] sm:-right-14 sm:text-[3rem]"
       onClick={onClick}
     />
   );
@@ -43,7 +45,7 @@ export const ActivitiesSlider = ({ className }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
     // adaptiveHeight: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 6000,
     pauseOnHover: true,
     // swipeToSlide: true,

@@ -27,12 +27,14 @@ const Activities = () => {
                 sx={{ alignItems: activity.alignment }}
               >
                 <Box className="w-5/6 relative">
-                  <img
-                    alt="Activity"
-                    id={activity.id}
-                    src={activity.image}
-                    className="h-full w-full hover:cursor-pointer"
-                  />
+                  <div className="h-48 2xl:h-56 flex overflow-hidden">
+                    <img
+                      alt="Activity"
+                      id={activity.id}
+                      src={activity.image}
+                      className="w-full object-cover hover:cursor-pointer"
+                    />
+                  </div>
                   <img
                     alt="Icon"
                     src={activity.icon}
