@@ -13,15 +13,20 @@ const PollingDialog = ({ loading, responseCode, setResponseCode }) => {
                 setResponseTitle('Success')
                 setResponseDescription('Vote submitted! Thank you for contributing!')
                 break
+            case 400:
+            setBgColor('#7D0202')
+            setResponseTitle('Bad request')
+            setResponseDescription('Invalid syntax. Please make sure you input the correct student id')
+            break
+            case 401:
+            setBgColor('#7D0202')
+            setResponseTitle('Conflicted error')
+            setResponseDescription('You have submitted your vote. You cannot vote again.')
+            break
             case 409:
                 setBgColor('#FFA047')
                 setResponseTitle('Unauthorized error')
                 setResponseDescription('Failed to authenticate. Please use a valid email and student id')
-                break
-            case 401:
-                setBgColor('#7D0202')
-                setResponseTitle('Conflicted error')
-                setResponseDescription('You have submitted your vote. You cannot vote again.')
                 break
             default:
                 setBgColor('#7D0202')
