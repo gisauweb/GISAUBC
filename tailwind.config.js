@@ -6,6 +6,8 @@ module.exports = {
       spacing: {
         "1/20": "5%",
         "1/10": "10%",
+        "1/5": "20%",
+        "1/4": "25%",
       },
       fontFamily: {
         oswald: ["Oswald", "sans-serif"],
