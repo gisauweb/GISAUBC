@@ -9,14 +9,17 @@ export const UPCOMINGEVENTS = {
   title: "Upcoming Events",
   events: [
     {
-      desc: "Come get your post-midterm scare at our Rumah Hantu! An event collaboration with PERMIKA",
+      desc: [
+        "Contribute to the future of GISAU by joining us at our Annual General Meeting (AGM)🎉",
+        "Also, don't miss out on hearing about the team's accomplishments from the year🤫",
+      ],
       img: (
         <img
-          src={require("../../../../assets/events/rumah_hantu.jpg")}
-          alt="Rumah Hantu"
+          src={require("../../../../assets/events/agm.png")}
+          alt="Annual General Meeting"
         />
       ),
-      link: "",
+      link: "docs.google.com/forms/d/e/1FAIpQLSfUQSU9O3rd-7AVFtRpjJMGuBbn66IWNYJ9QXuwUVRPOb_KbA/viewform",
     },
   ],
   icon: (

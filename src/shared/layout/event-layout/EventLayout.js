@@ -37,7 +37,9 @@ export const EventLayout = ({
       <div className="grid gap-y-8">
         {!isMobileView && (
           <div>
-            <p>{event.desc}</p>
+            {event.desc.map((text) => (
+              <p>{text}</p>
+            ))}
           </div>
         )}
         <div>
