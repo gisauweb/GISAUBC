@@ -71,23 +71,27 @@ export const MenuInterface = ({
         <div className="fixed right-0 mt-1/4">
           <div className="text-right mr-6 mt-6 sm:mr-20">
             {pages.map((page) =>
-              page.newPage ? (
-                <Link
-                  key={page.name}
-                  to={page.path}
-                  className=""
-                  onClick={closeHandler}
-                >
-                  <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
-                    {page.name}
-                  </p>
-                </Link>
+              page.name !== "Eventsss" ? (
+                page.newPage ? (
+                  <Link
+                    key={page.name}
+                    to={page.path}
+                    className=""
+                    onClick={closeHandler}
+                  >
+                    <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
+                      {page.name}
+                    </p>
+                  </Link>
+                ) : (
+                  <a href={page.path} onClick={closeHandler}>
+                    <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
+                      {page.name}
+                    </p>
+                  </a>
+                )
               ) : (
-                <a href={page.path} onClick={closeHandler}>
-                  <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
-                    {page.name}
-                  </p>
-                </a>
+                <></>
               )
             )}
           </div>

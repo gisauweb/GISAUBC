@@ -11,6 +11,12 @@ export const pages = [
     element: <UpcomingPage />,
   },
   {
+    name: "Eventsss",
+    newPage: true,
+    path: "events",
+    element: <UpcomingPage />,
+  },
+  {
     name: "Rantangan",
     newPage: true,
     path: "rantangan",
