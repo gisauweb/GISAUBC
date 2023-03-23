@@ -1,0 +1,25 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "proxima-nova", sans-serif;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+p {
+  font-family: "Proxima Nova", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.title {
+  font-weight: 700;
+  font-family: Oswald, sans-serif;
+  --tw-text-opacity: 1;
+  color: rgb(125 2 2 / var(--tw-text-opacity));
+}
