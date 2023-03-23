@@ -4,24 +4,10 @@ import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 export const writeVote = async (credentials, options) => {
     const { studentID } = credentials
 
-    const studentIDNumber = studentID * 1
-    if (isNaN(studentIDNumber)) {
-        const error = new Error("Invalid syntax");
-        error.code = 400;
-        throw error
-    }
-    
-    const uniqueID = studentID
+    checkStudentIDValidity(studentID);
+    await membershipVerification(studentID);
 
-    const membershipDocRef = doc(db, "membership", uniqueID);
-    const membershipSnapshot = await getDoc(membershipDocRef);
-    if (!membershipSnapshot.exists()) {
-        const error = new Error("User is not a member");
-        error.code = 401;
-        throw error;
-    }
-
-    const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, uniqueID);
+    const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, studentID);
     const pollingSnapshot = await getDoc(pollingDocRef);
 
     if (pollingSnapshot.exists()) {
@@ -76,4 +62,24 @@ export const countVotes = async () => {
     });
 
     return voteResult
+}
+
+function checkStudentIDValidity(studentID) {
+    const regex = /^\d{8}$/;
+
+    if (!regex.test(studentID)) {
+        const error = new Error("Invalid syntax");
+        error.code = 400;
+        throw error;
+    }
+}
+
+async function membershipVerification(uniqueID) {
+    const membershipDocRef = doc(db, "membership", uniqueID);
+    const membershipSnapshot = await getDoc(membershipDocRef);
+    if (!membershipSnapshot.exists()) {
+        const error = new Error("User is not a member");
+        error.code = 401;
+        throw error;
+    }
 }

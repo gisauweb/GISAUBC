@@ -21,7 +21,7 @@ const PollingDialog = ({ loading, responseCode, setResponseCode }) => {
             case 401:
                 setBgColor('#7D0202')
                 setResponseTitle('Unauthorized error')
-                setResponseDescription('Failed to authenticate. Please use a valid student id')
+                setResponseDescription('Failed to authenticate. Please make sure you are a GISAU member.')
                 break
             case 409:
                 setBgColor('#FFA047')
