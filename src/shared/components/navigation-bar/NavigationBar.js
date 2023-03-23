@@ -37,7 +37,7 @@ export const NavigationBar = () => {
   return (
     <div className={isMenuOpen ? "overflow-y-hidden" : "overflow-y-visible"}>
       <Box
-        className={`flex justify-between items-center z-10 w-full mt-[5vh] ${
+        className={`flex justify-between items-center z-10 w-full mt-[5vh] absolute ${
           isHomePage && "absolute"
         }`}
       >
