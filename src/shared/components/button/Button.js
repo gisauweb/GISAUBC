@@ -11,7 +11,13 @@ export const Button = ({
   handleClickButton,
 }) => {
   if (landingButton) {
-    return <LandingButton className={className} text={text} />;
+    return (
+      <LandingButton
+        className={className}
+        text={text}
+        onClick={handleClickButton}
+      />
+    );
   }
 
   return (

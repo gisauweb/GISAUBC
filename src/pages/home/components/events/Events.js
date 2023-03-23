@@ -23,6 +23,7 @@ export const Events = () => {
       className={`${!isMobileView && "flex"} justify-between flex-wrap pt-24`}
     >
       <EventLayout
+        id="events"
         className={`${isRantanganShowed && "basis-1/3"} `}
         title={UPCOMINGEVENTS.title}
         events={UPCOMINGEVENTS.events}
