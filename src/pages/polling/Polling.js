@@ -8,9 +8,8 @@ import {
   RadioGroup,
   TextField,
 } from "@mui/material";
-import { countVotes, writeVote } from "utils/firebase/polling";
+import { writeVote } from "utils/firebase/polling";
 import PollingDialog from "./PollingDialog";
-import ElectionResultDialog from "./ElectionResultDialog";
 
 function Polling() {
   const [president, setPresident] = useState("Abstain");
@@ -20,8 +19,6 @@ function Polling() {
   const [studentID, setStudentID] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseCode, setResponseCode] = useState();
-  const [viewResult, setViewResult] = useState(false);
-  const [voteResult, setVoteResult] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,14 +42,6 @@ function Polling() {
     setLoading(false);
   };
 
-  const handleViewClicked = async (e) => {
-    e.preventDefault();
-
-    const result = await countVotes();
-    setVoteResult(result);
-    setViewResult(true);
-  };
-
   return (
     <>
       <div className="min-h-screen bg-[#CFBBBB] flex flex-col items-center justify-center">
@@ -60,31 +49,7 @@ function Polling() {
           <h1 className="text-center text-primary text-2xl md:text-3xl lg:text-4xl mb-8">
             Gado-Gado Indonesian Students Association of UBC Elections
           </h1>
-          <Button
-            variant="contained"
-            size="small"
-            style={{
-              backgroundColor: "#7D0202",
-              color: "#FFFFFF",
-              display: "inline",
-            }}
-            sx={{ my: 2 }}
-            onClick={handleViewClicked}
-          >
-            View Result
-          </Button>
           <form onSubmit={handleSubmit} className="flex flex-col w-full">
-            <TextField
-              id="email"
-              label="Email Address"
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              sx={{ mt: 1, mb: 3 }}
-            />
             <TextField
               id="studentID"
               label="Student ID"
@@ -108,14 +73,14 @@ function Polling() {
                 onChange={(e) => setPresident(e.target.value)}
               >
                 <FormControlLabel
-                  value="Candidate A"
+                  value="Imelda Alimin"
                   control={<Radio sx={{ color: "#7D0202" }} />}
-                  label="Candidate A"
+                  label="Imelda Alimin"
                 />
                 <FormControlLabel
-                  value="Candidate B"
+                  value="Jonathan Santoso"
                   control={<Radio sx={{ color: "#7D0202" }} />}
-                  label="Candidate B"
+                  label="Jonathan Santoso"
                 />
                 <FormControlLabel
                   value="Abstain"
@@ -136,9 +101,9 @@ function Polling() {
                 onChange={(e) => setVicePresident(e.target.value)}
               >
                 <FormControlLabel
-                  value="Candidate C"
+                  value="Nadya Rei"
                   control={<Radio sx={{ color: "#7D0202" }} />}
-                  label="Candidate C"
+                  label="Nadya Rei"
                 />
                 <FormControlLabel
                   value="Abstain"
@@ -159,9 +124,9 @@ function Polling() {
                 onChange={(e) => setTreasurer(e.target.value)}
               >
                 <FormControlLabel
-                  value="Candidate D"
+                  value="Joanico Huang"
                   control={<Radio sx={{ color: "#7D0202" }} />}
-                  label="Candidate D"
+                  label="Joanico Huang"
                 />
                 <FormControlLabel
                   value="Abstain"
@@ -189,11 +154,6 @@ function Polling() {
         loading={loading}
         responseCode={responseCode}
         setResponseCode={setResponseCode}
-      />
-      <ElectionResultDialog
-        open={viewResult}
-        setOpen={setViewResult}
-        result={voteResult}
       />
     </>
   );

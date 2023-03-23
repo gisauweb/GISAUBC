@@ -43,16 +43,16 @@ export const writeVote = async (credentials, options) => {
 export const countVotes = async () => {
     const voteResult = {
         presidentCounts: {
-            "Candidate A": 0,
-            "Candidate B": 0,
+            "Imelda Alimin": 0,
+            "Jonathan Santoso": 0,
             "Abstain": 0,
         },
         vicePresidentCounts: {
-            "Candidate C": 0,
+            "Nadya Rei": 0,
             "Abstain": 0,
         },
         treasurerCounts: {
-            "Candidate D": 0,
+            "Joanico Huang": 0,
             "Abstain": 0
         }
     }
