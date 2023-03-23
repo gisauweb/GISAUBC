@@ -27,7 +27,7 @@ export const UPCOMINGEVENTS = {
     />
   ),
   button1: "Register",
-  button2: { name: "View past events", navigate: "/" },
+  button2: { name: "View past events", path: "events" },
 };
 
 export const RANTANGAN = {
@@ -41,5 +41,5 @@ export const RANTANGAN = {
     />
   ),
   button1: "Pre-order",
-  button2: { name: "View past menus", navigate: "/" },
+  button2: { name: "View past menus", path: "rantangan" },
 };

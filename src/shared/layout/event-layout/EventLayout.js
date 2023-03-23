@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 import "./EventLayout.css";
 
@@ -12,6 +13,16 @@ export const EventLayout = ({
   button2,
   isMobileView,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClickButton = (link) => {
+    window.open("https://" + link, "_blank", "noreferrer");
+  };
+
+  const handleClickButton2 = () => {
+    navigate(button2.path);
+  };
+
   let content;
 
   if (events.length === 0) {
@@ -34,7 +45,10 @@ export const EventLayout = ({
           </div>
         </div>
         <div className="grid justify-center">
-          <Button text={button1} />
+          <Button
+            text={button1}
+            handleClickButton={() => handleClickButton(event.link)}
+          />
         </div>
       </div>
     ));
@@ -52,7 +66,11 @@ export const EventLayout = ({
           events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
-        <Button text={button2.name} transparentBg={true} />
+        <Button
+          text={button2.name}
+          transparentBg={true}
+          handleClickButton={handleClickButton2}
+        />
       </div>
     </div>
   );

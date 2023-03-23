@@ -40,6 +40,7 @@ export const LandingImage = () => {
             className="grid justify-center"
             text="Become a member!"
             landingButton={true}
+            disabled
           />
         </div>
       </div>
