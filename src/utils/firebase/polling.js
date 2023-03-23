@@ -2,7 +2,7 @@ import { db } from "./firebase";
 import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 
 export const writeVote = async (credentials, options) => {
-    const { email, studentID } = credentials
+    const { studentID } = credentials
 
     const studentIDNumber = studentID * 1
     if (isNaN(studentIDNumber)) {

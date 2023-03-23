@@ -5,7 +5,6 @@ function ElectionBarChart({result}) {
     const {presidentCounts, vicePresidentCounts, treasurerCounts} = result
 
     console.log(result)
-    // console.log(presidentCounts["Candidate A"])
     const presidentData = [
         {
             title: "Candidate A",
