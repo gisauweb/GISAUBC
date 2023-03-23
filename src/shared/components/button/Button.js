@@ -15,7 +15,7 @@ export const Button = ({
       <LandingButton
         className={className}
         text={text}
-        onClick={handleClickButton}
+        handleClickButton={handleClickButton}
       />
     );
   }

@@ -63,7 +63,7 @@ export const EventLayout = ({
         <h1 className="title text-2xl sm:text-3xl xl:text-4xl">{title}</h1>
         <div className="events-icon">{icon}</div>
       </div>
-      <div className="mt-10">{content}</div>
+      <div className="mt-10 grid gap-y-12">{content}</div>
       <div
         className={`grid justify-center ${
           events.length === 0 ? "mt-12" : "mt-4"
