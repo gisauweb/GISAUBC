@@ -23,7 +23,6 @@ ChartJS.register(
 
 export function ElectionBarChart({result}) {
     const {presidentCounts, vicePresidentCounts, treasurerCounts} = result
-    console.log("result: ", result)
     const positions = [
         {
             title: "President Counts", 
