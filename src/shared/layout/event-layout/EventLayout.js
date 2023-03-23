@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./EventLayout.css";
 
 export const EventLayout = ({
+  id,
   className,
   title,
   events,
@@ -55,7 +56,7 @@ export const EventLayout = ({
   }
 
   return (
-    <div className={className}>
+    <div className={className} id={id}>
       <div className={`uppercase flex items-center justify-start`}>
         <h1 className="title text-2xl sm:text-3xl xl:text-4xl">{title}</h1>
         <div className="events-icon">{icon}</div>

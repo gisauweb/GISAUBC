@@ -61,26 +61,29 @@ export const NavigationBar = () => {
           </div>
         ) : (
           <Box className="flex mr-6 lg:mr-20">
-            {pages.map((page) => (
-              <Link key={page.name} to={page.path} className="px-5 pt-3">
-                <p
-                  className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
-                    isHomePage ? "text-white" : "text-black"
-                  }`}
-                >
-                  {page.name}
-                </p>
-              </Link>
-            ))}
-            <a href="#contact" className="px-5 pt-3">
-              <p
-                className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
-                  isHomePage ? "text-white" : "text-black"
-                }`}
-              >
-                Contact
-              </p>
-            </a>
+            {pages.map((page) =>
+              page.newPage ? (
+                <Link key={page.name} to={page.path} className="px-5 pt-3">
+                  <p
+                    className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
+                      isHomePage ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {page.name}
+                  </p>
+                </Link>
+              ) : (
+                <a href={page.path} className="px-5 pt-3">
+                  <p
+                    className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
+                      isHomePage ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {page.name}
+                  </p>
+                </a>
+              )
+            )}
           </Box>
         )}
       </Box>
