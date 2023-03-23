@@ -13,11 +13,7 @@ const Activities = () => {
         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary">
           WHAT WE DO
         </span>
-        <img
-          src={smiley}
-          alt="Smiley"
-          className="h-6 sm:h-10 xl:h-full ml-1"
-        />
+        <img src={smiley} alt="Smiley" className="h-6 sm:h-10 xl:h-full ml-1" />
       </Box>
       <Box className="w-full flex lg:py-8">
         {isMobile ? (
@@ -55,9 +51,9 @@ const Activities = () => {
                   </Box>
                 </Box>
               </Box>
-            </Box>
-          )}</>
-        }
+            ))}
+          </>
+        )}
       </Box>
     </Box>
   );
