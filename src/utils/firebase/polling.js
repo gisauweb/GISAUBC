@@ -10,15 +10,23 @@ export const writeVote = async (credentials, options) => {
         error.code = 400;
         throw error
     }
-    // TODO: check if student id matches membership credential
-
+    
     const uniqueID = studentID
+
+    const membershipDocRef = doc(db, "membership", uniqueID);
+    const membershipSnapshot = await getDoc(membershipDocRef);
+    if (!membershipSnapshot.exists()) {
+        const error = new Error("User is not a member");
+        error.code = 401;
+        throw error;
+    }
+
     const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, uniqueID);
     const pollingSnapshot = await getDoc(pollingDocRef);
 
     if (pollingSnapshot.exists()) {
         const error = new Error("User voted already");
-        error.code = 401;
+        error.code = 409;
         throw error;
     } else {
         const { president, vicePresident, treasurer } = options;
