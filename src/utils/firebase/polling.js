@@ -51,7 +51,7 @@ export const countVotes = async () => {
             "Candidate C": 0,
             "Abstain": 0,
         },
-        treasurer: {
+        treasurerCounts: {
             "Candidate D": 0,
             "Abstain": 0
         }
@@ -64,7 +64,7 @@ export const countVotes = async () => {
 
         voteResult.presidentCounts[responseData.president]++
         voteResult.vicePresidentCounts[responseData.vicePresident]++
-        voteResult.treasurer[responseData.treasurer]++
+        voteResult.treasurerCounts[responseData.treasurer]++
     });
 
     return voteResult

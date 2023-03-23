@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material';
 import { countVotes, writeVote } from 'utils/firebase/polling';
 import PollingDialog from './PollingDialog';
+import ElectionResultDialog from './ElectionResultDialog';
 
 function Polling() {
     const [president, setPresident] = useState('Abstain');
@@ -11,6 +12,9 @@ function Polling() {
     const [studentID, setStudentID] = useState('');
     const [loading, setLoading] = useState(false);
     const [responseCode, setResponseCode] = useState();
+    const [viewResult, setViewResult] = useState(false);
+    const [voteResult, setVoteResult] = useState(null)
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -24,9 +28,9 @@ function Polling() {
 
             setEmail("")
             setStudentID("")
-            setPresident("");
-            setVicePresident("");
-            setTreasurer("");
+            setPresident("Abstain");
+            setVicePresident("Abstain");
+            setTreasurer("Abstain");
             setResponseCode(200)
         } catch (error) {
             setResponseCode(error.code)
@@ -38,8 +42,9 @@ function Polling() {
     const handleViewClicked = async (e) => {
         e.preventDefault();
 
-        const voteResult = await countVotes();
-        console.log("Vote Result: ", voteResult)
+        const result = await countVotes();
+        setVoteResult(result)
+        setViewResult(true)
     }
 
     return (
@@ -104,6 +109,7 @@ function Polling() {
                 </div>
             </div>
             <PollingDialog loading={loading} responseCode={responseCode} setResponseCode={setResponseCode}/>
+            <ElectionResultDialog open={viewResult} setOpen={setViewResult} result={voteResult}/>
         </>
     );
 }
