@@ -7,7 +7,7 @@ export const pages = [
   {
     name: "Events",
     newPage: false,
-    path: "#events",
+    path: "/#events",
     element: <UpcomingPage />,
   },
   {
