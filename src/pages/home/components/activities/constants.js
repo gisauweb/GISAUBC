@@ -1,7 +1,7 @@
 import activity_1 from "assets/activities/img_1.svg";
 import activity_2 from "assets/activities/img_2.svg";
 import activity_3 from "assets/activities/img_3.svg";
-import smiley from "assets/activities/smiley.svg";
+import smiley_image from "assets/activities/smiley.svg";
 import stars from "assets/activities/stars.svg";
 import pencil from "assets/activities/pencil.svg";
 import klepon from "assets/activities/klepon.svg";
@@ -38,5 +38,7 @@ const activities = [
     iconStyle: "-top-1/5 -left-[2%]",
   },
 ];
+
+const smiley = smiley_image
 
 export { activities, smiley };

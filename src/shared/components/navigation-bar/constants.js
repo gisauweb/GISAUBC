@@ -1,9 +1,20 @@
 import { Home } from "pages/home/Home";
+import Polling from "pages/polling/Polling";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
 export const pages = [
-  { name: "Home", newPage: true, path: "", element: <Home /> },
-  { name: "About", newPage: true, path: "about", element: <UpcomingPage /> },
+  {
+    name: "Home",
+    newPage: true,
+    path: "",
+    element: <Home />,
+  },
+  {
+    name: "About",
+    newPage: true,
+    path: "about",
+    element: <UpcomingPage />,
+  },
   {
     name: "Events",
     newPage: false,
@@ -32,5 +43,11 @@ export const pages = [
     name: "Contact",
     newPage: false,
     path: "/#contact",
+  },
+  {
+    name: "Vote Now!",
+    newPage: true,
+    path: "polling",
+    element: <Polling />,
   },
 ];

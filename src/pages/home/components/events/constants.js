@@ -10,8 +10,9 @@ export const UPCOMINGEVENTS = {
   events: [
     {
       desc: [
-        "Contribute to the future of GISAU by joining us at our Annual General Meeting (AGM)🎉",
-        "Also, don't miss out on hearing about the team's accomplishments from the year🤫",
+        "Contribute to the future of GISAU by joining us at our",
+        "Annual General Meeting (AGM) 🎉",
+        "Also, don't miss out on hearing about the team's accomplishments from the year 🤫",
       ],
       img: (
         <img
@@ -23,8 +24,8 @@ export const UPCOMINGEVENTS = {
     },
     {
       desc: [
-        "End the school year with some glam and GISAU✨️",
-        "Daripada galau, mending ikut GISAU gala🫣😉",
+        "End the school year with some glam and GISAU ✨️",
+        "Daripada galau, mending ikut GISAU gala 🫣😉",
       ],
       img: (
         <img
@@ -48,7 +49,21 @@ export const UPCOMINGEVENTS = {
 
 export const RANTANGAN = {
   title: "Rantangan",
-  events: [],
+  events: [{
+    desc: [
+      "Missing some Indonesian food? GISAU got you 😉",
+      "Let's take a look back on our March Rantangan",
+      "🎉 Nasi Liwet 🎉",
+    ],
+    img: (
+      <img
+        src={require("../../../../assets/events/rantangan_march.jpeg")}
+        alt="Nasi Liwet Rantangan"
+      />
+    ),
+    link: "gisaubc.com/rantangan",
+  },
+],
   icon: (
     <img
       src={require("../../../../assets/events/rantangan.svg").default}

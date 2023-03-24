@@ -1,5 +1,6 @@
 .button {
   width: fit-content;
+  text-align: center;
   background: #7d0202;
   border-radius: 5rem;
   padding: 0.75rem 2rem;
@@ -14,12 +15,6 @@
   font-size: 1.125rem /* 18px */;
   line-height: 1.75rem /* 28px */;
   cursor: pointer;
-}
-
-@media (max-width: 639px) {
-  .button {
-    padding: 0.5rem 2rem;
-  }
 }
 
 .button.transparent_bg {

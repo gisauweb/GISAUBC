@@ -79,7 +79,9 @@ export const MenuInterface = ({
                     className=""
                     onClick={closeHandler}
                   >
-                    <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
+                    <p
+                      className={`text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase`}
+                    >
                       {page.name}
                     </p>
                   </Link>
