@@ -22,6 +22,10 @@ export const LandingImage = () => {
     query: "(max-width: 639px)",
   });
 
+  const handleClickButton = () => {
+    window.open("https://forms.gle/qujebG19m2VJzvBB6", "_blank", "noreferrer");
+  };
+
   return (
     <div className={`h-screen justify-center items-center overflow-hidden`}>
       <div className={`h-screen absolute w-full ${classes.bgImage}`}></div>
@@ -40,6 +44,7 @@ export const LandingImage = () => {
             className="grid justify-center"
             text="Become a member!"
             landingButton={true}
+            handleClickButton={handleClickButton}
           />
         </div>
       </div>

@@ -1,17 +1,11 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { activities, smiley } from "./constants";
-import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { ActivitiesSlider } from "./Slider";
 
 const Activities = () => {
-  const navigate = useNavigate();
   const isMobile = useMediaQuery({ query: `(max-width: 1023px) ` });
-
-  const handleClickActivity = () => {
-    navigate("activities");
-  };
 
   return (
     <Box className="pt-24">
@@ -23,7 +17,7 @@ const Activities = () => {
       </Box>
       <Box className="w-full flex lg:py-8">
         {isMobile ? (
-          <ActivitiesSlider />
+          <ActivitiesSlider className="mt-8" />
         ) : (
           <>
             {activities.map((activity, index) => (
@@ -32,13 +26,19 @@ const Activities = () => {
                 className="w-1/3 flex flex-col"
                 sx={{ alignItems: activity.alignment }}
               >
-                <Box className="w-5/6">
+                <Box className="w-5/6 relative">
+                  <div className="h-48 2xl:h-56 flex overflow-hidden rounded-xl">
+                    <img
+                      alt="Activity"
+                      id={activity.id}
+                      src={activity.image}
+                      className="w-full object-cover"
+                    />
+                  </div>
                   <img
-                    alt="Activity"
-                    id={activity.id}
-                    src={activity.image}
-                    className="h-full w-full hover:cursor-pointer"
-                    onClick={handleClickActivity}
+                    alt="Icon"
+                    src={activity.icon}
+                    className={`absolute ${activity.iconStyle}`}
                   />
                 </Box>
                 <Box className="w-5/6 text-center px-3">

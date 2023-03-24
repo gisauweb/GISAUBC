@@ -1,9 +1,11 @@
 import React from "react";
 import { Button } from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 import "./EventLayout.css";
 
 export const EventLayout = ({
+  id,
   className,
   title,
   events,
@@ -12,6 +14,16 @@ export const EventLayout = ({
   button2,
   isMobileView,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClickButton = (link) => {
+    window.open("https://" + link, "_blank", "noreferrer");
+  };
+
+  const handleClickButton2 = () => {
+    navigate(button2.path);
+  };
+
   let content;
 
   if (events.length === 0) {
@@ -25,7 +37,9 @@ export const EventLayout = ({
       <div className="grid gap-y-8">
         {!isMobileView && (
           <div>
-            <p>{event.desc}</p>
+            {event.desc.map((text) => (
+              <p>{text}</p>
+            ))}
           </div>
         )}
         <div>
@@ -34,25 +48,32 @@ export const EventLayout = ({
           </div>
         </div>
         <div className="grid justify-center">
-          <Button text={button1} />
+          <Button
+            text={button1}
+            handleClickButton={() => handleClickButton(event.link)}
+          />
         </div>
       </div>
     ));
   }
 
   return (
-    <div className={className}>
+    <div className={className} id={id}>
       <div className={`uppercase flex items-center justify-start`}>
         <h1 className="title text-2xl sm:text-3xl xl:text-4xl">{title}</h1>
         <div className="events-icon">{icon}</div>
       </div>
-      <div className="mt-10">{content}</div>
+      <div className="mt-10 grid gap-y-12">{content}</div>
       <div
         className={`grid justify-center ${
           events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
-        <Button text={button2.name} transparentBg={true} />
+        <Button
+          text={button2.name}
+          transparentBg={true}
+          handleClickButton={handleClickButton2}
+        />
       </div>
     </div>
   );
