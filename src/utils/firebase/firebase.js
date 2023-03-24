@@ -8,6 +8,8 @@ import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const production = process.env.REACT_APP_PRODUCTION_STATE === "TRUE"
 
+console.log("production: ", production)
+
 const firebaseProdConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_PROD_API_KEY,
   authDomain: "gisaubc-prod.firebaseapp.com",
