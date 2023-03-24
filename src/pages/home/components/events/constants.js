@@ -49,7 +49,21 @@ export const UPCOMINGEVENTS = {
 
 export const RANTANGAN = {
   title: "Rantangan",
-  events: [],
+  events: [{
+    desc: [
+      "Missing some Indonesian food? GISAU got you 😉",
+      "Let's take a look back on our March Rantangan",
+      "🎉 Nasi Liwet 🎉",
+    ],
+    img: (
+      <img
+        src={require("../../../../assets/events/rantangan_march.jpeg")}
+        alt="Nasi Liwet Rantangan"
+      />
+    ),
+    link: "gisaubc.com/rantangan",
+  },
+],
   icon: (
     <img
       src={require("../../../../assets/events/rantangan.svg").default}
