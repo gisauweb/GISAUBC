@@ -38,9 +38,7 @@ const activities = [
     iconStyle: "-top-1/5 -left-[2%]",
   },
 ];
+
 const smiley = smiley_image
 
-
 export { activities, smiley };
-
-
