@@ -21,6 +21,19 @@ export const UPCOMINGEVENTS = {
       ),
       link: "docs.google.com/forms/d/e/1FAIpQLSfUQSU9O3rd-7AVFtRpjJMGuBbn66IWNYJ9QXuwUVRPOb_KbA/viewform",
     },
+    {
+      desc: [
+        "End the school year with some glam and GISAU✨️",
+        "Daripada galau, mending ikut GISAU gala🫣😉",
+      ],
+      img: (
+        <img
+          src={require("../../../../assets/events/galau.png")}
+          alt="Gala with GISAU"
+        />
+      ),
+      link: "galaugisau.getqpay.com",
+    },
   ],
   icon: (
     <img
