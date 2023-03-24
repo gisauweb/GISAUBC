@@ -53,8 +53,9 @@ const PollingDialog = ({ loading, responseCode, setResponseCode }) => {
                 <DialogTitle sx={{ color: '#FFFFFF', bgcolor: bgColor }}>
                     {responseTitle}
                 </DialogTitle>
-                <DialogContent sx={{ color: '#000000', mt: 2 }}>
-                    {responseDescription}
+                <DialogContent sx={{ color: '#000000', mt: 2 }} className="flex flex-col">
+                    <span>{responseDescription}</span>
+                    <span className='text-xs italic pt-4'>P.S. Please come to help desk if you have any problem</span>
                 </DialogContent>
                 <DialogActions>
                     <Button variant='contained' onClick={handleClose} sx={{ color: '#000000', bgcolor: bgColor }}>
