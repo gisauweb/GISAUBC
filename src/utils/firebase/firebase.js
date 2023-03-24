@@ -1,23 +1,35 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCCDjIbRz7ji_8DY50S25NdC4-EpGHrHro",
-  authDomain: "gisaubc-v3.firebaseapp.com",
-  projectId: "gisaubc-v3",
-  storageBucket: "gisaubc-v3.appspot.com",
-  messagingSenderId: "921638617445",
-  appId: "1:921638617445:web:3b6ece8961f781208a218c",
-  measurementId: "G-0TLE861CHM",
+const production = process.env.REACT_APP_PRODUCTION_STATE === "TRUE"
+
+const firebaseProdConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_PROD_API_KEY,
+  authDomain: "gisaubc-prod.firebaseapp.com",
+  projectId: "gisaubc-prod",
+  storageBucket: "gisaubc-prod.appspot.com",
+  messagingSenderId: "421113142514",
+  appId: "1:421113142514:web:eeb08b157ae8a4a911c46b",
+  measurementId: "G-6VX0KNGHPH"
+};
+
+const firebaseDevConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_DEV_API_KEY,
+  authDomain: "gisaubc-dev.firebaseapp.com",
+  projectId: "gisaubc-dev",
+  storageBucket: "gisaubc-dev.appspot.com",
+  messagingSenderId: "422211599405",
+  appId: "1:422211599405:web:4c511b9238af8349eb8ca4",
+  measurementId: "G-R3SX06K9YH"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(production ? firebaseProdConfig : firebaseDevConfig);
 getAnalytics(app);
 
 // auth
