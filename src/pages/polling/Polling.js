@@ -13,7 +13,7 @@ import PollingDialog from "./PollingDialog";
 import { LogoSpinning } from "shared/components/logo-spinning/LogoSpinning";
 
 function Polling() {
-  const isVotingOpen = process.env.VOTING_OPEN === "TRUE";
+  const isVotingOpen = process.env.REACT_APP_VOTING_OPEN === "TRUE";
   const [president, setPresident] = useState("Abstain");
   const [vicePresident, setVicePresident] = useState("Abstain");
   const [treasurer, setTreasurer] = useState("Abstain");
