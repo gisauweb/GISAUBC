@@ -13,8 +13,7 @@ function App() {
           {pages.map((page) => (
             <Route key={page.name} path={page.path} element={page.element} />
           ))}
-        <Route key={"result"} path={"lwtjlhtmmeqpztdjlbbp"} element={<ElectionResultPage />} />
-          
+          <Route key={"result"} path={"lwtjlhtmmeqpztdjlbbp"} element={<ElectionResultPage />} />
         </Route>
       </Routes>
     </StyledEngineProvider>
