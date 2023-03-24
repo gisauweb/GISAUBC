@@ -56,9 +56,9 @@ export const countVotes = async () => {
     querySnapshot.forEach((doc) => {
         const responseData = doc.data()
 
-        voteResult.presidentCounts[responseData.president]++
-        voteResult.vicePresidentCounts[responseData.vicePresident]++
-        voteResult.treasurerCounts[responseData.treasurer]++
+        voteResult.presidentCounts[responseData.President]++
+        voteResult.vicePresidentCounts[responseData.VicePresident]++
+        voteResult.treasurerCounts[responseData.Treasurer]++
     });
 
     return voteResult

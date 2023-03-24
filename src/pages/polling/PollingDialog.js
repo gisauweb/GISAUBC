@@ -49,7 +49,7 @@ const PollingDialog = ({ loading, responseCode, setResponseCode }) => {
                     <CircularProgress />
                 </DialogContent>
             </Dialog>}
-            {responseCode && <Dialog open={!!responseCode}>
+            {!!responseCode && <Dialog open={!!responseCode}>
                 <DialogTitle sx={{ color: '#FFFFFF', bgcolor: bgColor }}>
                     {responseTitle}
                 </DialogTitle>
