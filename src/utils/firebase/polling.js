@@ -20,11 +20,11 @@ export const writeVote = async (credentials, options) => {
 
         try {
             await setDoc(pollingDocRef, {
-                studentIDNumber: studentID,
-                president,
-                vicePresident,
-                treasurer,
-                createdAt
+                StudentID: studentID,
+                President: president,
+                VicePresident: vicePresident,
+                Treasurer: treasurer,
+                CreatedAt: createdAt
             });
         } catch (error) {
             console.log("error writing the vote", error.message);
