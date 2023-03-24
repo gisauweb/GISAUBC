@@ -29,25 +29,26 @@ export const EventLayout = ({
   if (events.length === 0) {
     content = (
       <div>
-        <p className={isMobileView && "text-center"}>{`Stay tuned :)`}</p>
+        <p className={`${isMobileView && "text-center"}`}>{`Stay tuned :)`}</p>
       </div>
     );
   } else {
     content = events.map((event) => (
       <div className="grid gap-y-8">
-        {!isMobileView && (
-          <div>
-            {event.desc.map((text) => (
-              <p>{text}</p>
-            ))}
-          </div>
-        )}
         <div>
           <div className="event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0">
             {event.img}
           </div>
         </div>
-        <div className="grid justify-center">
+        {!isMobileView && (
+          <div className="lg:w-[95%]">
+            {event.desc.map((text) => (
+              <p className="text-center">{text}</p>
+            ))}
+          </div>
+        )}
+        
+        <div className="grid justify-center lg:w-[90%]">
           <Button
             text={button1}
             handleClickButton={() => handleClickButton(event.link)}
@@ -65,7 +66,7 @@ export const EventLayout = ({
       </div>
       <div className="mt-10 grid gap-y-12">{content}</div>
       <div
-        className={`grid justify-center ${
+        className={`grid justify-center lg:w-[90%] ${
           events.length === 0 ? "mt-12" : "mt-4"
         }`}
       >
