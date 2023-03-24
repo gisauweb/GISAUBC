@@ -23,11 +23,7 @@ export const LandingImage = () => {
   });
 
   const handleClickButton = () => {
-    window.open(
-      "https://docs.google.com/forms/d/11VdilnYzUcEPlXqmtRmdp6U36kns2yK7am19gw3v2BU/edit?usp=drivesdk",
-      "_blank",
-      "noreferrer"
-    );
+    window.open("https://forms.gle/qujebG19m2VJzvBB6", "_blank", "noreferrer");
   };
 
   return (
