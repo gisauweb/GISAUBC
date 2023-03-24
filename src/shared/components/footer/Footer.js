@@ -8,15 +8,15 @@ import facebookIcon from "assets/footer/facebook-icon.svg";
 import plane from "assets/plane.svg";
 import { useMediaQuery } from "react-responsive";
 
-export const Footer = () => {
+export const Footer = ({showPlane}) => {
   const isMobile = useMediaQuery({ query: `(max-width: 639px)` });
 
   return (
-    <div id="contact">
-      <div className="w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex">
+    <div id="contact" className={`w-full relative bottom-0`}>
+      {showPlane && <div className="w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex">
         <img src={plane} alt="paper-plane" />
-      </div>
-      <div className="footer mt-36 lg:mt-0">
+      </div>}
+      <div className="footer mt-28 lg:mt-36 bg-[#FFFDF5]">
         <div className="footer-title text-lg sm:text-2xl">Connect with us!</div>
         <div className="footer-icons">
           <a

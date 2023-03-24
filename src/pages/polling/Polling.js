@@ -11,6 +11,7 @@ import {
 import { writeVote } from "utils/firebase/polling";
 import PollingDialog from "./PollingDialog";
 import { LogoSpinning } from "shared/components/logo-spinning/LogoSpinning";
+import { Footer } from "shared/components/footer/Footer";
 
 function Polling() {
   const isVotingOpen = process.env.REACT_APP_VOTING_OPEN === "TRUE";
@@ -46,9 +47,9 @@ function Polling() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#CFBBBB] flex flex-col items-center justify-center">
+      <div className="min-h-[calc(100vh+9rem)] bg-[#CFBBBB] flex flex-col items-center justify-center">
         {isVotingOpen ? (
-          <div className="bg-white w-2/3 rounded-md p-6 flex flex-col items-center mt-40 mb-10">
+          <div className="bg-white w-2/3 rounded-md p-6 flex flex-col items-center mt-44 lg:mt-52 lg:mb-24">
             <h1 className="text-center text-primary text-2xl md:text-3xl lg:text-4xl mb-8">
               Gado-Gado Indonesian Students Association of UBC Elections
             </h1>
@@ -160,12 +161,13 @@ function Polling() {
             </h1>
           </>
         )}
-      </div>
       <PollingDialog
         loading={loading}
         responseCode={responseCode}
         setResponseCode={setResponseCode}
       />
+      <Footer showPlane={false}/>
+      </div>
     </>
   );
 }

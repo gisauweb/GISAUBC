@@ -6,7 +6,7 @@ import Activities from "./components/activities/Activities";
 import { Events } from "./components/events/Events";
 import Partners from "./components/partners/Partners";
 import { Box } from "@mui/material";
-import { Footer } from "./components/footer/Footer";
+import { Footer } from "../../shared/components/footer/Footer";
 import { ScrollButtonContainer } from "./components/ScrollButton";
 
 export const Home = () => {
