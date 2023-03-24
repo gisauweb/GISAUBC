@@ -32,7 +32,7 @@ export const UPCOMINGEVENTS = {
           alt="Gala with GISAU"
         />
       ),
-      link: "",
+      link: "galaugisau.getqpay.com",
     },
   ],
   icon: (
