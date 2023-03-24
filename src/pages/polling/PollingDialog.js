@@ -16,7 +16,7 @@ const PollingDialog = ({ loading, responseCode, setResponseCode }) => {
             case 400:
                 setBgColor('#7D0202')
                 setResponseTitle('Bad Request')
-                setResponseDescription('Invalid syntax. Please use a valid student id.')
+                setResponseDescription('Student ID is invalid. Please use a valid Student ID.')
                 break
             case 401:
                 setBgColor('#7D0202')
