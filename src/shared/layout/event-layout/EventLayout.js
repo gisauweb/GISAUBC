@@ -67,7 +67,7 @@ export const EventLayout = ({
       </div>
       <div className="mt-10 grid gap-y-12">{content}</div>
       <div
-        className={`grid justify-center ${(events.length == 1) ? "lg:w-[95%]" : "lg:w-[90%]"} ${events.length === 0 ? "mt-12" : "mt-4"
+        className={`grid justify-center ${(events.length === 1) ? "lg:w-[95%]" : "lg:w-[90%]"} ${events.length === 0 ? "mt-12" : "mt-4"
           } `}
       >
         <Button
