@@ -54,7 +54,7 @@ export const LandingImage = () => {
               handleClickButton={handleClickButton}
             />
             <Button
-              className="grid justify-center"
+              className="grid justify-center pr-[1.85em]"
               text="Vote for AGM!"
               landingButton={false}
               handleClickButton={handleClickButtonAGM}

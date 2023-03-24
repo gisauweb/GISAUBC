@@ -1,5 +1,6 @@
 .button {
   width: fit-content;
+  text-align: center;
   background: #7d0202;
   border-radius: 5rem;
   padding: 0.75rem 2rem;
