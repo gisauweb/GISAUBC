@@ -7,13 +7,13 @@ export const pages = [
     name: "Home",
     newPage: true,
     path: "",
-    element: <Home />
+    element: <Home />,
   },
   {
     name: "About",
     newPage: true,
     path: "about",
-    element: <UpcomingPage />
+    element: <UpcomingPage />,
   },
   {
     name: "Events",
@@ -45,9 +45,9 @@ export const pages = [
     path: "/#contact",
   },
   {
-    name: "Polling",
+    name: "Vote Now!",
     newPage: true,
     path: "polling",
-    element: <Polling />
-  }
+    element: <Polling />,
+  },
 ];

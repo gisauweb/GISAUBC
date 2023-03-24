@@ -5,6 +5,7 @@ import Gisau from "../../../assets/gisau-logo/gisau.png";
 import LandingImg from "../../../assets/landing.jpg";
 
 import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   bgImage: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
 });
 
 export const LandingImage = () => {
+  const navigate = useNavigate();
   const classes = useStyles();
   const isMobileView = useMediaQuery({
     query: "(max-width: 639px)",
@@ -24,6 +26,10 @@ export const LandingImage = () => {
 
   const handleClickButton = () => {
     window.open("https://forms.gle/qujebG19m2VJzvBB6", "_blank", "noreferrer");
+  };
+
+  const handleClickButtonAGM = () => {
+    navigate("polling");
   };
 
   return (
@@ -40,12 +46,20 @@ export const LandingImage = () => {
             Gado-Gado Indonesian Student Association {!isMobileView && <br />}{" "}
             of UBC
           </h1>
-          <Button
-            className="grid justify-center"
-            text="Become a member!"
-            landingButton={true}
-            handleClickButton={handleClickButton}
-          />
+          <div className="flex gap-x-4 justify-center">
+            <Button
+              className="grid justify-center"
+              text="Become a member!"
+              landingButton={true}
+              handleClickButton={handleClickButton}
+            />
+            <Button
+              className="grid justify-center"
+              text="Vote for AGM!"
+              landingButton={false}
+              handleClickButton={handleClickButtonAGM}
+            />
+          </div>
         </div>
       </div>
     </div>
