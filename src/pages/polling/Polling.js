@@ -154,19 +154,19 @@ function Polling() {
             </form>
           </div>
         ) : (
-          <>
+          <div className="min-h-[calc(100vh+9rem)] bg-[#CFBBBB] flex flex-col items-center justify-center">
             <LogoSpinning />
             <h1 className="text-center text-primary text-2xl md:text-3xl lg:text-4xl mt-8">
               Voting is now CLOSED!
             </h1>
-          </>
+          </div>
         )}
-      <PollingDialog
-        loading={loading}
-        responseCode={responseCode}
-        setResponseCode={setResponseCode}
-      />
-      <Footer showPlane={false}/>
+        <PollingDialog
+          loading={loading}
+          responseCode={responseCode}
+          setResponseCode={setResponseCode}
+        />
+        <Footer showPlane={false} />
       </div>
     </>
   );
