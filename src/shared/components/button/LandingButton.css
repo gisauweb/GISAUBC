@@ -9,6 +9,7 @@
   box-shadow: "2px 1000px 1px #fff inset";
   transition: "all 0.3s ease-out";
 }
+
 .landing-button:before {
   content: "";
   position: absolute;
@@ -23,6 +24,7 @@
   mask-composite: exclude;
   transition: "all 0.3s ease-out";
 }
+
 .landing-button:hover:before {
   mask-composite: initial;
 }
