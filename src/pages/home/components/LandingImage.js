@@ -28,8 +28,8 @@ export const LandingImage = () => {
     window.open("https://forms.gle/qujebG19m2VJzvBB6", "_blank", "noreferrer");
   };
 
-  const handleClickButtonAGM = () => {
-    navigate("polling");
+  const handleClickButtonTwo = () => {
+    window.open("https://galaugisau.getqpay.com", "_blank", "noreferrer");
   };
 
   return (
@@ -55,9 +55,9 @@ export const LandingImage = () => {
             />
             <Button
               className="grid justify-center pr-[1.85em]"
-              text="Vote for AGM!"
+              text="Come to GALA(U)!"
               landingButton={false}
-              handleClickButton={handleClickButtonAGM}
+              handleClickButton={handleClickButtonTwo}
             />
           </div>
         </div>
