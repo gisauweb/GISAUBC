@@ -10,20 +10,6 @@ export const UPCOMINGEVENTS = {
   events: [
     {
       desc: [
-        "Contribute to the future of GISAU by joining us at our",
-        "Annual General Meeting (AGM) 🎉",
-        "Also, don't miss out on hearing about the team's accomplishments from the year 🤫",
-      ],
-      img: (
-        <img
-          src={require("../../../../assets/events/agm.png")}
-          alt="Annual General Meeting"
-        />
-      ),
-      link: "docs.google.com/forms/d/e/1FAIpQLSfUQSU9O3rd-7AVFtRpjJMGuBbn66IWNYJ9QXuwUVRPOb_KbA/viewform",
-    },
-    {
-      desc: [
         "End the school year with some glam and GISAU ✨️",
         "Daripada galau, mending ikut GISAU gala 🫣😉",
       ],

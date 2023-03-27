@@ -34,7 +34,7 @@ export const EventLayout = ({
     );
   } else {
     content = events.map((event) => (
-      <div className="grid gap-y-8">
+      <div className="grid gap-y-6">
         <div>
           <div className="event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0">
             <a href={"https://" + event.link} target="blank" rel="noreferrer">{event.img}</a>
@@ -43,7 +43,7 @@ export const EventLayout = ({
         {!isMobileView && (
           <div className="lg:w-[95%]">
             {event.desc.map((text) => (
-              <p className="text-center">{text}</p>
+              <p className="text-center text-base">{text}</p>
             ))}
           </div>
         )}
@@ -67,8 +67,9 @@ export const EventLayout = ({
       </div>
       <div className="mt-10 grid gap-y-12">{content}</div>
       <div
-        className={`grid justify-center ${(events.length === 1) ? "lg:w-[95%]" : "lg:w-[90%]"} ${events.length === 0 ? "mt-12" : "mt-4"
-          } `}
+        className={`flex justify-center ${button2.name === "View past events" ? "mr-9" : "mr-4"}
+        ${events.length === 0 ? "mt-12" : "mt-5"}
+        `}
       >
         <Button
           text={button2.name}
