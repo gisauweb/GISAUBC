@@ -5,7 +5,7 @@ import Gisau from "../../../assets/gisau-logo/gisau.png";
 import LandingImg from "../../../assets/landing.jpg";
 
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   bgImage: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 export const LandingImage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const classes = useStyles();
   const isMobileView = useMediaQuery({
     query: "(max-width: 639px)",
