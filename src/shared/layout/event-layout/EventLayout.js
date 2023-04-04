@@ -37,7 +37,9 @@ export const EventLayout = ({
       <div className="grid gap-y-8">
         <div>
           <div className="event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0">
-            <a href={"https://" + event.link} target="blank" rel="noreferrer">{event.img}</a>
+            <a href={"https://" + event.link} target="blank" rel="noreferrer">
+              {event.img}
+            </a>
           </div>
         </div>
         {!isMobileView && (
@@ -47,14 +49,12 @@ export const EventLayout = ({
             ))}
           </div>
         )}
-        {(event.link !== "gisaubc.com/rantangan") &&
-          <div className="grid justify-center lg:w-[90%]">
-            <Button
-              text={button1}
-              handleClickButton={() => handleClickButton(event.link)}
-            />
-          </div>
-        }
+        <div className="grid justify-center lg:w-[90%]">
+          <Button
+            text={button1}
+            handleClickButton={() => handleClickButton(event.link)}
+          />
+        </div>
       </div>
     ));
   }
@@ -67,8 +67,9 @@ export const EventLayout = ({
       </div>
       <div className="mt-10 grid gap-y-12">{content}</div>
       <div
-        className={`grid justify-center ${(events.length === 1) ? "lg:w-[95%]" : "lg:w-[90%]"} ${events.length === 0 ? "mt-12" : "mt-4"
-          } `}
+        className={`grid justify-center ${
+          events.length === 0 ? "lg:w-[95%]" : "lg:w-[90%]"
+        } ${events.length === 0 ? "mt-12" : "mt-4"} `}
       >
         <Button
           text={button2.name}
