@@ -1,5 +1,4 @@
 import { Home } from "pages/home/Home";
-import Polling from "pages/polling/Polling";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
 export const pages = [
