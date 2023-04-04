@@ -52,7 +52,7 @@ export const EventLayout = ({
             ))}
           </div>
         )}
-        <div className="grid justify-center lg:w-[90%]">
+        <div className="grid justify-center lg:w-[95%]">
           <Button
             text={button1}
             handleClickButton={() => handleClickButton(event.link)}
@@ -70,9 +70,9 @@ export const EventLayout = ({
       </div>
       <div className="mt-10 grid gap-y-12">{content}</div>
       <div
-        className={`grid justify-center ${
-          events.length === 0 ? "lg:w-[95%]" : "lg:w-[90%]"
-        } ${events.length === 0 ? "mt-12" : "mt-4"} `}
+        className={`grid justify-center lg:w-[95%] ${
+          events.length === 0 ? "mt-12" : "mt-4"
+        } `}
       >
         <Button
           text={button2.name}
