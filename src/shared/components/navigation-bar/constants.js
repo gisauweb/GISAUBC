@@ -44,10 +44,4 @@ export const pages = [
     newPage: false,
     path: "/#contact",
   },
-  {
-    name: "Vote Now!",
-    newPage: true,
-    path: "polling",
-    element: <Polling />,
-  },
 ];
