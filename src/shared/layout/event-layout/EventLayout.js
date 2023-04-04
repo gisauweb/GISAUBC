@@ -44,6 +44,9 @@ export const EventLayout = ({
         </div>
         {!isMobileView && (
           <div className="lg:w-[95%]">
+            <p className="text-center text-xl xl:text-2xl font-bold">
+              {event.title}
+            </p>
             {event.desc.map((text) => (
               <p className="text-center">{text}</p>
             ))}

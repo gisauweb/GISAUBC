@@ -9,7 +9,8 @@ export const UPCOMINGEVENTS = {
   title: "Upcoming Events",
   events: [
     {
-      desc: [],
+      title: "SEA Pit Night",
+      desc: ["Saturday, April 8", "The Pit @ UBC"],
       img: (
         <img
           src={require("../../../../assets/events/pit_night.jpg")}
