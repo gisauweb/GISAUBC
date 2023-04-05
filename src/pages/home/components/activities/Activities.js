@@ -17,7 +17,7 @@ const Activities = () => {
       </Box>
       <Box className="w-full flex lg:py-8">
         {isMobile ? (
-          <ActivitiesSlider className="mt-8" />
+          <ActivitiesSlider className="mt-8 sm:mt-12" />
         ) : (
           <>
             {activities.map((activity, index) => (
