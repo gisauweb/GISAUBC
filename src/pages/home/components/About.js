@@ -36,7 +36,7 @@ const About = () => {
         <img
           src={isMobile ? about_mobile : about_image}
           alt="GISAU Executives"
-          className="w-3/4 lg:w-full mx-auto lg:mt-6 rounded-3xl"
+          className="w-3/4 lg:w-full mx-auto mt-6 rounded-3xl"
         />
       </a>
       <Box className="w-3/4 sm:w-1/2 h-full">
