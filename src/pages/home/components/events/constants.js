@@ -14,10 +14,21 @@ export const UPCOMINGEVENTS = {
       img: (
         <img
           src={require("../../../../assets/events/pit_night.jpg")}
-          alt="Annual General Meeting"
+          alt="SEA Pit Night"
         />
       ),
       link: "www.showpass.com/south-east-asian-hip-hop/",
+    },
+    {
+      title: "Exam Care Package",
+      desc: ["Wednesday, April 12", "AMS Nest @ UBC"],
+      img: (
+        <img
+          src={require("../../../../assets/events/care_package.jpg")}
+          alt="Exam Care Package"
+        />
+      ),
+      link: "docs.google.com/forms/d/e/1FAIpQLSde4ZkJR6ZwRlGY7UEn_AK-q0m21lB50rY5SKFNT1gNoZwuGA/viewform?usp=sf_link",
     },
   ],
   icon: (
