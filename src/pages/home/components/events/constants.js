@@ -24,7 +24,7 @@ export const UPCOMINGEVENTS = {
       desc: ["Wednesday, April 12", "AMS Nest @ UBC"],
       img: (
         <img
-          src={require("../../../../assets/events/care_package.png")}
+          src={require("../../../../assets/events/care_package.jpeg")}
           alt="Exam Care Package"
         />
       ),
