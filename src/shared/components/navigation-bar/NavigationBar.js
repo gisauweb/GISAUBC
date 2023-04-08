@@ -9,7 +9,8 @@ import { MenuInterface } from "./MenuInterface";
 
 export const NavigationBar = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const isHomePage =
+    location.pathname === "/" || location.pathname === "/events";
 
   const isMobile = useMediaQuery({ query: `(max-width: 767px)` });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
