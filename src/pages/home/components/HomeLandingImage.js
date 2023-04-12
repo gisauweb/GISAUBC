@@ -1,8 +1,20 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { makeStyles } from "@mui/styles";
 import { Button } from "../../../shared/components/button/Button";
 import { LandingImage } from "shared/components/landing-image/LandingImage";
 import Gisau from "../../../assets/gisau-logo/gisau.png";
+import LandingImg from "../../../assets/landing/home.jpg";
+
+const bgImage = makeStyles({
+  styles: {
+    backgroundImage: `url(${LandingImg})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    filter: "brightness(50%)",
+  },
+});
 
 export const HomeLandingImage = () => {
   const isMobileView = useMediaQuery({
@@ -15,7 +27,7 @@ export const HomeLandingImage = () => {
 
   return (
     <div>
-      <LandingImage>
+      <LandingImage bgImage={bgImage}>
         <img
           src={Gisau}
           alt="Gisau Logo"
