@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Marquee from "react-fast-marquee";
-import { partners, rainbow } from "./constants";
+import { PARTNERS, rainbow } from "../../../../shared/data/partners";
 import { useMediaQuery } from "react-responsive";
 
 const Partners = () => {
@@ -23,7 +23,7 @@ const Partners = () => {
       <Box className="py-14">
         <Marquee gradient={false} speed={isBigDisplay ? 80 : 50}>
           <div className="flex items-center justify-around flex-wrap">
-            {partners.map((partner, i) => (
+            {PARTNERS.map((partner, i) => (
               <div className="mx-12" key={i}>
                 <img
                   src={partner.logo}

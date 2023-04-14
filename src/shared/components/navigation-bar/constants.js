@@ -1,4 +1,5 @@
 import { Home } from "pages/home/Home";
+import { Partners } from "pages/partners/Partners";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
 export const pages = [
@@ -36,7 +37,7 @@ export const pages = [
     name: "Partners",
     newPage: true,
     path: "partners",
-    element: <UpcomingPage />,
+    element: <Partners />,
   },
   {
     name: "Contact",

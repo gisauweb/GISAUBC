@@ -1,0 +1,4 @@
+.overlay::before,
+.overlay::after {
+    width: 1.5rem !important;
+}
