@@ -6,13 +6,6 @@ import { PARTNERS } from "shared/data/partners";
 const SponsorList = () => {
     const [checked, setChecked] = useState(false);
 
-    const boxStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        marginTop: '2rem'
-    }
-
     const buttonSx = {
         margin: "2% 0 1%",
         color: "#AF4328",
@@ -38,7 +31,7 @@ const SponsorList = () => {
 
 
     return (
-        <Box style={boxStyle}>
+        <Box className="flex flex-col items-center sm:mt-6">
             {PARTNERS.slice(0, 3).map((sponsor, index) => (
                 <SponsorContainer name={sponsor.name} logo={sponsor.logo} reversed={index % 2 !== 0} key={sponsor.name} />
             ))}

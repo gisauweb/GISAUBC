@@ -55,17 +55,13 @@ const SponsorRegistration = () => {
             </span>
             <Box style={stepsBoxStyle} className="flex-col sm:flex-row">
                 {steps.map((step) => (
-                    <Box style={stepBoxStyle} className="flew-row sm:flex-col" key={step.id}>
-                        <Box className="">
-                            <span className="text-2xl sm:text-3xl xl:text-4xl font-oswald text-primary border-4 border-primary rounded-full px-7 py-2 ">
-                                {step.id}
-                            </span>
-                        </Box>
-                        <Box className="mt-7">
-                            <span className="text-lg sm:text-xl xl:text-2xl font-proxima-nova text-black">
-                                {step.details}
-                            </span>
-                        </Box>
+                    <Box style={stepBoxStyle} key={step.id} className='flex lg:flex-col'>
+                        <span className="text-2xl sm:text-3xl xl:text-4xl font-oswald text-primary border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2 ">
+                            {step.id}
+                        </span>
+                        <span className="text-lg sm:text-xl xl:text-2xl font-proxima-nova text-black pl-4 lg:pl-0 lg:mt-5 text-left">
+                            {step.details}
+                        </span>
                     </Box>
                 ))}
             </Box>
