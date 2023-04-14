@@ -1,5 +1,4 @@
 import { Home } from "pages/home/Home";
-import Polling from "pages/polling/Polling";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
 export const pages = [
@@ -43,11 +42,5 @@ export const pages = [
     name: "Contact",
     newPage: false,
     path: "/#contact",
-  },
-  {
-    name: "Vote Now!",
-    newPage: true,
-    path: "polling",
-    element: <Polling />,
   },
 ];

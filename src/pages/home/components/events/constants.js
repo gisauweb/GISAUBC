@@ -9,31 +9,26 @@ export const UPCOMINGEVENTS = {
   title: "Upcoming Events",
   events: [
     {
-      desc: [
-        "Contribute to the future of GISAU by joining us at our",
-        "Annual General Meeting (AGM) 🎉",
-        "Also, don't miss out on hearing about the team's accomplishments from the year 🤫",
-      ],
+      title: "SEA Pit Night",
+      desc: ["Saturday, April 8", "The Pit @ UBC"],
       img: (
         <img
-          src={require("../../../../assets/events/agm.png")}
-          alt="Annual General Meeting"
+          src={require("../../../../assets/events/pit_night.jpg")}
+          alt="SEA Pit Night"
         />
       ),
-      link: "docs.google.com/forms/d/e/1FAIpQLSfUQSU9O3rd-7AVFtRpjJMGuBbn66IWNYJ9QXuwUVRPOb_KbA/viewform",
+      link: "www.showpass.com/south-east-asian-hip-hop/",
     },
     {
-      desc: [
-        "End the school year with some glam and GISAU ✨️",
-        "Daripada galau, mending ikut GISAU gala 🫣😉",
-      ],
+      title: "Exam Care Package",
+      desc: ["Wednesday, April 12", "AMS Nest @ UBC"],
       img: (
         <img
-          src={require("../../../../assets/events/galau.png")}
-          alt="Gala with GISAU"
+          src={require("../../../../assets/events/care_package.jpg")}
+          alt="Exam Care Package"
         />
       ),
-      link: "galaugisau.getqpay.com",
+      link: "docs.google.com/forms/d/e/1FAIpQLSde4ZkJR6ZwRlGY7UEn_AK-q0m21lB50rY5SKFNT1gNoZwuGA/viewform?usp=sf_link",
     },
   ],
   icon: (
@@ -49,21 +44,7 @@ export const UPCOMINGEVENTS = {
 
 export const RANTANGAN = {
   title: "Rantangan",
-  events: [{
-    desc: [
-      "Missing some Indonesian food? GISAU got you 😉",
-      "Let's take a look back on our March Rantangan",
-      "🎉 Nasi Liwet 🎉",
-    ],
-    img: (
-      <img
-        src={require("../../../../assets/events/rantangan_march.jpeg")}
-        alt="Nasi Liwet Rantangan"
-      />
-    ),
-    link: "gisaubc.com/rantangan",
-  },
-],
+  events: [],
   icon: (
     <img
       src={require("../../../../assets/events/rantangan.svg").default}
