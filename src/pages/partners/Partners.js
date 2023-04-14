@@ -19,7 +19,7 @@ export const Partners = () => {
                 <SponsorDivider />
                 <SponsorRegistration />
             </MainContainer>
-            <Footer />
+            <Footer showPlane={true}/>
         </Box>
     );
 };

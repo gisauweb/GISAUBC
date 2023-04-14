@@ -20,7 +20,7 @@ export const Home = () => {
         <Partners />
         <ScrollButtonContainer />
       </MainContainer>
-      <Footer />
+      <Footer showPlane={true} />
     </Box>
   );
 };
