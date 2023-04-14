@@ -6,6 +6,7 @@ import SponsorDivider from "./components/SponsorDivider";
 import SponsorRegistration from "./components/SponsorRegistration";
 import SponsorTitle from "./components/SponsorTitle";
 import SponsorList from "./components/SponsorList";
+import { ScrollButtonContainer } from "shared/components/ScrollButton";
 // import { LandingImage } from "pages/home/components/LandingImage";
 
 export const Partners = () => {
@@ -18,8 +19,9 @@ export const Partners = () => {
                 <SponsorList />
                 <SponsorDivider />
                 <SponsorRegistration />
+                <ScrollButtonContainer threshold={1/4}/>
             </MainContainer>
-            <Footer showPlane={true}/>
+            <Footer showPlane={false}/>
         </Box>
     );
 };

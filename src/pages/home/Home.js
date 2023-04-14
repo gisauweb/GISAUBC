@@ -7,7 +7,7 @@ import { Events } from "./components/events/Events";
 import Partners from "./components/partners/Partners";
 import { Box } from "@mui/material";
 import { Footer } from "../../shared/components/footer/Footer";
-import { ScrollButtonContainer } from "./components/ScrollButton";
+import { ScrollButtonContainer } from "../../shared/components/ScrollButton";
 
 export const Home = () => {
   return (
@@ -18,7 +18,7 @@ export const Home = () => {
         <Activities />
         <Events />
         <Partners />
-        <ScrollButtonContainer />
+        <ScrollButtonContainer threshold={13/20}/>
       </MainContainer>
       <Footer showPlane={true} />
     </Box>
