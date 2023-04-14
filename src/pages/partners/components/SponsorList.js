@@ -1,6 +1,6 @@
 import { Box, Button, Grow } from "@mui/material";
 import React, { useState } from "react";
-import SponsorContainer from "../SponsorContainer";
+import SponsorContainer from "./SponsorContainer";
 import { PARTNERS } from "shared/data/partners";
 
 const SponsorList = () => {
@@ -9,8 +9,8 @@ const SponsorList = () => {
     const boxStyle = {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
-
+        alignItems: 'center',
+        marginTop: '2rem'
     }
 
     const buttonSx = {
@@ -26,8 +26,8 @@ const SponsorList = () => {
 
     const growSponsorList = (sponsors) => (
         <div>
-            {sponsors.map((sponsor) => (
-                <SponsorContainer name={sponsor.name} logo={sponsor.logo} reversed={sponsor.reversed} key={sponsor.name}  />
+            {sponsors.map((sponsor, index) => (
+                <SponsorContainer name={sponsor.name} logo={sponsor.logo} reversed={index % 2 === 0} key={sponsor.name}  />
             ))}
         </div>
     )
@@ -39,8 +39,8 @@ const SponsorList = () => {
 
     return (
         <Box style={boxStyle}>
-            {PARTNERS.slice(0, 3).map((sponsor) => (
-                <SponsorContainer name={sponsor.name} logo={sponsor.logo} reversed={sponsor.reversed} key={sponsor.name} />
+            {PARTNERS.slice(0, 3).map((sponsor, index) => (
+                <SponsorContainer name={sponsor.name} logo={sponsor.logo} reversed={index % 2 !== 0} key={sponsor.name} />
             ))}
             {checked ?
                 <>

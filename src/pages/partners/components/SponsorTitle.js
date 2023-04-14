@@ -1,6 +1,5 @@
+import { Box } from "@mui/material";
 import React from "react";
-import { Box, Container, Typography } from '@mui/material';
-import logo from "assets/gisau-logo/gisau.svg"
 
 const SponsorTitle = () => {
 
