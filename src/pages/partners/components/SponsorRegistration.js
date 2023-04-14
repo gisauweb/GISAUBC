@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Box, Container, Typography } from '@mui/material'
+import React from 'react';
+import { Box, Container } from '@mui/material'
 
 const SponsorRegistration = () => {
 
@@ -29,23 +29,6 @@ const SponsorRegistration = () => {
         alignItems: "center",
         width: "100%",
         maxWidth: "100%"
-    }
-
-    const numberSx = {
-        borderRadius: '50%',
-        border: 3,
-        width: {
-            xs: "3rem",
-            sm: "4rem"
-        },
-        height: {
-            xs: "3rem",
-            sm: "4rem"
-        },
-        lineHeight: {
-            xs: "1.2",
-            sm: "1.1"
-        }
     }
 
     return (

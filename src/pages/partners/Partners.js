@@ -6,7 +6,7 @@ import SponsorDivider from "./components/SponsorDivider";
 import SponsorRegistration from "./components/SponsorRegistration";
 import SponsorTitle from "./components/SponsorTitle";
 import SponsorList from "./components/SponsorList";
-import { LandingImage } from "pages/home/components/LandingImage";
+// import { LandingImage } from "pages/home/components/LandingImage";
 
 export const Partners = () => {
     return (
