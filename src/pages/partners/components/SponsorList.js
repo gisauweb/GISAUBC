@@ -7,17 +7,6 @@ import { Button } from "shared/components/button/Button";
 const SponsorList = () => {
     const [checked, setChecked] = useState(false);
 
-    const buttonSx = {
-        margin: "2% 0 1%",
-        color: "#AF4328",
-        '&:hover': {
-            backgroundColor: '#AF4328',
-            color: '#fff',
-        },
-        fontFamily: "quicksand",
-        fontWeight: "bold"
-    }
-
     const growSponsorList = (sponsors) => (
         <div>
             {sponsors.map((sponsor, index) => (
