@@ -2,10 +2,7 @@ import React from "react";
 import { MainContainer } from "../../shared/layout/MainContainer";
 import { Box } from "@mui/material";
 import { Footer } from "../../shared/components/footer/Footer";
-import SponsorDivider from "./components/SponsorDivider";
-import SponsorRegistration from "./components/SponsorRegistration";
-import SponsorTitle from "./components/SponsorTitle";
-import SponsorList from "./components/SponsorList";
+import { SponsorDivider, SponsorRegistration, SponsorTitle, SponsorList } from "./components/index";
 import { ScrollButtonContainer } from "shared/components/ScrollButton";
 // import { LandingImage } from "pages/home/components/LandingImage";
 
@@ -19,9 +16,9 @@ export const Partners = () => {
                 <SponsorList />
                 <SponsorDivider />
                 <SponsorRegistration />
-                <ScrollButtonContainer threshold={1/4}/>
+                <ScrollButtonContainer threshold={1 / 4} />
             </MainContainer>
-            <Footer showPlane={false}/>
+            <Footer showPlane={false} />
         </Box>
     );
 };
