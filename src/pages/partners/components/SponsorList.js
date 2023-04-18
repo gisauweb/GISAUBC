@@ -1,7 +1,8 @@
-import { Box, Button, Grow } from "@mui/material";
+import { Box, Grow } from "@mui/material";
 import React, { useState } from "react";
 import SponsorContainer from "./SponsorContainer";
 import { PARTNERS } from "shared/data/partners";
+import { Button } from "shared/components/button/Button";
 
 const SponsorList = () => {
     const [checked, setChecked] = useState(false);
@@ -51,9 +52,9 @@ const SponsorList = () => {
                     >
                         {growSponsorList(PARTNERS.slice(5))}
                     </Grow>
-                    <Button variant="text" onClick={handleChange} sx={buttonSx}>SHOW LESS</Button>
+                    <Button className='py-5' text="SHOW LESS" handleClickButton={handleChange} transparentBg={true} />
                 </> :
-                <Button variant="text" onClick={handleChange} sx={buttonSx}>SHOW MORE</Button>}
+                <Button className='py-5' text="SHOW MORE" handleClickButton={handleChange} />}
         </Box>
     )
 }
