@@ -1,4 +1,5 @@
 import { Home } from "pages/home/Home";
+import { Events } from "pages/events/Events";
 import { Partners } from "pages/partners/Partners";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
@@ -17,15 +18,9 @@ export const pages = [
   },
   {
     name: "Events",
-    newPage: false,
-    path: "/#events",
-    element: <UpcomingPage />,
-  },
-  {
-    name: "Eventsss",
     newPage: true,
     path: "events",
-    element: <UpcomingPage />,
+    element: <Events />,
   },
   {
     name: "Rantangan",
