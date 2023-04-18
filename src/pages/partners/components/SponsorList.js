@@ -41,9 +41,9 @@ const SponsorList = () => {
                     >
                         {growSponsorList(PARTNERS.slice(5))}
                     </Grow>
-                    <Button className='py-5' text="SHOW LESS" handleClickButton={handleChange} transparentBg={true} />
+                    <Button className='py-5' text="Show Less" handleClickButton={handleChange} transparentBg={true} />
                 </> :
-                <Button className='py-5' text="SHOW MORE" handleClickButton={handleChange} />}
+                <Button className='py-5' text="Show More" handleClickButton={handleChange} />}
         </Box>
     )
 }
