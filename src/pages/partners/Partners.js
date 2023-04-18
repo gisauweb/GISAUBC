@@ -9,7 +9,6 @@ import { ScrollButtonContainer } from "shared/components/ScrollButton";
 export const Partners = () => {
     return (
         <Box className="bg-[#FFFDF5]">
-            {/* <LandingImage /> */}
             <MainContainer>
                 <SponsorTitle />
                 <SponsorDivider />
