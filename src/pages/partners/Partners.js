@@ -11,9 +11,9 @@ export const Partners = () => {
         <Box className="bg-[#FFFDF5]">
             <MainContainer>
                 <SponsorTitle />
-                <SponsorDivider />
+                <Divider color="#AF4328"/>
                 <SponsorList />
-                <SponsorDivider />
+                <Divider color="#AF4328"/>
                 <SponsorRegistration />
                 <ScrollButtonContainer threshold={1 / 4} />
             </MainContainer>
