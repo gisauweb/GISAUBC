@@ -1,8 +1,8 @@
 import React from "react";
 import { Box } from "@mui/material";
-import about_image from "assets/about/about.png";
-import about_mobile from "assets/about/about_mobile.png";
-import sunshine_image from "assets/sunshine.svg";
+import about_image from "assets/home-page/about/about.png";
+import about_mobile from "assets/home-page/about/about_mobile.png";
+import sunshine_image from "assets/home-page/about/sunshine.svg";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../shared/components/button/Button";
 import { useMediaQuery } from "react-responsive";
