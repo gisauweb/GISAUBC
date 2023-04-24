@@ -31,30 +31,26 @@ const DropdownMenu = () => {
     }, []);
 
     return (
-        <div className="relative mr-2.5 py-2" ref={dropdownRef}>
+        <div className="mr-2.5 rounded-lg border border-primary focus:ring-1 focus:ring-primary" ref={dropdownRef}>
             <button
                 type="button"
-                className="bg-bgPrimary hover:bg-gray-200 text-primary font-semibold py-1 rounded-md border border-primary focus:outline-none focus:ring-1 focus:ring-primary flex items-center justify-between w-56"
+                className="bg-bgPrimary hover:bg-gray-200 text-primary focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-56 py-1 "
                 onClick={handleToggle}
             >
                 <div></div>
                 <span className='font-inter pl-9'>{selectedYear}</span>
                 <KeyboardArrowDownIcon fontSize='large' className='font-inter' />
             </button>
-            {isOpen && (
-                <div className="absolute z-10 mt-2 rounded-md shadow-lg bg-white border border-gray-200 divide-y divide-gray-200 w-56">
-                    {years.map((year) => (
-                        <button
-                            key={year}
-                            type="button"
-                            className="block py-2 font-inter font-semibold bg-bgPrimary text-primary hover:bg-primary hover:text-white w-full"
-                            onClick={() => handleSelect(year)}
-                        >
-                            {year}
-                        </button>
-                    ))}
-                </div>
-            )}
+            {isOpen && years.map((year) => (
+                <button
+                    key={year}
+                    type="button"
+                    className="block bg-bgPrimary text-primary hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold"
+                    onClick={() => handleSelect(year)}
+                >
+                    {year}
+                </button>
+            ))}
         </div>
     );
 };
