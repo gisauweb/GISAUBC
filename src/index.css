@@ -10,9 +10,15 @@
 }
 
 /* Oswald */
-/* @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap"); */
 @font-face {
   font-family: "Oswald";
   src: local("Oswald"),
     url("./fonts/Oswald/Oswald-VariableFont.ttf") format("truetype");
+}
+
+/* Inter */
+@font-face {
+  font-family: "Inter";
+  src: local("Inter"),
+    url("./fonts/Inter/Inter-VariableFont.ttf") format("truetype");
 }
