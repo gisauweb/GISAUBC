@@ -6,7 +6,7 @@ import DropdownMenu from '../../../shared/components/DropdownMenu';
 export const PastEvents = (props) => {
     const Item = ({image, title, date, location}) => (
         <Box className='flex flex-col'>
-            <img src={event_1} className=''/>
+            <img src={event_1} alt="event_image" className=''/>
             <Box className='text-center flex flex-col'>
                 <span className='py-2 pt-6 font-semibold text-xl'>SEA Pit Night</span>
                 <span>Wednesday, April ??</span>

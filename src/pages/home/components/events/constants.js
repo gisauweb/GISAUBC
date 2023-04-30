@@ -1,3 +1,6 @@
+import rantangan from "assets/home-page/events/rantangan.svg"
+import upcoming_event from "assets/home-page/events/upcoming_event.svg"
+
 /**
  * events field:
  * - desc
@@ -10,7 +13,7 @@ export const UPCOMINGEVENTS = {
   events: [],
   icon: (
     <img
-      src={require("../../../../assets/events/upcoming_event.svg").default}
+      src={upcoming_event}
       alt=""
       className="ml-[25%] w-[80%] sm:ml-[35%] sm:w-full"
     />
@@ -24,7 +27,7 @@ export const RANTANGAN = {
   events: [],
   icon: (
     <img
-      src={require("../../../../assets/events/rantangan.svg").default}
+      src={rantangan}
       alt=""
       className="ml-1/10"
     />
