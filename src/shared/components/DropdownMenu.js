@@ -31,21 +31,21 @@ const DropdownMenu = () => {
     }, []);
 
     return (
-        <div className="mr-2.5 rounded-lg border border-primary focus:ring-1 focus:ring-primary" ref={dropdownRef}>
+        <div className="mr-3 rounded-2xl border-2 border-spacing-2 border-primary stroke-primary w-56" ref={dropdownRef}>
             <button
                 type="button"
-                className="bg-bgPrimary hover:bg-gray-200 text-primary focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-56 py-1 "
+                className={`bg-bgPrimary hover:bg-gray-200 text-primary ${isOpen ? "rounded-t-2xl" : "rounded-2xl"} focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-full py-1`}
                 onClick={handleToggle}
             >
                 <div></div>
                 <span className='font-inter pl-9'>{selectedYear}</span>
                 <KeyboardArrowDownIcon fontSize='large' className='font-inter' />
             </button>
-            {isOpen && years.map((year) => (
+            {isOpen && years.map((year, i) => (
                 <button
                     key={year}
                     type="button"
-                    className="block bg-bgPrimary text-primary hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold"
+                    className={`block bg-bgPrimary text-primary hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold ${i == (years.length - 1) && "rounded-b-2xl"}`}
                     onClick={() => handleSelect(year)}
                 >
                     {year}
