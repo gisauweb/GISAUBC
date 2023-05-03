@@ -1,4 +1,5 @@
 import { EVENTS_22_23 } from "assets/index"
+import { years } from "shared/components/DropdownMenu"
 
 const PAST_EVENTS = 
 {
@@ -18,6 +19,10 @@ const PAST_EVENTS =
         { image: EVENTS_22_23[12], title: "Opt to Know Co-op", date: "Friday, August 26 | 8PM", loc: "via Zoom" },
         { image: EVENTS_22_23[13], title: "Independence Day Picnic", date: "Saturday, August 20 | 4.30PM", loc: "Nobel Park @ UBC" },
     ],
+    "2021/2022": [],
+    "2020/2021": [],
+    "2019/2020": [],
+    "2018/2019": [],
 }
 
 export default PAST_EVENTS
