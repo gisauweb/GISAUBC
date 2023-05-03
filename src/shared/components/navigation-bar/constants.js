@@ -6,37 +6,34 @@ import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 export const pages = [
   {
     name: "Home",
-    newPage: true,
     path: "",
     element: <Home />,
   },
   {
     name: "About",
-    newPage: true,
     path: "about",
     element: <UpcomingPage />,
   },
   {
     name: "Events",
-    newPage: true,
     path: "events",
     element: <Events />,
   },
   {
     name: "Rantangan",
-    newPage: true,
     path: "rantangan",
     element: <UpcomingPage />,
   },
   {
     name: "Partners",
-    newPage: true,
     path: "partners",
     element: <Partners />,
-  },
+  }
+];
+
+export const tempPage = [
   {
     name: "Contact",
-    newPage: false,
-    path: "/#contact",
-  },
-];
+    path: "#contact",
+  }
+]

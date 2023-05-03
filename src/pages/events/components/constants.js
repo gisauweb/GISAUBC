@@ -1,5 +1,4 @@
 import { EVENTS_22_23 } from "assets/index"
-import { years } from "shared/components/DropdownMenu"
 
 const PAST_EVENTS = 
 {

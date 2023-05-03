@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { ReactComponent as NavLogoWhite } from "../../../assets/gisau-logo/gisau_white.svg";
 import { ReactComponent as NavLogoBlack } from "../../../assets/gisau-logo/gisau_icon.svg";
-import { pages } from "./constants";
+import { pages, tempPage } from "./constants";
 import { Box } from "@mui/material";
 import { MenuInterface } from "./MenuInterface";
 
@@ -37,11 +37,7 @@ export const NavigationBar = () => {
 
   return (
     <div className={isMenuOpen ? "overflow-y-hidden" : "overflow-y-visible"}>
-      <Box
-        className={`flex justify-between items-center z-10 w-full mt-[5vh] absolute ${
-          isHomePage && "absolute"
-        }`}
-      >
+      <Box className={`flex justify-between items-center z-10 w-full mt-[5vh] absolute ${isHomePage && "absolute"}`}>
         <Box className={`ml-6 sm:ml-20 md:ml-6 lg:ml-20`}>
           <Link to="/">
             {isHomePage ? (
@@ -63,36 +59,21 @@ export const NavigationBar = () => {
         ) : (
           <Box className="flex mr-6 lg:mr-20">
             {pages.map((page) =>
-              page.name !== "Eventsss" ? (
-                page.newPage ? (
-                  <Link key={page.name} to={page.path} className="px-5 pt-3">
-                    <p
-                      className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
-                        page.path === "polling"
-                          ? "text-primary font-semibold"
-                          : isHomePage
-                          ? "text-white"
-                          : "text-black"
-                      }`}
-                    >
-                      {page.name}
-                    </p>
-                  </Link>
-                ) : (
-                  <a href={page.path} className="px-5 pt-3">
-                    <p
-                      className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${
-                        isHomePage ? "text-white" : "text-black"
-                      }`}
-                    >
-                      {page.name}
-                    </p>
-                  </a>
-                )
-              ) : (
-                <></>
-              )
-            )}
+            (
+              <Link key={page.name} to={page.path} className="px-5 pt-3">
+                <p className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${isHomePage ? "text-white" : "text-black"}`}>
+                  {page.name}
+                </p>
+              </Link>
+            ))}
+            {tempPage.map((page) =>
+            (
+              <a key={page.name} href={page.path} className="px-5 pt-3">
+                <p className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl ${isHomePage ? "text-white" : "text-black"}`}>
+                  {page.name}
+                </p>
+              </a>
+            ))}
           </Box>
         )}
       </Box>
