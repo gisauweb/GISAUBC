@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const years = ['2022/2023', '2021/2022', '2020/2021', '2019/2020', '2018/2019'];
 
-const DropdownMenu = () => {
+const DropdownMenu = ({selectedYear, setSelectedYear}) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedYear, setSelectedYear] = useState('2022/2023');
     const dropdownRef = useRef(null);
 
     const handleToggle = () => {
