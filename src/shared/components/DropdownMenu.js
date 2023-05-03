@@ -30,10 +30,10 @@ const DropdownMenu = ({selectedYear, setSelectedYear}) => {
     }, []);
 
     return (
-        <div className="w-56 absolute right-48 mt-1 rounded-2xl border-2 border-spacing-2 border-primary stroke-primary" ref={dropdownRef}>
+        <div className="w-64 absolute right-48 mt-1 rounded-2xl border-2 border-spacing-2 border-primary stroke-primary" ref={dropdownRef}>
             <button
                 type="button"
-                className={`bg-bgPrimary hover:bg-gray-200 text-primary ${isOpen ? "rounded-t-2xl" : "rounded-2xl"} focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-full py-1`}
+                className={`bg-bgPrimary hover:bg-gray-200 text-primary text-xl ${isOpen ? "rounded-t-2xl" : "rounded-2xl"} focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-full py-1`}
                 onClick={handleToggle}
             >
                 <div></div>
@@ -44,7 +44,7 @@ const DropdownMenu = ({selectedYear, setSelectedYear}) => {
                 <button
                     key={year}
                     type="button"
-                    className={`block bg-bgPrimary text-primary hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold ${i === (years.length - 1) && "rounded-b-2xl"}`}
+                    className={`block bg-bgPrimary text-primary text-xl hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold ${i === (years.length - 1) && "rounded-b-2xl"}`}
                     onClick={() => handleSelect(year)}
                 >
                     {year}
