@@ -5,7 +5,7 @@ import { ReactComponent as NavLogoWhite } from "../../../assets/gisau-logo/gisau
 import { ReactComponent as NavLogoBlack } from "../../../assets/gisau-logo/gisau_icon.svg";
 import { pages, tempPages } from "./constants";
 import { Box } from "@mui/material";
-import { MenuInterface } from "./MenuInterface";
+import MenuInterface from "./MenuInterface";
 
 export const NavigationBar = () => {
   const location = useLocation();
