@@ -1,16 +1,17 @@
 import React from "react";
-import { pages, tempPage } from "./constants";
+import { pages, tempPages } from "./constants";
 import { Link } from "react-router-dom";
+import CloseIcon from '@mui/icons-material/Close';
 
 export const MenuInterface = ({
   className,
   isOpen,
   closeHandler,
   openHandler,
-  isHomePage,
+  hasLandingImage,
 }) => {
   let menuIconColor;
-  if (!isHomePage && !isOpen) {
+  if (!hasLandingImage && !isOpen) {
     menuIconColor = "bg-black";
   } else {
     menuIconColor = "bg-white";
@@ -69,7 +70,7 @@ export const MenuInterface = ({
                 </p>
               </Link>
             ))}
-            {tempPage.map((page) => (
+            {tempPages.map((page) => (
               <a key={page.name} href={page.path} onClick={closeHandler}>
                 <p className="text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase">
                   {page.name}

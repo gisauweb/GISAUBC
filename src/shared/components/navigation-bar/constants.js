@@ -3,10 +3,11 @@ import { Events } from "pages/events/Events";
 import { Partners } from "pages/partners/Partners";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
-export const pages = [
+const pages = [
   {
     name: "Home",
     path: "",
+    hasLandingImage: true,
     element: <Home />,
   },
   {
@@ -17,6 +18,7 @@ export const pages = [
   {
     name: "Events",
     path: "events",
+    hasLandingImage: true,
     element: <Events />,
   },
   {
@@ -31,9 +33,11 @@ export const pages = [
   }
 ];
 
-export const tempPage = [
+const tempPages  = [
   {
     name: "Contact",
     path: "#contact",
   }
 ]
+
+export {pages, tempPages}
