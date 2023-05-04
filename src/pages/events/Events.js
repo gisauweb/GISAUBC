@@ -11,10 +11,16 @@ export const Events = () => {
     <div>
       <Box className="bg-[#FFFDF5]">
         <EventLandingImage />
-        <MainContainer>
+        <MainContainer className={`mt-20`}>
+          <span
+            className={`font-proxima-nova text-primary text-3xl sm:text-4xl xl:text-5xl font-bold`}
+          >
+            Connect with fellow Indonesians at our socials and large-scale
+            events.
+          </span>
           <EventLayout
             id="events"
-            className={`mt-10`}
+            className={`mt-20 sm:mt-24 xl:mt-32`}
             title={UPCOMINGEVENTS.title}
             events={UPCOMINGEVENTS.events}
             icon={UPCOMINGEVENTS.icon}
