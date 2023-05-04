@@ -36,8 +36,8 @@ export const EventLayout = ({
   } else {
     content = (
       <div
-        className={`${
-          isEventsPage ? `flex gap-x-12 gap-y-20` : `grid gap-y-12`
+        className={`grid ${
+          isEventsPage ? `lg:flex gap-x-12 gap-y-20` : `gap-y-12`
         } flex-wrap`}
       >
         {events.map((event) => (
