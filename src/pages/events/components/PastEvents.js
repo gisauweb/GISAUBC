@@ -19,7 +19,7 @@ export const PastEvents = (props) => {
 
     return (
         <Box className='my-14'>
-            <Box className='flex w-full justify-between'>
+            <Box className='flex w-full justify-between mb-28 sm:mb-24'>
                 <span className="text-2xl sm:text-3xl xl:text-4xl font-medium font-oswald text-primary pt-1.5">
                     PAST EVENTS
                 </span>
