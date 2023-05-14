@@ -5,6 +5,7 @@ import { MainContainer } from "../../shared/layout/MainContainer";
 import { Footer } from "../../shared/components/footer/Footer";
 import { PageTitle } from "shared/components/PageTitle";
 import { PastEvents } from "./components/PastEvents";
+import { UpcomingEvent } from "./components/UpcomingEvent";
 
 export const Events = () => {
   return (
@@ -12,6 +13,7 @@ export const Events = () => {
       <EventLandingImage />
       <MainContainer>
         <PageTitle text={"Connect with fellow Indonesians at our socials and large-scale events."} />
+        <UpcomingEvent />
         <PastEvents />
       </MainContainer>
       <Footer />

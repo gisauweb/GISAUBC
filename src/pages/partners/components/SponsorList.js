@@ -1,7 +1,7 @@
 import { Box, Grow } from "@mui/material";
 import React, { useState } from "react";
 import SponsorContainer from "./SponsorContainer";
-import { PARTNERS } from "shared/data/partners";
+import { PARTNERS } from "shared/data/Partners";
 import { Button } from "shared/components/button/Button";
 
 const SponsorList = () => {

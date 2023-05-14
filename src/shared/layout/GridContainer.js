@@ -1,17 +1,29 @@
 import React from 'react'
 import { Box, Grid } from '@mui/material'
+import { Button } from 'shared/components/button/Button'
 
-const GridContainer = ({ data, source }) => {
+const GridContainer = ({ data, source, button }) => {
+    const handleClickButton = (link) => {
+        window.open(link, "_blank", "noreferrer");
+    };
 
     const GridItem = ({ event }) => (
         <Grid item xs={2} sm={4} md={4}>
             <Box className='flex flex-col mx-7 sm:mx-0'>
                 <img src={event.image} alt="event_image" className='' />
                 {source === 'events' &&
-                    <Box className='text-center flex flex-col'>
-                        <span className='py-2 pt-6 font-semibold text-xl'>{event.title}</span>
+                    <Box className='text-center flex flex-col py-4'>
+                        <span className='py-2 font-semibold text-xl'>{event.title}</span>
                         <span>{event.date}</span>
-                        <span>{event.location}</span>
+                        <span>{event.loc}</span>
+                    </Box>
+                }
+                {button &&
+                    <Box className='flex justify-center'>
+                        <Button
+                            text={"Register"}
+                            handleClickButton={() => handleClickButton(event.link)}
+                        />
                     </Box>
                 }
             </Box>

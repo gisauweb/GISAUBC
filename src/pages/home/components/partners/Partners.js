@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import Marquee from "react-fast-marquee";
-import { PARTNERS, rainbow } from "../../../../shared/data/partners";
+import { PARTNERS, rainbow } from "shared/data/Partners";
 import { useMediaQuery } from "react-responsive";
 
 const Partners = () => {
