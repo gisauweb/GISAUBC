@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import gisau_logo from "assets/gisau-logo/gisau.svg"
 import React from "react";
 import { Typography } from "shared/components/Typography";
 

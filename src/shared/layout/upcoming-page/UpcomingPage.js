@@ -1,6 +1,5 @@
-import { Box } from "@mui/material";
-import { EventLandingImage } from "pages/events/components/EventLandingImage";
 import React from "react";
+import { Box } from "@mui/material";
 import { MainContainer } from "shared/layout/MainContainer";
 import { StayTuned } from "shared/layout/upcoming-page/StayTuned";
 

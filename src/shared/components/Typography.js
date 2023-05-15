@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-export const Typography = ({ variant, text }) => {
+export const Typography = ({ variant, text, className }) => {
     const [variantStyle, setVariantStyle] = useState("")
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export const Typography = ({ variant, text }) => {
     }, [variant])
 
     return (
-        <span className={`${variantStyle} text-primary`}>
+        <span className={`${variantStyle} ${className} text-primary`}>
             {text}
         </span>
     )
