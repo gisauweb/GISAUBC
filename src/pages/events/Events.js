@@ -11,9 +11,11 @@ export const Events = () => {
     <Box className="bg-[#FFFDF5]">
       <EventLandingImage />
       <MainContainer>
-        <Typography variant="h1" text={"Connect with fellow Indonesians at our socials and large-scale events."} />
-        <EventContent upcoming={true}/>
-        <EventContent upcoming={false}/>
+        <Box className="w-4/5">
+          <Typography variant="h1" text="Connect with fellow Indonesians at our socials and large-scale events." />
+        </Box>
+        <EventContent upcoming={true} />
+        <EventContent upcoming={false} />
       </MainContainer>
       <Footer />
     </Box>

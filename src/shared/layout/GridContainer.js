@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Grid } from '@mui/material'
 import { Button } from 'shared/components/button/Button'
 
-const GridContainer = ({ data, source, button }) => {
+const GridContainer = ({ data, source, button, className }) => {
     const handleClickButton = (link) => {
         window.open(link, "_blank", "noreferrer");
     };
@@ -31,7 +31,7 @@ const GridContainer = ({ data, source, button }) => {
     )
 
     return (
-        <Box sx={{ flexGrow: 1, mt: 6 }}>
+        <Box sx={{ flexGrow: 1, mt: 6 }} className={className}>
             <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 2, sm: 8, md: 12 }}>
                 {data.map((event, index) => (
                     <GridItem event={event} key={index} />

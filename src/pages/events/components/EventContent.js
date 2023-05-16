@@ -11,11 +11,11 @@ const EventContent = ({upcoming}) => {
 
     return (
         <Box className='my-20'>
-            <Box className='flex w-full justify-between mb-28 sm:mb-24'>
-                <Typography variant="h2" text={`${upcoming ? "UPCOMING" : "PAST"} EVENTS`} className="pt-1.5" />
+            <Box className={`flex w-full justify-between ${!upcoming && "mb-24 sm:mb-0"}`}>
+                <Typography variant="h2" text={`${upcoming ? "UPCOMING" : "PAST"} EVENTS`} className="pt-0.5" />
                 {!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
             </Box>
-            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} source={'events'} button={upcoming}/>
+            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} source={'events'} button={upcoming} className="sm:my-28"/>
         </Box>
     )
 }

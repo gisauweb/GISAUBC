@@ -32,7 +32,7 @@ const DropdownMenu = ({selectedYear, setSelectedYear}) => {
     }, []);
 
     return (
-        <div className="w-40 sm:w-64 absolute sm:right-24 lg:right-40 mt-16 sm:mt-1 rounded-2xl border-2 border-spacing-2 border-primary stroke-primary" ref={dropdownRef}>
+        <div className="w-40 sm:w-64 absolute sm:right-24 lg:right-48 mt-14 sm:mt-0 rounded-2xl border-2 border-spacing-2 border-primary stroke-primary" ref={dropdownRef}>
             <button
                 type="button"
                 className={`bg-bgPrimary hover:bg-gray-200 text-primary text-base sm:text-xl ${isOpen ? "rounded-t-2xl" : "rounded-2xl"} focus:border-b border-gray-400 font-inter font-semibold flex items-center justify-between w-full py-1`}
