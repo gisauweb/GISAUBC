@@ -11,7 +11,7 @@ export const Events = () => {
     <div>
       <Box className="bg-[#FFFDF5]">
         <EventLandingImage />
-        <MainContainer className={`mt-20`}>
+        <MainContainer>
           <span
             className={`font-proxima-nova text-primary text-3xl sm:text-4xl xl:text-5xl font-bold`}
           >
