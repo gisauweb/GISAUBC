@@ -10,7 +10,7 @@ const GridItem = ({ item, source, upcoming }) => {
     return (
         <Grid item xs={1} sm={2} md={2}>
             <Box className='flex flex-col mx-7 sm:mx-0'>
-                <img src={item.image} alt="item_image" className='' />
+                <img src={item.image} alt="item_image" className='rounded-2xl' />
                 {source === 'events' &&
                     <Box className='text-center flex flex-col py-4'>
                         <span className='py-2 font-semibold text-xl'>{item.title}</span>
