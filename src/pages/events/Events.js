@@ -5,6 +5,7 @@ import { MainContainer } from "../../shared/layout/MainContainer";
 import { Footer } from "../../shared/components/footer/Footer";
 import { Typography } from "shared/components/Typography";
 import EventContent from "./components/EventContent";
+import { ScrollButtonContainer } from "shared/components/ScrollButton";
 
 export const Events = () => {
   return (
@@ -16,6 +17,7 @@ export const Events = () => {
         </Box>
         <EventContent upcoming={true} />
         <EventContent upcoming={false} />
+        <ScrollButtonContainer threshold={4/5}/>
       </MainContainer>
       <Footer />
     </Box>
