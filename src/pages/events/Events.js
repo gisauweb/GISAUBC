@@ -17,7 +17,7 @@ export const Events = () => {
         </Box>
         <EventContent upcoming={true} />
         <EventContent upcoming={false} />
-        <ScrollButtonContainer threshold={4/5}/>
+        <ScrollButtonContainer threshold={7/10}/>
       </MainContainer>
       <Footer />
     </Box>
