@@ -15,7 +15,7 @@ const EventContent = ({upcoming}) => {
                 <Typography variant="h2" text={`${upcoming ? "UPCOMING" : "PAST"} EVENTS`} className="pt-0.5" />
                 {!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
             </Box>
-            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} source={'events'} button={upcoming} className="sm:my-28"/>
+            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} source={'events'} upcoming={upcoming} className="sm:my-28"/>
         </Box>
     )
 }

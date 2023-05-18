@@ -3,7 +3,7 @@ import { Box, Grid, Grow } from '@mui/material'
 import { Button } from 'shared/components/button/Button'
 import { useMediaQuery } from 'react-responsive';
 
-const GridContainer = ({ data, source, button, className }) => {
+const GridContainer = ({ data, source, upcoming, className }) => {
     const dataLength = data.length
     const [grow, setGrow] = useState(false)
     const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
@@ -28,7 +28,7 @@ const GridContainer = ({ data, source, button, className }) => {
                         <span>{event.loc}</span>
                     </Box>
                 }
-                {button &&
+                {upcoming &&
                     <Box className='flex justify-center'>
                         <Button
                             text={"Register"}
@@ -43,13 +43,13 @@ const GridContainer = ({ data, source, button, className }) => {
     return (
         <Box sx={{ flexGrow: 1, mt: 6 }} className={className}>
             <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
-                {data.slice(0, isMobile ? dataLength / 3 : dataLength).map((event, index) => (
+                {data.slice(0, (!upcoming && isMobile) ? dataLength / 3 : dataLength).map((event, index) => (
                     <GridItem event={event} key={index} />
                 ))}
                 {grow ? <>
                     <Grow in={grow}
                         style={{ transformOrigin: '0 0 0', width: "100%" }}
-                        {...(grow ? { timeout: 1500 } : {})}
+                        {...(grow ? { timeout: 3000 } : {})}
                     >
                         <Grid item xs={1} sm={2} md={2}>
                             <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
@@ -63,7 +63,7 @@ const GridContainer = ({ data, source, button, className }) => {
                     <Grow
                         in={grow}
                         style={{ transformOrigin: '0 0 0', width: "100%" }}
-                        {...(grow ? { timeout: 3000 } : {})}
+                        {...(grow ? { timeout: 5000 } : {})}
                     >
                         <Grid item xs={1} sm={2} md={2}>
                             <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
@@ -76,7 +76,7 @@ const GridContainer = ({ data, source, button, className }) => {
                     <Grid item xs={1} sm={2} md={2} className='flex justify-center'>
                         <Button text="Show Less" handleClickButton={handleChange} transparentBg={true} />
                     </Grid>
-                </> : isMobile &&
+                </> : (!upcoming && isMobile) &&
                 <Grid item xs={1} sm={2} md={2} className='flex justify-center'>
                     <Button text="Show More" handleClickButton={handleChange} />
                 </Grid>
