@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Box } from '@mui/material'
 import PAST_EVENTS from './constants';
-import UPCOMING_EVENTS from 'shared/data/upcomingEvents'
+import UPCOMING_EVENTS from 'shared/data/upcoming_events'
 import DropdownMenu from '../../../shared/components/DropdownMenu';
 import GridContainer from 'shared/layout/GridContainer';
 import { Typography } from 'shared/components/Typography';
