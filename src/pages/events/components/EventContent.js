@@ -8,6 +8,10 @@ import { Typography } from 'shared/components/Typography';
 
 const EventContent = ({upcoming}) => {
     const [selectedYear, setSelectedYear] = useState('2022/2023');
+    const features = {
+        event: true, 
+        upcomingEvent: upcoming
+    }
 
     return (
         <Box className='my-20'>
@@ -15,7 +19,7 @@ const EventContent = ({upcoming}) => {
                 <Typography variant="h2" text={`${upcoming ? "UPCOMING" : "PAST"} EVENTS`} className="pt-0.5" />
                 {!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
             </Box>
-            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} source={'events'} upcoming={upcoming} className="sm:my-28"/>
+            <GridContainer data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]} features={features} className="sm:my-28"/>
         </Box>
     )
 }

@@ -3,9 +3,9 @@ import { Grid, Grow } from '@mui/material';
 import GridItem from './GridItem';
 import { Button } from 'shared/components/button/Button';
 
-const GrowContainer = ({ data, dataLength, upcoming, isMobile }) => {
+const GrowContainer = ({ data, dataLength, features, isMobile }) => {
     const [grow, setGrow] = useState(false)
-    
+
     const handleChange = () => {
         setGrow(!grow);
     };
@@ -20,7 +20,7 @@ const GrowContainer = ({ data, dataLength, upcoming, isMobile }) => {
                     <Grid item xs={1} sm={2} md={2}>
                         <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
                             {data.slice(dataLength / 3, dataLength * 2 / 3).map((item, index) => (
-                                <GridItem item={item} key={index} />
+                                <GridItem item={item} features={features} key={index} />
                             ))}
                         </Grid>
                     </Grid>
@@ -34,7 +34,7 @@ const GrowContainer = ({ data, dataLength, upcoming, isMobile }) => {
                     <Grid item xs={1} sm={2} md={2}>
                         <Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
                             {data.slice(dataLength * 2 / 3).map((item, index) => (
-                                <GridItem item={item} key={index} />
+                                <GridItem item={item} features={features} key={index} />
                             ))}
                         </Grid>
                     </Grid>
@@ -42,7 +42,7 @@ const GrowContainer = ({ data, dataLength, upcoming, isMobile }) => {
                 <Grid item xs={1} sm={2} md={2} className='flex justify-center'>
                     <Button text="Show Less" handleClickButton={handleChange} transparentBg={true} />
                 </Grid>
-            </> : (!upcoming && isMobile) &&
+            </> : (!(features.upcomingEvent) && isMobile) &&
             <Grid item xs={1} sm={2} md={2} className='flex justify-center'>
                 <Button text="Show More" handleClickButton={handleChange} />
             </Grid>}

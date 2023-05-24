@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import GrowContainer from './GrowContainer';
 import GridItem from './GridItem';
 
-const GridContainer = ({ data, source, upcoming, className }) => {
+const GridContainer = ({ data, features, className }) => {
     const dataLength = data.length
     const isMobile = useMediaQuery({ query: `(max-width: 639px) ` });
 
@@ -16,11 +16,11 @@ const GridContainer = ({ data, source, upcoming, className }) => {
                         <p>{`Stay tuned :)`}</p>
                     </Grid>
                     : <> {
-                        data.slice(0, (!upcoming && isMobile) ? dataLength / 3 : dataLength).map((item, index) => (
-                            <GridItem item={item} source={source} upcoming={upcoming} key={index} />
+                        data.slice(0, (!(features.upcomingEvent) && isMobile) ? dataLength / 3 : dataLength).map((item, index) => (
+                            <GridItem item={item} features={features} key={index} />
                         ))
                     }
-                        <GrowContainer data={data} dataLength={dataLength} upcoming={upcoming} isMobile={isMobile} />
+                        <GrowContainer data={data} dataLength={dataLength} features={features} isMobile={isMobile} />
                     </>
                 }
             </Grid>
