@@ -6,7 +6,7 @@ export const Typography = ({ variant, text, className }) => {
     useEffect(() => {
         switch (variant) {
             case 'h1':
-                setVariantStyle("text-3xl sm:text-4xl xl:text-5xl font-semibold font-proxima-nova")
+                setVariantStyle("text-3xl sm:text-4xl xl:text-5xl font-semibold font-montserrat")
                 break
             case 'h2':
                 setVariantStyle("text-2xl sm:text-3xl xl:text-4xl font-medium font-oswald")

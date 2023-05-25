@@ -8,7 +8,7 @@ import { Button } from "../../../shared/components/button/Button";
 import { useMediaQuery } from "react-responsive";
 
 const typographyStyle =
-  "text-base xl:text-xl font-proxima-nova my-5 w-full lg:pr-6";
+  "text-base xl:text-xl font-montserrat my-5 w-full lg:pr-6";
 
 const About = () => {
   const navigate = useNavigate();

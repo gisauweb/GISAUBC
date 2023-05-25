@@ -43,12 +43,12 @@ const Activities = () => {
                 </Box>
                 <Box className="w-5/6 text-center px-3">
                   <Box
-                    className="font-proxima-nova text-2xl"
+                    className="font-montserrat text-2xl"
                     sx={{ my: 3, fontWeight: "bold" }}
                   >
                     {activity.title}
                   </Box>
-                  <Box className="font-proxima-nova text-lg">
+                  <Box className="font-montserrat text-lg">
                     {activity.description}
                   </Box>
                 </Box>

@@ -33,7 +33,7 @@ export const HomeLandingImage = () => {
           alt="Gisau Logo"
           className="w-[30%] md:w-1/4 lg:w-1/5 m-auto"
         />
-        <h1 className="text-white my-4 md:my-8 mx-2 font-proxima-nova text-center font-semibold text-xl sm:text-2xl md:text-4xl lg:text-[2.5rem] lg:leading-12">
+        <h1 className="text-white my-4 md:my-8 mx-2 font-montserrat text-center font-semibold text-xl sm:text-2xl md:text-4xl lg:text-[2.5rem] lg:leading-12">
           Gado-Gado Indonesian Student Association {!isMobileView && <br />} of
           UBC
         </h1>
