@@ -3,40 +3,41 @@ import { Events } from "pages/events/Events";
 import { Partners } from "pages/partners/Partners";
 import { UpcomingPage } from "shared/layout/upcoming-page/UpcomingPage";
 
-export const pages = [
+const pages = [
   {
     name: "Home",
-    newPage: true,
     path: "",
+    hasLandingImage: true,
     element: <Home />,
   },
   {
     name: "About",
-    newPage: true,
     path: "about",
     element: <UpcomingPage />,
   },
   {
     name: "Events",
-    newPage: true,
     path: "events",
+    hasLandingImage: true,
     element: <Events />,
   },
   {
     name: "Rantangan",
-    newPage: true,
     path: "rantangan",
     element: <UpcomingPage />,
   },
   {
     name: "Partners",
-    newPage: true,
     path: "partners",
     element: <Partners />,
-  },
+  }
+];
+
+const tempPages  = [
   {
     name: "Contact",
-    newPage: false,
-    path: "/#contact",
-  },
-];
+    path: "#contact",
+  }
+]
+
+export {pages, tempPages}

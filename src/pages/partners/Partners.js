@@ -8,6 +8,7 @@ import { ScrollButtonContainer } from "shared/components/ScrollButton";
 export const Partners = () => {
     return (
         <Box className="bg-[#FFFDF5]">
+            <div className="flex justify-center"/>
             <MainContainer>
                 <SponsorTitle />
                 <Divider className="py-[0.5px]" color="black"/>
