@@ -1,20 +1,9 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { makeStyles } from "@mui/styles";
 import { Button } from "../../../shared/components/button/Button";
 import { LandingImage } from "shared/components/landing-image/LandingImage";
-import Gisau from "../../../assets/gisau-logo/gisau.png";
-import LandingImg from "../../../assets/landing/home.jpg";
-
-const bgImage = makeStyles({
-  styles: {
-    backgroundImage: `url(${LandingImg})`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: "brightness(50%)",
-  },
-});
+import gisau_logo from "../../../assets/gisau-logo/gisau.png";
+import home_landing_img from "../../../assets/landing/home.jpg";
 
 export const HomeLandingImage = () => {
   const isMobileView = useMediaQuery({
@@ -26,10 +15,9 @@ export const HomeLandingImage = () => {
   };
 
   return (
-    <div>
-      <LandingImage bgImage={bgImage}>
+      <LandingImage bgImage={home_landing_img}>
         <img
-          src={Gisau}
+          src={gisau_logo}
           alt="Gisau Logo"
           className="w-[30%] md:w-1/4 lg:w-1/5 m-auto"
         />
@@ -46,6 +34,5 @@ export const HomeLandingImage = () => {
           />
         </div>
       </LandingImage>
-    </div>
   );
 };

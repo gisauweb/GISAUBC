@@ -19,7 +19,7 @@ const About = () => {
 
   return (
     <Box className="flex flex-col w-full text-center lg:text-left justify-center items-center lg:items-start">
-      <Box className="w-full lg:w-1/2 flex justify-start pb-6 lg:pb-1.5 pl-6 sm:pl-12 lg:pl-0">
+      <Box className="w-full lg:w-1/2 flex justify-start pb-3 lg:pb-1.5">
         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 lg:pt-6">
           WHO WE ARE
         </span>
