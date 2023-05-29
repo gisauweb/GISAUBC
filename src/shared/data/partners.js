@@ -5,9 +5,9 @@ import panela_lemon from "assets/sponsors/panela_lemon.jpg"
 import righteous from "assets/sponsors/righteous.png"
 import susgrainable from "assets/sponsors/susgrainable.png"
 import vnysa from "assets/sponsors/vnysa.png"
-import rainbow_img from "assets/rainbow.svg";
+import rainbow_img from "assets/home-page/rainbow.svg";
 
-const partners = [
+const PARTNERS = [
     { 'name': 'Bombay Masala', 'logo': bombay },
     { 'name': 'Evo', 'logo': evo },
     { 'name': 'Hello Fresh', 'logo': hellofresh },
@@ -19,4 +19,4 @@ const partners = [
 
 const rainbow = rainbow_img
 
-export {partners, rainbow}
+export {PARTNERS, rainbow}

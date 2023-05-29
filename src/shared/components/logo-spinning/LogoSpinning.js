@@ -11,7 +11,7 @@ export const LogoSpinning = (props) => {
         quality={95}
         formats={["auto", "webp", "avif"]}
         alt="GISAU logo"
-        className="logo w-44 lg:w-52 xl:w-64 logo"
+        className="logo w-44 lg:w-52 xl:w-64 mt-36"
       />
     </div>
   );

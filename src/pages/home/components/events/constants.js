@@ -1,3 +1,6 @@
+import rantangan from "assets/home-page/events/rantangan.svg"
+import upcoming_event from "assets/home-page/events/upcoming_event.svg"
+
 /**
  * events field:
  * - desc
@@ -7,33 +10,10 @@
 
 export const UPCOMINGEVENTS = {
   title: "Upcoming Events",
-  events: [
-    {
-      title: "SEA Pit Night",
-      desc: ["Saturday, April 8", "The Pit @ UBC"],
-      img: (
-        <img
-          src={require("../../../../assets/events/pit_night.jpg")}
-          alt="SEA Pit Night"
-        />
-      ),
-      link: "www.showpass.com/south-east-asian-hip-hop/",
-    },
-    {
-      title: "Exam Care Package",
-      desc: ["Wednesday, April 12", "AMS Nest @ UBC"],
-      img: (
-        <img
-          src={require("../../../../assets/events/care_package.jpg")}
-          alt="Exam Care Package"
-        />
-      ),
-      link: "docs.google.com/forms/d/e/1FAIpQLSde4ZkJR6ZwRlGY7UEn_AK-q0m21lB50rY5SKFNT1gNoZwuGA/viewform?usp=sf_link",
-    },
-  ],
+  events: [],
   icon: (
     <img
-      src={require("../../../../assets/events/upcoming_event.svg").default}
+      src={upcoming_event}
       alt=""
       className="ml-[25%] w-[80%] sm:ml-[35%] sm:w-full"
     />
@@ -47,7 +27,7 @@ export const RANTANGAN = {
   events: [],
   icon: (
     <img
-      src={require("../../../../assets/events/rantangan.svg").default}
+      src={rantangan}
       alt=""
       className="ml-1/10"
     />

@@ -10,14 +10,16 @@ module.exports = {
         "1/4": "25%",
       },
       fontFamily: {
-        oswald: ["Oswald", "sans-serif"],
-        "proxima-nova": ["Proxima Nova", "sans-serif"],
+        "oswald": ["Oswald", "sans-serif"],
+        "montserrat": ["Montserrat", "sans-serif"],
+        "inter": ["Inter", "sans_serif"]
       },
       lineHeight: {
         12: "3rem",
       },
       colors: {
         primary: "#7D0202",
+        bgPrimary: "#FFFDF5"
       },
     },
   },

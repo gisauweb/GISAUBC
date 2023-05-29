@@ -1,10 +1,10 @@
-import activity_1 from "assets/activities/img_1.svg";
-import activity_2 from "assets/activities/img_2.svg";
-import activity_3 from "assets/activities/img_3.svg";
-import smiley_image from "assets/activities/smiley.svg";
-import stars from "assets/activities/stars.svg";
-import pencil from "assets/activities/pencil.svg";
-import klepon from "assets/activities/klepon.svg";
+import activity_1 from "assets/home-page/activities/img_1.svg";
+import activity_2 from "assets/home-page/activities/img_2.svg";
+import activity_3 from "assets/home-page/activities/img_3.svg";
+import smiley_image from "assets/home-page/activities/smiley.svg";
+import stars from "assets/home-page/activities/stars.svg";
+import pencil from "assets/home-page/activities/pencil.svg";
+import klepon from "assets/home-page/activities/klepon.svg";
 
 const activities = [
   {
