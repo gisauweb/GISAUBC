@@ -46,7 +46,7 @@ const DropdownMenu = ({selectedYear, setSelectedYear}) => {
                 <button
                     key={year}
                     type="button"
-                    className={`block bg-bgPrimary text-primary text-base sm:text-xl hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold ${i === (years.length - 1) && "rounded-b-2xl"}`}
+                    className={`block bg-bgPrimary text-primary text-base sm:text-xl hover:bg-primary hover:text-white w-full py-2 font-inter font-semibold ${i === (years.length - 1) && "rounded-b-xl"}`}
                     onClick={() => handleSelect(year)}
                 >
                     {year}
