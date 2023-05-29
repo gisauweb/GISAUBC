@@ -5,7 +5,7 @@ const PAST_EVENTS =
     "2022/2023": [
         { image: EVENTS_22_23[0], title: "SEA Pit Night", date: "Wednesday, April 8 | 9PM-1AM", loc: "The Pit Pub @ UBC" },
         { image: EVENTS_22_23[1], title: "GALA(U) — Gala With GISAU", date: "Friday, March 31 | 6-8PM", loc: "AMS Nest Great Hall South" },
-        { image: EVENTS_22_23[2], title: "GISAU Annual General Meeting", date: "Friday, March 24 | 6.15PM", loc: "AMS Nest Room 2306/2309" },
+        { image: EVENTS_22_23[2], title: "GISAU Annual General Meeting", date: "Friday, March 24 | 6:15PM", loc: "AMS Nest Room 2306/2309" },
         { image: EVENTS_22_23[3], title: "GISAU’s Study Cafe", date: "Wednesday, March 15 | 12-6PM", loc: "Abdul Ladha Room 103/104" },
         { image: EVENTS_22_23[4], title: "FIESTA Vancouver", date: "Saturday, March 4 | 4-8PM", loc: "Nikkei National Museum & Cultural Centre" },
         { image: EVENTS_22_23[5], title: "Indomie-t Me at the Finish Line", date: "Friday, February 17 | 6.30-8.30PM", loc: "AMS Nest Lower Atrium" },
