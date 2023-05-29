@@ -11,7 +11,7 @@ module.exports = {
       },
       fontFamily: {
         "oswald": ["Oswald", "sans-serif"],
-        "proxima-nova": ["Proxima Nova", "sans-serif"],
+        "montserrat": ["Montserrat", "sans-serif"],
         "inter": ["Inter", "sans_serif"]
       },
       lineHeight: {
