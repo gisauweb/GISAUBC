@@ -29,6 +29,7 @@ const pages = [
   {
     name: "Partners",
     path: "partners",
+    hasLandingImage: true,
     element: <Partners />,
   }
 ];

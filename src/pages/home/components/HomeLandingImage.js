@@ -15,7 +15,7 @@ export const HomeLandingImage = () => {
   };
 
   return (
-      <LandingImage bgImage={home_landing_img}>
+      <LandingImage bgImage={home_landing_img} isHomePage={true}>
         <img
           src={gisau_logo}
           alt="Gisau Logo"
