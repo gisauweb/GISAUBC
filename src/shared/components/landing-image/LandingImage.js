@@ -15,7 +15,7 @@ export const LandingImage = ({ bgImage, text, isHomePage, children }) => {
       <div className="relative flex justify-center items-center h-full">
         <div className="w-full mt-1/10">
           {isHomePage ? children :
-            <h1 className="text-white my-4 md:my-8 mx-2 font-montserrat text-center font-semibold text-5xl sm:text-6xl lg:text-7xl uppercase tracking-wide">
+            <h1 className="text-white my-4 md:my-8 mx-2 font-montserrat text-center font-semibold text-3xl sm:text-5xl lg:text-7xl uppercase tracking-wide">
               {text}
             </h1>}
         </div>
