@@ -1,10 +1,10 @@
-import bombay from "assets/sponsors/bombay.png"
-import evo from "assets/sponsors/evo.png"
-import hellofresh from "assets/sponsors/hellofresh.png"
-import panela_lemon from "assets/sponsors/panela_lemon.jpg"
-import righteous from "assets/sponsors/righteous.png"
-import susgrainable from "assets/sponsors/susgrainable.png"
-import vnysa from "assets/sponsors/vnysa.png"
+import bombay from "assets/partners/bombay.png"
+import evo from "assets/partners/evo.png"
+import hellofresh from "assets/partners/hellofresh.png"
+import panela_lemon from "assets/partners/panela_lemon.jpg"
+import righteous from "assets/partners/righteous.png"
+import susgrainable from "assets/partners/susgrainable.png"
+import vnysa from "assets/partners/vnysa.png"
 import rainbow_img from "assets/home-page/rainbow.svg";
 
 const PARTNERS = [
