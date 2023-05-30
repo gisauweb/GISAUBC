@@ -5,7 +5,7 @@ import { UPCOMINGEVENTS, RANTANGAN } from "./constants";
 
 import { useMediaQuery } from "react-responsive";
 
-const RESPONSIVE_SIZE = "1023px";
+const RESPONSIVE_SIZE = "1039px";
 
 export const Events = () => {
   const isMobileView = useMediaQuery({

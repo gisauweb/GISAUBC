@@ -17,7 +17,7 @@ export const Partners = () => {
                 <SponsorList />
                 <Divider className="py-[0.5px]" color="black"/>
                 <SponsorRegistration />
-                <ScrollButtonContainer threshold={1 / 4} />
+                <ScrollButtonContainer threshold={1/2} />
             </MainContainer>
             <Footer showPlane={false} />
         </Box>

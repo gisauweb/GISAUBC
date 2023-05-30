@@ -23,13 +23,13 @@ const SponsorContainer = ({ name, logo, reversed }) => {
                         <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary text-right">
                             {name}
                         </span>
-                        : <img alt={name} src={logo} className="rounded-md h-12 sm:h-20 lg:h-28 sm:max-h-60" />
+                        : <img alt={name} src={logo} className="rounded-md h-16 sm:h-20 lg:h-28 sm:max-h-60" />
                 }
             </Box>
             <Box style={boxStyle} className="justify-start pl-4 sm:pl-9">
                 {
                     reversed ?
-                        <img alt={name} src={logo} className="rounded-md h-12 sm:h-20 lg:h-28 sm:max-h-60" />
+                        <img alt={name} src={logo} className="rounded-md h-16 sm:h-20 lg:h-28 sm:max-h-60" />
                         : <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary text-left">
                             {name}
                         </span>
