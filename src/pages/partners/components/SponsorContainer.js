@@ -16,11 +16,11 @@ const SponsorContainer = ({ name, logo, reversed }) => {
     }
 
     return (
-        <Container style={containerStyle} className="py-3">
+        <Container style={containerStyle} className="py-6">
             <Box style={boxStyle} className="justify-end pr-4 sm:pr-9">
                 {
                     reversed ?
-                        <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 lg:pt-6 text-right">
+                        <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary text-right">
                             {name}
                         </span>
                         : <img alt={name} src={logo} className="w-3/4 h-auto rounded-md sm:w-3/5 lg:w-2/5 sm:max-h-60" />
@@ -30,7 +30,7 @@ const SponsorContainer = ({ name, logo, reversed }) => {
                 {
                     reversed ?
                         <img alt={name} src={logo} className="w-3/4 h-auto rounded-md sm:w-2/5 sm:max-h-60" />
-                        : <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 lg:pt-6 text-left">
+                        : <span className="text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary text-left">
                             {name}
                         </span>
                 }
