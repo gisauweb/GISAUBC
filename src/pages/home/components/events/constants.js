@@ -1,5 +1,6 @@
 import rantangan from "assets/home-page/events/rantangan.svg"
 import upcoming_event from "assets/home-page/events/upcoming_event.svg"
+import summer_hiring from "assets/home-page/events/summer_hiring.jpeg"
 
 /**
  * events field:
@@ -10,7 +11,19 @@ import upcoming_event from "assets/home-page/events/upcoming_event.svg"
 
 export const UPCOMINGEVENTS = {
   title: "Upcoming Events",
-  events: [],
+  events: [
+    {
+      title: "Summer Hiring",
+      desc: ["Now - June 6 11:59 PM"],
+      img: (
+        <img
+          src={summer_hiring}
+          alt="Summer Hiring"
+        />
+      ),
+      link: "drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link",
+    },
+  ],
   icon: (
     <img
       src={upcoming_event}
