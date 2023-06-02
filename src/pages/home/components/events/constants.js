@@ -21,7 +21,7 @@ export const UPCOMINGEVENTS = {
           alt="Summer Hiring"
         />
       ),
-      link: "https://drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link",
+      link: "drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link",
     },
   ],
   icon: (
