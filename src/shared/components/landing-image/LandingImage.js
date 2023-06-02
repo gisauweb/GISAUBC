@@ -11,7 +11,7 @@ export const LandingImage = ({ bgImage, text, isHomePage, children }) => {
 
   return (
     <div className={`h-screen items-center overflow-hidden`}>
-      <div className={`absolute w-full h-full`} style={backgroundStyles} />
+      <div className={`absolute w-full h-screen`} style={backgroundStyles} />
       <div className="relative flex justify-center items-center h-full">
         <div className="w-full mt-1/10">
           {isHomePage ? children :
