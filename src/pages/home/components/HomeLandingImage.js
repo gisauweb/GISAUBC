@@ -11,6 +11,7 @@ export const HomeLandingImage = () => {
   });
 
   const handleClickButton = () => {
+    window.dataLayer.push({'event': 'hiring_package'})
     window.open("https://drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link", "_blank", "noreferrer");
   };
 
