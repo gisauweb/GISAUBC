@@ -62,7 +62,7 @@ export const Footer = ({showPlane}) => {
           </a>
         </div>
         <div className="footer-copyright text-base sm:text-xl">
-          GISAUBC &#169; 2022
+          GISAUBC &#169; 2023
         </div>
       </div>
     </div>
