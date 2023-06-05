@@ -5,9 +5,7 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import TagManager from "react-gtm-module";
 
-const tagManagerArgs = {
-  gtmId: 'G-XQ2D77D2GH'
-}
+const tagManagerArgs = process.env.REACT_APP_GTM_ID
 
 TagManager.initialize(tagManagerArgs)
 
