@@ -9,6 +9,8 @@ const tagManagerArgs = {
   gtmId: process.env.REACT_APP_GTM_ID
 }
 
+console.log(tagManagerArgs)
+
 TagManager.initialize(tagManagerArgs)
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
