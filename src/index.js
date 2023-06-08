@@ -3,13 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
-import TagManager from "react-gtm-module";
+import { initializeGtag } from "gtag-ga";
 
-const tagManagerArgs = {
-  gtmId: process.env.REACT_APP_GTM_ID
-}
-
-TagManager.initialize(tagManagerArgs)
+initializeGtag(process.env.REACT_APP_GID)
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
