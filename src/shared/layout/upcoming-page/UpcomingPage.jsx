@@ -4,7 +4,7 @@ import { MainContainer } from 'shared/layout/MainContainer';
 import { StayTuned } from 'shared/layout/upcoming-page/StayTuned';
 import { Footer } from 'shared/components/footer/Footer';
 
-export const UpcomingPage = () => {
+export default function UpcomingPage() {
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<div className='flex justify-center h-[37vh]' />
@@ -16,4 +16,4 @@ export const UpcomingPage = () => {
 			<Footer />
 		</Box>
 	);
-};
+}

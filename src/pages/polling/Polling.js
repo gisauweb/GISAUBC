@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField } from '@mui/material';
-import { writeVote } from 'utils/firebase/polling';
+import { writeVote } from 'libs/firebase/polling';
 import PollingDialog from './PollingDialog';
 import { LogoSpinning } from 'shared/components/logo-spinning/LogoSpinning';
 import { Footer } from 'shared/components/footer/Footer';

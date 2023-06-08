@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { EventLayout } from 'shared/layout/event-layout/EventLayout';
-import { UPCOMINGEVENTS, RANTANGAN } from './constants';
-
+import EventLayout from 'shared/layout/event-layout/EventLayout';
 import { useMediaQuery } from 'react-responsive';
+import { UPCOMINGEVENTS, RANTANGAN } from './constants';
 
 const RESPONSIVE_SIZE = '1039px';
 
-export const Events = () => {
+export default function Events() {
 	const isMobileView = useMediaQuery({
 		query: `(max-width: ${RESPONSIVE_SIZE})`,
 	});
@@ -43,4 +42,4 @@ export const Events = () => {
 			)}
 		</div>
 	);
-};
+}

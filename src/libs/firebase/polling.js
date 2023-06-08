@@ -1,5 +1,26 @@
-import { db } from './firebase';
 import { doc, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
+import logger from 'libs/winston';
+import { db } from './firebase';
+
+function checkStudentIDValidity(studentID) {
+	const regex = /^\d{8}$/;
+
+	if (!regex.test(studentID)) {
+		const error = new Error('Invalid syntax');
+		error.code = 400;
+		throw error;
+	}
+}
+
+async function membershipVerification(uniqueID) {
+	const membershipDocRef = doc(db, 'membership', uniqueID);
+	const membershipSnapshot = await getDoc(membershipDocRef);
+	if (!membershipSnapshot.exists()) {
+		const error = new Error('User is not a member');
+		error.code = 401;
+		throw error;
+	}
+}
 
 export const writeVote = async (credentials, options) => {
 	const { studentID } = credentials;
@@ -27,7 +48,7 @@ export const writeVote = async (credentials, options) => {
 				CreatedAt: createdAt,
 			});
 		} catch (error) {
-			console.log('error writing the vote', error.message);
+			logger.error('Error writing the vote: ', error.message);
 		}
 	}
 
@@ -53,33 +74,13 @@ export const countVotes = async () => {
 
 	const pollingCollectionRef = collection(db, process.env.REACT_APP_FIRESTORE_KEY);
 	const querySnapshot = await getDocs(pollingCollectionRef);
-	querySnapshot.forEach((doc) => {
-		const responseData = doc.data();
+	querySnapshot.forEach((respond) => {
+		const responseData = respond.data();
 
-		voteResult.presidentCounts[responseData.President]++;
-		voteResult.vicePresidentCounts[responseData.VicePresident]++;
-		voteResult.treasurerCounts[responseData.Treasurer]++;
+		voteResult.presidentCounts[responseData.President] += 1;
+		voteResult.vicePresidentCounts[responseData.VicePresident] += 1;
+		voteResult.treasurerCounts[responseData.Treasurer] += 1;
 	});
 
 	return voteResult;
 };
-
-function checkStudentIDValidity(studentID) {
-	const regex = /^\d{8}$/;
-
-	if (!regex.test(studentID)) {
-		const error = new Error('Invalid syntax');
-		error.code = 400;
-		throw error;
-	}
-}
-
-async function membershipVerification(uniqueID) {
-	const membershipDocRef = doc(db, 'membership', uniqueID);
-	const membershipSnapshot = await getDoc(membershipDocRef);
-	if (!membershipSnapshot.exists()) {
-		const error = new Error('User is not a member');
-		error.code = 401;
-		throw error;
-	}
-}
