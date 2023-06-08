@@ -25,10 +25,7 @@
 	"rules": {
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
-		"indent": [
-			"error",
-			"tab"
-		],
+		"indent": "off",
 		"react/jsx-indent": [
 			"error",
 			"tab"
@@ -37,9 +34,13 @@
 		"object-curly-newline": [
 			"error",
 			{
-				"ObjectExpression": "always",
+				"ObjectExpression": {
+					"multiline": true,
+					"minProperties": 5
+				},
 				"ObjectPattern": {
-					"multiline": true
+					"multiline": true,
+					"minProperties": 5
 				},
 				"ImportDeclaration": "never",
 				"ExportDeclaration": "never"
@@ -49,7 +50,15 @@
 			"error",
 			"prefer-single"
 		],
-		"react/jsx-indent-props": "off"
+		"react/jsx-indent-props": "off",
+		"jsx-a11y/click-events-have-key-events": "off",
+		"jsx-a11y/no-static-element-interactions": "off",
+		"max-len": [
+			"error",
+			120
+		],
+		"operator-linebreak": "off",
+		"react/jsx-props-no-spreading": "off"
 	},
 	"settings": {
 		"import/resolver": {

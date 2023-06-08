@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import EVENT_1 from './events-page/past-events/22:23/1.svg';
 import EVENT_2 from './events-page/past-events/22:23/2.svg';
 import EVENT_3 from './events-page/past-events/22:23/3.svg';

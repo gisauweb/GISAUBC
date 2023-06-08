@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'shared/components/button/Button';
+import Button from 'shared/components/button/Button';
 
 function EventContent({ events, button1, handleClickButton, isMobileView }) {
 	return events.length === 0 ? (

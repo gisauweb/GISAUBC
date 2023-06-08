@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../../components/button/Button';
-
+import Button from '../../components/button/Button';
 import './EventLayout.css';
 import EventContent from './EventContent';
 
 export default function EventLayout(props) {
+	// eslint-disable-next-line object-curly-newline
 	const { id, className, title, events, icon, button1, button2, isMobileView } = props;
 	const navigate = useNavigate();
 
