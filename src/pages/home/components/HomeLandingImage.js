@@ -4,6 +4,7 @@ import { Button } from "../../../shared/components/button/Button";
 import { LandingImage } from "shared/components/landing-image/LandingImage";
 import gisau_logo from "../../../assets/gisau-logo/gisau.png";
 import home_landing_img from "../../../assets/landing/home.jpg";
+import { gtag } from "gtag-ga";
 
 export const HomeLandingImage = () => {
   const isMobileView = useMediaQuery({
@@ -11,7 +12,7 @@ export const HomeLandingImage = () => {
   });
 
   const handleClickButton = () => {
-    window.dataLayer.push({'event': 'hiring_package'})
+    gtag("event", "hiring_package")
     window.open("https://drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link", "_blank", "noreferrer");
   };
 
