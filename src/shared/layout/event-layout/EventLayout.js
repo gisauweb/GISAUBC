@@ -25,7 +25,7 @@ export const EventLayout = ({ id, className, title, events, icon, button1, butto
 		);
 	} else {
 		content = events.map((event) => (
-			<div className='grid gap-y-8'>
+			<div key={event.title} className='grid gap-y-8'>
 				<div>
 					<div className='event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0'>
 						<a href={'https://' + event.link} target='blank' rel='noreferrer'>
@@ -37,7 +37,9 @@ export const EventLayout = ({ id, className, title, events, icon, button1, butto
 					<div className='lg:w-[95%]'>
 						<p className='text-center text-xl xl:text-2xl font-bold'>{event.title}</p>
 						{event.desc.map((text) => (
-							<p className='text-center'>{text}</p>
+							<p key={text} className='text-center'>
+								{text}
+							</p>
 						))}
 					</div>
 				)}

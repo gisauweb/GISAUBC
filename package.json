@@ -34,9 +34,9 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"lint": "npx eslint src test",
+		"lint": "npx eslint src",
 		"lint:fix": "npm run lint -- --fix",
-		"prettier": "npx prettier src test --check",
+		"prettier": "npx prettier src --check",
 		"prettier:fix": "npm run prettier -- --write"
 	},
 	"eslintConfig": {
