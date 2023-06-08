@@ -8,7 +8,9 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "airbnb",
+        "airbnb/hooks"
     ],
     "overrides": [],
     "parserOptions": {
@@ -18,8 +20,36 @@
     "plugins": [
         "react"
     ],
+    "ignorePatterns": [
+        "**/*.svg"
+    ],
     "rules": {
         "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "no-tabs": "off",
+        "object-curly-newline": [
+            "error",
+            {
+                "ObjectExpression": "always",
+                "ObjectPattern": {
+                    "multiline": true
+                },
+                "ImportDeclaration": "never",
+                "ExportDeclaration": "never"
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ]
+            }
+        }
     }
 }
