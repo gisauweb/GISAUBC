@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
 import ScrollToTop from 'shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
@@ -15,6 +15,7 @@ function App() {
 						<Route key={page.name} path={page.path} element={page.element} />
 					))}
 				</Route>
+				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
 		</StyledEngineProvider>
 	);
