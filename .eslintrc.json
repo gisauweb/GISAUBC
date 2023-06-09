@@ -36,11 +36,11 @@
 			{
 				"ObjectExpression": {
 					"multiline": true,
-					"minProperties": 5
+					"minProperties": 6
 				},
 				"ObjectPattern": {
 					"multiline": true,
-					"minProperties": 5
+					"minProperties": 6
 				},
 				"ImportDeclaration": "never",
 				"ExportDeclaration": "never"

@@ -12,9 +12,8 @@ export default function NavigationBar() {
 	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
 	const hasLandingImage = filteredPaths.includes(location.pathname.slice(1));
 
-	const isMobile = useMediaQuery({
-		query: '(max-width: 767px)',
-	});
+	const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
+
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const handleClosingMenu = () => {

@@ -47,10 +47,16 @@ function SponsorRegistration() {
 			<Box style={stepsBoxStyle} className='flex-col lg:flex-row'>
 				{steps.map((step) => (
 					<Box style={stepBoxStyle} key={step.id} className='flex lg:flex-col'>
-						<span className='text-2xl sm:text-3xl xl:text-4xl font-oswald text-primary border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2 '>
+						<span
+							className='text-2xl sm:text-3xl xl:text-4xl font-oswald text-primary
+										border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2'
+						>
 							{step.id}
 						</span>
-						<span className='text-lg sm:text-xl xl:text-2xl font-montserrat text-black font-semibold pl-4 lg:pl-0 lg:mt-5 text-left'>
+						<span
+							className='text-lg sm:text-xl xl:text-2xl font-montserrat text-black
+										font-semibold pl-4 lg:pl-0 lg:mt-5 text-left'
+						>
 							{step.details}
 						</span>
 					</Box>

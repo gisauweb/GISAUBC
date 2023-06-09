@@ -12,27 +12,9 @@ function GrowContainer({ data, dataLength, features, isMobile }) {
 
 	return grow ? (
 		<>
-			<Grow
-				in={grow}
-				style={{
-					transformOrigin: '0 0 0',
-					width: '100%',
-				}}
-				timeout={grow ? 3000 : 0}
-			>
+			<Grow in={grow} style={{ transformOrigin: '0 0 0', width: '100%' }} timeout={grow ? 3000 : 0}>
 				<Grid item xs={1} sm={2} md={2}>
-					<Grid
-						container
-						spacing={{
-							xs: 10,
-							md: 12,
-						}}
-						columns={{
-							xs: 1,
-							sm: 4,
-							md: 6,
-						}}
-					>
+					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(dataLength / 3, (dataLength * 2) / 3).map((item) => (
 							<GridItem item={item} features={features} key={item.title} />
 						))}
@@ -40,27 +22,9 @@ function GrowContainer({ data, dataLength, features, isMobile }) {
 				</Grid>
 			</Grow>
 			{/* Conditionally applies the timeout prop to change the entry speed. */}
-			<Grow
-				in={grow}
-				style={{
-					transformOrigin: '0 0 0',
-					width: '100%',
-				}}
-				timeout={grow ? 3000 : 0}
-			>
+			<Grow in={grow} style={{ transformOrigin: '0 0 0', width: '100%' }} timeout={grow ? 3000 : 0}>
 				<Grid item xs={1} sm={2} md={2}>
-					<Grid
-						container
-						spacing={{
-							xs: 10,
-							md: 12,
-						}}
-						columns={{
-							xs: 1,
-							sm: 4,
-							md: 6,
-						}}
-					>
+					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice((dataLength * 2) / 3).map((item) => (
 							<GridItem item={item} features={features} key={item.title} />
 						))}

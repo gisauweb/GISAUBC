@@ -29,14 +29,20 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 					<div className='text-right mr-6 mt-6 sm:mr-20'>
 						{pages.map((page) => (
 							<Link key={page.name} to={page.path} onClick={closeHandler}>
-								<p className='text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase'>
+								<p
+									className='text-white hover:underline underline-offset-8 decoration-2
+												font-oswald text-3xl leading-[25	0%] uppercase'
+								>
 									{page.name}
 								</p>
 							</Link>
 						))}
 						{tempPages.map((page) => (
 							<a key={page.name} href={page.path} onClick={closeHandler}>
-								<p className='text-white hover:underline underline-offset-8 decoration-2 font-oswald text-3xl leading-[250%] uppercase'>
+								<p
+									className='text-white hover:underline underline-offset-8 decoration-2
+												font-oswald text-3xl leading-[250%] uppercase'
+								>
 									{page.name}
 								</p>
 							</a>

@@ -4,9 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 export default function ScrollButtonContainer({ threshold }) {
 	const [visible, setVisible] = useState(false);
-	const isMobile = useMediaQuery({
-		query: '(max-width: 639px) ',
-	});
+	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
 	const toggleVisible = () => {
 		const scrolled = document.documentElement.scrollTop;
@@ -32,9 +30,7 @@ export default function ScrollButtonContainer({ threshold }) {
 	return (
 		<div
 			className='sb fixed right-12 sm:right-32 2xl:right-64 z-10 bottom-48 sm:bottom-52 lg:bottom-64'
-			style={{
-				display: visible ? 'inline' : 'none',
-			}}
+			style={{ display: visible ? 'inline' : 'none' }}
 		>
 			<div
 				className='w-10 h-10 sm:w-12 sm:h-12
@@ -42,12 +38,7 @@ export default function ScrollButtonContainer({ threshold }) {
 							rounded-full border-2 border-primary bg-red-100'
 				onClick={scrollToTop}
 			>
-				<KeyboardArrowUp
-					style={{
-						color: 'rgb(125 2 2)',
-					}}
-					fontSize={isMobile ? 'medium' : 'large'}
-				/>
+				<KeyboardArrowUp style={{ color: 'rgb(125 2 2)' }} fontSize={isMobile ? 'medium' : 'large'} />
 			</div>
 		</div>
 	);

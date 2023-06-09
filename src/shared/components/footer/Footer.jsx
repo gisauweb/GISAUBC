@@ -9,9 +9,7 @@ import plane from 'assets/footer/plane.svg';
 import { useMediaQuery } from 'react-responsive';
 
 export default function Footer({ showPlane }) {
-	const isMobile = useMediaQuery({
-		query: '(max-width: 639px)',
-	});
+	const isMobile = useMediaQuery({ query: '(max-width: 639px)' });
 
 	return (
 		<div id='contact' className='w-full relative bottom-0'>

@@ -7,9 +7,7 @@ import { UPCOMINGEVENTS, RANTANGAN } from './constants';
 const RESPONSIVE_SIZE = '1039px';
 
 export default function Events() {
-	const isMobileView = useMediaQuery({
-		query: `(max-width: ${RESPONSIVE_SIZE})`,
-	});
+	const isMobileView = useMediaQuery({ query: `(max-width: ${RESPONSIVE_SIZE})` });
 
 	let isRantanganShowed = true;
 

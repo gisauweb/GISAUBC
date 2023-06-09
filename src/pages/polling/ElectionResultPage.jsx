@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Typography, Box } from '@mui/material';
 
 import { countVotes } from 'libs/firebase/polling';
-import { ElectionBarChart } from './ElectionBarChart';
+import ElectionBarChart from './ElectionBarChart';
 
 function ElectionResultPage() {
 	const [voteResult, setVoteResult] = useState({
