@@ -31,7 +31,7 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 							<Link key={page.name} to={page.path} onClick={closeHandler}>
 								<p
 									className='text-white hover:underline underline-offset-8 decoration-2
-												font-oswald text-3xl leading-[25	0%] uppercase'
+												font-oswald text-3xl leading-[250%] uppercase'
 								>
 									{page.name}
 								</p>
