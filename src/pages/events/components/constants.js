@@ -74,7 +74,12 @@ const PAST_EVENTS = {
 			date: 'Thursday, September 29 | 6-9PM',
 			loc: 'AMS Nest Great Hall South',
 		},
-		{ image: EVENTS_22_23[12], title: 'Opt to Know Co-op', date: 'Friday, August 26 | 8PM', loc: 'via Zoom' },
+		{
+			image: EVENTS_22_23[12],
+			title: 'Opt to Know Co-op',
+			date: 'Friday, August 26 | 8PM',
+			loc: 'via Zoom',
+		},
 		{
 			image: EVENTS_22_23[13],
 			title: 'Independence Day Picnic',
