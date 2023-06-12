@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import LandingImage from 'shared/components/landing-image/LandingImage';
+import ReactGA from 'react-ga';
 import Button from '../../../shared/components/button/Button';
 import gisauLogo from '../../../assets/gisau-logo/gisau.png';
 import homeLandingImg from '../../../assets/landing/home.jpg';
@@ -9,6 +10,10 @@ export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	const handleClickButton = () => {
+		ReactGA.event({
+			category: 'Hiring',
+			action: 'Clicked hiring package button',
+		});
 		window.dataLayer.push({ event: 'hiring_package' });
 		window.open(
 			'https://drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link',

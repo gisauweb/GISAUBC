@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import { initializeGtag } from 'gtag-ga';
+import ReactGA from 'react-ga';
 import App from './App';
 
-initializeGtag(process.env.REACT_APP_GID);
+ReactGA.initialize(process.env.REACT_APP_GID);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
