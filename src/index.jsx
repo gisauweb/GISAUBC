@@ -9,7 +9,7 @@ import App from './App';
 // initializeGtag(process.env.REACT_APP_GID);
 
 install(process.env.REACT_APP_GID);
-gtag('event', 'start');
+gtag('event', 'start_123');
 
 window.dataLayer.push({ event: 'start_test' });
 
