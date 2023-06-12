@@ -2,16 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-// import { initializeGtag } from 'gtag-ga';
-import { gtag, install } from 'ga-gtag';
+import { initializeGtag } from 'gtag-ga';
 import App from './App';
 
-// initializeGtag(process.env.REACT_APP_GID);
-
-install(process.env.REACT_APP_GID);
-gtag('event', 'start_123');
-
-window.dataLayer.push({ event: 'start_test' });
+initializeGtag(process.env.REACT_APP_GID);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
