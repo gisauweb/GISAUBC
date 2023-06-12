@@ -4,7 +4,7 @@ import ScrollButtonContainer from 'shared/components/ScrollButton';
 import LandingImage from 'shared/components/landing-image/LandingImage';
 import partnersLandingImg from 'assets/landing/partners.jpeg';
 import { useLocation } from 'react-router-dom';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { SponsorRegistration, SponsorTitle, SponsorList } from './components/index';
 import Footer from '../../shared/components/footer/Footer';
 import MainContainer from '../../shared/layout/MainContainer';
@@ -12,7 +12,7 @@ import MainContainer from '../../shared/layout/MainContainer';
 export default function Partners() {
 	const location = useLocation();
 	useEffect(() => {
-		ReactGA.pageview(location.pathname);
+		ReactGA.send({ hitType: "pageview", page: location.pathname});
 	}, [location]);
 	return (
 		<Box className='bg-[#FFFDF5]'>
