@@ -33,7 +33,6 @@ export default function HomeLandingImage() {
 					className='grid justify-center'
 					text='Become an executive!'
 					landingButton
-					// transparentBg={true}
 					handleClickButton={handleClickButton}
 				/>
 			</div>
