@@ -38,13 +38,7 @@ function Activities() {
 									<img alt='Icon' src={activity.icon} className={`absolute ${activity.iconStyle}`} />
 								</Box>
 								<Box className='w-5/6 text-center px-3'>
-									<Box
-										className='font-montserrat text-2xl'
-										sx={{
-											my: 3,
-											fontWeight: 'bold',
-										}}
-									>
+									<Box className='font-montserrat text-2xl' sx={{ my: 3, fontWeight: 'bold' }}>
 										{activity.title}
 									</Box>
 									<Box className='font-montserrat text-lg'>{activity.description}</Box>
