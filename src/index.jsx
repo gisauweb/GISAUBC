@@ -11,6 +11,8 @@ import App from './App';
 install(process.env.REACT_APP_GID);
 gtag('event', 'start');
 
+window.dataLayer.push({ event: 'start_test' });
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
