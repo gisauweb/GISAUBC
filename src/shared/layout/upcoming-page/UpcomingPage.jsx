@@ -9,7 +9,7 @@ import ReactGA from 'react-ga4';
 export default function UpcomingPage() {
 	const location = useLocation();
 	useEffect(() => {
-		ReactGA.send({ hitType: "pageview", page: location.pathname});
+		ReactGA.send({ hitType: 'pageview', page: location.pathname });
 	}, [location]);
 	return (
 		<Box className='bg-[#FFFDF5]'>

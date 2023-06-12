@@ -13,7 +13,7 @@ import MainContainer from '../../shared/layout/MainContainer';
 export default function Events() {
 	const location = useLocation();
 	useEffect(() => {
-		ReactGA.send({ hitType: "pageview", page: location.pathname});
+		ReactGA.send({ hitType: 'pageview', page: location.pathname });
 	}, [location]);
 	return (
 		<Box className='bg-[#FFFDF5]'>
