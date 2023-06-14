@@ -1,25 +1,25 @@
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 body {
-  font-family: "montserrat", sans-serif;
+	font-family: 'montserrat', sans-serif;
 }
 
 h1 {
-  font-size: 3rem;
-  line-height: 4rem;
+	font-size: 3rem;
+	line-height: 4rem;
 }
 
 p {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
 }
 
 .title {
-  font-weight: 700;
-  font-family: Oswald, sans-serif;
-  --tw-text-opacity: 1;
-  color: rgb(125 2 2 / var(--tw-text-opacity));
+	font-weight: 700;
+	font-family: Oswald, sans-serif;
+	--tw-text-opacity: 1;
+	color: rgb(125 2 2 / var(--tw-text-opacity));
 }
