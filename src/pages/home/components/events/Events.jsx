@@ -4,10 +4,8 @@ import EventLayout from 'shared/layout/event-layout/EventLayout';
 import { useMediaQuery } from 'react-responsive';
 import { UPCOMINGEVENTS, RANTANGAN } from './constants';
 
-const RESPONSIVE_SIZE = '1039px';
-
 export default function Events() {
-	const isMobileView = useMediaQuery({ query: `(max-width: ${RESPONSIVE_SIZE})` });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	let isRantanganShowed = true;
 
