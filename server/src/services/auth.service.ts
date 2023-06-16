@@ -9,45 +9,47 @@ import { User } from '@interfaces/users.interface';
 import { UserModel } from '@models/users.model';
 
 const createToken = (user: User): TokenData => {
-  const dataStoredInToken: DataStoredInToken = { id: user.id };
-  const expiresIn: number = 60 * 60;
+	const dataStoredInToken: DataStoredInToken = { id: user.id };
+	const expiresIn: number = 60 * 60;
 
-  return { expiresIn, token: sign(dataStoredInToken, SECRET_KEY, { expiresIn }) };
-}
+	return { expiresIn, token: sign(dataStoredInToken, SECRET_KEY, { expiresIn }) };
+};
 
 const createCookie = (tokenData: TokenData): string => {
-  return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
-}
+	return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
+};
 
 @Service()
 export class AuthService {
-  public async signup(userData: CreateUserDto): Promise<User> {
-    const findUser: User = UserModel.find(user => user.email === userData.email);
-    if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
+	public async signup(userData: CreateUserDto): Promise<User> {
+		const findUser: User = UserModel.find((user) => user.email === userData.email);
+		if (findUser) throw new HttpException(409, `This email ${userData.email} already exists`);
 
-    const hashedPassword = await hash(userData.password, 10);
-    const createUserData: User = { id: UserModel.length + 1, ...userData, password: hashedPassword };
+		const hashedPassword = await hash(userData.password, 10);
+		const createUserData: User = { id: UserModel.length + 1, ...userData, password: hashedPassword };
 
-    return createUserData;
-  }
+		return createUserData;
+	}
 
-  public async login(userData: CreateUserDto): Promise<{ cookie: string; findUser: User }> {
-    const findUser: User = UserModel.find(user => user.email === userData.email);
-    if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
+	public async login(userData: CreateUserDto): Promise<{ cookie: string; findUser: User }> {
+		const findUser: User = UserModel.find((user) => user.email === userData.email);
+		if (!findUser) throw new HttpException(409, `This email ${userData.email} was not found`);
 
-    const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
-    if (!isPasswordMatching) throw new HttpException(409, "Password is not matching");
+		const isPasswordMatching: boolean = await compare(userData.password, findUser.password);
+		if (!isPasswordMatching) throw new HttpException(409, 'Password is not matching');
 
-    const tokenData = createToken(findUser);
-    const cookie = createCookie(tokenData);
+		const tokenData = createToken(findUser);
+		const cookie = createCookie(tokenData);
 
-    return { cookie, findUser };
-  }
+		return { cookie, findUser };
+	}
 
-  public async logout(userData: User): Promise<User> {
-    const findUser: User = UserModel.find(user => user.email === userData.email && user.password === userData.password);
-    if (!findUser) throw new HttpException(409, "User doesn't exist");
+	public async logout(userData: User): Promise<User> {
+		const findUser: User = UserModel.find(
+			(user) => user.email === userData.email && user.password === userData.password,
+		);
+		if (!findUser) throw new HttpException(409, "User doesn't exist");
 
-    return findUser;
-  }
+		return findUser;
+	}
 }
