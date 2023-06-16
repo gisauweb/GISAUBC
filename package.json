@@ -1,15 +1,17 @@
 {
 	"name": "gisaubc",
 	"version": "1.0.0",
-	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"server": "npm run dev --prefix server",
+		"client": "npm start --prefix client",
+		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
-	"keywords": [],
 	"author": "",
 	"license": "ISC",
-	"dependencies": {
-		"typescript-express-starter": "^10.0.0"
+	"description": "",
+	"devDependencies": {
+		"concurrently": "^7.6.0"
 	}
 }
