@@ -65,7 +65,7 @@
 		"import/resolver": {
 			"node": {
 				"paths": [
-					"client/src"
+					"src"
 				]
 			}
 		}
