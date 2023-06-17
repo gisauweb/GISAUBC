@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import GridContainer from 'shared/layout/GridContainer';
-import Typography from 'shared/components/Typography';
+import { Typography, DropdownMenu } from 'shared/components/index';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
-import UPCOMING_EVENTS from '../../../shared/data/upcoming_event';
-import DropdownMenu from '../../../shared/components/DropdownMenu';
 
 function EventContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');

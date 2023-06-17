@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
-import ScrollToTop from 'shared/components/ScrollToTop';
+import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import { pages } from './shared/components/navigation-bar/constants';
 import './App.css';

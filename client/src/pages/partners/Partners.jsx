@@ -1,11 +1,9 @@
 import React from 'react';
 import { Box, Divider } from '@mui/material';
-import ScrollButtonContainer from 'shared/components/ScrollButton';
-import LandingImage from 'shared/components/landing-image/LandingImage';
+import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import partnersLandingImg from 'assets/landing/partners.jpeg';
+import MainContainer from 'shared/layout/MainContainer';
 import { SponsorRegistration, SponsorTitle, SponsorList } from './components/index';
-import Footer from '../../shared/components/footer/Footer';
-import MainContainer from '../../shared/layout/MainContainer';
 
 export default function Partners() {
 	return (
@@ -17,7 +15,7 @@ export default function Partners() {
 				<SponsorList />
 				<Divider className='py-[0.5px]' color='black' />
 				<SponsorRegistration />
-				<ScrollButtonContainer threshold={1 / 2} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer showPlane={false} />
 		</Box>

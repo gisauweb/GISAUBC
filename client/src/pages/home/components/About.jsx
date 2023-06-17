@@ -5,7 +5,7 @@ import aboutMobileImg from 'assets/home-page/about/about_mobile.png';
 import sunshineImg from 'assets/home-page/about/sunshine.svg';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import Button from '../../../shared/components/button/Button';
+import Button from 'shared/components/button/Button';
 
 const typographyStyle = 'text-base xl:text-xl font-montserrat my-5 w-full lg:pr-6';
 

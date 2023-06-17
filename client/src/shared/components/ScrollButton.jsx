@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { KeyboardArrowUp } from '@mui/icons-material';
 import { useMediaQuery } from 'react-responsive';
 
-export default function ScrollButtonContainer({ threshold }) {
+export default function ScrollButton({ threshold }) {
 	const [visible, setVisible] = useState(false);
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 

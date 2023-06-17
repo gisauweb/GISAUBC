@@ -2,7 +2,7 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import LandingImage from 'shared/components/landing-image/LandingImage';
 import ReactGA from 'react-ga4';
-import Button from '../../../shared/components/button/Button';
+import Button from 'shared/components/button/Button';
 import gisauLogo from '../../../assets/gisau-logo/gisau.png';
 import homeLandingImg from '../../../assets/landing/home.jpg';
 

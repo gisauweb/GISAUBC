@@ -1,12 +1,9 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import Typography from 'shared/components/Typography';
-import ScrollButtonContainer from 'shared/components/ScrollButton';
-import LandingImage from 'shared/components/landing-image/LandingImage';
+import MainContainer from 'shared/layout/MainContainer';
+import { Typography, ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import eventLandingImage from 'assets/landing/event.jpg';
 import EventContent from './components/EventContent';
-import Footer from '../../shared/components/footer/Footer';
-import MainContainer from '../../shared/layout/MainContainer';
 
 export default function Events() {
 	return (
@@ -21,7 +18,7 @@ export default function Events() {
 				</Box>
 				<EventContent upcoming />
 				<EventContent upcoming={false} />
-				<ScrollButtonContainer threshold={7 / 10} />
+				<ScrollButton threshold={7 / 10} />
 			</MainContainer>
 			<Footer />
 		</Box>
