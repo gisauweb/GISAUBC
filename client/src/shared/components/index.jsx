@@ -6,6 +6,5 @@ import DropdownMenu from './DropdownMenu';
 import ScrollButton from './ScrollButton';
 import ScrollToTop from './ScrollToTop';
 import Typography from './Typography';
-import NavigationBar from './navigation-bar/NavigationBar';
-// eslint-disable-next-line max-len, prettier/prettier
-export { Button, Footer, LandingImage, LogoSpinning, DropdownMenu, ScrollButton, ScrollToTop, Typography, NavigationBar };
+
+export { Button, Footer, LandingImage, LogoSpinning, DropdownMenu, ScrollButton, ScrollToTop, Typography };
