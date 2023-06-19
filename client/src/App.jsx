@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { StyledEngineProvider } from '@mui/material/styles';
-import { NavigationBar, ScrollToTop, PAGES } from './shared/components/index';
+import { NavigationBar, ScrollToTop } from './shared/components/index';
+import { pages } from './shared/components/navigation-bar/constants';
 import './App.css';
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
 			<ScrollToTop />
 			<Routes>
 				<Route path='/' element={<NavigationBar />}>
-					{PAGES.map((page) => (
+					{pages.map((page) => (
 						<Route key={page.name} path={page.path} element={page.element} />
 					))}
 				</Route>
