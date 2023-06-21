@@ -4,6 +4,11 @@ import { useMediaQuery } from 'react-responsive';
 import GrowContainer from './GrowContainer';
 import GridItem from './GridItem';
 
+// const features = {
+// 	event: true,
+// 	upcomingEvent: upcoming,
+// };
+
 export default function GridContainer({ data, features, className }) {
 	const dataLength = data.length;
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });

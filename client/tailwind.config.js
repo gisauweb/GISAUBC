@@ -19,8 +19,8 @@ module.exports = {
 				primary: '#7D0202',
 				bgPrimary: '#FFFDF5',
 			},
+			fontSize: { '5xl': ['3rem', 1.3] },
 		},
-		fontSize: { '5xl': ['3rem', 1.3] },
 	},
 	plugins: [],
 };

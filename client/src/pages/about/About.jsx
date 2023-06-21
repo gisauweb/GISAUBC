@@ -5,8 +5,15 @@ import { Typography, ScrollButton, LandingImage, Footer } from 'shared/component
 import eventLandingImage from 'assets/landing/event.jpg';
 import about1 from 'assets/about/img_2.svg';
 import about2 from 'assets/about/img_1.svg';
+import GridContainer from 'shared/layout/GridContainer';
+import PAST_EVENTS from 'pages/events/components/constants';
 
 export default function About() {
+	const features = {
+		event: false,
+		upcomingEvent: false,
+	};
+
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={eventLandingImage} text='About Us' />
@@ -26,6 +33,13 @@ export default function About() {
 						<Box className='w-1/2 flex justify-end'>
 							<img src={about2} alt='about_2' className='w-[95%]' />
 						</Box>
+					</Box>
+					<Box className='w-full py-10'>
+						<Typography variant='h1' text='Meet our team.' />
+					</Box>
+					<Box>
+						{/* Buttons */}
+						<GridContainer data={PAST_EVENTS['2022/2023']} features={features} />
 					</Box>
 				</Box>
 				<ScrollButton threshold={7 / 10} />
