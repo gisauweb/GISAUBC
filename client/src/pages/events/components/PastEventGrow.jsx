@@ -32,7 +32,7 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 				</Grid>
 			</Grow>
 			<Grid item xs={1} sm={2} md={2} className='flex justify-center'>
-				<Button text='Show Less' handleClickButton={handleChange} transparentBg />
+				<Button text='Show Less' handleClickButton={handleChange} background='transparentBg' />
 			</Grid>
 		</>
 	) : (
