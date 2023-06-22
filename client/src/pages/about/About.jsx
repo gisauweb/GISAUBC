@@ -4,6 +4,7 @@ import MainContainer from 'shared/layout/MainContainer';
 import { Typography, ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import eventLandingImage from 'assets/landing/event.jpg';
 import Introduction from './Introduction';
+import TeamButtons from './TeamButtons';
 
 export default function About() {
 	return (
@@ -15,7 +16,9 @@ export default function About() {
 					<Box className='w-full py-10'>
 						<Typography variant='h1' text='Meet our team.' />
 					</Box>
-					<Box>{/* Buttons */}</Box>
+					<Box>
+						<TeamButtons />
+					</Box>
 				</Box>
 				<ScrollButton threshold={7 / 10} />
 			</MainContainer>
