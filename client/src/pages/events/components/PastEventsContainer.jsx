@@ -1,15 +1,15 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import GrowContainer from './GrowContainer';
-import GridItem from './GridItem';
+import PastEventGrow from './PastEventGrow';
+import PastEvent from './PastEvent';
 
 // const features = {
 // 	event: true,
 // 	upcomingEvent: upcoming,
 // };
 
-export default function GridContainer({ data, features, className }) {
+export default function PastEventsContainer({ data, features, className }) {
 	const dataLength = data.length;
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
@@ -26,9 +26,9 @@ export default function GridContainer({ data, features, className }) {
 						{data
 							.slice(0, !features.upcomingEvent && isMobile ? dataLength / 3 : dataLength)
 							.map((item) => (
-								<GridItem item={item} features={features} key={item.title} />
+								<PastEvent item={item} features={features} key={item.title} />
 							))}
-						<GrowContainer data={data} dataLength={dataLength} features={features} isMobile={isMobile} />
+						<PastEventGrow data={data} dataLength={dataLength} features={features} isMobile={isMobile} />
 					</>
 				)}
 			</Grid>

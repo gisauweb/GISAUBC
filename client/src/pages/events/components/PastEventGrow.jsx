@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
 import Button from 'shared/components/button/Button';
-import GridItem from './GridItem';
+import PastEvent from './PastEvent';
 
-function GrowContainer({ data, dataLength, features, isMobile }) {
+function PastEventGrow({ data, dataLength, features, isMobile }) {
 	const [grow, setGrow] = useState(false);
 
 	const handleChange = () => {
@@ -16,7 +16,7 @@ function GrowContainer({ data, dataLength, features, isMobile }) {
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(dataLength / 3, (dataLength * 2) / 3).map((item) => (
-							<GridItem item={item} features={features} key={item.title} />
+							<PastEvent item={item} features={features} key={item.title} />
 						))}
 					</Grid>
 				</Grid>
@@ -26,7 +26,7 @@ function GrowContainer({ data, dataLength, features, isMobile }) {
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice((dataLength * 2) / 3).map((item) => (
-							<GridItem item={item} features={features} key={item.title} />
+							<PastEvent item={item} features={features} key={item.title} />
 						))}
 					</Grid>
 				</Grid>
@@ -44,4 +44,4 @@ function GrowContainer({ data, dataLength, features, isMobile }) {
 	);
 }
 
-export default GrowContainer;
+export default PastEventGrow;

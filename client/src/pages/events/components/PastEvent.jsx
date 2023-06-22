@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import Button from 'shared/components/button/Button';
 
-export default function GridItem({ item, features }) {
+export default function PastEvent({ item, features }) {
 	const { event, upcomingEvent } = features;
 
 	const handleClickButton = (link) => {
