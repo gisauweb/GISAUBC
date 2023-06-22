@@ -4,12 +4,11 @@ import { useMediaQuery } from 'react-responsive';
 import PastEventGrow from './PastEventGrow';
 import PastEvent from './PastEvent';
 
-// const features = {
-// 	event: true,
+// const upcomingEvent = {
 // 	upcomingEvent: upcoming,
 // };
 
-export default function PastEventsContainer({ data, features, className }) {
+export default function PastEventsContainer({ data, upcomingEvent, className }) {
 	const dataLength = data.length;
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
@@ -23,12 +22,15 @@ export default function PastEventsContainer({ data, features, className }) {
 				) : (
 					<>
 						{' '}
-						{data
-							.slice(0, !features.upcomingEvent && isMobile ? dataLength / 3 : dataLength)
-							.map((item) => (
-								<PastEvent item={item} features={features} key={item.title} />
-							))}
-						<PastEventGrow data={data} dataLength={dataLength} features={features} isMobile={isMobile} />
+						{data.slice(0, !upcomingEvent && isMobile ? dataLength / 3 : dataLength).map((item) => (
+							<PastEvent item={item} upcomingEvent={upcomingEvent} key={item.title} />
+						))}
+						<PastEventGrow
+							data={data}
+							dataLength={dataLength}
+							upcomingEvent={upcomingEvent}
+							isMobile={isMobile}
+						/>
 					</>
 				)}
 			</Grid>
