@@ -21,7 +21,7 @@ export default function Button({ landingButton, className, text, background, han
 
 	return (
 		<div
-			className={`${landingButton ? 'button' : landingButtonClass} ${backgroundClass} ${className}`}
+			className={`${landingButton ? landingButtonClass : 'button'} ${backgroundClass} ${className}`}
 			onClick={handleClickButton}
 		>
 			{text}
