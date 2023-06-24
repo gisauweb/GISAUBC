@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import Button from 'shared/components/button/Button';
 
-export default function EventItem({ item, upcomingEvent }) {
+export default function EventGridItem({ item, upcomingEvent }) {
 	const handleClickButton = (link) => {
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
