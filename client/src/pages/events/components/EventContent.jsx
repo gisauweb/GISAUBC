@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import EventsGridContainer from 'pages/events/components/EventsGridContainer';
+import GridContainer from 'shared/components/GridContainer';
 import { Typography, DropdownMenu } from 'shared/components/index';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
+import EventGridContent from './EventGridContent';
 
 function EventContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
-	const features = {
-		event: true,
-		upcomingEvent: upcoming,
-	};
 
 	return (
 		<Box className='my-20'>
@@ -18,11 +15,12 @@ function EventContent({ upcoming }) {
 				<Typography variant='h2' text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`} className='pt-0.5' />
 				{!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
 			</Box>
-			<EventsGridContainer
-				data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]}
-				features={features}
-				className='sm:my-28'
-			/>
+			<GridContainer className='sm:my-28'>
+				<EventGridContent
+					upcomingEvent={upcoming}
+					data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]}
+				/>
+			</GridContainer>
 		</Box>
 	);
 }
