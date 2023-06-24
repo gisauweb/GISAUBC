@@ -2,13 +2,13 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import PastEventGrow from './PastEventGrow';
-import PastEvent from './PastEvent';
+import EventItem from './EventItem';
 
 // const upcomingEvent = {
 // 	upcomingEvent: upcoming,
 // };
 
-export default function PastEventsContainer({ data, upcomingEvent, className }) {
+export default function EventsGridContainer({ data, upcomingEvent, className }) {
 	const dataLength = data.length;
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
@@ -23,7 +23,7 @@ export default function PastEventsContainer({ data, upcomingEvent, className }) 
 					<>
 						{' '}
 						{data.slice(0, !upcomingEvent && isMobile ? dataLength / 3 : dataLength).map((item) => (
-							<PastEvent item={item} upcomingEvent={upcomingEvent} key={item.title} />
+							<EventItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
 						))}
 						<PastEventGrow
 							data={data}

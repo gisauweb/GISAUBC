@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
 import Button from 'shared/components/button/Button';
-import PastEvent from './PastEvent';
+import EventItem from './EventItem';
 
 function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 	const [grow, setGrow] = useState(false);
@@ -16,7 +16,7 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(dataLength / 3, (dataLength * 2) / 3).map((item) => (
-							<PastEvent item={item} upcomingEvent={upcomingEvent} key={item.title} />
+							<EventItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
 						))}
 					</Grid>
 				</Grid>
@@ -26,7 +26,7 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice((dataLength * 2) / 3).map((item) => (
-							<PastEvent item={item} upcomingEvent={upcomingEvent} key={item.title} />
+							<EventItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
 						))}
 					</Grid>
 				</Grid>
