@@ -4,8 +4,9 @@ import { useMediaQuery } from 'react-responsive';
 
 const years = ['2022/2023'];
 
-export default function DropdownMenu({ selectedYear, setSelectedYear }) {
+export default function DropdownMenu({ selectedYear, setSelectedYear, source }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [rightSpacing, setRightSpacing] = useState('sm:right-24 lg:right-48');
 	const dropdownRef = useRef(null);
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
@@ -31,10 +32,14 @@ export default function DropdownMenu({ selectedYear, setSelectedYear }) {
 		};
 	}, []);
 
+	useEffect(() => {
+		setRightSpacing(source === 'About' ? 'sm:right-40 lg:right-80' : 'sm:right-24 lg:right-48');
+	}, [source]);
+
 	return (
 		<div
-			className='w-40 sm:w-64 absolute sm:right-24 lg:right-48 mt-14 sm:mt-0
-						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary'
+			className={`w-40 sm:w-64 absolute  mt-14 sm:mt-0 ${rightSpacing}
+						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary`}
 			ref={dropdownRef}
 		>
 			<button

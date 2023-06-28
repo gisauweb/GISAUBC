@@ -25,7 +25,11 @@ export default function About() {
 					<Box>
 						<Box className='flex'>
 							<TeamButtons selectedButton={selectedButton} setSelectedButton={setSelectedButton} />
-							<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />
+							<DropdownMenu
+								selectedYear={selectedYear}
+								setSelectedYear={setSelectedYear}
+								source='About'
+							/>
 						</Box>
 						<GridContainer>
 							<TeamGridContent data={TEAM_MEMBERS[selectedYear]} />
