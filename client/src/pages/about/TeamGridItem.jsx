@@ -1,30 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
+import './TeamGridItem.css';
 
 export default function TeamGridItem({ item }) {
-	const handleClickButton = (link) => {
-		window.open(`https://${link}`, '_blank', 'noreferrer');
-	};
+	const [isFlipped, setIsFlipped] = useState(false);
 
-	const teamImageStyle = {
-		// aspectRatio: 2 / 2,
-		// objectFit: 'contain',
-		// mixBlendMode: 'color-burn',
-		height: '35vh',
-		// width: '45vw',
-		width: '100%',
+	const handleClickButton = (link) => {
+		setIsFlipped(!isFlipped);
+		console.log(link);
 	};
 
 	return (
-		<Grid item xs={1} sm={2} md={2}>
+		<Grid item xs={1} sm={2} md={1.5}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<button
 					type='button'
 					onClick={() => {
 						handleClickButton(item.link);
 					}}
+					className={`image-button ${isFlipped ? 'flipped' : ''}`}
 				>
-					<img src={item.image} alt='item_image' style={teamImageStyle} />
+					<div className='card'>
+						<div className='front'>
+							<img src={item.image} alt='item_image' className='rounded-2xl team-image' />
+						</div>
+						<div className='back'>test</div>
+					</div>
 				</button>
 			</Box>
 		</Grid>
