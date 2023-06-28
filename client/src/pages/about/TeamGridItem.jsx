@@ -24,7 +24,14 @@ export default function TeamGridItem({ item }) {
 						<div className='front'>
 							<img src={item.image} alt='item_image' className='rounded-2xl team-image' />
 						</div>
-						<div className='back'>test</div>
+						<div className='back bg-black rounded-2xl text-white'>
+							<div>Test</div>
+							<div>
+								<a href='https://www.google.com' target='_blank' rel='noreferrer'>
+									link
+								</a>
+							</div>
+						</div>
 					</div>
 				</button>
 			</Box>
