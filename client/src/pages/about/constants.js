@@ -6,8 +6,8 @@ const TEAM_MEMBERS = {
 	'2022/2023': [
 		{
 			image: EXECS_22_23[0],
-			name: 'Christopher Wong',
-			education: '4th Year Computer Science',
+			name: 'Christopher Hadrian Wong',
+			education: '3rd Year Computer Science',
 			link: 'www.linkedin.com/in/chrishdwong',
 		},
 		{

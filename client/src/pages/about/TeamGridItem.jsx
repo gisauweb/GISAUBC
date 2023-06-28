@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import './TeamGridItem.css';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export default function TeamGridItem({ item }) {
 	const [isFlipped, setIsFlipped] = useState(false);
@@ -25,10 +26,16 @@ export default function TeamGridItem({ item }) {
 							<img src={item.image} alt='item_image' className='rounded-2xl team-image' />
 						</div>
 						<div className='back bg-black rounded-2xl text-white'>
-							<div>Test</div>
-							<div>
-								<a href='https://www.google.com' target='_blank' rel='noreferrer'>
-									link
+							<div className='my-[50%]'>
+								<p className='text-sm'>{item.name}</p>
+								<p className='text-xs'>{item.education}</p>
+								<a
+									href={`https://${item.link}`}
+									target='_blank'
+									rel='noreferrer'
+									className='cursor-context-menu'
+								>
+									<LinkedInIcon />
 								</a>
 							</div>
 						</div>
