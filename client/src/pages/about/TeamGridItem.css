@@ -19,10 +19,11 @@
 	height: auto;
 	transition: filter 0.3s;
 	aspect-ratio: 3/4;
+	filter: brightness(90%)
 }
 
 .team-image:hover {
-	filter: brightness(70%);
+	filter: brightness(60%);
 }
 
 .card {

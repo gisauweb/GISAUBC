@@ -6,9 +6,8 @@ import './TeamGridItem.css';
 export default function TeamGridItem({ item }) {
 	const [isFlipped, setIsFlipped] = useState(false);
 
-	const handleClickButton = (link) => {
+	const handleClickButton = () => {
 		setIsFlipped(!isFlipped);
-		console.log(link);
 	};
 
 	return (
@@ -17,7 +16,7 @@ export default function TeamGridItem({ item }) {
 				<button
 					type='button'
 					onClick={() => {
-						handleClickButton(item.link);
+						handleClickButton();
 					}}
 					className={`image-button ${isFlipped ? 'flipped' : ''}`}
 				>
@@ -25,11 +24,11 @@ export default function TeamGridItem({ item }) {
 						<div className='front'>
 							<img src={item.image} alt='item_image' className='rounded-2xl team-image' />
 						</div>
-						<div className='back bg-black rounded-2xl text-white'>
-							<div className='my-[40%] space-y-1'>
+						<div className='back bg-primary rounded-2xl text-white'>
+							<div className='my-[45%] space-y-1'>
 								<p className='text-[1rem]'>{item.name}</p>
-								<p className='text-[0.9rem]'>{item.position}</p>
-								<p className='text-[0.75rem]'>{item.education}</p>
+								<p className='text-[0.8rem]'>{item.position}</p>
+								<p className='text-[0.8rem]'>{item.education}</p>
 								{/* <a
 									href={`https://${item.link}`}
 									target='_blank'

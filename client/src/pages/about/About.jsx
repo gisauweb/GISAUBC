@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { Typography, ScrollButton, LandingImage, Footer, DropdownMenu } from 'shared/components/index';
@@ -7,11 +7,22 @@ import GridContainer from 'shared/components/GridContainer';
 import Introduction from './Introduction';
 import TeamButtons from './TeamButtons';
 import TeamGridContent from './TeamGridContent';
-import { TEAM_MEMBERS } from './constants';
+import { EXECUTIVES } from './constants';
 
 export default function About() {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
 	const [selectedButton, setSelectedButton] = useState('All');
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		const filteredData =
+			selectedButton === 'All'
+				? Object.values(EXECUTIVES[selectedYear]).flat()
+				: EXECUTIVES[selectedYear][selectedButton];
+		setData(filteredData);
+	}, [selectedButton, selectedYear]);
+
+	console.log(data);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
@@ -32,7 +43,7 @@ export default function About() {
 							/>
 						</Box>
 						<GridContainer>
-							<TeamGridContent data={TEAM_MEMBERS[selectedYear]} />
+							<TeamGridContent data={data} />
 						</GridContainer>
 					</Box>
 				</Box>
