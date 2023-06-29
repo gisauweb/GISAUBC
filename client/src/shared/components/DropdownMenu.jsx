@@ -38,7 +38,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 
 	return (
 		<div
-			className={`w-40 sm:w-64 absolute  mt-14 sm:mt-0 ${rightSpacing}
+			className={`w-40 sm:w-64 relative sm:absolute ${rightSpacing}
 						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary`}
 			ref={dropdownRef}
 		>

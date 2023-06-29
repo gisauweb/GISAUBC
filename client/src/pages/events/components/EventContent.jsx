@@ -11,8 +11,12 @@ function EventContent({ upcoming }) {
 
 	return (
 		<Box className='my-20'>
-			<Box className={`flex w-full justify-between ${!upcoming && 'mb-36 sm:mb-0'}`}>
-				<Typography variant='h2' text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`} className='pt-0.5' />
+			<Box className='flex flex-col w-full justify-between'>
+				<Typography
+					variant='h2'
+					text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}
+					className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
+				/>
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Event' />
 				)}

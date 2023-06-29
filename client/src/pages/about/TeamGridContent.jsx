@@ -9,7 +9,7 @@ export default function TeamGridContent({ data, selectedCard, setSelectedCard })
 
 	return (
 		<>
-			{data.slice(0, isMobile ? dataLength / 3 : dataLength).map((item) => (
+			{data.slice(0, isMobile ? Math.ceil(dataLength / 2) : dataLength).map((item) => (
 				<TeamGridItem
 					item={item}
 					key={item.name}

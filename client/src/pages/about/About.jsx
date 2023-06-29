@@ -30,11 +30,11 @@ export default function About() {
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pt-0'>
 					<Introduction />
-					<Box className='w-full py-10'>
+					<Box className='w-full py-4 sm:py-10'>
 						<Typography variant='h1' text='Meet our team.' />
 					</Box>
 					<Box>
-						<Box className='flex'>
+						<Box className='flex flex-col'>
 							<TeamButtons selectedButton={selectedButton} setSelectedButton={setSelectedButton} />
 							<DropdownMenu
 								selectedYear={selectedYear}
@@ -42,7 +42,7 @@ export default function About() {
 								source='About'
 							/>
 						</Box>
-						<GridContainer className='mt-28 sm:mt-14'>
+						<GridContainer className='sm:mt-14'>
 							<TeamGridContent
 								data={data}
 								selectedCard={selectedCard}

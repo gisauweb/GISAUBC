@@ -1,18 +1,14 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { Button } from 'shared/components';
-import { useMediaQuery } from 'react-responsive';
 import { BUTTONS } from './constants';
 
 export default function TeamButtons({ selectedButton, setSelectedButton }) {
 	const handleClickButton = (buttonName) => {
 		setSelectedButton(buttonName);
 	};
-	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
-	return isMobile ? (
-		<Box>Test</Box>
-	) : (
-		<Box className='flex space-x-10'>
+	return (
+		<Box className='flex flex-wrap sm:space-x-10'>
 			{BUTTONS.map((buttonName) => (
 				<Button
 					key={buttonName}
@@ -21,6 +17,7 @@ export default function TeamButtons({ selectedButton, setSelectedButton }) {
 					handleClickButton={() => {
 						handleClickButton(buttonName);
 					}}
+					className='mr-4 mb-4 sm:mr-0 sm:mb-0'
 				/>
 			))}
 		</Box>
