@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { Typography, ScrollButton, LandingImage, Footer, DropdownMenu } from 'shared/components/index';
-import eventLandingImage from 'assets/landing/event.jpg';
+import aboutLandingImage from 'assets/landing/about.jpeg';
 import GridContainer from 'shared/components/GridContainer';
 import Introduction from './Introduction';
 import TeamButtons from './TeamButtons';
@@ -26,7 +26,7 @@ export default function About() {
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
-			<LandingImage bgImage={eventLandingImage} text='About Us' />
+			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pt-0'>
 					<Introduction />
@@ -42,7 +42,7 @@ export default function About() {
 								source='About'
 							/>
 						</Box>
-						<GridContainer>
+						<GridContainer className='mt-28 sm:mt-14'>
 							<TeamGridContent
 								data={data}
 								selectedCard={selectedCard}

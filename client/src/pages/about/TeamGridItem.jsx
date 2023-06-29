@@ -10,7 +10,7 @@ export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
 	};
 
 	return (
-		<Grid item xs={1} sm={2} md={1.5}>
+		<Grid item xs={1} sm={1} md={1.5}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<button
 					type='button'
