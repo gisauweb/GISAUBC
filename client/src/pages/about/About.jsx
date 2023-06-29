@@ -22,8 +22,6 @@ export default function About() {
 		setData(filteredData);
 	}, [selectedButton, selectedYear]);
 
-	console.log(data);
-
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={eventLandingImage} text='About Us' />

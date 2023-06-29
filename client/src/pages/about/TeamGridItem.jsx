@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Grid } from '@mui/material';
 import './TeamGridItem.css';
-// import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-export default function TeamGridItem({ item }) {
-	const [isFlipped, setIsFlipped] = useState(false);
+export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
+	const isFlipped = selectedCard === item.name;
 
 	const handleClickButton = () => {
-		setIsFlipped(!isFlipped);
+		setSelectedCard((prevCard) => (prevCard === item.name ? null : item.name));
 	};
 
 	return (
@@ -15,9 +14,7 @@ export default function TeamGridItem({ item }) {
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<button
 					type='button'
-					onClick={() => {
-						handleClickButton();
-					}}
+					onClick={handleClickButton}
 					className={`image-button ${isFlipped ? 'flipped' : ''}`}
 				>
 					<div className='card'>
@@ -29,14 +26,6 @@ export default function TeamGridItem({ item }) {
 								<p className='text-[1rem]'>{item.name}</p>
 								<p className='text-[0.8rem]'>{item.position}</p>
 								<p className='text-[0.8rem]'>{item.education}</p>
-								{/* <a
-									href={`https://${item.link}`}
-									target='_blank'
-									rel='noreferrer'
-									className='cursor-context-menu'
-								>
-									<LinkedInIcon />
-								</a> */}
 							</div>
 						</div>
 					</div>
