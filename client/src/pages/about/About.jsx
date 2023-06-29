@@ -12,9 +12,11 @@ import { EXECUTIVES } from './constants';
 export default function About() {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
 	const [selectedButton, setSelectedButton] = useState('All');
+	const [selectedCard, setSelectedCard] = useState(null);
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
+		setSelectedCard(null);
 		const filteredData =
 			selectedButton === 'All'
 				? Object.values(EXECUTIVES[selectedYear]).flat()
@@ -41,7 +43,11 @@ export default function About() {
 							/>
 						</Box>
 						<GridContainer>
-							<TeamGridContent data={data} />
+							<TeamGridContent
+								data={data}
+								selectedCard={selectedCard}
+								setSelectedCard={setSelectedCard}
+							/>
 						</GridContainer>
 					</Box>
 				</Box>
