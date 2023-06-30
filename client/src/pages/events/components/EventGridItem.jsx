@@ -8,7 +8,7 @@ export default function EventGridItem({ item, upcomingEvent }) {
 	};
 
 	return (
-		<Grid item xs={1} sm={2} md={2}>
+		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<img src={item.image} alt='item_image' className='rounded-2xl' />
 				<Box className='text-center flex flex-col py-4'>
