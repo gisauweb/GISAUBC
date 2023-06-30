@@ -11,7 +11,7 @@ export default function Introduction() {
 				<Typography
 					variant='h1'
 					text='We are a student organization that promotes and
-						celebrates Indonesian culture in UBC since early 2000s.'
+						celebrates Indonesian culture in UBC since the early 2000s.'
 				/>
 			</Box>
 			<Box
