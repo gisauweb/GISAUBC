@@ -91,7 +91,7 @@ const EXECUTIVES = {
 				position: 'Corporate Relations Director',
 				department: 'External',
 				image: EXECS_22_23[18],
-				education: '2nd Year Land Food systems',
+				education: '2nd Year LFS',
 			},
 			{
 				name: 'Kent Jose',
@@ -105,7 +105,7 @@ const EXECUTIVES = {
 				position: 'Sponsorship Coordinator',
 				department: 'External',
 				image: EXECS_22_23[25],
-				education: '3rd Year Land Food systems',
+				education: '3rd Year LFS',
 			},
 			{
 				name: 'Rachel Tandjung',
@@ -128,7 +128,7 @@ const EXECUTIVES = {
 				position: 'F&B Coordinator',
 				department: 'F&B',
 				image: EXECS_22_23[0],
-				education: '2nd Year Land Food Systems ',
+				education: '2nd Year LFS ',
 			},
 			{
 				name: 'Fernando Axel',
@@ -182,7 +182,7 @@ const EXECUTIVES = {
 				education: '3rd Year Science',
 			},
 			{
-				name: 'Christopher Hadrian',
+				name: 'Christopher Hadrian Wong',
 				position: 'Webmaster',
 				department: 'Marketing',
 				image: EXECS_22_23[1],
