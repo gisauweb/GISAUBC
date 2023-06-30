@@ -10,7 +10,7 @@ const EXECUTIVES = {
 				position: 'President',
 				department: 'Core',
 				image: EXECS_22_23[15],
-				education: '4th Year Land and Food Systems',
+				education: '4th Year LFS',
 			},
 			{
 				name: 'Iervinny Tanto',
@@ -68,7 +68,7 @@ const EXECUTIVES = {
 				position: 'Events Coordinator',
 				department: 'Events',
 				image: EXECS_22_23[6],
-				education: '3rd Year Land and Food Systems',
+				education: '3rd Year LFS',
 			},
 			{
 				name: 'Joanico Huang',
@@ -144,7 +144,7 @@ const EXECUTIVES = {
 				position: 'Marketing Director',
 				department: 'Marketing',
 				image: EXECS_22_23[12],
-				education: '4th Year Land and Food Systems',
+				education: '4th Year LFS',
 			},
 			{
 				name: 'Imelda Alimin',
@@ -158,7 +158,7 @@ const EXECUTIVES = {
 				position: 'Creative Coordinator',
 				department: 'Marketing',
 				image: EXECS_22_23[24],
-				education: '1st Year Land and Food Systems',
+				education: '1st Year LFS',
 			},
 			{
 				name: 'Richelle Tan',
@@ -182,7 +182,7 @@ const EXECUTIVES = {
 				education: '3rd Year Science',
 			},
 			{
-				name: 'Christopher Hadrian Wong',
+				name: 'Christopher Hadrian',
 				position: 'Webmaster',
 				department: 'Marketing',
 				image: EXECS_22_23[1],

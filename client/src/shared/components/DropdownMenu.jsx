@@ -33,7 +33,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	}, []);
 
 	useEffect(() => {
-		setRightSpacing(source === 'About' ? 'sm:right-40 lg:right-80' : 'sm:right-24 lg:right-48');
+		setRightSpacing(source === 'About' ? 'sm:right-40 lg:right-72' : 'sm:right-24 lg:right-48');
 	}, [source]);
 
 	return (

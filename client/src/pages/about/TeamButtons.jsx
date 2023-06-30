@@ -8,7 +8,7 @@ export default function TeamButtons({ selectedButton, setSelectedButton }) {
 		setSelectedButton(buttonName);
 	};
 	return (
-		<Box className='flex flex-wrap sm:space-x-10'>
+		<Box className='flex flex-wrap sm:space-x-6 3xl:space-x-10 pb-1 sm:pb-0'>
 			{BUTTONS.map((buttonName) => (
 				<Button
 					key={buttonName}
