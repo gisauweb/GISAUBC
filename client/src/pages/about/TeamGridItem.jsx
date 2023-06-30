@@ -10,7 +10,7 @@ export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
 	};
 
 	return (
-		<Grid item xs={1} sm={1} md={1.5}>
+		<Grid item xs={1} sm={1.5} md={2} lg={1.5}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<button
 					type='button'
@@ -23,9 +23,9 @@ export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
 						</div>
 						<div className='back bg-primary rounded-2xl text-white'>
 							<div className='my-[45%] space-y-1'>
-								<p className='text-[1rem]'>{item.name}</p>
-								<p className='text-[0.8rem]'>{item.position}</p>
-								<p className='text-[0.8rem]'>{item.education}</p>
+								<p className='text-[1rem] lg:text-[0.85rem] xl:text-[1rem]'>{item.name}</p>
+								<p className='text-[0.8rem] xl:text-[0.85rem]'>{item.position}</p>
+								<p className='text-[0.8rem] xl:text-[0.85rem]'>{item.education}</p>
 							</div>
 						</div>
 					</div>

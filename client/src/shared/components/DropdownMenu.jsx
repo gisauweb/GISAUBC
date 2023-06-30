@@ -9,6 +9,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	const [rightSpacing, setRightSpacing] = useState('sm:right-24 lg:right-48');
 	const dropdownRef = useRef(null);
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
+	const aboutPage = source === 'About';
 
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -33,12 +34,12 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	}, []);
 
 	useEffect(() => {
-		setRightSpacing(source === 'About' ? 'sm:right-40 lg:right-72' : 'sm:right-24 lg:right-48');
-	}, [source]);
+		setRightSpacing(aboutPage ? 'xl:right-72' : 'sm:right-24 lg:right-48');
+	}, [aboutPage]);
 
 	return (
 		<div
-			className={`w-40 sm:w-64 relative sm:absolute ${rightSpacing}
+			className={`w-40 sm:w-64 relative ${aboutPage ? 'xl:absolute' : 'sm:absolute'} ${rightSpacing}
 						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary`}
 			ref={dropdownRef}
 		>

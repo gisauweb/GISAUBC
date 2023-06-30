@@ -9,7 +9,7 @@ export default function TeamGridContent({ data, selectedCard, setSelectedCard })
 
 	return (
 		<>
-			{data.slice(0, isMobile ? Math.ceil(dataLength / 2) : dataLength).map((item) => (
+			{data.slice(0, isMobile && dataLength >= 6 ? Math.ceil(dataLength / 3) : dataLength).map((item) => (
 				<TeamGridItem
 					item={item}
 					key={item.name}
@@ -17,7 +17,7 @@ export default function TeamGridContent({ data, selectedCard, setSelectedCard })
 					setSelectedCard={setSelectedCard}
 				/>
 			))}
-			<PastEventGrow data={data} dataLength={dataLength} isMobile={isMobile} />
+			{dataLength >= 6 && <PastEventGrow data={data} dataLength={dataLength} isMobile={isMobile} />}
 		</>
 	);
 }

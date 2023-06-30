@@ -30,7 +30,7 @@ export default function About() {
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pt-0'>
 					<Introduction />
-					<Box className='w-full py-4 sm:py-10'>
+					<Box className='w-full py-4 sm:py-6 3xl:py-10'>
 						<Typography variant='h1' text='Meet our team.' />
 					</Box>
 					<Box>
