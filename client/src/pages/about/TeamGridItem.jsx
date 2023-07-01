@@ -19,7 +19,7 @@ export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
 				>
 					<div className='card'>
 						<div className='front'>
-							<img src={item.image} alt='item_image' className='rounded-2xl team-image' />
+							<img src={item.image} alt='item_image' className='team-image' />
 						</div>
 						<div className='back bg-primary rounded-2xl text-white'>
 							<div className='my-[45%] space-y-1'>

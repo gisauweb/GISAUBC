@@ -19,6 +19,8 @@
 	height: auto;
 	transition: filter 0.3s;
 	aspect-ratio: 3/4;
+	border-radius: 1rem;
+	object-fit: cover;
 	filter: brightness(90%)
 }
 
