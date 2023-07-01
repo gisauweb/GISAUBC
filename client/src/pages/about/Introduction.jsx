@@ -1,6 +1,6 @@
 import React from 'react';
-import about1 from 'assets/about/img_1.svg';
-import about2 from 'assets/about/img_2.svg';
+import about1 from 'assets/about/img_1.png';
+import about2 from 'assets/about/img_2.png';
 import { Box } from '@mui/material';
 import { Typography } from 'shared/components';
 
