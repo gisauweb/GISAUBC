@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { Button } from 'shared/components';
-import { BUTTONS } from './constants';
+import { BUTTONS } from '../constants';
 
 export default function TeamButtons({ selectedButton, setSelectedButton }) {
 	const handleClickButton = (buttonName) => {

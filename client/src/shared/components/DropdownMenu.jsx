@@ -34,12 +34,12 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	}, []);
 
 	useEffect(() => {
-		setRightSpacing(aboutPage ? 'xl:right-72' : 'sm:right-24 lg:right-48');
+		setRightSpacing(aboutPage ? '2xl:right-72' : 'sm:right-24 lg:right-48');
 	}, [aboutPage]);
 
 	return (
 		<div
-			className={`w-40 sm:w-64 relative ${aboutPage ? 'xl:absolute' : 'sm:absolute'} ${rightSpacing}
+			className={`w-40 sm:w-64 relative ${aboutPage ? '2xl:absolute' : 'sm:absolute'} ${rightSpacing}
 						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary`}
 			ref={dropdownRef}
 		>

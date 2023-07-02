@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
-import { Typography, ScrollButton, LandingImage, Footer, DropdownMenu } from 'shared/components/index';
+import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import aboutLandingImage from 'assets/landing/about.jpeg';
-import GridContainer from 'shared/components/GridContainer';
-import Introduction from './Introduction';
-import TeamButtons from './TeamButtons';
-import TeamGridContent from './TeamGridContent';
+import Introduction from './components/Introduction';
+
 import { EXECUTIVES } from './constants';
+import OurTeam from './components/OurTeam';
 
 export default function About() {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
@@ -30,26 +29,17 @@ export default function About() {
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pt-0'>
 					<Introduction />
-					<Box className='w-full py-4 sm:py-6 3xl:py-10'>
-						<Typography variant='h1' text='Meet our team.' />
-					</Box>
-					<Box>
-						<Box className='flex flex-col'>
-							<TeamButtons selectedButton={selectedButton} setSelectedButton={setSelectedButton} />
-							<DropdownMenu
-								selectedYear={selectedYear}
-								setSelectedYear={setSelectedYear}
-								source='About'
-							/>
-						</Box>
-						<GridContainer className='sm:mt-14'>
-							<TeamGridContent
-								data={data}
-								selectedCard={selectedCard}
-								setSelectedCard={setSelectedCard}
-							/>
-						</GridContainer>
-					</Box>
+					<OurTeam
+						data={data}
+						states={{
+							selectedYear,
+							selectedButton,
+							selectedCard,
+							setSelectedYear,
+							setSelectedButton,
+							setSelectedCard,
+						}}
+					/>
 				</Box>
 				<ScrollButton threshold={7 / 10} />
 			</MainContainer>
