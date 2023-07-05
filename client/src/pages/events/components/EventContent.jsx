@@ -6,7 +6,7 @@ import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
 
 function EventContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2022/2023');
+	const [selectedYear, setSelectedYear] = useState('2023/2024');
 	const features = {
 		event: true,
 		upcomingEvent: upcoming,
