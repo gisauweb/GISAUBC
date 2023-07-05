@@ -10,8 +10,9 @@ import upcomingEvent from 'assets/home-page/events/upcoming_event.svg';
 
 export const UPCOMINGEVENTS = {
 	title: 'Upcoming Events',
-	events: '',
+	events: [],
 	icon: <img src={upcomingEvent} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' />,
+	button1: 'Register',
 	button2: {
 		name: 'View past events',
 		path: 'events',
