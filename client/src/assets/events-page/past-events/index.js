@@ -1,18 +1,18 @@
 /* eslint-disable import/prefer-default-export */
-import EVENT_1 from './22:23/1.svg';
-import EVENT_2 from './22:23/2.svg';
-import EVENT_3 from './22:23/3.svg';
-import EVENT_4 from './22:23/4.svg';
-import EVENT_5 from './22:23/5.svg';
-import EVENT_6 from './22:23/6.svg';
-import EVENT_7 from './22:23/7.svg';
-import EVENT_8 from './22:23/8.svg';
-import EVENT_9 from './22:23/9.svg';
-import EVENT_10 from './22:23/10.svg';
-import EVENT_11 from './22:23/11.svg';
-import EVENT_12 from './22:23/12.svg';
-import EVENT_13 from './22:23/13.svg';
-import EVENT_14 from './22:23/14.svg';
+import EVENT_1 from './22_23/1.svg';
+import EVENT_2 from './22_23/2.svg';
+import EVENT_3 from './22_23/3.svg';
+import EVENT_4 from './22_23/4.svg';
+import EVENT_5 from './22_23/5.svg';
+import EVENT_6 from './22_23/6.svg';
+import EVENT_7 from './22_23/7.svg';
+import EVENT_8 from './22_23/8.svg';
+import EVENT_9 from './22_23/9.svg';
+import EVENT_10 from './22_23/10.svg';
+import EVENT_11 from './22_23/11.svg';
+import EVENT_12 from './22_23/12.svg';
+import EVENT_13 from './22_23/13.svg';
+import EVENT_14 from './22_23/14.svg';
 
 export const EVENTS_22_23 = [
 	EVENT_1,
