@@ -21,7 +21,6 @@ export default function Events() {
 				title={UPCOMINGEVENTS.title}
 				events={UPCOMINGEVENTS.events}
 				icon={UPCOMINGEVENTS.icon}
-				button1={UPCOMINGEVENTS.button1}
 				button2={UPCOMINGEVENTS.button2}
 				isMobileView={isMobileView}
 			/>
