@@ -1,4 +1,4 @@
-import { EVENTS_22_23, EVENTS_23_24 } from 'assets/index';
+import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index';
 
 const PAST_EVENTS = {
 	'2023/2024': [
