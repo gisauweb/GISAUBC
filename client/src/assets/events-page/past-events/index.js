@@ -15,9 +15,9 @@ import EVENT_22_23_13 from './events-page/past-events/22_23/13.svg';
 import EVENT_22_23_14 from './events-page/past-events/22_23/14.svg';
 import EVENT_23_24_1 from './events-page/past-events/23_24/1.svg';
 
-export const EVENTS_23_24 = [EVENT_23_24_1];
+const EVENTS_23_24 = [EVENT_23_24_1];
 
-export const EVENTS_22_23 = [
+const EVENTS_22_23 = [
 	EVENT_22_23_1,
 	EVENT_22_23_2,
 	EVENT_22_23_3,
@@ -33,3 +33,5 @@ export const EVENTS_22_23 = [
 	EVENT_22_23_13,
 	EVENT_22_23_14,
 ];
+
+export { EVENTS_23_24, EVENTS_22_23 };
