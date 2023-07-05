@@ -53,12 +53,6 @@ const PAST_EVENTS = {
 			loc: 'Lev Bukhman Theatre Lounge @ UBC AMS Nest',
 		},
 		{
-			image: EVENTS_22_23[7],
-			title: 'GISAU’s Study Cafe',
-			date: 'Tuesday, December 6 | 1-7PM',
-			loc: 'Abdul Ladha Room 103/104',
-		},
-		{
 			image: EVENTS_22_23[8],
 			title: 'Taste of SEA',
 			date: 'Monday, November 14 | 6.30-9PM',
