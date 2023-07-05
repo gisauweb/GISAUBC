@@ -5,7 +5,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_23_24[0],
 			title: 'Summer Hiring',
-			date: 'Thursday, June 6 | 11.59PM',
+			date: 'Thursday, June 6 | 11:59PM',
 			loc: 'Online',
 		},
 	],
@@ -43,7 +43,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_22_23[5],
 			title: 'Indomie-t Me at the Finish Line',
-			date: 'Friday, February 17 | 6.30-8.30PM',
+			date: 'Friday, February 17 | 6:30-8:30PM',
 			loc: 'AMS Nest Lower Atrium',
 		},
 		{
@@ -61,19 +61,19 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_22_23[8],
 			title: 'Taste of SEA',
-			date: 'Monday, November 14 | 6.30-9PM',
+			date: 'Monday, November 14 | 6:30-9PM',
 			loc: 'Great Hall South, AMS Nest',
 		},
 		{
 			image: EVENTS_22_23[9],
 			title: 'Rumah Hantu',
-			date: 'Friday, November 4 | 1-8.30PM',
+			date: 'Friday, November 4 | 1-8:30PM',
 			loc: 'AMS Nest Room 2314',
 		},
 		{
 			image: EVENTS_22_23[10],
 			title: 'Liwetan',
-			date: 'Saturday, October 15 | 5-7.30PM',
+			date: 'Saturday, October 15 | 5-7:30PM',
 			loc: 'Consulate General of Indonesia',
 		},
 		{
@@ -91,7 +91,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_22_23[13],
 			title: 'Independence Day Picnic',
-			date: 'Saturday, August 20 | 4.30PM',
+			date: 'Saturday, August 20 | 4:30PM',
 			loc: 'Nobel Park @ UBC',
 		},
 	],
