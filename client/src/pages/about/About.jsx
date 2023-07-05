@@ -7,6 +7,7 @@ import Introduction from './components/Introduction';
 
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
+import Principles from './components/Principles';
 
 export default function About() {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
@@ -29,6 +30,7 @@ export default function About() {
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pt-0'>
 					<Introduction />
+					<Principles />
 					<OurTeam
 						data={data}
 						states={{
