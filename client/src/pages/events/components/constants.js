@@ -1,12 +1,12 @@
-import { EVENTS_22_23 } from 'assets/index';
+import { EVENTS_22_23, EVENTS_23_24 } from 'assets/index';
 
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
-			image: EVENTS_22_23[13],
-			title: 'Independence Day Picnic',
-			date: 'Saturday, August 20 | 4.30PM',
-			loc: 'Nobel Park @ UBC',
+			image: EVENTS_23_24[0],
+			title: 'Summer Hiring',
+			date: 'Thursday, June 6 | 11.59PM',
+			loc: 'Online',
 		},
 	],
 	'2022/2023': [

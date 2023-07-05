@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useMediaQuery } from 'react-responsive';
 
-const years = ['2022/2023', '2023/2024'];
+const years = ['2023/2024', '2022/2023'];
 
 export default function DropdownMenu({ selectedYear, setSelectedYear }) {
 	const [isOpen, setIsOpen] = useState(false);

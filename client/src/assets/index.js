@@ -15,7 +15,7 @@ import EVENT_13 from './events-page/past-events/22_23/13.svg';
 import EVENT_14 from './events-page/past-events/22_23/14.svg';
 import EVENT_15 from './events-page/past-events/23_24/1.svg';
 
-export const EVENTS_23_24 = EVENT_15;
+export const EVENTS_23_24 = [EVENT_15];
 
 export const EVENTS_22_23 = [
 	EVENT_1,
