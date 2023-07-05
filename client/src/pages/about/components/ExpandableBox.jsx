@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Typography } from '@mui/material';
 
-function ExpandableBox({ title, description }) {
-	const [expanded, setExpanded] = useState(false);
+function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
+	const expanded = expandedBox === title;
 
 	const handleClick = () => {
-		setExpanded(!expanded);
+		setExpandedBox((prev) => (prev === title ? null : title));
 	};
 
 	return (
