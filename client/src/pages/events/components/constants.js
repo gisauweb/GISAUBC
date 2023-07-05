@@ -30,7 +30,7 @@ const PAST_EVENTS = {
 		},
 		{
 			image: EVENTS_22_23[3],
-			title: 'GISAU’s Study Cafe',
+			title: '2023 GISAU’s Study Cafe',
 			date: 'Wednesday, March 15 | 12-6PM',
 			loc: 'Abdul Ladha Room 103/104',
 		},
@@ -51,6 +51,12 @@ const PAST_EVENTS = {
 			title: 'Welcome Back Picnic',
 			date: 'Monday, January 30 | 1-3PM',
 			loc: 'Lev Bukhman Theatre Lounge @ UBC AMS Nest',
+		},
+		{
+			image: EVENTS_22_23[7],
+			title: '2022 GISAU’s Study Cafe',
+			date: 'Tuesday, December 6 | 1-7PM',
+			loc: 'Abdul Ladha Room 103/104',
 		},
 		{
 			image: EVENTS_22_23[8],
