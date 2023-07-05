@@ -17,7 +17,7 @@ export default function TeamButtons({ selectedButton, setSelectedButton }) {
 					handleClickButton={() => {
 						handleClickButton(buttonName);
 					}}
-					className='mr-4 mb-4 sm:mr-6 sm:mb-6 lg:mr-0 lg:mb-6'
+					className='mr-4 mb-4 sm:mr-6 sm:mb-6 2xl:mr-0 2xl:mb-0'
 				/>
 			))}
 		</Box>
