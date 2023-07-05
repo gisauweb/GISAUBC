@@ -6,7 +6,8 @@ import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
 
 function EventContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2022/2023');
+	const [selectedYear, setSelectedYear] = useState('2023/2024');
+	const eventData = upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear];
 	const features = {
 		event: true,
 		upcomingEvent: upcoming,
@@ -18,11 +19,7 @@ function EventContent({ upcoming }) {
 				<Typography variant='h2' text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`} className='pt-0.5' />
 				{!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
 			</Box>
-			<GridContainer
-				data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]}
-				features={features}
-				className='sm:my-28'
-			/>
+			<GridContainer data={eventData} features={features} className='sm:my-28' />
 		</Box>
 	);
 }
