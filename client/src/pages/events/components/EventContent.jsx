@@ -7,7 +7,8 @@ import PAST_EVENTS from './constants';
 import EventGridContent from './EventGridContent';
 
 function EventContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2022/2023');
+	const [selectedYear, setSelectedYear] = useState('2023/2024');
+	const eventData = upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear];
 
 	return (
 		<Box className='my-20'>
@@ -22,10 +23,7 @@ function EventContent({ upcoming }) {
 				)}
 			</Box>
 			<GridContainer className='sm:my-28'>
-				<EventGridContent
-					upcomingEvent={upcoming}
-					data={upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear]}
-				/>
+				<EventGridContent upcomingEvent={upcoming} data={eventData} />
 			</GridContainer>
 		</Box>
 	);

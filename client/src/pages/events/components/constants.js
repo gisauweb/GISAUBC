@@ -1,6 +1,14 @@
-import { EVENTS_22_23 } from 'assets/events-page/past-events/index';
+import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index';
 
 const PAST_EVENTS = {
+	'2023/2024': [
+		{
+			image: EVENTS_23_24[0],
+			title: 'Summer Hiring',
+			date: 'Thursday, June 6 | 11:59PM',
+			loc: 'Online',
+		},
+	],
 	'2022/2023': [
 		{
 			image: EVENTS_22_23[0],
@@ -22,7 +30,7 @@ const PAST_EVENTS = {
 		},
 		{
 			image: EVENTS_22_23[3],
-			title: 'GISAU’s Study Cafe',
+			title: '2023 GISAU’s Study Cafe',
 			date: 'Wednesday, March 15 | 12-6PM',
 			loc: 'Abdul Ladha Room 103/104',
 		},
@@ -35,7 +43,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_22_23[5],
 			title: 'Indomie-t Me at the Finish Line',
-			date: 'Friday, February 17 | 6.30-8.30PM',
+			date: 'Friday, February 17 | 6:30-8:30PM',
 			loc: 'AMS Nest Lower Atrium',
 		},
 		{
@@ -46,26 +54,26 @@ const PAST_EVENTS = {
 		},
 		{
 			image: EVENTS_22_23[7],
-			title: 'GISAU’s Study Cafe',
+			title: '2022 GISAU’s Study Cafe',
 			date: 'Tuesday, December 6 | 1-7PM',
 			loc: 'Abdul Ladha Room 103/104',
 		},
 		{
 			image: EVENTS_22_23[8],
 			title: 'Taste of SEA',
-			date: 'Monday, November 14 | 6.30-9PM',
+			date: 'Monday, November 14 | 6:30-9PM',
 			loc: 'Great Hall South, AMS Nest',
 		},
 		{
 			image: EVENTS_22_23[9],
 			title: 'Rumah Hantu',
-			date: 'Friday, November 4 | 1-8.30PM',
+			date: 'Friday, November 4 | 1-8:30PM',
 			loc: 'AMS Nest Room 2314',
 		},
 		{
 			image: EVENTS_22_23[10],
 			title: 'Liwetan',
-			date: 'Saturday, October 15 | 5-7.30PM',
+			date: 'Saturday, October 15 | 5-7:30PM',
 			loc: 'Consulate General of Indonesia',
 		},
 		{
@@ -83,7 +91,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_22_23[13],
 			title: 'Independence Day Picnic',
-			date: 'Saturday, August 20 | 4.30PM',
+			date: 'Saturday, August 20 | 4:30PM',
 			loc: 'Nobel Park @ UBC',
 		},
 	],

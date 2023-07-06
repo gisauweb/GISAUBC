@@ -1,32 +1,37 @@
 /* eslint-disable import/prefer-default-export */
-import EVENT_1 from './22_23/1.svg';
-import EVENT_2 from './22_23/2.svg';
-import EVENT_3 from './22_23/3.svg';
-import EVENT_4 from './22_23/4.svg';
-import EVENT_5 from './22_23/5.svg';
-import EVENT_6 from './22_23/6.svg';
-import EVENT_7 from './22_23/7.svg';
-import EVENT_8 from './22_23/8.svg';
-import EVENT_9 from './22_23/9.svg';
-import EVENT_10 from './22_23/10.svg';
-import EVENT_11 from './22_23/11.svg';
-import EVENT_12 from './22_23/12.svg';
-import EVENT_13 from './22_23/13.svg';
-import EVENT_14 from './22_23/14.svg';
+import EVENT_22_23_1 from './22_23/1.svg';
+import EVENT_22_23_2 from './22_23/2.svg';
+import EVENT_22_23_3 from './22_23/3.svg';
+import EVENT_22_23_4 from './22_23/4.svg';
+import EVENT_22_23_5 from './22_23/5.svg';
+import EVENT_22_23_6 from './22_23/6.svg';
+import EVENT_22_23_7 from './22_23/7.svg';
+import EVENT_22_23_8 from './22_23/8.svg';
+import EVENT_22_23_9 from './22_23/9.svg';
+import EVENT_22_23_10 from './22_23/10.svg';
+import EVENT_22_23_11 from './22_23/11.svg';
+import EVENT_22_23_12 from './22_23/12.svg';
+import EVENT_22_23_13 from './22_23/13.svg';
+import EVENT_22_23_14 from './22_23/14.svg';
+import EVENT_23_24_1 from './23_24/1.svg';
 
-export const EVENTS_22_23 = [
-	EVENT_1,
-	EVENT_2,
-	EVENT_3,
-	EVENT_4,
-	EVENT_5,
-	EVENT_6,
-	EVENT_7,
-	EVENT_8,
-	EVENT_9,
-	EVENT_10,
-	EVENT_11,
-	EVENT_12,
-	EVENT_13,
-	EVENT_14,
+const EVENTS_23_24 = [EVENT_23_24_1];
+
+const EVENTS_22_23 = [
+	EVENT_22_23_1,
+	EVENT_22_23_2,
+	EVENT_22_23_3,
+	EVENT_22_23_4,
+	EVENT_22_23_5,
+	EVENT_22_23_6,
+	EVENT_22_23_7,
+	EVENT_22_23_8,
+	EVENT_22_23_9,
+	EVENT_22_23_10,
+	EVENT_22_23_11,
+	EVENT_22_23_12,
+	EVENT_22_23_13,
+	EVENT_22_23_14,
 ];
+
+export { EVENTS_23_24, EVENTS_22_23 };
