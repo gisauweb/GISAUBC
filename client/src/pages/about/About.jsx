@@ -4,10 +4,9 @@ import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import aboutLandingImage from 'assets/landing/about.jpeg';
 import Introduction from './components/Introduction';
-
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
-import Principles from './components/Principles';
+import Highlights from './components/Highlights';
 
 export default function About() {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
@@ -28,9 +27,9 @@ export default function About() {
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
-				<Box className='w-[85%] mx-auto pt-0'>
+				<Box className='w-[85%] mx-auto'>
 					<Introduction />
-					<Principles />
+					<Highlights />
 					<OurTeam
 						data={data}
 						states={{

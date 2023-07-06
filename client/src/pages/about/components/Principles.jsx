@@ -8,19 +8,19 @@ export default function Principles() {
 
 	return (
 		<Box
-			className='flex my-20'
+			className='flex my-12'
 			sx={{
 				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 				padding: '2rem',
 				backgroundColor: '#FEF8EF',
 				borderRadius: '12px',
 				boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
-				height: '30rem',
+				height: '25rem',
 			}}
 		>
 			<Box className='w-1/2 flex flex-col justify-center items-center'>
-				<span className='text-8xl text-primary'>Our</span>
-				<span className='text-8xl text-primary'>Values</span>
+				<span className='text-7xl text-primary'>Our</span>
+				<span className='text-7xl text-primary'>Values</span>
 			</Box>
 			<Box className='flex flex-col w-1/2 justify-center space-y-4'>
 				{VISION_MISSION.map((item) => (

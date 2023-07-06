@@ -13,7 +13,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 			sx={{
 				display: 'flex',
 				alignItems: 'center',
-				height: expanded ? '12rem' : '7rem',
+				height: expanded ? '10rem' : '5rem',
 				borderBottom: '1px solid #e2e8f0',
 				borderRadius: '6px',
 				transition: 'box-shadow 0.3s ease-in-out',
