@@ -2,6 +2,26 @@ import EXECS_22_23 from 'assets/about/executives';
 
 const BUTTONS = ['All', 'Core', 'Events', 'External', 'F&B', 'Marketing'];
 
+const VISION_MISSION = [
+	{
+		vision: 'Diverse and Inclusive Community',
+		mission: `We aim to create an Indonesian club at UBC that embraces diversity, respects individual identities,
+			and celebrates Indonesian culture, fostering a sense of belonging for all members.`,
+	},
+	{
+		vision: 'Fun and Engaging Activities',
+		mission: `We aim to organize a variety of recreational and cultural events, 
+		social gatherings, and outings that cater to diverse interests, 
+		ensuring members have enjoyable experiences and create lasting memories.`,
+	},
+	{
+		vision: "Members' Career Development",
+		mission: `We aim to provide resources, workshops, and networking opportunities to 
+			support our members in their academic and professional growth, equipping 
+			them with skills, connections, and guidance for successful career paths.`,
+	},
+];
+
 const EXECUTIVES = {
 	'2022/2023': {
 		Core: [
@@ -199,4 +219,4 @@ const EXECUTIVES = {
 	},
 };
 
-export { BUTTONS, EXECUTIVES };
+export { BUTTONS, EXECUTIVES, VISION_MISSION };
