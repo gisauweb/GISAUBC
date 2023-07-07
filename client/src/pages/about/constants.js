@@ -23,6 +23,13 @@ const VISION_MISSION = [
 ];
 
 const EXECUTIVES = {
+	'2023/2024': {
+		Core: [],
+		Events: [],
+		External: [],
+		'F&B': [],
+		Marketing: [],
+	},
 	'2022/2023': {
 		Core: [
 			{

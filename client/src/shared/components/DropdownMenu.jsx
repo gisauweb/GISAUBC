@@ -40,7 +40,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	return (
 		<div
 			className={`w-40 sm:w-64 relative ${aboutPage ? '2xl:absolute' : 'sm:absolute'} ${rightSpacing}
-						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary`}
+						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary z-10`}
 			ref={dropdownRef}
 		>
 			<button
