@@ -16,8 +16,8 @@ export default function Principles() {
 			}}
 		>
 			<Box className='w-full sm:w-1/2 flex flex-col justify-center items-center mb-6 sm:mb-0'>
-				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary'>Our</span>
-				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary'>Values</span>
+				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary font-medium font-oswald'>Our</span>
+				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary font-medium font-oswald'>Values</span>
 			</Box>
 			<Box className='flex flex-col w-full sm:w-1/2 justify-center space-y-4'>
 				{VISION_MISSION.map((item) => (

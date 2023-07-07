@@ -40,10 +40,10 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 					pr: 0.5,
 				}}
 			/>
-			<Box className='flex flex-col p-4'>
+			<Box className='flex flex-col p-4 font-inter'>
 				<Typography
 					variant={isMobileView ? 'subtitle2' : isTabletView ? 'body1' : 'h6'}
-					sx={{ fontWeight: 'bold' }}
+					sx={{ fontWeight: 'bold', fontFamily: 'inherit' }}
 				>
 					{title}
 				</Typography>
