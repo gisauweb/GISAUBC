@@ -13,9 +13,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 
 	return (
 		<Box
-			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer bg-bgPrimary ${
-				expanded ? 'h-56 sm:h-[16.5rem] lg:h-56 2xl:h-40' : 'h-16'
-			}`}
+			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer bg-bgPrimary}`}
 			sx={{
 				borderBottom: '1px solid #e2e8f0',
 				transition: 'box-shadow 0.3s ease-in-out',
@@ -24,12 +22,17 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 					transform: 'translateY(-2px)',
 					boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.4)',
 				},
+				position: 'relative', // Add position relative to the parent container
+				minHeight: '1px', // Ensure the parent container has a non-zero height
 			}}
 			onClick={handleClick}
 		>
 			<Box
 				className='rounded-md'
 				sx={{
+					position: 'absolute', // Position the inner box absolutely
+					top: 0,
+					left: 0,
 					width: '1px',
 					height: '100%',
 					backgroundColor: expanded ? '#7D0202' : '#B31717',
@@ -37,10 +40,10 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 					pr: 0.5,
 				}}
 			/>
-			<Box className='flex flex-col px-2 sm:px-4'>
+			<Box className='flex flex-col p-4'>
 				<Typography
 					variant={isMobileView ? 'subtitle2' : isTabletView ? 'body1' : 'h6'}
-					sx={{ fontWeight: 'bold', mt: expanded ? 2 : 0 }}
+					sx={{ fontWeight: 'bold' }}
 				>
 					{title}
 				</Typography>
