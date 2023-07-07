@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 	const expanded = expandedBox === title;
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isTabletView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	const handleClick = () => {
 		setExpandedBox((prev) => (prev === title ? null : title));
@@ -12,7 +13,9 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 
 	return (
 		<Box
-			className={`flex items-center rounded-md cursor-pointer bg-bgPrimary ${expanded ? 'h-56 sm:h-40' : 'h-16'}`}
+			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer bg-bgPrimary ${
+				expanded ? 'h-56 sm:h-[16.5rem] xl:h-40' : 'h-16'
+			}`}
 			sx={{
 				borderBottom: '1px solid #e2e8f0',
 				transition: 'box-shadow 0.3s ease-in-out',
@@ -34,12 +37,18 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 					pr: 0.5,
 				}}
 			/>
-			<Box className='flex flex-col px-2 sm:pl-4 sm:pr-0'>
-				<Typography variant={isMobileView ? 'subtitle2' : 'h6'} sx={{ fontWeight: 'bold' }}>
+			<Box className='flex flex-col px-2 sm:px-4'>
+				<Typography
+					variant={isMobileView ? 'subtitle2' : isTabletView ? 'body1' : 'h6'}
+					sx={{ fontWeight: 'bold', mt: expanded ? 2 : 0 }}
+				>
 					{title}
 				</Typography>
 				{expanded && (
-					<Typography variant={isMobileView ? 'caption' : 'body1'} sx={{ mt: 1 }}>
+					<Typography
+						variant={isMobileView ? 'caption' : isTabletView ? 'subtitle2' : 'body1'}
+						sx={{ mt: 1 }}
+					>
 						{description}
 					</Typography>
 				)}

@@ -6,7 +6,7 @@ import Principles from './Principles';
 export default function Introduction() {
 	return (
 		<Box>
-			<Box className=''>
+			<Box className='pr-0 sm:pr-4'>
 				<Typography
 					variant='h1'
 					text='We are a student organization that promotes and
