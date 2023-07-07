@@ -14,7 +14,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 	return (
 		<Box
 			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer bg-bgPrimary ${
-				expanded ? 'h-56 sm:h-[16.5rem] xl:h-40' : 'h-16'
+				expanded ? 'h-56 sm:h-[16.5rem] lg:h-56 2xl:h-40' : 'h-16'
 			}`}
 			sx={{
 				borderBottom: '1px solid #e2e8f0',
