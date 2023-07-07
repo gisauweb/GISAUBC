@@ -9,14 +9,16 @@ export default function Highlights() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	return (
-		<Box className='my-16 sm:my-20'>
-			<Typography variant='h1' text='Highlights' />
+		<Box className=''>
+			<Box className=''>
+				<Typography variant='h1' text='Highlights' />
+			</Box>
 			<Marquee
 				gradient
 				gradientWidth={isMobileView ? 10 : 100}
 				pauseOnClick
 				speed={isMobileView ? 60 : 120}
-				className='mt-6 sm:mt-14'
+				className='mt-9 sm:mt-10'
 			>
 				<div className='flex items-center justify-around flex-wrap'>
 					{HIGHLIGHTS.map((image) => (

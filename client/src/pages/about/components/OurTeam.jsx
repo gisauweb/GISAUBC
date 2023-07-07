@@ -13,8 +13,8 @@ export default function OurTeam({ data, states }) {
 	} = states;
 
 	return (
-		<>
-			<Box className='w-full py-4 sm:py-6 3xl:py-10'>
+		<Box>
+			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10'>
 				<Typography variant='h1' text='Meet our team.' />
 			</Box>
 			<Box>
@@ -26,6 +26,6 @@ export default function OurTeam({ data, states }) {
 					<TeamGridContent data={data} selectedCard={selectedCard} setSelectedCard={setSelectedCard} />
 				</GridContainer>
 			</Box>
-		</>
+		</Box>
 	);
 }

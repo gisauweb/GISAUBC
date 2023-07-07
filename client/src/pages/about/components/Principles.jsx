@@ -8,10 +8,11 @@ export default function Principles() {
 
 	return (
 		<Box
-			className='flex flex-col items-center sm:flex-row sm:items-left my-12 p-8 bg-[#FEF8EF] rounded-xl'
+			className='flex flex-col items-center sm:flex-row sm:items-left
+				mt-10 p-8 bg-[#FEF8EF] rounded-xl min-h-[20rem]'
 			sx={{
 				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-				boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)',
+				boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
 			}}
 		>
 			<Box className='w-full sm:w-1/2 flex flex-col justify-center items-center mb-6 sm:mb-0'>

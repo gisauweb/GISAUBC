@@ -27,7 +27,7 @@ export default function About() {
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
-				<Box className='w-[85%] mx-auto'>
+				<Box className='w-[85%] mx-auto space-y-16'>
 					<Introduction />
 					<Highlights />
 					<OurTeam

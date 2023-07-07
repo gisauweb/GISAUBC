@@ -5,7 +5,7 @@ import Principles from './Principles';
 
 export default function Introduction() {
 	return (
-		<>
+		<Box>
 			<Box className=''>
 				<Typography
 					variant='h1'
@@ -14,6 +14,6 @@ export default function Introduction() {
 				/>
 			</Box>
 			<Principles />
-		</>
+		</Box>
 	);
 }

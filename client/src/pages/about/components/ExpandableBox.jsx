@@ -16,7 +16,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 			sx={{
 				borderBottom: '1px solid #e2e8f0',
 				transition: 'box-shadow 0.3s ease-in-out',
-				boxShadow: expanded ? '0px 3px 5px rgba(0, 0, 0, 0.4)' : '0px 1px 2px rgba(0, 0, 0, 0.1)',
+				boxShadow: expanded ? '0px 3px 5px rgba(0, 0, 0, 0.4)' : '0px 0px 8px rgba(0, 0, 0, 0.1)',
 				'&:hover': {
 					transform: 'translateY(-2px)',
 					boxShadow: '0px 5px 10px rgba(0, 0, 0, 0.4)',
@@ -34,7 +34,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 					pr: 0.5,
 				}}
 			/>
-			<Box className='flex flex-col pl-4'>
+			<Box className='flex flex-col px-2 sm:pl-4 sm:pr-0'>
 				<Typography variant={isMobileView ? 'subtitle2' : 'h6'} sx={{ fontWeight: 'bold' }}>
 					{title}
 				</Typography>
