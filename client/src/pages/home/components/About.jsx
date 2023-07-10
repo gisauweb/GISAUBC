@@ -37,7 +37,7 @@ function About() {
 			</a>
 			<Box className='w-3/4 sm:w-1/2 h-full'>
 				<p className={typographyStyle}>
-					<i className='pr-0.5'>Halo!</i>
+					<i className='pr-2'>Halo!</i>
 					{`We are a non-profit cultural organization centered in promoting
 					Indonesian hospitality around the UBC Vancouver campus.`}
 				</p>
