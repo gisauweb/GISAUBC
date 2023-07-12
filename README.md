@@ -1,9 +1,8 @@
-<img src="../GISAUBC/client/src/assets/gisau-logo/gisau_icon.svg" align="right" />
+<img src="../GISAUBC/client/src/assets/gisau-logo/gisau.png" align="right" />
 
 # GISAUBC
 
-> Gado-Gado Indonesian Student Association
-> of UBC
+> Gado-Gado Indonesian Student Association of UBC
 
 Description
 
