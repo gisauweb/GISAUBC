@@ -6,7 +6,7 @@
 
 Description
 
-(Demo gif)
+![Shallow Backup GIF Demo](client/src/assets/landing/demo_preview.gif)
 
 ## Key Features
 
@@ -14,7 +14,8 @@ Description
 
 Chrishadrian
 Julian
-J
+Jena
+Msamanthaf
 
 ## License
 
