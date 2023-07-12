@@ -1,4 +1,4 @@
-<img src="client/src/assets/gisau-logo/gisau.png" align="right" width="300" height="300"/>
+<img src="client/src/assets/gisau-logo/gisau.png" align="right" width="100" height="100"/>
 
 # GISAUBC
 
@@ -11,6 +11,10 @@ Description
 ## Key Features
 
 ## Contributors
+
+Chrishadrian
+Julian
+J
 
 ## License
 
