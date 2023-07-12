@@ -4,7 +4,11 @@
 
 > Gado-Gado Indonesian Student Association of UBC
 
-Public website deployed
+Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GISAU) exists to create an open, close-knitted and connected community which exemplifies the signature Indonesian warmth and welcomes the diversity of Indonesian students in UBC Vancouver campus.
+
+<br/> <br/>
+
+This is our official public website deployed under the domain: https://gisaubc.com/
 
 `A quick preview`
 <br/> <br/>
