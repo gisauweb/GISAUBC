@@ -4,8 +4,9 @@
 
 > Gado-Gado Indonesian Student Association of UBC
 
-Description
+Description of this web
 
+'A quick preview'
 ![Shallow Backup GIF Demo](client/src/assets/landing/demo_preview.gif)
 
 ## Key Features
