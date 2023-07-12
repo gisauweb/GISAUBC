@@ -7,10 +7,10 @@ import logger from 'libs/winston';
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const production = process.env.REACT_APP_PRODUCTION_STATE === 'TRUE';
+const production = process.env.NODE_ENV === 'prod';
 
 const firebaseProdConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_PROD_API_KEY,
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 	authDomain: 'gisaubc-prod.firebaseapp.com',
 	projectId: 'gisaubc-prod',
 	storageBucket: 'gisaubc-prod.appspot.com',
@@ -20,7 +20,7 @@ const firebaseProdConfig = {
 };
 
 const firebaseDevConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_DEV_API_KEY,
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 	authDomain: 'gisaubc-dev.firebaseapp.com',
 	projectId: 'gisaubc-dev',
 	storageBucket: 'gisaubc-dev.appspot.com',

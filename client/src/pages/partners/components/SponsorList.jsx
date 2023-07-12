@@ -19,23 +19,3 @@ function SponsorList() {
 }
 
 export default SponsorList;
-
-// {checked ?
-//     <>
-//         <Grow in={checked}
-//             style={{ transformOrigin: '0 0 0', width: "100%" }}
-//             {...(checked ? { timeout: 1500 } : {})}
-//         >
-//             {growSponsorList(PARTNERS.slice(4, 5))}
-//         </Grow>
-//         {/* Conditionally applies the timeout prop to change the entry speed. */}
-//         <Grow
-//             in={checked}
-//             style={{ transformOrigin: '0 0 0', width: "100%" }}
-//             {...(checked ? { timeout: 3000 } : {})}
-//         >
-//             {growSponsorList(PARTNERS.slice(5))}
-//         </Grow>
-//         <Button className='py-5' text="Show Less" handleClickButton={handleChange} transparentBg={true} />
-//     </> :
-//     <Button className='py-5' text="Show More" handleClickButton={handleChange} />}

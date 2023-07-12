@@ -1,0 +1,54 @@
+.image-button {
+	border: none;
+	background-color: transparent;
+	transition: transform 0.3s;
+	position: relative;
+	perspective: 1000px;
+}
+
+.image-button:hover {
+	transform: scale(1.1);
+}
+
+.flipped .card {
+	transform: rotateY(180deg);
+}
+
+.team-image {
+	width: 100%;
+	height: auto;
+	transition: filter 0.3s;
+	aspect-ratio: 3/4;
+	border-radius: 1rem;
+	object-fit: cover;
+	filter: brightness(90%)
+}
+
+.team-image:hover {
+	filter: brightness(60%);
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transition: transform 0.6s;
+}
+
+.front,
+.back {
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+
+.front {
+	transform: rotateY(0deg);
+}
+
+.back {
+	transform: rotateY(180deg);
+	position: absolute;
+	top: 0px;
+	height: 100%;
+}
