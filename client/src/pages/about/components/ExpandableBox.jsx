@@ -13,7 +13,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 
 	return (
 		<Box
-			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer bg-bgPrimary}`}
+			className={`flex ${expanded ? 'items-start' : 'items-center'} rounded-md cursor-pointer}`}
 			sx={{
 				borderBottom: '1px solid #e2e8f0',
 				transition: 'box-shadow 0.3s ease-in-out',
@@ -24,6 +24,7 @@ function ExpandableBox({ title, description, expandedBox, setExpandedBox }) {
 				},
 				position: 'relative', // Add position relative to the parent container
 				minHeight: '1px', // Ensure the parent container has a non-zero height
+				backgroundColor: '#FFFDF5',
 			}}
 			onClick={handleClick}
 		>
