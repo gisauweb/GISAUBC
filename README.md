@@ -6,7 +6,8 @@
 
 Description of this web
 
-'A quick preview'
+`A quick preview`
+<br/>
 ![Shallow Backup GIF Demo](client/src/assets/landing/demo_preview.gif)
 
 ## Key Features
