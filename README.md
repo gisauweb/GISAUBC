@@ -1,4 +1,4 @@
-<img src="../GISAUBC/client/src/assets/gisau-logo/gisau.png" align="right" />
+<img src="client/src/assets/gisau-logo/gisau.png" align="right" />
 
 # GISAUBC
 
