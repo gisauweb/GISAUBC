@@ -15,10 +15,12 @@ export default function EventGridContent({ data, upcomingEvent }) {
 	) : (
 		<>
 			{' '}
-			{data.slice(0, !upcomingEvent && isMobile ? dataLength / 3 : dataLength).map((item) => (
+			{data.slice(0, isMobile && dataLength >= 6 ? Math.ceil(dataLength / 3) : dataLength).map((item) => (
 				<EventGridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
 			))}
-			<PastEventGrow data={data} dataLength={dataLength} upcomingEvent={upcomingEvent} isMobile={isMobile} />
+			{dataLength >= 6 && (
+				<PastEventGrow data={data} dataLength={dataLength} upcomingEvent={upcomingEvent} isMobile={isMobile} />
+			)}
 		</>
 	);
 }

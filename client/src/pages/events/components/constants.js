@@ -95,8 +95,6 @@ const PAST_EVENTS = {
 			loc: 'Nobel Park @ UBC',
 		},
 	],
-	'2021/2022': [],
-	'2020/2021': [],
 };
 
 export default PAST_EVENTS;
