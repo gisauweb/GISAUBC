@@ -15,9 +15,12 @@ This is our official public website deployed under the domain: https://gisaubc.c
 
 ## Key Features
 
+Insert key features here
+
 ## Contributors
 
 <div align="center">
+
 `Teamwork makes the dream work!`
 <br/>
 
