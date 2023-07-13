@@ -20,9 +20,10 @@ This is our official public website deployed under the domain: https://gisaubc.c
 `Teamwork makes the dream work!`
 <br/>
 ![Contributors Profile](client/src/assets/ReadMe/contributors.png)
-[<kbd> <br> Test <br> </kbd>](https://github.com/msamanthaf)
-Julian
-Jena
+[<kbd> <br> Christopher Hadrian <br> </kbd>](https://github.com/chrishadrian)
+[<kbd> <br> Julian Widjaja <br> </kbd>](https://github.com/Julian-UBC)
+[<kbd> <br> Jena Arianto <br> </kbd>](https://github.com/jenaarianto)
+[<kbd> <br> Marie Samantha <br> </kbd>](https://github.com/msamanthaf)
 
 ## License
 
