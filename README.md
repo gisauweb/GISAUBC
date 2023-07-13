@@ -17,14 +17,19 @@ This is our official public website deployed under the domain: https://gisaubc.c
 
 ## Contributors
 
+<div align="center">
 `Teamwork makes the dream work!`
 <br/>
+
 ![Contributors Profile](client/src/assets/ReadMe/contributors.png)
+<br/>
+
 [<kbd> <br> Christopher Hadrian <br> </kbd>](https://github.com/chrishadrian)
 [<kbd> <br> Julian Widjaja <br> </kbd>](https://github.com/Julian-UBC)
 [<kbd> <br> Jena Arianto <br> </kbd>](https://github.com/jenaarianto)
 [<kbd> <br> Marie Samantha <br> </kbd>](https://github.com/msamanthaf)
 
+</div>
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
