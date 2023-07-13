@@ -1,4 +1,5 @@
-<img src="client/src/assets/gisau-logo/gisau.png" align="right" width="150" height="150"/>
+<img src="client/src/assets/gisau-logo/gisau.png" width="150" height="150"/>
+<br/>
 
 # GISAUBC
 
@@ -14,9 +15,13 @@ This is our official public website deployed under the domain: https://gisaubc.c
 <br/>
 ![GIF Demo](client/src/assets/ReadMe/demo_preview.gif)
 
-## Key Features
+## Reports and Requests
 
-Insert key features here :sparkles:
+**Bug Report:** If you come across an error message or encounter any issues on the website, please create a bug report.
+
+**Feature Request:** If you have any ideas or if there are specific functionalities that you believe would improve GISAU's website, making it more user-friendly and efficient, please submit a feature request.
+
+**Documentation Request:** If you are browsing the website and feel that certain information or instructions are missing or unclear, please submit a documentation request.
 
 ## Contributors
 
@@ -25,8 +30,10 @@ Insert key features here :sparkles:
 `Teamwork makes the dream work!`
 <br/>
 
-![Contributors Profile](client/src/assets/ReadMe/contributors.png)
-<br/>
+<a href="https://github.com/chrishadrian"><img src="https://avatars.githubusercontent.com/u/65900990?v=4" title="Christopher Hadrian" width="100" height="100"></a>
+<a href="https://github.com/Julian-UBC"><img src="https://avatars.githubusercontent.com/u/84741001?v=4" title="Julian Widjaja" width="100" height="100"></a>
+<a href="https://github.com/jenaarianto"><img src="https://avatars.githubusercontent.com/u/91300516?v=4" title="Jena Arianto" width="100" height="100"></a>
+<a href="https://github.com/msamanthaf"><img src="https://avatars.githubusercontent.com/u/104884933?v=4" title="Marie Samantha" width="100" height="100"></a>
 
 [<kbd> <br> :sunglasses: Christopher Hadrian <br> </kbd>](https://github.com/chrishadrian)
 [<kbd> <br> :computer: Julian Widjaja <br> </kbd>](https://github.com/Julian-UBC)
