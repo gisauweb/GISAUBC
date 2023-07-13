@@ -18,8 +18,9 @@ This is our official public website deployed under the domain: https://gisaubc.c
 ## Contributors
 
 `Teamwork makes the dream work!`
+<br/>
 ![Contributors Profile](client/src/assets/ReadMe/contributors.png)
-[<kbd> <br> Test <br> </kbd>][https://github.com/msamanthaf]
+[<kbd> <br> Test <br> </kbd>](https://github.com/msamanthaf)
 Julian
 Jena
 
