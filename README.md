@@ -13,7 +13,7 @@ This is our official public website deployed under the domain: https://gisaubc.c
 
 `Here's a quick preview of our page!`
 <br/>
-![GIF Demo](client/src/assets/ReadMe/demo_preview.gif){: width="100%"}
+![GIF Demo](client/src/assets/ReadMe/demo_preview.gif)
 
 </div>
 
