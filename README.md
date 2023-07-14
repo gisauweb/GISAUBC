@@ -48,4 +48,4 @@ This is our official public website deployed under the domain: https://gisaubc.c
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Copyright 2023 GISAU under the MIT License
+Copyright (c) 2023 GISAUBC under the MIT License
