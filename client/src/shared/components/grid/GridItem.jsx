@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import Button from 'shared/components/button/Button';
+import GridItemDescription from 'shared/components/grid/GridItemDescription';
 
-export default function EventGridItem({ item, upcomingEvent }) {
+export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
@@ -13,8 +14,7 @@ export default function EventGridItem({ item, upcomingEvent }) {
 				<img src={item.image} alt='item_image' className='rounded-2xl' />
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
-					<span>{item.date}</span>
-					<span>{item.loc}</span>
+					<GridItemDescription item={item} itemType={itemType} />
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex justify-center'>

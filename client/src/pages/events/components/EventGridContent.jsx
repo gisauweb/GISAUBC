@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import EventGridItem from './EventGridItem';
+import GridItem from '../../../shared/components/grid/GridItem';
 import PastEventGrow from './PastEventGrow';
 
 export default function EventGridContent({ data, upcomingEvent }) {
@@ -16,7 +16,7 @@ export default function EventGridContent({ data, upcomingEvent }) {
 		<>
 			{' '}
 			{data.slice(0, isMobile && dataLength >= 6 ? Math.ceil(dataLength / 3) : dataLength).map((item) => (
-				<EventGridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
+				<GridItem item={item} upcomingEvent={upcomingEvent} itemType='event' key={item.title} />
 			))}
 			{dataLength >= 6 && (
 				<PastEventGrow data={data} dataLength={dataLength} upcomingEvent={upcomingEvent} isMobile={isMobile} />

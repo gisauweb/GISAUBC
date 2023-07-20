@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
 import Button from 'shared/components/button/Button';
-import EventGridItem from './EventGridItem';
+import EventGridItem from '../../../shared/components/grid/GridItem';
 
 function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 	const [grow, setGrow] = useState(false);
