@@ -46,4 +46,4 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Copyright 2023 GISAU under the MIT License
+Copyright (c) 2023 GISAUBC under the MIT License
