@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from 'react-ga4';
 import Button from '../../components/button/Button';
 import './EventLayout.css';
 import EventContent from './EventContent';
@@ -10,6 +11,10 @@ export default function EventLayout(props) {
 	const navigate = useNavigate();
 
 	const handleClickButton = (link) => {
+		ReactGA.event({
+			category: 'Event',
+			action: 'Clicked register for UBUD',
+		});
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
 
