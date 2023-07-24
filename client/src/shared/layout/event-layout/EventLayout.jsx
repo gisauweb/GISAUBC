@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReactGA from 'react-ga4';
 import Button from '../../components/button/Button';
 import './EventLayout.css';
 import EventContent from './EventContent';
@@ -10,6 +11,10 @@ export default function EventLayout(props) {
 	const navigate = useNavigate();
 
 	const handleClickButton = (link) => {
+		ReactGA.event({
+			category: 'Event',
+			action: 'Clicked register for UBUD',
+		});
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
 
@@ -19,7 +24,7 @@ export default function EventLayout(props) {
 
 	return (
 		<div className={className} id={id}>
-			<div className='uppercase flex items-center justify-start'>
+			<div className='uppercase flex items-center justify-start h-10'>
 				<h1 className='title text-2xl sm:text-3xl xl:text-4xl'>{title}</h1>
 				<div className='events-icon'>{icon}</div>
 			</div>

@@ -12,13 +12,9 @@ export default function HomeLandingImage() {
 	const handleClickButton = () => {
 		ReactGA.event({
 			category: 'Hiring',
-			action: 'Clicked hiring package button',
+			action: 'Clicked register for UBUD',
 		});
-		window.open(
-			'https://drive.google.com/file/d/1pznE1l3oLW-n5KpCiyQ6UWNShFJgJ-fQ/view?usp=drive_link',
-			'_blank',
-			'noreferrer',
-		);
+		window.open('https://forms.gle/AXqcbDGtKBBiHCqX6', '_blank', 'noreferrer');
 	};
 
 	return (
@@ -36,7 +32,7 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex gap-x-4 justify-center'>
 				<div className='grid justify-center'>
-					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton} />
+					<Button text='Register for UBUD!' landingButton handleClickButton={handleClickButton} />
 				</div>
 			</div>
 		</LandingImage>
