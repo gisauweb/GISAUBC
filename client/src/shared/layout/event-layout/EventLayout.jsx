@@ -19,7 +19,7 @@ export default function EventLayout(props) {
 
 	return (
 		<div className={className} id={id}>
-			<div className='uppercase flex items-center justify-start'>
+			<div className='uppercase flex items-center justify-start h-10'>
 				<h1 className='title text-2xl sm:text-3xl xl:text-4xl'>{title}</h1>
 				<div className='events-icon'>{icon}</div>
 			</div>
