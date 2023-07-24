@@ -1,9 +1,14 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
 import Button from 'shared/components/button/Button';
+import { ReactGAImplementation } from 'react-ga4';
 
 export default function EventGridItem({ item, upcomingEvent }) {
 	const handleClickButton = (link) => {
+		ReactGAImplementation.event({
+			category: 'Event',
+			action: 'Clicked register for UBUD',
+		});
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
 

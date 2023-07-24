@@ -6,12 +6,7 @@ import { UPCOMINGEVENTS, RANTANGAN } from './constants';
 
 export default function Events() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-
-	let isRantanganShowed = true;
-
-	if (RANTANGAN.events.length === 0 && isMobileView) {
-		isRantanganShowed = false;
-	}
+	const isRantanganShowed = !(RANTANGAN.events.length === 0 && isMobileView);
 
 	return (
 		<div className={`${!isMobileView && 'flex'} justify-between flex-wrap pt-24`}>
