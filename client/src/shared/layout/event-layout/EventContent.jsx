@@ -4,7 +4,7 @@ import Button from 'shared/components/button/Button';
 function EventContent({ events, button1, handleClickButton, isMobileView }) {
 	return events.length === 0 ? (
 		<div>
-			<p className={`${isMobileView && 'text-center'}`}>Stay tuned :)</p>
+			<p className='text-center sm:text-left'>Stay tuned :)</p>
 		</div>
 	) : (
 		events.map((event) => (
