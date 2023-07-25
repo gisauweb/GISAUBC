@@ -7,7 +7,7 @@ import { Footer } from 'shared/components/index';
 export default function ContactUs() {
 	return (
 		<Box className='' sx={{ background: 'linear-gradient(#EDE6CB, #FFFDF5);' }}>
-			<div className='flex h-[25vh]' />
+			<div className='flex h-[18vh]' />
 			<Box className='flex flex-col items-center'>
 				<Typography variant='h1' color='primary' sx={{ fontWeight: 'bold' }}>
 					CONTACT US
