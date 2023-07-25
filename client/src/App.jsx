@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { Box } from '@mui/material';
 import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import pages from './shared/components/navigation-bar/constants';
@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
 	return (
-		<StyledEngineProvider injectFirst>
+		<Box className='bg-[#FFFDF5]'>
 			<ScrollToTop />
 			<Routes>
 				<Route path='/' element={<NavigationBar />}>
@@ -17,7 +17,7 @@ function App() {
 				</Route>
 				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
-		</StyledEngineProvider>
+		</Box>
 	);
 }
 
