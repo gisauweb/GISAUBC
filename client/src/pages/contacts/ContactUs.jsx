@@ -1,22 +1,21 @@
 import React from 'react';
-import { Box } from '@mui/material';
-import MainContainer from 'shared/layout/MainContainer';
-import { Typography, ScrollButton, Footer } from 'shared/components/index';
-// import eventLandingImage from 'assets/landing/event.jpg';
+import { Box, Typography } from '@mui/material';
+// import MainContainer from 'shared/layout/MainContainer';
+import { Footer } from 'shared/components/index';
+// import contactUs from 'assets/landing-image/contactus.png';
 
 export default function ContactUs() {
 	return (
-		<Box className='bg-[#FFFDF5]'>
-			{/* <LandingImage bgImage={eventLandingImage} text='Our Events' /> */}
-			<MainContainer>
-				<Box className='w-4/5'>
-					<Typography
-						variant='h1'
-						text='Connect with fellow Indonesians at our socials and large-scale events.'
-					/>
-				</Box>
-				<ScrollButton threshold={7 / 10} />
-			</MainContainer>
+		<Box className='' sx={{ background: 'linear-gradient(#EDE6CB, #FFFDF5);' }}>
+			<div className='flex h-[25vh]' />
+			<Box className='flex flex-col items-center'>
+				<Typography variant='h1' color='primary' sx={{ fontWeight: 'bold' }}>
+					CONTACT US
+				</Typography>
+				<Typography variant='h6' color='primary'>
+					Reach out to us — we don&apos;t bite!
+				</Typography>
+			</Box>
 			<Footer />
 		</Box>
 	);

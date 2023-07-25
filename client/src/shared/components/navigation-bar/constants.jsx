@@ -38,7 +38,7 @@ const pages = [
 	{
 		name: 'Contact Us',
 		path: 'contact-us',
-		hasLandingImage: true,
+		hasLandingImage: false,
 		element: <ContactUs />,
 	},
 ];
