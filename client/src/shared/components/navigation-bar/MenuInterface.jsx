@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { pages, tempPages } from './constants';
+import pages from './constants';
 import MenuLogo from './MenuLogo';
 
 function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
@@ -36,16 +36,6 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 									{page.name}
 								</p>
 							</Link>
-						))}
-						{tempPages.map((page) => (
-							<a key={page.name} href={page.path} onClick={closeHandler}>
-								<p
-									className='text-white hover:underline underline-offset-8 decoration-2
-												font-oswald text-3xl leading-[250%] uppercase'
-								>
-									{page.name}
-								</p>
-							</a>
 						))}
 					</div>
 				</div>

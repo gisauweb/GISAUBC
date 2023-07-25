@@ -3,6 +3,7 @@ import Events from 'pages/events/Events';
 import Partners from 'pages/partners/Partners';
 import UpcomingPage from 'shared/layout/upcoming-page/UpcomingPage';
 import About from 'pages/about/About';
+import ContactUs from 'pages/contacts/ContactUs';
 
 const pages = [
 	{
@@ -34,13 +35,12 @@ const pages = [
 		hasLandingImage: true,
 		element: <Partners />,
 	},
-];
-
-const tempPages = [
 	{
-		name: 'Contact',
-		path: '#contact',
+		name: 'Contact Us',
+		path: 'contact-us',
+		hasLandingImage: true,
+		element: <ContactUs />,
 	},
 ];
 
-export { pages, tempPages };
+export default pages;

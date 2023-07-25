@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ReactComponent as NavLogoWhite } from '../../../assets/gisau-logo/gisau_white.svg';
 import { ReactComponent as NavLogoBlack } from '../../../assets/gisau-logo/gisau_icon.svg';
-import { pages, tempPages } from './constants';
+import pages from './constants';
 import MenuInterface from './MenuInterface';
 
 export default function NavigationBar() {
@@ -68,16 +68,6 @@ export default function NavigationBar() {
 									{page.name}
 								</p>
 							</Link>
-						))}
-						{tempPages.map((page) => (
-							<a key={page.name} href={page.path} className='px-5 pt-3'>
-								<p
-									className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-black'}`}
-								>
-									{page.name}
-								</p>
-							</a>
 						))}
 					</Box>
 				)}
