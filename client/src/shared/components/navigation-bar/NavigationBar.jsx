@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { ReactComponent as NavLogoWhite } from '../../../assets/gisau-logo/gisau_white.svg';
-import { ReactComponent as NavLogoBlack } from '../../../assets/gisau-logo/gisau_icon.svg';
+import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg';
+import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
 import pages from './constants';
 import MenuInterface from './MenuInterface';
 
@@ -42,9 +42,9 @@ export default function NavigationBar() {
 				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
 					<Link to='/'>
 						{hasLandingImage ? (
-							<NavLogoWhite className='w-14 sm:w-16 h-auto' />
+							<NavLogoBig className='w-14 sm:w-16 h-auto' />
 						) : (
-							<NavLogoBlack className='w-14 sm:w-16 h-auto' />
+							<NavLogoSmall className='w-14 sm:w-16 h-auto' />
 						)}
 					</Link>
 				</Box>
@@ -63,7 +63,7 @@ export default function NavigationBar() {
 							<Link key={page.name} to={page.path} className='px-5 pt-3'>
 								<p
 									className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-black'}`}
+									${hasLandingImage ? 'text-white' : 'text-primary'}`}
 								>
 									{page.name}
 								</p>
