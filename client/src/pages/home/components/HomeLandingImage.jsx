@@ -35,12 +35,9 @@ export default function HomeLandingImage() {
 				of UBC
 			</h1>
 			<div className='flex gap-x-4 justify-center'>
-				<Button
-					className='grid justify-center'
-					text='Become an executive!'
-					landingButton
-					handleClickButton={handleClickButton}
-				/>
+				<div className='grid justify-center'>
+					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton} />
+				</div>
 			</div>
 		</LandingImage>
 	);

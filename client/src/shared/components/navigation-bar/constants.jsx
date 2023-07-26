@@ -2,6 +2,7 @@ import Home from 'pages/home/Home';
 import Events from 'pages/events/Events';
 import Partners from 'pages/partners/Partners';
 import UpcomingPage from 'shared/layout/upcoming-page/UpcomingPage';
+import About from 'pages/about/About';
 
 const pages = [
 	{
@@ -13,7 +14,8 @@ const pages = [
 	{
 		name: 'About',
 		path: 'about',
-		element: <UpcomingPage />,
+		hasLandingImage: true,
+		element: <About />,
 	},
 	{
 		name: 'Events',

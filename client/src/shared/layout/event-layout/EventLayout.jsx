@@ -32,7 +32,7 @@ export default function EventLayout(props) {
 				/>
 			</div>
 			<div className={`grid justify-center lg:w-[95%] ${events.length === 0 ? 'mt-12' : 'mt-4'} `}>
-				<Button text={button2.name} transparentBg handleClickButton={handleClickButton2} />
+				<Button text={button2.name} background='transparentBg' handleClickButton={handleClickButton2} />
 			</div>
 		</div>
 	);
