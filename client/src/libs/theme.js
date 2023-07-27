@@ -10,6 +10,14 @@ const theme = createTheme({
 			fontFamily: 'Montserrat, sans-serif',
 			fontWeight: '500',
 		},
+		h5: {
+			fontFamily: 'Montserrat, sans-serif',
+			fontWeight: '500',
+			fontSize: '1.9rem',
+		},
+		body1: {
+			fontFamily: 'Montserrat, sans-serif',
+		},
 		button: {
 			fontStyle: 'italic',
 		},
