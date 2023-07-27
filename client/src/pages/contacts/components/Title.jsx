@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Title() {
 	return (
-		<>
+		<Box className='relative z-10'>
 			<div className='flex h-[18vh]' />
 			<Box className='flex flex-col items-center'>
 				<Typography variant='h1' color='primary' sx={{ fontWeight: 'bold' }}>
@@ -13,6 +13,6 @@ export default function Title() {
 					Reach out to us — we don&apos;t bite!
 				</Typography>
 			</Box>
-		</>
+		</Box>
 	);
 }

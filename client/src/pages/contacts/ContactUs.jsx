@@ -14,7 +14,11 @@ export default function ContactUs() {
 				<PlugBox />
 				<Location />
 			</Box>
-			<img src={hands} alt='hands-background-aesthetic' className='absolute top-[18%] right-0 z-0 w-[47%]' />
+			<img
+				src={hands}
+				alt='hands-background-aesthetic'
+				className='absolute sm:top-[26%] lg:top-[18%] right-0 z-0 w-[47%]'
+			/>
 			<Footer />
 		</Box>
 	);
