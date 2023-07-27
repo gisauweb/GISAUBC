@@ -4,16 +4,18 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import theme from 'libs/theme';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider, responsiveFontSizes } from '@mui/material';
 import App from './App';
 
 ReactGA.initialize(process.env.REACT_APP_GID);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const responsiveTheme = responsiveFontSizes(theme);
+
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={responsiveTheme}>
 				<App />
 			</ThemeProvider>
 		</BrowserRouter>

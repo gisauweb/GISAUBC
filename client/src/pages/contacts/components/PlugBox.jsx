@@ -17,12 +17,12 @@ export default function PlugBox() {
 				>
 					<Box className='p-8'>
 						<img src={plug.icon} alt='social-media-icon' />
-						<Box className='flex flex-col space-y-3 mt-14'>
+						<Box className='flex flex-col space-y-3 mt-10 lg:mt-14'>
 							<Typography variant='h5' color='primary'>
 								{plug.name}
 							</Typography>
-							<Typography variant='body1'>{plug.description}</Typography>
-							<Typography variant='body1' sx={{ textDecoration: 'underline', fontWeight: 'bold' }}>
+							<Typography variant='body2'>{plug.description}</Typography>
+							<Typography variant='body2' sx={{ textDecoration: 'underline', fontWeight: 'bold' }}>
 								{plug.handle}
 							</Typography>
 						</Box>
