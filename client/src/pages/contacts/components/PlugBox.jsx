@@ -17,6 +17,7 @@ export default function PlugBox() {
 					onClick={() => {
 						handlePlugClick(plug.link);
 					}}
+					key={plug.name}
 				>
 					<Box className='p-6 lg:p-8'>
 						<img src={plug.icon} alt='social-media-icon' />
