@@ -24,7 +24,7 @@ export default function Location() {
 								sm: 2,
 								md: 4,
 							},
-							mt: { xs: 5 },
+							mt: { xs: 5, sm: 0 },
 						}}
 					>
 						GISAU HQ Location
