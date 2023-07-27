@@ -8,36 +8,36 @@ import ContactUs from 'pages/contacts/ContactUs';
 const pages = [
 	{
 		name: 'Home',
-		path: '',
+		path: '/',
 		hasLandingImage: true,
 		element: <Home />,
 	},
 	{
 		name: 'About',
-		path: 'about',
+		path: '/about',
 		hasLandingImage: true,
 		element: <About />,
 	},
 	{
 		name: 'Events',
-		path: 'events',
+		path: '/events',
 		hasLandingImage: true,
 		element: <Events />,
 	},
 	{
 		name: 'Rantangan',
-		path: 'rantangan',
+		path: '/rantangan',
 		element: <UpcomingPage />,
 	},
 	{
 		name: 'Partners',
-		path: 'partners',
+		path: '/partners',
 		hasLandingImage: true,
 		element: <Partners />,
 	},
 	{
 		name: 'Contact Us',
-		path: 'contact-us',
+		path: '/contact-us',
 		hasLandingImage: false,
 		element: <ContactUs />,
 	},

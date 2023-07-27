@@ -10,7 +10,7 @@ import MenuInterface from './MenuInterface';
 export default function NavigationBar() {
 	const location = useLocation();
 	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
-	const hasLandingImage = filteredPaths.includes(location.pathname.slice(1));
+	const hasLandingImage = filteredPaths.includes(location.pathname);
 
 	const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -38,7 +38,7 @@ export default function NavigationBar() {
 
 	return (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-10 w-full mt-[5vh] absolute'>
+			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
 				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
 					<Link to='/'>
 						{hasLandingImage ? (
@@ -63,7 +63,8 @@ export default function NavigationBar() {
 							<Link key={page.name} to={page.path} className='px-5 pt-3'>
 								<p
 									className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-primary'}`}
+									${hasLandingImage ? 'text-white' : 'text-primary'}
+									${page.path === location.pathname && 'underline'}`}
 								>
 									{page.name}
 								</p>
