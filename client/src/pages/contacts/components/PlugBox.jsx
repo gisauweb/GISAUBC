@@ -8,7 +8,7 @@ export default function PlugBox() {
 	};
 	return (
 		<Box
-			className='flex flex-col sm:flex-row justify-between
+			className='relative flex flex-col sm:flex-row justify-between z-10
 						space-y-10 sm:space-y-0 sm:space-x-10 lg:space-x-16 my-10'
 		>
 			{PLUGS.map((plug) => (
