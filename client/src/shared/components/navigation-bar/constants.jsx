@@ -1,7 +1,7 @@
 import Home from 'pages/home/Home';
 import Events from 'pages/events/Events';
 import Partners from 'pages/partners/Partners';
-import UpcomingPage from 'shared/layout/upcoming-page/UpcomingPage';
+import Rantangan from 'pages/rantangan/Rantangan';
 import About from 'pages/about/About';
 
 const pages = [
@@ -26,7 +26,7 @@ const pages = [
 	{
 		name: 'Rantangan',
 		path: 'rantangan',
-		element: <UpcomingPage />,
+		element: <Rantangan />,
 	},
 	{
 		name: 'Partners',
