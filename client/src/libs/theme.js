@@ -6,8 +6,9 @@ const theme = createTheme({
 		h1: {
 			fontFamily: 'Oswald, sans-serif',
 		},
-		body1: {
-			fontWeight: 500,
+		h4: {
+			fontFamily: 'Montserrat, sans-serif',
+			fontWeight: '500',
 		},
 		button: {
 			fontStyle: 'italic',
