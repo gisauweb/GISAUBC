@@ -17,7 +17,8 @@ export default function ContactUs() {
 			<img
 				src={hands}
 				alt='hands-background-aesthetic'
-				className='absolute top-2/3 w-full sm:w-[47%] md:top-[26%] lg:top-[24%] xl:top-[18%] right-0 z-0'
+				className='absolute top-2/3 w-full sm:w-[47%] right-0 z-0
+				md:top-[26%] lg:top-[24%] xl:top-[21.5%] 2xl:top-[18%]'
 			/>
 			<Footer />
 		</Box>
