@@ -7,10 +7,13 @@ export default function PlugBox() {
 		window.open(link, '_blank', 'noreferrer');
 	};
 	return (
-		<Box className='flex justify-between space-x-10 lg:space-x-16 my-10'>
+		<Box
+			className='flex flex-col sm:flex-row justify-between
+						space-y-10 sm:space-y-0 sm:space-x-10 lg:space-x-16 my-10'
+		>
 			{PLUGS.map((plug) => (
 				<Box
-					className='bg-bgPrimary w-1/2 border-2 border-[#F2F0E3] rounded-2xl hover:cursor-pointer'
+					className='bg-bgPrimary w-full sm:w-1/2 border-2 border-[#F2F0E3] rounded-2xl hover:cursor-pointer'
 					onClick={() => {
 						handlePlugClick(plug.link);
 					}}

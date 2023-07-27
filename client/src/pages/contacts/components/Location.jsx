@@ -13,9 +13,9 @@ export default function Location() {
 			className='bg-bgPrimary border-2 border-[#F2F0E3] rounded-2xl hover:cursor-pointer'
 			onClick={handleLocationClick}
 		>
-			<Box className='p-6 lg:p-8 flex justify-between items-center'>
-				<Box className='flex items-center'>
-					<img src={house} alt='house-icon' className='w-10 sm:w-14 lg:w-fit' />
+			<Box className='p-6 lg:p-8 flex flex-col sm:flex-row justify-between sm:items-center'>
+				<Box className='flex flex-col sm:flex-row sm:items-center'>
+					<img src={house} alt='house-icon' className='w-fit sm:w-14 lg:w-fit' />
 					<Typography
 						variant='h5'
 						color='primary'
@@ -24,12 +24,13 @@ export default function Location() {
 								sm: 2,
 								md: 4,
 							},
+							mt: { xs: 5 },
 						}}
 					>
 						GISAU HQ Location
 					</Typography>
 				</Box>
-				<Box className='flex items-center'>
+				<Box className='flex sm:items-center mt-2 sm:mt-0'>
 					<Typography variant='body1' color='#434343'>
 						Visit Our HQ
 					</Typography>
