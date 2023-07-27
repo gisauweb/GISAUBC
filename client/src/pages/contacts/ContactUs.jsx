@@ -10,11 +10,11 @@ export default function ContactUs() {
 	return (
 		<Box className='' sx={{ background: 'linear-gradient(#EDE6CB, #FFFDF5);' }}>
 			<Title />
-			<Box className='w-4/5 mx-auto my-12 pb-12'>
+			<Box className='w-[70%] mx-auto my-12 pb-12'>
 				<PlugBox />
 				<Location />
 			</Box>
-			<img src={hands} alt='hands-background-aesthetic' className='absolute top-1/4 right-0 z-0' />
+			<img src={hands} alt='hands-background-aesthetic' className='absolute top-[18%] right-0 z-0 w-[47%]' />
 			<Footer />
 		</Box>
 	);
