@@ -10,15 +10,15 @@ export default function ContactUs() {
 	return (
 		<Box className='' sx={{ background: 'linear-gradient(#EDE6CB, #FFFDF5);' }}>
 			<Title />
-			<Box className='w-[70%] mx-auto my-12 pb-12'>
+			<Box className='w-3/4 md:w-[80%] xl:w-[72%] mx-auto my-12 pb-12'>
 				<PlugBox />
 				<Location />
 			</Box>
 			<img
 				src={hands}
 				alt='hands-background-aesthetic'
-				className='absolute top-2/3 w-full sm:w-[47%] 2xl:max-w-4xl right-0 z-0
-				md:top-[26%] lg:top-[24%] xl:top-[21.5%] 2xl:top-[18.5%]'
+				className='absolute w-full sm:w-[47%] 2xl:max-w-4xl right-0 z-0
+				top-2/3 md:top-[26%] lg:top-[24%] xl:top-[21.5%] 2xl:top-[18.5%]'
 			/>
 			<Footer />
 		</Box>
