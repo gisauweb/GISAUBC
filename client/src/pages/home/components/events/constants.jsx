@@ -24,9 +24,9 @@ export const RANTANGAN = {
 	title: 'Rantangan',
 	events: [
 		{
-			title: 'Rantangan 2023',
+			title: 'Rantangan Title',
 			desc: ['Description of rantangan. Ideally 2-4 sentences only. A maximum of 3 lines for content.'],
-			img: <img src={rantanganImage} alt='UBUD: UBC Udah Dekat' />,
+			img: <img src={rantanganImage} alt='Upcoming Rantangan' />,
 			link: 'forms.gle/AXqcbDGtKBBiHCqX6',
 		},
 	],

@@ -16,7 +16,7 @@ function EventContent({ upcoming }) {
 	return (
 		<Box className='my-20'>
 			<Box className={`flex w-full justify-between ${!upcoming && 'mb-36 sm:mb-0'}`}>
-				<Typography variant='h2' text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`} className='pt-0.5' />
+				<Typography variant='h2' text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`} className='pt-0.5' />
 				{!upcoming && <DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} />}
 			</Box>
 			<GridContainer data={eventData} features={features} className='sm:my-28' />
