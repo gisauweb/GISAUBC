@@ -1,6 +1,5 @@
 import rantangan from 'assets/home-page/events/rantangan.svg';
 import upcomingEvent from 'assets/home-page/events/upcoming_event.svg';
-import rantanganImage from 'assets/home-page/events/rantangan.png';
 
 /**
  * events field:
