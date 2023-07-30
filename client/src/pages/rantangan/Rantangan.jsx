@@ -11,20 +11,20 @@ export default function Rantangan() {
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={rantanganLandingImage} text='RANTANGAN' />
 			<MainContainer>
+				<img
+					src={bakmi}
+					alt='bakmi-icon'
+					className='absolute w-full sm:w-[30%] right-0 z-0
+				top-[250%] md:top-[250%] lg:top-[250%] xl:top-[250%] 2xl:top-[250%]'
+				/>
 				<Box className='w-4/5'>
 					<Typography
 						variant='h1'
-						text='Fuel your study sessions with some delicious Indonesian food prepared by our F&B team.'
+						text='Fuel your study sessions with delicious Indonesian foods prepared by our F&B team.'
 					/>
 				</Box>
 				<RantanganContent upcoming />
 				<RantanganContent upcoming={false} />
-				<img
-					src={bakmi}
-					alt='bakmi-icon'
-					className='absolute w-full sm:w-[30%] 2xl:max-w-4xl right-0 z-0
-				top-2/3 md:top-[250%] lg:top-[250%] xl:top-[250%] 2xl:top-[250%]'
-				/>
 				<ScrollButton threshold={7 / 10} />
 			</MainContainer>
 			<Footer />

@@ -4,7 +4,9 @@ const UPCOMING_RANTANGAN = [
 	{
 		image: rantangan,
 		title: 'Title of Rantangan',
-		description: 'upcoming',
+		description: 'Description',
+		location: 'Location',
+		price: '$3',
 	},
 ];
 
@@ -12,8 +14,8 @@ export default UPCOMING_RANTANGAN;
 
 // {
 //	image: rantangan,
-//	title: '',
-//	description: '',
-//  location:'',
-//  price: '',
+//	title: 'title',
+//	description: 'desc',
+//  location:'loc',
+//  price: '$10',
 // },

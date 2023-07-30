@@ -8,7 +8,18 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
 
-	return (
+	return itemType === 'rantangan' && upcomingEvent ? (
+		<Grid item xs={1} sm={1.5} md={2}>
+			<Box className='flex flex-row'>
+				<img src={item.image} alt='item_image' className='rounded-2xl' />
+				<Box className='flex flex-col ml-8 mt-3 space-y-4'>
+					<span className='font-semibold text-xl py-2 inline-block'>{item.title}</span>
+					<GridItemDescription item={item} itemType={itemType} upcomingEvent={upcomingEvent} />
+					<Button text='Order Now' handleClickButton={() => handleClickButton(item.link)} />
+				</Box>
+			</Box>
+		</Grid>
+	) : (
 		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
 				<img src={item.image} alt='item_image' className='rounded-2xl' />
