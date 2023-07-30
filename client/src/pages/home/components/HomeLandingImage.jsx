@@ -4,7 +4,7 @@ import LandingImage from 'shared/components/landing-image/LandingImage';
 import ReactGA from 'react-ga4';
 import Button from '../../../shared/components/button/Button';
 import gisauLogo from '../../../assets/gisau-logo/gisau.png';
-import homeLandingImg from '../../../assets/landing/home.jpg';
+import homeLandingImg from '../../../assets/landing-image/home.jpg';
 
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
