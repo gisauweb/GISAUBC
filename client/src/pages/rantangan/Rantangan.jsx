@@ -11,7 +11,10 @@ export default function Rantangan() {
 			<LandingImage bgImage={rantanganLandingImage} text='RANTANGAN' />
 			<MainContainer>
 				<Box className='w-4/5'>
-					<Typography variant='h1' text='Short Description of Rantangan. Maximum 2 sentences.' />
+					<Typography
+						variant='h1'
+						text='Fuel your study sessions with some delicious Indonesian food, prepared by our F&B team.'
+					/>
 				</Box>
 				<RantanganContent upcoming />
 				<RantanganContent upcoming={false} />

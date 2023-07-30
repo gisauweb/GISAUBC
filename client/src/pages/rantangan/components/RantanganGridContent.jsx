@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import GridItem from '../../../shared/components/grid/GridItem';
-import PastEventGrow from './PastEventGrow';
+import PastEventGrow from '../../../shared/components/grid/PastGridGrow';
 
 export default function RantanganGridContent({ data, upcomingEvent }) {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });

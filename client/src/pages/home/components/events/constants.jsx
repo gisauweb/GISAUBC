@@ -22,14 +22,7 @@ export const UPCOMINGEVENTS = {
 
 export const RANTANGAN = {
 	title: 'Rantangan',
-	events: [
-		{
-			title: 'Rantangan Title',
-			desc: ['Description of rantangan. Ideally 2-4 sentences only. A maximum of 3 lines for content.'],
-			img: <img src={rantanganImage} alt='Upcoming Rantangan' />,
-			link: 'forms.gle/AXqcbDGtKBBiHCqX6',
-		},
-	],
+	events: [],
 	icon: <img src={rantangan} alt='' className='ml-1/10' />,
 	button1: 'Pre-order',
 	button2: {
