@@ -8,17 +8,16 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
-	const isMobileView = useMediaQuery({ query: '(max-width: 600px)' });
-	const flexDirection = isMobileView ? 'flex-col' : 'flex-row';
+	const isMobileView = useMediaQuery({ query: '(max-width: 750px)' });
 
 	return itemType === 'rantangan' && upcomingEvent ? (
-		<Grid item xs={1.5} sm={2} md={2.5}>
-			<Box className={`flex ${flexDirection} mx-7 sm:mx-0`}>
+		<Grid item>
+			<Box className={`flex ${isMobileView ? 'flex-col' : 'flex-row'} mx-7 sm:mx-0`}>
 				<img src={item.image} alt='item_image' className='rounded-2xl' />
-				<Box className='flex flex-col ml-8 mt-3 space-y-4'>
-					<span className='font-semibold text-xl py-2 inline-block'>{item.title}</span>
+				<Box className={`flex flex-col ${isMobileView ? 'items-center' : 'ml-8 mt-5'} space-y-4`}>
+					<span className='font-semibold text-xl py-2'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} upcomingEvent={upcomingEvent} />
-					<Button text='Order Now' handleClickButton={() => handleClickButton(item.link)} />
+					<Button text='Pre-order' handleClickButton={() => handleClickButton(item.link)} />
 				</Box>
 			</Box>
 		</Grid>

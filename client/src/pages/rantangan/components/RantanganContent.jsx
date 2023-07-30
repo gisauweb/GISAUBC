@@ -6,13 +6,13 @@ import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 import PAST_RANTANGAN from './constants';
 import RantanganGridContent from './RantanganGridContent';
 
-function EventContent({ upcoming }) {
+function RantanganContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
 	const eventData = upcoming ? UPCOMING_RANTANGAN : PAST_RANTANGAN[selectedYear];
 
 	return (
-		<Box className='my-20'>
-			<Box className='flex flex-col w-full justify-between'>
+		<Box className='my-20 z-2'>
+			<Box className='flex flex-col w-full justify-between z-2'>
 				<Typography
 					variant='h2'
 					text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
@@ -29,4 +29,4 @@ function EventContent({ upcoming }) {
 	);
 }
 
-export default EventContent;
+export default RantanganContent;
