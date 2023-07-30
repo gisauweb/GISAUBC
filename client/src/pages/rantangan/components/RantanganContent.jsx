@@ -4,7 +4,7 @@ import GridContainer from 'shared/components/grid/GridContainer';
 import { Typography, DropdownMenu } from 'shared/components/index';
 import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 import PAST_RANTANGAN from './constants';
-import RantanganGridContent from './RantanganGridContent';
+import GridContent from '../../../shared/components/grid/GridContent';
 
 function RantanganContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2022/2023');
@@ -23,7 +23,7 @@ function RantanganContent({ upcoming }) {
 				)}
 			</Box>
 			<GridContainer className='sm:my-28'>
-				<RantanganGridContent upcomingEvent={upcoming} data={eventData} />
+				<GridContent upcomingEvent={upcoming} data={eventData} itemType='rantangan' />
 			</GridContainer>
 		</Box>
 	);
