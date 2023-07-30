@@ -11,7 +11,7 @@ export default function Rantangan() {
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={rantanganLandingImage} text='RANTANGAN' />
 			<MainContainer>
-				<img src={bakmi} alt='bakmi-icon' className='absolute w-[50%] sm:w-[30%] right-0 z-0 top-[250%]' />
+				<img src={bakmi} alt='bakmi-icon' className='absolute w-[50%] sm:w-[30%] right-0 z-[0] top-[250%]' />
 				<Box className='w-4/5'>
 					<Typography
 						variant='h1'
