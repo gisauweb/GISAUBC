@@ -8,14 +8,14 @@ export default function GridItemDescription({ item, itemType, upcomingEvent }) {
 				<span>{item.description}</span>
 				{upcomingEvent && (
 					<div className='flex flex-row space-x-4 z-5'>
-						<div style={{ backgroundColor: '#F3F1E7' }} className='rounded-lg p-4'>
-							<span className='inline-block'>
+						<div style={{ backgroundColor: '#F3F1E7', display: 'inline-block' }} className='rounded-lg p-4'>
+							<span>
 								Pick up:&nbsp;
 								<strong>{item.location}</strong>
 							</span>
 						</div>
-						<div style={{ backgroundColor: '#F3F1E7' }} className='rounded-lg p-4'>
-							<span className='inline-block'>
+						<div style={{ backgroundColor: '#F3F1E7', display: 'inline-block' }} className='rounded-lg p-4'>
+							<span>
 								Price:&nbsp;
 								<strong>{item.price}</strong>
 							</span>
