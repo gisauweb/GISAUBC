@@ -2,15 +2,18 @@ import React from 'react';
 import { Box, Grid } from '@mui/material';
 import Button from 'shared/components/button/Button';
 import GridItemDescription from 'shared/components/grid/GridItemDescription';
+import { useMediaQuery } from 'react-responsive';
 
 export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
 		window.open(`https://${link}`, '_blank', 'noreferrer');
 	};
+	const isMobileView = useMediaQuery({ query: '(max-width: 600px)' });
+	const flexDirection = isMobileView ? 'flex-col' : 'flex-row';
 
 	return itemType === 'rantangan' && upcomingEvent ? (
-		<Grid item xs={1} sm={1.5} md={2}>
-			<Box className='flex flex-row'>
+		<Grid item xs={1.5} sm={2} md={2.5}>
+			<Box className={`flex ${flexDirection} mx-7 sm:mx-0`}>
 				<img src={item.image} alt='item_image' className='rounded-2xl' />
 				<Box className='flex flex-col ml-8 mt-3 space-y-4'>
 					<span className='font-semibold text-xl py-2 inline-block'>{item.title}</span>

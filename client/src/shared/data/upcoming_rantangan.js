@@ -7,6 +7,7 @@ const UPCOMING_RANTANGAN = [
 		description: 'Description',
 		location: 'Location',
 		price: '$3',
+		link: 'https://gisaubc.com/',
 	},
 ];
 
@@ -18,4 +19,5 @@ export default UPCOMING_RANTANGAN;
 //	description: 'desc',
 //  location:'loc',
 //  price: '$10',
+//  link:'',
 // },
