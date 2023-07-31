@@ -9,7 +9,7 @@ export default function GridContent({ data, upcomingEvent, itemType }) {
 	const dataLength = data.length;
 
 	return dataLength === 0 ? (
-		<Grid item xs={1} sm={2} md={2}>
+		<Grid style={{ zIndex: 5 }} item xs={1} sm={2} md={2}>
 			<p>Stay tuned :)</p>
 		</Grid>
 	) : (

@@ -13,19 +13,24 @@ function RantanganContent({ upcoming }) {
 
 	return (
 		<Box className='my-20 relative'>
-			{!upcoming && (
-				<img
-					src={bakmi}
-					alt='bakmi-icon'
-					className='absolute w-[70%] sm:w-[40%] -right-[126px] z-[0] -top-60'
-				/>
-			)}
+			<Box className='absolute w-screen'>
+				{!upcoming && (
+					<img
+						src={bakmi}
+						alt='bakmi-icon'
+						style={{ right: '0' }}
+						className='absolute w-[70%] sm:w-[40%] z-[0] -top-60'
+					/>
+				)}
+			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography
-					variant='h2'
-					text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
-					className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
-				/>
+				<div style={{ zIndex: 5 }}>
+					<Typography
+						variant='h2'
+						text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
+						className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
+					/>
+				</div>
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
 				)}
