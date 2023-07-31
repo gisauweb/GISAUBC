@@ -40,7 +40,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 				setDisplay('2xl:absolute');
 				break;
 			case 'Rantangan':
-				setRightSpacing('lg:right-0');
+				setRightSpacing('right-0');
 				setDisplay('sm:absolute');
 				break;
 			default:
