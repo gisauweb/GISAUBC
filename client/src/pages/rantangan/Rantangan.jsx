@@ -2,8 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { Typography, ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import rantanganLandingImage from 'assets/landing/rantangan.jpg';
-import bakmi from 'assets/rantangan-page/bakmi.svg';
+import rantanganLandingImage from 'assets/landing-image/rantangan.jpg';
 import RantanganContent from './components/RantanganContent';
 
 export default function Rantangan() {
@@ -11,7 +10,6 @@ export default function Rantangan() {
 		<Box className='bg-[#FFFDF5]'>
 			<LandingImage bgImage={rantanganLandingImage} text='RANTANGAN' />
 			<MainContainer>
-				<img src={bakmi} alt='bakmi-icon' className='absolute w-[50%] sm:w-[30%] right-0 z-[0] top-[250%]' />
 				<Box className='w-4/5'>
 					<Typography
 						variant='h1'
