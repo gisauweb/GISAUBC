@@ -1,4 +1,14 @@
-const UPCOMING_EVENTS = [];
+import ubud from 'assets/home-page/events/ubud.jpeg';
+
+const UPCOMING_EVENTS = [
+	{
+		image: ubud,
+		title: 'UBUD: UBC Udah Dekat',
+		date: 'Friday, August 4 | 8-9:40 PM',
+		loc: 'Online on Zoom',
+		link: 'forms.gle/AXqcbDGtKBBiHCqX6',
+	},
+];
 
 export default UPCOMING_EVENTS;
 
