@@ -6,7 +6,7 @@ import Footer from 'shared/components/footer/Footer';
 
 export default function UpcomingPage() {
 	return (
-		<Box className='bg-[#FFFDF5]'>
+		<Box>
 			<div className='flex justify-center h-[37vh]' />
 			<MainContainer>
 				<Box className='flex w-full'>
