@@ -26,7 +26,7 @@ const pages = [
 	},
 	{
 		name: 'Rantangan',
-		path: 'rantangan',
+		path: '/rantangan',
 		hasLandingImage: true,
 		element: <Rantangan />,
 	},
