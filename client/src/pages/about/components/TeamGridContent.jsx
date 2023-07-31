@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import PastEventGrow from '../../../shared/components/grid/PastGridGrow';
+import PastEventGrow from 'shared/components/grid/PastGridGrow';
 import TeamGridItem from './TeamGridItem';
 
 export default function TeamGridContent({ data, selectedCard, setSelectedCard }) {

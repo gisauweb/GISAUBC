@@ -6,7 +6,7 @@ const years = ['2023/2024', '2022/2023'];
 
 export default function DropdownMenu({ selectedYear, setSelectedYear, source }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const [rightSpacing, setRightSpacing] = useState('sm:right-24 lg:right-48');
+	const [rightSpacing, setRightSpacing] = useState('');
 	const [display, setDisplay] = useState('');
 	const dropdownRef = useRef(null);
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });

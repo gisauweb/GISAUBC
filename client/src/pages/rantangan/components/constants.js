@@ -14,8 +14,6 @@ const PAST_RANTANGAN = {
 			description: 'Sunday, May 29 2022',
 		},
 	],
-	'2021/2022': [],
-	'2020/2021': [],
 };
 
 export default PAST_RANTANGAN;

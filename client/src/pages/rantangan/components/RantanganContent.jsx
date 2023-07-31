@@ -17,7 +17,7 @@ function RantanganContent({ upcoming }) {
 				<img
 					src={bakmi}
 					alt='bakmi-icon'
-					className='absolute w-[70%] sm:w-[30%] -right-[126px] z-[0] -top-20'
+					className='absolute w-[70%] sm:w-[40%] -right-[126px] z-[0] -top-60'
 				/>
 			)}
 			<Box className='flex flex-col w-full justify-between'>
