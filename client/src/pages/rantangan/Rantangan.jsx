@@ -12,6 +12,7 @@ export default function Rantangan() {
 			<MainContainer>
 				<Box className='w-4/5'>
 					<Typography
+						className='z-10'
 						variant='h1'
 						text='Fuel your study sessions with some delicious Indonesian food prepared by our F&B team.'
 					/>
