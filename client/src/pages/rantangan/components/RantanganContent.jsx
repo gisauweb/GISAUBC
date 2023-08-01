@@ -17,13 +17,11 @@ function RantanganContent({ upcoming }) {
 				{!upcoming && <img src={bakmi} alt='bakmi-icon' className='absolute w-[30%] right-10 z-[0] -top-80' />}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<div style={{ zIndex: 5 }}>
-					<Typography
-						variant='h2'
-						text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
-						className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
-					/>
-				</div>
+				<Typography
+					variant='h2'
+					text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
+					className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
+				/>
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
 				)}
