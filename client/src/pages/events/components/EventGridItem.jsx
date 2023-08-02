@@ -4,7 +4,7 @@ import Button from 'shared/components/button/Button';
 import ReactGA from 'react-ga4';
 
 export default function EventGridItem({ item, upcomingEvent }) {
-	const handleClickButton = (link) => {
+	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
 			action: 'Clicked register for UBUD',
@@ -22,8 +22,11 @@ export default function EventGridItem({ item, upcomingEvent }) {
 					<span>{item.loc}</span>
 				</Box>
 				{upcomingEvent && (
-					<Box className='flex justify-center'>
-						<Button text='Register' handleClickButton={() => handleClickButton(item.link)} />
+					<Box className='flex flex-col items-center justify-center space-y-6'>
+						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registerLink)} />
+						<a href={item.infoLink} target='_blank' rel='noreferrer'>
+							<Button text='View Event Details' background='transparentBg' />
+						</a>
 					</Box>
 				)}
 			</Box>
