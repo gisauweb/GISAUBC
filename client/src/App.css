@@ -1,9 +1,11 @@
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
 }
 
 body {
 	font-family: 'montserrat', sans-serif;
+	overflow-x: hidden;
 }
 
 h1 {

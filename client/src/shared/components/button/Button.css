@@ -33,7 +33,7 @@
 
 .button.gray_bg {
 	color: #000000;
-	background: #D9D9D9;
+	background: #d9d9d9;
 }
 
 .button::before {
@@ -75,7 +75,6 @@
 	}
 }
 
-
 .landing-button {
 	color: #fff;
 	/* padding: 0.75rem 2rem; */
@@ -96,8 +95,12 @@
 	padding: 2.5px;
 	border-radius: 5rem;
 	background: linear-gradient(225deg, #8c1c16, #bc7059);
-	-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-	mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
 	-webkit-mask-composite: xor;
 	mask-composite: exclude;
 	transition: 'all 0.3s ease-out';
