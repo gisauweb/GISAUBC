@@ -6,10 +6,10 @@ const years = ['2023/2024', '2022/2023'];
 
 export default function DropdownMenu({ selectedYear, setSelectedYear, source }) {
 	const [isOpen, setIsOpen] = useState(false);
-	const [rightSpacing, setRightSpacing] = useState('sm:right-24 lg:right-48');
+	const [rightSpacing, setRightSpacing] = useState('');
+	const [display, setDisplay] = useState('');
 	const dropdownRef = useRef(null);
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
-	const aboutPage = source === 'About';
 
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
@@ -34,12 +34,25 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 	}, []);
 
 	useEffect(() => {
-		setRightSpacing(aboutPage ? '2xl:right-72' : 'sm:right-24 lg:right-48');
-	}, [aboutPage]);
+		switch (source) {
+			case 'About':
+				setRightSpacing('2xl:right-72');
+				setDisplay('2xl:absolute');
+				break;
+			case 'Rantangan':
+				setRightSpacing('right-0');
+				setDisplay('sm:absolute');
+				break;
+			default:
+				setRightSpacing('sm:right-24 lg:right-48');
+				setDisplay('sm:absolute');
+				break;
+		}
+	}, [source]);
 
 	return (
 		<div
-			className={`w-40 sm:w-64 relative ${aboutPage ? '2xl:absolute' : 'sm:absolute'} ${rightSpacing}
+			className={`w-40 sm:w-64 relative ${display} ${rightSpacing}
 						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary z-10`}
 			ref={dropdownRef}
 		>

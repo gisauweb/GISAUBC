@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import GridContainer from 'shared/components/GridContainer';
+import GridContainer from 'shared/components/grid/GridContainer';
 import { Typography, DropdownMenu } from 'shared/components/index';
 import TeamButtons from './TeamButtons';
 import TeamGridContent from './TeamGridContent';

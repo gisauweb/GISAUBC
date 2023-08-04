@@ -1,46 +1,47 @@
 import Home from 'pages/home/Home';
 import Events from 'pages/events/Events';
 import Partners from 'pages/partners/Partners';
-import UpcomingPage from 'shared/layout/upcoming-page/UpcomingPage';
+import Rantangan from 'pages/rantangan/Rantangan';
 import About from 'pages/about/About';
+import ContactUs from 'pages/contacts/ContactUs';
 
 const pages = [
 	{
 		name: 'Home',
-		path: '',
+		path: '/',
 		hasLandingImage: true,
 		element: <Home />,
 	},
 	{
 		name: 'About',
-		path: 'about',
+		path: '/about',
 		hasLandingImage: true,
 		element: <About />,
 	},
 	{
 		name: 'Events',
-		path: 'events',
+		path: '/events',
 		hasLandingImage: true,
 		element: <Events />,
 	},
 	{
 		name: 'Rantangan',
-		path: 'rantangan',
-		element: <UpcomingPage />,
+		path: '/rantangan',
+		hasLandingImage: true,
+		element: <Rantangan />,
 	},
 	{
 		name: 'Partners',
-		path: 'partners',
+		path: '/partners',
 		hasLandingImage: true,
 		element: <Partners />,
 	},
-];
-
-const tempPages = [
 	{
-		name: 'Contact',
-		path: '#contact',
+		name: 'Contact Us',
+		path: '/contact-us',
+		hasLandingImage: false,
+		element: <ContactUs />,
 	},
 ];
 
-export { pages, tempPages };
+export default pages;

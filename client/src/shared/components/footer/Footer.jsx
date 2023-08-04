@@ -18,7 +18,7 @@ export default function Footer({ showPlane }) {
 					<img src={plane} alt='paper-plane' />
 				</div>
 			)}
-			<div className='footer mt-24 lg:mt-36 bg-[#FFFDF5]'>
+			<div className='footer mt-24 lg:mt-36'>
 				<div className='footer-title text-lg sm:text-2xl'>Connect with us!</div>
 				<div className='footer-icons'>
 					<a href='https://www.instagram.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
