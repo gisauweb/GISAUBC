@@ -8,6 +8,12 @@ const PAST_EVENTS = {
 			date: 'Thursday, June 6 | 11:59PM',
 			loc: 'Online',
 		},
+		{
+			image: EVENTS_23_24[1],
+			title: 'UBUD: UBC Udah Dekat',
+			date: 'Friday, August 4 | 8-9:40 PM',
+			loc: 'Online on Zoom',
+		},
 	],
 	'2022/2023': [
 		{
