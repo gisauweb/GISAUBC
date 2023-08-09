@@ -33,8 +33,10 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		</Grid>
 	) : (
 		<Grid item xs={1} sm={1.5} md={2}>
-			<Box className='flex flex-col mx-7 sm:mx-0'>
-				<img src={item.image} alt='item_image' className='rounded-2xl' style={{ zIndex: 5 }} />
+			<Box className='flex flex-col mx-7 sm:mx-0 h-full w-full justify-center items-center'>
+				<Box className='h-2/3 w-[97%]'>
+					<img src={item.image} alt='item_image' className='rounded-2xl z-10 h-full w-full' />
+				</Box>
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} />
