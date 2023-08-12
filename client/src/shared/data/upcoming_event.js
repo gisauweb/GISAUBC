@@ -1,16 +1,4 @@
-import ubud from 'assets/home-page/events/ubud.jpeg';
-import ubudRundown from 'assets/home-page/events/ubud_rundown.pdf';
-
-const UPCOMING_EVENTS = [
-	{
-		image: ubud,
-		title: 'UBUD: UBC Udah Dekat',
-		date: 'Friday, August 4 | 8-9:40 PM',
-		loc: 'Online on Zoom',
-		registerLink: 'forms.gle/AXqcbDGtKBBiHCqX6',
-		infoLink: ubudRundown,
-	},
-];
+const UPCOMING_EVENTS = [];
 
 export default UPCOMING_EVENTS;
 
@@ -20,5 +8,6 @@ export default UPCOMING_EVENTS;
 // 		title: 'SEA Pit Night',
 // 		date: 'Wednesday, April 8 | 9PM-1AM',
 // 		loc: 'The Pit Pub @ UBC',
-// 		link: 'google.com',
+// 		registrationLink: 'google.com',
+// 		infoLink: pdffile,
 // },

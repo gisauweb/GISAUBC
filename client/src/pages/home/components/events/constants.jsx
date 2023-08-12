@@ -1,6 +1,6 @@
 import rantangan from 'assets/home-page/events/rantangan.svg';
 import upcomingEvent from 'assets/home-page/events/upcoming_event.svg';
-import ubud from 'assets/home-page/events/ubud.jpeg';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 
 /**
  * events field:
@@ -11,14 +11,7 @@ import ubud from 'assets/home-page/events/ubud.jpeg';
 
 export const UPCOMINGEVENTS = {
 	title: 'Upcoming Events',
-	events: [
-		{
-			title: 'UBUD: UBC Udah Dekat',
-			desc: ['Friday, August 4 | 8-9:40 PM', 'Online on Zoom'],
-			img: <img src={ubud} alt='UBUD: UBC Udah Dekat' />,
-			link: 'forms.gle/AXqcbDGtKBBiHCqX6',
-		},
-	],
+	events: UPCOMING_EVENTS,
 	icon: <img src={upcomingEvent} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' />,
 	button1: 'Register',
 	button2: {
