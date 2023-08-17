@@ -13,7 +13,7 @@ function RantanganContent({ upcoming }) {
 
 	return (
 		<Box className='my-20 relative'>
-			<Box className='absolute w-screen'>
+			<Box className='absolute w-screen left-0'>
 				{!upcoming && <img src={bakmi} alt='bakmi-icon' className='absolute w-[30%] right-10 z-[0] -top-80' />}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
