@@ -21,7 +21,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 	return itemType === 'rantangan' && upcomingEvent ? (
 		<Grid item>
 			<Box className={`flex ${isMobileView ? 'flex-col' : 'flex-row'} mx-7 sm:mx-0`}>
-				<img src={item.image} alt='item_image' className='rounded-2xl' style={{ zIndex: 5 }} />
+				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
 				<Box className={`flex flex-col ${isMobileView ? 'items-center text-center' : 'ml-8 mt-5'} space-y-4`}>
 					<span className='font-semibold text-xl py-2' style={{ zIndex: 5 }}>
 						{item.title}
@@ -34,11 +34,10 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 	) : (
 		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
-				<img src={item.image} alt='item_image' className='rounded-2xl' />
+				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
-					<span>{item.date}</span>
-					<span>{item.loc}</span>
+					<GridItemDescription item={item} itemType={itemType} />
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
