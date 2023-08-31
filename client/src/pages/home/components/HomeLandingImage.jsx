@@ -26,7 +26,7 @@ export default function HomeLandingImage() {
 			sm:text-2xl md:text-4xl lg:text-[2.5rem] lg:leading-12'
 			>
 				{' '}
-				Gado-Gado Indonesian Student Association
+				Gado-Gado Indonesian Student Association&nbsp;
 				{!isMobileView && <br />}
 				of UBC
 			</h1>
