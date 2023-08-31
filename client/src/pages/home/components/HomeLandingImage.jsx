@@ -14,7 +14,11 @@ export default function HomeLandingImage() {
 			category: 'Hiring',
 			action: 'Clicked register for UBUD',
 		});
-		window.open('https://forms.gle/AXqcbDGtKBBiHCqX6', '_blank', 'noreferrer');
+		window.open(
+			'https://gisaubc.notion.site/UBUD-Recap-1bb98afbf9e34209a005f85b4d52acbc?pvs=4',
+			'_blank',
+			'noreferrer',
+		);
 	};
 
 	return (
@@ -26,13 +30,13 @@ export default function HomeLandingImage() {
 			sm:text-2xl md:text-4xl lg:text-[2.5rem] lg:leading-12'
 			>
 				{' '}
-				Gado-Gado Indonesian Student Association
+				Gado-Gado Indonesian Student Association&nbsp;
 				{!isMobileView && <br />}
 				of UBC
 			</h1>
 			<div className='flex gap-x-4 justify-center'>
 				<div className='grid justify-center'>
-					<Button text='Register for UBUD!' landingButton handleClickButton={handleClickButton} />
+					<Button text='Click for UBUD recap!' landingButton handleClickButton={handleClickButton} />
 				</div>
 			</div>
 		</LandingImage>
