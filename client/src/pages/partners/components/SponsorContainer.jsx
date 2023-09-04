@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 
 function SponsorContainer({ name, logo, reversed }) {
 	const containerStyle = {
@@ -18,12 +18,9 @@ function SponsorContainer({ name, logo, reversed }) {
 		<Container style={containerStyle} className='py-6'>
 			<Box style={boxStyle} className='justify-end pr-4 sm:pr-9'>
 				{reversed ? (
-					<span
-						className='text-2xl sm:text-3xl xl:text-4xl text-right
-									font-semibold font-oswald text-primary'
-					>
+					<Typography variant='h4' color='primary' className='text-right'>
 						{name}
-					</span>
+					</Typography>
 				) : (
 					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' />
 				)}
@@ -32,9 +29,9 @@ function SponsorContainer({ name, logo, reversed }) {
 				{reversed ? (
 					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' />
 				) : (
-					<span className='text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary text-left'>
+					<Typography variant='h4' color='primary' className='text-left'>
 						{name}
-					</span>
+					</Typography>
 				)}
 			</Box>
 		</Container>
