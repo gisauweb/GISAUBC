@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import ExpandableBox from './ExpandableBox';
 import { VISION_MISSION } from '../constants';
 
@@ -16,8 +16,12 @@ export default function Principles() {
 			}}
 		>
 			<Box className='w-full sm:w-1/2 flex flex-col justify-center items-center mb-6 sm:mb-0'>
-				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary font-medium font-oswald'>Our</span>
-				<span className='text-4xl sm:text-5xl xl:text-7xl text-primary font-medium font-oswald'>Values</span>
+				<Typography variant='h2' color='primary'>
+					Our
+				</Typography>
+				<Typography variant='h2' color='primary'>
+					Values
+				</Typography>
 			</Box>
 			<Box className='flex flex-col w-full sm:w-1/2 justify-center space-y-4'>
 				{VISION_MISSION.map((item) => (
