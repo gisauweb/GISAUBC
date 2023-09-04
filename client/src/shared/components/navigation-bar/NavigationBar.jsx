@@ -78,7 +78,11 @@ export default function NavigationBar() {
 						/>
 					</div>
 				) : (
-					<Box className={`flex mr-6 lg:mr-20 ${bgColor} h-14 rounded-[15px]`}>
+					<Box
+						className={`flex mr-6 lg:mr-20 ${
+							hasLandingImage ? bgColor : 'bg-white bg-opacity-50'
+						} h-14 rounded-[15px]`}
+					>
 						{pages.map((page) => (
 							<Link key={page.name} to={page.path} className='px-5 pt-3'>
 								<p
