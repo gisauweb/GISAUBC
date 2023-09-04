@@ -4,6 +4,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg';
 import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
+
 import pages from './constants';
 import MenuInterface from './MenuInterface';
 
@@ -11,6 +12,7 @@ export default function NavigationBar() {
 	const location = useLocation();
 	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
 	const hasLandingImage = filteredPaths.includes(location.pathname);
+	const [bgColor, setBgColor] = useState('');
 
 	const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -36,9 +38,27 @@ export default function NavigationBar() {
 		handleClosingMenu(); // Close the navigation panel
 	}, [location.pathname]);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const { scrollY } = window;
+			const scrollThreshold = 50;
+			if (scrollY > scrollThreshold && hasLandingImage) {
+				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[15px] text-white');
+			} else {
+				setBgColor('');
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
+			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] fixed'>
 				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
 					<Link to='/'>
 						{hasLandingImage ? (
@@ -58,7 +78,7 @@ export default function NavigationBar() {
 						/>
 					</div>
 				) : (
-					<Box className='flex mr-6 lg:mr-20'>
+					<Box className={`flex mr-6 lg:mr-20 ${bgColor} h-14 rounded-[15px]`}>
 						{pages.map((page) => (
 							<Link key={page.name} to={page.path} className='px-5 pt-3'>
 								<p
