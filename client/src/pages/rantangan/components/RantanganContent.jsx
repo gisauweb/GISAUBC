@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import GridContainer from 'shared/components/grid/GridContainer';
-import { Typography, DropdownMenu } from 'shared/components/index';
+import { DropdownMenu } from 'shared/components/index';
 import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 import bakmi from 'assets/rantangan-page/bakmi.svg';
 import PAST_RANTANGAN from './constants';
@@ -17,11 +17,10 @@ function RantanganContent({ upcoming }) {
 				{!upcoming && <img src={bakmi} alt='bakmi-icon' className='absolute w-[30%] right-10 z-[0] -top-80' />}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography
-					variant='h2'
-					text={`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
-					className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
-				/>
+				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}>
+					{`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
+				</Typography>
+
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
 				)}
