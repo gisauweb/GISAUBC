@@ -17,7 +17,7 @@ function RantanganContent({ upcoming }) {
 				{!upcoming && <img src={bakmi} alt='bakmi-icon' className='absolute w-[30%] right-10 z-[0] -top-80' />}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}>
+				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
 					{`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
 				</Typography>
 

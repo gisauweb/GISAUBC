@@ -13,7 +13,7 @@ function EventContent({ upcoming }) {
 	return (
 		<Box className='my-20'>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}>
+				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
 					{`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}
 				</Typography>
 				{!upcoming && (
