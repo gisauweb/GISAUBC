@@ -6,9 +6,17 @@ const theme = createTheme({
 		h1: {
 			fontFamily: 'Oswald, sans-serif',
 		},
-		h3: {
+		h2: {
 			fontFamily: 'Oswald, sans-serif',
 			fontWeight: '600',
+			fontSize: '4.5rem',
+			lineHeight: '1',
+		},
+		h3: {
+			fontFamily: 'Montserrat, sans-serif',
+			fontWeight: '600',
+			fontSize: '3rem',
+			lineHeight: '1.3',
 		},
 		h4: {
 			fontFamily: 'Oswald, sans-serif',
