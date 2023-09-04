@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import { activities, smiley } from './constants';
 import ActivitiesSlider from './Slider';
@@ -10,9 +10,9 @@ function Activities() {
 	return (
 		<Box className='pt-24'>
 			<Box className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
-				<span className='text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary'>
+				<Typography variant='h4' color='primary'>
 					WHAT WE DO
-				</span>
+				</Typography>
 				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' />
 			</Box>
 			<Box className='w-full flex lg:py-8'>

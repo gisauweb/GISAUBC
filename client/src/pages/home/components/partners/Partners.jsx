@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 import { PARTNERS, rainbow } from 'shared/data/partners';
@@ -11,7 +11,9 @@ function Partners() {
 	return (
 		<Box className={`pt-28 ${isMobile && 'hidden'}`}>
 			<Box className='w-full flex pb-3 justify-start'>
-				<span className='text-3xl font-semibold font-oswald text-primary pt-0'>OUR PARTNERS</span>
+				<Typography variant='h4' color='primary'>
+					OUR PARTNERS
+				</Typography>
 				<img src={rainbow} alt='Rainbow' className='w-10 relative right-5 -top-5' />
 			</Box>
 			<Box className='py-14'>
