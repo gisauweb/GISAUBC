@@ -43,7 +43,7 @@ export default function NavigationBar() {
 			const { scrollY } = window;
 			const scrollThreshold = 50;
 			if (scrollY > scrollThreshold) {
-				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[15px]');
+				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[20px]');
 			} else {
 				setBgColor('');
 			}
