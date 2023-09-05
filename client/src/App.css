@@ -25,3 +25,8 @@ p {
 	--tw-text-opacity: 1;
 	color: rgb(125 2 2 / var(--tw-text-opacity));
 }
+
+.navbar {
+	transition: background-color 0.3s ease;
+  }
+  

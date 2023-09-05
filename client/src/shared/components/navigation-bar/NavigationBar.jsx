@@ -42,8 +42,8 @@ export default function NavigationBar() {
 		const handleScroll = () => {
 			const { scrollY } = window;
 			const scrollThreshold = 50;
-			if (scrollY > scrollThreshold && hasLandingImage) {
-				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[15px] text-white');
+			if (scrollY > scrollThreshold) {
+				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[15px]');
 			} else {
 				setBgColor('');
 			}
@@ -79,7 +79,7 @@ export default function NavigationBar() {
 					</div>
 				) : (
 					<Box
-						className={`flex mr-6 lg:mr-20 ${
+						className={`flex mr-6 lg:mr-20 navbar ${
 							hasLandingImage ? bgColor : 'bg-white bg-opacity-50'
 						} h-14 rounded-[15px]`}
 					>
