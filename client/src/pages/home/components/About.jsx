@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import aboutImg from 'assets/home-page/about/about.png';
 import aboutMobileImg from 'assets/home-page/about/about_mobile.png';
 import sunshineImg from 'assets/home-page/about/sunshine.svg';
@@ -19,9 +19,9 @@ function About() {
 	return (
 		<Box className='flex flex-col w-full text-center lg:text-left justify-center items-center lg:items-start'>
 			<Box className='w-full lg:w-1/2 flex justify-start pb-3 lg:pb-1.5'>
-				<span className='text-2xl sm:text-3xl xl:text-4xl font-semibold font-oswald text-primary pt-4 lg:pt-6'>
+				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6'>
 					WHO WE ARE
-				</span>
+				</Typography>
 				<img
 					src={sunshineImg}
 					alt='Sunshine'

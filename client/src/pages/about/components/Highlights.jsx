@@ -1,6 +1,5 @@
 import React from 'react';
-import { Typography } from 'shared/components';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Marquee from 'react-fast-marquee';
 import HIGHLIGHTS from 'assets/about/higlights/index';
 import { useMediaQuery } from 'react-responsive';
@@ -11,7 +10,9 @@ export default function Highlights() {
 	return (
 		<Box className=''>
 			<Box className=''>
-				<Typography variant='h1' text='Highlights' />
+				<Typography variant='h3' color='primary'>
+					Highlights
+				</Typography>
 			</Box>
 			<Marquee
 				gradient

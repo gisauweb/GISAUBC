@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import GridContainer from 'shared/components/grid/GridContainer';
-import { Typography, DropdownMenu } from 'shared/components/index';
+import { DropdownMenu } from 'shared/components/index';
 import TeamButtons from './TeamButtons';
 import TeamGridContent from './TeamGridContent';
 
@@ -15,7 +15,9 @@ export default function OurTeam({ data, states }) {
 	return (
 		<Box>
 			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10'>
-				<Typography variant='h1' text='Meet our team.' />
+				<Typography variant='h3' color='primary'>
+					Meet our team.
+				</Typography>
 			</Box>
 			<Box>
 				<Box className='flex flex-col'>
