@@ -58,7 +58,7 @@ export default function NavigationBar() {
 
 	return (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] fixed'>
+			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
 				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
 					<Link to='/'>
 						{hasLandingImage ? (
@@ -78,22 +78,24 @@ export default function NavigationBar() {
 						/>
 					</div>
 				) : (
-					<Box
-						className={`flex mr-6 lg:mr-20 navbar ${
-							hasLandingImage ? bgColor : 'bg-white bg-opacity-50'
-						} h-14 rounded-[15px]`}
-					>
-						{pages.map((page) => (
-							<Link key={page.name} to={page.path} className='px-5 pt-3'>
-								<p
-									className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
+					<Box className='right-0 fixed'>
+						<Box
+							className={`flex mr-6 lg:mr-20 navbar ${
+								hasLandingImage ? bgColor : 'bg-white bg-opacity-50'
+							} h-14 rounded-[15px]`}
+						>
+							{pages.map((page) => (
+								<Link key={page.name} to={page.path} className='px-5 pt-3'>
+									<p
+										className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
 									${hasLandingImage ? 'text-white' : 'text-primary'}
 									${page.path === location.pathname && 'underline'}`}
-								>
-									{page.name}
-								</p>
-							</Link>
-						))}
+									>
+										{page.name}
+									</p>
+								</Link>
+							))}
+						</Box>
 					</Box>
 				)}
 			</Box>
