@@ -4,7 +4,6 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg';
 import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
-
 import pages from './constants';
 import MenuInterface from './MenuInterface';
 
@@ -56,6 +55,10 @@ export default function NavigationBar() {
 		};
 	}, []);
 
+	const ScrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
 			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
@@ -85,7 +88,7 @@ export default function NavigationBar() {
 							} h-14 rounded-[15px]`}
 						>
 							{pages.map((page) => (
-								<Link key={page.name} to={page.path} className='px-5 pt-3'>
+								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
 									<p
 										className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
 									${hasLandingImage ? 'text-white' : 'text-primary'}
