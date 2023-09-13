@@ -29,4 +29,39 @@ p {
 .navbar {
 	transition: background-color 0.3s ease;
 }
+
+.underline-animation {
+	display: inline-block;
+	position: relative;
+}
   
+.underline-animation::after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2.5px;
+	bottom: -5px;
+	left: 0;
+	transform-origin: bottom right;
+	transition: transform 0.3s ease-out;
+	background-color: #ffffff;
+}
+
+.underline-animation-red::after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2.5px;
+	bottom: -5px;
+	left: 0;
+	transform-origin: bottom right;
+	transition: transform 0.3s ease-out;
+	background-color: #6f0b09;
+}
+  
+.underline-animation:hover::after, .underlined::after{
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}

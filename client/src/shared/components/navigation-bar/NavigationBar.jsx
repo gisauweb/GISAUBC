@@ -90,9 +90,9 @@ export default function NavigationBar() {
 							{pages.map((page) => (
 								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
 									<p
-										className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-primary'}
-									${page.path === location.pathname && 'underline'}`}
+										className={`underline-animation decoration-2 font-oswald text-xl 
+									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+									${page.path === location.pathname && 'underlined'}`}
 									>
 										{page.name}
 									</p>
