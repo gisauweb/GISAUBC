@@ -84,13 +84,13 @@ export default function NavigationBar() {
 					<Box className='right-0 fixed'>
 						<Box
 							className={`flex mr-6 lg:mr-20 navbar ${
-								hasLandingImage ? bgColor : 'bg-white bg-opacity-50'
+								hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
 							} h-14 rounded-[15px]`}
 						>
 							{pages.map((page) => (
 								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
 									<p
-										className={`underline-animation decoration-2 font-oswald text-xl 
+										className={`underline-animation font-oswald text-xl 
 									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
 									${page.path === location.pathname && 'underlined'}`}
 									>
