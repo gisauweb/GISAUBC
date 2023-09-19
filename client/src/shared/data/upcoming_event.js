@@ -6,7 +6,7 @@ const UPCOMING_EVENTS = [
 		image: EVENTS_23_24[2],
 		title: 'SOTO: Sobat Tongkrongan',
 		date: 'Friday, 29 September 2023 | 6PM-9PM',
-		loc: 'AMS Great Hall',
+		loc: 'AMS Nest, Great Hall South',
 		registrationLink:
 			'docs.google.com/forms/d/e/1FAIpQLSesRrCh1KmMN5lrxPMP0rjbXvL_kzCSjiDebBGjvLx9OjnRlQ/viewform?usp=sharing',
 		infoLink: soto,
