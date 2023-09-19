@@ -34,7 +34,9 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 	) : (
 		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0'>
-				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+				<a href={item.infoLink} target='_blank' rel='noreferrer'>
+					<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+				</a>
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} />
