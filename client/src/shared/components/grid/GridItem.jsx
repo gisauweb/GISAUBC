@@ -7,15 +7,15 @@ import { useMediaQuery } from 'react-responsive';
 
 export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 	const isMobileView = useMediaQuery({ query: '(max-width: 750px)' });
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
-			action: 'Clicked register for UBUD',
+			action: 'Clicked register for SOTO',
 		});
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 
 	return itemType === 'rantangan' && upcomingEvent ? (
@@ -43,7 +43,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
-						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registerLink)} />
+						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registrationLink)} />
 						<a href={item.infoLink} target='_blank' rel='noreferrer'>
 							<Button text='View Event Details' background='transparentBg' />
 						</a>
