@@ -16,7 +16,7 @@ export default function HomeLandingImage() {
 		});
 		window.open(
 			// eslint-disable-next-line max-len
-			'https://docs.google.com/forms/d/e/1FAIpQLSesRrCh1KmMN5lrxPMP0rjbXvL_kzCSjiDebBGjvLx9OjnRlQ/viewform?usp=sharing',
+			'https://forms.gle/xcWs5sQ5otxwn7GV6',
 			'_blank',
 			'noreferrer',
 		);
