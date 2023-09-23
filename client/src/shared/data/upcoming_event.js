@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
 import soto from 'assets/events-page/past-events/23_24/soto.pdf';
 
@@ -5,8 +6,8 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[2],
 		title: 'SOTO: Sobat Tongkrongan',
-		date: 'Friday, 29 September 2023 | 6PM-9PM',
-		loc: 'AMS Nest, Great Hall South',
+		date: 'Wednesday, 4 October 2023 | 6:30PM',
+		loc: 'UBC Asian Centre Auditorium',
 		registrationLink: 'https://forms.gle/xcWs5sQ5otxwn7GV6',
 		infoLink: soto,
 	},
