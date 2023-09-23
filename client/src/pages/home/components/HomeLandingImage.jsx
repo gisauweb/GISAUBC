@@ -15,7 +15,8 @@ export default function HomeLandingImage() {
 			action: 'Clicked register for UBUD',
 		});
 		window.open(
-			'https://gisaubc.notion.site/UBUD-Recap-1bb98afbf9e34209a005f85b4d52acbc?pvs=4',
+			// eslint-disable-next-line max-len
+			'https://forms.gle/xcWs5sQ5otxwn7GV6',
 			'_blank',
 			'noreferrer',
 		);
@@ -36,7 +37,7 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex gap-x-4 justify-center'>
 				<div className='grid justify-center'>
-					<Button text='Click for UBUD recap!' landingButton handleClickButton={handleClickButton} />
+					<Button text='Register for SOTO!' landingButton handleClickButton={handleClickButton} />
 				</div>
 			</div>
 		</LandingImage>
