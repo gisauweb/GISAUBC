@@ -20,7 +20,7 @@ const theme = createTheme({
 		},
 		h4: {
 			fontFamily: 'Oswald, sans-serif',
-			fontWeight: '600',
+			fontWeight: '500',
 		},
 		h5: {
 			fontFamily: 'Montserrat, sans-serif',
