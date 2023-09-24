@@ -11,6 +11,7 @@ export default function NavigationBar() {
 	const location = useLocation();
 	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
 	const hasLandingImage = filteredPaths.includes(location.pathname);
+	const [bgColor, setBgColor] = useState('');
 
 	const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
@@ -36,6 +37,28 @@ export default function NavigationBar() {
 		handleClosingMenu(); // Close the navigation panel
 	}, [location.pathname]);
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const { scrollY } = window;
+			const scrollThreshold = 50;
+			if (scrollY > scrollThreshold) {
+				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[20px]');
+			} else {
+				setBgColor('');
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	const ScrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
 			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
@@ -58,18 +81,24 @@ export default function NavigationBar() {
 						/>
 					</div>
 				) : (
-					<Box className='flex mr-6 lg:mr-20'>
-						{pages.map((page) => (
-							<Link key={page.name} to={page.path} className='px-5 pt-3'>
-								<p
-									className={`hover:underline underline-offset-8 decoration-2 font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-primary'}
-									${page.path === location.pathname && 'underline'}`}
-								>
-									{page.name}
-								</p>
-							</Link>
-						))}
+					<Box className='right-0 fixed'>
+						<Box
+							className={`flex mr-6 lg:mr-20 navbar ${
+								hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
+							} h-14 rounded-[15px]`}
+						>
+							{pages.map((page) => (
+								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
+									<p
+										className={`underline-animation font-oswald text-xl 
+									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+									${page.path === location.pathname && 'underlined'}`}
+									>
+										{page.name}
+									</p>
+								</Link>
+							))}
+						</Box>
 					</Box>
 				)}
 			</Box>

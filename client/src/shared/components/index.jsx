@@ -5,6 +5,5 @@ import LogoSpinning from './logo-spinning/LogoSpinning';
 import DropdownMenu from './DropdownMenu';
 import ScrollButton from './ScrollButton';
 import ScrollToTop from './ScrollToTop';
-import Typography from './Typography';
 
-export { Button, Footer, LandingImage, LogoSpinning, DropdownMenu, ScrollButton, ScrollToTop, Typography };
+export { Button, Footer, LandingImage, LogoSpinning, DropdownMenu, ScrollButton, ScrollToTop };

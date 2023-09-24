@@ -7,18 +7,19 @@ import { useMediaQuery } from 'react-responsive';
 
 export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 	const isMobileView = useMediaQuery({ query: '(max-width: 750px)' });
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
-			action: 'Clicked register for UBUD',
+			action: 'Clicked register for SOTO',
 		});
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 
 	return itemType === 'rantangan' && upcomingEvent ? (
+		// upcoming rantangan
 		<Grid item>
 			<Box className={`flex ${isMobileView ? 'flex-col' : 'flex-row'} mx-7 sm:mx-0`}>
 				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
@@ -32,16 +33,19 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 			</Box>
 		</Grid>
 	) : (
+		// event
 		<Grid item xs={1} sm={1.5} md={2}>
-			<Box className='flex flex-col mx-7 sm:mx-0'>
-				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+			<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
+				<a href={item.infoLink} target='_blank' rel='noreferrer'>
+					<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+				</a>
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} />
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
-						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registerLink)} />
+						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registrationLink)} />
 						<a href={item.infoLink} target='_blank' rel='noreferrer'>
 							<Button text='View Event Details' background='transparentBg' />
 						</a>

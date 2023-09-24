@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga4';
+import { Typography } from '@mui/material';
 import Button from '../../components/button/Button';
 import './EventLayout.css';
 import EventContent from './EventContent';
@@ -15,7 +16,7 @@ export default function EventLayout(props) {
 			category: 'Event',
 			action: 'Clicked register for UBUD',
 		});
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 
 	const handleClickButton2 = () => {
@@ -25,7 +26,9 @@ export default function EventLayout(props) {
 	return (
 		<div className={className} id={id}>
 			<div className='uppercase flex items-center justify-start h-10'>
-				<h1 className='title text-2xl sm:text-3xl xl:text-4xl'>{title}</h1>
+				<Typography variant='h4' color='primary'>
+					{title}
+				</Typography>
 				<div className='events-icon'>{icon}</div>
 			</div>
 			<div className='mt-10 grid gap-y-12'>

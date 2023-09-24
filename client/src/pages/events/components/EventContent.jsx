@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import GridContainer from 'shared/components/grid/GridContainer';
-import { Typography, DropdownMenu } from 'shared/components/index';
+import { DropdownMenu } from 'shared/components/index';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import GridContent from 'shared/components/grid/GridContent';
 import PAST_EVENTS from './constants';
@@ -13,11 +13,9 @@ function EventContent({ upcoming }) {
 	return (
 		<Box className='my-20'>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography
-					variant='h2'
-					text={`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}
-					className={`pt-0.5 ${!upcoming && 'mb-3 sm:mb-0'}`}
-				/>
+				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
+					{`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}
+				</Typography>
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Event' />
 				)}
