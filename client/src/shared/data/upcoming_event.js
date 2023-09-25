@@ -8,7 +8,7 @@ const UPCOMING_EVENTS = [
 		image: EVENTS_23_24[3],
 		title: 'Fall Executive Hiring',
 		date: '25 September - 6 October 2023',
-		loc: '',
+		loc: 'Submit Via Email',
 		registrationLink: hiring,
 		infoLink: hiring,
 	},
