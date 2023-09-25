@@ -15,7 +15,7 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[2],
 		title: 'SOTO: Sobat Tongkrongan',
-		date: 'Wednesday, 4 October 2023 | 6:30PM',
+		date: 'Wed, 4 October 2023 | 6:30PM',
 		loc: 'UBC Asian Centre Auditorium',
 		registrationLink: 'https://forms.gle/xcWs5sQ5otxwn7GV6',
 		infoLink: soto,
