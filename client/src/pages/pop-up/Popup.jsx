@@ -8,7 +8,7 @@ import ReactGA from 'react-ga4';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 
 const PopupWrapper = styled('div')({
-	background: 'linear-gradient(#8c1c16, #bc7059)',
+	background: 'linear-gradient(rgba(140, 28, 22, 0.7), rgba(188, 112, 89, 0.7))',
 	color: '#FFFDF5',
 	padding: '20px',
 	borderRadius: '8px',
@@ -22,6 +22,7 @@ const PopupWrapper = styled('div')({
 	display: 'flex',
 	flexDirection: 'column',
 	textAlign: 'center',
+	backdropFilter: 'blur(20px)',
 });
 
 function Popup({ isOpen, onClose }) {
@@ -58,7 +59,7 @@ function Popup({ isOpen, onClose }) {
 				<Typography variant='h5' gutterBottom>
 					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>Join us for our annual welcoming event on Wednesday!</Typography>
+				<Typography variant='body1'>Join us for our annual welcoming event next Wednesday!</Typography>
 				<Box mt={2} className='flex justify-center'>
 					<Button
 						background='transparentBg'
