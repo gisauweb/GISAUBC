@@ -33,7 +33,7 @@ function Popup({ isOpen, onClose }) {
 		window.open(link, '_blank', 'noreferrer');
 	};
 
-	const upcomingEvent = UPCOMING_EVENTS[0];
+	const upcomingEvent = UPCOMING_EVENTS[1];
 
 	return (
 		<Modal open={isOpen} onClose={onClose} disableAutoFocus>

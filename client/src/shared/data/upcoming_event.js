@@ -1,8 +1,17 @@
 /* eslint-disable max-len */
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
 import soto from 'assets/events-page/past-events/23_24/soto.pdf';
+import hiring from 'assets/events-page/past-events/23_24/hiring.pdf';
 
 const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_23_24[3],
+		title: 'Fall Executive Hiring',
+		date: '25 September - 6 October 2023',
+		loc: '',
+		registrationLink: hiring,
+		infoLink: hiring,
+	},
 	{
 		image: EVENTS_23_24[2],
 		title: 'SOTO: Sobat Tongkrongan',
