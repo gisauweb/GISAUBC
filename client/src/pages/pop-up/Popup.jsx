@@ -1,11 +1,14 @@
 // src/components/Popup.js
 import React from 'react';
-import { Modal, Typography, IconButton, Box, Button } from '@mui/material';
+import { Modal, Typography, IconButton, Box } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
+import { Button } from 'shared/components';
+import ReactGA from 'react-ga4';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 
 const PopupWrapper = styled('div')({
-	backgroundColor: '#7D0202',
+	background: 'linear-gradient(#8c1c16, #bc7059)',
 	color: '#FFFDF5',
 	padding: '20px',
 	borderRadius: '8px',
@@ -20,8 +23,17 @@ const PopupWrapper = styled('div')({
 	flexDirection: 'column',
 	textAlign: 'center',
 });
+
 function Popup({ isOpen, onClose }) {
-	const eventText = 'Join us for our annual student association picnic on Saturday!';
+	const handleRegisterButton = (link) => {
+		ReactGA.event({
+			category: 'Event',
+			action: 'Clicked register for SOTO',
+		});
+		window.open(link, '_blank', 'noreferrer');
+	};
+
+	const upcomingEvent = UPCOMING_EVENTS[0];
 
 	return (
 		<Modal open={isOpen} onClose={onClose}>
@@ -35,14 +47,26 @@ function Popup({ isOpen, onClose }) {
 				>
 					<CancelRoundedIcon />
 				</IconButton>
+				<a
+					href={upcomingEvent.infoLink}
+					target='_blank'
+					rel='noreferrer'
+					className='my-3 flex justify-center items-center'
+				>
+					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' />
+				</a>
 				<Typography variant='h5' gutterBottom>
-					Current Event
+					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>{eventText}</Typography>
-				<Box mt={2}>
-					<Button variant='contained' color='secondary' onClick={onClose}>
-						Register
-					</Button>
+				<Typography variant='body1'>Join us for our annual welcoming event on Wednesday!</Typography>
+				<Box mt={2} className='flex justify-center'>
+					<Button
+						background='transparentBg'
+						text='Register'
+						handleClickButton={() => {
+							handleRegisterButton(upcomingEvent.registrationLink);
+						}}
+					/>
 				</Box>
 			</PopupWrapper>
 		</Modal>
