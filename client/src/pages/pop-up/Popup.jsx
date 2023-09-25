@@ -36,7 +36,7 @@ function Popup({ isOpen, onClose }) {
 	const upcomingEvent = UPCOMING_EVENTS[0];
 
 	return (
-		<Modal open={isOpen} onClose={onClose}>
+		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
 			<PopupWrapper>
 				<IconButton
 					aria-label='Close'
