@@ -16,7 +16,7 @@ export default function EventLayout(props) {
 			category: 'Event',
 			action: 'Clicked register for UBUD',
 		});
-		window.open(`https://${link}`, '_blank', 'noreferrer');
+		window.open(link, '_blank', 'noreferrer');
 	};
 
 	const handleClickButton2 = () => {
