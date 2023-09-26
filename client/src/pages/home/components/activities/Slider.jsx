@@ -11,7 +11,7 @@ function CustomSlide(props) {
 	return (
 		<Box className='flex flex-col justify-center text-center items-center bg-[#FFFDF5]'>
 			<div className='w-full h-40 sm:h-48 flex justify-center items-center overflow-hidden rounded-xl'>
-				<img src={image} alt='Activities' className='w-full object-cover' />
+				<img src={image} alt='Activities' className='w-full object-cover' loading='lazy' />
 			</div>
 			<span className='font-montserrat text-lg sm:text-xl px-3 py-5 font-extrabold'>{title}</span>
 			<p className='text-base px-3 sm:text-lg font-montserrat'>{description}</p>

@@ -12,7 +12,7 @@ function EventContent({ events, button1, handleClickButton, isMobileView }) {
 				<div>
 					<div className='event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0'>
 						<a href={`https://${event.registrationLink}`} target='blank' rel='noreferrer'>
-							<img src={event.image} alt='event' />
+							<img src={event.image} alt='event' loading='lazy' />
 						</a>
 					</div>
 				</div>

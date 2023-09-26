@@ -26,7 +26,12 @@ export default function Location() {
 		>
 			<Box className='p-6 lg:p-8 flex flex-col sm:flex-row justify-between sm:items-center'>
 				<Box className='flex flex-col sm:flex-row sm:items-center'>
-					<img src={hoveredBox ? selectedHouse : house} alt='house-icon' className='w-fit sm:w-14 lg:w-fit' />
+					<img
+						src={hoveredBox ? selectedHouse : house}
+						alt='house-icon'
+						className='w-fit sm:w-14 lg:w-fit'
+						loading='lazy'
+					/>
 					<Typography
 						variant='h5'
 						color='primary'
@@ -45,7 +50,7 @@ export default function Location() {
 					<Typography variant='body1' color='#434343'>
 						Visit Our HQ
 					</Typography>
-					<img src={arrowRight} alt='arrow-right' className='px-3 lg:px-5' />
+					<img src={arrowRight} alt='arrow-right' className='px-3 lg:px-5' loading='lazy' />
 				</Box>
 			</Box>
 		</Box>

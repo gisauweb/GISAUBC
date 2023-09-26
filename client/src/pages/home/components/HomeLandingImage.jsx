@@ -23,7 +23,7 @@ export default function HomeLandingImage() {
 
 	return (
 		<LandingImage bgImage={homeLandingImg} isHomePage>
-			<img src={gisauLogo} alt='Gisau Logo' className='w-[30%] md:w-1/4 lg:w-1/5 m-auto' />
+			<img src={gisauLogo} alt='Gisau Logo' className='w-[30%] md:w-1/4 lg:w-1/5 m-auto' loading='lazy' />
 			<h1
 				className='my-4 md:my-8 mx-2 text-center
 			font-montserrat font-semibold text-white text-xl
