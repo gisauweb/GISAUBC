@@ -13,6 +13,14 @@ export default function HomeLandingImage() {
 			category: 'Hiring',
 			action: 'Clicked register for executives',
 		});
+		window.open('https://forms.gle/VF4Vvascc56iujT67', '_blank', 'noreferrer');
+	};
+
+	const handleClickButton2 = () => {
+		ReactGA.event({
+			category: 'Hiring',
+			action: 'Clicked register for executives',
+		});
 		window.open(
 			// eslint-disable-next-line max-len
 			hiring,
@@ -34,9 +42,12 @@ export default function HomeLandingImage() {
 				{!isMobileView && <br />}
 				of UBC
 			</h1>
-			<div className='flex gap-x-4 justify-center'>
+			<div className='flex flex-col sm:flex-row sm:gap-x-4 justify-center'>
 				<div className='grid justify-center'>
-					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton} />
+					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton2} />
+				</div>
+				<div className='grid justify-center mt-4 sm:mt-0'>
+					<Button text='Become a member!' landingButton handleClickButton={handleClickButton} />
 				</div>
 			</div>
 		</LandingImage>
