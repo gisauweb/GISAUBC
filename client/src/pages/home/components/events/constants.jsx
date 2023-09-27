@@ -15,7 +15,7 @@ export const UPCOMINGEVENTS = {
 	icon: <img src={upcomingEvent} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' loading='lazy' />,
 	button1: 'Register',
 	button2: {
-		name: 'View past events',
+		name: 'View Past Events',
 		path: 'events',
 	},
 };
@@ -26,7 +26,7 @@ export const RANTANGAN = {
 	icon: <img src={rantangan} alt='' className='ml-1/10' loading='lazy' />,
 	button1: 'Pre-order',
 	button2: {
-		name: 'View past menus',
+		name: 'View Past Menus',
 		path: 'rantangan',
 	},
 };

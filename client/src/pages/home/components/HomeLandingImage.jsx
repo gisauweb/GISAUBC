@@ -1,8 +1,7 @@
-import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import LandingImage from 'shared/components/landing-image/LandingImage';
 import ReactGA from 'react-ga4';
-import Button from '../../../shared/components/button/Button';
+import hiring from 'assets/events-page/past-events/23_24/hiring.pdf';
+import { Button, LandingImage } from 'shared/components';
 import gisauLogo from '../../../assets/gisau-logo/gisau.png';
 import homeLandingImg from '../../../assets/landing-image/home.jpg';
 
@@ -12,10 +11,11 @@ export default function HomeLandingImage() {
 	const handleClickButton = () => {
 		ReactGA.event({
 			category: 'Hiring',
-			action: 'Clicked register for UBUD',
+			action: 'Clicked register for executives',
 		});
 		window.open(
-			'https://gisaubc.notion.site/UBUD-Recap-1bb98afbf9e34209a005f85b4d52acbc?pvs=4',
+			// eslint-disable-next-line max-len
+			hiring,
 			'_blank',
 			'noreferrer',
 		);
@@ -36,7 +36,7 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex gap-x-4 justify-center'>
 				<div className='grid justify-center'>
-					<Button text='Click for UBUD recap!' landingButton handleClickButton={handleClickButton} />
+					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton} />
 				</div>
 			</div>
 		</LandingImage>
