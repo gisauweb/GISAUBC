@@ -15,20 +15,20 @@ export default function Footer({ showPlane }) {
 		<div id='contact' className='w-full relative bottom-0'>
 			{showPlane && (
 				<div className='w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex'>
-					<img src={plane} alt='paper-plane' />
+					<img src={plane} alt='paper-plane' loading='lazy' />
 				</div>
 			)}
 			<div className='footer mt-24 lg:mt-36'>
 				<div className='footer-title text-lg sm:text-2xl'>Connect with us!</div>
 				<div className='footer-icons'>
 					<a href='https://www.instagram.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
-						<img src={instagramIcon} alt='instagram-icon' />
+						<img src={instagramIcon} alt='instagram-icon' loading='lazy' />
 					</a>
 					<a href='https://ca.linkedin.com/company/gisau' target='_blank' rel='noreferrer' className='icon'>
-						<img src={linkedinIcon} alt='linkedin-icon' />
+						<img src={linkedinIcon} alt='linkedin-icon' loading='lazy' />
 					</a>
 					<a href='https://www.facebook.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
-						<img src={facebookIcon} alt='facebook-icon' />
+						<img src={facebookIcon} alt='facebook-icon' loading='lazy' />
 					</a>
 					<a
 						href='https://open.spotify.com/show/4n3LXi2mKxLpscsIGVAgnR?si=e5a5fed87a694f17'
@@ -36,7 +36,7 @@ export default function Footer({ showPlane }) {
 						rel='noreferrer'
 						className='icon'
 					>
-						<img src={spotifyIcon} alt='spotify-icon' />
+						<img src={spotifyIcon} alt='spotify-icon' loading='lazy' />
 					</a>
 				</div>
 				<div className='footer-email text-base sm:text-xl'>

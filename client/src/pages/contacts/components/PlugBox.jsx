@@ -31,7 +31,11 @@ export default function PlugBox() {
 					sx={{ boxShadow: hoveredBox === index ? '0px 6px 18px rgba(125, 2, 2, 0.2)' : 'none' }}
 				>
 					<Box className='p-6 lg:p-8'>
-						<img src={hoveredBox === index ? plug.selectedIcon : plug.icon} alt='social-media-icon' />
+						<img
+							src={hoveredBox === index ? plug.selectedIcon : plug.icon}
+							alt='social-media-icon'
+							loading='lazy'
+						/>
 						<Box className='flex flex-col space-y-3 mt-10 lg:mt-14'>
 							<Typography variant='h5' color='primary'>
 								{plug.name}

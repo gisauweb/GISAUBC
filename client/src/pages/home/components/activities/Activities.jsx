@@ -13,7 +13,7 @@ function Activities() {
 				<Typography variant='h4' color='primary'>
 					WHAT WE DO
 				</Typography>
-				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' />
+				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' loading='lazy' />
 			</Box>
 			<Box className='w-full flex lg:py-8'>
 				{isMobile ? (
@@ -33,9 +33,15 @@ function Activities() {
 											id={activity.id}
 											src={activity.image}
 											className='w-full object-cover'
+											loading='lazy'
 										/>
 									</div>
-									<img alt='Icon' src={activity.icon} className={`absolute ${activity.iconStyle}`} />
+									<img
+										alt='Icon'
+										src={activity.icon}
+										className={`absolute ${activity.iconStyle}`}
+										loading='lazy'
+									/>
 								</Box>
 								<Box className='w-5/6 text-center px-3'>
 									<Box className='font-montserrat text-2xl' sx={{ my: 3, fontWeight: 'bold' }}>

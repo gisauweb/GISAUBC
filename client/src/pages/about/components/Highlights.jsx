@@ -24,7 +24,7 @@ export default function Highlights() {
 				<div className='flex items-center justify-around flex-wrap'>
 					{HIGHLIGHTS.map((image) => (
 						<div className='mx-5' key={image}>
-							<img src={image} alt='higlight' className='h-44 sm:h-60 lg:h-80' />
+							<img src={image} alt='higlight' className='h-44 sm:h-60 lg:h-80' loading='lazy' />
 						</div>
 					))}
 				</div>

@@ -6,7 +6,7 @@ import './LogoSpinning.css';
 export default function LogoSpinning() {
 	return (
 		<div className='text-center grid justify-center'>
-			<img src={LogoGisau} alt='GISAU logo' className='logo w-44 lg:w-52 xl:w-64 mt-36' />
+			<img src={LogoGisau} alt='GISAU logo' className='logo w-44 lg:w-52 xl:w-64 mt-36' loading='lazy' />
 		</div>
 	);
 }

@@ -22,12 +22,12 @@ function SponsorContainer({ name, logo, reversed }) {
 						{name}
 					</Typography>
 				) : (
-					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' />
+					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' loading='lazy' />
 				)}
 			</Box>
 			<Box style={boxStyle} className='justify-start pl-4 sm:pl-9'>
 				{reversed ? (
-					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' />
+					<img alt={name} src={logo} className='rounded-md h-12 sm:h-20 lg:h-24 sm:max-h-60' loading='lazy' />
 				) : (
 					<Typography variant='h4' color='primary' className='text-left'>
 						{name}

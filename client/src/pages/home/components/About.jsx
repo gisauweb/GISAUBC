@@ -26,6 +26,7 @@ function About() {
 					src={sunshineImg}
 					alt='Sunshine'
 					className='h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:right-3 sm:top-0 lg:top-2 xl:top-0'
+					loading='lazy'
 				/>
 			</Box>
 			<a href='/about' className='sm:pb-1 lg:w-1/3 2xl:w-fit lg:absolute lg:right-1/10'>
@@ -33,6 +34,7 @@ function About() {
 					src={isMobile ? aboutMobileImg : aboutImg}
 					alt='GISAU Executives'
 					className='w-3/4 lg:w-full mx-auto mt-6 rounded-3xl'
+					loading='lazy'
 				/>
 			</a>
 			<Box className='w-3/4 sm:w-1/2 h-full'>
