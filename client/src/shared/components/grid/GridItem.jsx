@@ -22,7 +22,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		// upcoming rantangan
 		<Grid item>
 			<Box className={`flex ${isMobileView ? 'flex-col' : 'flex-row'} mx-7 sm:mx-0`}>
-				<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+				<img src={item.image} alt='item_image' className='rounded-2xl z-10' loading='lazy' />
 				<Box className={`flex flex-col ${isMobileView ? 'items-center text-center' : 'ml-8 mt-5'} space-y-4`}>
 					<span className='font-semibold text-xl py-2' style={{ zIndex: 5 }}>
 						{item.title}
@@ -37,7 +37,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 				<a href={item.infoLink} target='_blank' rel='noreferrer'>
-					<img src={item.image} alt='item_image' className='rounded-2xl z-10' />
+					<img src={item.image} alt='item_image' className='rounded-2xl z-10' loading='lazy' />
 				</a>
 				<Box className='text-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>

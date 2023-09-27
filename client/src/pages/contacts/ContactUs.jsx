@@ -19,6 +19,7 @@ export default function ContactUs() {
 				alt='hands-background-aesthetic'
 				className='absolute w-full sm:w-[47%] 2xl:max-w-4xl right-0 z-0
 				top-2/3 md:top-[26%] lg:top-[24%] xl:top-[21.5%] 2xl:top-[18.5%]'
+				loading='lazy'
 			/>
 			<Footer />
 		</Box>

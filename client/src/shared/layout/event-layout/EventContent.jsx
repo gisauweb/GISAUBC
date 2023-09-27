@@ -12,7 +12,7 @@ function EventContent({ events, button1, handleClickButton, isMobileView }) {
 				<div>
 					<div className='event-img w-[80%] md:w-[50%] m-auto lg:w-[95%] lg:m-0'>
 						<a href={event.infoLink} target='_blank' rel='noreferrer' className='flex justify-center'>
-							<img src={event.image} alt='event' />
+							<img src={event.image} alt='event' loading='lazy' />
 						</a>
 					</div>
 				</div>

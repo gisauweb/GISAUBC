@@ -14,7 +14,14 @@ function RantanganContent({ upcoming }) {
 	return (
 		<Box className='my-20 relative'>
 			<Box className='absolute w-screen left-0'>
-				{!upcoming && <img src={bakmi} alt='bakmi-icon' className='absolute w-[30%] right-10 z-[0] -top-80' />}
+				{!upcoming && (
+					<img
+						src={bakmi}
+						alt='bakmi-icon'
+						className='absolute w-[30%] right-10 z-[0] -top-80'
+						loading='lazy'
+					/>
+				)}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
 				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
