@@ -13,7 +13,7 @@ export default function LandingImage({ bgImage, text, isHomePage, children }) {
 		<div className='h-screen items-center overflow-hidden'>
 			<div className='absolute w-full h-screen' style={backgroundStyles} />
 			<div className='relative flex justify-center items-center h-full'>
-				<div className='w-full mt-1/10'>
+				<div className='w-full mt-1/20'>
 					{isHomePage ? (
 						children
 					) : (
