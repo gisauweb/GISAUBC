@@ -3,6 +3,18 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[3],
+			title: 'Fall Executive Hiring',
+			date: '25 September - 6 October 2023',
+			loc: 'Submit Via Email',
+		},
+		{
+			image: EVENTS_23_24[2],
+			title: 'SOTO: Sobat Tongkrongan',
+			date: 'Wed, 4 October 2023 | 6:30PM',
+			loc: 'UBC Asian Centre Auditorium',
+		},
+		{
 			image: EVENTS_23_24[1],
 			title: 'UBUD: UBC Udah Dekat',
 			date: 'Friday, August 4 | 8-9:40 PM',
@@ -12,7 +24,7 @@ const PAST_EVENTS = {
 			image: EVENTS_23_24[0],
 			title: 'Summer Hiring',
 			date: 'Thursday, June 6 | 11:59PM',
-			loc: 'Online',
+			loc: 'Submit Via Email',
 		},
 	],
 	'2022/2023': [

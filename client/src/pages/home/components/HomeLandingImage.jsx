@@ -1,6 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
 import ReactGA from 'react-ga4';
-import hiring from 'assets/events-page/past-events/23_24/hiring.pdf';
 import { Button, LandingImage } from 'shared/components';
 import gisauLogo from '../../../assets/gisau-logo/gisau.png';
 import homeLandingImg from '../../../assets/landing-image/home.jpg';
@@ -16,18 +15,18 @@ export default function HomeLandingImage() {
 		window.open('https://forms.gle/VF4Vvascc56iujT67', '_blank', 'noreferrer');
 	};
 
-	const handleClickButton2 = () => {
-		ReactGA.event({
-			category: 'Hiring',
-			action: 'Clicked register for executives',
-		});
-		window.open(
-			// eslint-disable-next-line max-len
-			hiring,
-			'_blank',
-			'noreferrer',
-		);
-	};
+	// const handleClickButton2 = () => {
+	// 	ReactGA.event({
+	// 		category: 'Hiring',
+	// 		action: 'Clicked register for executives',
+	// 	});
+	// 	window.open(
+	// 		// eslint-disable-next-line max-len
+	// 		hiring,
+	// 		'_blank',
+	// 		'noreferrer',
+	// 	);
+	// };
 
 	return (
 		<LandingImage bgImage={homeLandingImg} isHomePage>
@@ -43,9 +42,9 @@ export default function HomeLandingImage() {
 				of UBC
 			</h1>
 			<div className='flex flex-col sm:flex-row sm:gap-x-4 justify-center'>
-				<div className='grid justify-center'>
+				{/* <div className='grid justify-center'>
 					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton2} />
-				</div>
+				</div> */}
 				<div className='grid justify-center mt-4 sm:mt-0'>
 					<Button text='Become a member!' landingButton handleClickButton={handleClickButton} />
 				</div>
