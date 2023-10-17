@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
 
-function SponsorRegistration() {
+function PartnerRegistration() {
 	const containerStyle = {
 		width: '100%',
 		maxWidth: '100%',
@@ -64,4 +64,4 @@ function SponsorRegistration() {
 	);
 }
 
-export default SponsorRegistration;
+export default PartnerRegistration;
