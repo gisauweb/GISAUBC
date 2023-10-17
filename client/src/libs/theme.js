@@ -28,7 +28,7 @@ const theme = createTheme({
 			fontSize: '1.7rem',
 		},
 		body1: {
-			fontFamily: 'Montserrat, sans-serif',
+			fontFamily: 'Inter, sans-serif',
 		},
 		button: {
 			fontStyle: 'italic',
@@ -53,7 +53,6 @@ const theme = createTheme({
 		success: {
 			main: '#4caf50', // Set the success color
 		},
-		// Add more custom colors as needed
 	},
 });
 

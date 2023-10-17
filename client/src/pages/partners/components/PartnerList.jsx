@@ -5,7 +5,7 @@ import PartnerContainer from './PartnerContainer';
 
 function PartnerList() {
 	return (
-		<Box className='flex flex-col sm:my-14'>
+		<Box className='flex flex-col my-8 sm:my-14'>
 			{PARTNERS.slice(0).map((sponsor) => (
 				<PartnerContainer
 					name={sponsor.name}
