@@ -1,6 +1,6 @@
-import SponsorContainer from './SponsorContainer';
-import SponsorList from './SponsorList';
-import SponsorTitle from './SponsorTitle';
+import SponsorContainer from './PartnerContainer';
+import PartnerList from './PartnerList';
+import PartnerTitle from './PartnerTitle';
 import SponsorRegistration from './SponsorRegistration';
 
-export { SponsorContainer, SponsorList, SponsorRegistration, SponsorTitle };
+export { SponsorContainer, PartnerList, SponsorRegistration, PartnerTitle };
