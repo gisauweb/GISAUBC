@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import indomie from 'assets/partners/indomie.svg';
+import indomie from 'assets/partners/indomie.png';
 import lemonjarz from 'assets/partners/lemonjarz.svg';
 import milkcow from 'assets/partners/milkcow.svg';
 import steves from 'assets/partners/steves.svg';
