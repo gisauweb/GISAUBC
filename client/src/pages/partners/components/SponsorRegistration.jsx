@@ -14,11 +14,11 @@ function SponsorRegistration() {
 	const steps = [
 		{
 			id: '1',
-			details: 'Sign up for membership',
+			details: 'Sign up for our membership',
 		},
 		{
 			id: '2',
-			details: 'Wait for your e-membership',
+			details: 'Find the codes in our members-only newsletter',
 		},
 		{
 			id: '3',
@@ -54,7 +54,7 @@ function SponsorRegistration() {
 						>
 							{step.id}
 						</Typography>
-						<Typography variant='h5' className='pl-4 lg:pl-0 lg:mt-5 text-left lg:pt-4'>
+						<Typography variant='h5' className='pl-4 lg:pl-0 lg:mt-5 text-left lg:text-center lg:pt-4'>
 							{step.details}
 						</Typography>
 					</Box>
