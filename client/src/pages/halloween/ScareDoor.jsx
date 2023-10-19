@@ -42,7 +42,7 @@ function ScareDoor() {
 				<iframe
 					width='280'
 					height='170'
-					src='https://www.youtube.com/embed/a1_ivOwoVRY?si=sdty6eH5YsKeaRyE'
+					src='https://www.youtube.com/live/30glD_lGHTk?si=86GI7lUerTTMT30f'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
@@ -53,7 +53,7 @@ function ScareDoor() {
 				<iframe
 					width='560'
 					height='315'
-					src='https://www.youtube.com/embed/a1_ivOwoVRY?si=sdty6eH5YsKeaRyE'
+					src='https://www.youtube.com/live/30glD_lGHTk?si=86GI7lUerTTMT30f'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
