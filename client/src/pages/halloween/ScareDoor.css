@@ -1,0 +1,101 @@
+.maze-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.scare {
+	position: absolute;
+	background-image: url('https://img-z.okeinfo.net/okz/500/library/images/2018/08/30/x6h4f1szd2lhnzh6fx1r_19882.jpg');
+	background-size: cover;
+	background-position: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.scare.visible {
+	opacity: 1;
+}
+
+.door {
+	position: relative;
+	width: 170px;
+	height: 270px;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	transform: perspective(2500px);
+
+}
+
+.door-front {
+	width: 170px;
+	height: 270px;
+	overflow: hidden;
+	transform-origin: left;
+	box-shadow: 30px 0 50px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	background-color: #333;
+	z-index: 1;
+	transition: .5s;
+}
+
+.door-front:before {
+	top: 25px;
+}
+
+.door-front:after {
+	top: 155px;
+}
+
+.knob {
+	position: absolute;
+	width: 20px;
+	height: 30px;
+	background-color: #eeba0b;
+	top: 122px;
+	left: 145px;
+	border-radius: 2px;
+}
+
+.knob:before {
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	background-color: #f1c83c;
+	width: 18px;
+	height: 18px;
+	left: -1px;
+	box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.knob:after {
+	content: "";
+	position: absolute;
+	width: 4px;
+	height: 7px;
+	background-color: #333;
+	top: 20px;
+	left: 8.5px;
+}
+
+.door-back {
+	position: absolute;
+	background-image: url('https://img.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_1562-693.jpg?w=1380&t=st=1697694063~exp=1697694663~hmac=937c3e4d39fb9c25a18dc790c9558567e01521f9c13595a3b8ad7005d33f8ff3');
+	background-size: cover;
+	background-position: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.door-open {
+	transform: rotateY(-160deg);
+}
