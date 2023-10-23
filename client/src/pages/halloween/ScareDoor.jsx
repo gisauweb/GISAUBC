@@ -25,30 +25,28 @@ function ScareDoor() {
 
 	const renderScareMaze = () => (
 		<div className={`maze-container ${scareVisible ? 'scare' : ''}`}>
-			{playScream ? (
-				<ReactAudioPlayer src={scaryAudio} controls autoPlay />
-			) : (
-				<div className='flex flex-col items-center justify-center space-y-8'>
-					{!(playScream && scareVisible) && (
-						<>
-							<p>Don&apos;t open the door!</p>
-							<button type='button' onClick={handleScare}>
-								{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
-								<div className='door'>
-									<div className={`door-front ${openDoor ? 'door-open' : ''}`}>
-										<div className='knob' />
-									</div>
-									<div className='door-back'>
-										<div className='rack' />
-										<div className='hat' />
-										<div className='jacket' />
-									</div>
+			<div className='flex flex-col items-center justify-center space-y-8'>
+				{!(playScream && scareVisible) ? (
+					<>
+						<p>Don&apos;t open the door!</p>
+						<button type='button' onClick={handleScare}>
+							{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
+							<div className='door'>
+								<div className={`door-front ${openDoor ? 'door-open' : ''}`}>
+									<div className='knob' />
 								</div>
-							</button>
-						</>
-					)}
-				</div>
-			)}
+								<div className='door-back'>
+									<div className='rack' />
+									<div className='hat' />
+									<div className='jacket' />
+								</div>
+							</div>
+						</button>
+					</>
+				) : (
+					<ReactAudioPlayer src={scaryAudio} autoPlay />
+				)}
+			</div>
 		</div>
 	);
 
