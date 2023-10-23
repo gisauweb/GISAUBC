@@ -42,23 +42,23 @@ function ScareDoor() {
 				<iframe
 					width='280'
 					height='170'
-					src='https://www.youtube.com/live/30glD_lGHTk?si=86GI7lUerTTMT30f'
+					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr&amp;controls=0'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
 					encrypted-media; gyroscope; picture-in-picture; web-share'
-					allowFullScreen
+					allowfullscreen
 				/>
 			) : (
 				<iframe
 					width='560'
 					height='315'
-					src='https://www.youtube.com/live/30glD_lGHTk?si=86GI7lUerTTMT30f'
+					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr&amp;controls=0'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
-				encrypted-media; gyroscope; picture-in-picture; web-share'
-					allowFullScreen
+					encrypted-media; gyroscope; picture-in-picture; web-share'
+					allowfullscreen
 				/>
 			)}
 		</div>
