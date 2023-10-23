@@ -6,7 +6,7 @@ import scaryAudio from 'assets/halloween/jump_scare.mp3';
 
 function ScareDoor() {
 	const [scareVisible, setScareVisible] = useState(false);
-	const [playScream, setPlayScrem] = useState(false);
+	const [playScream, setPlayScream] = useState(false);
 	const [openDoor, setOpenDoor] = useState(false);
 	const [watchYoutube, setWatchYoutube] = useState(false);
 
@@ -15,7 +15,7 @@ function ScareDoor() {
 	const handleScare = () => {
 		setOpenDoor(true);
 		setTimeout(() => {
-			setPlayScrem(true);
+			setPlayScream(true);
 			setScareVisible(true);
 		}, 700);
 		setTimeout(() => {
@@ -44,7 +44,7 @@ function ScareDoor() {
 						</button>
 					</>
 				)}
-				<ReactAudioPlayer src={scaryAudio} autoPlay={!playScream} muted={!playScream} />
+				<ReactAudioPlayer src={scaryAudio} autoPlay={playScream} muted={!playScream} />
 			</div>
 		</div>
 	);
@@ -60,7 +60,7 @@ function ScareDoor() {
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
 					encrypted-media; gyroscope; picture-in-picture; web-share'
-					allowfullscreen
+					allowFullScreen
 				/>
 			) : (
 				<iframe
@@ -71,7 +71,7 @@ function ScareDoor() {
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
 					encrypted-media; gyroscope; picture-in-picture; web-share'
-					allowfullscreen
+					allowFullScreen
 				/>
 			)}
 		</div>
