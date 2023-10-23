@@ -23,6 +23,12 @@ function ScareDoor() {
 		}, 1500);
 	};
 
+	const playAudio = () => {
+		if (!playScream) {
+			setPlayScream(true);
+		}
+	};
+
 	const renderScareMaze = () => (
 		<div className={`maze-container ${scareVisible ? 'scare' : ''}`}>
 			<div className='flex flex-col items-center justify-center space-y-8'>
@@ -42,9 +48,12 @@ function ScareDoor() {
 								</div>
 							</div>
 						</button>
+						<button type='button' onClick={playAudio}>
+							Play Audio
+						</button>
 					</>
 				)}
-				<ReactAudioPlayer src={scaryAudio} autoPlay={playScream} muted={!playScream} />
+				{playScream && <ReactAudioPlayer src={scaryAudio} autoPlay />}
 			</div>
 		</div>
 	);
