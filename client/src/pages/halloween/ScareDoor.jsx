@@ -56,9 +56,9 @@ function ScareDoor() {
 		<div className='flex flex-col justify-center items-center h-[100vh]'>
 			{isMobileView ? (
 				<iframe
-					width='280'
-					height='170'
-					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr&amp;controls=0'
+					width='300'
+					height='200'
+					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
@@ -69,7 +69,7 @@ function ScareDoor() {
 				<iframe
 					width='560'
 					height='315'
-					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr&amp;controls=0'
+					src='https://www.youtube.com/embed/fKuUEBlkoJo?si=GDVxG_i-XTpA7wQr'
 					title='YouTube video player'
 					frameBorder='0'
 					allow='accelerometer; autoplay; clipboard-write;
