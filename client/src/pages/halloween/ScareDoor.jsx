@@ -25,7 +25,9 @@ function ScareDoor() {
 
 	const playAudio = () => {
 		if (!playScream) {
-			setPlayScream(true);
+			setTimeout(() => {
+				setPlayScream(true);
+			}, 700);
 		}
 	};
 
