@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './ScareDoor.css';
 import { useMediaQuery } from 'react-responsive';
+import ReactAudioPlayer from 'react-audio-player';
+import scaryAudio from 'assets/halloween/jump_scare.mp3';
 
 function ScareDoor() {
 	const [scareVisible, setScareVisible] = useState(false);
@@ -12,27 +14,31 @@ function ScareDoor() {
 		setScareVisible(true);
 		setTimeout(() => {
 			setWatchYoutube(true);
-		}, 1000);
+		}, 1500);
 	};
 
 	const renderScareMaze = () => (
 		<div className={`maze-container ${scareVisible ? 'scare' : ''}`}>
-			<div className='flex flex-col items-center justify-center space-y-8'>
-				<p>Don&apos;t open the door!</p>
-				<button type='button' onClick={handleScare}>
-					{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
-					<div className='door'>
-						<div className={`door-front ${scareVisible ? 'door-open' : ''}`}>
-							<div className='knob' />
+			{!scareVisible ? (
+				<div className='flex flex-col items-center justify-center space-y-8'>
+					<p>Don&apos;t open the door!</p>
+					<button type='button' onClick={handleScare}>
+						{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
+						<div className='door'>
+							<div className={`door-front ${scareVisible ? 'door-open' : ''}`}>
+								<div className='knob' />
+							</div>
+							<div className='scare'>
+								<div className='rack' />
+								<div className='hat' />
+								<div className='jacket' />
+							</div>
 						</div>
-						<div className='scare'>
-							<div className='rack' />
-							<div className='hat' />
-							<div className='jacket' />
-						</div>
-					</div>
-				</button>
-			</div>
+					</button>
+				</div>
+			) : (
+				<ReactAudioPlayer src={scaryAudio} autoPlay />
+			)}
 		</div>
 	);
 
