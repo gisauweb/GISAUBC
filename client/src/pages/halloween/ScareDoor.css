@@ -41,7 +41,7 @@
 	position: absolute;
 	background-color: #333;
 	z-index: 1;
-	transition: .5s;
+	transition: .8s;
 }
 
 .door-front:before {
@@ -83,19 +83,111 @@
 	left: 8.5px;
 }
 
-.door-back {
-	position: absolute;
-	background-image: url('https://img.freepik.com/free-photo/isolated-happy-smiling-dog-white-background-portrait-4_1562-693.jpg?w=1380&t=st=1697694063~exp=1697694663~hmac=937c3e4d39fb9c25a18dc790c9558567e01521f9c13595a3b8ad7005d33f8ff3');
-	background-size: cover;
-	background-position: center;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	transition: opacity 0.5s ease-in-out;
-}
-
 .door-open {
 	transform: rotateY(-160deg);
+}
+.door-back {
+	position: relative;
+	background: linear-gradient(0deg, rgba(193, 124, 116, 1) 13%, rgba(73, 88, 103, 1) 13%, rgba(79, 100, 124, 1) 15%, rgba(87, 115, 153, 1) 15%);
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	outline: 10px solid #edf2f4;
+}
+
+.rack {
+	position: absolute;
+	width: 7px;
+	height: 150px;
+	background-color: #a78a7f;
+	top: 90px;
+	left: 100px;
+}
+
+.rack:before {
+	content: "";
+	position: absolute;
+	width: 70px;
+	height: 10px;
+	border-radius: 30px 30px 0 0;
+	background-color: #8c1c13;
+	top: 150px;
+	left: -30px;
+}
+
+.rack:after {
+	position: absolute;
+	content: "";
+	width: 30px;
+	height: 30px;
+	border-bottom: 5px solid #a78a7f;
+	border-right: 5px solid #a78a7f;
+	border-bottom-right-radius: 100%;
+	top: 20px;
+}
+
+.hat {
+	position: absolute;
+	width: 60px;
+	height: 15px;
+	border-radius: 20px 20px 0 0;
+	background-color: #bf4342;
+	top: 80px;
+	left: 75px;
+}
+
+.hat:before {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 20px;
+	border-radius: 10px 10px 0 0;
+	background-color: #bf4342;
+	top: -20px;
+	left: 10px;
+	box-shadow: inset 0 -5px #e7d7c1;
+}
+
+.hat:after {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 100px;
+	background-color: #735751;
+	border-radius: 50% 60% 20% 20% / 70% 70% 20% 20%;
+	top: 20px;
+	left: 45px;
+}
+
+.jacket {
+	position: absolute;
+	width: 7px;
+	height: 7px;
+	background-color: #e7d7c1;
+	border-radius: 50%;
+	top: 120px;
+	left: 137px;
+	box-shadow: 0 20px #e7d7c1;
+}
+
+.jacket:before {
+	content: "";
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background-color: #a78a7f;
+	left: -10px;
+	top: 40px;
+}
+
+.jacket:after {
+	content: "";
+	position: absolute;
+	border-top: 15px solid #8c1c13;
+	border-right: 15px solid transparent;
+	border-left: 15px solid transparent;
+	width: 0;
+	height: 0;
+	top: 40px;
+	left: -12px;
 }
