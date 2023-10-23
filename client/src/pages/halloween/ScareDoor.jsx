@@ -6,7 +6,7 @@ import scaryAudio from 'assets/halloween/jump_scare.mp3';
 
 function ScareDoor() {
 	const [scareVisible, setScareVisible] = useState(false);
-	const [playScream, setPlayScream] = useState(false); // Corrected the state variable name
+	const [playScream, setPlayScream] = useState(false);
 	const [openDoor, setOpenDoor] = useState(false);
 	const [watchYoutube, setWatchYoutube] = useState(false);
 
@@ -23,28 +23,36 @@ function ScareDoor() {
 		}, 1500);
 	};
 
+	const playAudio = () => {
+		if (!playScream) {
+			setPlayScream(true);
+		}
+	};
+
 	const renderScareMaze = () => (
 		<div className={`maze-container ${scareVisible ? 'scare' : ''}`}>
 			<div className='flex flex-col items-center justify-center space-y-8'>
 				{!(playScream && scareVisible) && (
 					<>
 						<p>Don&apos;t open the door!</p>
-						<button type='button' onClick={handleScare}>
-							{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
-							<div className='door'>
-								<div className={`door-front ${openDoor ? 'door-open' : ''}`}>
-									<div className='knob' />
+						<button type='button' onClick={playAudio}>
+							<button type='button' onClick={handleScare}>
+								{/* https://lenadesign.org/2021/04/26/css-door-animation-open-close-on-hover/ */}
+								<div className='door'>
+									<div className={`door-front ${openDoor ? 'door-open' : ''}`}>
+										<div className='knob' />
+									</div>
+									<div className='door-back'>
+										<div className='rack' />
+										<div className='hat' />
+										<div className='jacket' />
+									</div>
 								</div>
-								<div className='door-back'>
-									<div className='rack' />
-									<div className='hat' />
-									<div className='jacket' />
-								</div>
-							</div>
+							</button>
 						</button>
 					</>
 				)}
-				<ReactAudioPlayer src={scaryAudio} autoPlay={playScream} muted={!playScream} />
+				{playScream && <ReactAudioPlayer src={scaryAudio} autoPlay />}
 			</div>
 		</div>
 	);
