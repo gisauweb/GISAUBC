@@ -6,7 +6,7 @@ import scaryAudio from 'assets/halloween/jump_scare.mp3';
 
 function ScareDoor() {
 	const [scareVisible, setScareVisible] = useState(false);
-	const [playScream, setPlayScream] = useState(false);
+	const [playScream, setPlayScream] = useState(false); // Corrected the state variable name
 	const [openDoor, setOpenDoor] = useState(false);
 	const [watchYoutube, setWatchYoutube] = useState(false);
 
@@ -21,12 +21,6 @@ function ScareDoor() {
 		setTimeout(() => {
 			setWatchYoutube(true);
 		}, 1500);
-	};
-
-	const playAudio = () => {
-		if (!playScream) {
-			setPlayScream(true);
-		}
 	};
 
 	const renderScareMaze = () => (
@@ -48,12 +42,9 @@ function ScareDoor() {
 								</div>
 							</div>
 						</button>
-						<button type='button' onClick={playAudio}>
-							Play Audio
-						</button>
 					</>
 				)}
-				{playScream && <ReactAudioPlayer src={scaryAudio} autoPlay />}
+				<ReactAudioPlayer src={scaryAudio} autoPlay={playScream} muted={!playScream} />
 			</div>
 		</div>
 	);
