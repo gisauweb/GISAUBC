@@ -26,7 +26,7 @@ function ScareDoor() {
 	const renderScareMaze = () => (
 		<div className={`maze-container ${scareVisible ? 'scare' : ''}`}>
 			{playScream ? (
-				<ReactAudioPlayer src={scaryAudio} autoPlay />
+				<ReactAudioPlayer src={scaryAudio} controls autoPlay />
 			) : (
 				<div className='flex flex-col items-center justify-center space-y-8'>
 					{!(playScream && scareVisible) && (
