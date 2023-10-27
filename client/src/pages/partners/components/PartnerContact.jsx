@@ -14,7 +14,7 @@ function PartnerContact() {
 	return (
 		<Container style={containerStyle} className='mt-5 sm:my-3'>
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
-				Interested To Partner With Us?
+				Interested to partner with us?
 			</Typography>
 			<Box className='flex-col lg:flex-row mt-10'>
 				<Box className='flex lg:flex-col'>
