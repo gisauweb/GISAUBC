@@ -16,17 +16,19 @@ function PartnerContact() {
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				Interested to partner with us?
 			</Typography>
-			<Box className='flex-col lg:flex-row mt-10'>
-				<Box className='flex lg:flex-col'>
-					<Typography
-						variant='button'
-						color='primary'
-						className='border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2'
-					>
-						<a href='mailto:contact.gisau@gmail.com'>Contact us at sponsorship.gisau@gmail.com</a>
-					</Typography>
+			<a href='mailto:contact.gisau@gmail.com'>
+				<Box className='flex-col lg:flex-row mt-10'>
+					<Box className='flex lg:flex-col'>
+						<Typography
+							variant='button'
+							color='primary'
+							className='border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2'
+						>
+							Contact us at sponsorship.gisau@gmail.com
+						</Typography>
+					</Box>
 				</Box>
-			</Box>
+			</a>
 		</Container>
 	);
 }
