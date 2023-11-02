@@ -18,7 +18,7 @@ function PartnerContact() {
 				Interested to partner with us?
 			</Typography>
 			<a href='mailto:contact.gisau@gmail.com' className='flex mt-10 border-3 border-primary rounded-full'>
-				<Button text='Contact us at sponsorship.gisau@gmail.com' />
+				<Button text='Contact us at sponsorship.gisau@gmail.com' background='transparentBg' />
 			</a>
 		</Container>
 	);
