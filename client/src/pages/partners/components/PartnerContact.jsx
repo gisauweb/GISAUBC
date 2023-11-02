@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Container, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
+import { Button } from 'shared/components';
 
 function PartnerContact() {
 	const containerStyle = {
@@ -16,18 +17,8 @@ function PartnerContact() {
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				Interested to partner with us?
 			</Typography>
-			<a href='mailto:contact.gisau@gmail.com'>
-				<Box className='flex-col lg:flex-row mt-10'>
-					<Box className='flex lg:flex-col'>
-						<Typography
-							variant='button'
-							color='primary'
-							className='border-4 border-primary rounded-full px-3 sm:px-7 sm:py-2'
-						>
-							Contact us at sponsorship.gisau@gmail.com
-						</Typography>
-					</Box>
-				</Box>
+			<a href='mailto:contact.gisau@gmail.com' className='flex mt-10 border-3 border-primary rounded-full'>
+				<Button text='Contact us at sponsorship.gisau@gmail.com' />
 			</a>
 		</Container>
 	);

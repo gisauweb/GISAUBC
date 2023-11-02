@@ -54,7 +54,7 @@ function PartnerRegistration() {
 						>
 							{step.id}
 						</Typography>
-						<Typography variant='h5' className='pl-4 lg:pl-0 lg:mt-5 text-left lg:text-center lg:pt-4'>
+						<Typography variant='h6' className='pl-4 lg:pl-0 lg:mt-5 text-left lg:text-center lg:pt-4'>
 							{step.details}
 						</Typography>
 					</Box>
