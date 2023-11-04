@@ -15,7 +15,7 @@ export default function Partners() {
 				<PartnerList />
 				<Divider className='py-[0.5px]' color='black' />
 				<PartnerRegistration />
-				<Divider className='py-[0.5px] mt-5' color='black' />
+				<Divider className='py-[0.5px]' color='black' />
 				<PartnerContact />
 				<ScrollButton threshold={1 / 2} />
 			</MainContainer>

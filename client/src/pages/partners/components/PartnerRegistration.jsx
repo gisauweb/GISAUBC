@@ -44,7 +44,7 @@ function PartnerRegistration() {
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				How to access our partners?
 			</Typography>
-			<Box style={stepsBoxStyle} className='flex-col lg:flex-row'>
+			<Box style={stepsBoxStyle} className='flex-col lg:flex-row mb-2'>
 				{steps.map((step) => (
 					<Box style={stepBoxStyle} key={step.id} className='flex lg:flex-col'>
 						<Typography
