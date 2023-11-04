@@ -1,7 +1,10 @@
 import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 function PartnerRegistration() {
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+
 	const containerStyle = {
 		width: '100%',
 		maxWidth: '100%',
@@ -44,7 +47,7 @@ function PartnerRegistration() {
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				How to access our partners?
 			</Typography>
-			<Box style={stepsBoxStyle} className='flex-col lg:flex-row mb-2'>
+			<Box style={stepsBoxStyle} className={`flex-col lg:flex-row ${isMobileView ? 'mb-5' : 'mb-0'}`}>
 				{steps.map((step) => (
 					<Box style={stepBoxStyle} key={step.id} className='flex lg:flex-col'>
 						<Typography
