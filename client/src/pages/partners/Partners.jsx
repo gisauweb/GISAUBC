@@ -3,7 +3,7 @@ import { Box, Divider } from '@mui/material';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import partnersLandingImg from 'assets/landing-image/partners.jpeg';
 import MainContainer from 'shared/layout/MainContainer';
-import { PartnerRegistration, PartnerTitle, PartnerList } from './components/index';
+import { PartnerRegistration, PartnerTitle, PartnerList, PartnerContact } from './components/index';
 
 export default function Partners() {
 	return (
@@ -15,6 +15,8 @@ export default function Partners() {
 				<PartnerList />
 				<Divider className='py-[0.5px]' color='black' />
 				<PartnerRegistration />
+				<Divider className='py-[0.5px]' color='black' />
+				<PartnerContact />
 				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer showPlane={false} />

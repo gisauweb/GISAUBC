@@ -4,7 +4,6 @@ import Partners from 'pages/partners/Partners';
 import Rantangan from 'pages/rantangan/Rantangan';
 import About from 'pages/about/About';
 import ContactUs from 'pages/contacts/ContactUs';
-import ScareDoor from 'pages/halloween/ScareDoor';
 
 const pages = [
 	{
@@ -42,12 +41,6 @@ const pages = [
 		path: '/contact-us',
 		hasLandingImage: false,
 		element: <ContactUs />,
-	},
-	{
-		name: '???',
-		path: '/halloween',
-		hasLandingImage: false,
-		element: <ScareDoor />,
 	},
 ];
 

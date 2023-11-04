@@ -9,8 +9,8 @@ export default function HomeLandingImage() {
 
 	const handleClickButton = () => {
 		ReactGA.event({
-			category: 'Hiring',
-			action: 'Clicked register for executives',
+			category: 'Join Member',
+			action: 'Clicked register for membership',
 		});
 		window.open('https://forms.gle/VF4Vvascc56iujT67', '_blank', 'noreferrer');
 	};
