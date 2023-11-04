@@ -3,6 +3,12 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[4],
+			title: 'Rumah Hantu',
+			date: 'Wednesday, October 27 | 3-8:30PM',
+			loc: 'AMS Nest Room 2314',
+		},
+		{
 			image: EVENTS_23_24[3],
 			title: 'Fall Executive Hiring',
 			date: '25 September - 6 October 2023',
