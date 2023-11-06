@@ -2,49 +2,14 @@
 /* eslint-disable require-jsdoc */
 
 import { Application } from "express";
-import {
-    signUserInWithEmailPassword,
-    reAuthenticate,
-    GETCustomToken,
-    GETIdTokens,
-} from "../controllers/auth.controller";
-import { isAuthenticated } from "../services/authenticated";
-import { isAuthorized } from "../services/authorized";
+import { auth } from "express-openid-connect";
+import { AUTH0_CONFIG } from "../environments/dev.config";
 
 export function authRoutes(app: Application) {
 
-    /**
-    * sign user
-    **/
-    app.post("/sign_in",
-        signUserInWithEmailPassword
-    );
+	app.use(auth(AUTH0_CONFIG));
 
-    /**
-    * reAuthenticate user
-    **/
-    app.post("/reauthenticate", [
-        isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
-        reAuthenticate,
-    ]);
-
-    /**
-    * Create Custom Token for user uid
-    **/
-    app.post("/custom_token", [
-        isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
-        GETCustomToken,
-    ]);
-
-    /**
-    * Exchange Custom Token for ID Token
-    **/
-    app.post("/id_token", [
-        isAuthenticated,
-        isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
-        GETIdTokens,
-    ]);
-
+	app.get("/isAuthenticated`", (req, res) => {
+		res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+	});
 }
