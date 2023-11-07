@@ -23,18 +23,18 @@ export const AUTH0_CONFIG = {
 	authRequired: false,
 	auth0Logout: true,
 	secret: process.env.AUTH0_SECRET,
-	baseURL: "http://localhost:3000",
+	baseURL: "http://localhost:5001/gisaubc-dev/us-central1/api",
 	clientID: process.env.AUTH0_CLIENTID,
 	issuerBaseURL: process.env.AUTH0_BASEURL
 };
 
-export const FIREBASE_SERVICE_ACCOUNT = {
+export const FB_SERVICE_ACCOUNT = {
 	"type": "service_account",
 	"project_id": "gisaubc-dev",
-	"private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
-	"private_key": process.env.FIREBASE_PRIVATE_KEY,
-	"client_email": process.env.FIREBASE_CLIENT_EMAIL,
-	"client_id": process.env.FIREBASE_CLIENT_ID,
+	"private_key_id": process.env.FB_PRIVATE_KEY_ID,
+	"private_key": process.env.FB_PRIVATE_KEY,
+	"client_email": process.env.FB_CLIENT_EMAIL,
+	"client_id": process.env.FB_CLIENT_ID,
 	"auth_uri": "https://accounts.google.com/o/oauth2/auth",
 	"token_uri": "https://oauth2.googleapis.com/token",
 	"auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",

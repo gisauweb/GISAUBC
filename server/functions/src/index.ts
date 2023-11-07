@@ -4,8 +4,9 @@ import * as cors from "cors";
 
 import express = require("express");
 import { RequestHandler } from "express";
+import { FB_SERVICE_ACCOUNT } from "./environments/dev.config";
 
-const serviceAccount = FIREBASE_SERVICE_ACCOUNT;
+const serviceAccount = FB_SERVICE_ACCOUNT;
 
 const ServiceAccountPARAMS = {
 	type: serviceAccount.type,
@@ -30,8 +31,6 @@ admin.initializeApp({
 
 import { authRoutes } from "./routes/auth.routes";
 import { userRoutes } from "./routes/user.routes";
-import { FIREBASE_SERVICE_ACCOUNT } from "./environments/dev.config";
-import { FIREBASE_CONFIG_VAR } from "firebase-admin/lib/app/lifecycle";
 
 const app = express();
 app.use(express.json() as RequestHandler);
