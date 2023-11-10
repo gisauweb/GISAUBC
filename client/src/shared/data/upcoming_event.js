@@ -1,4 +1,5 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
+import malming from 'assets/events-page/malming.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -7,6 +8,7 @@ const UPCOMING_EVENTS = [
 		date: 'Saturday, November 18 | 4:30PM',
 		loc: 'Consulate General of Indonesia (KJRI)',
 		registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
+		infoLink: malming,
 	},
 ];
 
