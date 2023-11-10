@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = [
 		title: 'Malem Mingguan',
 		date: 'Saturday, November 18 | 3:30PM',
 		loc: 'Consulate General of Indonesia (KJRI)',
-		registrationLink: 'https://forms.gle/oodQKj74CeQD5Bz1Ao',
+		registrationLink: 'https://forms.gle/oodQKj74CeQD5Bz1A',
 		infoLink: malming,
 	},
 ];
