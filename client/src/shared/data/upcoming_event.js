@@ -1,4 +1,14 @@
-const UPCOMING_EVENTS = [];
+import { EVENTS_23_24 } from 'assets/events-page/past-events';
+
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_23_24[5],
+		title: 'Malem Mingguan',
+		date: 'Saturday, November 18 | 4:30PM',
+		loc: 'Consulate General of Indonesia (KJRI)',
+		registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
+	},
+];
 
 export default UPCOMING_EVENTS;
 
