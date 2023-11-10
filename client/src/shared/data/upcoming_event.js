@@ -5,9 +5,9 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[5],
 		title: 'Malem Mingguan',
-		date: 'Saturday, November 18 | 4:30PM',
+		date: 'Saturday, November 18 | 3:30PM',
 		loc: 'Consulate General of Indonesia (KJRI)',
-		registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
+		registrationLink: 'https://clubs.getqpay.com/?eid=21979',
 		infoLink: malming,
 	},
 ];
