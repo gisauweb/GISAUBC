@@ -4,7 +4,6 @@ import { Modal, Typography, IconButton, Box } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { Button } from 'shared/components';
-import ReactGA from 'react-ga4';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 
 const PopupWrapper = styled('div')({
@@ -26,15 +25,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ isOpen, onClose }) {
-	const handleRegisterButton = (link) => {
-		ReactGA.event({
-			category: 'Event',
-			action: 'Clicked register for SOTO',
-		});
-		window.open(link, '_blank', 'noreferrer');
-	};
-
-	const upcomingEvent = UPCOMING_EVENTS[1];
+	const upcomingEvent = UPCOMING_EVENTS[0];
 
 	return (
 		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
@@ -59,15 +50,11 @@ function Popup({ isOpen, onClose }) {
 				<Typography variant='h5' gutterBottom>
 					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>Join us for our annual welcoming event next Wednesday!</Typography>
+				<Typography variant='body1'>Join us in our next event!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<Button
-						background='transparentBg'
-						text='Register'
-						handleClickButton={() => {
-							handleRegisterButton(upcomingEvent.registrationLink);
-						}}
-					/>
+					<a href='#events' onClick={onClose}>
+						<Button background='transparentBg' text='Register' />
+					</a>
 				</Box>
 			</PopupWrapper>
 		</Modal>
