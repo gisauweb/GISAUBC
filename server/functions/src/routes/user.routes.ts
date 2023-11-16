@@ -3,7 +3,7 @@
 
 import { Application } from "express";
 import {
-	createUser,
+	createUserIfNotExists,
 	getAllUsers,
 	getUser,
 	updateUserPhoneNumber,
@@ -12,26 +12,25 @@ import {
 	removeUser,
 } from "../controllers/user.controller";
 
-import { isAuthenticated } from "../services/authenticated";
 import { isAuthorized } from "../services/authorized";
+import { requiresAuth } from "express-openid-connect";
 
 
 export function userRoutes(app: Application) {
-
 	/**
 	* Create user
 	**/
 	app.post("/users/create",
-		isAuthenticated,
-		isAuthorized({ hasRole: ["admin", "manager"] }),
-		createUser
+		requiresAuth,
+		// isAuthorized({ hasRole: ["admin", "manager"] }),
+		createUserIfNotExists
 	);
 
 	/**
 	* Get all users
 	**/
 	app.get("/users/getAll", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "manager"] }),
 		getAllUsers,
 	]);
@@ -40,7 +39,7 @@ export function userRoutes(app: Application) {
 	* GET user :id user
 	**/
 	app.get("/users/:id", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true }),
 		getUser,
 	]);
@@ -49,7 +48,7 @@ export function userRoutes(app: Application) {
 	* Update user phone number :id user
 	**/
 	app.patch("/users/updatePhoneNumber/:id", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
 		updateUserPhoneNumber,
 	]);
@@ -58,7 +57,7 @@ export function userRoutes(app: Application) {
 	* Patch user password :user id
 	**/
 	app.patch("/users/updatePassword/:id", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
 		patchUserPassword,
 	]);
@@ -67,7 +66,7 @@ export function userRoutes(app: Application) {
 	* Patch user role :user id
 	**/
 	app.patch("/users/updateRole/:id", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "manager"] }),
 		patchUserRole,
 	]);
@@ -76,7 +75,7 @@ export function userRoutes(app: Application) {
 	* Delete user :user id
 	**/
 	app.delete("/users/remove/:id", [
-		isAuthenticated,
+		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "manager"] }),
 		removeUser,
 	]);

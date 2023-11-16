@@ -27,12 +27,14 @@ export function mapUser(user: admin.auth.UserRecord) {
 
 }
 
-export interface userCreationWithEmailModel {
-    displayName: string,
-    password: string,
-    role: string,
-    email: string,
-    phone: string
+export interface createUserModel {
+	sid: string,
+	email: string,
+	email_verified: boolean,
+	nickname: string,
+	picture: string,
+	created_at: string,
+	updated_at: string
 }
 
 export interface getUsersModel {

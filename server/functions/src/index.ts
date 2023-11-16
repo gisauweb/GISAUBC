@@ -2,9 +2,10 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as cors from "cors";
 
+import { getFirestore } from "firebase-admin/firestore";
 import express = require("express");
 import { RequestHandler } from "express";
-import { FB_SERVICE_ACCOUNT } from "./environments/dev.config";
+import { AUTH0_CONFIG, FB_SERVICE_ACCOUNT } from "./environments/dev.config";
 
 const serviceAccount = FB_SERVICE_ACCOUNT;
 
@@ -22,23 +23,26 @@ const ServiceAccountPARAMS = {
 };
 
 admin.initializeApp({
-
 	credential: admin.credential.cert(ServiceAccountPARAMS),
-	databaseURL: "https://<PROJECT ID>.firebaseio.com",
-	storageBucket: "<PROJECT ID>.appspot.com",
-
+	databaseURL: "https://gisaubc-dev.firebaseio.com",
+	storageBucket: "gisaubc-dev.appspot.com",
 });
+
 
 import { authRoutes } from "./routes/auth.routes";
 import { userRoutes } from "./routes/user.routes";
+import { auth } from "express-openid-connect";
 
 const app = express();
+export const db = getFirestore();
+
 app.use(express.json() as RequestHandler);
 app.use(express.urlencoded({
 	extended: true,
 }) as RequestHandler);
 app.use(cors({ origin: true }));
 
+app.use(auth(AUTH0_CONFIG));
 userRoutes(app);
 authRoutes(app);
 

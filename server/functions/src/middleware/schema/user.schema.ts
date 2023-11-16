@@ -1,19 +1,23 @@
 import { Schema } from "../validators/ingress.validators";
 
-export const userCreationWithEmailSchema: Schema = {
+export const userCreation: Schema = {
     fields: {
-        displayName: "string",
-        password: "string",
-        role: "string",
-        email: "string",
-        phone: "string",
+		sid: "string",
+		email: "string",
+		email_verified: "boolean",
+		nickname: "string",
+		picture: "string",
+		created_at: "string",
+		updated_at: "string"
     },
     required: [
-        "displayName",
-        "password",
-        "role",
-        "email",
-        "phone",
+		"sid",
+		"email",
+		"email_verified",
+		"nickname",
+		"picture",
+		"created_at",
+		"updated_at"
     ],
 };
 
