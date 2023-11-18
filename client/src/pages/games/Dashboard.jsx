@@ -1,7 +1,7 @@
-import NavGames from 'pages/games/NavGames';
+import Sidebar from 'pages/games/Sidebar';
 
 function Dashboard() {
-	return <NavGames />;
+	return <Sidebar />;
 }
 
 export default Dashboard;

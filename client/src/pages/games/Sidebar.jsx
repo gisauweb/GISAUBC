@@ -11,7 +11,8 @@ function NavGames() {
 		// </Box>
 		<Sidebar className='bg-gamesRed'>
 			<Sidebar.ItemGroup>
-				<Sidebar.Logo href='/home' img='/assets/gisau-logo/gisau.svg' imgAlt='Flowbite logo'>
+				<Sidebar.Logo href='/home' img='/assets/gisau-logo/gisau.svg' imgAlt='GISAU logo red'>
+					<br />
 					GISAU
 				</Sidebar.Logo>
 			</Sidebar.ItemGroup>

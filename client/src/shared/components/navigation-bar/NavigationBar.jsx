@@ -4,6 +4,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg';
 import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
+import gamesIconLeft from 'assets/games/controllerL.png';
+import gamesIconRight from 'assets/games/controllerR.png';
 import pages from './constants';
 import MenuInterface from './MenuInterface';
 
@@ -95,13 +97,38 @@ export default function NavigationBar() {
 									onClick={ScrollToTop}
 									target={page.name === 'Games' ? '_blank' : '_self'}
 								>
-									<p
-										className={`underline-animation font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-									${page.path === location.pathname && 'underlined'}`}
-									>
-										{page.name}
-									</p>
+									{page.name === 'Games' ? (
+										// Render the icons for the "Games" page
+										<div className='flex items-center'>
+											<img
+												src={gamesIconLeft}
+												alt='Games'
+												className='image-class'
+												style={{ height: 'auto', width: '20px' }}
+											/>
+											<p
+												className={`underline-animation font-oswald text-xl 
+										${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+										${page.path === location.pathname && 'underlined'}`}
+											>
+												{page.name}
+											</p>
+											<img
+												src={gamesIconRight}
+												alt='Games'
+												className='image-class'
+												style={{ height: 'auto', width: '20px' }}
+											/>
+										</div>
+									) : (
+										<p
+											className={`underline-animation font-oswald text-xl 
+									  ${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+									  ${page.path === location.pathname && 'underlined'}`}
+										>
+											{page.name}
+										</p>
+									)}
 								</Link>
 							))}
 						</Box>
