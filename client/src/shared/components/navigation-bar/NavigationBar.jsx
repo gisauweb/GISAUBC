@@ -88,7 +88,13 @@ export default function NavigationBar() {
 							} h-14 rounded-[15px]`}
 						>
 							{pages.map((page) => (
-								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
+								<Link
+									key={page.name}
+									to={page.path}
+									className='px-5 pt-3'
+									onClick={ScrollToTop}
+									target={page.name === 'Games' ? '_blank' : '_self'}
+								>
 									<p
 										className={`underline-animation font-oswald text-xl 
 									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
