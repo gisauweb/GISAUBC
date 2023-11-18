@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{js,jsx,ts,tsx}'],
+	content: ['./src/**/*.{js,jsx,ts,tsx}', 'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'],
 	theme: {
 		extend: {
 			spacing: {
@@ -18,9 +18,10 @@ module.exports = {
 			colors: {
 				primary: '#7D0202',
 				bgPrimary: '#FFFDF5',
+				gamesRed: '#732727',
 			},
 			fontSize: { '5xl': ['3rem', 1.3] },
 		},
 	},
-	plugins: [],
+	plugins: [require('flowbite/plugin')],
 };

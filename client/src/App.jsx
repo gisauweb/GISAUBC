@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Popup from 'pages/pop-up/Popup';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
@@ -12,6 +12,10 @@ function App() {
 	const handleClosePopup = () => {
 		setPopupOpen(false);
 	};
+	const location = useLocation();
+	const isGamesPage = pages.some((page) => page.path === location.pathname);
+	const shouldOpenPopup = !isGamesPage;
+
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<ScrollToTop />
@@ -23,7 +27,7 @@ function App() {
 				</Route>
 				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
-			<Popup isOpen={isPopupOpen} onClose={handleClosePopup} />
+			{shouldOpenPopup && <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />}
 		</Box>
 	);
 }
