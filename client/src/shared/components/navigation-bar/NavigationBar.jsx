@@ -99,7 +99,7 @@ export default function NavigationBar() {
 								>
 									{page.name === 'Games' ? (
 										// Render the icons for the "Games" page
-										<div className='flex items-center'>
+										<div className='flex items-center ml-[-10] self-center'>
 											<img
 												src={gamesIconLeft}
 												alt='Games'
