@@ -6,6 +6,7 @@ import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg'
 import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
 import gamesIconLeft from 'assets/games/controllerL.png';
 import gamesIconRight from 'assets/games/controllerR.png';
+import Dashboard from 'pages/games/Dashboard';
 import pages from './constants';
 import MenuInterface from './MenuInterface';
 
@@ -61,7 +62,11 @@ export default function NavigationBar() {
 		window.scrollTo(0, 0);
 	};
 
-	return (
+	const isGamesPage = location.pathname === '/dashboard';
+
+	return isGamesPage ? (
+		<Dashboard />
+	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
 			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
 				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
