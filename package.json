@@ -15,7 +15,11 @@
 		"concurrently": "^7.6.0"
 	},
 	"dependencies": {
+		"@heroicons/react": "^2.0.18",
+		"@material-tailwind/react": "^2.1.4",
 		"flowbite-react": "^0.6.4",
+		"i": "^0.3.7",
+		"npm": "^10.2.4",
 		"react-audio-player": "^0.17.0"
 	}
 }
