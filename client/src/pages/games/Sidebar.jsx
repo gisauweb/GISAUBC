@@ -4,10 +4,11 @@ import { IoMdHome, IoMdSettings } from 'react-icons/io';
 import logo from 'assets/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
 import React from 'react';
+import './Games.css';
 
 function NavGames() {
 	return (
-		<Sidebar style={{ height: '100vh', borderRadius: '0 30px 30px 0' }} className='bg-gamesRed rounded-r-3xl'>
+		<Sidebar style={{ height: '100vh', borderRadius: '0 30px 30px 0' }} className='bg-gamesRed'>
 			<Sidebar.ItemGroup>
 				<Sidebar.Logo>
 					<div
@@ -24,7 +25,9 @@ function NavGames() {
 							alt='GISAU logo red'
 							style={{ maxWidth: '70px', height: 'auto' }}
 						/>
-						<span style={{ marginTop: '20px' }}>GISAU Games</span>
+						<span style={{ marginTop: '20px' }} className='title'>
+							GISAU GAMES
+						</span>
 						<img
 							src={rectangle}
 							alt='border'
