@@ -1,46 +1,55 @@
-'use client';
-
 import { Sidebar } from 'flowbite-react';
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser } from 'react-icons/hi';
+import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';
+import { IoMdHome, IoMdSettings } from 'react-icons/io';
+import logo from 'assets/gisau-logo/gisau.svg';
+import rectangle from 'assets/games/Rectangle.png';
 import React from 'react';
 
 function NavGames() {
 	return (
-		// <Box className='flex flex-row left-0 h-screen bg-gamesRed w-20vw max-w-[220px] rounded-r-[30px]'>
-		// 	{/* No additional content */}
-		// </Box>
-		<Sidebar className='bg-gamesRed'>
+		<Sidebar style={{ height: '100vh', borderRadius: '0 30px 30px 0' }} className='bg-gamesRed rounded-r-3xl'>
 			<Sidebar.ItemGroup>
-				<Sidebar.Logo href='/home' img='/assets/gisau-logo/gisau.svg' imgAlt='GISAU logo red'>
-					<br />
-					GISAU
+				<Sidebar.Logo>
+					<div
+						style={{
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'flex-start',
+							marginTop: '20px',
+						}}
+					>
+						<img
+							src={logo}
+							href='/home'
+							alt='GISAU logo red'
+							style={{ maxWidth: '70px', height: 'auto' }}
+						/>
+						<span style={{ marginTop: '20px' }}>GISAU Games</span>
+						<img
+							src={rectangle}
+							alt='border'
+							style={{ maxWidth: '100px', height: 'auto', marginTop: '20px' }}
+						/>
+					</div>
 				</Sidebar.Logo>
 			</Sidebar.ItemGroup>
-			<Sidebar.Items className='bg-transparent'>
+			<Sidebar.Items>
 				<Sidebar.ItemGroup>
-					<Sidebar.Item href='#' icon={HiChartPie}>
+					<Sidebar.Item href='#' icon={IoMdHome}>
 						Dashboard
 					</Sidebar.Item>
-					<Sidebar.Collapse icon={HiShoppingBag} label='E-commerce'>
-						<Sidebar.Item href='#'>Products</Sidebar.Item>
-						<Sidebar.Item href='#'>Sales</Sidebar.Item>
-						<Sidebar.Item href='#'>Refunds</Sidebar.Item>
-						<Sidebar.Item href='#'>Shipping</Sidebar.Item>
+					<Sidebar.Collapse icon={FaGamepad} label='Games'>
+						<Sidebar.Item href='#'>Game A</Sidebar.Item>
+						<Sidebar.Item href='#'>Game B</Sidebar.Item>
 					</Sidebar.Collapse>
-					<Sidebar.Item href='#' icon={HiInbox}>
-						Inbox
+					<Sidebar.Item href='#' icon={FaGift}>
+						Redeem Points
 					</Sidebar.Item>
-					<Sidebar.Item href='#' icon={HiUser}>
-						Users
+					<Sidebar.Item href='#' icon={IoMdSettings}>
+						Settings
 					</Sidebar.Item>
-					<Sidebar.Item href='#' icon={HiShoppingBag}>
-						Products
-					</Sidebar.Item>
-					<Sidebar.Item href='#' icon={HiArrowSmRight}>
-						Sign In
-					</Sidebar.Item>
-					<Sidebar.Item href='#' icon={HiTable}>
-						Sign Up
+					<Sidebar.Item href='#' icon={FaSignOutAlt} style={{ position: 'absolute', bottom: '20px' }}>
+						Sign Out
 					</Sidebar.Item>
 				</Sidebar.ItemGroup>
 			</Sidebar.Items>
