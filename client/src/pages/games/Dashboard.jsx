@@ -1,4 +1,4 @@
-import { Leaderboard } from 'pages/games/Leaderboard';
+import Leaderboard from 'pages/games/Leaderboard';
 import Sidebar from 'pages/games/Sidebar';
 
 export default function Dashboard() {

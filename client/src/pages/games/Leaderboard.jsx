@@ -1,3 +1,3 @@
-export function Leaderboard() {
+export default function Leaderboard() {
 	return null;
 }
