@@ -1,5 +1,9 @@
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable object-curly-newline */
 import React from 'react';
-import { Card,
+import {
+	Card,
 	Typography,
 	List,
 	ListItem,
@@ -14,15 +18,17 @@ import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdHome, IoMdSettings } from 'react-icons/io';
 
-export function Sidebar() {
+export default function Sidebar() {
 	const [open, setOpen] = React.useState(0);
+
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};
 
 	return (
 		<Card
-			className='h-[calc(100vh-2rem)] w-full h-full max-w-[18rem] p-4 shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
+			className='h-full w-full max-w-[18rem] p-4
+			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
 			style={{ height: '100vh', borderRadius: '0 30px 30px 0', color: 'white' }}
 		>
 			<div
@@ -46,7 +52,8 @@ export function Sidebar() {
 					icon={
 						<ChevronDownIcon
 							strokeWidth={2.5}
-							className={`mx-auto h-4 w-4 transition-transform ${open === 1 ? 'rotate-180' : ''}`}
+							className={`mx-auto h-4 w-4 transition-transform 
+			${open === 1 ? 'rotate-180' : ''}`}
 						/>
 					}
 				>
@@ -83,15 +90,6 @@ export function Sidebar() {
 						</List>
 					</AccordionBody>
 				</Accordion>
-				<Accordion
-					open={open === 2}
-					icon={
-						<ChevronDownIcon
-							strokeWidth={2.5}
-							className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? 'rotate-180' : ''}`}
-						/>
-					}
-				/>
 				<ListItem>
 					<ListItemPrefix>
 						<FaGift className='h-5 w-5' />
