@@ -27,9 +27,9 @@ export default function Sidebar() {
 
 	return (
 		<Card
-			className='h-full w-full max-w-[18rem] p-4
+			className='h-full max-w-[18rem] p-4
 			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
-			style={{ height: '100vh', borderRadius: '0 30px 30px 0', color: 'white' }}
+			style={{ height: '100vh', width: '20vw', borderRadius: '0 30px 30px 0', color: 'white' }}
 		>
 			<div
 				className='mb-2 gap-4 p-4'
