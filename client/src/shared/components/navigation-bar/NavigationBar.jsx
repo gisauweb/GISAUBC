@@ -6,6 +6,8 @@ import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg'
 import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
 import gamesIconLeft from 'assets/games/controllerL.png';
 import gamesIconRight from 'assets/games/controllerR.png';
+import gamesIconLRed from 'assets/games/controllerLred.png';
+import gamesIconRRed from 'assets/games/controllerRred.png';
 import Dashboard from 'pages/games/Dashboard';
 import pages from './constants';
 import MenuInterface from './MenuInterface';
@@ -103,14 +105,22 @@ export default function NavigationBar() {
 									target={page.name === 'Games' ? '_blank' : '_self'}
 								>
 									{page.name === 'Games' ? (
-										// Render the icons for the "Games" page
 										<div className='flex items-center ml-[-10] self-center'>
-											<img
-												src={gamesIconLeft}
-												alt='Games'
-												className='image-class'
-												style={{ height: 'auto', width: '20px' }}
-											/>
+											{hasLandingImage ? (
+												<img
+													src={gamesIconLeft}
+													alt='Games'
+													className='image-class'
+													style={{ height: 'auto', width: '20px' }}
+												/>
+											) : (
+												<img
+													src={gamesIconLRed}
+													alt='Red Left'
+													className='image-class'
+													style={{ height: 'auto', width: '20px' }}
+												/>
+											)}
 											<p
 												className={`underline-animation font-oswald text-xl 
 										${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
@@ -118,12 +128,21 @@ export default function NavigationBar() {
 											>
 												{page.name}
 											</p>
-											<img
-												src={gamesIconRight}
-												alt='Games'
-												className='image-class'
-												style={{ height: 'auto', width: '20px' }}
-											/>
+											{hasLandingImage ? (
+												<img
+													src={gamesIconRight}
+													alt='Games'
+													className='image-class'
+													style={{ height: 'auto', width: '20px' }}
+												/>
+											) : (
+												<img
+													src={gamesIconRRed}
+													alt='Red Left'
+													className='image-class'
+													style={{ height: 'auto', width: '20px' }}
+												/>
+											)}
 										</div>
 									) : (
 										<p
