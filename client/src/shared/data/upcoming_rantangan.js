@@ -10,7 +10,6 @@ const UPCOMING_RANTANGAN = [
 		price: '$13.5',
 		registrationLink:
 			'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
-		link: 'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
 	},
 ];
 
