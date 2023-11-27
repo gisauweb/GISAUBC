@@ -4,6 +4,7 @@ const UPCOMING_RANTANGAN = [
 	{
 		image: rantangan,
 		title: 'Beef Rice Bowls',
+		date: 'Wednesday, December 6 | 1-5:30PM',
 		description: 'Served with Sambal Matah, Egg, and Cheese',
 		loc: 'AMS Lev Bukhaman',
 		price: '$13.5',
