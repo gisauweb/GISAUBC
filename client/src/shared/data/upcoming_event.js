@@ -4,7 +4,7 @@ import cafe from 'assets/events-page/past-events/23_24/cafe.pdf';
 const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[6],
-		title: 'Malem Mingguan',
+		title: 'Study Cafe',
 		date: 'Wednesday, December 6 | 1-5:30PM',
 		loc: 'AMS Lev Bukhman (Bird Nest)',
 		registrationLink: cafe,

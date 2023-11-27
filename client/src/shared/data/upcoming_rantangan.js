@@ -8,7 +8,9 @@ const UPCOMING_RANTANGAN = [
 		description: 'Served with Sambal Matah, Egg, and Cheese',
 		loc: 'AMS Lev Bukhaman',
 		price: '$13.5',
-		link: '',
+		registrationLink:
+			'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
+		link: 'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
 	},
 ];
 
