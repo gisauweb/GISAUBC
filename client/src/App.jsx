@@ -12,6 +12,7 @@ function App() {
 	const handleClosePopup = () => {
 		setPopupOpen(false);
 	};
+
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<ScrollToTop />
