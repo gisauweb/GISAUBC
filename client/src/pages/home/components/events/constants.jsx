@@ -1,6 +1,7 @@
 import rantangan from 'assets/home-page/events/rantangan.svg';
 import upcomingEvent from 'assets/home-page/events/upcoming_event.svg';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
+import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 
 /**
  * events field:
@@ -22,7 +23,7 @@ export const UPCOMINGEVENTS = {
 
 export const RANTANGAN = {
 	title: 'Rantangan',
-	events: [],
+	events: UPCOMING_RANTANGAN,
 	icon: <img src={rantangan} alt='' className='ml-1/10' loading='lazy' />,
 	button1: 'Pre-order',
 	button2: {

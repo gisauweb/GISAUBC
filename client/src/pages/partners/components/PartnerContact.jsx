@@ -17,7 +17,11 @@ function PartnerContact() {
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				Interested to partner with us?
 			</Typography>
-			<a href='mailto:sponsorship.gisau@gmail.com' className='flex mt-10 border-3 border-primary rounded-full'>
+			<a
+				href='mailto:sponsorship.gisau@gmail.com'
+				className='flex mt-10 border-3 border-primary rounded-full'
+				aria-label='Save'
+			>
 				<Button text='Contact us at sponsorship.gisau@gmail.com' background='transparentBg' />
 			</a>
 		</Container>

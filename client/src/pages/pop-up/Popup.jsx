@@ -52,7 +52,7 @@ function Popup({ isOpen, onClose }) {
 				</Typography>
 				<Typography variant='body1'>Join us in our next event!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<a href='#events' onClick={onClose}>
+					<a aria-label='Save' href='#events' onClick={onClose}>
 						<Button background='transparentBg' text='Register' />
 					</a>
 				</Box>

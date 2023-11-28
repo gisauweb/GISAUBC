@@ -28,7 +28,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 						{item.title}
 					</span>
 					<GridItemDescription item={item} itemType={itemType} upcomingEvent={upcomingEvent} />
-					<Button text='Pre-order' handleClickButton={() => handleClickButton(item.link)} />
+					<Button text='Pre-order' handleClickButton={() => handleClickButton(item.registrationLink)} />
 				</Box>
 			</Box>
 		</Grid>
@@ -46,7 +46,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
 						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registrationLink)} />
-						<a href={item.infoLink} target='_blank' rel='noreferrer'>
+						<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
 							<Button text='View Event Details' background='transparentBg' />
 						</a>
 					</Box>
