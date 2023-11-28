@@ -12,7 +12,7 @@ export default function Events() {
 			<MainContainer>
 				<Box className='w-4/5'>
 					<Typography variant='h3' color='primary'>
-						Connect with fellow Indonesians at our socials and large-scale events.
+						Connect with fellow Indonesians at our socials and large-scale event s.
 					</Typography>
 				</Box>
 				<EventContent upcoming />
