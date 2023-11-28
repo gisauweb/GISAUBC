@@ -15,7 +15,7 @@ export default function Rantangan() {
 						Fuel your study sessions with some delicious Indonesian food prepared by our F&B team.
 					</Typography>
 				</Box>
-				<RantanganContent upcoming />
+				{/* <RantanganContent upcoming /> */}
 				<RantanganContent upcoming={false} />
 				<ScrollButton threshold={7 / 10} />
 			</MainContainer>

@@ -27,7 +27,6 @@ function RantanganContent({ upcoming }) {
 				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
 					{`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
 				</Typography>
-
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
 				)}
