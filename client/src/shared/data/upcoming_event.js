@@ -1,5 +1,5 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import malming from 'assets/events-page/malming.pdf';
+import cafe from 'assets/events-page/cafe.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -7,8 +7,8 @@ const UPCOMING_EVENTS = [
 		title: 'Study Cafe',
 		date: 'Wednesday, December 6 | 1-5:30PM',
 		loc: 'AMS Lev Bukhman (Bird Nest)',
-		registrationLink: malming,
-		infoLink: malming,
+		registrationLink: cafe,
+		infoLink: cafe,
 	},
 ];
 
