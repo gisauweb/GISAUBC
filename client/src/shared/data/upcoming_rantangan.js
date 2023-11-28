@@ -21,5 +21,5 @@ export default UPCOMING_RANTANGAN;
 //	description: 'desc',
 //  loc:'loc',
 //  price: '$10',
-//  link:'',
+//  registrationLink:'',
 // },
