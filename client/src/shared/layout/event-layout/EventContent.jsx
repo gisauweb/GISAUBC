@@ -19,12 +19,8 @@ function EventContent({ events, button1, handleClickButton, isMobileView }) {
 				{!isMobileView && (
 					<div className='lg:w-[95%]'>
 						<p className='text-center text-xl xl:text-2xl font-bold'>{event.title}</p>
-						<p key={event.date} className='text-center'>
-							{event.date}
-						</p>
-						<p key={event.loc} className='text-center'>
-							{event.loc}
-						</p>
+						<p className='text-center'>{event.date}</p>
+						<p className='text-center'>{event.loc}</p>
 					</div>
 				)}
 				<div className='grid justify-center lg:w-[95%]'>
