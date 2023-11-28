@@ -3,11 +3,11 @@ import malming from 'assets/events-page/malming.pdf';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_23_24[5],
-		title: 'Malem Mingguan',
-		date: 'Saturday, November 18 | 3:30PM',
-		loc: 'Consulate General of Indonesia (KJRI)',
-		registrationLink: 'https://forms.gle/oodQKj74CeQD5Bz1A',
+		image: EVENTS_23_24[6],
+		title: 'Study Cafe',
+		date: 'Wednesday, December 6 | 1-5:30PM',
+		loc: 'AMS Lev Bukhman (Bird Nest)',
+		registrationLink: malming,
 		infoLink: malming,
 	},
 ];
