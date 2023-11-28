@@ -9,6 +9,7 @@ const UPCOMING_RANTANGAN = [
 		registrationLink:
 			'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
 		infoLink: 'https://docs.google.com/forms/d/e/1FAIpQLSff_1vz9zTHLE_OJ0BzdGMFRFVW6Ni9K3249Fi8CtlH4tUUEg/viewform',
+		price: '$12 for members | $14 for non-members',
 	},
 ];
 

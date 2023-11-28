@@ -28,7 +28,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 						{item.title}
 					</span>
 					<GridItemDescription item={item} itemType={itemType} upcomingEvent={upcomingEvent} />
-					<Button text='Pre-order' handleClickButton={() => handleClickButton(item.link)} />
+					<Button text='Pre-order' handleClickButton={() => handleClickButton(item.registrationLink)} />
 				</Box>
 			</Box>
 		</Grid>
