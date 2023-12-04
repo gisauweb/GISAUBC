@@ -45,13 +45,13 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 		};
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;
-
+			
 			const user = await userRepository.getUserBySID(createUserPayload.sid)
 			if (!user) {
 				try {
 					await userRepository.createUser(createUserPayload);
 					return res.status(201).send({
-						message: req.body.sid + "has been added successfully"
+						message: `User ${req.body.sid} has been added successfully`
 					})
 				} catch (error) {
 					return res.status(500).send(error);
@@ -73,9 +73,6 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 
 	try {
-
-		// const usersDataDocumentArray: unknown[] = [];
-
 		const getUsersParams: getUsersModel = {
 			startNumber: Number(req.query.startNumber),
 			pageSize: Number(req.query.pageSize),
@@ -115,7 +112,6 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
 export async function updateUserPhoneNumber(req: Request, res: Response, next: NextFunction) {
 
 	try {
-
 		const getUserInput: updateUserPhoneModel = {
 			id: req.params.id,
 			phone: req.body.phone,
