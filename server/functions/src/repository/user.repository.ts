@@ -6,7 +6,6 @@ import { db } from "./../index"
 const secretCode = process.env.HASH_SECRET_CODE;
 
 export async function createUser(userPayload: createUserModel) {
-	
 	const uuid = sha256(userPayload.sid + secretCode)
 	const userDocRef = db.collection("users").doc(uuid);
 	await userDocRef.set({
@@ -20,9 +19,15 @@ export async function createUser(userPayload: createUserModel) {
 	});
 }
 
+export async function removeUser(sid: string) {
+	const uuid = sha256(sid + secretCode)
+
+	return await db.collection("users").doc(uuid).delete();
+}
+
 export async function getUserBySID(sid: string) {
-	// const uuid = sha256(sid + secretCode)
-	const snapshot = await db.collection("users").doc(sid).get();
+	const uuid = sha256(sid + secretCode)
+	const snapshot = await db.collection("users").doc(uuid).get();
 
 	return snapshot.data();
 }

@@ -4,8 +4,8 @@ export const userCreation: Schema = {
     fields: {
 		sid: "string",
 		email: "string",
-		email_verified: "boolean",
-		nickname: "string",
+		first_name: "string",
+		last_name: "string",
 		picture: "string",
 		created_at: "string",
 		updated_at: "string"
@@ -13,8 +13,8 @@ export const userCreation: Schema = {
     required: [
 		"sid",
 		"email",
-		"email_verified",
-		"nickname",
+		"first_name",
+		"last_name",
 		"picture",
 		"created_at",
 		"updated_at"

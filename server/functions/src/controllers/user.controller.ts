@@ -3,29 +3,20 @@
 /* eslint-disable require-jsdoc */
 
 import { Request, Response, NextFunction } from "express";
-import * as admin from "firebase-admin";
-
-import * as GLOBAL_VARIABLES from "../environments/global_variables.config";
-import * as VALIDATION_INTERCEPTOR from "../middleware/validators/ingress.validators";
 
 import {
 	getUserModel,
-	mapUser,
-	updateUserPhoneModel,
 	createUserModel,
 } from "../middleware/interfaces/user.interfaces";
 import {
 	getUserSchema,
-	updateUserPhoneSchema,
 	userCreation,
 } from "../middleware/schema/user.schema";
 import { requestValidator } from "../middleware/validators/request.validator";
 import {
-	userAuthRoleModel,
 	userAuthUserModel,
 } from "../middleware/interfaces/auth.interface";
 import {
-	userAuthRoleSchema,
 	userAuthUserSchema,
 } from "../middleware/schema/auth.schema";
 import * as userRepository from "../repository/user.repository";
@@ -34,12 +25,12 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 	try {
 		const createUserPayload: createUserModel = {
 			sid: req.body.sid,
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
 			email: req.body.email,
-			email_verified: req.body.email_verified,
-			nickname: req.body.nickname,
 			picture: req.body.picture,
 			created_at: Date.now().toString(),
-			updated_at: req.body.updated_at,
+			updated_at: Date.now().toString(),
 		};
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;
@@ -65,7 +56,6 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 	} catch (err) {
 		return handleError(res, err);
 	}
-
 }
 
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
@@ -92,105 +82,7 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
 
 		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
 			const user = await userRepository.getUserBySID(getUserInput.sid)
-			res.json({ result: user });
-		});
-
-	} catch (err) {
-		handleError(res, err);
-	}
-
-}
-
-export async function updateUserPhoneNumber(req: Request, res: Response, next: NextFunction) {
-
-	try {
-		const getUserInput: updateUserPhoneModel = {
-			id: req.params.id,
-			phone: req.body.phone,
-		};
-
-		return await requestValidator(getUserInput, updateUserPhoneSchema, res, next).then(async () => {
-
-			if (res.headersSent) return;
-
-			if (!VALIDATION_INTERCEPTOR.newPhoneReg.test(getUserInput.phone)) return res.status(400).send({
-				message: "invalid phone",
-			});
-
-			return await GLOBAL_VARIABLES.setMana.collection("users").where("ID", "==", getUserInput.id).limit(1).get().then(async (queryUserSnapshot) => {
-
-				if (queryUserSnapshot.empty) return res.status(404).send({
-					message: "no user found for id provided",
-				});
-
-				const userDocID = queryUserSnapshot.docs[0].id;
-
-				return await admin.auth().updateUser(getUserInput.id, {
-					phoneNumber: getUserInput.phone,
-				}).then(async (userRecord) => {
-
-					await GLOBAL_VARIABLES.setMana.collection("users").doc(userDocID).update({
-						phone: getUserInput.phone,
-					}).then(() => {
-
-						return res.status(200).send({
-							message: "user phone number updated successfully",
-							user_data: userRecord,
-						});
-
-					}).catch((error) => {
-						return res.status(400).send(error);
-					});
-
-				}).catch((error) => {
-					return res.status(400).send(error);
-				});
-
-
-			}).catch((error) => {
-				return res.status(400).send(error);
-			});
-
-		});
-
-	} catch (err) {
-		return handleError(res, err);
-	}
-
-}
-
-export async function patchUserRole(req: Request, res: Response, next: NextFunction) {
-
-	try {
-
-		const patchUserPasswordPayload: userAuthRoleModel = {
-			id: req.params.id,
-			role: req.body.role,
-		};
-
-		return await requestValidator(patchUserPasswordPayload, userAuthRoleSchema, res, next).then(async () => {
-
-			if (res.headersSent) return;
-
-			await admin.auth().setCustomUserClaims(patchUserPasswordPayload.id, {
-				role: patchUserPasswordPayload.role,
-			}).then(async () => {
-
-				await admin.auth().getUser(patchUserPasswordPayload.id).then((userRecord) => {
-
-					return res.status(200).send({
-						message: "update successful",
-						user: mapUser(userRecord),
-					});
-
-				});
-
-			}).catch((error) => {
-				return res.status(400).send({
-					message: error,
-				});
-			});
-
+			return res.json({ result: user });
 		});
 
 	} catch (err) {
@@ -202,7 +94,6 @@ export async function patchUserRole(req: Request, res: Response, next: NextFunct
 export async function removeUser(req: Request, res: Response, next: NextFunction) {
 
 	try {
-
 		const removeUserPayload: userAuthUserModel = {
 			id: req.params.id,
 		};
@@ -211,10 +102,10 @@ export async function removeUser(req: Request, res: Response, next: NextFunction
 
 			if (res.headersSent) return;
 
-			await admin.auth().deleteUser(removeUserPayload.id).then(() => {
+			await userRepository.removeUser(removeUserPayload.id).then(() => {
 
 				return res.status(200).send({
-					message: `user with ID: ${removeUserPayload.id} removed`,
+					message: `User with ID: ${removeUserPayload.id} removed`,
 				});
 
 			}).catch((error) => {
