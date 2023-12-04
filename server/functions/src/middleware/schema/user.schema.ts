@@ -31,10 +31,10 @@ export const getUsersSchema: Schema = {
 
 export const getUserSchema: Schema = {
     fields: {
-        id: "string",
+        sid: "string",
     },
     required: [
-        "id",
+        "sid",
     ],
 };
 

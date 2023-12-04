@@ -43,7 +43,7 @@ export interface getUsersModel {
 }
 
 export interface getUserModel {
-    id: string
+    sid: string
 }
 
 export interface updateUserPhoneModel {

@@ -7,7 +7,6 @@ import {
 	getAllUsers,
 	getUser,
 	updateUserPhoneNumber,
-	patchUserPassword,
 	patchUserRole,
 	removeUser,
 } from "../controllers/user.controller";
@@ -20,29 +19,17 @@ export function userRoutes(app: Application) {
 	/**
 	* Create user
 	**/
-	app.post("/users/create",
-		requiresAuth,
-		// isAuthorized({ hasRole: ["admin", "manager"] }),
-		createUserIfNotExists
-	);
+	app.post("/users/create", requiresAuth(), createUserIfNotExists);
 
 	/**
 	* Get all users
 	**/
-	app.get("/users/getAll", [
-		requiresAuth,
-		isAuthorized({ hasRole: ["admin", "manager"] }),
-		getAllUsers,
-	]);
+	app.get("/users/getAll", requiresAuth(), getAllUsers);
 
 	/**
 	* GET user :id user
 	**/
-	app.get("/users/:id", [
-		requiresAuth,
-		isAuthorized({ hasRole: ["admin", "manager"], allowSameUser: true }),
-		getUser,
-	]);
+	app.get("/users/user/:sid", requiresAuth(), getUser);
 
 	/**
 	* Update user phone number :id user
@@ -51,15 +38,6 @@ export function userRoutes(app: Application) {
 		requiresAuth,
 		isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
 		updateUserPhoneNumber,
-	]);
-
-	/**
-	* Patch user password :user id
-	**/
-	app.patch("/users/updatePassword/:id", [
-		requiresAuth,
-		isAuthorized({ hasRole: ["admin", "user", "manager"], allowSameUser: true }),
-		patchUserPassword,
 	]);
 
 	/**
