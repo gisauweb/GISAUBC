@@ -10,10 +10,10 @@ export async function createUser(userPayload: createUserModel) {
 	const userDocRef = db.collection("users").doc(uuid);
 	await userDocRef.set({
 		sid: userPayload.sid,
-		nickname: userPayload.nickname,
+		first_name: userPayload.first_name,
+		last_name: userPayload.last_name,
 		picture: userPayload.picture,
 		email: userPayload.email,
-		email_verified: userPayload.email_verified,
 		created_at: userPayload.created_at,
 		updated_at: userPayload.updated_at
 	});
