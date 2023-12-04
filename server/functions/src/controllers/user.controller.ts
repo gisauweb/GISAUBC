@@ -58,7 +58,7 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 	}
 }
 
-export async function getAllUsers(req: Request, res: Respons) {
+export async function getAllUsers(req: Request, res: Response) {
 
 	try {
 		if (res.headersSent) return;
