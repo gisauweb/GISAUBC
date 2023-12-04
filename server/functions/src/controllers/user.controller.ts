@@ -10,14 +10,12 @@ import * as VALIDATION_INTERCEPTOR from "../middleware/validators/ingress.valida
 
 import {
 	getUserModel,
-	getUsersModel,
 	mapUser,
 	updateUserPhoneModel,
 	createUserModel,
 } from "../middleware/interfaces/user.interfaces";
 import {
 	getUserSchema,
-	getUsersSchema,
 	updateUserPhoneSchema,
 	userCreation,
 } from "../middleware/schema/user.schema";
@@ -73,18 +71,12 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
 
 	try {
-		const getUsersParams: getUsersModel = {
-			startNumber: Number(req.query.startNumber),
-			pageSize: Number(req.query.pageSize),
-		};
+		if (res.headersSent) return;
 
-		return await requestValidator(getUsersParams, getUsersSchema, res, next).then(async () => {
-
-			if (res.headersSent) return;
-
-			// const users = userRepository.getAllUsers();
+		const users = await userRepository.getAllUsers();
+		return res.send({
+			result: users
 		});
-
 	} catch (err) {
 		return handleError(res, err);
 	}
@@ -99,8 +91,8 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
 		
 
 		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
-			const result = await userRepository.getUserBySID(getUserInput.sid)
-			res.json({ "result": result });
+			const user = await userRepository.getUserBySID(getUserInput.sid)
+			res.json({ result: user });
 		});
 
 	} catch (err) {

@@ -28,11 +28,8 @@ export async function getUserBySID(sid: string) {
 }
 
 export async function getAllUsers() {
-	const snapshots = await db.collection("users").get();
-	const results: any = [];
-	snapshots.forEach((snapshot) => {
-		results.push(snapshot.data())
-	})
-
-	return results;
+	const snapshot = await db.collection("users").get();
+    return snapshot.docs.map(doc => {
+		return doc.data();
+	});
 }

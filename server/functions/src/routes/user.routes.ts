@@ -24,7 +24,7 @@ export function userRoutes(app: Application) {
 	/**
 	* Get all users
 	**/
-	app.get("/users/getAll", requiresAuth(), getAllUsers);
+	app.get("/users", requiresAuth(), getAllUsers);
 
 	/**
 	* GET user :id user
