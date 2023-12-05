@@ -11,7 +11,7 @@ export default function GridItemDescription({ item, itemType, upcomingEvent }) {
 						<div style={{ backgroundColor: '#F3F1E7', display: 'inline-block' }} className='rounded-lg p-4'>
 							<span>
 								Pick up:&nbsp;
-								<strong>{item.location}</strong>
+								<strong>{item.loc}</strong>
 							</span>
 						</div>
 						<div style={{ backgroundColor: '#F3F1E7', display: 'inline-block' }} className='rounded-lg p-4'>

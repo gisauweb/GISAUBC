@@ -22,6 +22,7 @@ export default function Events() {
 			/>
 			{isRantanganShowed && (
 				<EventLayout
+					id='rantangan'
 					className={`basis-1/3 ${isMobileView && 'mt-24'}`}
 					title={RANTANGAN.title}
 					events={RANTANGAN.events}

@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import GridContainer from 'shared/components/grid/GridContainer';
 import { DropdownMenu } from 'shared/components/index';
 import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
-import bakmi from 'assets/rantangan-page/bakmi.svg';
+import bakmiIcon from 'assets/rantangan-page/bakmiIcon.svg';
 import PAST_RANTANGAN from './constants';
 import GridContent from '../../../shared/components/grid/GridContent';
 
@@ -16,7 +16,7 @@ function RantanganContent({ upcoming }) {
 			<Box className='absolute w-screen left-0'>
 				{!upcoming && (
 					<img
-						src={bakmi}
+						src={bakmiIcon}
 						alt='bakmi-icon'
 						className='absolute w-[30%] right-10 z-[0] -top-80'
 						loading='lazy'

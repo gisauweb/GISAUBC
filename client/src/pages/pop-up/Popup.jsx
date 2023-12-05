@@ -1,11 +1,10 @@
-// src/components/Popup.js
 import React from 'react';
 import { Modal, Typography, IconButton, Box } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { Button } from 'shared/components';
-import ReactGA from 'react-ga4';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
+// import UPCOMING_EVENTS from 'shared/data/upcoming_event';
+import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 
 const PopupWrapper = styled('div')({
 	background: 'linear-gradient(rgba(140, 28, 22, 0.7), rgba(188, 112, 89, 0.7))',
@@ -26,15 +25,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ isOpen, onClose }) {
-	const handleRegisterButton = (link) => {
-		ReactGA.event({
-			category: 'Event',
-			action: 'Clicked register for SOTO',
-		});
-		window.open(link, '_blank', 'noreferrer');
-	};
-
-	const upcomingEvent = UPCOMING_EVENTS[1];
+	const upcomingEvent = UPCOMING_RANTANGAN[0];
 
 	return (
 		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
@@ -57,17 +48,13 @@ function Popup({ isOpen, onClose }) {
 					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' loading='lazy' />
 				</a>
 				<Typography variant='h5' gutterBottom>
-					Upcoming Event
+					Upcoming Rantangan
 				</Typography>
-				<Typography variant='body1'>Join us for our annual welcoming event next Wednesday!</Typography>
+				<Typography variant='body1'>Buy our latest rantangan!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<Button
-						background='transparentBg'
-						text='Register'
-						handleClickButton={() => {
-							handleRegisterButton(upcomingEvent.registrationLink);
-						}}
-					/>
+					<a aria-label='Save' href='#rantangan' onClick={onClose}>
+						<Button background='transparentBg' text='Pre-order' />
+					</a>
 				</Box>
 			</PopupWrapper>
 		</Modal>
