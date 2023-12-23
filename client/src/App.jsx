@@ -15,6 +15,7 @@ function App() {
 	const location = useLocation();
 	const isGamesPage = pages.some((page) => page.path === location.pathname);
 	const shouldOpenPopup = !isGamesPage;
+
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<ScrollToTop />
