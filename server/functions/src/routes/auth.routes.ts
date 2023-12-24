@@ -7,7 +7,7 @@ import { requiresAuth } from "express-openid-connect";
 export function authRoutes(app: Application) {
 
 	app.get("/", (req, res) => {
-		res.send(req.oidc.isAuthenticated() ? "Logged in " : "Logged out");
+		res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
 	});
 
 	app.get("/profile", requiresAuth(), (req, res) => {
