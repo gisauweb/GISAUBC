@@ -18,7 +18,7 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 					<Link
 						key={page.name}
 						to={page.path}
-						className='px-5 pt-3'
+						className='px-5 pt-3 hover:cursor-pointer'
 						onClick={ScrollToTop}
 						target={page.name === 'Games' ? '_blank' : '_self'}
 					>
@@ -26,7 +26,7 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 							<GameMenu hasLandingImage={hasLandingImage} page={page} location={location} />
 						) : (
 							<p
-								className={`underline-animation font-oswald text-xl 
+								className={`underline-animation font-oswald text-xl
 											${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
 											${page.path === location.pathname && 'underlined'}`}
 							>
