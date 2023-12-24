@@ -34,7 +34,7 @@ export default function NavigationBar() {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
-	const isGamesPage = location.pathname === '/dashboard';
+	const isGamesPage = location.pathname === '/games';
 
 	return isGamesPage ? (
 		<Outlet />
