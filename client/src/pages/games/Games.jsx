@@ -8,7 +8,6 @@ export default function Games() {
 	useEffect(() => {
 		async function fetchLoginStatus() {
 			const loginStatus = await fetch(`${process.env.REACT_APP_SERVER_URL}`);
-			console.log('login status: ', loginStatus);
 			setIsLogin(loginStatus === 'Logged in');
 		}
 		fetchLoginStatus();
