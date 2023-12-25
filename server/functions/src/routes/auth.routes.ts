@@ -13,10 +13,4 @@ export function authRoutes(app: Application) {
 	app.get("/profile", requiresAuth(), (req, res) => {
 		res.send(JSON.stringify(req.oidc.user));
 	});
-
-	// app.get("/validate", [
-	// 	requiresAuth,
-	// 	isAuthorized({ hasRole: ["admin", "manager"] }),
-	// 	validateUser,
-	// ]);
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Dashboard from './dashboard/Dashboard';
 
 export default function Games() {
@@ -7,16 +6,17 @@ export default function Games() {
 
 	useEffect(() => {
 		async function fetchLoginStatus() {
-			const loginStatus = await fetch(`${process.env.REACT_APP_SERVER_URL}`);
+			const loginStatus = await fetch(`http://${process.env.REACT_APP_SERVER_URL}`);
 			setIsLogin(loginStatus === 'Logged in');
 		}
 		fetchLoginStatus();
 	}, []);
 
-	const navigate = useNavigate();
-	if (!isLogin) {
-		navigate(`${process.env.REACT_APP_SERVER_URL}/login`);
-	}
+	useEffect(() => {
+		if (!isLogin) {
+			window.location.href = `${process.env.REACT_APP_SERVER_URL}/profile`;
+		}
+	}, [isLogin]);
 
-	return isLogin ? <Dashboard /> : <div>login page</div>;
+	return isLogin ? <Dashboard /> : <div>Loading...</div>;
 }
