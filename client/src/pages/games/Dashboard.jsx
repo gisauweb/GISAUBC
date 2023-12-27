@@ -10,7 +10,7 @@ export default function Dashboard() {
 		<div className='flex h-screen'>
 			<Sidebar />
 
-			<div className='flex-1 flex flex-col items-center h-screen max-h-screen justify-center'>
+			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
 					<Profile />
 					<Points />

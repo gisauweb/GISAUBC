@@ -4,6 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+		"@canvasjs/react-charts": "^1.0.0",
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
 		"@heroicons/react": "^2.0.18",
@@ -17,7 +18,8 @@
 		"@testing-library/react": "^13.4.0",
 		"@testing-library/user-event": "^13.5.0",
 		"caniuse-lite": "^1.0.30001488",
-		"chart.js": "^4.2.1",
+		"canvasjs": "^1.8.3",
+		"chart.js": "^4.4.1",
 		"dotenv": "^16.0.3",
 		"firebase": "^9.14.0",
 		"flowbite": "^2.1.1",
