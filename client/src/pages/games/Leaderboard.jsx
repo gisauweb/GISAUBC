@@ -10,9 +10,9 @@ export default function Leaderboard() {
 					height: '92vh',
 					width: '25vw',
 				}}
-				className='bg-gamesBox mr-10 flex flex-col items-center'
+				className='bg-gamesBox flex flex-col mr-10 items-center py-3'
 			>
-				<Typography variant='h6 mt-10'>Leaderboard</Typography>
+				<Typography style={{ fontWeight: 'bold' }}> Leaderboard</Typography>
 			</Box>
 		</div>
 	);
