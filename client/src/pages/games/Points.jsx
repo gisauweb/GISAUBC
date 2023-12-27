@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import pointIcon from './points_icon.svg';
+import pointIcon from '../../assets/games/points_icon.svg';
 import user from './user.json';
 
 function getRankSuffix(rank) {
@@ -34,8 +34,6 @@ export default function Points() {
 						height: '100%',
 						path: {
 							stroke: '#BFA285',
-							strokeLinecap: 'round',
-							transition: 'stroke-dashoffset 0.5s ease 0s',
 						},
 						trail: { stroke: '#F5F1ED' },
 					}}

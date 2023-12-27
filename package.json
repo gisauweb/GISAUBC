@@ -12,6 +12,7 @@
 	"license": "ISC",
 	"description": "",
 	"devDependencies": {
+<<<<<<< HEAD
 		"@babel/core": "^7.23.5",
 		"@babel/preset-env": "^7.23.5",
 		"@babel/preset-react": "^7.23.3",
@@ -28,5 +29,8 @@
 		"i": "^0.3.7",
 		"npm": "^10.2.4",
 		"react-audio-player": "^0.17.0"
+=======
+		"concurrently": "^7.6.0"
+>>>>>>> 76f3ce2a0e7ad46b99e40d7e28214e76aaf2419d
 	}
 }

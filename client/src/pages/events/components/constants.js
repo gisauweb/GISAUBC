@@ -3,6 +3,12 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[5],
+			title: 'Malem Mingguan',
+			date: 'Saturday, November 18 | 3:30PM',
+			loc: 'Consulate General of Indonesia (KJRI)',
+		},
+		{
 			image: EVENTS_23_24[4],
 			title: 'Rumah Hantu',
 			date: 'Wednesday, October 27 | 3-8:30PM',
