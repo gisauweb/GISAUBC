@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 export default function Leaderboard() {
 	return (
@@ -10,9 +10,9 @@ export default function Leaderboard() {
 					height: '92vh',
 					width: '25vw',
 				}}
-				className='bg-gamesBox mr-10'
+				className='bg-gamesBox mr-10 flex flex-col items-center'
 			>
-				<p>Leaderboard</p>
+				<Typography variant='h6 mt-10'>Leaderboard</Typography>
 			</Box>
 		</div>
 	);
