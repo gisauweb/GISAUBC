@@ -42,18 +42,36 @@ export default function Activity() {
         },
 		scales: {
 			x: {
-			  title: {
-				display: true,
-				text: '2024',
+			  ticks: {
+				color: '#BFA285', 
+				font: {
+					size: 10,
+				},
+			  },
+			  grid: {
+				color: '#F5F1ED', 
 			  },
 			},
 			y: {
 			  title: {
 				display: true,
 				text: 'Points',
+				color:'#BFA285',
+				font: {
+					size: 10,
+				},
+			  },
+			  ticks: {
+				color: '#BFA285', 
+				font: {
+					size: 10,
+				},
+			  },
+			  grid: {
+				color: '#F5F1ED', 
 			  },
 			},
-		},
+		  },
 		plugins: {
 			legend: {
 			  display: false, 
@@ -68,7 +86,7 @@ export default function Activity() {
   }, []);
 
   return (
-    <Box className='w-full h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl'>
+    <Box className='w-full h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'>
       <Box className='flex flex-row'>
         <img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
         <Box className='flex flex-col mt-5'>
@@ -80,7 +98,7 @@ export default function Activity() {
           </Typography>
         </Box>
       </Box>
-      <canvas ref={chartRef} id="chart" style={{ width: '85%', height: '40%' }}></canvas>
+      <canvas ref={chartRef} id="chart" style={{ width: '80%', height: '40%' }}></canvas>
     </Box>
   );
 }

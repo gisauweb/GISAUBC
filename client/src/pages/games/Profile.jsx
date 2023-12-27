@@ -9,7 +9,7 @@ export default function Profile() {
 	return (
 		<Box className='bg-gamesBox w-full h-full rounded-2xl flex flex-col justify-center items-center mr-2'>
 			<Typography style={{ fontSize: '14px' }}>Welcome,</Typography>
-			<Box className='flex flex-row justify-center items-center my-3'>
+			<Box className='flex flex-row justify-center items-center my-3 gap-3'>
 				<div
 					style={{
 						width: '50px',
@@ -28,7 +28,7 @@ export default function Profile() {
 						}}
 					/>
 				</div>
-				<Typography className='ml-10' style={{ fontWeight: 'bold' }}>
+				<Typography style={{ fontWeight: 'bold' }}>
 					{name}
 				</Typography>
 			</Box>
