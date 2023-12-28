@@ -3,10 +3,18 @@ import gamesIconLeft from 'assets/games/controllerL.png';
 import gamesIconRight from 'assets/games/controllerR.png';
 import gamesIconLRed from 'assets/games/controllerLred.png';
 import gamesIconRRed from 'assets/games/controllerRred.png';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function GameMenu({ hasLandingImage, page, location }) {
+	const { loginWithRedirect } = useAuth0();
+
 	return (
-		<div className='flex items-center ml-[-10] self-center'>
+		<div
+			className='flex items-center ml-[-10] self-center'
+			onClick={() => {
+				loginWithRedirect();
+			}}
+		>
 			{hasLandingImage ? (
 				<img
 					src={gamesIconLeft}
@@ -24,8 +32,8 @@ export default function GameMenu({ hasLandingImage, page, location }) {
 			)}
 			<p
 				className={`underline-animation font-oswald text-xl 
-										${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-										${page.path === location.pathname && 'underlined'}`}
+					${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+					${page.path === location.pathname && 'underlined'}`}
 			>
 				{page.name}
 			</p>

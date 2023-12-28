@@ -1,5 +1,6 @@
-import { Box, Link } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import GameMenu from './GameMenu';
 
 export default function DesktopNavBar({ hasLandingImage, bgColor, pages, location }) {
@@ -18,7 +19,7 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 					<Link
 						key={page.name}
 						to={page.path}
-						className='px-5 pt-3 hover:cursor-pointer'
+						className='px-5 pt-3'
 						onClick={ScrollToTop}
 						target={page.name === 'Games' ? '_blank' : '_self'}
 					>
@@ -27,8 +28,8 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 						) : (
 							<p
 								className={`underline-animation font-oswald text-xl
-											${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-											${page.path === location.pathname && 'underlined'}`}
+									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+									${page.path === location.pathname && 'underlined'}`}
 							>
 								{page.name}
 							</p>
