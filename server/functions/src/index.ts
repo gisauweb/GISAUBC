@@ -3,9 +3,14 @@ import * as admin from "firebase-admin";
 import * as cors from "cors";
 
 import { getFirestore } from "firebase-admin/firestore";
-import express = require("express");
 import { RequestHandler } from "express";
 import { AUTH0_CONFIG, FB_SERVICE_ACCOUNT } from "./environments/dev.config";
+import { authRoutes } from "./routes/auth.routes";
+import { userRoutes } from "./routes/user.routes";
+import { auth } from "express-openid-connect";
+import { auth as jwtAuth } from "express-oauth2-jwt-bearer";
+
+import express = require("express");
 
 const serviceAccount = FB_SERVICE_ACCOUNT;
 
@@ -22,16 +27,18 @@ const ServiceAccountPARAMS = {
 	clientC509CertUrl: serviceAccount.client_x509_cert_url,
 };
 
+const jwtCheck = jwtAuth({
+	audience: "https://www.challenges-api.com",
+	issuerBaseURL: "https://dev-ltkz6dt5hkbper2c.us.auth0.com/",
+	tokenSigningAlg: "RS256"
+});
+
 admin.initializeApp({
 	credential: admin.credential.cert(ServiceAccountPARAMS),
 	databaseURL: "https://gisaubc-dev.firebaseio.com",
 	storageBucket: "gisaubc-dev.appspot.com",
 });
 
-
-import { authRoutes } from "./routes/auth.routes";
-import { userRoutes } from "./routes/user.routes";
-import { auth } from "express-openid-connect";
 
 const app = express();
 export const db = getFirestore();
@@ -41,8 +48,10 @@ app.use(express.urlencoded({
 	extended: true,
 }) as RequestHandler);
 app.use(cors({ origin: true }));
-
 app.use(auth(AUTH0_CONFIG));
+app.use(jwtCheck);
+
+
 userRoutes(app);
 authRoutes(app);
 
