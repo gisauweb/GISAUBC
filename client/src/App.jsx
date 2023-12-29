@@ -13,7 +13,8 @@ function App() {
 		setPopupOpen(false);
 	};
 	const location = useLocation();
-	const isGamesPage = pages.some((page) => page.path === location.pathname);
+	// TODO: create a util function that all other pages can use to check if it's games page
+	const isGamesPage = location.pathname === '/dashboard';
 	const shouldOpenPopup = !isGamesPage;
 
 	return (
