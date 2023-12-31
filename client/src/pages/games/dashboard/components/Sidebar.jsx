@@ -17,10 +17,11 @@ import rectangle from 'assets/games/Rectangle.png';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdHome, IoMdSettings } from 'react-icons/io';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Sidebar() {
 	const [open, setOpen] = React.useState(0);
-
+	const { logout } = useAuth0();
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};
@@ -104,7 +105,7 @@ export default function Sidebar() {
 				</ListItem>
 			</List>
 			<List style={{ position: 'absolute', bottom: '10px' }}>
-				<ListItem>
+				<ListItem onClick={() => logout()}>
 					<ListItemPrefix>
 						<FaSignOutAlt className='h-5 w-5' />
 					</ListItemPrefix>
