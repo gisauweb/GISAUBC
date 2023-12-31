@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Popup from 'pages/pop-up/Popup';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
@@ -27,7 +27,7 @@ function App() {
 						<Route key={page.name} path={page.path} element={page.element} />
 					))}
 				</Route>
-				{/* <Route path='*' element={<Navigate replace to='/' />} /> */}
+				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
 			{shouldOpenPopup && <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />}
 		</Box>
