@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+
+import { useAuth0 } from '@auth0/auth0-react';
 import Dashboard from './dashboard/Dashboard';
 
 export default function Games() {
-	const [isLogin] = useState(true);
+	const { isAuthenticated, isLoading, loginWithPopup } = useAuth0();
 
-	return isLogin ? <Dashboard /> : <div>Loading...</div>;
+	useEffect(() => {
+		if (!isAuthenticated) {
+			loginWithPopup();
+		}
+	}, [isAuthenticated, loginWithPopup]);
+	return isAuthenticated && !isLoading ? <Dashboard /> : <div>Loading...</div>;
 }
