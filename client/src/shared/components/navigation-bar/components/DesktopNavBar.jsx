@@ -19,13 +19,7 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 					const isGamesPage = page.name === 'Games';
 
 					return (
-						<Link
-							key={page.name}
-							to={!isGamesPage && page.path}
-							className='px-5 pt-3'
-							onClick={ScrollToTop}
-							target='_self'
-						>
+						<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop} target='_self'>
 							{isGamesPage ? (
 								<GameMenu hasLandingImage={hasLandingImage} page={page} location={location} />
 							) : (
