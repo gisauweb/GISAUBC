@@ -1,9 +1,9 @@
 import React from 'react';
 import Leaderboard from 'pages/games/components/Leaderboard';
-import Sidebar from 'pages/games/Sidebar';
 import Profile from 'pages/games/components/Profile';
 import Points from 'pages/games/components/Points';
 import Activity from 'pages/games/components/Activity';
+import Sidebar from './components/Sidebar';
 
 export default function Dashboard() {
 	return (

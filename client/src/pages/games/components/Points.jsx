@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import pointIcon from '../../assets/games/points_icon.svg';
+import pointIcon from 'assets/games/points_icon.svg';
 import user from './user.json';
 
 function getRankSuffix(rank) {
@@ -19,6 +19,10 @@ function getRankSuffix(rank) {
 		return 'rd';
 	}
 	return 'th';
+}
+
+function easeInOut(t) {
+	return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
 export default function Points() {
@@ -50,36 +54,34 @@ export default function Points() {
 		};
 	}, [points, highest]);
 
-	function easeInOut(t) {
-		return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-	}
-
 	return (
-		<Box className="w-full h-full rounded-2xl flex flex-col justify-center items-center">
-			<Box className="h-full" style={{ aspectRatio: '1 / 1' }}>
+		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center'>
+			<Box className='h-full' style={{ aspectRatio: '1 / 1' }}>
 				<CircularProgressbarWithChildren
 					value={animatedValue}
 					styles={{
 						height: '100%',
-						path: {
-							stroke: '#BFA285',
-						},
+						path: { stroke: '#BFA285' },
 						trail: { stroke: '#F5F1ED' },
 					}}
 				>
-					<div className="flex flex-col justify-center items-center gap-3">
+					<div className='flex flex-col justify-center items-center gap-3'>
 						<strong style={{ fontSize: 15 }}>Total Points</strong>
-						<div className="flex items-center">
+						<div className='flex items-center'>
 							<strong style={{ fontSize: 18 }}>{points}</strong>
-							<img src={pointIcon} alt="" className="w-10 ml-7 mb-7 absolute" />
+							<img src={pointIcon} alt='' className='w-10 ml-7 mb-7 absolute' />
 						</div>
 					</div>
 					<div
-						className="w-1/2 flex flex-col mt-3 justify-center items-center text-center"
+						className='w-1/2 flex flex-col mt-3 justify-center items-center text-center'
 						style={{ fontSize: 10 }}
 					>
-						Earn&nbsp;{target}&nbsp;points to reach&nbsp;{rank}
-						{rankSuffix}&nbsp;place!
+						Earn&nbsp;
+						{target}
+						&nbsp;points to reach&nbsp;
+						{rank}
+						{rankSuffix}
+						&nbsp;place!
 					</div>
 				</CircularProgressbarWithChildren>
 			</Box>

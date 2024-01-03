@@ -28,9 +28,7 @@ export default function Profile() {
 						}}
 					/>
 				</div>
-				<Typography style={{ fontWeight: 'bold' }}>
-					{name}
-				</Typography>
+				<Typography style={{ fontWeight: 'bold' }}>{name}</Typography>
 			</Box>
 			<Button
 				className='mt-3'
