@@ -19,6 +19,7 @@ module.exports = {
 				primary: '#7D0202',
 				bgPrimary: '#FFFDF5',
 				gamesRed: '#732727',
+				gamesBox: '#F5F1ED',
 			},
 			fontSize: { '5xl': ['3rem', 1.3] },
 		},
