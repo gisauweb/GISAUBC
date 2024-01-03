@@ -7,12 +7,5 @@ export function authRoutes(app: Application) {
 			messages: "Hello"
 		});
 	});
-
-	app.get("/auth/challenges", function (req, res) {
-		res.json({
-			challenge1: "This is the first challenge",
-			challenge2: "This is the second challenge",
-		});
-	});
 }
 

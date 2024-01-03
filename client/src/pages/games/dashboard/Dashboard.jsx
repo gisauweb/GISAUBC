@@ -4,12 +4,12 @@ import Sidebar from 'pages/games/dashboard/components/Sidebar';
 import { useEffect, useState } from 'react';
 
 export default function Dashboard({ token }) {
-	const [challengesData, setChallengesData] = useState('none');
+	const [data, setData] = useState('none');
 	const { user } = useAuth0();
 
 	useEffect(() => {
 		if (token) {
-			fetch('http://127.0.0.1:5001/gisaubc-dev/us-central1/api/auth/challenges', {
+			fetch('http://127.0.0.1:5001/gisaubc-dev/us-central1/api', {
 				method: 'GET',
 				headers: {
 					'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ export default function Dashboard({ token }) {
 				},
 			})
 				.then((res) => res.json())
-				.then((res) => setChallengesData(JSON.stringify(res)));
+				.then((res) => setData(JSON.stringify(res)));
 		}
 	}, [token]);
 
@@ -30,7 +30,7 @@ export default function Dashboard({ token }) {
 				<p>{`Hi ${user.name}`}</p>
 				<p>
 					This is challenges data:
-					{challengesData}
+					{data}
 				</p>
 			</div>
 		</div>
