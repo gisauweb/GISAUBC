@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
-// import Leaderboard from 'pages/games/dashboard/components/Leaderboard';
 import Sidebar from 'pages/games/dashboard/components/Sidebar';
 import { useEffect, useState } from 'react';
+import Leaderboard from './components/Leaderboard';
 
 export default function Dashboard({ token }) {
 	const [data, setData] = useState('none');
@@ -25,11 +25,11 @@ export default function Dashboard({ token }) {
 	return (
 		<div className='flex'>
 			<Sidebar />
-			{/* <Leaderboard /> */}
+			<Leaderboard />
 			<div className='flex flex-col space-y-2'>
 				<p>{`Hi ${user.name}`}</p>
 				<p>
-					This is challenges data:
+					This is data from API:
 					{data}
 				</p>
 			</div>
