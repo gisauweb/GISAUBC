@@ -24,8 +24,8 @@ export default function GameMenu({ hasLandingImage, page, location }) {
 			)}
 			<p
 				className={`underline-animation font-oswald text-xl 
-										${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-										${page.path === location.pathname && 'underlined'}`}
+					${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+					${page.path === location.pathname && 'underlined'}`}
 			>
 				{page.name}
 			</p>

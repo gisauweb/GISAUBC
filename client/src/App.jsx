@@ -14,8 +14,9 @@ function App() {
 	};
 	const location = useLocation();
 	// TODO: create a util function that all other pages can use to check if it's games page
-	const isGamesPage = location.pathname === '/dashboard';
-	const shouldOpenPopup = !isGamesPage;
+	const isGamesPage = location.pathname === '/games';
+	const activatePopup = false;
+	const shouldOpenPopup = activatePopup && !isGamesPage;
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
