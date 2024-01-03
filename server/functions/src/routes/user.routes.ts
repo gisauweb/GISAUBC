@@ -9,28 +9,27 @@ import {
 	removeUser,
 } from "../controllers/user.controller";
 
-import { requiresAuth } from "express-openid-connect";
 
 
 export function userRoutes(app: Application) {
 	/**
 	* Create user
 	**/
-	app.post("/users/create", requiresAuth(), createUserIfNotExists);
+	app.post("/users/create", createUserIfNotExists);
 
 	/**
 	* Get all users
 	**/
-	app.get("/users", requiresAuth(), getAllUsers);
+	app.get("/users", getAllUsers);
 
 	/**
 	* GET user with :sid
 	**/
-	app.get("/users/user/:sid", requiresAuth(), getUser);
+	app.get("/users/user/:sid", getUser);
 
 	/**
 	* Delete user with :sid
 	**/
-	app.delete("/users/remove/:id", requiresAuth(), removeUser);
+	app.delete("/users/remove/:id", removeUser);
 
 }

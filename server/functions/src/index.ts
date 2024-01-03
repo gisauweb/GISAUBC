@@ -1,11 +1,17 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import * as express from "express";
 import * as cors from "cors";
+import * as jwks from "jwks-rsa";
+import * as expressJwt from "express-jwt";
+import * as jwt from "jsonwebtoken";
 
 import { getFirestore } from "firebase-admin/firestore";
-import express = require("express");
-import { RequestHandler } from "express";
-import { AUTH0_CONFIG, FB_SERVICE_ACCOUNT } from "./environments/dev.config";
+// import { RequestHandler } from "express";
+import { FB_SERVICE_ACCOUNT } from "./environments/dev.config";
+import { authRoutes } from "./routes/auth.routes";
+import { userRoutes } from "./routes/user.routes";
+import helmet from "helmet";
 
 const serviceAccount = FB_SERVICE_ACCOUNT;
 
@@ -22,6 +28,22 @@ const ServiceAccountPARAMS = {
 	clientC509CertUrl: serviceAccount.client_x509_cert_url,
 };
 
+const appOrigin = "http://localhost:3000";
+
+const getSecret = jwks.expressJwtSecret({
+	cache: true,
+	rateLimit: true,
+	jwksRequestsPerMinute: 5,
+	jwksUri: "https://dev-ltkz6dt5hkbper2c.us.auth0.com/.well-known/jwks.json",
+});
+
+const jwtCheck = expressJwt.expressjwt({
+	secret: getSecret as jwt.Secret | jwks.GetVerificationKey,
+	audience: process.env.AUTH0_AUDIENCE,
+	issuer: process.env.AUTH0_BASE,
+	algorithms: ["RS256"],
+});
+
 admin.initializeApp({
 	credential: admin.credential.cert(ServiceAccountPARAMS),
 	databaseURL: "https://gisaubc-dev.firebaseio.com",
@@ -29,20 +51,17 @@ admin.initializeApp({
 });
 
 
-import { authRoutes } from "./routes/auth.routes";
-import { userRoutes } from "./routes/user.routes";
-import { auth } from "express-openid-connect";
-
 const app = express();
 export const db = getFirestore();
 
-app.use(express.json() as RequestHandler);
-app.use(express.urlencoded({
-	extended: true,
-}) as RequestHandler);
-app.use(cors({ origin: true }));
+// app.use(express.json() as RequestHandler);
+// app.use(express.urlencoded({
+// 	extended: true,
+// }) as RequestHandler);
+app.use(helmet());
+app.use(cors({ origin: appOrigin }));
+app.use(jwtCheck);
 
-app.use(auth(AUTH0_CONFIG));
 userRoutes(app);
 authRoutes(app);
 
