@@ -5,23 +5,17 @@
 /* Montserrat */
 @font-face {
 	font-family: 'Montserrat';
-	src:
-		local('Montserrat'),
-		url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+	src: local('Montserrat'), url('./fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
 
 /* Oswald */
 @font-face {
 	font-family: 'Oswald';
-	src:
-		local('Oswald'),
-		url('./fonts/Oswald/Oswald-VariableFont.ttf') format('truetype');
+	src: local('Oswald'), url('./fonts/Oswald/Oswald-VariableFont.ttf') format('truetype');
 }
 
 /* Inter */
 @font-face {
 	font-family: 'Inter';
-	src:
-		local('Inter'),
-		url('./fonts/Inter/Inter-VariableFont.ttf') format('truetype');
+	src: local('Inter'), url('./fonts/Inter/Inter-VariableFont.ttf') format('truetype');
 }
