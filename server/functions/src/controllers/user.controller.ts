@@ -82,7 +82,7 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
 
 		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
 			const user = await userRepository.getUserBySID(getUserInput.sid)
-			return res.json({ result: user });
+			return res.json({ result: user || "none" });
 		});
 
 	} catch (err) {

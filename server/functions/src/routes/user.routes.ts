@@ -28,6 +28,11 @@ export function userRoutes(app: Application) {
 	app.get("/users/user/:sid", getUser);
 
 	/**
+	* Add new field to user with :sid
+	**/
+	app.patch("/users/user/:sid", getUser);
+
+	/**
 	* Delete user with :sid
 	**/
 	app.delete("/users/remove/:id", removeUser);
