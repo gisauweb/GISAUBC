@@ -10,7 +10,6 @@ export default function Games() {
 	useEffect(() => {
 		async function getToken() {
 			const result = await getAccessTokenSilently();
-			// eslint-disable-next-line no-underscore-dangle
 			setToken(result);
 		}
 		if (!isAuthenticated) {
