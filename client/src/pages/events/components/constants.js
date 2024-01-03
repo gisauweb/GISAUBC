@@ -1,7 +1,25 @@
 import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index';
+import cafe from 'assets/events-page/past-events/23_24/cafe.pdf';
+import care from 'assets/events-page/past-events/23_24/care.pdf';
 
 const PAST_EVENTS = {
 	'2023/2024': [
+		{
+			image: EVENTS_23_24[7],
+			title: 'Exam Care Package',
+			date: 'Wednesday, December 5 | 12-5PM / Thursday, December 6 | 1-5:30PM ',
+			loc: 'AMS Nest',
+			registrationLink: 'https://forms.gle/uPPiTkc612KS7nZb9',
+			infoLink: care,
+		},
+		{
+			image: EVENTS_23_24[6],
+			title: 'Study Cafe',
+			date: 'Wednesday, December 6 | 1-5:30PM',
+			loc: 'AMS Lev Bukhman (Bird Nest)',
+			registrationLink: cafe,
+			infoLink: cafe,
+		},
 		{
 			image: EVENTS_23_24[5],
 			title: 'Malem Mingguan',
