@@ -6,6 +6,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"server": "npm run serve --prefix server/functions",
 		"client": "npm start --prefix client",
+		"watch": "npm run build:watch --prefix server/functions",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
 	"author": "",
