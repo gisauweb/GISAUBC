@@ -1,5 +1,5 @@
 import React from 'react';
-import Dashboard from './dashboard/Dashboard';
+import Dashboard from './components/dashboard/Dashboard';
 
 export default function Games() {
 	const isLogin = false;
