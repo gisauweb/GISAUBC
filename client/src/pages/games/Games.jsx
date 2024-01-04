@@ -8,6 +8,7 @@ export default function Games() {
 	const { isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup, user } = useAuth0();
 	const [token, setToken] = useState(null);
 	const [isRegistered, setIsRegistered] = useState(false);
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		async function getToken() {
 			const result = await getAccessTokenSilently();
@@ -22,9 +23,10 @@ export default function Games() {
 				})
 					.then((res) => res.json())
 					.then((res) => {
-						setIsRegistered(res.result !== 'none');
+						setIsRegistered(res.result);
 					});
 			}
+			setLoading(false);
 		}
 		if (!isAuthenticated) {
 			loginWithPopup();
@@ -33,11 +35,11 @@ export default function Games() {
 		}
 	}, [isAuthenticated, isRegistered, user, loginWithPopup, getAccessTokenSilently]);
 
-	return isLoading ? (
+	return isLoading && loading ? (
 		<div>Loading...</div>
 	) : isAuthenticated && isRegistered ? (
 		<Dashboard token={token} />
 	) : (
-		<Onboarding />
+		!isLoading && <Onboarding token={token} setIsRegistered={setIsRegistered} />
 	);
 }
