@@ -1,11 +1,8 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
-import { useAuth0 } from '@auth0/auth0-react';
 
-export default function Profile() {
-	const { user } = useAuth0();
-
+export default function Profile({ username, picture }) {
 	return (
 		<Box className='bg-gamesBox w-full h-full rounded-2xl flex flex-col justify-center items-center mr-2'>
 			<Typography style={{ fontSize: '14px' }}>Welcome,</Typography>
@@ -18,7 +15,7 @@ export default function Profile() {
 					}}
 				>
 					<img
-						src={user.picture}
+						src={picture}
 						alt='profile_pic'
 						style={{
 							width: '100%',
@@ -28,7 +25,15 @@ export default function Profile() {
 						}}
 					/>
 				</div>
-				<Typography style={{ fontWeight: 'bold' }}>{user.given_name}</Typography>
+				<div
+					style={{
+						width: '70%',
+						overflow: 'auto',
+						maxWidth: '70%',
+					}}
+				>
+					<Typography style={{ fontWeight: 'bold' }}>{username}</Typography>
+				</div>
 			</Box>
 			<Button
 				className='mt-3'

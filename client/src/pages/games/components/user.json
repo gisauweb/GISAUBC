@@ -32,17 +32,6 @@
 		"https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y",
 		"https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
 	],
-	"leaderboard_name": [
-		"Marie Samantha",
-		"Name2",
-		"Name3",
-		"Name4",
-		"Name5",
-		"fgdsdfhffhfhffhhbfbasthfbvs sfagsdshfhfs",
-		"Name7",
-		"Name8",
-		"Name9",
-		"Name10"
-	],
+	"leaderboard_name": ["Name1", "Name2", "Name3", "Name4", "Name6", "Name6", "Name7", "Name8", "Name9", "Name10"],
 	"leaderboard_points": ["100", "90", "80", "70", "60", "50", "40", "30", "20", "10"]
 }
