@@ -24,6 +24,9 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token 
 			body: JSON.stringify({
 				sid: studentID,
 				uid: user.sub,
+				first_name: user.given_name || user.nickname,
+				last_name: user.family_name || user.nickname,
+				email: user.email,
 			}),
 		})
 			.then((res) => res.json())

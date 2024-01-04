@@ -24,9 +24,9 @@ export default function Games() {
 					.then((res) => res.json())
 					.then((res) => {
 						setIsRegistered(res.result);
+						setLoading(false);
 					});
 			}
-			setLoading(false);
 		}
 		if (!isAuthenticated) {
 			loginWithPopup();
@@ -40,6 +40,6 @@ export default function Games() {
 	) : isAuthenticated && isRegistered ? (
 		<Dashboard token={token} />
 	) : (
-		!isLoading && <Onboarding token={token} setIsRegistered={setIsRegistered} />
+		!isLoading && !loading && <Onboarding token={token} setIsRegistered={setIsRegistered} />
 	);
 }
