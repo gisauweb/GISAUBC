@@ -19,7 +19,7 @@ export default function Profile() {
 				>
 					<img
 						src={user.picture}
-						alt=''
+						alt='profile_pic'
 						style={{
 							width: '100%',
 							height: '100%',
