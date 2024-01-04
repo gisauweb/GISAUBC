@@ -23,24 +23,26 @@ import * as userRepository from "../repository/user.repository";
 
 export async function createUserIfNotExists(req: Request, res: Response, next: NextFunction) {
 	try {
+		const { sid, uid, first_name, last_name, email } = JSON.parse(req.body)
 		const createUserPayload: createUserModel = {
-			sid: req.body.sid,
-			first_name: req.body.first_name,
-			last_name: req.body.last_name,
-			email: req.body.email,
-			picture: req.body.picture,
+			sid: sid,
+			uid: uid,
+			first_name: first_name,
+			last_name: last_name,
+			email: email,
 			created_at: Date.now().toString(),
 			updated_at: Date.now().toString(),
 		};
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;
 			
-			const user = await userRepository.getUserBySID(createUserPayload.sid)
+			const user = await userRepository.getUserByUID(createUserPayload.sid)
 			if (!user) {
 				try {
 					await userRepository.createUser(createUserPayload);
 					return res.status(201).send({
-						message: `User ${req.body.sid} has been added successfully`
+						result: true,
+						message: `User ${sid} has been added successfully`
 					})
 				} catch (error) {
 					return res.status(500).send(error);
@@ -76,13 +78,13 @@ export async function getAllUsers(req: Request, res: Response) {
 export async function getUser(req: Request, res: Response, next: NextFunction) {
 	try {
 		const getUserInput: getUserModel = {
-			sid: req.params.sid,
+			uid: req.params.uid,
 		};
 		
 
 		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
-			const user = await userRepository.getUserBySID(getUserInput.sid)
-			return res.json({ result: user || "none" });
+			const user = await userRepository.getUserByUID(getUserInput.uid)
+			return res.json({ result: user || false });
 		});
 
 	} catch (err) {
@@ -95,17 +97,17 @@ export async function removeUser(req: Request, res: Response, next: NextFunction
 
 	try {
 		const removeUserPayload: userAuthUserModel = {
-			id: req.params.id,
+			uid: req.params.uid,
 		};
 
 		return await requestValidator(removeUserPayload, userAuthUserSchema, res, next).then(async () => {
 
 			if (res.headersSent) return;
 
-			await userRepository.removeUser(removeUserPayload.id).then(() => {
+			await userRepository.removeUser(removeUserPayload.uid).then(() => {
 
 				return res.status(200).send({
-					message: `User with ID: ${removeUserPayload.id} removed`,
+					message: `User with ID: ${removeUserPayload.uid} removed`,
 				});
 
 			}).catch((error) => {
