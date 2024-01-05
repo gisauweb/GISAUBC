@@ -7,6 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Sentry } from 'libs/sentry';
 
 export default function StudentIdDialog({ open, setOpen, setIsRegistered, token }) {
 	const { user } = useAuth0();
@@ -34,7 +35,7 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token 
 				setIsRegistered(res.result);
 			})
 			.catch((error) => {
-				console.error('There was a problem with the register operation:', error);
+				Sentry.captureException('There was a problem with the register operation:', error);
 			});
 		handleClose();
 	};
