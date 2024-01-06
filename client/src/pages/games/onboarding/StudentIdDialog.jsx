@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -8,17 +8,26 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Sentry } from 'libs/sentry';
+import checkStudentIDValidity from 'libs/membership';
 
-export default function StudentIdDialog({ open, setOpen, setIsRegistered, token }) {
+export default function StudentIdDialog({ open, setOpen, setIsRegistered, token, setServerError }) {
 	const { user } = useAuth0();
-	const [studentID, setStudentID] = React.useState('');
+	const [studentID, setStudentID] = useState('');
+	const [error, setError] = useState('');
 
 	const handleClose = () => {
 		setStudentID('');
 		setOpen(false);
+		setError('');
 	};
 
 	const handleRegisterClicked = () => {
+		const validationError = checkStudentIDValidity(studentID);
+		if (validationError) {
+			setError(validationError.message);
+			return;
+		}
+
 		fetch('http://127.0.0.1:5001/gisaubc-dev/us-central1/api/users/create', {
 			method: 'POST',
 			headers: { Authorization: `Bearer ${token}` },
@@ -30,13 +39,23 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token 
 				email: user.email,
 			}),
 		})
-			.then((res) => res.json())
-			.then((res) => {
-				setIsRegistered(res.result);
+			.then(async (res) => {
+				if (res.status !== 201) {
+					const responseBody = await res.json();
+					setServerError(responseBody.message);
+					return undefined;
+				}
+				return res.json();
 			})
-			.catch((error) => {
-				Sentry.captureException('There was a problem with the register operation:', error);
+			.then((res) => {
+				if (res) {
+					setIsRegistered(res.result);
+				}
+			})
+			.catch((err) => {
+				Sentry.captureException('There was a problem with the register operation:', err);
 			});
+
 		handleClose();
 	};
 
@@ -52,13 +71,17 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token 
 					margin='dense'
 					id='name'
 					label='Student ID'
-					type='number'
+					type='text'
 					fullWidth
 					variant='standard'
 					value={studentID}
 					onChange={(e) => {
 						setStudentID(e.target.value);
+						setError('');
 					}}
+					error={!!error}
+					helperText={error}
+					InputProps={{ pattern: checkStudentIDValidity().source }}
 				/>
 			</DialogContent>
 			<DialogActions>

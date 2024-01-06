@@ -17,6 +17,11 @@ export async function createUser(userPayload: createUserModel) {
 		created_at: userPayload.created_at,
 		updated_at: userPayload.updated_at
 	});
+
+	const registeredDocRef = db.collection("registered").doc(userPayload.sid);
+	await registeredDocRef.set({
+		sid: userPayload.sid,
+	});
 }
 
 export async function removeUser(uid: string) {
@@ -37,4 +42,16 @@ export async function getAllUsers() {
     return snapshot.docs.map(doc => {
 		return doc.data();
 	});
+}
+
+export async function getMembershipBySID(sid: string) {
+	const snapshot = await db.collection("memberships").doc(sid).get();
+
+	return snapshot.data();
+}
+
+export async function getRegisteredMemberBySID(sid: string) {
+	const snapshot = await db.collection("registered").doc(sid).get();
+
+	return snapshot.data();
 }

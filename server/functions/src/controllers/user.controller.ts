@@ -36,20 +36,27 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;
 			
-			const user = await userRepository.getUserByUID(createUserPayload.sid)
+			const user = await userRepository.getUserByUID(createUserPayload.uid)
 			if (!user) {
 				try {
-					await userRepository.createUser(createUserPayload);
-					return res.status(201).send({
+					const invalidMember = await validateMember(sid);
+					if (invalidMember) {
+						return res.status(400).send({
+							message: invalidMember
+						})
+					} else {
+						await userRepository.createUser(createUserPayload);
+						return res.status(201).send({
 						result: true,
 						message: `User ${sid} has been added successfully`
 					})
+					}
 				} catch (error) {
 					return res.status(500).send(error);
 				}
 			}
 			return res.status(400).send({
-				message: "User already exists!"
+				message: "Error — User already exists"
 			})
 		}).catch((error) => {
 			return res.status(400).send(error);
@@ -122,6 +129,19 @@ export async function removeUser(req: Request, res: Response, next: NextFunction
 		return handleError(res, err);
 	}
 
+}
+
+async function validateMember(sid: string): Promise<string> {
+	try {
+		const membership = await userRepository.getMembershipBySID(sid);
+		if (membership) {
+			const result = await userRepository.getRegisteredMemberBySID(sid);
+			return result ? `Error — Student ID ${sid} is already registered` : ""
+		}
+		return `Error — Student ID ${sid} is not GISAU's member`
+	} catch (error) {
+		throw new Error(`Unable to validate member: ${error}`)
+	}
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
