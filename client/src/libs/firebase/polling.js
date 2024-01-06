@@ -1,16 +1,7 @@
 import { doc, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
 import logger from 'libs/winston';
+import checkStudentIDValidity from 'libs/membership';
 import { db } from './firebase';
-
-function checkStudentIDValidity(studentID) {
-	const regex = /^\d{8}$/;
-
-	if (!regex.test(studentID)) {
-		const error = new Error('Invalid syntax');
-		error.code = 400;
-		throw error;
-	}
-}
 
 async function membershipVerification(uniqueID) {
 	const membershipDocRef = doc(db, 'membership', uniqueID);
@@ -25,7 +16,10 @@ async function membershipVerification(uniqueID) {
 export const writeVote = async (credentials, options) => {
 	const { studentID } = credentials;
 
-	checkStudentIDValidity(studentID);
+	const validityError = checkStudentIDValidity(studentID);
+	if (validityError) {
+		throw validityError;
+	}
 	await membershipVerification(studentID);
 
 	const pollingDocRef = doc(db, process.env.REACT_APP_FIRESTORE_KEY, studentID);

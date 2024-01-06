@@ -23,13 +23,18 @@ export function userRoutes(app: Application) {
 	app.get("/users", getAllUsers);
 
 	/**
-	* GET user with :sid
+	* GET user with :uid
 	**/
-	app.get("/users/user/:sid", getUser);
+	app.get("/users/user/:uid", getUser);
 
 	/**
-	* Delete user with :sid
+	* Add new field to user with :uid
 	**/
-	app.delete("/users/remove/:id", removeUser);
+	app.patch("/users/user/:uid", getUser);
+
+	/**
+	* Delete user with :uid
+	**/
+	app.delete("/users/remove/:uid", removeUser);
 
 }

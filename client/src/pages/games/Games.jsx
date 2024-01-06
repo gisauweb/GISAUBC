@@ -1,23 +1,109 @@
+/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 import Dashboard from './components/dashboard/Dashboard';
+import Onboarding from './onboarding/Onboarding';
+import AlertDialog from './onboarding/AlertDialog';
 
 export default function Games() {
-	const { isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup } = useAuth0();
+	const {
+		isAuthenticated,
+		isLoading,
+		getAccessTokenSilently,
+		getAccessTokenWithPopup,
+		loginWithPopup,
+		user,
+		logout,
+	} = useAuth0();
 	const [token, setToken] = useState(null);
+	const [isRegistered, setIsRegistered] = useState(false);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState('');
+	const [alert, setAlert] = useState(false);
+
+	const handleLoginAgain = async () => {
+		try {
+			await loginWithPopup();
+			setError('');
+			setLoading(false);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	const handleConsent = async () => {
+		try {
+			await getAccessTokenWithPopup();
+			setError('');
+			setLoading(false);
+		} catch (err) {
+			setError(err.message);
+		}
+	};
+
+	useEffect(() => {
+		setAlert(!!error);
+	}, [error]);
 
 	useEffect(() => {
 		async function getToken() {
-			const result = await getAccessTokenSilently();
-			setToken(result);
+			try {
+				const result = await getAccessTokenSilently();
+				setToken(result);
+				if (!isRegistered) {
+					fetch(`http://127.0.0.1:5001/gisaubc-dev/us-central1/api/users/user/${user.sub}`, {
+						headers: {
+							'Content-Type': 'application/json',
+							Accept: 'application/json',
+							Authorization: `Bearer ${result}`,
+						},
+					})
+						.then((res) => res.json())
+						.then((res) => {
+							setIsRegistered(res.result);
+							setLoading(false);
+						})
+						.catch((err) => {
+							setError(err.message);
+						});
+				}
+			} catch (err) {
+				setError(err.message);
+			}
 		}
 		if (!isAuthenticated) {
 			loginWithPopup();
-		} else {
-			getToken();
 		}
-	}, [isAuthenticated, loginWithPopup, getAccessTokenSilently]);
-
-	return isAuthenticated && !isLoading ? <Dashboard token={token} /> : <div>Loading...</div>;
+		getToken();
+	}, [isAuthenticated, isRegistered, loading, user, loginWithPopup, getAccessTokenSilently]);
+	return isLoading || loading || alert ? (
+		<>
+			<div>Loading...</div>
+			{alert && (
+				<div
+					onClick={() => {
+						if (error === 'Consent required') {
+							handleConsent();
+						} else if (error === 'Login required') {
+							handleLoginAgain();
+						} else {
+							logout({
+								logoutParams: {
+									returnTo: 'http://localhost:3000/games',
+								},
+							});
+						}
+						setLoading(true);
+					}}
+				>
+					<AlertDialog open={alert} setOpen={setAlert} serverError={error} />
+				</div>
+			)}
+		</>
+	) : isAuthenticated && isRegistered ? (
+		<Dashboard token={token} />
+	) : (
+		<Onboarding token={token} setIsRegistered={setIsRegistered} />
+	);
 }

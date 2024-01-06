@@ -8,10 +8,11 @@ import { ThemeProvider, responsiveFontSizes } from '@mui/material';
 import { Auth0Provider } from '@auth0/auth0-react';
 import getAuthConfig from 'libs/config';
 import history from 'libs/history';
+import { Sentry, sentryConfig } from 'libs/sentry';
 import App from './App';
 
 ReactGA.initialize(process.env.REACT_APP_GID);
-
+Sentry.init(sentryConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const responsiveTheme = responsiveFontSizes(theme);
 

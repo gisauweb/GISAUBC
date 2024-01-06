@@ -58,8 +58,8 @@ export const db = getFirestore();
 // app.use(express.urlencoded({
 // 	extended: true,
 // }) as RequestHandler);
-app.use(helmet());
 app.use(cors({ origin: appOrigin }));
+app.use(helmet());
 app.use(jwtCheck);
 
 userRoutes(app);

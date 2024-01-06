@@ -3,19 +3,19 @@ import { Schema } from "../validators/ingress.validators";
 export const userCreation: Schema = {
     fields: {
 		sid: "string",
+		uid: "string",
 		email: "string",
 		first_name: "string",
 		last_name: "string",
-		picture: "string",
 		created_at: "string",
 		updated_at: "string"
     },
     required: [
 		"sid",
+		"uid",
 		"email",
 		"first_name",
 		"last_name",
-		"picture",
 		"created_at",
 		"updated_at"
     ],
@@ -31,10 +31,10 @@ export const getUsersSchema: Schema = {
 
 export const getUserSchema: Schema = {
     fields: {
-        sid: "string",
+        uid: "string",
     },
     required: [
-        "sid",
+        "uid",
     ],
 };
 
