@@ -1,8 +1,8 @@
 import React from 'react';
-import Leaderboard from 'pages/games/pages/dashboard/components/Leaderboard';
-import Profile from 'pages/games/pages/dashboard/components/Profile';
-import Points from 'pages/games/pages/dashboard/components/Points';
-import Activity from 'pages/games/pages/dashboard/components/Activity';
+import Leaderboard from '@games/pages/dashboard/components/Leaderboard';
+import Profile from '@games/pages/dashboard/components/Profile';
+import Points from '@games/pages/dashboard/components/Points';
+import Activity from '@games/pages/dashboard/components/Activity';
 import { useAuth0 } from '@auth0/auth0-react';
 import Sidebar from '../Sidebar';
 
