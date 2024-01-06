@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import pointIcon from 'assets/games/points_icon.svg';
-import user from './user.json';
+import user from 'pages/games/user.json';
 
 function getRankSuffix(rank) {
 	const lastDigit = rank % 10;

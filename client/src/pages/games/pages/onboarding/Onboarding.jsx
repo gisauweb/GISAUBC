@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import GisauLogo from 'assets/gisau-logo/gisau.png';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from 'shared/components';
-import StudentIdDialog from './StudentIdDialog';
-import AlertDialog from './AlertDialog';
+import StudentIdDialog from './components/StudentIdDialog';
+import AlertDialog from './components/AlertDialog';
 
 function capitalizeString(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
