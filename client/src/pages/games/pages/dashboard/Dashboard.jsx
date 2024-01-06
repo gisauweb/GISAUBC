@@ -1,10 +1,10 @@
 import React from 'react';
-import Leaderboard from 'pages/games/components/Leaderboard';
-import Profile from 'pages/games/components/Profile';
-import Points from 'pages/games/components/Points';
-import Activity from 'pages/games/components/Activity';
+import Leaderboard from 'pages/games/pages/dashboard/components/Leaderboard';
+import Profile from 'pages/games/pages/dashboard/components/Profile';
+import Points from 'pages/games/pages/dashboard/components/Points';
+import Activity from 'pages/games/pages/dashboard/components/Activity';
 import { useAuth0 } from '@auth0/auth0-react';
-import Sidebar from './components/Sidebar';
+import Sidebar from '../Sidebar';
 
 export default function Dashboard() {
 	const { user } = useAuth0();

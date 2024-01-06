@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-import Dashboard from './components/dashboard/Dashboard';
-import Onboarding from './onboarding/Onboarding';
-import AlertDialog from './onboarding/AlertDialog';
+import Dashboard from './pages/dashboard/Dashboard';
+import Onboarding from './pages/onboarding/Onboarding';
+import AlertDialog from './pages/onboarding/AlertDialog';
 
 export default function Games() {
 	const {
