@@ -29,7 +29,6 @@
 	cursor: pointer;
 	transform-style: preserve-3d;
 	transform: perspective(2500px);
-
 }
 
 .door-front {
@@ -41,7 +40,7 @@
 	position: absolute;
 	background-color: #333;
 	z-index: 1;
-	transition: .8s;
+	transition: 0.8s;
 }
 
 .door-front:before {
@@ -63,7 +62,7 @@
 }
 
 .knob:before {
-	content: "";
+	content: '';
 	position: absolute;
 	border-radius: 50%;
 	background-color: #f1c83c;
@@ -74,7 +73,7 @@
 }
 
 .knob:after {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 4px;
 	height: 7px;
@@ -88,7 +87,13 @@
 }
 .door-back {
 	position: relative;
-	background: linear-gradient(0deg, rgba(193, 124, 116, 1) 13%, rgba(73, 88, 103, 1) 13%, rgba(79, 100, 124, 1) 15%, rgba(87, 115, 153, 1) 15%);
+	background: linear-gradient(
+		0deg,
+		rgba(193, 124, 116, 1) 13%,
+		rgba(73, 88, 103, 1) 13%,
+		rgba(79, 100, 124, 1) 15%,
+		rgba(87, 115, 153, 1) 15%
+	);
 	width: 100%;
 	height: 100%;
 	overflow: hidden;
@@ -105,7 +110,7 @@
 }
 
 .rack:before {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 70px;
 	height: 10px;
@@ -117,7 +122,7 @@
 
 .rack:after {
 	position: absolute;
-	content: "";
+	content: '';
 	width: 30px;
 	height: 30px;
 	border-bottom: 5px solid #a78a7f;
@@ -137,7 +142,7 @@
 }
 
 .hat:before {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 40px;
 	height: 20px;
@@ -149,7 +154,7 @@
 }
 
 .hat:after {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 40px;
 	height: 100px;
@@ -171,7 +176,7 @@
 }
 
 .jacket:before {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 25px;
 	height: 25px;
@@ -181,7 +186,7 @@
 }
 
 .jacket:after {
-	content: "";
+	content: '';
 	position: absolute;
 	border-top: 15px solid #8c1c13;
 	border-right: 15px solid transparent;
