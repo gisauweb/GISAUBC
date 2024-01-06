@@ -4,7 +4,7 @@ import Partners from 'pages/partners/Partners';
 import Rantangan from 'pages/rantangan/Rantangan';
 import About from 'pages/about/About';
 import ContactUs from 'pages/contacts/ContactUs';
-import Games from '@games/Games';
+import Games from 'pages/games/Games';
 
 const pages = [
 	{

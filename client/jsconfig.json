@@ -1,9 +1,6 @@
 {
 	"compilerOptions": {
-		"baseUrl": "src",
-		"paths": {
-			"@games/*": ["./pages/games/*"]
-		}
+		"baseUrl": "src"
 	},
 	"include": [
 		"src"

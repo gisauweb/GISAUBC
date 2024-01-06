@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
-import user from '@games/user.json';
+import user from './user.json';
 
 export default function Activity() {
 	const chartRef = useRef(null);

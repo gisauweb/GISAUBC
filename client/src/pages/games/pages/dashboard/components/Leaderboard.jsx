@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import user from '@games/user.json';
-import crown from 'assets/games/crown.png';
+import user from './user.json';
+import crown from '../../../assets/games/crown.png';
 
 export default function Leaderboard({ username }) {
 	return (
