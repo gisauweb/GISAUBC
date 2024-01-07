@@ -51,7 +51,7 @@ export default function Games() {
 			try {
 				const result = await getAccessTokenSilently();
 				setToken(result);
-				if (!isRegistered) {
+				if (!isRegistered && user) {
 					fetch(`http://127.0.0.1:5001/gisaubc-dev/us-central1/api/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
