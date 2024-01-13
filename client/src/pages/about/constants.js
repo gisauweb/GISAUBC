@@ -37,7 +37,7 @@ const EXECUTIVES = {
 				position: 'Vice President',
 				department: 'Core',
 				image: EXECS_23_24[1],
-				education: '3rd Year Land Food Systems',
+				education: '3rd Year LFS',
 			},
 			{
 				name: 'Joanico Huang',
@@ -51,12 +51,12 @@ const EXECUTIVES = {
 				position: 'Secretary',
 				department: 'Core',
 				image: EXECS_23_24[3],
-				education: '4th Year Land and Food Systems',
+				education: '4th Year LFS',
 			},
 		],
 		Events: [
 			{
-				name: 'Kent',
+				name: 'Kent Jose',
 				position: 'Events Director',
 				department: 'Events',
 				image: EXECS_23_24[4],
@@ -67,14 +67,14 @@ const EXECUTIVES = {
 				position: 'Logistics Director',
 				department: 'Events',
 				image: EXECS_23_24[5],
-				education: '2nd Year Land Food Systems',
+				education: '2nd Year LFS',
 			},
 			{
 				name: 'Christella Khosasih',
 				position: 'Events Coordinator',
 				department: 'Events',
 				image: EXECS_23_24[6],
-				education: '3rd Year Land Food Systems',
+				education: '3rd Year LFS',
 			},
 			{
 				name: 'Nathania Rei',
@@ -84,7 +84,7 @@ const EXECUTIVES = {
 				education: '2nd Year Arts',
 			},
 			{
-				name: 'Anabel Iris Eliora Hartanto',
+				name: 'Anabel Hartanto',
 				position: 'Events Coordinator',
 				department: 'Events',
 				image: EXECS_23_24[8],
@@ -100,7 +100,7 @@ const EXECUTIVES = {
 				education: '3rd Year Arts',
 			},
 			{
-				name: 'Kihana Sasha Siswanto',
+				name: 'Kihana Sasha',
 				position: 'Corporate Relations Director',
 				department: 'External',
 				image: EXECS_23_24[10],
@@ -111,7 +111,7 @@ const EXECUTIVES = {
 				position: 'Sponsorship Coordinator',
 				department: 'External',
 				image: EXECS_23_24[11],
-				education: '3rd Year Land and Food Systems',
+				education: '3rd Year LFS',
 			},
 			{
 				name: 'Joselyn Vinzlee',
@@ -123,7 +123,7 @@ const EXECUTIVES = {
 		],
 		'F&B': [
 			{
-				name: 'Richelle',
+				name: 'Richelle Tan',
 				position: 'F&B Director',
 				department: 'Food & Beverage',
 				image: EXECS_23_24[13],
@@ -137,18 +137,18 @@ const EXECUTIVES = {
 				education: '2nd Year Commerce',
 			},
 			{
-				name: 'Ann Yumi Kawanto',
+				name: 'Ann Yumi',
 				position: 'F&B Coordinator',
 				department: 'Food & Beverage',
 				image: EXECS_23_24[15],
-				education: '2nd Year Land and Food Systems',
+				education: '2nd Year LFS',
 			},
 			{
 				name: 'Wilbert Kawira',
 				position: 'F&B Coordinator',
 				department: 'Food & Beverage',
 				image: EXECS_23_24[16],
-				education: '1st Year Land and Food Systems',
+				education: '1st Year LFS',
 			},
 		],
 		Marketing: [
@@ -164,10 +164,10 @@ const EXECUTIVES = {
 				position: 'Creative Director',
 				department: 'Marketing',
 				image: EXECS_23_24[18],
-				education: '2nd Year Land and Food Systems',
+				education: '2nd Year LFS',
 			},
 			{
-				name: 'Christopher Hadrian Wong',
+				name: 'Christopher Hadrian',
 				position: 'Webmaster Lead',
 				department: 'Marketing',
 				image: EXECS_23_24[19],
@@ -188,14 +188,14 @@ const EXECUTIVES = {
 				education: '2nd Year Science',
 			},
 			{
-				name: 'Marie Samantha Fidelia',
+				name: 'Marie Samantha',
 				position: 'Web Developer',
 				department: 'Marketing',
 				image: EXECS_23_24[22],
 				education: '2nd Year Science',
 			},
 			{
-				name: 'Adni Sadhira Dharmakusuma',
+				name: 'Dhira Dharmakusuma',
 				position: 'Creative Coordinator',
 				department: 'Marketing',
 				image: EXECS_23_24[23],
@@ -234,14 +234,14 @@ const EXECUTIVES = {
 				education: '4th Year Commerce',
 			},
 			{
-				name: 'Ian Christiawan Sentoso',
+				name: 'Ian Christiawan',
 				position: 'Treasurer',
 				department: 'Core',
 				image: EXECS_22_23[3],
 				education: '3rd Year Commerce',
 			},
 			{
-				name: 'Josephine Kania Valyne',
+				name: 'Josephine Valyne',
 				position: 'Secretary',
 				department: 'Core',
 				image: EXECS_22_23[10],
@@ -257,7 +257,7 @@ const EXECUTIVES = {
 		],
 		Events: [
 			{
-				name: 'Kihana Sasha Siswanto',
+				name: 'Kihana Sasha',
 				position: 'Events Director',
 				department: 'Events',
 				image: EXECS_22_23[14],
