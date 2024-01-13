@@ -29,6 +29,19 @@ import img27 from './23_24/imel.JPG';
 import img28 from './23_24/nadya.JPG';
 import img29 from './23_24/nico.JPG';
 import img30 from './23_24/jade.JPG';
+import img31 from './23_24/kent.JPG';
+import img32 from './23_24/justin.JPG';
+import img33 from './23_24/christie.JPG';
+import img34 from './23_24/nathania.JPG';
+import img35 from './23_24/anabel.JPG';
+import img36 from './23_24/findy.JPG';
+import img37 from './23_24/sasha.JPG';
+import img38 from './23_24/charlene.JPG';
+import img39 from './23_24/joselyn.JPG';
+import img40 from './23_24/richelle.JPG';
+import img41 from './23_24/roswell.JPG';
+import img42 from './23_24/yumi.JPG';
+import img43 from './23_24/wk.JPG';
 
 const EXECS_22_23 = [
 	img1,
@@ -59,6 +72,24 @@ const EXECS_22_23 = [
 	img26,
 ];
 
-const EXECS_23_24 = [img27, img28, img29, img30];
+const EXECS_23_24 = [
+	img27,
+	img28,
+	img29,
+	img30,
+	img31,
+	img32,
+	img33,
+	img34,
+	img35,
+	img36,
+	img37,
+	img38,
+	img39,
+	img40,
+	img41,
+	img42,
+	img43,
+];
 
 export { EXECS_22_23, EXECS_23_24 };
