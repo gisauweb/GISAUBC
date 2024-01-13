@@ -1,4 +1,4 @@
-import EXECS_22_23 from 'assets/about/executives';
+import { EXECS_22_23, EXECS_23_24 } from 'assets/about/executives';
 
 const BUTTONS = ['All', 'Core', 'Events', 'External', 'F&B', 'Marketing'];
 
@@ -29,28 +29,28 @@ const EXECUTIVES = {
 				name: 'Imelda Alimin',
 				position: 'President',
 				department: 'Core',
-				image: 'image1',
+				image: EXECS_23_24[0],
 				education: '4th Year Commerce',
 			},
 			{
 				name: 'Nadya Rei',
 				position: 'Vice President',
 				department: 'Core',
-				image: 'image1',
+				image: EXECS_23_24[1],
 				education: '3rd Year Land Food Systems',
 			},
 			{
 				name: 'Joanico Huang',
 				position: 'Treasurer',
 				department: 'Core',
-				image: 'image1',
+				image: EXECS_23_24[2],
 				education: '2nd Year Commerce',
 			},
 			{
 				name: 'Jade Tjandra',
 				position: 'Secretary',
 				department: 'Core',
-				image: 'image1',
+				image: EXECS_23_24[3],
 				education: '4th Year Land and Food Systems',
 			},
 		],

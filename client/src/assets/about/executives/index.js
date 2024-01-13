@@ -25,6 +25,11 @@ import img24 from './22_23/sidney.png';
 import img25 from './22_23/tavaella.png';
 import img26 from './22_23/vincent.png';
 
+import img27 from './23_24/imel.JPG';
+import img28 from './23_24/nadya.JPG';
+import img29 from './23_24/nico.JPG';
+import img30 from './23_24/jade.JPG';
+
 const EXECS_22_23 = [
 	img1,
 	img2,
@@ -54,4 +59,6 @@ const EXECS_22_23 = [
 	img26,
 ];
 
-export default EXECS_22_23;
+const EXECS_23_24 = [img27, img28, img29, img30];
+
+export { EXECS_22_23, EXECS_23_24 };
