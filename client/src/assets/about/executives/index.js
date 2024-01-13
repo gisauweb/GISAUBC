@@ -42,6 +42,15 @@ import img40 from './23_24/richelle.JPG';
 import img41 from './23_24/roswell.JPG';
 import img42 from './23_24/yumi.JPG';
 import img43 from './23_24/wk.JPG';
+import img44 from './23_24/mj.JPG';
+import img45 from './23_24/ella.JPG';
+import img46 from './23_24/christo.JPG';
+import img47 from './23_24/luna.JPG';
+import img48 from './23_24/jessie.JPG';
+import img49 from './23_24/sam.JPG';
+import img50 from './23_24/dhira.JPG';
+import img51 from './23_24/angel.JPG';
+import img52 from './23_24/shannon.JPG';
 
 const EXECS_22_23 = [
 	img1,
@@ -90,6 +99,15 @@ const EXECS_23_24 = [
 	img41,
 	img42,
 	img43,
+	img44,
+	img45,
+	img46,
+	img47,
+	img48,
+	img49,
+	img50,
+	img51,
+	img52,
 ];
 
 export { EXECS_22_23, EXECS_23_24 };
