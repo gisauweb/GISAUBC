@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import aboutLandingImage from 'assets/landing-image/about.jpeg';
+import aboutLandingImage from 'assets/landing-image/about.png';
 import Introduction from './components/Introduction';
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';

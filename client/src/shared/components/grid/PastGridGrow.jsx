@@ -8,7 +8,12 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 	const [grow, setGrow] = useState(false);
 	const firstGrowLength = Math.ceil(dataLength / 3);
 	const secondGrowLength = Math.ceil((dataLength * 2) / 3);
-	const { selectedCard, setSelectedCard, aboutPage } = teamGridCard;
+	// eslint-disable-next-line one-var, one-var-declaration-per-line
+	let selectedCard, setSelectedCard;
+
+	if (teamGridCard) {
+		({ selectedCard, setSelectedCard } = teamGridCard);
+	}
 
 	const handleChange = () => {
 		setGrow(!grow);
@@ -20,7 +25,7 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(firstGrowLength, secondGrowLength).map((item) => {
-							if (aboutPage) {
+							if (teamGridCard) {
 								return (
 									<TeamGridItem
 										item={item}
@@ -40,7 +45,7 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(secondGrowLength).map((item) => {
-							if (aboutPage) {
+							if (teamGridCard) {
 								return (
 									<TeamGridItem
 										item={item}

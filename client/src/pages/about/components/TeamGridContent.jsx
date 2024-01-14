@@ -6,7 +6,6 @@ import TeamGridItem from './TeamGridItem';
 export default function TeamGridContent({ data, selectedCard, setSelectedCard }) {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 	const dataLength = data.length;
-	const aboutPage = true;
 
 	return (
 		<>
@@ -23,7 +22,7 @@ export default function TeamGridContent({ data, selectedCard, setSelectedCard })
 					data={data}
 					dataLength={dataLength}
 					isMobile={isMobile}
-					teamGridCard={{ selectedCard, setSelectedCard, aboutPage }}
+					teamGridCard={{ selectedCard, setSelectedCard }}
 				/>
 			)}
 		</>
