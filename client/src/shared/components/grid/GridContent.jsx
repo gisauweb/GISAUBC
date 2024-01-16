@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import GridItem from './GridItem';
-import PastEventGrow from './PastGridGrow';
+import PastGridGrow from './PastGridGrow';
 
 export default function GridContent({ data, upcomingEvent, itemType }) {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
@@ -19,7 +19,7 @@ export default function GridContent({ data, upcomingEvent, itemType }) {
 				<GridItem item={item} upcomingEvent={upcomingEvent} itemType={itemType} key={item.title} />
 			))}
 			{dataLength >= 6 && (
-				<PastEventGrow data={data} dataLength={dataLength} upcomingEvent={upcomingEvent} isMobile={isMobile} />
+				<PastGridGrow data={data} dataLength={dataLength} upcomingEvent={upcomingEvent} isMobile={isMobile} />
 			)}
 		</>
 	);

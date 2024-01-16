@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import eventLandingImage from 'assets/landing-image/event.jpg';
+import eventLandingImage from 'assets/landing-image/event.png';
 import EventContent from './components/EventContent';
 
 export default function Events() {
