@@ -3,11 +3,8 @@
 
 import { Application } from "express";
 import {
-	createUserIfNotExists,
-	getAllUsers,
-	getUser,
-	removeUser,
-} from "../controllers/user.controller";
+	createUserIfNotExists
+} from "../controllers/points.controller";
 
 
 
@@ -15,26 +12,26 @@ export function userRoutes(app: Application) {
 	/**
 	* Create user
 	**/
-	app.post("/users/create", createUserIfNotExists);
+	app.post("/points/create", createUserIfNotExists);
 
-	/**
-	* Get all users
-	**/
-	app.get("/users", getAllUsers);
+	// /**
+	// * Get all users
+	// **/
+	// app.get("/users", getAllUsers);
 
-	/**
-	* GET user with :uid
-	**/
-	app.get("/users/user/:uid", getUser);
+	// /**
+	// * GET user with :uid
+	// **/
+	// app.get("/users/user/:uid", getUser);
 
-	/**
-	* Add new field to user with :uid
-	**/
-	app.patch("/users/user/:uid", getUser);
+	// /**
+	// * Add new field to user with :uid
+	// **/
+	// app.patch("/users/user/:uid", getUser);
 
-	/**
-	* Delete user with :uid
-	**/
-	app.delete("/users/remove/:uid", removeUser);
+	// /**
+	// * Delete user with :uid
+	// **/
+	// app.delete("/users/remove/:uid", removeUser);
 
 }

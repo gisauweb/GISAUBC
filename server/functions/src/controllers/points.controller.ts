@@ -7,11 +7,11 @@ import { Request, Response, NextFunction } from "express";
 import {
 	getUserModel,
 	createUserModel,
-} from "../middleware/interfaces/user.interfaces";
+} from "../middleware/interfaces/points.interfaces";
 import {
 	getUserSchema,
 	userCreation,
-} from "../middleware/schema/user.schema";
+} from "../middleware/schema/points.schema";
 import { requestValidator } from "../middleware/validators/request.validator";
 import {
 	userAuthUserModel,
