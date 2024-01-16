@@ -113,13 +113,6 @@ const EXECUTIVES = {
 				image: EXECS_23_24[11],
 				education: '3rd Year LFS',
 			},
-			{
-				name: 'Joselyn Vinzlee',
-				position: 'Sponsorship Coordinator',
-				department: 'External',
-				image: EXECS_23_24[12],
-				education: '1st Year Applied Science',
-			},
 		],
 		'F&B': [
 			{
