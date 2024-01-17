@@ -20,6 +20,7 @@ import {
 	userAuthUserSchema,
 } from "../middleware/schema/auth.schema";
 import * as userRepository from "../repository/user.repository";
+import getCurrentTimestamp from "../services/dateFormatter";
 
 export async function createUserIfNotExists(req: Request, res: Response, next: NextFunction) {
 	try {
