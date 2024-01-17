@@ -30,8 +30,8 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 			first_name: first_name,
 			last_name: last_name,
 			email: email,
-			created_at: Date.now().toString(),
-			updated_at: Date.now().toString(),
+			created_at: getCurrentTimestamp(),
+			updated_at: getCurrentTimestamp(),
 		};
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;

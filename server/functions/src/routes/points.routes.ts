@@ -9,7 +9,7 @@ import {
 
 
 
-export function userRoutes(app: Application) {
+export default function pointsRoutes(app: Application) {
 	/**
 	* Add point
 	**/

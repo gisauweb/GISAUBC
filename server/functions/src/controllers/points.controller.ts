@@ -14,6 +14,7 @@ import { requestValidator } from "../middleware/validators/request.validator";
 import * as pointsRepository from "../repository/points.repository";
 import * as userRepository from "../repository/user.repository";
 import { User } from "../model/user";
+import getCurrentTimestamp from "../services/dateFormatter";
 
 export async function addPointsToUser(req: Request, res: Response, next: NextFunction) {
 	try {
@@ -21,7 +22,7 @@ export async function addPointsToUser(req: Request, res: Response, next: NextFun
 		const addPointsPayload: addPointsModel = {
 			uid: uid,
 			points: points,
-			updated_at: Date.now().toString(),
+			updated_at: getCurrentTimestamp(),
 		};
 		return await requestValidator(addPointsPayload, addPoints, res, next).then(async () => {
 			if (res.headersSent) return;
