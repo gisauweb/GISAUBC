@@ -80,7 +80,7 @@ export default function Activity() {
 					<Typography style={{ fontSize: '12px' }}>Your daily activeness for the past 14 days</Typography>
 				</Box>
 			</Box>
-			<canvas ref={chartRef} id='chart' style={{ width: '80%', height: '40%' }} />
+			<canvas ref={chartRef} id='chart' width='80%' height='40%' />
 		</Box>
 	);
 }
