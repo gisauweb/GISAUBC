@@ -11,7 +11,7 @@ import {
 
 
 
-export function userRoutes(app: Application) {
+export default function userRoutes(app: Application) {
 	/**
 	* Create user
 	**/

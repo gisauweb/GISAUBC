@@ -9,8 +9,9 @@ import * as jwt from "jsonwebtoken";
 import { getFirestore } from "firebase-admin/firestore";
 // import { RequestHandler } from "express";
 import { FB_SERVICE_ACCOUNT } from "./environments/dev.config";
-import { authRoutes } from "./routes/auth.routes";
-import { userRoutes } from "./routes/user.routes";
+import  authRoutes  from "./routes/auth.routes";
+import  userRoutes from "./routes/user.routes";
+import pointsRoutes from "./routes/points.routes";
 import helmet from "helmet";
 
 const serviceAccount = FB_SERVICE_ACCOUNT;
@@ -64,6 +65,7 @@ app.use(jwtCheck);
 
 userRoutes(app);
 authRoutes(app);
+pointsRoutes(app);
 
 const runtimeOpts = {
 	timeoutSeconds: 180,
