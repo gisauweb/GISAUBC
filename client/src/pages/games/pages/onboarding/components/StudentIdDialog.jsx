@@ -64,8 +64,8 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token,
 			<DialogTitle>Registration</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					To start playing the game, please enter your student id here. You can only link your student id with
-					one account, choose wisely!
+					To access the game, please enter your student id here. You can only link your student id with one
+					account, choose wisely!
 				</DialogContentText>
 				<TextField
 					margin='dense'
