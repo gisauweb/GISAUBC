@@ -28,7 +28,7 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token,
 			return;
 		}
 
-		fetch('http://127.0.0.1:5001/gisaubc-dev/us-central1/api/users/create', {
+		fetch(`${process.env.REACT_APP_SERVER_URL}/users/create`, {
 			method: 'POST',
 			headers: { Authorization: `Bearer ${token}` },
 			body: JSON.stringify({
