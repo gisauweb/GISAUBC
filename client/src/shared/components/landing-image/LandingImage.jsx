@@ -10,9 +10,9 @@ export default function LandingImage({ bgImage, text, isHomePage, children }) {
 	};
 
 	return (
-		<div className='h-screen items-center overflow-hidden'>
-			<div className='absolute w-full h-screen' style={backgroundStyles} />
-			<div className='relative flex justify-center items-center h-full'>
+		<div className='h-screen w-screen items-center overflow-hidden'>
+			<div className='absolute w-screen h-screen' style={backgroundStyles} />
+			<div className='relative flex justify-center items-center h-full w-full'>
 				<div className='w-full mt-1/20'>
 					{isHomePage ? (
 						children
