@@ -52,7 +52,7 @@ export async function addPointsToUser(req: Request, res: Response, next: NextFun
 
 export async function getLeaderboard(req: Request, res: Response) {
 	try {
-		const leaderboard = pointsRepository.getLeaderboard();
+		const leaderboard = await pointsRepository.getLeaderboard();
 		res.json({ result: leaderboard })
 	} catch (error) {
 		return handleError(res, error);

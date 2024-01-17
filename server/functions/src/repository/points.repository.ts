@@ -20,7 +20,7 @@ export async function addPoints(user: User, userPayload: addPointsModel) {
 
 export async function getLeaderboard() {
 	const leaderboardSnapshot = await db.collection("users")
-		.orderBy("points", "desc")
+		.orderBy("total_points", "desc")
 		.limit(10)
 		.get();
 
@@ -30,7 +30,7 @@ export async function getLeaderboard() {
 
 	const leaderboard = leaderboardData.map(data => ({
 		first_name: data.first_name,
-		points: data.points
+		points: data.total_points
 	}))
 
 	return leaderboard;
