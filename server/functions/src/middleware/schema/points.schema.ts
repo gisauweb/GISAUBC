@@ -1,27 +1,19 @@
 import { Schema } from "../validators/ingress.validators";
 
-export const userCreation: Schema = {
+export const addPoints: Schema = {
     fields: {
-		sid: "string",
 		uid: "string",
-		email: "string",
-		first_name: "string",
-		last_name: "string",
-		created_at: "string",
+		points: "number",
 		updated_at: "string"
     },
     required: [
-		"sid",
 		"uid",
-		"email",
-		"first_name",
-		"last_name",
-		"created_at",
+		"points",
 		"updated_at"
     ],
 };
 
-export const getUsersSchema: Schema = {
+export const getLeaderboard: Schema = {
     fields: {
         startNumber: "number",
         pageSize: "number",

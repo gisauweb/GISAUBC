@@ -5,58 +5,40 @@
 import { Request, Response, NextFunction } from "express";
 
 import {
-	getUserModel,
-	createUserModel,
+	addPointsModel,
 } from "../middleware/interfaces/points.interfaces";
 import {
-	getUserSchema,
-	userCreation,
+	addPoints,
 } from "../middleware/schema/points.schema";
 import { requestValidator } from "../middleware/validators/request.validator";
-import {
-	userAuthUserModel,
-} from "../middleware/interfaces/auth.interface";
-import {
-	userAuthUserSchema,
-} from "../middleware/schema/auth.schema";
+import * as pointsRepository from "../repository/points.repository";
 import * as userRepository from "../repository/user.repository";
+import { User } from "../model/user";
 
-export async function createUserIfNotExists(req: Request, res: Response, next: NextFunction) {
+export async function addPointsToUser(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { sid, uid, first_name, last_name, email } = JSON.parse(req.body)
-		const createUserPayload: createUserModel = {
-			sid: sid,
+		const { uid, points } = JSON.parse(req.body)
+		const addPointsPayload: addPointsModel = {
 			uid: uid,
-			first_name: first_name,
-			last_name: last_name,
-			email: email,
-			created_at: Date.now().toString(),
+			points: points,
 			updated_at: Date.now().toString(),
 		};
-		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
+		return await requestValidator(addPointsPayload, addPoints, res, next).then(async () => {
 			if (res.headersSent) return;
 			
-			const user = await userRepository.getUserByUID(createUserPayload.uid)
-			if (!user) {
+			const user = await userRepository.getUserByUID(addPointsPayload.uid) as User;
+			if (user) {
 				try {
-					const invalidMember = await validateMember(sid);
-					if (invalidMember) {
-						return res.status(400).send({
-							message: invalidMember
-						})
-					} else {
-						await userRepository.createUser(createUserPayload);
+						await pointsRepository.addPoints(user, addPointsPayload);
 						return res.status(201).send({
 						result: true,
-						message: `User ${sid} has been added successfully`
+						message: `User ${uid}'s points has been updated successfully`
 					})
-					}
 				} catch (error) {
 					return res.status(500).send(error);
-				}
-			}
-			return res.status(400).send({
-				message: "Error — User already exists"
+				}}
+			return res.status(500).send({
+				message: "Error — User does not exists!"
 			})
 		}).catch((error) => {
 			return res.status(400).send(error);
@@ -67,81 +49,14 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 	}
 }
 
-export async function getAllUsers(req: Request, res: Response) {
-
+export async function getLeaderboard(req: Request, res: Response) {
 	try {
-		if (res.headersSent) return;
-
-		const users = await userRepository.getAllUsers();
-		return res.send({
-			result: users
-		});
-	} catch (err) {
-		return handleError(res, err);
-	}
-
-}
-
-export async function getUser(req: Request, res: Response, next: NextFunction) {
-	try {
-		const getUserInput: getUserModel = {
-			uid: req.params.uid,
-		};
-		
-
-		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
-			const user = await userRepository.getUserByUID(getUserInput.uid)
-			return res.json({ result: user || false });
-		});
-
-	} catch (err) {
-		return handleError(res, err);
-	}
-
-}
-
-export async function removeUser(req: Request, res: Response, next: NextFunction) {
-
-	try {
-		const removeUserPayload: userAuthUserModel = {
-			uid: req.params.uid,
-		};
-
-		return await requestValidator(removeUserPayload, userAuthUserSchema, res, next).then(async () => {
-
-			if (res.headersSent) return;
-
-			await userRepository.removeUser(removeUserPayload.uid).then(() => {
-
-				return res.status(200).send({
-					message: `User with ID: ${removeUserPayload.uid} removed`,
-				});
-
-			}).catch((error) => {
-				return res.status(400).send({
-					message: error,
-				});
-			});
-
-		});
-
-	} catch (err) {
-		return handleError(res, err);
-	}
-
-}
-
-async function validateMember(sid: string): Promise<string> {
-	try {
-		const membership = await userRepository.getMembershipBySID(sid);
-		if (membership) {
-			const result = await userRepository.getRegisteredMemberBySID(sid);
-			return result ? `Error — Student ID ${sid} is already registered` : ""
-		}
-		return `Error — Student ID ${sid} is not GISAU's member`
+		const leaderboard = pointsRepository.getLeaderboard();
+		res.json({ result: leaderboard })
 	} catch (error) {
-		throw new Error(`Unable to validate member: ${error}`)
+		return handleError(res, error);
 	}
+	return;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

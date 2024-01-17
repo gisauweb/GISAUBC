@@ -1,57 +1,46 @@
 import { sha256 } from "js-sha256";
-import { createUserModel } from "../middleware/interfaces/user.interfaces";
-// import { User } from "../model/user";
 import { db } from "./../index"
+import { addPointsModel } from "../middleware/interfaces/points.interfaces";
+import { User } from "../model/user";
 
 const secretCode = process.env.HASH_SECRET_CODE;
 
-export async function createUser(userPayload: createUserModel) {
+export async function addPoints(user: User, userPayload: addPointsModel) {
 	const uuid = sha256(userPayload.uid + secretCode)
 	const userDocRef = db.collection("users").doc(uuid);
+
+	const totalPoints = user.total_points + userPayload.points;
+	const pastActivities = handlePastActivities(userPayload.points, user.past_activities)
 	await userDocRef.set({
-		sid: userPayload.sid,
 		uid: userPayload.uid,
-		first_name: userPayload.first_name,
-		last_name: userPayload.last_name,
-		email: userPayload.email,
-		created_at: userPayload.created_at,
+		total_points: totalPoints,
+		past_activities: pastActivities,
 		updated_at: userPayload.updated_at
 	});
+}
 
-	const registeredDocRef = db.collection("registered").doc(userPayload.sid);
-	await registeredDocRef.set({
-		sid: userPayload.sid,
+export async function getLeaderboard() {
+	const leaderboardSnapshot = await db.collection("users")
+		.orderBy("points", "desc")
+		.limit(10)
+		.get();
+
+	const leaderboardData = leaderboardSnapshot.docs.map(doc => {
+		return doc.data()
 	});
+
+	const leaderboard = leaderboardData.map(data => ({
+		first_name: data.first_name,
+		points: data.points
+	}))
+
+	return leaderboard;
 }
 
-export async function removeUser(uid: string) {
-	const uuid = sha256(uid + secretCode)
 
-	return await db.collection("users").doc(uuid).delete();
-}
-
-export async function getUserByUID(uid: string) {
-	const uuid = sha256(uid + secretCode)
-	const snapshot = await db.collection("users").doc(uuid).get();
-
-	return snapshot.data();
-}
-
-export async function getAllUsers() {
-	const snapshot = await db.collection("users").get();
-    return snapshot.docs.map(doc => {
-		return doc.data();
-	});
-}
-
-export async function getMembershipBySID(sid: string) {
-	const snapshot = await db.collection("memberships").doc(sid).get();
-
-	return snapshot.data();
-}
-
-export async function getRegisteredMemberBySID(sid: string) {
-	const snapshot = await db.collection("registered").doc(sid).get();
-
-	return snapshot.data();
+function handlePastActivities(points: number, pastActivities: [number]) {
+	if (pastActivities.length >= 14) {
+		pastActivities.pop();
+	}
+	pastActivities.push(points);
 }

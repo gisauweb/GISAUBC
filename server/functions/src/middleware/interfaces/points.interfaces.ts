@@ -27,13 +27,9 @@ export function mapUser(user: admin.auth.UserRecord) {
 
 }
 
-export interface createUserModel {
-	sid: string,
+export interface addPointsModel {
 	uid: string,
-	email: string,
-	first_name: string,
-	last_name: string,
-	created_at: string,
+	points: number,
 	updated_at: string
 }
 

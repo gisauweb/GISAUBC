@@ -3,35 +3,20 @@
 
 import { Application } from "express";
 import {
-	createUserIfNotExists
+	addPointsToUser,
+	getLeaderboard,
 } from "../controllers/points.controller";
 
 
 
 export function userRoutes(app: Application) {
 	/**
-	* Create user
+	* Add point
 	**/
-	app.post("/points/create", createUserIfNotExists);
+	app.put("/points/add", addPointsToUser);
 
 	// /**
-	// * Get all users
+	// * Get points leaderboard
 	// **/
-	// app.get("/users", getAllUsers);
-
-	// /**
-	// * GET user with :uid
-	// **/
-	// app.get("/users/user/:uid", getUser);
-
-	// /**
-	// * Add new field to user with :uid
-	// **/
-	// app.patch("/users/user/:uid", getUser);
-
-	// /**
-	// * Delete user with :uid
-	// **/
-	// app.delete("/users/remove/:uid", removeUser);
-
+	app.get("/points/leaderboard", getLeaderboard);
 }
