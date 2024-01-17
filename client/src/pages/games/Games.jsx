@@ -90,7 +90,7 @@ export default function Games() {
 						} else {
 							logout({
 								logoutParams: {
-									returnTo: 'http://localhost:3000/games',
+									returnTo: `${window.location.origin.toString()}/games`,
 								},
 							});
 						}

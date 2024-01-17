@@ -26,6 +26,10 @@ export default function Sidebar() {
 		setOpen(open === value ? 0 : value);
 	};
 
+	const handleLogout = () => {
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+	};
+
 	return (
 		<Card
 			className='h-full max-w-[18rem] p-4
@@ -105,7 +109,7 @@ export default function Sidebar() {
 				</ListItem>
 			</List>
 			<List style={{ position: 'absolute', bottom: '10px' }}>
-				<ListItem onClick={() => logout()}>
+				<ListItem onClick={() => handleLogout()}>
 					<ListItemPrefix>
 						<FaSignOutAlt className='h-5 w-5' />
 					</ListItemPrefix>
