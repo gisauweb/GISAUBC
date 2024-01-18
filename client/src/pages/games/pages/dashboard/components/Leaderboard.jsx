@@ -11,7 +11,7 @@ export default function Leaderboard({ username }) {
 					borderRadius: '30px',
 					height: '92vh',
 					width: '25vw',
-					overflowY: 'auto',
+					overflowY: 'hidden',
 					overflowX: 'hidden',
 				}}
 				className='bg-gamesBox flex flex-col mr-10 items-center py-3 gap-5'
@@ -19,14 +19,14 @@ export default function Leaderboard({ username }) {
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
 					Leaderboard
 				</Typography>
-				<Box className='flex flex-row w-10/12'>
+				<Box className='flex flex-row w-10/12 h-auto'>
 					<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 						<img
 							src={user.leaderboard_image[1]}
 							alt='profile_pic'
 							style={{
 								width: '60px',
-								height: '60px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 							}}
@@ -47,7 +47,7 @@ export default function Leaderboard({ username }) {
 						</Typography>
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[1]}</Typography>
 					</Box>
-					<Box className='flex flex-col mt-8 items-center relative w-1/3 h-auto'>
+					<Box className='flex flex-col mt-8 items-center relative'>
 						<img
 							src={crown}
 							alt='crown'
@@ -65,7 +65,7 @@ export default function Leaderboard({ username }) {
 							alt='profile_pic'
 							style={{
 								width: '80px',
-								height: '80px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 								zIndex: 10,
@@ -93,7 +93,7 @@ export default function Leaderboard({ username }) {
 							alt='profile_pic'
 							style={{
 								width: '60px',
-								height: '60px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 							}}
@@ -115,7 +115,7 @@ export default function Leaderboard({ username }) {
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[2]}</Typography>
 					</Box>
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center'>
+				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto'>
 					{user.leaderboard_image.slice(3).map((image, index) => (
 						<Box
 							// eslint-disable-next-line react/no-array-index-key

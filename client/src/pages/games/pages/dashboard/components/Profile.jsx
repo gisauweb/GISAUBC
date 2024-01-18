@@ -18,8 +18,8 @@ export default function Profile({ username, picture }) {
 						src={picture}
 						alt='profile_pic'
 						style={{
-							width: '100%',
-							height: '100%',
+							width: 'auto',
+							height: 'auto',
 							objectFit: 'cover',
 							borderRadius: '50%',
 						}}
