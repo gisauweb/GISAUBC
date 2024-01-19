@@ -82,18 +82,20 @@ export default function Activity() {
 			style={{ width: isMobileView ? '80vw' : '100%' }}
 		>
 			{isMobileView && (
-				<img
-					src={bang}
-					alt='bang'
-					style={{
-						width: '30px',
-						height: '30px',
-						objectFit: 'cover',
-						position: 'absolute',
-						right: '25px',
-						zIndex: 30,
-					}}
-				/>
+				<div style={{ position: 'relative' }}>
+					<img
+						src={bang}
+						alt='bang'
+						style={{
+							width: '30px',
+							height: '30px',
+							position: 'absolute',
+							zIndex: 30,
+							right: '-10px',
+							marginTop: '-5px',
+						}}
+					/>
+				</div>
 			)}
 			<Box className='flex flex-row'>
 				<img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
@@ -110,7 +112,7 @@ export default function Activity() {
 				style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
 			/>
 			{isMobileView && (
-				<>
+				<div style={{ position: 'relative' }}>
 					<img
 						src={plane}
 						alt='plane'
@@ -132,10 +134,10 @@ export default function Activity() {
 							height: '100px',
 							position: 'absolute',
 							right: '-10vw',
-							zIndex: -1,
+							zIndex: 0,
 						}}
 					/>
-				</>
+				</div>
 			)}
 		</Box>
 	);

@@ -42,12 +42,10 @@ export default function Dashboard() {
 		</div>
 	) : (
 		user && (
-			<div
-				className={`flex flex-col h-fit mb-10 items-center gap-3 relative ${isMobileView ? 'bg-overlay' : ''}`}
-			>
+			<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay'>
 				{isMobileView && sidebarVisible && (
 					<div
-						className='fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50 rounded-none blur'
+						className='fixed top-0 left-0 w-screen h-full bg-black opacity-60 z-50 rounded-none blur'
 						onClick={onCloseSidebar}
 					/>
 				)}

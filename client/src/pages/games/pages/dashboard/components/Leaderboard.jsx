@@ -26,6 +26,7 @@ export default function Leaderboard({ username }) {
 					width: isMobileView ? '80vw' : '25vw',
 					overflowY: 'hidden',
 					overflowX: 'hidden',
+					zIndex: 1,
 				}}
 				className={`${
 					isMobileView ? 'bottom-20 mt-10' : 'mr-10'
@@ -34,7 +35,7 @@ export default function Leaderboard({ username }) {
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
 					Leaderboard
 				</Typography>
-				<Box className='flex flex-row w-10/12 h-auto'>
+				<Box className='flex flex-row w-auto h-auto'>
 					<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 						<img
 							src={user.leaderboard_image[1]}
