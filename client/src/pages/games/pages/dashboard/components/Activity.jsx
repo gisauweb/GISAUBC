@@ -90,9 +90,8 @@ export default function Activity() {
 						height: '30px',
 						objectFit: 'cover',
 						position: 'absolute',
-						right: '-2px',
-						marginTop: '-8px',
-						zIndex: 20,
+						right: '25px',
+						zIndex: 30,
 					}}
 				/>
 			)}

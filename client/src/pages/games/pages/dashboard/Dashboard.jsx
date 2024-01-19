@@ -26,7 +26,21 @@ export default function Dashboard() {
 
 	const sidebarAnimation = useSpring({ left: sidebarVisible ? '0%' : '-80%' });
 
-	return (
+	return user && !isMobileView ? (
+		<div className='flex h-screen'>
+			<Sidebar />
+			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
+				<div className='flex h-1/3 w-4/5'>
+					<Profile username={username} picture={user.picture} />
+					<Points />
+				</div>
+				<div className='flex h-1/2 w-4/5'>
+					<Activity />
+				</div>
+			</div>
+			<Leaderboard username={username} />
+		</div>
+	) : (
 		user && (
 			<div
 				className={`flex flex-col h-fit mb-10 items-center gap-3 relative ${isMobileView ? 'bg-overlay' : ''}`}
