@@ -20,6 +20,10 @@ export default function Dashboard() {
 		setSidebarVisible(!sidebarVisible);
 	};
 
+	const onCloseSidebar = () => {
+		setSidebarVisible(false);
+	};
+
 	const sidebarAnimation = useSpring({ left: sidebarVisible ? '0%' : '-80%' });
 
 	return (
@@ -29,8 +33,8 @@ export default function Dashboard() {
 			>
 				{isMobileView && sidebarVisible && (
 					<div
-						className='fixed top-0 left-0 w-full h-full bg-black opacity-60 blur z-50'
-						onClick={toggleSidebar}
+						className='fixed top-0 left-0 w-full h-full bg-black opacity-60 z-50 rounded-none blur'
+						onClick={onCloseSidebar}
 					/>
 				)}
 				<animated.div
@@ -41,7 +45,7 @@ export default function Dashboard() {
 						width: '80vw',
 					}}
 				>
-					<Sidebar username={username} picture={user.picture} className='fixed' />
+					<Sidebar username={username} picture={user.picture} onCloseSidebar={onCloseSidebar} />
 				</animated.div>
 				<div className='py-3'>
 					<div className='flex flex-row'>

@@ -22,7 +22,7 @@ import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
 
-export default function Sidebar({ username, picture }) {
+export default function Sidebar({ username, picture, onCloseSidebar }) {
 	const [open, setOpen] = React.useState(0);
 	const { logout } = useAuth0();
 	const handleOpen = (value) => {
@@ -32,6 +32,10 @@ export default function Sidebar({ username, picture }) {
 		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
 	};
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const handleCloseSidebar = () => {
+		setOpen(0);
+		onCloseSidebar(false);
+	};
 
 	return (
 		<Card
@@ -54,7 +58,13 @@ export default function Sidebar({ username, picture }) {
 				}}
 			>
 				{isMobileView ? (
-					<img src={close} alt='close' style={{ maxWidth: '70px', height: 'auto', marginBottom: '20px' }} />
+					<div onClick={handleCloseSidebar}>
+						<img
+							src={close}
+							alt='close'
+							style={{ maxWidth: '70px', height: 'auto', marginBottom: '20px' }}
+						/>
+					</div>
 				) : (
 					<img src={logo} href='/home' alt='GISAU logo red' style={{ maxWidth: '70px', height: 'auto' }} />
 				)}
