@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import user from 'pages/games/user.json';
 import crown from 'assets/games/crown.png';
 
 export default function Leaderboard({ username }) {
+	const [isBigger, setIsBigger] = useState(true);
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setIsBigger((prevIsBigger) => !prevIsBigger);
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
 	return (
 		<div className='flex items-center justify-center h-screen'>
 			<Box
@@ -52,12 +62,13 @@ export default function Leaderboard({ username }) {
 							src={crown}
 							alt='crown'
 							style={{
-								width: '50px',
-								height: '40px',
+								width: isBigger ? '50px' : '45px',
+								height: isBigger ? '40px' : '35px',
 								objectFit: 'cover',
 								position: 'absolute',
 								top: -15,
 								left: -15,
+								transition: 'transform 0.5s, width 0.5s, height 0.5s',
 							}}
 						/>
 						<img
@@ -115,13 +126,13 @@ export default function Leaderboard({ username }) {
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[2]}</Typography>
 					</Box>
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto'>
+				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
 					{user.leaderboard_image.slice(3).map((image, index) => (
 						<Box
 							// eslint-disable-next-line react/no-array-index-key
 							key={index + 3}
 							className='bg-white rounded-xl p-2 flex items-center gap-5'
-							style={{ width: '100%', maxWidth: '100%', flexShrink: 0 }}
+							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
 							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
 								{index + 4}
