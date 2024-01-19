@@ -4,6 +4,7 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import pointIcon from 'assets/games/points_icon.svg';
 import user from 'pages/games/user.json';
+import { useMediaQuery } from 'react-responsive';
 
 function getRankSuffix(rank) {
 	const lastDigit = rank % 10;
@@ -26,6 +27,7 @@ function easeInOut(t) {
 }
 
 export default function Points() {
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const { points, target, rank, highest } = user;
 	const rankSuffix = getRankSuffix(rank);
 
@@ -56,9 +58,10 @@ export default function Points() {
 
 	return (
 		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center'>
-			<Box className='h-full' style={{ aspectRatio: '1 / 1' }}>
+			<Box className={`${isMobileView ? 'h-5/6' : 'h-full'}`} style={{ aspectRatio: '1 / 1' }}>
 				<CircularProgressbarWithChildren
 					value={animatedValue}
+					className='z-10'
 					styles={{
 						height: '100%',
 						path: { stroke: '#BFA285' },

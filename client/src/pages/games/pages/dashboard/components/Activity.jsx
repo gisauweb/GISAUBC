@@ -3,10 +3,12 @@ import { Box, Typography } from '@mui/material';
 import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
 import user from 'pages/games/user.json';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Activity() {
 	const chartRef = useRef(null);
 	const { date, activity } = user;
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	useEffect(() => {
 		const ctx = chartRef.current.getContext('2d');
@@ -72,7 +74,11 @@ export default function Activity() {
 	}, [activity, date]);
 
 	return (
-		<Box className='w-full h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'>
+		<Box
+			className={` ${
+				isMobileView ? 'w-90vw' : 'w-full'
+			} h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2`}
+		>
 			<Box className='flex flex-row'>
 				<img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
 				<Box className='flex flex-col mt-5'>

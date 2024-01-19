@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import user from 'pages/games/user.json';
 import crown from 'assets/games/crown.png';
+import { useMediaQuery } from 'react-responsive';
+import curls from 'assets/home-page/events/rantangan.svg';
 
 export default function Leaderboard({ username }) {
 	const [isBigger, setIsBigger] = useState(true);
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -15,16 +18,18 @@ export default function Leaderboard({ username }) {
 	}, []);
 
 	return (
-		<div className='flex items-center justify-center h-screen'>
+		<Box className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}>
 			<Box
 				style={{
 					borderRadius: '30px',
-					height: '92vh',
-					width: '25vw',
+					height: isMobileView ? 'fit' : '92vh',
+					width: isMobileView ? '80vw' : '25vw',
 					overflowY: 'hidden',
 					overflowX: 'hidden',
 				}}
-				className='bg-gamesBox flex flex-col mr-10 items-center py-3 gap-5'
+				className={`${
+					isMobileView ? 'bottom-20 mt-10' : 'mr-10'
+				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
 			>
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
 					Leaderboard
@@ -172,6 +177,20 @@ export default function Leaderboard({ username }) {
 					))}
 				</Box>
 			</Box>
-		</div>
+			{isMobileView && (
+				<img
+					src={curls}
+					alt='curls'
+					style={{
+						width: '50px',
+						height: '50px',
+						objectFit: 'cover',
+						marginLeft: '-75vw',
+						marginTop: '-30px',
+						transform: 'scaleX(-1)',
+					}}
+				/>
+			)}
+		</Box>
 	);
 }
