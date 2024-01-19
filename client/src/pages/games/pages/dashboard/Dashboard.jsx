@@ -30,30 +30,35 @@ export default function Dashboard() {
 		</div>
 	) : (
 		user && (
-			<div className='flex flex-col py-3 h-fit mb-10 items-center gap-3 relative bg-bgPrimary'>
-				<div className='flex flex-row'>
-					<div className='flex flex-row fixed top-5 z-50 left-5'>
-						<img
-							src={sidemenu}
-							href='/home'
-							alt='sidemenu'
-							style={{ maxWidth: '50px', height: 'auto', zIndex: '50', left: '0px' }}
-						/>
-					</div>
-					<div className='flex flex-row fixed top-5 z-50 right-5'>
-						<img
-							src={logo}
-							href='/home'
-							alt='GISAU logo red'
-							style={{ maxWidth: '50px', height: 'auto', zIndex: '50' }}
-						/>
-					</div>
+			<div className='flex flex-col h-fit mb-10 items-center gap-3 relative bg-bgPrimary'>
+				<div className='fixed z-50 left-0'>
+					<Sidebar username={username} picture={user.picture} className='fixed' />
 				</div>
-				<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
-					<Profile username={username} picture={user.picture} />
-					<Points />
-					<Activity />
-					<Leaderboard username={username} />
+				<div className='py-3'>
+					<div className='flex flex-row'>
+						<div className='flex flex-row fixed top-5 z-40 left-5'>
+							<img
+								src={sidemenu}
+								href='/home'
+								alt='sidemenu'
+								style={{ maxWidth: '50px', height: 'auto', zIndex: '50', left: '0px' }}
+							/>
+						</div>
+						<div className='flex flex-row fixed top-5 z-50 right-5'>
+							<img
+								src={logo}
+								href='/home'
+								alt='GISAU logo red'
+								style={{ maxWidth: '50px', height: 'auto', zIndex: '50' }}
+							/>
+						</div>
+					</div>
+					<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
+						<Profile username={username} picture={user.picture} />
+						<Points />
+						<Activity />
+						<Leaderboard username={username} />
+					</div>
 				</div>
 			</div>
 		)
