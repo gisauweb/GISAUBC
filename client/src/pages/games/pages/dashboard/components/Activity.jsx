@@ -4,6 +4,9 @@ import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
 import user from 'pages/games/user.json';
 import { useMediaQuery } from 'react-responsive';
+import bang from 'assets/home-page/events/upcoming_event.svg';
+import plane from 'assets/games/plane.svg';
+import trophy from 'assets/games/trophy.svg';
 
 export default function Activity() {
 	const chartRef = useRef(null);
@@ -75,10 +78,24 @@ export default function Activity() {
 
 	return (
 		<Box
-			className={` ${
-				isMobileView ? 'w-90vw' : 'w-full'
-			} h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2`}
+			className='h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
+			style={{ width: isMobileView ? '80vw' : '100%' }}
 		>
+			{isMobileView && (
+				<img
+					src={bang}
+					alt='bang'
+					style={{
+						width: '30px',
+						height: '30px',
+						objectFit: 'cover',
+						position: 'absolute',
+						right: '-2px',
+						marginTop: '-8px',
+						zIndex: 20,
+					}}
+				/>
+			)}
 			<Box className='flex flex-row'>
 				<img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
 				<Box className='flex flex-col mt-5'>
@@ -93,6 +110,34 @@ export default function Activity() {
 				height='70%'
 				style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
 			/>
+			{isMobileView && (
+				<>
+					<img
+						src={plane}
+						alt='plane'
+						style={{
+							width: '100px',
+							height: '100px',
+							objectFit: 'cover',
+							position: 'absolute',
+							left: '-2px',
+							marginBottom: '-8px',
+							zIndex: 20,
+						}}
+					/>
+					<img
+						src={trophy}
+						alt='trophy'
+						style={{
+							width: '100px',
+							height: '100px',
+							position: 'absolute',
+							right: '-10vw',
+							zIndex: -1,
+						}}
+					/>
+				</>
+			)}
 		</Box>
 	);
 }

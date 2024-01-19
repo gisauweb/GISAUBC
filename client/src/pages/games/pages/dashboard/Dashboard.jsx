@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import logo from 'assets/gisau-logo/gisau.svg';
+import sidemenu from 'assets/games/sidebar.svg';
 import Sidebar from '../Sidebar';
 import Profile from './components/Profile';
 import Points from './components/Points';
@@ -28,21 +29,33 @@ export default function Dashboard() {
 			<Leaderboard username={username} />
 		</div>
 	) : (
-		<div className='flex flex-col py-3 h-fit mb-10 items-center gap-3 relative bg-bgPrimary'>
-			<div className='fixed right-5 top-5'>
-				<img
-					src={logo}
-					href='/home'
-					alt='GISAU logo red'
-					style={{ maxWidth: '50px', height: 'auto', zIndex: '100' }}
-				/>
+		user && (
+			<div className='flex flex-col py-3 h-fit mb-10 items-center gap-3 relative bg-bgPrimary'>
+				<div className='flex flex-row'>
+					<div className='flex flex-row fixed top-5 z-50 left-5'>
+						<img
+							src={sidemenu}
+							href='/home'
+							alt='sidemenu'
+							style={{ maxWidth: '50px', height: 'auto', zIndex: '50', left: '0px' }}
+						/>
+					</div>
+					<div className='flex flex-row fixed top-5 z-50 right-5'>
+						<img
+							src={logo}
+							href='/home'
+							alt='GISAU logo red'
+							style={{ maxWidth: '50px', height: 'auto', zIndex: '50' }}
+						/>
+					</div>
+				</div>
+				<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
+					<Profile username={username} picture={user.picture} />
+					<Points />
+					<Activity />
+					<Leaderboard username={username} />
+				</div>
 			</div>
-			<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
-				<Profile username={username} picture={user.picture} />
-				<Points />
-				<Activity />
-				<Leaderboard username={username} />
-			</div>
-		</div>
+		)
 	);
 }
