@@ -189,6 +189,7 @@ export default function Leaderboard({ username }) {
 						marginLeft: '-75vw',
 						marginTop: '-30px',
 						transform: 'scaleX(-1)',
+						zIndex: 10,
 					}}
 				/>
 			)}
