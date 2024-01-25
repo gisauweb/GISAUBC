@@ -4,6 +4,9 @@ import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import pointIcon from 'assets/games/points_icon.svg';
 import user from 'pages/games/user.json';
+import { useMediaQuery } from 'react-responsive';
+import game from 'assets/games/game.svg';
+import treasure from 'assets/games/treasure.svg';
 
 function getRankSuffix(rank) {
 	const lastDigit = rank % 10;
@@ -26,6 +29,7 @@ function easeInOut(t) {
 }
 
 export default function Points() {
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const { points, target, rank, highest } = user;
 	const rankSuffix = getRankSuffix(rank);
 
@@ -56,9 +60,26 @@ export default function Points() {
 
 	return (
 		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center'>
-			<Box className='h-full' style={{ aspectRatio: '1 / 1' }}>
+			{isMobileView && (
+				<div style={{ position: 'absolute', width: '100vw' }}>
+					<img
+						src={treasure}
+						alt='treasure'
+						style={{
+							width: '120px',
+							height: '120px',
+							position: 'absolute',
+							right: 0,
+							top: '-150px',
+							zIndex: 0,
+						}}
+					/>
+				</div>
+			)}
+			<Box className={`${isMobileView ? 'h-5/6' : 'h-full'}`} style={{ aspectRatio: '1 / 1' }}>
 				<CircularProgressbarWithChildren
 					value={animatedValue}
+					className='z-10'
 					styles={{
 						height: '100%',
 						path: { stroke: '#BFA285' },
@@ -85,6 +106,22 @@ export default function Points() {
 					</div>
 				</CircularProgressbarWithChildren>
 			</Box>
+			{isMobileView && (
+				<div style={{ position: 'absolute', width: '100vw' }}>
+					<img
+						src={game}
+						alt='game'
+						style={{
+							width: '100px',
+							height: '100px',
+							position: 'absolute',
+							left: 0,
+							bottom: '-150px',
+							zIndex: 0,
+						}}
+					/>
+				</div>
+			)}
 		</Box>
 	);
 }

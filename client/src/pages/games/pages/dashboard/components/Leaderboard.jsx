@@ -1,32 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import user from 'pages/games/user.json';
 import crown from 'assets/games/crown.png';
+import { useMediaQuery } from 'react-responsive';
+import curls from 'assets/home-page/events/rantangan.svg';
 
 export default function Leaderboard({ username }) {
+	const [isBigger, setIsBigger] = useState(true);
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setIsBigger((prevIsBigger) => !prevIsBigger);
+		}, 1000);
+
+		return () => clearInterval(intervalId);
+	}, []);
+
 	return (
-		<div className='flex items-center justify-center h-screen'>
+		<Box className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}>
 			<Box
 				style={{
 					borderRadius: '30px',
-					height: '92vh',
-					width: '25vw',
-					overflowY: 'auto',
+					height: isMobileView ? 'fit' : '92vh',
+					width: isMobileView ? '80vw' : '25vw',
+					overflowY: 'hidden',
 					overflowX: 'hidden',
+					zIndex: 1,
 				}}
-				className='bg-gamesBox flex flex-col mr-10 items-center py-3 gap-5'
+				className={`${
+					isMobileView ? 'bottom-20 mt-10' : 'mr-10'
+				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
 			>
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
 					Leaderboard
 				</Typography>
-				<Box className='flex flex-row w-10/12'>
+				<Box className='flex flex-row w-auto h-auto'>
 					<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 						<img
 							src={user.leaderboard_image[1]}
 							alt='profile_pic'
 							style={{
 								width: '60px',
-								height: '60px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 							}}
@@ -47,17 +63,18 @@ export default function Leaderboard({ username }) {
 						</Typography>
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[1]}</Typography>
 					</Box>
-					<Box className='flex flex-col mt-8 items-center relative w-1/3 h-auto'>
+					<Box className='flex flex-col mt-8 items-center relative'>
 						<img
 							src={crown}
 							alt='crown'
 							style={{
-								width: '50px',
-								height: '40px',
+								width: isBigger ? '50px' : '45px',
+								height: isBigger ? '40px' : '35px',
 								objectFit: 'cover',
 								position: 'absolute',
 								top: -15,
 								left: -15,
+								transition: 'transform 0.5s, width 0.5s, height 0.5s',
 							}}
 						/>
 						<img
@@ -65,7 +82,7 @@ export default function Leaderboard({ username }) {
 							alt='profile_pic'
 							style={{
 								width: '80px',
-								height: '80px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 								zIndex: 10,
@@ -93,7 +110,7 @@ export default function Leaderboard({ username }) {
 							alt='profile_pic'
 							style={{
 								width: '60px',
-								height: '60px',
+								height: 'auto',
 								objectFit: 'cover',
 								borderRadius: '50%',
 							}}
@@ -115,13 +132,13 @@ export default function Leaderboard({ username }) {
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[2]}</Typography>
 					</Box>
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center'>
+				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
 					{user.leaderboard_image.slice(3).map((image, index) => (
 						<Box
 							// eslint-disable-next-line react/no-array-index-key
 							key={index + 3}
 							className='bg-white rounded-xl p-2 flex items-center gap-5'
-							style={{ width: '100%', maxWidth: '100%', flexShrink: 0 }}
+							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
 							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
 								{index + 4}
@@ -161,6 +178,21 @@ export default function Leaderboard({ username }) {
 					))}
 				</Box>
 			</Box>
-		</div>
+			{isMobileView && (
+				<img
+					src={curls}
+					alt='curls'
+					style={{
+						width: '50px',
+						height: '50px',
+						objectFit: 'cover',
+						marginLeft: '-75vw',
+						marginTop: '-30px',
+						transform: 'scaleX(-1)',
+						zIndex: 10,
+					}}
+				/>
+			)}
+		</Box>
 	);
 }

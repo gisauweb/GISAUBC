@@ -3,10 +3,15 @@ import { Box, Typography } from '@mui/material';
 import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
 import user from 'pages/games/user.json';
+import { useMediaQuery } from 'react-responsive';
+import bang from 'assets/home-page/events/upcoming_event.svg';
+import plane from 'assets/games/plane.svg';
+import trophy from 'assets/games/trophy.svg';
 
 export default function Activity() {
 	const chartRef = useRef(null);
 	const { date, activity } = user;
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	useEffect(() => {
 		const ctx = chartRef.current.getContext('2d');
@@ -72,7 +77,26 @@ export default function Activity() {
 	}, [activity, date]);
 
 	return (
-		<Box className='w-full h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'>
+		<Box
+			className='h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
+			style={{ width: isMobileView ? '80vw' : '100%' }}
+		>
+			{isMobileView && (
+				<div style={{ position: 'relative' }}>
+					<img
+						src={bang}
+						alt='bang'
+						style={{
+							width: '30px',
+							height: '30px',
+							position: 'absolute',
+							zIndex: 30,
+							right: '-10px',
+							marginTop: '-5px',
+						}}
+					/>
+				</div>
+			)}
 			<Box className='flex flex-row'>
 				<img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
 				<Box className='flex flex-col mt-5'>
@@ -80,7 +104,41 @@ export default function Activity() {
 					<Typography style={{ fontSize: '12px' }}>Your daily activeness for the past 14 days</Typography>
 				</Box>
 			</Box>
-			<canvas ref={chartRef} id='chart' style={{ width: '80%', height: '40%' }} />
+			<canvas
+				ref={chartRef}
+				id='chart'
+				width='80%'
+				height='70%'
+				style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
+			/>
+			{isMobileView && (
+				<div style={{ position: 'relative' }}>
+					<img
+						src={plane}
+						alt='plane'
+						style={{
+							width: '100px',
+							height: '100px',
+							objectFit: 'cover',
+							position: 'absolute',
+							left: '-2px',
+							marginBottom: '-8px',
+							zIndex: 20,
+						}}
+					/>
+					<img
+						src={trophy}
+						alt='trophy'
+						style={{
+							width: '100px',
+							height: '100px',
+							position: 'absolute',
+							right: '-10vw',
+							zIndex: 0,
+						}}
+					/>
+				</div>
+			)}
 		</Box>
 	);
 }

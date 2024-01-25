@@ -19,6 +19,10 @@ export default function Onboarding({ token, setIsRegistered }) {
 		setAlertDialog(!!serverError);
 	}, [serverError]);
 
+	const handleLogout = () => {
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+	};
+
 	return (
 		<>
 			<div className='h-screen flex flex-col justify-center items-center space-y-4'>
@@ -30,7 +34,7 @@ export default function Onboarding({ token, setIsRegistered }) {
 					Please link your student id with your account.
 				</h1>
 				<div className='flex space-x-4'>
-					<Button text='Logout' background='transparentBg' handleClickButton={() => logout()} />
+					<Button text='Logout' background='transparentBg' handleClickButton={() => handleLogout()} />
 					<Button text='Register' handleClickButton={() => setOpenDialog(!openDialog)} />
 				</div>
 			</div>
