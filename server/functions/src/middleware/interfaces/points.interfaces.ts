@@ -27,22 +27,22 @@ export function mapUser(user: admin.auth.UserRecord) {
 
 }
 
-export interface addPointsModel {
+export interface AddPointsModel {
 	uid: string,
 	points: number,
 	updated_at: string
 }
 
-export interface getUsersModel {
+export interface GetUsersModel {
     startNumber: number,
     pageSize: number
 }
 
-export interface getUserModel {
+export interface GetUserModel {
     uid: string
 }
 
-export interface updateUserPhoneModel {
+export interface UpdateUserPhoneModel {
     id: string,
     phone: string
 }

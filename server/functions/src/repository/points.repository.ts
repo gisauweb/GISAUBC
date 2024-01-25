@@ -1,16 +1,16 @@
 import { sha256 } from "js-sha256";
 import { db } from "./../index"
-import { addPointsModel } from "../middleware/interfaces/points.interfaces";
-import { User } from "../model/user";
+import { AddPointsModel } from "../middleware/interfaces/points.interfaces";
+import { PastActivities, User } from "../model/user";
 
 const secretCode = process.env.HASH_SECRET_CODE;
 
-export async function addPoints(user: User, userPayload: addPointsModel) {
+export async function addPoints(user: User, userPayload: AddPointsModel) {
 	const uuid = sha256(userPayload.uid + secretCode)
 	const userDocRef = db.collection("users").doc(uuid);
 	const total_points = user.total_points || 0 
 	const totalPoints = total_points + userPayload.points;
-	const pastActivities = handlePastActivities(userPayload.points, user.past_activities)
+	const pastActivities = handlePastActivities(userPayload.points, user.past_activities, userPayload.updated_at)
 	await userDocRef.update({
 		total_points: totalPoints,
 		past_activities: pastActivities,
@@ -37,14 +37,23 @@ export async function getLeaderboard() {
 }
 
 
-function handlePastActivities(points: number, pastActivities: [number]) {
-	if (!pastActivities) {
-		pastActivities = [points];
+function handlePastActivities(points: number, pastActivities: PastActivities, dateTimestamp: string) {
+	// const date = dateTimestamp.split(" ")[0]
+	const date = "01/26/2024"
+	
+	console.log(date);
+	if (!pastActivities || !(date in pastActivities)) {
+		pastActivities = {
+			...pastActivities,
+			[date]: points
+		};
 	} else {
-		if (pastActivities.length >= 14) {
-			pastActivities.pop();
+		const currentPoint = pastActivities[date]
+		pastActivities = {
+			...pastActivities,
+			[date]: currentPoint + points
 		}
-			pastActivities.push(points);
 	}
+	
 	return pastActivities;
 }
