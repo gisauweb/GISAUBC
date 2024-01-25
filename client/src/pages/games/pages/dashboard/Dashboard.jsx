@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import logo from 'assets/gisau-logo/gisau.svg';
@@ -15,6 +15,7 @@ export default function Dashboard({ account, token }) {
 	const username = user.given_name || user.nickname;
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const [sidebarVisible, setSidebarVisible] = useState(false);
+	const [loadingLeader, setLoadingLeader] = useState(true);
 
 	const toggleSidebar = () => {
 		setSidebarVisible(!sidebarVisible);
@@ -26,19 +27,47 @@ export default function Dashboard({ account, token }) {
 
 	const sidebarAnimation = useSpring({ left: sidebarVisible ? '0%' : '-80%' });
 
-	return user && !isMobileView ? (
+	const [leaderboard, setLeaderboard] = useState([]);
+
+	useEffect(() => {
+		async function getLeaderboard() {
+			try {
+				fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
+					headers: {
+						'Content-Type': 'application/json',
+						Accept: 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						setLeaderboard(res.result);
+						setLoadingLeader(false);
+					});
+			} catch (err) {
+				console.error(err.message);
+			}
+		}
+		if (loadingLeader) {
+			getLeaderboard();
+		}
+	}, [token, loadingLeader]);
+
+	return loadingLeader ? (
+		<div>Loading...</div>
+	) : user && !isMobileView ? (
 		<div className='flex h-screen'>
 			<Sidebar />
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
 					<Profile username={username} picture={user.picture} />
-					<Points />
+					<Points account={account} />
 				</div>
 				<div className='flex h-1/2 w-4/5'>
 					<Activity account={account} />
 				</div>
 			</div>
-			<Leaderboard username={username} token={token} />
+			<Leaderboard username={username} leaderboard={leaderboard} />
 		</div>
 	) : (
 		user && (
@@ -79,9 +108,9 @@ export default function Dashboard({ account, token }) {
 					</div>
 					<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
 						<Profile username={username} picture={user.picture} />
-						<Points />
+						<Points account={account} />
 						<Activity account={account} />
-						<Leaderboard username={username} token={token} />
+						<Leaderboard username={username} leaderboard={leaderboard} />
 					</div>
 				</div>
 			</div>

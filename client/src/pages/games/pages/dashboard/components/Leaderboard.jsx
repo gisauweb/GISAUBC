@@ -8,35 +8,9 @@ import curls from 'assets/home-page/events/rantangan.svg';
 
 const ANON_PICTURE = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
 
-export default function Leaderboard({ username, token }) {
+export default function Leaderboard({ username, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
-	const [leaderboard, setLeaderboard] = useState([]);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		async function getLeaderboard() {
-			try {
-				fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json',
-						Authorization: `Bearer ${token}`,
-					},
-				})
-					.then((res) => res.json())
-					.then((res) => {
-						setLeaderboard(res.result);
-						setLoading(false);
-					});
-			} catch (err) {
-				console.error(err.message);
-			}
-		}
-		if (loading) {
-			getLeaderboard();
-		}
-	}, [token, loading]);
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
@@ -46,9 +20,7 @@ export default function Leaderboard({ username, token }) {
 		return () => clearInterval(intervalId);
 	}, []);
 
-	return loading ? (
-		<div>Loading...</div>
-	) : (
+	return (
 		<Box className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}>
 			<Box
 				style={{

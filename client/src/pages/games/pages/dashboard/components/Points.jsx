@@ -28,9 +28,10 @@ function easeInOut(t) {
 	return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-export default function Points() {
+export default function Points({ account }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
-	const { points, target, rank, highest } = user;
+	const { target, rank, highest } = user;
+	const points = account.total_points;
 	const rankSuffix = getRankSuffix(rank);
 
 	const [animatedValue, setAnimatedValue] = useState(0);
