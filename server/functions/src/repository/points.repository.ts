@@ -29,7 +29,8 @@ export async function getLeaderboard() {
 	});
 
 	const leaderboard = leaderboardData.map(data => ({
-		first_name: data.first_name,
+		profilePicture: data.profile_picture,
+		firstName: data.first_name,
 		points: data.total_points
 	}))
 
@@ -38,8 +39,7 @@ export async function getLeaderboard() {
 
 
 function handlePastActivities(points: number, pastActivities: PastActivities, dateTimestamp: string) {
-	// const date = dateTimestamp.split(" ")[0]
-	const date = "01/26/2024"
+	const date = dateTimestamp.split(" ")[0]
 	
 	console.log(date);
 	if (!pastActivities || !(date in pastActivities)) {

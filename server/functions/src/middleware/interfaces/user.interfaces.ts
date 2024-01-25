@@ -31,6 +31,7 @@ export interface createUserModel {
 	sid: string,
 	uid: string,
 	email: string,
+	profile_picture: string,
 	first_name: string,
 	last_name: string,
 	created_at: string,
