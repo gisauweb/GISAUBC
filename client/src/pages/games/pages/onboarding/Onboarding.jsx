@@ -9,7 +9,7 @@ function capitalizeString(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export default function Onboarding({ token, setIsRegistered }) {
+export default function Onboarding({ token, setAccount }) {
 	const { logout, user } = useAuth0();
 	const [openDialog, setOpenDialog] = useState(false);
 	const [serverError, setServerError] = useState('');
@@ -41,7 +41,7 @@ export default function Onboarding({ token, setIsRegistered }) {
 			<StudentIdDialog
 				open={openDialog}
 				setOpen={setOpenDialog}
-				setIsRegistered={setIsRegistered}
+				setAccount={setAccount}
 				setServerError={setServerError}
 				token={token}
 			/>

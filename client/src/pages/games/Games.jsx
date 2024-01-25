@@ -17,7 +17,7 @@ export default function Games() {
 		logout,
 	} = useAuth0();
 	const [token, setToken] = useState(null);
-	const [isRegistered, setIsRegistered] = useState(false);
+	const [account, setAccount] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 	const [alert, setAlert] = useState(false);
@@ -51,7 +51,7 @@ export default function Games() {
 			try {
 				const result = await getAccessTokenSilently();
 				setToken(result);
-				if (!isRegistered && user) {
+				if (!account && user) {
 					fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function Games() {
 					})
 						.then((res) => res.json())
 						.then((res) => {
-							setIsRegistered(res.result);
+							setAccount(res.result);
 							setLoading(false);
 						})
 						.catch((err) => {
@@ -76,7 +76,7 @@ export default function Games() {
 			loginWithPopup();
 		}
 		getToken();
-	}, [isAuthenticated, isRegistered, loading, user, loginWithPopup, getAccessTokenSilently]);
+	}, [isAuthenticated, account, loading, user, loginWithPopup, getAccessTokenSilently]);
 	return isLoading || loading || alert ? (
 		<>
 			<div>Loading...</div>
@@ -101,9 +101,9 @@ export default function Games() {
 				</div>
 			)}
 		</>
-	) : isAuthenticated && isRegistered ? (
-		<Dashboard token={token} />
+	) : isAuthenticated && account ? (
+		<Dashboard account={account} token={token} />
 	) : (
-		<Onboarding token={token} setIsRegistered={setIsRegistered} />
+		<Onboarding token={token} setAccount={setAccount} />
 	);
 }

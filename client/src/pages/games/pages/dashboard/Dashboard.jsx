@@ -10,7 +10,7 @@ import Points from './components/Points';
 import Activity from './components/Activity';
 import Leaderboard from './components/Leaderboard';
 
-export default function Dashboard() {
+export default function Dashboard({ account, token }) {
 	const { user } = useAuth0();
 	const username = user.given_name || user.nickname;
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
@@ -35,10 +35,10 @@ export default function Dashboard() {
 					<Points />
 				</div>
 				<div className='flex h-1/2 w-4/5'>
-					<Activity />
+					<Activity account={account} />
 				</div>
 			</div>
-			<Leaderboard username={username} />
+			<Leaderboard username={username} token={token} />
 		</div>
 	) : (
 		user && (
@@ -80,8 +80,8 @@ export default function Dashboard() {
 					<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
 						<Profile username={username} picture={user.picture} />
 						<Points />
-						<Activity />
-						<Leaderboard username={username} />
+						<Activity account={account} />
+						<Leaderboard username={username} token={token} />
 					</div>
 				</div>
 			</div>

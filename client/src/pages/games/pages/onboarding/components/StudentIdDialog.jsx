@@ -10,7 +10,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { Sentry } from 'libs/sentry';
 import checkStudentIDValidity from 'libs/membership';
 
-export default function StudentIdDialog({ open, setOpen, setIsRegistered, token, setServerError }) {
+export default function StudentIdDialog({ open, setOpen, setAccount, token, setServerError }) {
 	const { user } = useAuth0();
 	const [studentID, setStudentID] = useState('');
 	const [error, setError] = useState('');
@@ -34,6 +34,8 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token,
 			body: JSON.stringify({
 				sid: studentID,
 				uid: user.sub,
+				profile_pocture:
+					user.picture || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
 				first_name: user.given_name || user.nickname,
 				last_name: user.family_name || user.nickname,
 				email: user.email,
@@ -49,7 +51,7 @@ export default function StudentIdDialog({ open, setOpen, setIsRegistered, token,
 			})
 			.then((res) => {
 				if (res) {
-					setIsRegistered(res.result);
+					setAccount(res.result);
 				}
 			})
 			.catch((err) => {
