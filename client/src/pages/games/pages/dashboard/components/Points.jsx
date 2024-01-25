@@ -30,6 +30,7 @@ function easeInOut(t) {
 
 export default function Points({ account }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	// TODO connect target, rank, highest
 	const { target, rank, highest } = user;
 	const points = account.total_points;
 	const rankSuffix = getRankSuffix(rank);
