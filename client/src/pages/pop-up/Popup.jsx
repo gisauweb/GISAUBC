@@ -3,8 +3,7 @@ import { Modal, Typography, IconButton, Box } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { Button } from 'shared/components';
-// import UPCOMING_EVENTS from 'shared/data/upcoming_event';
-import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 
 const PopupWrapper = styled('div')({
 	background: 'linear-gradient(rgba(140, 28, 22, 0.7), rgba(188, 112, 89, 0.7))',
@@ -25,7 +24,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ isOpen, onClose }) {
-	const upcomingEvent = UPCOMING_RANTANGAN[0];
+	const upcomingEvent = UPCOMING_EVENTS[0];
 
 	return (
 		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
@@ -48,12 +47,12 @@ function Popup({ isOpen, onClose }) {
 					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' loading='lazy' />
 				</a>
 				<Typography variant='h5' gutterBottom>
-					Upcoming Rantangan
+					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>Buy our latest rantangan!</Typography>
+				<Typography variant='body1'>Check out our newest event!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<a aria-label='Save' href='#rantangan' onClick={onClose}>
-						<Button background='transparentBg' text='Pre-order' />
+					<a aria-label='Save' href='#events' onClick={onClose}>
+						<Button background='transparentBg' text='Register' />
 					</a>
 				</Box>
 			</PopupWrapper>
