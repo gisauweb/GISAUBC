@@ -22,6 +22,7 @@ import EVENT_23_24_5 from './23_24/5.svg';
 import EVENT_23_24_6 from './23_24/6.svg';
 import EVENT_23_24_7 from './23_24/7.svg';
 import EVENT_23_24_8 from './23_24/8.svg';
+import EVENT_23_24_9 from './23_24/9.svg';
 
 const EVENTS_22_23 = [
 	EVENT_22_23_1,
@@ -49,6 +50,7 @@ const EVENTS_23_24 = [
 	EVENT_23_24_6,
 	EVENT_23_24_7,
 	EVENT_23_24_8,
+	EVENT_23_24_9,
 ];
 
 export { EVENTS_22_23, EVENTS_23_24 };
