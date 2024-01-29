@@ -52,7 +52,7 @@ function Popup({ isOpen, onClose }) {
 				<Typography variant='body1'>Buy our latest rantangan!</Typography>
 				<Box mt={2} className='flex justify-center'>
 					<a aria-label='Save' href='#rantangan' onClick={onClose}>
-						<Button background='transparentBg' text='Pre-order' />
+						<Button background='transparentBg' text='Register' />
 					</a>
 				</Box>
 			</PopupWrapper>

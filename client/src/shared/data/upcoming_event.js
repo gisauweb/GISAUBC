@@ -5,8 +5,8 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[8],
 		title: 'Bermain Bersama GISAU',
-		date: 'February 9-11, 12-4 PM',
-		loc: 'Metrotown',
+		date: 'February 9-11',
+		loc: 'Online | Metrotown',
 		registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
 		infoLink: bbg,
 	},
