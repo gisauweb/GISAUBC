@@ -1,5 +1,6 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import bbg from 'assets/events-page/bbg.pdf';
+import MOLE from 'assets/events-page/MOLE.pdf';
+import FIFA from 'assets/events-page/FIFA.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -8,15 +9,15 @@ const UPCOMING_EVENTS = [
 		date: 'February 9-11',
 		loc: 'Online',
 		registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
-		infoLink: bbg,
+		infoLink: MOLE,
 	},
 	{
 		image: EVENTS_23_24[8],
-		title: 'Bermain Bersama GISAU (FIFA)',
+		title: 'Bermain Bersama GISAU (FIFA 23)',
 		date: 'February 11 | 12-4PM',
 		loc: 'Metrotown',
 		registrationLink: 'https://forms.gle/ggF7TUsArMX7Rai96',
-		infoLink: bbg,
+		infoLink: FIFA,
 	},
 ];
 
