@@ -4,10 +4,18 @@ import bbg from 'assets/events-page/bbg.pdf';
 const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_23_24[8],
-		title: 'Bermain Bersama GISAU',
+		title: 'Bermain Bersama GISAU (Mobile Legends)',
 		date: 'February 9-11',
-		loc: 'Online | Metrotown',
+		loc: 'Online',
 		registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
+		infoLink: bbg,
+	},
+	{
+		image: EVENTS_23_24[8],
+		title: 'Bermain Bersama GISAU (FIFA)',
+		date: 'February 11 | 12-4PM',
+		loc: 'Metrotown',
+		registrationLink: 'https://forms.gle/ggF7TUsArMX7Rai96',
 		infoLink: bbg,
 	},
 ];
