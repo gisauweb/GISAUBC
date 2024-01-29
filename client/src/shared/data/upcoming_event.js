@@ -1,4 +1,5 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
+import esports from 'assets/events-page/past-events/23_24/esports.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -7,6 +8,7 @@ const UPCOMING_EVENTS = [
 		date: 'February 9-11, 12-4 PM',
 		loc: 'Metrotown',
 		registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
+		infoLink: esports,
 	},
 ];
 
