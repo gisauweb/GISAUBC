@@ -47,11 +47,11 @@ function Popup({ isOpen, onClose }) {
 					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' loading='lazy' />
 				</a>
 				<Typography variant='h5' gutterBottom>
-					Upcoming Rantangan
+					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>Buy our latest rantangan!</Typography>
+				<Typography variant='body1'>Check out our newest event!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<a aria-label='Save' href='#rantangan' onClick={onClose}>
+					<a aria-label='Save' href='#events' onClick={onClose}>
 						<Button background='transparentBg' text='Register' />
 					</a>
 				</Box>
