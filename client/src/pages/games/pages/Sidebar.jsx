@@ -29,7 +29,7 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 		setOpen(open === value ? 0 : value);
 	};
 	const handleLogout = () => {
-		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
 	};
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const handleCloseSidebar = () => {

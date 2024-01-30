@@ -20,7 +20,7 @@ export default function Onboarding({ token, setAccount }) {
 	}, [serverError]);
 
 	const handleLogout = () => {
-		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
 	};
 
 	return (
