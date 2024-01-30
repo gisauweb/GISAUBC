@@ -24,12 +24,10 @@ export default function Leaderboard({ username }) {
 					borderRadius: '30px',
 					height: isMobileView ? 'fit' : '92vh',
 					width: isMobileView ? '80vw' : '25vw',
-					overflowY: 'hidden',
-					overflowX: 'hidden',
 					zIndex: 1,
 				}}
 				className={`${
-					isMobileView ? 'bottom-20 mt-10' : 'mr-10'
+					isMobileView ? 'bottom-10 mt-10' : 'mr-10'
 				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
 			>
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
@@ -132,12 +130,16 @@ export default function Leaderboard({ username }) {
 						<Typography style={{ fontWeight: 'bold' }}>{user.leaderboard_points[2]}</Typography>
 					</Box>
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
+				<Box
+					className={`${
+						isMobileView ? 'overflow-y-hidden' : 'overflow-y-auto'
+					} flex flex-col gap-3 mt-5 items-center w-full`}
+				>
 					{user.leaderboard_image.slice(3).map((image, index) => (
 						<Box
 							// eslint-disable-next-line react/no-array-index-key
 							key={index + 3}
-							className='bg-white rounded-xl p-2 flex items-center gap-5'
+							className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
 							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
@@ -156,7 +158,6 @@ export default function Leaderboard({ username }) {
 							<div
 								style={{
 									width: '50%',
-									overflow: 'auto',
 									maxWidth: '50%',
 								}}
 							>

@@ -66,8 +66,8 @@ export default function Points() {
 						src={treasure}
 						alt='treasure'
 						style={{
-							width: '120px',
-							height: '120px',
+							width: '110px',
+							height: '110px',
 							position: 'absolute',
 							right: 0,
 							top: '-150px',
