@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 
+import { Sentry } from 'libs/sentry';
 import Profile from './components/Profile';
 import Points from './components/Points';
 import Activity from './components/Activity';
@@ -31,7 +32,7 @@ export default function Dashboard({ account, token }) {
 						setLoadingLeader(false);
 					});
 			} catch (err) {
-				console.error(err.message);
+				Sentry.captureException('Error when getting leaderboard: ', err);
 			}
 		}
 		if (loadingLeader) {
