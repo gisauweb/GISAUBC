@@ -2,9 +2,13 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import { useMediaQuery } from 'react-responsive';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
+import Profile from './pages/profile/Profile';
+import Sidebar from './pages/Sidebar';
+import MobileSideBar from './pages/MobileSidebar';
 
 export default function Games() {
 	const {
@@ -21,6 +25,8 @@ export default function Games() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 	const [alert, setAlert] = useState(false);
+	const [currentPage, setCurrentPage] = useState('Dashboard');
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
 	const handleLoginAgain = async () => {
 		try {
@@ -84,6 +90,33 @@ export default function Games() {
 	}, [isAuthenticated, loginWithPopup]);
 
 	return isLoading || loading || alert ? (
+		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
+	) : currentPage === 'Onboarding' ? (
+		<Onboarding token={token} setAccount={setAccount} />
+	) : isMobileView ? (
+		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay'>
+			<MobileSideBar />
+			{currentPage === 'Dashboard' ? (
+				<Dashboard account={account} token={token} />
+			) : currentPage === 'Profile' ? (
+				<Profile />
+			) : null}
+		</div>
+	) : (
+		<div className='flex h-screen'>
+			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+			{currentPage === 'Dashboard' ? (
+				<Dashboard account={account} token={token} />
+			) : currentPage === 'Profile' ? (
+				<Profile />
+			) : null}
+		</div>
+	);
+}
+
+function Loading({ params }) {
+	const { alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert } = params;
+	return (
 		<>
 			<div>Loading...</div>
 			{alert && (
@@ -107,9 +140,5 @@ export default function Games() {
 				</div>
 			)}
 		</>
-	) : isAuthenticated && account ? (
-		<Dashboard account={account} token={token} />
-	) : (
-		<Onboarding token={token} setAccount={setAccount} />
 	);
 }
