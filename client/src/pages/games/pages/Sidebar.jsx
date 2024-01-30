@@ -22,7 +22,7 @@ import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
 
-export default function Sidebar({ username, picture, onCloseSidebar }) {
+export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
 	const [open, setOpen] = React.useState(0);
 	const { logout } = useAuth0();
 	const handleOpen = (value) => {
@@ -36,6 +36,15 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 		setOpen(0);
 		onCloseSidebar(false);
 	};
+
+	const handleMenuItemClick = (page) => {
+		setCurrentPage(page);
+		if (isMobileView) {
+			handleCloseSidebar();
+		}
+	};
+
+	const isCurrentPage = (page) => currentPage === page;
 
 	return (
 		<Card
@@ -75,6 +84,15 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 				<img src={rectangle} alt='border' style={{ maxWidth: '100px', height: 'auto', marginTop: '5px' }} />
 			</div>
 			<List>
+				<ListItem
+					onClick={() => handleMenuItemClick('Dashboard')}
+					style={{ backgroundColor: isCurrentPage('Dashboard') ? '#f0f0f0' : 'transparent' }}
+				>
+					<ListItemPrefix>
+						<IoMdHome className='h-5 w-5' />
+					</ListItemPrefix>
+					Dashboard
+				</ListItem>
 				<Accordion
 					open={open === 1}
 					icon={
@@ -85,12 +103,6 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 						/>
 					}
 				>
-					<ListItem>
-						<ListItemPrefix>
-							<IoMdHome className='h-5 w-5' />
-						</ListItemPrefix>
-						Dashboard
-					</ListItem>
 					<ListItem className='p-0' selected={open === 1}>
 						<AccordionHeader onClick={() => handleOpen(1)} className='border-b-0 p-3'>
 							<ListItemPrefix>
@@ -103,13 +115,19 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 					</ListItem>
 					<AccordionBody className='py-1' style={{ color: 'white' }}>
 						<List className='p-0'>
-							<ListItem>
+							<ListItem
+								onClick={() => handleMenuItemClick('Game A')}
+								style={{ backgroundColor: isCurrentPage('Game A') ? '#f0f0f0' : 'transparent' }}
+							>
 								<ListItemPrefix>
 									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
 								</ListItemPrefix>
 								Game A
 							</ListItem>
-							<ListItem>
+							<ListItem
+								onClick={() => handleMenuItemClick('Game B')}
+								style={{ backgroundColor: isCurrentPage('Game B') ? '#f0f0f0' : 'transparent' }}
+							>
 								<ListItemPrefix>
 									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
 								</ListItemPrefix>
@@ -118,13 +136,19 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 						</List>
 					</AccordionBody>
 				</Accordion>
-				<ListItem>
+				<ListItem
+					onClick={() => handleMenuItemClick('Redeem')}
+					style={{ backgroundColor: isCurrentPage('Redeem') ? '#f0f0f0' : 'transparent' }}
+				>
 					<ListItemPrefix>
 						<FaGift className='h-5 w-5' />
 					</ListItemPrefix>
 					Redeem Points
 				</ListItem>
-				<ListItem>
+				<ListItem
+					onClick={() => handleMenuItemClick('Settings')}
+					style={{ backgroundColor: isCurrentPage('Settings') ? '#f0f0f0' : 'transparent' }}
+				>
 					<ListItemPrefix>
 						<IoMdSettings className='h-5 w-5' />
 					</ListItemPrefix>
@@ -165,7 +189,10 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 								<Typography style={{ fontWeight: 'bold', marginLeft: '5px' }}>{username}</Typography>
 							</div>
 						</ListItem>
-						<ListItem>
+						<ListItem
+							onClick={() => handleMenuItemClick('Profile')}
+							style={{ backgroundColor: isCurrentPage('Profile') ? '#f0f0f0' : 'transparent' }}
+						>
 							<ListItemPrefix>
 								<PersonIcon className='h-5 w-5' />
 							</ListItemPrefix>
