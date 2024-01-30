@@ -72,11 +72,16 @@ export default function Games() {
 				setError(err.message);
 			}
 		}
+		if (isAuthenticated && user && !account) {
+			getToken();
+		}
+	}, [isAuthenticated, user, account, getAccessTokenSilently]);
+
+	useEffect(() => {
 		if (!isAuthenticated) {
 			loginWithPopup();
 		}
-		getToken();
-	}, [isAuthenticated, account, loading, user, loginWithPopup, getAccessTokenSilently]);
+	}, [isAuthenticated, loginWithPopup]);
 
 	return isLoading || loading || alert ? (
 		<>
@@ -91,7 +96,7 @@ export default function Games() {
 						} else {
 							logout({
 								logoutParams: {
-									returnTo: `${window.location.origin.toString()}/games`,
+									returnTo: `${window.location.origin.toString()}`,
 								},
 							});
 						}
