@@ -77,6 +77,7 @@ export default function Games() {
 		}
 		getToken();
 	}, [isAuthenticated, account, loading, user, loginWithPopup, getAccessTokenSilently]);
+
 	return isLoading || loading || alert ? (
 		<>
 			<div>Loading...</div>

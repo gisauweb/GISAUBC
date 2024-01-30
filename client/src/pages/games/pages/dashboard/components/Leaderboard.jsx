@@ -12,6 +12,8 @@ export default function Leaderboard({ username, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
+	const sortedLeaderboard = Object.entries(leaderboard).map(([, value]) => value);
+
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			setIsBigger((prevIsBigger) => !prevIsBigger);
@@ -39,12 +41,12 @@ export default function Leaderboard({ username, leaderboard }) {
 					Leaderboard
 				</Typography>
 				<Box className='flex flex-row w-auto h-auto'>
-					{secondPlace(leaderboard[1], username)}
-					{firstPlace(leaderboard[0], isBigger, username)}
-					{thirdPlace(leaderboard[2], username)}
+					{secondPlace(sortedLeaderboard[1], username)}
+					{firstPlace(sortedLeaderboard[0], isBigger, username)}
+					{thirdPlace(sortedLeaderboard[2], username)}
 				</Box>
 				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
-					{leaderboard.slice(3).map((user, index) => (
+					{sortedLeaderboard.slice(3).map((user, index) => (
 						<Box
 							key={user.firstName}
 							className='bg-white rounded-xl p-2 flex items-center gap-5'

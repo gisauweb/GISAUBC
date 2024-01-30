@@ -61,7 +61,7 @@ export default function Dashboard({ account, token }) {
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
 					<Profile username={username} picture={user.picture} />
-					<Points account={account} />
+					<Points account={account} leaderboard={leaderboard} />
 				</div>
 				<div className='flex h-1/2 w-4/5'>
 					<Activity account={account} />
@@ -108,7 +108,7 @@ export default function Dashboard({ account, token }) {
 					</div>
 					<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
 						<Profile username={username} picture={user.picture} />
-						<Points account={account} />
+						<Points account={account} leaderboard={leaderboard} />
 						<Activity account={account} />
 						<Leaderboard username={username} leaderboard={leaderboard} />
 					</div>

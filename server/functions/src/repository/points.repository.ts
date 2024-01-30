@@ -19,22 +19,37 @@ export async function addPoints(user: User, userPayload: AddPointsModel) {
 }
 
 export async function getLeaderboard() {
-	const leaderboardSnapshot = await db.collection("users")
-		.orderBy("total_points", "desc")
-		.limit(10)
-		.get();
+    let rankNum = 1;
+	let previousUserPoints: number | null = null;
 
-	const leaderboardData = leaderboardSnapshot.docs.map(doc => {
-		return doc.data()
-	});
+    const leaderboardSnapshot = await db.collection("users")
+        .orderBy("total_points", "desc")
+        .get();
 
-	const leaderboard = leaderboardData.map(data => ({
-		profilePicture: data.profile_picture,
-		firstName: data.first_name,
-		points: data.total_points
-	}))
+    const leaderboardData = leaderboardSnapshot.docs.map(doc => doc.data());
 
-	return leaderboard;
+    const leaderboard = leaderboardData.reduce((acc, data) => {
+		let pointsToNextRank = null;
+        if (previousUserPoints !== null) {
+            pointsToNextRank = previousUserPoints - data.total_points;
+        }
+
+        acc[data.first_name] = {
+            rank: rankNum,
+            profilePicture: data.profile_picture,
+            firstName: data.first_name,
+            points: data.total_points,
+			target: pointsToNextRank || 0,
+			targetPoints: previousUserPoints || data.total_points,
+        };
+
+		previousUserPoints = data.total_points;
+        rankNum++;
+
+        return acc;
+    }, {});
+
+    return leaderboard;
 }
 
 
