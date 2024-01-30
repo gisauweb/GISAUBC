@@ -106,7 +106,7 @@ export default function Games() {
 		<div className='flex h-screen'>
 			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
+				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : currentPage === 'Profile' ? (
 				<Profile />
 			) : null}
