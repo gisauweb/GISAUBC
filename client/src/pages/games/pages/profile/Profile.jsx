@@ -4,7 +4,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 export default function Profile() {
 	return (
-		<Box className='flex px-7 py-16 justify-between w-full h-full'>
+		<Box className='flex px-7 py-16 justify-between w-full h-[90%]'>
 			<Box className='w-1/2 flex flex-col justify-between px-5'>
 				<Box className='flex items-center space-x-2'>
 					<ArrowBackIosNewIcon sx={{ color: 'black', stroke: 'black', strokeWidth: 2 }} />
@@ -14,7 +14,7 @@ export default function Profile() {
 					className='self-center my-6'
 					sx={{ width: 140, height: 140, bgcolor: 'grey.300', borderRadius: '50%' }}
 				/>
-				<Box>
+				<Box className='px-5'>
 					<TextField label='First name' variant='outlined' defaultValue='Jessie' fullWidth margin='normal' />
 					<TextField label='Last name' variant='outlined' defaultValue='Megan' fullWidth margin='normal' />
 					<TextField
@@ -38,20 +38,19 @@ export default function Profile() {
 						fullWidth
 						margin='normal'
 					/>
+					<Button variant='outlined' startIcon={<ArrowBackIosNewIcon />}>
+						Edit
+					</Button>
 				</Box>
-				{/* Edit button */}
-				<Button variant='outlined' startIcon={<ArrowBackIosNewIcon />}>
-					Edit
-				</Button>
 			</Box>
 			<Box className='w-1/2 h-full flex flex-col justify-between'>
-				<Box className='h-1/2'>
+				<Box className='h-1/2 flex flex-col justify-between'>
 					<span className='font-bold font-poppins text-2xl'>Daily Challenges</span>
-					<span className='font-poppins text-xl'>coming soon...</span>
+					<span className='font-poppins text-xl relative h-1/2 mx-auto'>coming soon...</span>
 				</Box>
-				<Box className='h-1/2'>
+				<Box className='h-1/2 flex flex-col justify-between'>
 					<span className='font-bold font-poppins text-2xl'>My Badges</span>
-					<span className='font-poppins text-xl'>coming soon...</span>
+					<span className='font-poppins text-xl relative h-1/2 mx-auto'>coming soon...</span>
 				</Box>
 			</Box>
 		</Box>
