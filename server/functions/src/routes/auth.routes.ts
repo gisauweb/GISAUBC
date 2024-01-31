@@ -1,6 +1,6 @@
 import { Application } from "express";
 
-export function authRoutes(app: Application) {
+export default function authRoutes(app: Application) {
 
 	app.get("/", (req, res) => {
 		res.send({

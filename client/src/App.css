@@ -34,8 +34,8 @@ p {
 	display: inline-block;
 	position: relative;
 }
-  
-.underline-animation::after{
+
+.underline-animation::after {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -48,7 +48,7 @@ p {
 	background-color: #ffffff;
 }
 
-.underline-animation-red::after{
+.underline-animation-red::after {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -60,8 +60,9 @@ p {
 	transition: transform 0.3s ease-out;
 	background-color: #6f0b09;
 }
-  
-.underline-animation:hover::after, .underlined::after{
+
+.underline-animation:hover::after,
+.underlined::after {
 	transform: scaleX(1);
 	transform-origin: bottom left;
 }

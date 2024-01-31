@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import GisauLogo from 'assets/gisau-logo/gisau.png';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Button } from 'shared/components';
-import StudentIdDialog from './StudentIdDialog';
-import AlertDialog from './AlertDialog';
+import StudentIdDialog from './components/StudentIdDialog';
+import AlertDialog from './components/AlertDialog';
 
 function capitalizeString(str) {
 	return str.charAt(0).toUpperCase() + str.slice(1);
@@ -19,6 +19,10 @@ export default function Onboarding({ token, setIsRegistered }) {
 		setAlertDialog(!!serverError);
 	}, [serverError]);
 
+	const handleLogout = () => {
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+	};
+
 	return (
 		<>
 			<div className='h-screen flex flex-col justify-center items-center space-y-4'>
@@ -30,7 +34,7 @@ export default function Onboarding({ token, setIsRegistered }) {
 					Please link your student id with your account.
 				</h1>
 				<div className='flex space-x-4'>
-					<Button text='Logout' background='transparentBg' handleClickButton={() => logout()} />
+					<Button text='Logout' background='transparentBg' handleClickButton={() => handleLogout()} />
 					<Button text='Register' handleClickButton={() => setOpenDialog(!openDialog)} />
 				</div>
 			</div>

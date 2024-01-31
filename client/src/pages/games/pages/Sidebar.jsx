@@ -18,19 +18,35 @@ import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdHome, IoMdSettings } from 'react-icons/io';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useMediaQuery } from 'react-responsive';
+import close from 'assets/games/close.svg';
+import PersonIcon from '@mui/icons-material/Person';
 
-export default function Sidebar() {
+export default function Sidebar({ username, picture, onCloseSidebar }) {
 	const [open, setOpen] = React.useState(0);
 	const { logout } = useAuth0();
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
+	};
+	const handleLogout = () => {
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+	};
+	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const handleCloseSidebar = () => {
+		setOpen(0);
+		onCloseSidebar(false);
 	};
 
 	return (
 		<Card
 			className='h-full max-w-[18rem] p-4
 			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
-			style={{ height: '100vh', width: '20vw', borderRadius: '0 30px 30px 0', color: 'white' }}
+			style={{
+				height: '100vh',
+				width: isMobileView ? '75vw' : '20vw',
+				borderRadius: '0 30px 30px 0',
+				color: 'white',
+			}}
 		>
 			<div
 				className='mb-2 gap-4 p-4'
@@ -41,7 +57,18 @@ export default function Sidebar() {
 					marginTop: '10px',
 				}}
 			>
-				<img src={logo} href='/home' alt='GISAU logo red' style={{ maxWidth: '70px', height: 'auto' }} />
+				{isMobileView ? (
+					<div onClick={handleCloseSidebar}>
+						<img
+							src={close}
+							alt='close'
+							style={{ maxWidth: '70px', height: 'auto', marginBottom: '20px' }}
+						/>
+					</div>
+				) : (
+					<img src={logo} href='/home' alt='GISAU logo red' style={{ maxWidth: '70px', height: 'auto' }} />
+				)}
+
 				<Typography variant='h5' color='blue-gray'>
 					GISAU GAMES
 				</Typography>
@@ -105,9 +132,50 @@ export default function Sidebar() {
 				</ListItem>
 			</List>
 			<List style={{ position: 'absolute', bottom: '10px' }}>
-				<ListItem onClick={() => logout()}>
+				{isMobileView && (
+					<>
+						<ListItem className='left-[-1] ml-[-1]'>
+							<div
+								className='justify-center'
+								style={{
+									width: '50px',
+									height: '50px',
+									marginRight: '5px',
+								}}
+							>
+								<img
+									src={picture}
+									alt='profile_pic'
+									style={{
+										width: 'auto',
+										height: 'auto',
+										objectFit: 'cover',
+										borderRadius: '50%',
+									}}
+								/>
+							</div>
+							<div
+								className='justify-center'
+								style={{
+									width: '80%',
+									overflow: 'hidden',
+									maxWidth: '80%',
+								}}
+							>
+								<Typography style={{ fontWeight: 'bold', marginLeft: '5px' }}>{username}</Typography>
+							</div>
+						</ListItem>
+						<ListItem>
+							<ListItemPrefix>
+								<PersonIcon className='h-5 w-5' />
+							</ListItemPrefix>
+							View Profile
+						</ListItem>
+					</>
+				)}
+				<ListItem onClick={() => handleLogout()}>
 					<ListItemPrefix>
-						<FaSignOutAlt className='h-5 w-5' />
+						<FaSignOutAlt className='h-5 w-5 ml-1' />
 					</ListItemPrefix>
 					Sign Out
 				</ListItem>

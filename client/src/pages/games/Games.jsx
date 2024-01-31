@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
-import Dashboard from './dashboard/Dashboard';
-import Onboarding from './onboarding/Onboarding';
-import AlertDialog from './onboarding/AlertDialog';
+import Dashboard from './pages/dashboard/Dashboard';
+import Onboarding from './pages/onboarding/Onboarding';
+import AlertDialog from './pages/onboarding/components/AlertDialog';
 
 export default function Games() {
 	const {
@@ -51,8 +51,8 @@ export default function Games() {
 			try {
 				const result = await getAccessTokenSilently();
 				setToken(result);
-				if (!isRegistered) {
-					fetch(`http://127.0.0.1:5001/gisaubc-dev/us-central1/api/users/user/${user.sub}`, {
+				if (!isRegistered && user) {
+					fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
 							Accept: 'application/json',
@@ -90,7 +90,7 @@ export default function Games() {
 						} else {
 							logout({
 								logoutParams: {
-									returnTo: 'http://localhost:3000/games',
+									returnTo: `${window.location.origin.toString()}/games`,
 								},
 							});
 						}
