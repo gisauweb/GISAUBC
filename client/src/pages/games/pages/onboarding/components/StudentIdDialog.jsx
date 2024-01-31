@@ -44,7 +44,6 @@ export default function StudentIdDialog({ open, setOpen, setAccount, token, setS
 			.then(async (res) => {
 				if (res.status !== 201) {
 					const responseBody = await res.json();
-					console.log(responseBody);
 					setServerError(responseBody.message);
 					return undefined;
 				}
