@@ -12,7 +12,7 @@ export default function Profile() {
 				</Box>
 				<Box
 					className='self-center my-6'
-					sx={{ width: 140, height: 140, bgcolor: 'grey.300', borderRadius: '50%' }}
+					sx={{ width: 254, height: 254, bgcolor: 'grey.300', borderRadius: '50%' }}
 				/>
 				<Box className='px-5'>
 					<TextField label='First name' variant='outlined' defaultValue='Jessie' fullWidth margin='normal' />
