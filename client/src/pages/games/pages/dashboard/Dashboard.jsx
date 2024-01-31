@@ -4,6 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import logo from 'assets/gisau-logo/gisau.svg';
 import sidemenu from 'assets/games/sidebar.svg';
 import { useSpring, animated } from 'react-spring';
+import { Sentry } from 'libs/sentry';
 import Sidebar from '../Sidebar';
 import Profile from './components/Profile';
 import Points from './components/Points';
@@ -45,7 +46,7 @@ export default function Dashboard({ account, token }) {
 						setLoadingLeader(false);
 					});
 			} catch (err) {
-				console.error(err.message);
+				Sentry.captureException(err.message);
 			}
 		}
 		if (loadingLeader) {
