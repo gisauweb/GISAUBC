@@ -71,7 +71,7 @@ export default function Dashboard({ account, token }) {
 		</div>
 	) : (
 		user && (
-			<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay'>
+			<div className='w-screen flex flex-col h-fit items-center gap-3 relative bg-overlay'>
 				{isMobileView && sidebarVisible && (
 					<div
 						className='fixed top-0 left-0 w-screen h-full bg-black opacity-60 z-50 rounded-none blur'
@@ -88,7 +88,7 @@ export default function Dashboard({ account, token }) {
 				>
 					<Sidebar username={username} picture={user.picture} onCloseSidebar={onCloseSidebar} />
 				</animated.div>
-				<div className='py-3'>
+				<div className='pt-3'>
 					<div className='flex flex-row'>
 						<div className='flex flex-row fixed top-5 z-40 left-5' onClick={toggleSidebar}>
 							<img
@@ -106,10 +106,10 @@ export default function Dashboard({ account, token }) {
 							/>
 						</div>
 					</div>
-					<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
+					<div className='flex flex-col my-16 h-fit items-center gap-3 relative'>
 						<Profile username={username} picture={user.picture} />
 						<Points account={account} leaderboard={leaderboard} />
-						<Activity account={account} />
+						<Activity account={account} className='mt-10' />
 						<Leaderboard username={username} leaderboard={leaderboard} />
 					</div>
 				</div>
