@@ -5,7 +5,7 @@
 import { Request, Response, NextFunction } from "express";
 
 import {
-	addPointsModel,
+	AddPointsModel,
 } from "../middleware/interfaces/points.interfaces";
 import {
 	addPoints,
@@ -19,7 +19,7 @@ import getCurrentTimestamp from "../services/dateFormatter";
 export async function addPointsToUser(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { uid, points } = JSON.parse(req.body)
-		const addPointsPayload: addPointsModel = {
+		const addPointsPayload: AddPointsModel = {
 			uid: uid,
 			points: points,
 			updated_at: getCurrentTimestamp(),

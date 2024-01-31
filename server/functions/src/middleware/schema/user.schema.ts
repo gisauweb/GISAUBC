@@ -4,15 +4,17 @@ export const userCreation: Schema = {
     fields: {
 		sid: "string",
 		uid: "string",
-		email: "string",
+		profile_picture: "string",
 		first_name: "string",
 		last_name: "string",
+		email: "string",
 		created_at: "string",
 		updated_at: "string"
     },
     required: [
 		"sid",
 		"uid",
+		"profile_picture",
 		"email",
 		"first_name",
 		"last_name",

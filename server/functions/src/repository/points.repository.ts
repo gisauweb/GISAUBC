@@ -1,16 +1,16 @@
 import { sha256 } from "js-sha256";
 import { db } from "./../index"
-import { addPointsModel } from "../middleware/interfaces/points.interfaces";
-import { User } from "../model/user";
+import { AddPointsModel } from "../middleware/interfaces/points.interfaces";
+import { PastActivities, User } from "../model/user";
 
 const secretCode = process.env.HASH_SECRET_CODE;
 
-export async function addPoints(user: User, userPayload: addPointsModel) {
+export async function addPoints(user: User, userPayload: AddPointsModel) {
 	const uuid = sha256(userPayload.uid + secretCode)
 	const userDocRef = db.collection("users").doc(uuid);
 	const total_points = user.total_points || 0 
 	const totalPoints = total_points + userPayload.points;
-	const pastActivities = handlePastActivities(userPayload.points, user.past_activities)
+	const pastActivities = handlePastActivities(userPayload.points, user.past_activities, userPayload.updated_at)
 	await userDocRef.update({
 		total_points: totalPoints,
 		past_activities: pastActivities,
@@ -19,32 +19,56 @@ export async function addPoints(user: User, userPayload: addPointsModel) {
 }
 
 export async function getLeaderboard() {
-	const leaderboardSnapshot = await db.collection("users")
-		.orderBy("total_points", "desc")
-		.limit(10)
-		.get();
+    let rankNum = 1;
+	let previousUserPoints: number | null = null;
 
-	const leaderboardData = leaderboardSnapshot.docs.map(doc => {
-		return doc.data()
-	});
+    const leaderboardSnapshot = await db.collection("users")
+        .orderBy("total_points", "desc")
+        .get();
 
-	const leaderboard = leaderboardData.map(data => ({
-		first_name: data.first_name,
-		points: data.total_points
-	}))
+    const leaderboardData = leaderboardSnapshot.docs.map(doc => doc.data());
 
-	return leaderboard;
+    const leaderboard = leaderboardData.reduce((acc, data) => {
+		let pointsToNextRank = null;
+        if (previousUserPoints !== null) {
+            pointsToNextRank = previousUserPoints - data.total_points;
+        }
+
+        acc[data.first_name] = {
+            rank: rankNum,
+            profilePicture: data.profile_picture,
+            firstName: data.first_name,
+            points: data.total_points,
+			target: pointsToNextRank || 0,
+			targetPoints: previousUserPoints || data.total_points,
+        };
+
+		previousUserPoints = data.total_points;
+        rankNum++;
+
+        return acc;
+    }, {});
+
+    return leaderboard;
 }
 
 
-function handlePastActivities(points: number, pastActivities: [number]) {
-	if (!pastActivities) {
-		pastActivities = [points];
+function handlePastActivities(points: number, pastActivities: PastActivities, dateTimestamp: string) {
+	const date = dateTimestamp.split(" ")[0]
+	
+	console.log(date);
+	if (!pastActivities || !(date in pastActivities)) {
+		pastActivities = {
+			...pastActivities,
+			[date]: points
+		};
 	} else {
-		if (pastActivities.length >= 14) {
-			pastActivities.pop();
+		const currentPoint = pastActivities[date]
+		pastActivities = {
+			...pastActivities,
+			[date]: currentPoint + points
 		}
-			pastActivities.push(points);
 	}
+	
 	return pastActivities;
 }

@@ -24,10 +24,11 @@ import getCurrentTimestamp from "../services/dateFormatter";
 
 export async function createUserIfNotExists(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { sid, uid, first_name, last_name, email } = JSON.parse(req.body)
+		const { sid, uid, profile_picture, first_name, last_name, email } = JSON.parse(req.body)
 		const createUserPayload: createUserModel = {
 			sid: sid,
 			uid: uid,
+			profile_picture: profile_picture,
 			first_name: first_name,
 			last_name: last_name,
 			email: email,

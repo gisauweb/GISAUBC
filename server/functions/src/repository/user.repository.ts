@@ -11,9 +11,11 @@ export async function createUser(userPayload: createUserModel) {
 	await userDocRef.set({
 		sid: userPayload.sid,
 		uid: userPayload.uid,
+		profile_picture: userPayload.profile_picture,
 		first_name: userPayload.first_name,
 		last_name: userPayload.last_name,
 		email: userPayload.email,
+		total_points: 0,
 		created_at: userPayload.created_at,
 		updated_at: userPayload.updated_at
 	});
