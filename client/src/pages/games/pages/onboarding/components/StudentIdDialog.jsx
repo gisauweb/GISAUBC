@@ -34,7 +34,7 @@ export default function StudentIdDialog({ open, setOpen, setAccount, token, setS
 			body: JSON.stringify({
 				sid: studentID,
 				uid: user.sub,
-				profile_pocture:
+				profile_picture:
 					user.picture || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
 				first_name: user.given_name || user.nickname,
 				last_name: user.family_name || user.nickname,
@@ -44,6 +44,7 @@ export default function StudentIdDialog({ open, setOpen, setAccount, token, setS
 			.then(async (res) => {
 				if (res.status !== 201) {
 					const responseBody = await res.json();
+					console.log(responseBody);
 					setServerError(responseBody.message);
 					return undefined;
 				}
