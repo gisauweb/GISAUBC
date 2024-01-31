@@ -11,6 +11,7 @@ import {
 	Accordion,
 	AccordionHeader,
 	AccordionBody,
+	ListItemSuffix,
 } from '@material-tailwind/react';
 import logo from 'assets/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
@@ -21,6 +22,39 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
+
+function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
+	return (
+		<ListItem
+			onClick={onClick}
+			style={{
+				backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+				position: 'relative',
+				display: 'flex',
+				alignItems: 'center',
+			}}
+		>
+			<ListItemPrefix>
+				<PrefixIcon className='h-5 w-5' />
+			</ListItemPrefix>
+			{label}
+			{isSelected && (
+				<ListItemSuffix>
+					<div
+						style={{
+							width: '5px',
+							height: '100%',
+							backgroundColor: '#BFA285',
+							position: 'absolute',
+							top: 0,
+							right: 0,
+						}}
+					/>
+				</ListItemSuffix>
+			)}
+		</ListItem>
+	);
+}
 
 export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
 	const [open, setOpen] = React.useState(0);
@@ -84,15 +118,12 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 				<img src={rectangle} alt='border' style={{ maxWidth: '100px', height: 'auto', marginTop: '5px' }} />
 			</div>
 			<List>
-				<ListItem
+				<SelectableListItem
+					prefixIcon={IoMdHome}
+					label='Dashboard'
+					isSelected={isCurrentPage('Dashboard')}
 					onClick={() => handleMenuItemClick('Dashboard')}
-					style={{ backgroundColor: isCurrentPage('Dashboard') ? '#f0f0f0' : 'transparent' }}
-				>
-					<ListItemPrefix>
-						<IoMdHome className='h-5 w-5' />
-					</ListItemPrefix>
-					Dashboard
-				</ListItem>
+				/>
 				<Accordion
 					open={open === 1}
 					icon={
@@ -115,45 +146,33 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 					</ListItem>
 					<AccordionBody className='py-1' style={{ color: 'white' }}>
 						<List className='p-0'>
-							<ListItem
+							<SelectableListItem
+								prefixIcon={ChevronRightIcon}
+								label='Game A'
+								isSelected={isCurrentPage('Game A')}
 								onClick={() => handleMenuItemClick('Game A')}
-								style={{ backgroundColor: isCurrentPage('Game A') ? '#f0f0f0' : 'transparent' }}
-							>
-								<ListItemPrefix>
-									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-								</ListItemPrefix>
-								Game A
-							</ListItem>
-							<ListItem
+							/>
+							<SelectableListItem
+								prefixIcon={ChevronRightIcon}
+								label='Game B'
+								isSelected={isCurrentPage('Game B')}
 								onClick={() => handleMenuItemClick('Game B')}
-								style={{ backgroundColor: isCurrentPage('Game B') ? '#f0f0f0' : 'transparent' }}
-							>
-								<ListItemPrefix>
-									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-								</ListItemPrefix>
-								Game B
-							</ListItem>
+							/>
 						</List>
 					</AccordionBody>
 				</Accordion>
-				<ListItem
+				<SelectableListItem
+					prefixIcon={FaGift}
+					label='Redeem Points'
+					isSelected={isCurrentPage('Redeem')}
 					onClick={() => handleMenuItemClick('Redeem')}
-					style={{ backgroundColor: isCurrentPage('Redeem') ? '#f0f0f0' : 'transparent' }}
-				>
-					<ListItemPrefix>
-						<FaGift className='h-5 w-5' />
-					</ListItemPrefix>
-					Redeem Points
-				</ListItem>
-				<ListItem
+				/>
+				<SelectableListItem
+					prefixIcon={IoMdSettings}
+					label='Settings'
+					isSelected={isCurrentPage('Settings')}
 					onClick={() => handleMenuItemClick('Settings')}
-					style={{ backgroundColor: isCurrentPage('Settings') ? '#f0f0f0' : 'transparent' }}
-				>
-					<ListItemPrefix>
-						<IoMdSettings className='h-5 w-5' />
-					</ListItemPrefix>
-					Settings
-				</ListItem>
+				/>
 			</List>
 			<List style={{ position: 'absolute', bottom: '10px' }}>
 				{isMobileView && (
