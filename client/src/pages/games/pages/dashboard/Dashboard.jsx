@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
-
 import { Sentry } from 'libs/sentry';
 import Profile from './components/Profile';
 import Points from './components/Points';

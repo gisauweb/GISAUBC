@@ -158,7 +158,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 			<List style={{ position: 'absolute', bottom: '10px' }}>
 				{isMobileView && (
 					<>
-						<ListItem className='mb-5'>
+						<ListItem className='left-[-1] ml-[-1]'>
 							<div
 								className='justify-center'
 								style={{
@@ -182,7 +182,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 								className='justify-center'
 								style={{
 									width: '80%',
-									overflow: 'auto',
+									overflow: 'hidden',
 									maxWidth: '80%',
 								}}
 							>

@@ -13,30 +13,32 @@ export default function Profile({ username, picture, setCurrentPage }) {
 			} w-full h-full rounded-2xl flex flex-col justify-center items-center mr-2`}
 		>
 			<Typography style={{ fontSize: '14px' }}>Welcome,</Typography>
-			<Box className='flex flex-row justify-center items-center my-3 gap-3'>
-				<div
-					style={{
-						width: '50px',
-						height: '50px',
-						marginRight: '5px',
-					}}
-				>
-					<img
-						src={picture}
-						alt='profile_pic'
+			<Box className='flex flex-row justify-center items-center my-5 gap-3'>
+				{!isMobileView && (
+					<div
 						style={{
-							width: 'auto',
-							height: 'auto',
-							objectFit: 'cover',
-							borderRadius: '50%',
+							width: '50px',
+							height: '50px',
+							marginRight: '5px',
 						}}
-					/>
-				</div>
+					>
+						<img
+							src={picture}
+							alt='profile_pic'
+							style={{
+								width: 'auto',
+								height: 'auto',
+								objectFit: 'cover',
+								borderRadius: '50%',
+							}}
+						/>
+					</div>
+				)}
 				<div
 					style={{
-						width: '70%',
+						width: isMobileView ? '100%' : '70%',
 						overflow: 'auto',
-						maxWidth: '70%',
+						maxWidth: isMobileView ? '100%' : '70%',
 					}}
 				>
 					<Typography style={{ fontWeight: 'bold' }}>{username}</Typography>

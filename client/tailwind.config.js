@@ -21,6 +21,7 @@ module.exports = {
 			colors: {
 				primary: '#7D0202',
 				bgPrimary: '#FFFDF5',
+				bgGames: '#FFFFFF',
 				gamesRed: '#732727',
 				gamesBox: '#F5F1ED',
 			},

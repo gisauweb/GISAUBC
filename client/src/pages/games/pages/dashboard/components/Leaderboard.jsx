@@ -29,12 +29,10 @@ export default function Leaderboard({ username, leaderboard }) {
 					borderRadius: '30px',
 					height: isMobileView ? 'fit' : '92vh',
 					width: isMobileView ? '80vw' : '25vw',
-					overflowY: 'hidden',
-					overflowX: 'hidden',
 					zIndex: 1,
 				}}
 				className={`${
-					isMobileView ? 'bottom-20 mt-10' : 'mr-10'
+					isMobileView ? 'bottom-10 mt-10' : 'mr-10'
 				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
 			>
 				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
