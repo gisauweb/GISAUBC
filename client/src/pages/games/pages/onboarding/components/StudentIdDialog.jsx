@@ -34,8 +34,7 @@ export default function StudentIdDialog({ open, setOpen, setAccount, token, setS
 			body: JSON.stringify({
 				sid: studentID,
 				uid: user.sub,
-				profile_picture:
-					user.picture || 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
+				profile_picture: user.picture,
 				first_name: user.given_name || user.nickname,
 				last_name: user.family_name || user.nickname,
 				email: user.email,

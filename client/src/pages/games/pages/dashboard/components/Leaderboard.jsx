@@ -6,8 +6,6 @@ import crown from 'assets/games/crown.png';
 import { useMediaQuery } from 'react-responsive';
 import curls from 'assets/home-page/events/rantangan.svg';
 
-const ANON_PICTURE = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-
 export default function Leaderboard({ username, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
@@ -54,7 +52,7 @@ export default function Leaderboard({ username, leaderboard }) {
 								{index + 4}
 							</Typography>
 							<img
-								src={user.profilePicture || ANON_PICTURE}
+								src={user.profilePicture}
 								alt={`profile_pic_${index}`}
 								style={{
 									width: '40px',
@@ -105,7 +103,7 @@ function thirdPlace(user, username) {
 	return (
 		<Box className='flex flex-col mt-32 ml-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',
@@ -150,7 +148,7 @@ function firstPlace(user, isBigger, username) {
 				}}
 			/>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '80px',
@@ -183,7 +181,7 @@ function secondPlace(user, username) {
 	return (
 		<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',

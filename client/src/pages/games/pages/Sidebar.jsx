@@ -11,7 +11,6 @@ import {
 	Accordion,
 	AccordionHeader,
 	AccordionBody,
-	ListItemSuffix,
 } from '@material-tailwind/react';
 import logo from 'assets/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
@@ -38,20 +37,6 @@ function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick
 				<PrefixIcon className='h-5 w-5' />
 			</ListItemPrefix>
 			{label}
-			{isSelected && (
-				<ListItemSuffix>
-					<div
-						style={{
-							width: '5px',
-							height: '100%',
-							backgroundColor: '#BFA285',
-							position: 'absolute',
-							top: 0,
-							right: 0,
-						}}
-					/>
-				</ListItemSuffix>
-			)}
 		</ListItem>
 	);
 }
