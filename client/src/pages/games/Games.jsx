@@ -89,7 +89,7 @@ export default function Games() {
 		}
 	}, [isAuthenticated, loginWithPopup]);
 
-	return isLoading || loading || alert ? (
+	return isLoading || loading || alert || !account ? (
 		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
 	) : currentPage === 'Onboarding' ? (
 		<Onboarding token={token} setAccount={setAccount} />
@@ -99,7 +99,7 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
 			) : currentPage === 'Profile' ? (
-				<Profile />
+				<Profile account={account} />
 			) : null}
 		</div>
 	) : (
@@ -108,7 +108,7 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : currentPage === 'Profile' ? (
-				<Profile />
+				<Profile account={account} />
 			) : null}
 		</div>
 	);
