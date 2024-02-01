@@ -1,10 +1,20 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { Input } from '@material-tailwind/react';
 import React from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+function StyledTextField({ value, label }) {
+	return (
+		<Box className='flex flex-col mb-5'>
+			<span className='text-lg font-poppins font-normal mb-1'>{label}</span>
+			<Input defaultValue={value} className='rounded-xl font-poppins text-base' disabled />
+		</Box>
+	);
+}
+
 export default function Profile() {
 	return (
-		<Box className='flex px-7 py-16 justify-between w-full h-[90%]'>
+		<Box className='flex px-7 py-16 justify-between w-full h-[95%]'>
 			<Box className='w-1/2 flex flex-col justify-between px-5'>
 				<Box className='flex items-center space-x-2'>
 					<ArrowBackIosNewIcon sx={{ color: 'black', stroke: 'black', strokeWidth: 2 }} />
@@ -12,32 +22,16 @@ export default function Profile() {
 				</Box>
 				<Box
 					className='self-center my-6'
-					sx={{ width: 254, height: 254, bgcolor: 'grey.300', borderRadius: '50%' }}
+					sx={{ width: 250, height: 250, bgcolor: 'grey.300', borderRadius: '50%' }}
 				/>
-				<Box className='px-5'>
-					<TextField label='First name' variant='outlined' defaultValue='Jessie' fullWidth margin='normal' />
-					<TextField label='Last name' variant='outlined' defaultValue='Megan' fullWidth margin='normal' />
-					<TextField
-						label='Preferred name'
-						variant='outlined'
-						defaultValue='Jess'
-						fullWidth
-						margin='normal'
-					/>
-					<TextField
-						label='Student number'
-						variant='outlined'
-						defaultValue='12345678'
-						fullWidth
-						margin='normal'
-					/>
-					<TextField
-						label='Registered email address'
-						variant='outlined'
-						defaultValue='jessmgn@gisau.com'
-						fullWidth
-						margin='normal'
-					/>
+				<Box className='px-20'>
+					<Box className='flex justify-between space-x-4'>
+						<StyledTextField value='Jessie' label='First name' />
+						<StyledTextField value='Megan' label='Last name' />
+					</Box>
+					<StyledTextField value='Jessie' fullWidth label='Preferred name' />
+					<StyledTextField value='12345678' fullWidth label='Student number' />
+					<StyledTextField value='jessmgn@gisau.com' fullWidth label='Registered email address' />
 					<Button variant='outlined' startIcon={<ArrowBackIosNewIcon />}>
 						Edit
 					</Button>
