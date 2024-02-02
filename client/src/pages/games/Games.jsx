@@ -99,7 +99,7 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
 			) : currentPage === 'Profile' ? (
-				<Profile account={account} />
+				<Profile account={account} token={token} />
 			) : null}
 		</div>
 	) : (
@@ -108,7 +108,7 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : currentPage === 'Profile' ? (
-				<Profile account={account} />
+				<Profile account={account} token={token} />
 			) : null}
 		</div>
 	);
