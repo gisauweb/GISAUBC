@@ -9,7 +9,7 @@ import Leaderboard from './components/Leaderboard';
 
 export default function Dashboard({ account, token, setCurrentPage }) {
 	const { user } = useAuth0();
-	const username = user.given_name || user.nickname;
+	const username = account.nickname;
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const [loadingLeader, setLoadingLeader] = useState(true);
 
