@@ -37,7 +37,7 @@ export async function getLeaderboard() {
         acc[data.first_name] = {
             rank: rankNum,
             profilePicture: data.profile_picture,
-            firstName: data.first_name,
+            nickName: data.nickname,
             points: data.total_points,
 			target: pointsToNextRank || 0,
 			targetPoints: previousUserPoints || data.total_points,

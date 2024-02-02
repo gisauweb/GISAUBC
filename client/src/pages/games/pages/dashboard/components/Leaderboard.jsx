@@ -44,7 +44,7 @@ export default function Leaderboard({ username, leaderboard }) {
 				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
 					{sortedLeaderboard.slice(3).map((user, index) => (
 						<Box
-							key={user.firstName}
+							key={user.nickname}
 							className='bg-white rounded-xl p-2 flex items-center gap-5'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
@@ -70,10 +70,10 @@ export default function Leaderboard({ username, leaderboard }) {
 							>
 								<Typography
 									style={{
-										fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+										fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 									}}
 								>
-									{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+									{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 								</Typography>
 							</div>
 							<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
@@ -121,10 +121,10 @@ function thirdPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
@@ -167,10 +167,10 @@ function firstPlace(user, isBigger, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
@@ -199,10 +199,10 @@ function secondPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
