@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { Input } from '@material-tailwind/react';
 import React, { useState } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
@@ -21,7 +21,7 @@ function StyledTextField({ value, label, edit, onChange }) {
 	);
 }
 
-export default function Profile({ account, token }) {
+export default function Profile({ account, token, setCurrentPage }) {
 	const [edit, setEdit] = useState(false);
 	const [nickname, setNickname] = useState(account.nickname);
 
@@ -32,9 +32,18 @@ export default function Profile({ account, token }) {
 	return (
 		<Box className='flex px-7 py-16 justify-between w-[80vw] h-[95%]'>
 			<Box className='w-1/2 flex flex-col justify-between px-5'>
-				<Box className='flex items-center space-x-2'>
-					<ArrowBackIosNewIcon sx={{ color: 'black', stroke: 'black', strokeWidth: 2 }} />
-					<span className='font-bold font-poppins text-2xl'>My Profile</span>
+				<Box className='flex items-center '>
+					<IconButton
+						onClick={() => {
+							setCurrentPage('Dashboard');
+						}}
+					>
+						<ArrowBackIosNewIcon
+							sx={{ color: 'black', stroke: 'black', strokeWidth: 3 }}
+							fontSize='small'
+						/>
+					</IconButton>
+					<span className='font-bold font-poppins text-2xl pl-0.5'>My Profile</span>
 				</Box>
 				<img
 					src={account.profile_picture}
