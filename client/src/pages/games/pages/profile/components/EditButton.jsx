@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable object-curly-newline */
+import React, { useState } from 'react';
 import { Button, IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
@@ -28,27 +29,35 @@ const iconButtonStyles = {
 	transition: 'all 0.3s ease', // Animation transition
 };
 
-export default function EditButton({ edit, setEdit }) {
+export default function EditButton({ edit, setEdit, uid, token, nickname, setNickname }) {
+	const [oldNickname, setOldNickname] = useState('');
+	async function EditUserProfile() {
+		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user`, {
+			method: 'PUT',
+			headers: { Authorization: `Bearer ${token}` },
+			body: JSON.stringify({ uid, nickname }),
+		});
+	}
 	if (edit) {
 		return (
 			<>
 				<IconButton
-					sx={{ ...iconButtonStyles, bgcolor: '#4CAF50', mr: '10px' }} // Green for check
+					sx={{ ...iconButtonStyles, bgcolor: '#F44336', mr: '10px' }}
 					onClick={() => {
-						// Implement save changes logic here
-						setEdit(false);
-					}}
-				>
-					<CheckIcon />
-				</IconButton>
-				<IconButton
-					sx={{ ...iconButtonStyles, bgcolor: '#F44336' }} // Red for close
-					onClick={() => {
-						// Implement discard changes logic here
+						setNickname(oldNickname);
 						setEdit(false);
 					}}
 				>
 					<CloseIcon />
+				</IconButton>
+				<IconButton
+					sx={{ ...iconButtonStyles, bgcolor: '#4CAF50' }}
+					onClick={async () => {
+						await EditUserProfile(nickname);
+						setEdit(false);
+					}}
+				>
+					<CheckIcon />
 				</IconButton>
 			</>
 		);
@@ -59,6 +68,7 @@ export default function EditButton({ edit, setEdit }) {
 			startIcon={<EditIcon />}
 			sx={customButtonStyles}
 			onClick={() => {
+				setOldNickname(nickname);
 				setEdit(true);
 			}}
 		>

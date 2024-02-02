@@ -4,24 +4,30 @@ import React, { useState } from 'react';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import EditButton from './components/EditButton';
 
-function StyledTextField({ value, label, edit }) {
+function StyledTextField({ value, label, edit, onChange }) {
 	return (
 		<Box className='flex flex-col mb-5'>
 			<span className='text-lg font-poppins font-normal mb-1'>{label}</span>
 			<Input
 				variant='outlined'
-				defaultValue={value}
+				value={value}
 				className={`rounded-xl font-poppins text-base leading-none outline-1
 				outline-black ${edit ? 'text-black' : 'text-gray-400'}`}
 				containerProps={{ className: 'h-8' }}
 				disabled={!edit}
+				onChange={onChange}
 			/>
 		</Box>
 	);
 }
 
-export default function Profile({ account }) {
+export default function Profile({ account, token }) {
 	const [edit, setEdit] = useState(false);
+	const [nickname, setNickname] = useState(account.nickname);
+
+	const handleNicknameChange = (e) => {
+		setNickname(e.target.value);
+	};
 
 	return (
 		<Box className='flex px-7 py-16 justify-between w-[80vw] h-[95%]'>
@@ -38,19 +44,27 @@ export default function Profile({ account }) {
 				/>
 				<Box className='px-20'>
 					<Box className='flex justify-between '>
-						<StyledTextField value='Jessie' label='First name' edit={edit} />
-						<StyledTextField value='Megan' label='Last name' edit={edit} />
+						<StyledTextField value={account.first_name} label='First name' edit={false} />
+						<StyledTextField value={account.last_name} label='Last name' edit={false} />
 					</Box>
-					<StyledTextField value='Jessie' fullWidth label='Preferred name' edit={edit} />
-					<StyledTextField value='12345678' fullWidth label='Student number' edit={false} />
 					<StyledTextField
-						value='jessmgn@gisau.com'
+						value={nickname}
+						onChange={handleNicknameChange}
 						fullWidth
-						label='Registered email address'
-						edit={false}
+						label='Preferred name'
+						edit={edit}
 					/>
+					<StyledTextField value={account.sid} fullWidth label='Student number' edit={false} />
+					<StyledTextField value={account.email} fullWidth label='Registered email address' edit={false} />
 					<Box className='flex justify-end'>
-						<EditButton edit={edit} setEdit={setEdit} />
+						<EditButton
+							edit={edit}
+							setEdit={setEdit}
+							uid={account.uid}
+							token={token}
+							nickname={nickname}
+							setNickname={setNickname}
+						/>
 					</Box>
 				</Box>
 			</Box>
