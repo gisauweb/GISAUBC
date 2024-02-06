@@ -94,7 +94,7 @@ export default function Games() {
 	) : currentPage === 'Onboarding' ? (
 		<Onboarding token={token} setAccount={setAccount} />
 	) : isMobileView ? (
-		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay'>
+		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
 			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />

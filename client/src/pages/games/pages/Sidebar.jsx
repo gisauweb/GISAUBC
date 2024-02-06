@@ -162,7 +162,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 			<List style={{ position: 'absolute', bottom: '10px' }}>
 				{isMobileView && (
 					<>
-						<ListItem className='left-[-1] ml-[-1]'>
+						<ListItem onClick={() => handleMenuItemClick('Profile')} className='left-[-1] ml-[-1]'>
 							<div
 								className='justify-center'
 								style={{
@@ -193,10 +193,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 								<Typography style={{ fontWeight: 'bold', marginLeft: '5px' }}>{username}</Typography>
 							</div>
 						</ListItem>
-						<ListItem
-							onClick={() => handleMenuItemClick('Profile')}
-							style={{ backgroundColor: isCurrentPage('Profile') ? '#f0f0f0' : 'transparent' }}
-						>
+						<ListItem onClick={() => handleMenuItemClick('Profile')}>
 							<ListItemPrefix>
 								<PersonIcon className='h-5 w-5' />
 							</ListItemPrefix>
