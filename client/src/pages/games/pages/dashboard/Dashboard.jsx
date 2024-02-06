@@ -55,7 +55,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 		</>
 	) : (
 		user && (
-			<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
+			<div className='flex flex-col my-16 h-fit items-center gap-3 relative'>
 				<Profile username={account.nickname} picture={user.picture} />
 				<Points account={account} leaderboard={leaderboard} />
 				<Activity account={account} />

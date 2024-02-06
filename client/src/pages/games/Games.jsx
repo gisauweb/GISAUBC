@@ -95,12 +95,13 @@ export default function Games() {
 		<Onboarding token={token} setAccount={setAccount} />
 	) : isMobileView ? (
 		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
-			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
-			) : currentPage === 'Profile' ? (
-				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
-			) : null}
+			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage}>
+				{currentPage === 'Dashboard' ? (
+					<Dashboard account={account} token={token} />
+				) : currentPage === 'Profile' ? (
+					<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
+				) : null}
+			</MobileSideBar>
 		</div>
 	) : (
 		<div className='flex h-screen bg-white'>
