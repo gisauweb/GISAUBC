@@ -35,7 +35,8 @@ export async function getLeaderboard() {
         }
 
         acc[data.uid] = {
-            rank: rankNum,
+            uid: data.uid,
+			rank: rankNum,
             profilePicture: data.profile_picture,
             nickname: data.nickname,
             points: data.total_points,
