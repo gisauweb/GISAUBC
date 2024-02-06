@@ -7,8 +7,10 @@ import { Request, Response, NextFunction } from "express";
 import {
 	getUserModel,
 	createUserModel,
+	editUserModel,
 } from "../middleware/interfaces/user.interfaces";
 import {
+	editUserSchema,
 	getUserSchema,
 	userCreation,
 } from "../middleware/schema/user.schema";
@@ -31,6 +33,7 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 			profile_picture: profile_picture,
 			first_name: first_name,
 			last_name: last_name,
+			nickname: first_name,
 			email: email,
 			created_at: getCurrentTimestamp(),
 			updated_at: getCurrentTimestamp(),
@@ -94,8 +97,34 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
 		return await requestValidator(getUserInput, getUserSchema, res, next).then(async () => {
 			const user = await userRepository.getUserByUID(getUserInput.uid)
 			return res.json({ result: user || false });
+		}).catch((error) => {
+			return res.status(400).send(error);
 		});
 
+	} catch (err) {
+		return handleError(res, err);
+	}
+
+}
+
+export async function editUser(req: Request, res: Response, next: NextFunction) {
+	try {
+		const { uid, nickname } = JSON.parse(req.body);
+		const editPayload: editUserModel = {
+			uid: uid,
+			nickname: nickname
+		}
+		
+
+		return await requestValidator(editPayload, editUserSchema, res, next).then(async () => {
+			await userRepository.editUser(editPayload)
+			return res.status(200).send({
+				result: true,
+				message: `User ${nickname} has updated their nickname successfully`
+			});
+		}).catch((error) => {
+			return res.status(400).send(error);
+		});
 	} catch (err) {
 		return handleError(res, err);
 	}

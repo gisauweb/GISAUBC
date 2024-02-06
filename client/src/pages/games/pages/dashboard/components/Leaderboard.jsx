@@ -6,8 +6,6 @@ import crown from 'assets/games/crown.png';
 import { useMediaQuery } from 'react-responsive';
 import curls from 'assets/home-page/events/rantangan.svg';
 
-const ANON_PICTURE = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-
 export default function Leaderboard({ username, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
@@ -46,7 +44,7 @@ export default function Leaderboard({ username, leaderboard }) {
 				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
 					{sortedLeaderboard.slice(3).map((user, index) => (
 						<Box
-							key={user.firstName}
+							key={user.nickname}
 							className='bg-white rounded-xl p-2 flex items-center gap-5'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
@@ -54,7 +52,7 @@ export default function Leaderboard({ username, leaderboard }) {
 								{index + 4}
 							</Typography>
 							<img
-								src={user.profilePicture || ANON_PICTURE}
+								src={user.profilePicture}
 								alt={`profile_pic_${index}`}
 								style={{
 									width: '40px',
@@ -72,10 +70,10 @@ export default function Leaderboard({ username, leaderboard }) {
 							>
 								<Typography
 									style={{
-										fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+										fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 									}}
 								>
-									{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+									{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 								</Typography>
 							</div>
 							<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
@@ -105,7 +103,7 @@ function thirdPlace(user, username) {
 	return (
 		<Box className='flex flex-col mt-32 ml-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',
@@ -123,10 +121,10 @@ function thirdPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
@@ -150,7 +148,7 @@ function firstPlace(user, isBigger, username) {
 				}}
 			/>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '80px',
@@ -169,10 +167,10 @@ function firstPlace(user, isBigger, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
@@ -183,7 +181,7 @@ function secondPlace(user, username) {
 	return (
 		<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',
@@ -201,10 +199,10 @@ function secondPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.nickname.trim() === username.trim() ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.nickname.trim() === username.trim() ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>

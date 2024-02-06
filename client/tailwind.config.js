@@ -15,6 +15,7 @@ module.exports = {
 				oswald: ['Oswald', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				inter: ['Inter', 'sans_serif'],
+				poppins: ['Poppins', 'sans_serif'],
 			},
 			lineHeight: { 12: '3rem' },
 			colors: {

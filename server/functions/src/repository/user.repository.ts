@@ -1,5 +1,5 @@
 import { sha256 } from "js-sha256";
-import { createUserModel } from "../middleware/interfaces/user.interfaces";
+import { createUserModel, editUserModel } from "../middleware/interfaces/user.interfaces";
 // import { User } from "../model/user";
 import { db } from "./../index"
 
@@ -37,6 +37,15 @@ export async function getUserByUID(uid: string) {
 	const snapshot = await db.collection("users").doc(uuid).get();
 
 	return snapshot.data();
+}
+
+export async function editUser(editPayload: editUserModel) {
+	const uuid = sha256(editPayload.uid + secretCode)
+	const userDocRef = await db.collection("users").doc(uuid);
+
+	await userDocRef.update({
+		nickname: editPayload.nickname,
+	});
 }
 
 export async function getAllUsers() {
