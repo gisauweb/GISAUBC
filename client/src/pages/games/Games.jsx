@@ -89,9 +89,9 @@ export default function Games() {
 		}
 	}, [isAuthenticated, loginWithPopup]);
 
-	return isLoading || loading || alert || !account ? (
+	return isLoading || loading || alert ? (
 		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
-	) : currentPage === 'Onboarding' ? (
+	) : !account ? (
 		<Onboarding token={token} setAccount={setAccount} />
 	) : isMobileView ? (
 		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
