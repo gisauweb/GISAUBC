@@ -5,7 +5,7 @@ import sidemenu from 'assets/games/sidebar.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 import Sidebar from './Sidebar';
 
-export default function MobileSideBar({ currentPage, setCurrentPage }) {
+export default function MobileSideBar({ currentPage, setCurrentPage, children }) {
 	const { user } = useAuth0();
 	const username = user.given_name || user.nickname;
 
@@ -45,22 +45,25 @@ export default function MobileSideBar({ currentPage, setCurrentPage }) {
 					setCurrentPage={setCurrentPage}
 				/>
 			</animated.div>
-			<div className='flex flex-row'>
-				<div className='flex flex-row fixed top-5 z-40 left-5' onClick={toggleSidebar}>
-					<img
-						src={sidemenu}
-						alt='sidemenu'
-						style={{ maxWidth: '50px', height: 'auto', zIndex: '50', left: '0px' }}
-					/>
+			<div className='pt-3'>
+				<div className='flex flex-row'>
+					<div className='flex flex-row fixed top-5 z-40 left-5' onClick={toggleSidebar}>
+						<img
+							src={sidemenu}
+							alt='sidemenu'
+							style={{ maxWidth: '50px', height: 'auto', zIndex: '50', left: '0px' }}
+						/>
+					</div>
+					<div className='flex flex-row fixed top-5 z-40 right-5'>
+						<img
+							src={logo}
+							href='/home'
+							alt='GISAU logo red'
+							style={{ maxWidth: '50px', height: 'auto', zIndex: '50' }}
+						/>
+					</div>
 				</div>
-				<div className='flex flex-row fixed top-5 z-40 right-5'>
-					<img
-						src={logo}
-						href='/home'
-						alt='GISAU logo red'
-						style={{ maxWidth: '50px', height: 'auto', zIndex: '50' }}
-					/>
-				</div>
+				{children}
 			</div>
 		</>
 	);
