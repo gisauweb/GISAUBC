@@ -55,7 +55,7 @@ export default function StudentIdDialog({ open, setOpen, setAccount, token, setS
 				}
 			})
 			.catch((err) => {
-				Sentry.captureException('There was a problem with the register operation:', err);
+				Sentry.captureException('Error when registering a new user: ', err);
 			});
 
 		handleClose();
