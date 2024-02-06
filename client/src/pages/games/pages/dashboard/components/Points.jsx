@@ -29,7 +29,7 @@ function easeInOut(t) {
 
 export default function Points({ account, leaderboard }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
-	const { rank, target, targetPoints } = leaderboard[account.first_name];
+	const { rank, target, targetPoints } = leaderboard[account.uid];
 	const targetRank = rank === 1 ? 1 : rank - 1;
 	const points = account.total_points;
 	const rankSuffix = getRankSuffix(targetRank);

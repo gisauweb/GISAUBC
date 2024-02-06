@@ -34,7 +34,7 @@ export async function getLeaderboard() {
             pointsToNextRank = previousUserPoints - data.total_points;
         }
 
-        acc[data.first_name] = {
+        acc[data.uid] = {
             rank: rankNum,
             profilePicture: data.profile_picture,
             nickname: data.nickname,
@@ -44,7 +44,7 @@ export async function getLeaderboard() {
         };
 
 		previousUserPoints = data.total_points;
-        rankNum++;
+        rankNum += 1;
 
         return acc;
     }, {});
