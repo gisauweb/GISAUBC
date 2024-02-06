@@ -14,6 +14,7 @@ export async function createUser(userPayload: createUserModel) {
 		profile_picture: userPayload.profile_picture,
 		first_name: userPayload.first_name,
 		last_name: userPayload.last_name,
+		nickname: userPayload.nickname,
 		email: userPayload.email,
 		total_points: 0,
 		created_at: userPayload.created_at,
