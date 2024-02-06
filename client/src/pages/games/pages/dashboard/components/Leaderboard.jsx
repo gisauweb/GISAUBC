@@ -8,7 +8,7 @@ import curls from 'assets/home-page/events/rantangan.svg';
 
 export default function Leaderboard({ uid, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	const sortedLeaderboard = Object.entries(leaderboard).map(([, value]) => value);
 

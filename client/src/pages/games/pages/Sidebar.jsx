@@ -50,7 +50,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 	const handleLogout = () => {
 		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
 	};
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const handleCloseSidebar = () => {
 		setOpen(0);
 		onCloseSidebar(false);

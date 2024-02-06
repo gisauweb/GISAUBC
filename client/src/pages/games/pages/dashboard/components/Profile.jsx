@@ -4,7 +4,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useMediaQuery } from 'react-responsive';
 
 export default function Profile({ username, picture, setCurrentPage }) {
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
 		<Box
