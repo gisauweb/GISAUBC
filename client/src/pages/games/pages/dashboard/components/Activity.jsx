@@ -9,7 +9,7 @@ import trophy from 'assets/games/trophy.svg';
 
 export default function Activity({ account }) {
 	const chartRef = useRef(null);
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	useEffect(() => {
 		if (!account) {
@@ -80,7 +80,7 @@ export default function Activity({ account }) {
 
 	return (
 		<Box
-			className='h-50 justify-center items-center mt-15 bg-gamesBox rounded-2xl px-2'
+			className='h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
 			style={{ width: isMobileView ? '80vw' : '100%' }}
 		>
 			{isMobileView && (

@@ -5,7 +5,7 @@ import HIGHLIGHTS from 'assets/about/higlights/index';
 import { useMediaQuery } from 'react-responsive';
 
 export default function Highlights() {
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
 		<Box className=''>
