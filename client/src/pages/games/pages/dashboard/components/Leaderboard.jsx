@@ -41,11 +41,15 @@ export default function Leaderboard({ uid, leaderboard }) {
 					{firstPlace(sortedLeaderboard[0], isBigger, uid)}
 					{thirdPlace(sortedLeaderboard[2], uid)}
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
+				<Box
+					className={`${
+						isMobileView ? 'overflow-y-hidden' : 'overflow-y-auto'
+					} flex flex-col gap-3 mt-5 items-center w-full`}
+				>
 					{sortedLeaderboard.slice(3).map((user, index) => (
 						<Box
 							key={user.nickname}
-							className='bg-white rounded-xl p-2 flex items-center gap-5'
+							className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
 							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
@@ -64,7 +68,6 @@ export default function Leaderboard({ uid, leaderboard }) {
 							<div
 								style={{
 									width: '50%',
-									overflow: 'auto',
 									maxWidth: '50%',
 								}}
 							>
