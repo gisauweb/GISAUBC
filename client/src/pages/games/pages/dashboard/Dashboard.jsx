@@ -9,7 +9,6 @@ import Leaderboard from './components/Leaderboard';
 
 export default function Dashboard({ account, token, setCurrentPage }) {
 	const { user } = useAuth0();
-	const username = account.nickname;
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 	const [loadingLeader, setLoadingLeader] = useState(true);
 
@@ -45,22 +44,22 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 		<>
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
-					<Profile username={username} picture={user.picture} setCurrentPage={setCurrentPage} />
+					<Profile username={account.nickname} picture={user.picture} setCurrentPage={setCurrentPage} />
 					<Points account={account} leaderboard={leaderboard} />
 				</div>
 				<div className='flex h-1/2 w-4/5'>
 					<Activity account={account} />
 				</div>
 			</div>
-			<Leaderboard username={username} leaderboard={leaderboard} />
+			<Leaderboard uid={account.uid} leaderboard={leaderboard} />
 		</>
 	) : (
 		user && (
 			<div className='flex flex-col my-16 h-screen items-center gap-3 relative'>
-				<Profile username={username} picture={user.picture} />
+				<Profile username={account.nickname} picture={user.picture} />
 				<Points account={account} leaderboard={leaderboard} />
 				<Activity account={account} />
-				<Leaderboard username={username} leaderboard={leaderboard} />
+				<Leaderboard uid={account.uid} leaderboard={leaderboard} />
 			</div>
 		)
 	);
