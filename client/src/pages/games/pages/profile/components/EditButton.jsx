@@ -16,6 +16,7 @@ const customButtonStyles = {
 	},
 	width: '87px',
 	height: '39px',
+	textTransform: 'none',
 	transition: 'all 0.3s ease', // Animation transition
 };
 

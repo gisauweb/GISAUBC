@@ -7,7 +7,7 @@ import EditButton from './components/EditButton';
 
 function StyledTextField({ value, label, edit, onChange }) {
 	return (
-		<Box className='flex flex-col mb-5'>
+		<Box className='flex flex-col mb-5 px-2'>
 			<span className='text-lg font-poppins font-normal mb-1'>{label}</span>
 			<Input
 				variant='outlined'
@@ -38,9 +38,9 @@ export default function Profile({ account, token, setCurrentPage }) {
 		>
 			<Box
 				className='w-full xl:w-1/2 flex flex-col justify-center items-center
-							xl:items-start xl:justify-between xl:px-5'
+							xl:items-center xl:justify-between xl:px-5'
 			>
-				<Box className='flex items-center'>
+				<Box className='flex xl:self-start'>
 					{!isMobileView && (
 						<IconButton
 							onClick={() => {
@@ -55,14 +55,15 @@ export default function Profile({ account, token, setCurrentPage }) {
 					)}
 					<span className='font-bold font-poppins text-2xl xl:pl-0.5'>My Profile</span>
 				</Box>
-				<img
-					src={account.profile_picture}
-					alt="User's profile"
-					style={{ width: 200, height: 200, borderRadius: '50%', borderWidth: '1px' }}
-					className='self-center my-10 mb-16 xl:mb-6 xl:my-6'
-				/>
-				<Box className='xl:px-20'>
-					<Box className='flex justify-between '>
+				<Box className='flex justify-center mt-10 mb-16 xl:my-6'>
+					<img
+						src={account.profile_picture}
+						alt="User's profile"
+						style={{ width: 200, height: 200, borderRadius: '50%', borderWidth: '1px' }}
+					/>
+				</Box>
+				<Box className='px-10 xl:px-16'>
+					<Box className='flex justify-between'>
 						<StyledTextField value={account.first_name} label='First name' edit={false} />
 						<StyledTextField value={account.last_name} label='Last name' edit={false} />
 					</Box>
@@ -75,7 +76,7 @@ export default function Profile({ account, token, setCurrentPage }) {
 					/>
 					<StyledTextField value={account.sid} fullWidth label='Student number' edit={false} />
 					<StyledTextField value={account.email} fullWidth label='Registered email address' edit={false} />
-					<Box className='flex justify-end'>
+					<Box className='flex justify-end mt-7'>
 						<EditButton
 							edit={edit}
 							setEdit={setEdit}
