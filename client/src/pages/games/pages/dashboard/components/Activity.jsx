@@ -2,18 +2,20 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
-import user from 'pages/games/user.json';
 import { useMediaQuery } from 'react-responsive';
 import bang from 'assets/home-page/events/upcoming_event.svg';
 import plane from 'assets/games/plane.svg';
 import trophy from 'assets/games/trophy.svg';
 
-export default function Activity() {
+export default function Activity({ account }) {
 	const chartRef = useRef(null);
-	const { date, activity } = user;
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	useEffect(() => {
+		if (!account) {
+			return () => {};
+		}
+		const pastActivities = account.past_activities || {};
 		const ctx = chartRef.current.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, 300);
 		gradient.addColorStop(0, '#BFA4856E');
@@ -23,13 +25,13 @@ export default function Activity() {
 		const chart = new Chart(ctx, {
 			type: 'line',
 			data: {
-				labels: date,
+				labels: Object.keys(pastActivities),
 				datasets: [
 					{
 						backgroundColor: gradient,
 						borderColor: '#BFA285',
 						borderWidth: 1,
-						data: activity,
+						data: Object.values(pastActivities),
 						fill: true,
 					},
 				],
@@ -74,7 +76,7 @@ export default function Activity() {
 		return () => {
 			chart.destroy();
 		};
-	}, [activity, date]);
+	}, [account]);
 
 	return (
 		<Box

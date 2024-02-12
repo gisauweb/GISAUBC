@@ -4,6 +4,7 @@
 import { Application } from "express";
 import {
 	createUserIfNotExists,
+	editUser,
 	getAllUsers,
 	getUser,
 	removeUser,
@@ -28,9 +29,9 @@ export default function userRoutes(app: Application) {
 	app.get("/users/user/:uid", getUser);
 
 	/**
-	* Add new field to user with :uid
+	* Edit user's fields
 	**/
-	app.patch("/users/user/:uid", getUser);
+	app.put("/users/user", editUser);
 
 	/**
 	* Delete user with :uid

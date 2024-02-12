@@ -22,27 +22,55 @@ import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
 
-export default function Sidebar({ username, picture, onCloseSidebar }) {
+function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
+	return (
+		<ListItem
+			onClick={onClick}
+			style={{
+				backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+				position: 'relative',
+				display: 'flex',
+				alignItems: 'center',
+			}}
+		>
+			<ListItemPrefix>
+				<PrefixIcon className='h-5 w-5' />
+			</ListItemPrefix>
+			{label}
+		</ListItem>
+	);
+}
+
+export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
 	const [open, setOpen] = React.useState(0);
 	const { logout } = useAuth0();
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};
 	const handleLogout = () => {
-		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}/games` } });
+		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
 	};
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const handleCloseSidebar = () => {
 		setOpen(0);
 		onCloseSidebar(false);
 	};
+
+	const handleMenuItemClick = (page) => {
+		setCurrentPage(page);
+		if (isMobileView) {
+			handleCloseSidebar();
+		}
+	};
+
+	const isCurrentPage = (page) => currentPage === page;
 
 	return (
 		<Card
 			className='h-full max-w-[18rem] p-4
 			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
 			style={{
-				height: '100vh',
+				height: '100dvh',
 				width: isMobileView ? '75vw' : '20vw',
 				borderRadius: '0 30px 30px 0',
 				color: 'white',
@@ -75,6 +103,12 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 				<img src={rectangle} alt='border' style={{ maxWidth: '100px', height: 'auto', marginTop: '5px' }} />
 			</div>
 			<List>
+				<SelectableListItem
+					prefixIcon={IoMdHome}
+					label='Dashboard'
+					isSelected={isCurrentPage('Dashboard')}
+					onClick={() => handleMenuItemClick('Dashboard')}
+				/>
 				<Accordion
 					open={open === 1}
 					icon={
@@ -85,12 +119,6 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 						/>
 					}
 				>
-					<ListItem>
-						<ListItemPrefix>
-							<IoMdHome className='h-5 w-5' />
-						</ListItemPrefix>
-						Dashboard
-					</ListItem>
 					<ListItem className='p-0' selected={open === 1}>
 						<AccordionHeader onClick={() => handleOpen(1)} className='border-b-0 p-3'>
 							<ListItemPrefix>
@@ -103,38 +131,32 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 					</ListItem>
 					<AccordionBody className='py-1' style={{ color: 'white' }}>
 						<List className='p-0'>
-							<ListItem>
-								<ListItemPrefix>
-									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-								</ListItemPrefix>
-								Game A
-							</ListItem>
-							<ListItem>
-								<ListItemPrefix>
-									<ChevronRightIcon strokeWidth={3} className='h-3 w-5' />
-								</ListItemPrefix>
-								Game B
-							</ListItem>
+							<SelectableListItem
+								prefixIcon={ChevronRightIcon}
+								label='Pomodoro Timer'
+								isSelected={isCurrentPage('Pomodoro')}
+								onClick={() => handleMenuItemClick('Pomodoro')}
+							/>
 						</List>
 					</AccordionBody>
 				</Accordion>
-				<ListItem>
-					<ListItemPrefix>
-						<FaGift className='h-5 w-5' />
-					</ListItemPrefix>
-					Redeem Points
-				</ListItem>
-				<ListItem>
-					<ListItemPrefix>
-						<IoMdSettings className='h-5 w-5' />
-					</ListItemPrefix>
-					Settings
-				</ListItem>
+				<SelectableListItem
+					prefixIcon={FaGift}
+					label='Redeem Points'
+					isSelected={isCurrentPage('Redeem')}
+					onClick={() => handleMenuItemClick('Redeem')}
+				/>
+				<SelectableListItem
+					prefixIcon={IoMdSettings}
+					label='Settings'
+					isSelected={isCurrentPage('Settings')}
+					onClick={() => handleMenuItemClick('Settings')}
+				/>
 			</List>
 			<List style={{ position: 'absolute', bottom: '10px' }}>
 				{isMobileView && (
 					<>
-						<ListItem className='left-[-1] ml-[-1]'>
+						<ListItem onClick={() => handleMenuItemClick('Profile')} className='left-[-1] ml-[-1]'>
 							<div
 								className='justify-center'
 								style={{
@@ -165,7 +187,7 @@ export default function Sidebar({ username, picture, onCloseSidebar }) {
 								<Typography style={{ fontWeight: 'bold', marginLeft: '5px' }}>{username}</Typography>
 							</div>
 						</ListItem>
-						<ListItem>
+						<ListItem onClick={() => handleMenuItemClick('Profile')}>
 							<ListItemPrefix>
 								<PersonIcon className='h-5 w-5' />
 							</ListItemPrefix>

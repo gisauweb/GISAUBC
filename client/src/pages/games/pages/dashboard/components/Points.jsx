@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import pointIcon from 'assets/games/points_icon.svg';
-import user from 'pages/games/user.json';
 import { useMediaQuery } from 'react-responsive';
 import game from 'assets/games/game.svg';
 import treasure from 'assets/games/treasure.svg';
@@ -28,10 +27,12 @@ function easeInOut(t) {
 	return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
 }
 
-export default function Points() {
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
-	const { points, target, rank, highest } = user;
-	const rankSuffix = getRankSuffix(rank);
+export default function Points({ account, leaderboard }) {
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
+	const { rank, target, targetPoints } = leaderboard[account.uid];
+	const targetRank = rank === 1 ? 1 : rank - 1;
+	const points = account.total_points;
+	const rankSuffix = getRankSuffix(targetRank);
 
 	const [animatedValue, setAnimatedValue] = useState(0);
 
@@ -44,7 +45,7 @@ export default function Points() {
 			if (!startTime) startTime = timestamp;
 			const progress = Math.min(1, (timestamp - startTime) / animationDuration);
 
-			setAnimatedValue(easeInOut(progress) * (points / highest) * 100);
+			setAnimatedValue(easeInOut(progress) * (points / targetPoints) * 100);
 
 			if (progress < 1) {
 				requestAnimationFrame(animate);
@@ -54,9 +55,9 @@ export default function Points() {
 		requestAnimationFrame(animate);
 
 		return () => {
-			setAnimatedValue((points / highest) * 100);
+			setAnimatedValue((points / targetPoints) * 100);
 		};
-	}, [points, highest]);
+	}, [points, targetPoints]);
 
 	return (
 		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center'>
@@ -100,7 +101,7 @@ export default function Points() {
 						Earn&nbsp;
 						{target}
 						&nbsp;points to reach&nbsp;
-						{rank}
+						{targetRank}
 						{rankSuffix}
 						&nbsp;place!
 					</div>

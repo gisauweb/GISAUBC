@@ -2,9 +2,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import { useMediaQuery } from 'react-responsive';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
+import Profile from './pages/profile/Profile';
+import Sidebar from './pages/Sidebar';
+import MobileSideBar from './pages/MobileSidebar';
+import Pomodoro from './pages/games/Pomodoro';
 
 export default function Games() {
 	const {
@@ -17,10 +22,12 @@ export default function Games() {
 		logout,
 	} = useAuth0();
 	const [token, setToken] = useState(null);
-	const [isRegistered, setIsRegistered] = useState(false);
+	const [account, setAccount] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState('');
 	const [alert, setAlert] = useState(false);
+	const [currentPage, setCurrentPage] = useState('Dashboard');
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	const handleLoginAgain = async () => {
 		try {
@@ -51,7 +58,7 @@ export default function Games() {
 			try {
 				const result = await getAccessTokenSilently();
 				setToken(result);
-				if (!isRegistered && user) {
+				if (!account && user) {
 					fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
@@ -61,7 +68,7 @@ export default function Games() {
 					})
 						.then((res) => res.json())
 						.then((res) => {
-							setIsRegistered(res.result);
+							setAccount(res.result);
 							setLoading(false);
 						})
 						.catch((err) => {
@@ -72,12 +79,47 @@ export default function Games() {
 				setError(err.message);
 			}
 		}
+		if (isAuthenticated && user && !account) {
+			getToken();
+		}
+	}, [isAuthenticated, user, account, getAccessTokenSilently]);
+
+	useEffect(() => {
 		if (!isAuthenticated) {
 			loginWithPopup();
 		}
-		getToken();
-	}, [isAuthenticated, isRegistered, loading, user, loginWithPopup, getAccessTokenSilently]);
+	}, [isAuthenticated, loginWithPopup]);
+
 	return isLoading || loading || alert ? (
+		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
+	) : !account ? (
+		<Onboarding token={token} setAccount={setAccount} />
+	) : isMobileView ? (
+		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
+			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+			{currentPage === 'Dashboard' ? (
+				<Dashboard account={account} token={token} />
+			) : currentPage === 'Profile' ? (
+				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
+			) : null}
+		</div>
+	) : (
+		<div className='flex h-screen bg-white'>
+			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+			{currentPage === 'Dashboard' ? (
+				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
+			) : currentPage === 'Profile' ? (
+				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
+			) : currentPage === 'Pomodoro' ? (
+				<Pomodoro />
+			) : null}
+		</div>
+	);
+}
+
+function Loading({ params }) {
+	const { alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert } = params;
+	return (
 		<>
 			<div>Loading...</div>
 			{alert && (
@@ -90,7 +132,7 @@ export default function Games() {
 						} else {
 							logout({
 								logoutParams: {
-									returnTo: `${window.location.origin.toString()}/games`,
+									returnTo: `${window.location.origin.toString()}`,
 								},
 							});
 						}
@@ -101,9 +143,5 @@ export default function Games() {
 				</div>
 			)}
 		</>
-	) : isAuthenticated && isRegistered ? (
-		<Dashboard token={token} />
-	) : (
-		<Onboarding token={token} setIsRegistered={setIsRegistered} />
 	);
 }
