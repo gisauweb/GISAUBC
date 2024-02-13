@@ -34,10 +34,6 @@ function Timer() {
 		setIsRunning(false);
 	};
 
-	const resumeTimer = () => {
-		setIsRunning(true);
-	};
-
 	const handleFocusChange = (event) => {
 		setFocusDuration(event.target.value);
 		setTime(event.target.value * 60);
@@ -48,9 +44,9 @@ function Timer() {
 	};
 
 	return (
-		<Box className='flex flex-col py-1 px-5 w-full justify-center items-center'>
+		<Box className='flex flex-col py-1 px-5 w-full justify-center items-center gap-1'>
 			<Typography style={{ fontWeight: 'bold' }}>Pomodoro Timer</Typography>
-			<Typography>Let&apos;s Focus!</Typography>
+			<Typography style={{ fontSize: '10px' }}>Let&apos;s Focus!</Typography>
 			<Typography style={{ fontWeight: 'bold', fontSize: '30px' }} className='mt-8'>
 				{`${Math.floor(time / 60)
 					.toString()
@@ -61,7 +57,7 @@ function Timer() {
 					Pause
 				</Button>
 			) : (
-				<Button variant='contained' onClick={startTimer} className='rounded-full mt-10'>
+				<Button variant='contained' onClick={startTimer} className='mt-10 rounded-3xl'>
 					Start
 				</Button>
 			)}
@@ -76,7 +72,7 @@ function Timer() {
 				</Select>
 				<Typography>mins</Typography>
 			</div>
-			<div className='flex flex-row justify-center items-center gap-5 mt-5'>
+			<div className='flex flex-row justify-center items-center gap-3 mt-5'>
 				<Typography>Break</Typography>
 				<Select value={breakDuration} onChange={handleBreakChange} className=' bg-white h-8'>
 					<MenuItem value={5}>5</MenuItem>
