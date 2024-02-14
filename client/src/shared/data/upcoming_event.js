@@ -1,4 +1,4 @@
-//import { EVENTS_23_24 } from 'assets/events-page/past-events';
+// import { EVENTS_23_24 } from 'assets/events-page/past-events';
 
 const UPCOMING_EVENTS = [];
 
