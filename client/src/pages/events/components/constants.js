@@ -3,6 +3,13 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[8],
+			title: 'Bermain Bersama GISAU',
+			date: 'February 9-11',
+			loc: 'Online | Metrotown',
+			registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
+		},
+		{
 			image: EVENTS_23_24[7],
 			title: 'Exam Care Package',
 			date: 'Wednesday, December 5 | 12-5PM / Thursday, December 6 | 1-5:30PM ',
