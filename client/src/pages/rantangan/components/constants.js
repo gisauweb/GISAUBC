@@ -1,7 +1,13 @@
-import { RANTANGAN_22_23 } from 'assets/rantangan-page/past-rantangan/index';
+import { RANTANGAN_22_23, RANTANGAN_23_24 } from 'assets/rantangan-page/past-rantangan/index';
 
 const PAST_RANTANGAN = {
-	'2023/2024': [],
+	'2023/2024': [
+		{
+			image: RANTANGAN_23_24[0],
+			title: 'Beef Rice Bowls',
+			description: 'Wednesday, December 6 | 1-5:30PM',
+		},
+	],
 	'2022/2023': [
 		{
 			image: RANTANGAN_22_23[0],

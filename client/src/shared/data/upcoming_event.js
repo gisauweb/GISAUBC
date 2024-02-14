@@ -1,23 +1,23 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import cafe from 'assets/events-page/past-events/23_24/cafe.pdf';
-import care from 'assets/events-page/past-events/23_24/care.pdf';
+import MOLE from 'assets/events-page/MOLE.pdf';
+import FIFA from 'assets/events-page/FIFA.pdf';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_23_24[7],
-		title: 'Exam Care Package',
-		date: 'Wednesday, December 5 | 12-5PM / Thursday, December 6 | 1-5:30PM ',
-		loc: 'AMS Nest',
-		registrationLink: 'https://forms.gle/uPPiTkc612KS7nZb9',
-		infoLink: care,
+		image: EVENTS_23_24[8],
+		title: 'Bermain Bersama GISAU (Mobile Legends)',
+		date: 'February 9-11',
+		loc: 'Online',
+		registrationLink: 'https://forms.gle/pJjdw5Ac5B7MdnbPA',
+		infoLink: MOLE,
 	},
 	{
-		image: EVENTS_23_24[6],
-		title: 'Study Cafe',
-		date: 'Wednesday, December 6 | 1-5:30PM',
-		loc: 'AMS Lev Bukhman (Bird Nest)',
-		registrationLink: cafe,
-		infoLink: cafe,
+		image: EVENTS_23_24[8],
+		title: 'Bermain Bersama GISAU (FIFA 23)',
+		date: 'February 11 | 12-4PM',
+		loc: 'Metrotown',
+		registrationLink: 'https://forms.gle/ggF7TUsArMX7Rai96',
+		infoLink: FIFA,
 	},
 ];
 

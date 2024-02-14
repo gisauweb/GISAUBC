@@ -3,6 +3,20 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[7],
+			title: 'Exam Care Package',
+			date: 'Wednesday, December 5 | 12-5PM / Thursday, December 6 | 1-5:30PM ',
+			loc: 'AMS Nest',
+			registrationLink: 'https://forms.gle/uPPiTkc612KS7nZb9',
+		},
+		{
+			image: EVENTS_23_24[6],
+			title: 'Study Cafe',
+			date: 'Wednesday, December 6 | 1-5:30PM',
+			loc: 'AMS Lev Bukhman (Bird Nest)',
+			registrationLink: '',
+		},
+		{
 			image: EVENTS_23_24[5],
 			title: 'Malem Mingguan',
 			date: 'Saturday, November 18 | 3:30PM',
