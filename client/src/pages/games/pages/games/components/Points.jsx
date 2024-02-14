@@ -34,9 +34,9 @@ function Points() {
 			</div>
 			<div className='botom-2 mt-5'>
 				<Typography style={{ fontSize: '10px' }} className='mt-5'>
-					* 1 point per minute spent
+					<span>* 1 point per minute spent</span>
 					<br />
-* Maximum 300 points per day
+					<span>* Maximum 300 points per day</span>
 				</Typography>
 			</div>
 		</Box>
