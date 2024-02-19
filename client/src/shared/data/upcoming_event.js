@@ -1,6 +1,16 @@
-// import { EVENTS_23_24 } from 'assets/events-page/past-events';
+import { EVENTS_23_24 } from 'assets/events-page/past-events';
+import indomie from 'assets/events-page/indomie.pdf';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_23_24[9],
+		title: 'Indomie-T Me At The Finish Line',
+		date: 'Friday, March 1 | 4-7PM',
+		loc: 'Nest Lower Atrium',
+		registrationLink: 'https://forms.gle/YBcyyqDFsHu5kN9D8',
+		infoLink: indomie,
+	},
+];
 
 export default UPCOMING_EVENTS;
 
