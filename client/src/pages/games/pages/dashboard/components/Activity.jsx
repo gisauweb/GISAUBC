@@ -9,7 +9,7 @@ import trophy from 'assets/games/trophy.svg';
 
 export default function Activity({ account }) {
 	const chartRef = useRef(null);
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	useEffect(() => {
 		if (!account) {

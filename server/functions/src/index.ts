@@ -29,7 +29,9 @@ const ServiceAccountPARAMS = {
 	clientC509CertUrl: serviceAccount.client_x509_cert_url,
 };
 
-const appOrigin = "http://localhost:3000";
+const LOCAL_DEV_ENV = true;
+
+const appOrigin = LOCAL_DEV_ENV ? "http://localhost:3000" : "https://deploy-preview-185--gisaubcv3.netlify.app";
 
 const getSecret = jwks.expressJwtSecret({
 	cache: true,

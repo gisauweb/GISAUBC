@@ -26,7 +26,7 @@ export default function Games() {
 	const [error, setError] = useState('');
 	const [alert, setAlert] = useState(false);
 	const [currentPage, setCurrentPage] = useState('Dashboard');
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	const handleLoginAgain = async () => {
 		try {
@@ -91,24 +91,24 @@ export default function Games() {
 
 	return isLoading || loading || alert ? (
 		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
-	) : currentPage === 'Onboarding' ? (
+	) : !account ? (
 		<Onboarding token={token} setAccount={setAccount} />
 	) : isMobileView ? (
-		<div className='w-screen flex flex-col h-fit items-center gap-3 relative bg-overlay'>
-			<MobileSideBar />
+		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
+			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
 			) : currentPage === 'Profile' ? (
-				<Profile />
+				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : null}
 		</div>
 	) : (
-		<div className='flex h-screen'>
+		<div className='flex h-screen bg-white'>
 			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
+				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : currentPage === 'Profile' ? (
-				<Profile />
+				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : null}
 		</div>
 	);

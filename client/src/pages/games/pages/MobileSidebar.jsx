@@ -5,7 +5,7 @@ import sidemenu from 'assets/games/sidebar.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 import Sidebar from './Sidebar';
 
-export default function MobileSideBar() {
+export default function MobileSideBar({ currentPage, setCurrentPage }) {
 	const { user } = useAuth0();
 	const username = user.given_name || user.nickname;
 
@@ -37,7 +37,13 @@ export default function MobileSideBar() {
 					width: '80vw',
 				}}
 			>
-				<Sidebar username={username} picture={user.picture} onCloseSidebar={onCloseSidebar} />
+				<Sidebar
+					username={username}
+					picture={user.picture}
+					onCloseSidebar={onCloseSidebar}
+					currentPage={currentPage}
+					setCurrentPage={setCurrentPage}
+				/>
 			</animated.div>
 			<div className='flex flex-row'>
 				<div className='flex flex-row fixed top-5 z-40 left-5' onClick={toggleSidebar}>

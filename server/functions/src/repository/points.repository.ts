@@ -34,17 +34,18 @@ export async function getLeaderboard() {
             pointsToNextRank = previousUserPoints - data.total_points;
         }
 
-        acc[data.first_name] = {
-            rank: rankNum,
+        acc[data.uid] = {
+            uid: data.uid,
+			rank: rankNum,
             profilePicture: data.profile_picture,
-            firstName: data.first_name,
+            nickname: data.nickname,
             points: data.total_points,
 			target: pointsToNextRank || 0,
 			targetPoints: previousUserPoints || data.total_points,
         };
 
 		previousUserPoints = data.total_points;
-        rankNum++;
+        rankNum += 1;
 
         return acc;
     }, {});

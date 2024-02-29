@@ -3,8 +3,8 @@ import { Box, Typography, Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import { useMediaQuery } from 'react-responsive';
 
-export default function Profile({ username, picture }) {
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+export default function Profile({ username, picture, setCurrentPage }) {
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
 		<Box
@@ -61,6 +61,9 @@ export default function Profile({ username, picture }) {
 						fontStyle: 'normal',
 						fontSize: '10px',
 						textTransform: 'none',
+					}}
+					onClick={() => {
+						setCurrentPage('Profile');
 					}}
 				>
 					<PersonIcon className='self-center justify-center' />

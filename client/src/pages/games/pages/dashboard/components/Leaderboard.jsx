@@ -6,11 +6,9 @@ import crown from 'assets/games/crown.png';
 import { useMediaQuery } from 'react-responsive';
 import curls from 'assets/home-page/events/rantangan.svg';
 
-const ANON_PICTURE = 'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y';
-
-export default function Leaderboard({ username, leaderboard }) {
+export default function Leaderboard({ uid, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
-	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	const sortedLeaderboard = Object.entries(leaderboard).map(([, value]) => value);
 
@@ -39,22 +37,26 @@ export default function Leaderboard({ username, leaderboard }) {
 					Leaderboard
 				</Typography>
 				<Box className='flex flex-row w-auto h-auto'>
-					{secondPlace(sortedLeaderboard[1], username)}
-					{firstPlace(sortedLeaderboard[0], isBigger, username)}
-					{thirdPlace(sortedLeaderboard[2], username)}
+					{secondPlace(sortedLeaderboard[1], uid)}
+					{firstPlace(sortedLeaderboard[0], isBigger, uid)}
+					{thirdPlace(sortedLeaderboard[2], uid)}
 				</Box>
-				<Box className='flex flex-col gap-3 mt-5 items-center overflow-y-auto w-full'>
+				<Box
+					className={`${
+						isMobileView ? 'overflow-y-hidden' : 'overflow-y-auto'
+					} flex flex-col gap-3 mt-5 items-center w-full`}
+				>
 					{sortedLeaderboard.slice(3).map((user, index) => (
 						<Box
-							key={user.firstName}
-							className='bg-white rounded-xl p-2 flex items-center gap-5'
+							key={user.nickname}
+							className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
 							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
 								{index + 4}
 							</Typography>
 							<img
-								src={user.profilePicture || ANON_PICTURE}
+								src={user.profilePicture}
 								alt={`profile_pic_${index}`}
 								style={{
 									width: '40px',
@@ -66,16 +68,15 @@ export default function Leaderboard({ username, leaderboard }) {
 							<div
 								style={{
 									width: '50%',
-									overflow: 'auto',
 									maxWidth: '50%',
 								}}
 							>
 								<Typography
 									style={{
-										fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+										fontWeight: user.uid === uid ? 'bold' : 'normal',
 									}}
 								>
-									{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+									{user.uid === uid ? 'Me' : user.nickname}
 								</Typography>
 							</div>
 							<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
@@ -101,11 +102,11 @@ export default function Leaderboard({ username, leaderboard }) {
 		</Box>
 	);
 }
-function thirdPlace(user, username) {
+function thirdPlace(user, uid) {
 	return (
 		<Box className='flex flex-col mt-32 ml-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',
@@ -123,17 +124,17 @@ function thirdPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.uid === uid ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
 	);
 }
 
-function firstPlace(user, isBigger, username) {
+function firstPlace(user, isBigger, uid) {
 	return (
 		<Box className='flex flex-col mt-8 items-center relative'>
 			<img
@@ -150,7 +151,7 @@ function firstPlace(user, isBigger, username) {
 				}}
 			/>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '80px',
@@ -169,21 +170,21 @@ function firstPlace(user, isBigger, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.uid === uid ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
 	);
 }
 
-function secondPlace(user, username) {
+function secondPlace(user, uid) {
 	return (
 		<Box className='flex flex-col mt-32 mr-[-2] items-center relative w-1/3'>
 			<img
-				src={user.profilePicture || ANON_PICTURE}
+				src={user.profilePicture}
 				alt='profile_pic'
 				style={{
 					width: '60px',
@@ -201,10 +202,10 @@ function secondPlace(user, username) {
 			<Typography
 				style={{
 					textAlign: 'center',
-					fontWeight: user.firstName.trim() === username.trim() ? 'bold' : 'normal',
+					fontWeight: user.uid === uid ? 'bold' : 'normal',
 				}}
 			>
-				{user.firstName.trim() === username.trim() ? 'Me' : user.firstName}
+				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
 		</Box>
