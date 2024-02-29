@@ -8,10 +8,7 @@
 		"client": "npm start --prefix client",
 		"watch": "npm run build:watch --prefix server/functions",
 		"deploy": "npm run deploy --prefix server/functions",
-<<<<<<< HEAD
-=======
 		"dev": "concurrently \"npm run server\" \"npm run client\""
->>>>>>> 16e342ce99d285e09adf1b687a36a27d6f3c3805
 	},
 	"author": "",
 	"license": "ISC",
