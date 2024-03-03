@@ -39,7 +39,7 @@ function Todo() {
 			setDescription('');
 			setCycles('');
 			handleClose();
-			setSelectedTaskIndex(tasks.length);
+			setSelectedTaskIndex(0);
 		}
 	};
 
@@ -62,7 +62,7 @@ function Todo() {
 		if (selectedTaskIndex !== null) {
 			const updatedTasks = tasks.filter((_, index) => index !== selectedTaskIndex);
 			setTasks(updatedTasks);
-			setSelectedTaskIndex(null);
+			setSelectedTaskIndex(0);
 		}
 	};
 
@@ -189,9 +189,7 @@ function Todo() {
 						sx={{
 							display: 'flex',
 							flexDirection: 'row',
-							justifyContent: 'space-between',
 							alignItems: 'center',
-							mt: 2,
 						}}
 					>
 						<Typography>Total cycles needed to complete task</Typography>
