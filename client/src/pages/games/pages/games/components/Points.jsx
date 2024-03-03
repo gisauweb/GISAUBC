@@ -16,7 +16,7 @@ function Points() {
 	}, []);
 
 	return (
-		<Box className='flex flex-col py-1 px-5 w-full'>
+		<Box className='flex flex-col py-1 px-5 w-full justify-center'>
 			<Typography style={{ fontWeight: 'bold' }} className='top-0'>
 				Points Earned Today
 			</Typography>
