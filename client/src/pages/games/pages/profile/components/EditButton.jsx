@@ -30,7 +30,7 @@ const iconButtonStyles = {
 	transition: 'all 0.3s ease', // Animation transition
 };
 
-export default function EditButton({ edit, setEdit, uid, token, nickname, setNickname }) {
+export default function EditButton({ edit, setEdit, uid, token, nickname, setNickname, updateAccountState }) {
 	const [oldNickname, setOldNickname] = useState('');
 	async function EditUserProfile() {
 		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user`, {
@@ -38,6 +38,7 @@ export default function EditButton({ edit, setEdit, uid, token, nickname, setNic
 			headers: { Authorization: `Bearer ${token}` },
 			body: JSON.stringify({ uid, nickname }),
 		});
+		updateAccountState();
 	}
 	if (edit) {
 		return (
