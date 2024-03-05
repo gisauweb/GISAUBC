@@ -9,6 +9,7 @@ import AlertDialog from './pages/onboarding/components/AlertDialog';
 import Profile from './pages/profile/Profile';
 import Sidebar from './pages/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
+import Pomodoro from './pages/games/Pomodoro';
 
 export default function Games() {
 	const {
@@ -89,6 +90,23 @@ export default function Games() {
 		}
 	}, [isAuthenticated, loginWithPopup]);
 
+	async function updateAccountState() {
+		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				setAccount(res.result);
+			})
+			.catch((err) => {
+				setError(err.message);
+			});
+	}
+
 	return isLoading || loading || alert ? (
 		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
 	) : !account ? (
@@ -99,7 +117,12 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
 			) : currentPage === 'Profile' ? (
-				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
+				<Profile
+					account={account}
+					token={token}
+					setCurrentPage={setCurrentPage}
+					updateAccountState={() => updateAccountState()}
+				/>
 			) : null}
 		</div>
 	) : (
@@ -108,7 +131,14 @@ export default function Games() {
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
 			) : currentPage === 'Profile' ? (
-				<Profile account={account} token={token} setCurrentPage={setCurrentPage} />
+				<Profile
+					account={account}
+					token={token}
+					setCurrentPage={setCurrentPage}
+					updateAccountState={() => updateAccountState()}
+				/>
+			) : currentPage === 'Pomodoro' ? (
+				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
 			) : null}
 		</div>
 	);

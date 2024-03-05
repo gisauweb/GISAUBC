@@ -22,7 +22,7 @@ function StyledTextField({ value, label, edit, onChange }) {
 	);
 }
 
-export default function Profile({ account, token, setCurrentPage }) {
+export default function Profile({ account, token, setCurrentPage, updateAccountState }) {
 	const [edit, setEdit] = useState(false);
 	const [nickname, setNickname] = useState(account.nickname);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
@@ -84,6 +84,7 @@ export default function Profile({ account, token, setCurrentPage }) {
 							token={token}
 							nickname={nickname}
 							setNickname={setNickname}
+							updateAccountState={updateAccountState}
 						/>
 					</Box>
 				</Box>

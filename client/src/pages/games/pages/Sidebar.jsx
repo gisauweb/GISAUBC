@@ -133,15 +133,9 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 						<List className='p-0'>
 							<SelectableListItem
 								prefixIcon={ChevronRightIcon}
-								label='Game A'
-								isSelected={isCurrentPage('Game A')}
-								onClick={() => handleMenuItemClick('Game A')}
-							/>
-							<SelectableListItem
-								prefixIcon={ChevronRightIcon}
-								label='Game B'
-								isSelected={isCurrentPage('Game B')}
-								onClick={() => handleMenuItemClick('Game B')}
+								label='Pomodoro Timer'
+								isSelected={isCurrentPage('Pomodoro')}
+								onClick={() => handleMenuItemClick('Pomodoro')}
 							/>
 						</List>
 					</AccordionBody>
