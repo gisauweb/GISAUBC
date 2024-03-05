@@ -35,11 +35,11 @@ function Timer({ account, token, updateAccountState }) {
 							updatePoints(focusDuration);
 							setTime(breakDuration * 60);
 							setTimerState(TimerState.BREAK);
-						} else {
-							setTime(focusDuration * 60);
-							setTimerState(TimerState.FOCUS);
+							return breakDuration * 60;
 						}
-						return 0;
+						setTime(focusDuration * 60);
+						setTimerState(TimerState.FOCUS);
+						return focusDuration * 60;
 					}
 					return prevTime - 1;
 				});
