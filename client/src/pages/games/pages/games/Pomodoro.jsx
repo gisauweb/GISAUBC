@@ -5,17 +5,17 @@ import Timer from './components/Timer';
 import Todo from './components/Todo';
 import Clipboard from '../../../../assets/games/clipboard.svg';
 
-export default function Pomodoro() {
+export default function Pomodoro({ account, token, updateAccountState }) {
 	// const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
 		<div className='flex flex-row xl:w-[80vw] h-full gap-5 px-5 justify-center items-center overflow-hidden'>
 			<div className='w-6/12 h-5/6 rounded-2xl flex flex-col justify-center items-center mr-2 gap-5'>
 				<Box className='bg-gamesBox w-10/12 h-2/3 rounded-2xl flex justify-center items-center mr-2'>
-					<Timer />
+					<Timer account={account} token={token} updateAccountState={updateAccountState} />
 				</Box>
 				<Box className='bg-gamesBox w-10/12 h-1/3 rounded-2xl flex top-3 mr-2'>
-					<Points />
+					<Points account={account} />
 				</Box>
 			</div>
 			<Box className='w-5/12 h-full py-5 rounded-2xl flex justify-center mr-2 relative'>
