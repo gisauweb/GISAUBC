@@ -5,11 +5,16 @@ import './Points.css';
 function getCurrentDate() {
 	const today = new Date();
 
-	const month = String(today.getUTCMonth() + 1).padStart(2, '0');
-	const day = String(today.getUTCDate()).padStart(2, '0');
-	const year = today.getUTCFullYear();
+	// Define options for toLocaleDateString to format in PST
+	const options = {
+		timeZone: 'America/Los_Angeles',
+		month: '2-digit',
+		day: '2-digit',
+		year: 'numeric',
+	};
 
-	const dateString = `${month}/${day}/${year}`;
+	// Convert today's date to a string, formatted in the PST time zone
+	const dateString = today.toLocaleDateString('en-US', options);
 
 	return dateString;
 }

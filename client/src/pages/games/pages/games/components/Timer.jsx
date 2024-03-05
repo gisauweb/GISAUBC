@@ -8,7 +8,7 @@ const TimerState = {
 };
 
 function Timer({ account, token, updateAccountState }) {
-	const [focusDuration, setFocusDuration] = useState(1);
+	const [focusDuration, setFocusDuration] = useState(25);
 	const [breakDuration, setBreakDuration] = useState(5);
 	const [time, setTime] = useState(focusDuration * 60);
 	const [timerState, setTimerState] = useState(TimerState.STOP);
