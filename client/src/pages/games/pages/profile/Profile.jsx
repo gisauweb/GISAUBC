@@ -33,11 +33,11 @@ export default function Profile({ account, token, setCurrentPage, updateAccountS
 
 	return (
 		<Box
-			className='flex xl:px-7 xl:py-16 justify-center
+			className='flex xl:px-7 xl:pt-16 xl:pb-7 justify-center
 						xl:justify-between w-screen h-screen xl:w-[80vw] xl:h-[95%]'
 		>
 			<Box
-				className='w-full xl:w-1/2 flex flex-col justify-center items-center
+				className='w-full xl:w-1/2 xl:h-full flex flex-col justify-center items-center
 							xl:items-center xl:justify-between xl:px-5'
 			>
 				<Box className='flex xl:self-start'>
@@ -55,11 +55,11 @@ export default function Profile({ account, token, setCurrentPage, updateAccountS
 					)}
 					<span className='font-bold font-poppins text-2xl xl:pl-0.5'>My Profile</span>
 				</Box>
-				<Box className='flex justify-center mt-10 mb-16 xl:my-6'>
+				<Box className='flex justify-center h-1/4 xl:h-1/3 my-10 xl:mt-3 xl:mb-6'>
 					<img
 						src={account.profile_picture}
 						alt="User's profile"
-						style={{ width: 200, height: 200, borderRadius: '50%', borderWidth: '1px' }}
+						style={{ height: '100%', borderRadius: '50%', borderWidth: '1px' }}
 					/>
 				</Box>
 				<Box className='px-10 xl:px-16'>
