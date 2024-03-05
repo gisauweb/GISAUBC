@@ -57,7 +57,6 @@ export async function getLeaderboard() {
 function handlePastActivities(points: number, pastActivities: PastActivities, dateTimestamp: string) {
 	const date = dateTimestamp.split(" ")[0]
 	
-	console.log(date);
 	if (!pastActivities || !(date in pastActivities)) {
 		pastActivities = {
 			...pastActivities,
