@@ -2,9 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import './Points.css';
 
-function Points() {
+function getCurrentDate() {
+	const today = new Date();
+
+	const month = String(today.getUTCMonth() + 1).padStart(2, '0');
+	const day = String(today.getUTCDate()).padStart(2, '0');
+	const year = today.getUTCFullYear();
+
+	const dateString = `${month}/${day}/${year}`;
+
+	return dateString;
+}
+
+export default function Points({ account }) {
 	const [progress, setProgress] = useState(0);
-	const points = 100; // Get points from database here
+	const currentDate = getCurrentDate();
+	const points = account.past_activities[currentDate] || 0;
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -13,7 +26,7 @@ function Points() {
 		}, 10); // Adjust the interval for smoother animation or performance
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [points]);
 
 	return (
 		<Box className='flex flex-col py-1 px-5 w-full justify-center'>
@@ -42,5 +55,3 @@ function Points() {
 		</Box>
 	);
 }
-
-export default Points;
