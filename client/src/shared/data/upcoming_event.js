@@ -1,14 +1,14 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import indomie from 'assets/events-page/indomie.pdf';
+import hiring from 'assets/events-page/gisau_core_hiring_package.pdf';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_23_24[9],
-		title: 'Indomie-T Me At The Finish Line',
-		date: 'Friday, March 1 | 4-7PM',
-		loc: 'Nest Lower Atrium',
-		registrationLink: 'https://forms.gle/YBcyyqDFsHu5kN9D8',
-		infoLink: indomie,
+		image: EVENTS_23_24[10],
+		title: 'GISAU Core 2024/25 Hiring',
+		date: 'Until March 14th, 2024',
+		loc: 'Online (See PDF for details)',
+		registrationLink: hiring,
+		infoLink: hiring,
 	},
 ];
 

@@ -3,6 +3,13 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[9],
+			title: 'Indomie-T Me At The Finish Line',
+			date: 'Friday, March 1 | 4-7PM',
+			loc: 'Nest Lower Atrium',
+			registrationLink: 'https://forms.gle/YBcyyqDFsHu5kN9D8',
+		},
+		{
 			image: EVENTS_23_24[8],
 			title: 'Bermain Bersama GISAU',
 			date: 'February 9-11',
