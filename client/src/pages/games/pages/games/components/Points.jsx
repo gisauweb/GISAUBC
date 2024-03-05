@@ -2,9 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import './Points.css';
 
-function Points() {
+function getCurrentDate() {
+	const today = new Date();
+
+	// Define options for toLocaleDateString to format in PST
+	const options = {
+		timeZone: 'America/Los_Angeles',
+		month: '2-digit',
+		day: '2-digit',
+		year: 'numeric',
+	};
+
+	// Convert today's date to a string, formatted in the PST time zone
+	const dateString = today.toLocaleDateString('en-US', options);
+
+	return dateString;
+}
+
+export default function Points({ account }) {
 	const [progress, setProgress] = useState(0);
-	const points = 100; // Get points from database here
+	const currentDate = getCurrentDate();
+	const points = account.past_activities[currentDate] || 0;
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -13,7 +31,7 @@ function Points() {
 		}, 10); // Adjust the interval for smoother animation or performance
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [points]);
 
 	return (
 		<Box className='flex flex-col py-1 px-5 w-full justify-center'>
@@ -42,5 +60,3 @@ function Points() {
 		</Box>
 	);
 }
-
-export default Points;

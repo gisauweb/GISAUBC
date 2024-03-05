@@ -1,20 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, MenuItem, Select } from '@mui/material';
 
-function Timer() {
+const TimerState = {
+	STOP: 0,
+	FOCUS: 1,
+	BREAK: 2,
+};
+
+function Timer({ account, token, updateAccountState }) {
 	const [focusDuration, setFocusDuration] = useState(25);
 	const [breakDuration, setBreakDuration] = useState(5);
 	const [time, setTime] = useState(focusDuration * 60);
+	const [timerState, setTimerState] = useState(TimerState.STOP);
 	const [isRunning, setIsRunning] = useState(false);
 
 	useEffect(() => {
+		async function updatePoints(points) {
+			fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
+				method: 'PUT',
+				headers: { Authorization: `Bearer ${token}` },
+				body: JSON.stringify({ uid: account.uid, points }),
+			});
+			updateAccountState();
+		}
+
 		let timer;
 		if (isRunning) {
 			timer = setInterval(() => {
 				setTime((prevTime) => {
 					if (prevTime <= 0) {
 						clearInterval(timer);
-						return 0;
+						setIsRunning(false);
+						if (timerState === TimerState.FOCUS) {
+							updatePoints(focusDuration);
+							setTime(breakDuration * 60);
+							setTimerState(TimerState.BREAK);
+							return breakDuration * 60;
+						}
+						setTime(focusDuration * 60);
+						setTimerState(TimerState.FOCUS);
+						return focusDuration * 60;
 					}
 					return prevTime - 1;
 				});
@@ -24,14 +49,13 @@ function Timer() {
 		}
 
 		return () => clearInterval(timer);
-	}, [isRunning]);
+	}, [timerState, account.uid, token, focusDuration, breakDuration, isRunning, updateAccountState]);
 
-	const startTimer = () => {
-		setIsRunning(true);
-	};
-
-	const pauseTimer = () => {
-		setIsRunning(false);
+	const handleButtonChange = () => {
+		setIsRunning(!isRunning);
+		if (timerState === TimerState.STOP) {
+			setTimerState(TimerState.FOCUS);
+		}
 	};
 
 	const handleFocusChange = (event) => {
@@ -46,21 +70,17 @@ function Timer() {
 	return (
 		<Box className='flex flex-col py-1 px-5 w-full justify-center items-center gap-1'>
 			<Typography style={{ fontWeight: 'bold' }}>Pomodoro Timer</Typography>
-			<Typography style={{ fontSize: '10px' }}>Let&apos;s Focus!</Typography>
+			<Typography style={{ fontSize: '10px' }}>
+				{timerState === TimerState.BREAK ? 'Time to take a break!' : "Let's Focus!"}
+			</Typography>
 			<Typography style={{ fontWeight: 'bold', fontSize: '30px' }} className='mt-8'>
 				{`${Math.floor(time / 60)
 					.toString()
 					.padStart(2, '0')}:${(time % 60).toString().padStart(2, '0')}`}
 			</Typography>
-			{isRunning ? (
-				<Button variant='contained' onClick={pauseTimer} className='rounded-full mt-10'>
-					Pause
-				</Button>
-			) : (
-				<Button variant='contained' onClick={startTimer} className='mt-10 rounded-3xl'>
-					Start
-				</Button>
-			)}
+			<Button variant='contained' onClick={handleButtonChange} className='rounded-full mt-10'>
+				{isRunning ? 'PAUSE' : 'START'}
+			</Button>
 			<div className='flex flex-row justify-center items-center gap-5 mt-5'>
 				<Typography>Focus</Typography>
 				<Select value={focusDuration} onChange={handleFocusChange} className=' bg-white h-8'>

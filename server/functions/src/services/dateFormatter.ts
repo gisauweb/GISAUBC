@@ -1,21 +1,22 @@
 export default function getCurrentTimestamp() {
-	const timestamp: number = Date.now();
+    const currentDate: Date = new Date();
 
-	// Create a new Date object using the timestamp
-	const date: Date = new Date(timestamp);
+    // Format date and time in PST time zone
+    const options: Intl.DateTimeFormatOptions = {
+        timeZone: "America/Los_Angeles", // This represents both PST and PDT depending on daylight saving
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false // Use 24-hour format
+    };
 
-	// Get date components
-	const month: string = (date.getMonth() + 1).toString().padStart(2, "0"); // Month is zero-based
-	const day: string = date.getDate().toString().padStart(2, "0");
-	const year: number = date.getFullYear();
+    // Format the date using PST time zone
+    const completeTimestamp = currentDate.toLocaleString("en-US", options);
 
-	// Get time components
-	const hours: string = date.getHours().toString().padStart(2, "0");
-	const minutes: string = date.getMinutes().toString().padStart(2, "0");
-	const seconds: string = date.getSeconds().toString().padStart(2, "0");
-
-	// Format the complete timestamp as "mm/dd/yyyy hh:mm:ss"
-	const completeTimestamp = `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
-
-	return completeTimestamp;
+    // Replace commas and standardize format
+    const formattedTimestamp = completeTimestamp.replace(/, /g, " ")
+    return formattedTimestamp;
 }
