@@ -29,8 +29,8 @@ function Timer({ account, token, updateAccountState }) {
 			timer = setInterval(() => {
 				setTime((prevTime) => {
 					if (prevTime <= 0) {
-						setIsRunning(false);
 						clearInterval(timer);
+						setIsRunning(false);
 						if (timerState === TimerState.FOCUS) {
 							updatePoints(focusDuration);
 							setTime(breakDuration * 60);
@@ -39,6 +39,7 @@ function Timer({ account, token, updateAccountState }) {
 							setTime(focusDuration * 60);
 							setTimerState(TimerState.FOCUS);
 						}
+						return 0;
 					}
 					return prevTime - 1;
 				});
