@@ -77,26 +77,34 @@ function Todo() {
 	};
 
 	const handleEditIconClick = (index) => {
-		setEditedTaskIndex(index);
-		setNewTask(tasks[index].title);
-		setDescription(tasks[index].description);
-		setCycles(tasks[index].cycles.toString());
-		handleOpen();
+		if (tasks.length !== 0) {
+			setEditedTaskIndex(index);
+			setNewTask(tasks[index].title);
+			setDescription(tasks[index].description);
+			setCycles(tasks[index].cycles.toString());
+			handleOpen();
+		}
 	};
 
 	return (
 		<Box className='relative w-full flex flex-col items-center justify-center'>
-			<Box className='w-full py-2 top-20 absolute flex flex-row justify-center items-center gap-20'>
+			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-center items-center gap-24'>
 				<Typography
 					className='text-center'
 					style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
 				>
 					Task List
 				</Typography>
-				<Box className='flex flex-row gap-3'>
-					<AddIcon onClick={handleOpen}>Add</AddIcon>
-					<EditIcon onClick={() => handleEditIconClick(selectedTaskIndex)}>Edit</EditIcon>
-					<DeleteIcon onClick={deleteTask}>Delete</DeleteIcon>
+				<Box className='flex flex-row gap-5'>
+					<AddIcon onClick={handleOpen} style={{ cursor: 'pointer' }}>
+						Add
+					</AddIcon>
+					<EditIcon onClick={() => handleEditIconClick(selectedTaskIndex)} style={{ cursor: 'pointer' }}>
+						Edit
+					</EditIcon>
+					<DeleteIcon onClick={deleteTask} style={{ cursor: 'pointer' }}>
+						Delete
+					</DeleteIcon>
 				</Box>
 			</Box>
 
