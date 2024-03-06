@@ -113,8 +113,8 @@ function Todo() {
 							<Box
 								// eslint-disable-next-line react/no-array-index-key
 								key={index}
-								className='text-slate-600 bg-white rounded-2xl p-4 w-full
-								flex flex-row mb-4 gap-16 items-center'
+								className='text-slate-600 bg-white rounded-2xl py-4 w-full
+								flex flex-row mb-4 gap-10 items-center'
 								style={{
 									borderLeft:
 										selectedTaskIndex === tasks.length - 1 - index
@@ -124,11 +124,11 @@ function Todo() {
 								}}
 								onClick={() => handleTaskClick(tasks.length - 1 - index)}
 							>
-								<Box className='flex flex-col ml-5 w-3/4 overflow-x-auto'>
+								<Box className='flex flex-col ml-5 w-full overflow-x-auto'>
 									<Typography style={{ fontWeight: 'bold' }}>{task.title}</Typography>
 									<Typography>{task.description}</Typography>
 								</Box>
-								<Box className='flex gap-3 w-1/4'>
+								<Box className='flex gap-3 w-1/5 mr-3 justify-end'>
 									<Typography style={{ fontWeight: 'bold' }}>{task.cycles}</Typography>
 									<IconButton
 										onClick={() => handleTaskCompletion(tasks.length - 1 - index)}
