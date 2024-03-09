@@ -1,5 +1,6 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
 import hiring from 'assets/events-page/gisau_core_hiring_package.pdf';
+import agm from 'assets/events-page/AGM.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -9,6 +10,13 @@ const UPCOMING_EVENTS = [
 		loc: 'Online (See PDF for details)',
 		registrationLink: hiring,
 		infoLink: hiring,
+	},
+	{
+		image: EVENTS_23_24[11],
+		title: "GISAU's Annual General Meeting",
+		date: 'Friday, March 22 | 6PM',
+		loc: 'AMS Nest Room 2306/2309',
+		infoLink: agm,
 	},
 ];
 
