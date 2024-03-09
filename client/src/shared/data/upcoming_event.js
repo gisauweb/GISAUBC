@@ -17,6 +17,7 @@ const UPCOMING_EVENTS = [
 		date: 'Friday, March 22 | 6PM',
 		loc: 'AMS Nest Room 2306/2309',
 		registrationLink:
+			// eslint-disable-next-line max-len
 			'https://docs.google.com/forms/d/e/1FAIpQLSfC7t4EqAPzbHNciAFSAlJYTUweqsLyzrOhxxnvYUN155L3uQ/viewform?usp=sf_link',
 		infoLink: agm,
 	},
