@@ -24,9 +24,9 @@ const UPCOMING_EVENTS = [
 	},
 	{
 		image: EVENTS_23_24[12],
-		title: 'La Nusa',
+		title: 'LA NUSA',
 		date: 'Saturday, March 23 | 10PM',
-		loc: 'Aura Nightclub Downtown',
+		loc: 'AURA Nightclub (Downtown)',
 		registrationLink:
 			// eslint-disable-next-line max-len
 			'https://docs.google.com/forms/d/e/1FAIpQLScwEwNidJrym2XqL1Tfx_j0pYcwpnO_CDK-6pzNy-E2vmJQIA/viewform?usp=sf_link',
