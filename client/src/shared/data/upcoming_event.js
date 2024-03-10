@@ -1,6 +1,7 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
 import hiring from 'assets/events-page/gisau_core_hiring_package.pdf';
 import agm from 'assets/events-page/AGM.pdf';
+import lanusa from 'assets/events-page/lanusa.pdf';
 
 const UPCOMING_EVENTS = [
 	{
@@ -20,6 +21,16 @@ const UPCOMING_EVENTS = [
 			// eslint-disable-next-line max-len
 			'https://docs.google.com/forms/d/e/1FAIpQLSfC7t4EqAPzbHNciAFSAlJYTUweqsLyzrOhxxnvYUN155L3uQ/viewform?usp=sf_link',
 		infoLink: agm,
+	},
+	{
+		image: EVENTS_23_24[12],
+		title: 'La Nusa',
+		date: 'Saturday, March 23 | 10PM',
+		loc: 'Aura Nightclub Downtown',
+		registrationLink:
+			// eslint-disable-next-line max-len
+			'https://docs.google.com/forms/d/e/1FAIpQLScwEwNidJrym2XqL1Tfx_j0pYcwpnO_CDK-6pzNy-E2vmJQIA/viewform?usp=sf_link',
+		infoLink: lanusa,
 	},
 ];
 
