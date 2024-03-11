@@ -88,21 +88,27 @@ function Todo() {
 
 	return (
 		<Box className='relative w-full flex flex-col items-center justify-center'>
-			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-center items-center gap-24'>
+			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-center items-center gap-20'>
 				<Typography
 					className='text-center'
 					style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
 				>
 					Task List
 				</Typography>
-				<Box className='flex flex-row gap-5'>
-					<AddIcon onClick={handleOpen} style={{ cursor: 'pointer' }}>
+				<Box className='flex flex-row gap-3'>
+					<AddIcon
+						onClick={handleOpen}
+						style={{ cursor: 'pointer', color: '#014900', width: '30px', height: '30px' }}
+					>
 						Add
 					</AddIcon>
-					<EditIcon onClick={() => handleEditIconClick(selectedTaskIndex)} style={{ cursor: 'pointer' }}>
+					<EditIcon
+						onClick={() => handleEditIconClick(selectedTaskIndex)}
+						style={{ cursor: 'pointer', color: '#003249' }}
+					>
 						Edit
 					</EditIcon>
-					<DeleteIcon onClick={deleteTask} style={{ cursor: 'pointer' }}>
+					<DeleteIcon onClick={deleteTask} style={{ cursor: 'pointer', color: '#732727' }}>
 						Delete
 					</DeleteIcon>
 				</Box>

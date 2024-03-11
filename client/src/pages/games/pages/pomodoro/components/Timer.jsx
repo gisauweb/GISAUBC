@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, MenuItem, Select } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 const TimerState = {
 	STOP: 0,
@@ -8,6 +9,7 @@ const TimerState = {
 };
 
 function Timer({ account, token, updateAccountState }) {
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const [focusDuration, setFocusDuration] = useState(25);
 	const [breakDuration, setBreakDuration] = useState(5);
 	const [time, setTime] = useState(focusDuration * 60);
@@ -69,7 +71,7 @@ function Timer({ account, token, updateAccountState }) {
 
 	return (
 		<Box className='flex flex-col py-1 px-5 w-full justify-center items-center gap-1'>
-			<Typography style={{ fontWeight: 'bold' }}>Pomodoro Timer</Typography>
+			{!isMobileView && <Typography style={{ fontWeight: 'bold' }}> Pomodoro Timer </Typography>}
 			<Typography style={{ fontSize: '10px' }}>
 				{timerState === TimerState.BREAK ? 'Time to take a break!' : "Let's Focus!"}
 			</Typography>
