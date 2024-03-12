@@ -70,7 +70,7 @@ function Timer({ account, token, updateAccountState }) {
 	};
 
 	return (
-		<Box className='flex flex-col py-1 px-5 w-full h-full justify-center items-center gap-1'>
+		<Box className='flex flex-col px-5 w-full h-full justify-center items-center gap-1'>
 			{!isMobileView && (
 				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }}> Pomodoro Timer </Typography>
 			)}
