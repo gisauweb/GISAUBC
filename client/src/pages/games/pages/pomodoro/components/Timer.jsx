@@ -70,39 +70,63 @@ function Timer({ account, token, updateAccountState }) {
 	};
 
 	return (
-		<Box className='flex flex-col py-1 px-5 w-full justify-center items-center gap-1'>
-			{!isMobileView && <Typography style={{ fontWeight: 'bold' }}> Pomodoro Timer </Typography>}
-			<Typography style={{ fontSize: '10px' }}>
+		<Box className='flex flex-col py-1 px-5 w-full h-full justify-center items-center gap-1'>
+			{!isMobileView && (
+				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }}> Pomodoro Timer </Typography>
+			)}
+			<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>
 				{timerState === TimerState.BREAK ? 'Time to take a break!' : "Let's Focus!"}
 			</Typography>
-			<Typography style={{ fontWeight: 'bold', fontSize: '30px' }} className='mt-8'>
+			<Typography style={{ fontWeight: 'bold', fontSize: '50px' }} className='mt-8'>
 				{`${Math.floor(time / 60)
 					.toString()
 					.padStart(2, '0')}:${(time % 60).toString().padStart(2, '0')}`}
 			</Typography>
-			<Button variant='contained' onClick={handleButtonChange} className='rounded-full mt-10'>
-				{isRunning ? 'PAUSE' : 'START'}
+			<Button
+				style={{
+					backgroundColor: '#727D5B',
+					borderRadius: '40px',
+					fontSize: '12px',
+					textTransform: 'none',
+					fontStyle: 'normal',
+				}}
+				variant='contained'
+				onClick={handleButtonChange}
+			>
+				{isRunning ? 'Pause' : 'Start'}
 			</Button>
-			<div className='flex flex-row justify-center items-center gap-5 mt-5'>
-				<Typography>Focus</Typography>
-				<Select value={focusDuration} onChange={handleFocusChange} className=' bg-white h-8'>
-					<MenuItem value={25}>25</MenuItem>
-					<MenuItem value={30}>30</MenuItem>
-					<MenuItem value={35}>35</MenuItem>
-					<MenuItem value={40}>40</MenuItem>
-					<MenuItem value={45}>45</MenuItem>
-				</Select>
-				<Typography>mins</Typography>
-			</div>
-			<div className='flex flex-row justify-center items-center gap-3 mt-5'>
-				<Typography>Break</Typography>
-				<Select value={breakDuration} onChange={handleBreakChange} className=' bg-white h-8'>
-					<MenuItem value={5}>5</MenuItem>
-					<MenuItem value={10}>10</MenuItem>
-					<MenuItem value={15}>15</MenuItem>
-				</Select>
-				<Typography>mins</Typography>
-			</div>
+			<Box className='flex flex-col'>
+				<div className='flex flex-row justify-start items-center gap-1 mt-5'>
+					<Typography style={{ fontWeight: 'bold', fontSize: '12px', marginRight: '10px' }}>Focus</Typography>
+					<Select
+						value={focusDuration}
+						onChange={handleFocusChange}
+						className=' bg-white h-8'
+						style={{ fontSize: '12px', marginLeft: '5px' }}
+					>
+						<MenuItem value={25}>25</MenuItem>
+						<MenuItem value={30}>30</MenuItem>
+						<MenuItem value={35}>35</MenuItem>
+						<MenuItem value={40}>40</MenuItem>
+						<MenuItem value={45}>45</MenuItem>
+					</Select>
+					<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>mins</Typography>
+				</div>
+				<div className='flex flex-row justify-center items-center gap-1 mt-2'>
+					<Typography style={{ fontWeight: 'bold', fontSize: '12px', marginRight: '10px' }}>Break</Typography>
+					<Select
+						value={breakDuration}
+						onChange={handleBreakChange}
+						className=' bg-white h-8'
+						style={{ fontSize: '12px', marginLeft: '5px' }}
+					>
+						<MenuItem value={5}>05</MenuItem>
+						<MenuItem value={10}>10</MenuItem>
+						<MenuItem value={15}>15</MenuItem>
+					</Select>
+					<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>mins</Typography>
+				</div>
+			</Box>
 		</Box>
 	);
 }

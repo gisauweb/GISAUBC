@@ -231,7 +231,13 @@ function Todo() {
 						<Button
 							onClick={editedTaskIndex !== null ? editTask : addTask}
 							variant='contained'
-							sx={{ background: '#BFA285', color: 'white', borderRadius: '40px' }}
+							sx={{
+								background: '#BFA285',
+								color: 'white',
+								borderRadius: '40px',
+								textTransform: 'none',
+								fontStyle: 'normal',
+							}}
 						>
 							{editedTaskIndex !== null ? 'Update' : 'Done'}
 						</Button>
