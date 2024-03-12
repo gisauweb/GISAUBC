@@ -45,10 +45,14 @@ function Todo() {
 
 	const editTask = () => {
 		if (editedTaskIndex !== null) {
+			let cyclesValue = parseInt(cycles, 10);
+			if (cyclesValue < 1) {
+				cyclesValue = 1;
+			}
 			const editedTask = tasks[editedTaskIndex];
 			editedTask.title = newTask;
 			editedTask.description = description;
-			editedTask.cycles = parseInt(cycles, 10);
+			editedTask.cycles = cyclesValue;
 			setTasks([...tasks.slice(0, editedTaskIndex), editedTask, ...tasks.slice(editedTaskIndex + 1)]);
 			setNewTask('');
 			setDescription('');
