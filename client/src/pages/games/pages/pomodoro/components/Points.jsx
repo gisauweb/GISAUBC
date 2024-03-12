@@ -21,14 +21,14 @@ function getCurrentDate() {
 
 export default function Points({ account }) {
 	const [progress, setProgress] = useState(0);
-	const [openDialog, setOpenDialog] = useState(false); // State to manage dialog visibility
-	// const currentDate = getCurrentDate();
-	const points = 300;
+	const [openDialog, setOpenDialog] = useState(false);
+	const currentDate = getCurrentDate();
+	const points = account.past_activities[currentDate] || 0;
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (progress >= 300) {
-				setOpenDialog(true); // Open dialog when progress reaches 300
+				setOpenDialog(true);
 			} else {
 				setProgress((prevProgress) => (prevProgress >= points ? points : prevProgress + 1));
 			}
