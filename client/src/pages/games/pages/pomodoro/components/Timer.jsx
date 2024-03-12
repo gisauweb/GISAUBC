@@ -166,10 +166,10 @@ function Timer({ account, token, updateAccountState }) {
 						<br />
 						will reset the timer.
 					</Typography>
-					<Box className='flex flex-row items-center justify-center mt-3 gap-5'>
+					<Box className='flex flex-row items-center justify-center mt-5 gap-5'>
 						<Button
 							style={{
-								backgroundColor: '#727D5B',
+								backgroundColor: '#732727',
 								borderRadius: '40px',
 								fontSize: '12px',
 								textTransform: 'none',
@@ -184,7 +184,7 @@ function Timer({ account, token, updateAccountState }) {
 						</Button>
 						<Button
 							style={{
-								backgroundColor: '#732727',
+								backgroundColor: '#727D5B',
 								borderRadius: '40px',
 								fontSize: '12px',
 								textTransform: 'none',
