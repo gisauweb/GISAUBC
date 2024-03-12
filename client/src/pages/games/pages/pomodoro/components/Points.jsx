@@ -65,7 +65,7 @@ export default function Points({ account }) {
 					<span>* Maximum 300 points per day</span>
 				</Typography>
 			</div>
-			<Dialog open={openDialog} onClose={handleCloseDialog} PaperProps={{ sx: { borderRadius: '20px' } }}>
+			<Dialog open={openDialog} onClose={handleCloseDialog} PaperProps={{ sx: { borderRadius: '10px' } }}>
 				<NotificationImportantIcon
 					className='flex self-center'
 					style={{ color: '#D9D9D9', width: '100px', height: '100px', marginTop: '8px', marginBottom: '3px' }}

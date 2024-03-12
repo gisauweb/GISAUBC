@@ -4,6 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
+import CelebrationIcon from '@mui/icons-material/Celebration';
 
 function Todo() {
 	const [tasks, setTasks] = useState([]);
@@ -13,6 +14,11 @@ function Todo() {
 	const [cycles, setCycles] = useState(1);
 	const [selectedTaskIndex, setSelectedTaskIndex] = useState(null);
 	const [editedTaskIndex, setEditedTaskIndex] = useState(null);
+	const [openAllCompleteDialog, setOpenAllCompleteDialog] = useState(false);
+
+	const handleCloseAllCompleteDialog = () => {
+		setOpenAllCompleteDialog(false);
+	};
 
 	const handleOpen = () => {
 		setOpen(true);
@@ -78,6 +84,11 @@ function Todo() {
 		const updatedTasks = [...tasks];
 		updatedTasks[index].complete = !updatedTasks[index].complete;
 		setTasks(updatedTasks);
+
+		const allTasksCompleted = updatedTasks.every((task) => task.complete);
+		if (allTasksCompleted) {
+			setOpenAllCompleteDialog(true);
+		}
 	};
 
 	const handleEditIconClick = (index) => {
@@ -243,6 +254,27 @@ function Todo() {
 						</Button>
 					</Box>
 				</Box>
+			</Dialog>
+			<Dialog
+				open={openAllCompleteDialog}
+				onClose={handleCloseAllCompleteDialog}
+				PaperProps={{ sx: { borderRadius: '10px' } }}
+			>
+				<CelebrationIcon
+					className='flex self-center'
+					style={{ color: '#D9D9D9', width: '90px', height: '90px', marginTop: '12px', marginBottom: '3px' }}
+				/>
+				<DialogContent className='flex flex-col text-center gap-3'>
+					<Typography style={{ fontWeight: 'bold', marginTop: '-10px' }}>Great Job!</Typography>
+					<Typography style={{ fontSize: '12px' }}>You have completed all tasks.</Typography>
+				</DialogContent>
+				<IconButton
+					aria-label='close'
+					onClick={handleCloseAllCompleteDialog}
+					sx={{ position: 'absolute', right: 0, top: 0, color: '#732727' }}
+				>
+					<CloseIcon />
+				</IconButton>
 			</Dialog>
 		</Box>
 	);
