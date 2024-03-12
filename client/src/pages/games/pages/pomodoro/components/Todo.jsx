@@ -232,7 +232,7 @@ function Todo() {
 							onClick={editedTaskIndex !== null ? editTask : addTask}
 							variant='contained'
 							sx={{
-								background: '#BFA285',
+								backgroundColor: '#BFA285',
 								color: 'white',
 								borderRadius: '40px',
 								textTransform: 'none',

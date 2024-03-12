@@ -152,6 +152,7 @@ function Timer({ account, token, updateAccountState }) {
 				aria-labelledby='alert-dialog-title'
 				aria-describedby='alert-dialog-description'
 				className='flex flex-col py-3'
+				PaperProps={{ sx: { borderRadius: '20px' } }}
 			>
 				<HistoryIcon
 					className='self-center'
