@@ -5,7 +5,6 @@ import './Points.css';
 function getCurrentDate() {
 	const today = new Date();
 
-	// Define options for toLocaleDateString to format in PST
 	const options = {
 		timeZone: 'America/Los_Angeles',
 		month: '2-digit',
@@ -13,7 +12,6 @@ function getCurrentDate() {
 		year: 'numeric',
 	};
 
-	// Convert today's date to a string, formatted in the PST time zone
 	const dateString = today.toLocaleDateString('en-US', options);
 
 	return dateString;
@@ -26,9 +24,8 @@ export default function Points({ account }) {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			// Increment progress by 1 until it reaches 300
 			setProgress((prevProgress) => (prevProgress >= points ? points : prevProgress + 1));
-		}, 10); // Adjust the interval for smoother animation or performance
+		}, 10);
 
 		return () => clearInterval(interval);
 	}, [points]);
@@ -52,7 +49,7 @@ export default function Points({ account }) {
 			</div>
 			<div className='botom-2 mt-5'>
 				<Typography style={{ fontSize: '10px' }} className='mt-5'>
-					<span>* 1 point per minute spent</span>
+					<span>* 1 point per focus minute spent</span>
 					<br />
 					<span>* Maximum 300 points per day</span>
 				</Typography>

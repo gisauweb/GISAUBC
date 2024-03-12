@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, MenuItem, Select } from '@mui/material';
+import { Box, Typography, Button, MenuItem, Select, Dialog, DialogContent } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
+import HistoryIcon from '@mui/icons-material/History';
 
 const TimerState = {
 	STOP: 0,
@@ -15,6 +16,8 @@ function Timer({ account, token, updateAccountState }) {
 	const [time, setTime] = useState(focusDuration * 60);
 	const [timerState, setTimerState] = useState(TimerState.STOP);
 	const [isRunning, setIsRunning] = useState(false);
+	const [isChangingFocus, setIsChangingFocus] = useState(false);
+	const [chosenTime, setChosenTime] = useState('');
 
 	useEffect(() => {
 		async function updatePoints(points) {
@@ -61,8 +64,24 @@ function Timer({ account, token, updateAccountState }) {
 	};
 
 	const handleFocusChange = (event) => {
-		setFocusDuration(event.target.value);
-		setTime(event.target.value * 60);
+		if (time !== focusDuration * 60) {
+			setIsChangingFocus(true);
+			setChosenTime(event.target.value);
+		} else {
+			setFocusDuration(event.target.value);
+			setTime(event.target.value * 60);
+		}
+	};
+
+	const handleFocusChangeConfirm = (selectedValue) => {
+		setIsChangingFocus(false);
+		setFocusDuration(selectedValue);
+		setTime(selectedValue * 60);
+		setIsRunning(false);
+	};
+
+	const handleFocusChangeCancel = () => {
+		setIsChangingFocus(false);
 	};
 
 	const handleBreakChange = (event) => {
@@ -93,7 +112,7 @@ function Timer({ account, token, updateAccountState }) {
 				variant='contained'
 				onClick={handleButtonChange}
 			>
-				{isRunning ? 'Pause' : 'Start'}
+				{isRunning ? 'Pause' : time !== focusDuration * 60 ? 'Resume' : 'Start'}
 			</Button>
 			<Box className='flex flex-col'>
 				<div className='flex flex-row justify-start items-center gap-1 mt-5'>
@@ -127,6 +146,60 @@ function Timer({ account, token, updateAccountState }) {
 					<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>mins</Typography>
 				</div>
 			</Box>
+			<Dialog
+				open={isChangingFocus}
+				onClose={handleFocusChangeCancel}
+				aria-labelledby='alert-dialog-title'
+				aria-describedby='alert-dialog-description'
+				className='flex flex-col py-3'
+			>
+				<HistoryIcon
+					className='self-center'
+					style={{ color: '#D9D9D9', width: '100px', height: '100px', marginTop: '3px', marginBottom: '3px' }}
+				/>
+				<Typography style={{ fontWeight: 'bold' }} className='self-center mt-10'>
+					Reset Timer?
+				</Typography>
+				<DialogContent>
+					<Typography className='text-center' style={{ marginTop: '-10px' }}>
+						Changing the focus duration
+						<br />
+						will reset the timer.
+					</Typography>
+					<Box className='flex flex-row items-center justify-center mt-3 gap-5'>
+						<Button
+							style={{
+								backgroundColor: '#727D5B',
+								borderRadius: '40px',
+								fontSize: '12px',
+								textTransform: 'none',
+								fontStyle: 'normal',
+								width: '40px',
+								height: '30px',
+							}}
+							variant='contained'
+							onClick={handleFocusChangeCancel}
+						>
+							Cancel
+						</Button>
+						<Button
+							style={{
+								backgroundColor: '#732727',
+								borderRadius: '40px',
+								fontSize: '12px',
+								textTransform: 'none',
+								fontStyle: 'normal',
+								width: '40px',
+								height: '30px',
+							}}
+							variant='contained'
+							onClick={() => handleFocusChangeConfirm(chosenTime)}
+						>
+							Reset
+						</Button>
+					</Box>
+				</DialogContent>
+			</Dialog>
 		</Box>
 	);
 }

@@ -2,26 +2,26 @@
 	position: relative;
 	width: 100%;
 	height: 20px;
-	background-color: #ffff; /* Background color of the progress bar container */
-	border-radius: 10px; /* Adjust the border radius as needed */
+	background-color: #ffff; 
+	border-radius: 10px; 
   }
   
   .progress-bar {
 	height: 100%;
-	border-radius: 10px; /* Match the container's border radius */
-	transition: width 0.5s ease-in-out; /* Adjust animation duration as needed */
+	border-radius: 10px; 
+	transition: width 0.5s ease-in-out; 
   }
   
   .triangle {
 	position: absolute;
-	bottom: calc(100% - 1px); /* Adjust triangle position as needed */
+	bottom: calc(100% - 1px);
 	transform: translateX(-50%) rotate(180deg);
 	left: 0;
 	width: 0;
 	height: 0;
-	border-left: 8px solid transparent; /* Adjust triangle size as needed */
+	border-left: 8px solid transparent;
 	border-right: 8px solid transparent;
-	border-bottom: 8px solid #BFA285; /* Triangle color */
+	border-bottom: 8px solid #BFA285;
   }
 
   .pts{
