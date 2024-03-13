@@ -24,21 +24,25 @@ export default function Points({ account }) {
 	const [openDialog, setOpenDialog] = useState(false);
 	const currentDate = getCurrentDate();
 	const points = account.past_activities[currentDate] || 0;
+	const [dialogShown, setDialogShown] = useState(false);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			if (progress >= 300) {
-				setOpenDialog(true);
+				if (!dialogShown) {
+					setOpenDialog(true);
+					setDialogShown(true);
+				}
 			} else {
 				setProgress((prevProgress) => (prevProgress >= points ? points : prevProgress + 1));
 			}
 		}, 10);
 
 		return () => clearInterval(interval);
-	}, [points, progress]);
+	}, [points, progress, dialogShown]);
 
 	const handleCloseDialog = () => {
-		window.location.reload();
+		setOpenDialog(false);
 	};
 
 	return (
