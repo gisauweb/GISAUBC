@@ -38,9 +38,10 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 		}
 	}, [token, loadingLeader]);
 
-	return loadingLeader ? (
-		<div>Loading...</div>
-	) : user && !isMobileView ? (
+	if (loadingLeader || !account || !user) {
+		return <div>Loading...</div>;
+	}
+	return !isMobileView ? (
 		<>
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
@@ -54,13 +55,11 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 			<Leaderboard uid={account.uid} leaderboard={leaderboard} />
 		</>
 	) : (
-		user && (
-			<div className='flex flex-col my-16 h-fit items-center gap-3 relative'>
-				<Profile username={account.nickname} picture={user.picture} />
-				<Points account={account} leaderboard={leaderboard} />
-				<Activity account={account} />
-				<Leaderboard uid={account.uid} leaderboard={leaderboard} />
-			</div>
-		)
+		<div className='flex flex-col my-16 h-fit items-center gap-3 relative'>
+			<Profile username={account.nickname} picture={user.picture} />
+			<Points account={account} leaderboard={leaderboard} />
+			<Activity account={account} />
+			<Leaderboard uid={account.uid} leaderboard={leaderboard} />
+		</div>
 	);
 }
