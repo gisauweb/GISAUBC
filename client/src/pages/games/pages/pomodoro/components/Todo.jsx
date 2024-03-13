@@ -92,7 +92,7 @@ function Todo() {
 
 	return (
 		<Box className='relative w-full h-full flex flex-col justify-center items-start'>
-			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-between items-center px-12'>
+			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-between items-center px-20'>
 				<Typography
 					className='text-center'
 					style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
@@ -139,7 +139,7 @@ function Todo() {
 							<Box
 								// eslint-disable-next-line react/no-array-index-key
 								key={index}
-								className='text-slate-600 bg-white rounded-2xl py-4 w-full
+								className='text-slate-600 bg-white rounded-2xl py-4 w-3/4
 								flex flex-row mb-4 gap-10 items-center'
 								style={{
 									borderLeft:
