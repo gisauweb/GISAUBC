@@ -7,8 +7,7 @@ const secretCode = process.env.HASH_SECRET_CODE;
 
 export async function createUser(userPayload: createUserModel) {
 	const uuid = sha256(userPayload.uid + secretCode)
-	const userDocRef = db.collection("users").doc(uuid);
-	await userDocRef.set({
+	const user = {
 		sid: userPayload.sid,
 		uid: userPayload.uid,
 		profile_picture: userPayload.profile_picture,
@@ -17,14 +16,19 @@ export async function createUser(userPayload: createUserModel) {
 		nickname: userPayload.nickname,
 		email: userPayload.email,
 		total_points: 0,
+		past_activites: userPayload.past_activities,
 		created_at: userPayload.created_at,
 		updated_at: userPayload.updated_at
-	});
+	}
+	const userDocRef = db.collection("users").doc(uuid);
+	await userDocRef.set(user);
 
 	const registeredDocRef = db.collection("registered").doc(userPayload.sid);
 	await registeredDocRef.set({
 		sid: userPayload.sid,
 	});
+
+	return user;
 }
 
 export async function removeUser(uid: string) {
