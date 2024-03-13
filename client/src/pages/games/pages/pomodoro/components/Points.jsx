@@ -42,7 +42,7 @@ export default function Points({ account }) {
 	};
 
 	return (
-		<Box className='flex flex-col py-1 px-5 w-full justify-center'>
+		<Box className='flex flex-col px-5 w-full justify-center'>
 			<Typography style={{ fontWeight: 'bold' }} className='top-0'>
 				Points Earned Today
 			</Typography>
