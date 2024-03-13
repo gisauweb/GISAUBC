@@ -119,7 +119,7 @@ function Todo() {
 			</Box>
 
 			{tasks.length === 0 ? (
-				<Box className='flex flex-col justify-center items-center h-full'>
+				<Box className='flex flex-col justify-center self-center h-full'>
 					<Typography className='text-slate-600'>No tasks left.</Typography>
 				</Box>
 			) : (
