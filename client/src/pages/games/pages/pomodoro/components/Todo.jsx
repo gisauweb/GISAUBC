@@ -26,24 +26,20 @@ function Todo() {
 
 	const handleClose = () => {
 		setOpen(false);
+		setNewTask('');
+		setDescription('');
+		setCycles('1');
 	};
 
 	const addTask = () => {
-		if (newTask.trim() !== '' && cycles !== '') {
-			let cyclesValue = parseInt(cycles, 10);
-			if (cyclesValue < 1) {
-				cyclesValue = 1;
-			}
+		if (newTask.trim() !== '') {
 			const task = {
 				title: newTask,
 				description,
-				cycles: cyclesValue,
+				cycles,
 				complete: false,
 			};
 			setTasks([...tasks, task]);
-			setNewTask('');
-			setDescription('');
-			setCycles('');
 			handleClose();
 			setSelectedTaskIndex(0);
 		}
@@ -51,18 +47,11 @@ function Todo() {
 
 	const editTask = () => {
 		if (editedTaskIndex !== null) {
-			let cyclesValue = parseInt(cycles, 10);
-			if (cyclesValue < 1) {
-				cyclesValue = 1;
-			}
 			const editedTask = tasks[editedTaskIndex];
 			editedTask.title = newTask;
 			editedTask.description = description;
-			editedTask.cycles = cyclesValue;
+			editedTask.cycles = cycles;
 			setTasks([...tasks.slice(0, editedTaskIndex), editedTask, ...tasks.slice(editedTaskIndex + 1)]);
-			setNewTask('');
-			setDescription('');
-			setCycles('');
 			handleClose();
 			setEditedTaskIndex(null);
 		}
@@ -102,8 +91,8 @@ function Todo() {
 	};
 
 	return (
-		<Box className='relative w-full flex flex-col items-center justify-center'>
-			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-center items-center gap-20'>
+		<Box className='relative w-full h-full flex flex-col justify-center items-start'>
+			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-between items-center px-12'>
 				<Typography
 					className='text-center'
 					style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
@@ -134,7 +123,15 @@ function Todo() {
 					<Typography className='text-slate-600'>No tasks left.</Typography>
 				</Box>
 			) : (
-				<Box className='flex flex-col items-center h-full mt-36 overflow-y-auto mb-14 w-3/5 overflow-x-hidden'>
+				<Box
+					className='flex flex-col h-full mt-[33%] mb-1/10
+								w-full px-12 items-center'
+					sx={{
+						overflowY: 'scroll',
+						scrollbarWidth: 'none',
+						'&::-webkit-scrollbar': { display: 'none' },
+					}}
+				>
 					{tasks
 						.slice(0)
 						.reverse()
@@ -202,7 +199,7 @@ function Todo() {
 							value={newTask}
 							onChange={(e) => setNewTask(e.target.value)}
 							className='self-center flex-grow w-full h-12 px-4 mb-2 transition duration-200
-							 bg-white outline outline-none rounded-2xl shadow-sm appearance-none'
+							bg-white outline outline-none rounded-2xl shadow-sm appearance-none'
 						/>
 						<Typography sx={{ fontWeight: 'bold', marginTop: '5px' }}>Description (optional)</Typography>
 						<textarea
@@ -210,7 +207,7 @@ function Todo() {
 							value={description}
 							onChange={(e) => setDescription(e.target.value)}
 							className='self-center flex-grow w-full h-24 px-4 mb-2 transition duration-200
-							 bg-white outline-none rounded-2xl shadow-sm appearance-none'
+							bg-white outline-none rounded-2xl shadow-sm appearance-none'
 							style={{ resize: 'none' }}
 						/>
 						<Box
@@ -229,11 +226,12 @@ function Todo() {
 							</Typography>
 							<input
 								type='number'
-								placeholder='1'
 								value={cycles}
-								onChange={(e) => setCycles(e.target.value)}
+								onChange={(e) => {
+									setCycles(parseInt(e.target.value, 10));
+								}}
 								className='self-center w-1/5 px-4 transition duration-200
-								bg-white outline-none rounded-xl shadow-sm appearance-none ml-2'
+								bg-white outline-none rounded-xl shadow-sm ml-2'
 								style={{ borderRadius: '20px' }}
 							/>
 						</Box>

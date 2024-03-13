@@ -14,7 +14,7 @@ export async function addPoints(user: User, userPayload: AddPointsModel) {
 	const total_points = user.total_points || 0 ;
 	
 	let points = userPayload.points;
-	if (user.past_activities[date] + userPayload.points > MAX_POINTS_LIMIT ) {
+	if (user.past_activities && user.past_activities[date] + userPayload.points > MAX_POINTS_LIMIT ) {
 		points = MAX_POINTS_LIMIT - user.past_activities[date]
 	}
 	const pastActivities = handlePastActivities(points, user.past_activities, date);
