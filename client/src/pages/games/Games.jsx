@@ -123,6 +123,8 @@ export default function Games() {
 					setCurrentPage={setCurrentPage}
 					updateAccountState={() => updateAccountState()}
 				/>
+			) : currentPage === 'Pomodoro' ? (
+				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
 			) : null}
 		</div>
 	) : (
