@@ -27,6 +27,7 @@ import getCurrentTimestamp from "../services/dateFormatter";
 export async function createUserIfNotExists(req: Request, res: Response, next: NextFunction) {
 	try {
 		const { sid, uid, profile_picture, first_name, last_name, email } = JSON.parse(req.body)
+		const currentDate = getCurrentTimestamp();
 		const createUserPayload: createUserModel = {
 			sid: sid,
 			uid: uid,
@@ -35,8 +36,11 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 			last_name: last_name,
 			nickname: first_name,
 			email: email,
-			created_at: getCurrentTimestamp(),
-			updated_at: getCurrentTimestamp(),
+			past_activities: {
+				[currentDate.split(" ")[0]]: 0
+			},
+			created_at: currentDate,
+			updated_at: currentDate,
 		};
 		return await requestValidator(createUserPayload, userCreation, res, next).then(async () => {
 			if (res.headersSent) return;
@@ -50,9 +54,9 @@ export async function createUserIfNotExists(req: Request, res: Response, next: N
 							message: invalidMember
 						})
 					} else {
-						await userRepository.createUser(createUserPayload);
+						const result = await userRepository.createUser(createUserPayload);
 						return res.status(201).send({
-						result: true,
+						result: result,
 						message: `User ${sid} has been added successfully`
 					})
 					}
