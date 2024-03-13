@@ -9,7 +9,7 @@ import AlertDialog from './pages/onboarding/components/AlertDialog';
 import Profile from './pages/profile/Profile';
 import Sidebar from './pages/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
-import Pomodoro from './pages/games/Pomodoro';
+import Pomodoro from './pages/pomodoro/Pomodoro';
 
 export default function Games() {
 	const {
