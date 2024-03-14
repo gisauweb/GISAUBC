@@ -15,24 +15,18 @@ export default function Profile({ username, picture, setCurrentPage }) {
 			<Typography style={{ fontSize: '14px' }}>Welcome,</Typography>
 			<Box className='flex flex-row justify-center items-center my-5 gap-3'>
 				{!isMobileView && (
-					<div
+					<img
+						src={picture}
+						alt='profile_pic'
 						style={{
 							width: '50px',
 							height: '50px',
-							marginRight: '5px',
+							objectFit: 'cover',
+							borderRadius: '50%',
+							justifySelf: 'center',
+							alignSelf: 'center',
 						}}
-					>
-						<img
-							src={picture}
-							alt='profile_pic'
-							style={{
-								width: 'auto',
-								height: 'auto',
-								objectFit: 'cover',
-								borderRadius: '50%',
-							}}
-						/>
-					</div>
+					/>
 				)}
 				<div
 					style={{
