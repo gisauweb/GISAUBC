@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 import { Input } from '@material-tailwind/react';
 import React, { useState } from 'react';
 // import { useMediaQuery } from 'react-responsive';
-import EditButton from '../profile/components/EditButton';
+import EditButton from './components/EditButton';
 
 function StyledTextField({ value, label, edit, onChange }) {
 	return (

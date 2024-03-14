@@ -6,7 +6,6 @@ import { useMediaQuery } from 'react-responsive';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
-import Profile from './pages/profile/Profile';
 import Sidebar from './pages/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
 import Pomodoro from './pages/pomodoro/Pomodoro';
@@ -118,13 +117,6 @@ export default function Games() {
 			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
-			) : currentPage === 'Profile' ? (
-				<Profile
-					account={account}
-					token={token}
-					setCurrentPage={setCurrentPage}
-					updateAccountState={() => updateAccountState()}
-				/>
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
 			) : currentPage === 'Settings' ? (
@@ -138,13 +130,6 @@ export default function Games() {
 			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
-			) : currentPage === 'Profile' ? (
-				<Profile
-					account={account}
-					token={token}
-					setCurrentPage={setCurrentPage}
-					updateAccountState={() => updateAccountState()}
-				/>
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
 			) : currentPage === 'Settings' ? (
