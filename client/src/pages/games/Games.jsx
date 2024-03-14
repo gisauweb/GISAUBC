@@ -10,6 +10,8 @@ import Profile from './pages/profile/Profile';
 import Sidebar from './pages/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
 import Pomodoro from './pages/pomodoro/Pomodoro';
+import ComingSoon from './pages/ComingSoon';
+import Settings from './pages/settings/Settings';
 
 export default function Games() {
 	const {
@@ -125,7 +127,11 @@ export default function Games() {
 				/>
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : null}
+			) : currentPage === 'Settings' ? (
+				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : (
+				<ComingSoon />
+			)}
 		</div>
 	) : (
 		<div className='flex h-screen bg-white'>
@@ -141,7 +147,11 @@ export default function Games() {
 				/>
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : null}
+			) : currentPage === 'Settings' ? (
+				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : (
+				<ComingSoon />
+			)}
 		</div>
 	);
 }
