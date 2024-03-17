@@ -1,17 +1,8 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import hiring from 'assets/events-page/gisau_core_hiring_package.pdf';
 import agm from 'assets/events-page/AGM.pdf';
 import lanusa from 'assets/events-page/lanusa.pdf';
 
 const UPCOMING_EVENTS = [
-	{
-		image: EVENTS_23_24[10],
-		title: 'GISAU Core 2024/25 Hiring',
-		date: 'Until March 14th, 2024',
-		loc: 'Online (See PDF for details)',
-		registrationLink: hiring,
-		infoLink: hiring,
-	},
 	{
 		image: EVENTS_23_24[11],
 		title: "GISAU's Annual General Meeting",
