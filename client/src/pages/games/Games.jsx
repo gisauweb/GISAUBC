@@ -112,7 +112,7 @@ export default function Games() {
 		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
 	) : !account ? (
 		<Onboarding token={token} setAccount={setAccount} />
-	) : account && isMobileView ? (
+	) : isMobileView ? (
 		<div className='w-screen flex flex-col h-fit mb-10 items-center gap-3 relative bg-overlay bg-white'>
 			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
@@ -126,20 +126,18 @@ export default function Games() {
 			)}
 		</div>
 	) : (
-		account && (
-			<div className='flex h-screen bg-white'>
-				<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-				{currentPage === 'Dashboard' ? (
-					<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
-				) : currentPage === 'Pomodoro' ? (
-					<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-				) : currentPage === 'Settings' ? (
-					<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
-				) : (
-					<ComingSoon />
-				)}
-			</div>
-		)
+		<div className='flex h-screen bg-white'>
+			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+			{currentPage === 'Dashboard' ? (
+				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
+			) : currentPage === 'Pomodoro' ? (
+				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : currentPage === 'Settings' ? (
+				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : (
+				<ComingSoon />
+			)}
+		</div>
 	);
 }
 

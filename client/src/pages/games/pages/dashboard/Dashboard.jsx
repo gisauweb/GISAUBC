@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
@@ -15,47 +14,32 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 	const [leaderboard, setLeaderboard] = useState([]);
 
 	useEffect(() => {
-		let retryCount = 0;
-		const maxRetries = 3; // Set a maximum number of retries to avoid infinite loops
-		const retryDelay = 5000; // Retry delay in milliseconds (5 seconds)
-
 		async function getLeaderboard() {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
+				fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
 					headers: {
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
 						Authorization: `Bearer ${token}`,
 					},
-				});
-				const res = await response.json();
-				setLeaderboard(res.result);
-				console.log('my res.result: ', res.result);
-				console.log('my account: ', account);
-				console.log('res.result account.uid', res.result[account.uid]);
-				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
-					setLoadingLeader(false);
-				} else if (retryCount < maxRetries) {
-					retryCount += 1;
-					setTimeout(getLeaderboard, retryDelay); // Retry after a delay
-				} else {
-					setLoadingLeader(false); // Stop trying after reaching the max retries
-				}
+				})
+					.then((res) => res.json())
+					.then((res) => {
+						setLeaderboard(res.result);
+						setLoadingLeader(false);
+					});
 			} catch (err) {
-				Sentry.captureException(`Error when getting leaderboard: ${err}`);
-				setLoadingLeader(false); // Also consider stopping if there's an error
+				Sentry.captureException('Error when getting leaderboard: ', err);
 			}
 		}
-
-		if (account && token && loadingLeader) {
+		if (loadingLeader) {
 			getLeaderboard();
 		}
-	}, [token, account, loadingLeader]); // Dependencies
+	}, [token, loadingLeader]);
 
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
 	}
-
 	return !isMobileView ? (
 		<>
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
