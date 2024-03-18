@@ -30,6 +30,8 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 				});
 				const res = await response.json();
 				setLeaderboard(res.result);
+				console.log('my res.result: ', res.result);
+				console.log('my account.uid: ', account.uid);
 				console.log('res.result account.uid', res.result[account.uid]);
 				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
 					setLoadingLeader(false);
