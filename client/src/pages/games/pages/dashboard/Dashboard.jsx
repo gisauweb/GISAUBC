@@ -15,8 +15,11 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 	const [leaderboard, setLeaderboard] = useState([]);
 
 	useEffect(() => {
+		let retryCount = 0;
+		const maxRetries = 3; // Set a maximum number of retries to avoid infinite loops
+		const retryDelay = 5000; // Retry delay in milliseconds (5 seconds)
+
 		async function getLeaderboard() {
-			console.log('getLeaderboard');
 			try {
 				const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
 					headers: {
@@ -27,22 +30,25 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 				});
 				const res = await response.json();
 				setLeaderboard(res.result);
-				// Check if account.uid exists in the leaderboard result
-				console.log(res.result);
-				if (res.result && res.result[account.uid] !== undefined) {
+				console.log('res.result account.uid', res.result[account.uid]);
+				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
 					setLoadingLeader(false);
-				} else if (loadingLeader) {
-					await getLeaderboard();
-					console.log(loadingLeader);
+				} else if (retryCount < maxRetries) {
+					retryCount += 1;
+					setTimeout(getLeaderboard, retryDelay); // Retry after a delay
+				} else {
+					setLoadingLeader(false); // Stop trying after reaching the max retries
 				}
 			} catch (err) {
 				Sentry.captureException(`Error when getting leaderboard: ${err}`);
+				setLoadingLeader(false); // Also consider stopping if there's an error
 			}
 		}
+
 		if (account && token && loadingLeader) {
 			getLeaderboard();
 		}
-	}, [token, account, loadingLeader]);
+	}, [token, account, loadingLeader]); // Dependencies
 
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
