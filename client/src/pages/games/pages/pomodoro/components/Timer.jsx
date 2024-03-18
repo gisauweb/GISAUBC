@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, MenuItem, Select, Dialog, DialogContent } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import HistoryIcon from '@mui/icons-material/History';
+import TimerPopup from './TimerPopup';
 
 const TimerState = {
 	STOP: 0,
@@ -18,6 +19,7 @@ function Timer({ account, token, updateAccountState }) {
 	const [isRunning, setIsRunning] = useState(false);
 	const [isChangingFocus, setIsChangingFocus] = useState(false);
 	const [chosenTime, setChosenTime] = useState('');
+	const [showTimerPopup, setShowTimerPopup] = useState(false);
 
 	useEffect(() => {
 		async function updatePoints(points) {
@@ -34,6 +36,7 @@ function Timer({ account, token, updateAccountState }) {
 			timer = setInterval(() => {
 				setTime((prevTime) => {
 					if (prevTime <= 0) {
+						setShowTimerPopup(true);
 						clearInterval(timer);
 						setIsRunning(false);
 						if (timerState === TimerState.FOCUS) {
@@ -86,6 +89,10 @@ function Timer({ account, token, updateAccountState }) {
 
 	const handleBreakChange = (event) => {
 		setBreakDuration(event.target.value);
+	};
+
+	const handlePopupClose = () => {
+		setShowTimerPopup(false);
 	};
 
 	return (
@@ -201,6 +208,7 @@ function Timer({ account, token, updateAccountState }) {
 					</Box>
 				</DialogContent>
 			</Dialog>
+			<TimerPopup isOpen={showTimerPopup} onClose={handlePopupClose} />
 		</Box>
 	);
 }
