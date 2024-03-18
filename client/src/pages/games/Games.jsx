@@ -60,7 +60,7 @@ export default function Games() {
 				const result = await getAccessTokenSilently();
 				setToken(result);
 				if (!account && user) {
-					fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
+					await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
 							Accept: 'application/json',
@@ -92,7 +92,7 @@ export default function Games() {
 	}, [isAuthenticated, loginWithPopup]);
 
 	async function updateAccountState() {
-		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
+		await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',

@@ -33,7 +33,7 @@ const iconButtonStyles = {
 export default function EditButton({ edit, setEdit, uid, token, nickname, setNickname, updateAccountState }) {
 	const [oldNickname, setOldNickname] = useState('');
 	async function EditUserProfile() {
-		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user`, {
+		await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user`, {
 			method: 'PUT',
 			headers: { Authorization: `Bearer ${token}` },
 			body: JSON.stringify({ uid, nickname }),

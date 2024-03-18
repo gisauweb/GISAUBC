@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
@@ -12,45 +11,36 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 	const { user } = useAuth0();
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const [loadingLeader, setLoadingLeader] = useState(true);
-
 	const [leaderboard, setLeaderboard] = useState([]);
 
 	useEffect(() => {
 		async function getLeaderboard() {
-			console.log('getLeaderboard');
 			try {
-				fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
+				const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
 					headers: {
 						'Content-Type': 'application/json',
 						Accept: 'application/json',
 						Authorization: `Bearer ${token}`,
 					},
-				})
-					.then((res) => res.json())
-					.then((res) => {
-						setLeaderboard(res.result);
-						if (res.result[account.uid]) {
-							console.log('false loading leader');
-							setLoadingLeader(false);
-						} else {
-							getLeaderboard();
-						}
-					});
+				});
+				const res = await response.json();
+				setLeaderboard(res.result);
+				// Check if account.uid exists in the leaderboard result
+				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
+					setLoadingLeader(false);
+				}
 			} catch (err) {
-				Sentry.captureException('Error when getting leaderboard: ', err);
+				Sentry.captureException(`Error when getting leaderboard: ${err}`);
 			}
 		}
-		if (account && loadingLeader) {
-			console.log(account);
+		if (account && token && loadingLeader) {
 			getLeaderboard();
 		}
-	}, [token, loadingLeader, account]);
+	}, [token, account, loadingLeader]);
 
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
 	}
-
-	console.log(loadingLeader);
 
 	return !isMobileView ? (
 		<>

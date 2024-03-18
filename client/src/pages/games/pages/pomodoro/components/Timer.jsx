@@ -23,7 +23,7 @@ function Timer({ account, token, updateAccountState }) {
 
 	useEffect(() => {
 		async function updatePoints(points) {
-			fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
+			await fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
 				method: 'PUT',
 				headers: { Authorization: `Bearer ${token}` },
 				body: JSON.stringify({ uid: account.uid, points }),
