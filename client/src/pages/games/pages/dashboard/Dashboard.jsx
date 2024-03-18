@@ -27,7 +27,11 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 					.then((res) => res.json())
 					.then((res) => {
 						setLeaderboard(res.result);
-						setLoadingLeader(false);
+						if (res.result[account.uid]) {
+							setLoadingLeader(false);
+						} else {
+							getLeaderboard();
+						}
 					});
 			} catch (err) {
 				Sentry.captureException('Error when getting leaderboard: ', err);
@@ -36,7 +40,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 		if (loadingLeader) {
 			getLeaderboard();
 		}
-	}, [token, loadingLeader]);
+	}, [token, loadingLeader, account.uid]);
 
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
