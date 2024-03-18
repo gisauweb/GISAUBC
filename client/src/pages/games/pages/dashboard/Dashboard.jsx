@@ -29,7 +29,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 				setLeaderboard(res.result);
 				// Check if account.uid exists in the leaderboard result
 				console.log(res.result);
-				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
+				if (res.result && res.result[account.uid] !== undefined) {
 					setLoadingLeader(false);
 				} else if (loadingLeader) {
 					await getLeaderboard();
