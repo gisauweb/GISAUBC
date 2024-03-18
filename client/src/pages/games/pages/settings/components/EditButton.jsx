@@ -55,7 +55,9 @@ export default function EditButton({ edit, setEdit, uid, token, nickname, setNic
 				<IconButton
 					sx={{ ...iconButtonStyles, bgcolor: '#4CAF50' }}
 					onClick={async () => {
-						await EditUserProfile(nickname);
+						if (oldNickname !== nickname) {
+							await EditUserProfile(nickname);
+						}
 						setEdit(false);
 					}}
 				>
