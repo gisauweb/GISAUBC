@@ -49,7 +49,7 @@ function Timer({ account, token, updateAccountState }) {
 						setTimerState(TimerState.FOCUS);
 						return focusDuration * 60;
 					}
-					return prevTime - 300;
+					return prevTime - 1;
 				});
 			}, 1000);
 		} else {
