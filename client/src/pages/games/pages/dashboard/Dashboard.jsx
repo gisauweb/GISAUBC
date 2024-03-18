@@ -16,6 +16,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 
 	useEffect(() => {
 		async function getLeaderboard() {
+			console.log('getLeaderboard');
 			try {
 				fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
 					headers: {
@@ -28,6 +29,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 					.then((res) => {
 						setLeaderboard(res.result);
 						if (res.result[account.uid]) {
+							console.log('false loading leader');
 							setLoadingLeader(false);
 						} else {
 							getLeaderboard();
@@ -38,6 +40,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 			}
 		}
 		if (account && loadingLeader) {
+			console.log(account);
 			getLeaderboard();
 		}
 	}, [token, loadingLeader, account]);
@@ -45,6 +48,9 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
 	}
+
+	console.log(loadingLeader);
+
 	return !isMobileView ? (
 		<>
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
