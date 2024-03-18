@@ -37,10 +37,10 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 				Sentry.captureException('Error when getting leaderboard: ', err);
 			}
 		}
-		if (loadingLeader) {
+		if (account && loadingLeader) {
 			getLeaderboard();
 		}
-	}, [token, loadingLeader, account.uid]);
+	}, [token, loadingLeader, account]);
 
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
