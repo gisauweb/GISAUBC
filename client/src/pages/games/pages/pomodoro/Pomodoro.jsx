@@ -12,7 +12,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 	return !isMobileView ? (
 		<div className='flex xl:w-[80vw] h-full gap-7 px-16 justify-center items-center'>
 			<div className='w-[55%] h-5/6 rounded-2xl pl-2 flex flex-col justify-center items-center gap-5'>
-				<Box className='bg-gamesBox w-full h-2/3 rounded-2xl flex justify-center items-center'>
+				<Box className='bg-gamesBox w-full h-96 rounded-2xl flex justify-center items-center'>
 					<Timer account={account} token={token} updateAccountState={updateAccountState} />
 				</Box>
 				<Box className='bg-gamesBox w-full h-1/3 rounded-2xl flex top-3'>
