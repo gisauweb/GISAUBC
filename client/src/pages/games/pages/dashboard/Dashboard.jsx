@@ -15,6 +15,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 
 	useEffect(() => {
 		async function getLeaderboard() {
+			console.log('getLeaderboard');
 			try {
 				const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/points/leaderboard`, {
 					headers: {
@@ -26,8 +27,12 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 				const res = await response.json();
 				setLeaderboard(res.result);
 				// Check if account.uid exists in the leaderboard result
+				console.log(res.result);
 				if (res.result && Object.hasOwnProperty.call(res.result, account.uid)) {
 					setLoadingLeader(false);
+				} else if (loadingLeader) {
+					await getLeaderboard();
+					console.log(loadingLeader);
 				}
 			} catch (err) {
 				Sentry.captureException(`Error when getting leaderboard: ${err}`);
@@ -41,6 +46,8 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 	if (loadingLeader || !account || !user) {
 		return <div>Loading...</div>;
 	}
+
+	console.log('loadingLeader: ', loadingLeader);
 
 	return !isMobileView ? (
 		<>
