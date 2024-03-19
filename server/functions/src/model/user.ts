@@ -1,5 +1,11 @@
+import { Task } from "./task";
+
 export interface PastActivities {
 	[key: string]: number;
+}
+
+export interface Tasks {
+	[key: number]: Task
 }
 
 export interface User {
@@ -10,6 +16,7 @@ export interface User {
 	last_name: string,
 	past_activities: PastActivities,
 	total_points: number,
+	tasks: Tasks,
 	created_at: string,
 	updated_at: string
 }
