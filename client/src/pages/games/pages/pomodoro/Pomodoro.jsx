@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import Points from './components/Points';
-import Timer from './components/Timer';
-import Todo from './components/Todo';
+import Points from './components/Points/Points';
+import Timer from './components/Timer/Timer';
+import Todo from './components/Todo/Todo';
 import Clipboard from '../../../../assets/games/clipboard.svg';
 
 export default function Pomodoro({ account, token, updateAccountState }) {
