@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
 import TaskDialog from './components/TaskDialog';
 import CompleteDialog from './components/CompleteDialog';
 import TaskList from './components/TaskList';
 import Header from './components/Header';
 
 function Todo() {
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const [tasks, setTasks] = useState([]);
 	const [open, setOpen] = useState(false);
 	const [newTask, setNewTask] = useState('');
