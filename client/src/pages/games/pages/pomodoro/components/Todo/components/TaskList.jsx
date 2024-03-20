@@ -2,9 +2,14 @@ import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
 
 function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskIndex }) {
-	return (
+	return tasks.length === 0 ? (
+		<Box className='flex flex-col justify-center self-center h-full'>
+			<Typography className='text-slate-600'>No tasks left.</Typography>
+		</Box>
+	) : (
 		<Box
-			className='flex flex-col h-full mt-[33%] mb-1/10 w-full px-12 items-center'
+			className='flex flex-col h-full mt-[33%] mb-1/10
+							w-full px-12 items-center'
 			sx={{
 				overflowY: 'scroll',
 				scrollbarWidth: 'none',
@@ -19,7 +24,7 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskIn
 						// eslint-disable-next-line react/no-array-index-key
 						key={index}
 						className='text-slate-600 bg-white rounded-2xl py-4 w-3/4
-						flex flex-row mb-4 gap-10 items-center'
+							flex flex-row mb-4 gap-10 items-center'
 						style={{
 							borderLeft:
 								selectedTaskIndex === tasks.length - 1 - index
@@ -56,5 +61,4 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskIn
 		</Box>
 	);
 }
-
 export default TaskList;
