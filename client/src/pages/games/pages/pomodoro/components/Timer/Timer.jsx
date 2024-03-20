@@ -107,11 +107,11 @@ function Timer({ account, token, updateAccountState }) {
 			<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>
 				{timerState === TimerState.BREAK ? 'Time to take a break!' : "Let's Focus!"}
 			</Typography>
-			<Typography style={{ fontWeight: 'bold', fontSize: '50px' }} className='mt-8'>
+			<span className='text-5xl font-bold'>
 				{`${Math.floor(time / 60)
 					.toString()
 					.padStart(2, '0')}:${(time % 60).toString().padStart(2, '0')}`}
-			</Typography>
+			</span>
 			<Button
 				style={{
 					backgroundColor: '#727D5B',
