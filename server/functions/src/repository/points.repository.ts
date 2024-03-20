@@ -76,5 +76,19 @@ function handlePastActivities(points: number, pastActivities: PastActivities, da
 		}
 	}
 	
-	return pastActivities;
+	// Convert the pastActivities object into an array and sort it by date
+	const sortedActivitiesArray = Object.entries(pastActivities).sort((a, b) => {
+		// Convert the date strings back into Date objects for comparison
+		const dateA = new Date(a[0].replace(/ /g, ", ")); // Adjust format to original for proper conversion
+		const dateB = new Date(b[0].replace(/ /g, ", ")); // Adjust format to original for proper conversion
+		return dateA.getTime() - dateB.getTime();
+	});
+
+	// Convert the sorted array back into an object
+	const sortedActivities = sortedActivitiesArray.reduce((obj, [key, value]) => {
+		obj[key] = value;
+		return obj;
+	}, {} as PastActivities);
+
+	return sortedActivities;
 }
