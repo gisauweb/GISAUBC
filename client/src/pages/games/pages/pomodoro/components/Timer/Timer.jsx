@@ -22,6 +22,9 @@ function Timer({ account, token, updateAccountState }) {
 	const [showTimerPopup, setShowTimerPopup] = useState(false);
 
 	useEffect(() => {
+		const workerScriptUrl = `${process.env.PUBLIC_URL}/timerWorker.js`;
+		const worker = new Worker(workerScriptUrl);
+
 		async function updatePoints(points) {
 			await fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
 				method: 'PUT',
@@ -31,13 +34,13 @@ function Timer({ account, token, updateAccountState }) {
 			updateAccountState();
 		}
 
-		let timer;
 		if (isRunning) {
-			timer = setInterval(() => {
+			worker.postMessage({ command: 'start' });
+			worker.onmessage = () => {
 				setTime((prevTime) => {
 					if (prevTime <= 0) {
 						setShowTimerPopup(true);
-						clearInterval(timer);
+						worker.postMessage({ command: 'stop' }); // Stop the worker when time is up
 						setIsRunning(false);
 						if (timerState === TimerState.FOCUS) {
 							updatePoints(focusDuration);
@@ -51,12 +54,13 @@ function Timer({ account, token, updateAccountState }) {
 					}
 					return prevTime - 1;
 				});
-			}, 1000);
+			};
 		} else {
-			clearInterval(timer);
+			worker.postMessage({ command: 'stop' });
 		}
 
-		return () => clearInterval(timer);
+		// Clean up function
+		return () => worker.postMessage({ command: 'stop' });
 	}, [timerState, account.uid, token, focusDuration, breakDuration, isRunning, updateAccountState]);
 
 	const handleButtonChange = () => {
