@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, MenuItem, Select, Dialog, DialogContent } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 import HistoryIcon from '@mui/icons-material/History';
+import TimerPopup from './TimerPopup';
 
 const TimerState = {
 	STOP: 0,
@@ -18,10 +19,14 @@ function Timer({ account, token, updateAccountState }) {
 	const [isRunning, setIsRunning] = useState(false);
 	const [isChangingFocus, setIsChangingFocus] = useState(false);
 	const [chosenTime, setChosenTime] = useState('');
+	const [showTimerPopup, setShowTimerPopup] = useState(false);
 
 	useEffect(() => {
+		const workerScriptUrl = `${process.env.PUBLIC_URL}/timerWorker.js`;
+		const worker = new Worker(workerScriptUrl);
+
 		async function updatePoints(points) {
-			fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
+			await fetch(`${process.env.REACT_APP_SERVER_URL}/points/add`, {
 				method: 'PUT',
 				headers: { Authorization: `Bearer ${token}` },
 				body: JSON.stringify({ uid: account.uid, points }),
@@ -29,12 +34,13 @@ function Timer({ account, token, updateAccountState }) {
 			updateAccountState();
 		}
 
-		let timer;
 		if (isRunning) {
-			timer = setInterval(() => {
+			worker.postMessage({ command: 'start' });
+			worker.onmessage = () => {
 				setTime((prevTime) => {
 					if (prevTime <= 0) {
-						clearInterval(timer);
+						setShowTimerPopup(true);
+						worker.postMessage({ command: 'stop' }); // Stop the worker when time is up
 						setIsRunning(false);
 						if (timerState === TimerState.FOCUS) {
 							updatePoints(focusDuration);
@@ -48,12 +54,13 @@ function Timer({ account, token, updateAccountState }) {
 					}
 					return prevTime - 1;
 				});
-			}, 1000);
+			};
 		} else {
-			clearInterval(timer);
+			worker.postMessage({ command: 'stop' });
 		}
 
-		return () => clearInterval(timer);
+		// Clean up function
+		return () => worker.postMessage({ command: 'stop' });
 	}, [timerState, account.uid, token, focusDuration, breakDuration, isRunning, updateAccountState]);
 
 	const handleButtonChange = () => {
@@ -88,6 +95,10 @@ function Timer({ account, token, updateAccountState }) {
 		setBreakDuration(event.target.value);
 	};
 
+	const handlePopupClose = () => {
+		setShowTimerPopup(false);
+	};
+
 	return (
 		<Box className='flex flex-col px-5 w-full h-full justify-center items-center gap-1'>
 			{!isMobileView && (
@@ -96,11 +107,11 @@ function Timer({ account, token, updateAccountState }) {
 			<Typography style={{ fontWeight: 'bold', fontSize: '12px' }}>
 				{timerState === TimerState.BREAK ? 'Time to take a break!' : "Let's Focus!"}
 			</Typography>
-			<Typography style={{ fontWeight: 'bold', fontSize: '50px' }} className='mt-8'>
+			<span className='text-5xl font-bold'>
 				{`${Math.floor(time / 60)
 					.toString()
 					.padStart(2, '0')}:${(time % 60).toString().padStart(2, '0')}`}
-			</Typography>
+			</span>
 			<Button
 				style={{
 					backgroundColor: '#727D5B',
@@ -201,6 +212,7 @@ function Timer({ account, token, updateAccountState }) {
 					</Box>
 				</DialogContent>
 			</Dialog>
+			<TimerPopup isOpen={showTimerPopup} onClose={handlePopupClose} />
 		</Box>
 	);
 }

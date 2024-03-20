@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring';
 import logo from 'assets/gisau-logo/gisau.svg';
 import sidemenu from 'assets/games/sidebar.svg';
 import { useAuth0 } from '@auth0/auth0-react';
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 
 export default function MobileSideBar({ currentPage, setCurrentPage }) {
 	const { user } = useAuth0();

@@ -13,6 +13,7 @@ import  authRoutes  from "./routes/auth.routes";
 import  userRoutes from "./routes/user.routes";
 import pointsRoutes from "./routes/points.routes";
 import helmet from "helmet";
+import taskRoutes from "./routes/task.routes";
 
 const serviceAccount = FB_SERVICE_ACCOUNT;
 
@@ -68,6 +69,7 @@ app.use(jwtCheck);
 userRoutes(app);
 authRoutes(app);
 pointsRoutes(app);
+taskRoutes(app);
 
 const runtimeOpts = {
 	timeoutSeconds: 180,

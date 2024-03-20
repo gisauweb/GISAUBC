@@ -16,7 +16,8 @@ export async function createUser(userPayload: createUserModel) {
 		nickname: userPayload.nickname,
 		email: userPayload.email,
 		total_points: 0,
-		past_activites: userPayload.past_activities,
+		past_activities: userPayload.past_activities,
+		tasks: {},
 		created_at: userPayload.created_at,
 		updated_at: userPayload.updated_at
 	}

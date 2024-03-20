@@ -6,15 +6,15 @@ import { PastActivities, User } from "../model/user";
 const secretCode = process.env.HASH_SECRET_CODE;
 const MAX_POINTS_LIMIT = 300
 
-export async function addPoints(user: User, userPayload: AddPointsModel) {
-	const date = userPayload.updated_at.split(" ")[0];
+export async function addPoints(user: User, pointsPayload: AddPointsModel) {
+	const date = pointsPayload.updated_at.split(" ")[0];
 
-	const uuid = sha256(userPayload.uid + secretCode);
+	const uuid = sha256(pointsPayload.uid + secretCode);
 	const userDocRef = db.collection("users").doc(uuid);
 	const total_points = user.total_points || 0 ;
 	
-	let points = userPayload.points;
-	if (user.past_activities && user.past_activities[date] + userPayload.points > MAX_POINTS_LIMIT ) {
+	let points = pointsPayload.points;
+	if (user.past_activities && user.past_activities[date] + pointsPayload.points > MAX_POINTS_LIMIT ) {
 		points = MAX_POINTS_LIMIT - user.past_activities[date]
 	}
 	const pastActivities = handlePastActivities(points, user.past_activities, date);
@@ -22,7 +22,7 @@ export async function addPoints(user: User, userPayload: AddPointsModel) {
 	await userDocRef.update({
 		total_points: totalPoints,
 		past_activities: pastActivities,
-		updated_at: userPayload.updated_at
+		updated_at: pointsPayload.updated_at
 	});
 }
 
@@ -76,5 +76,19 @@ function handlePastActivities(points: number, pastActivities: PastActivities, da
 		}
 	}
 	
-	return pastActivities;
+	// Convert the pastActivities object into an array and sort it by date
+	const sortedActivitiesArray = Object.entries(pastActivities).sort((a, b) => {
+		// Convert the date strings back into Date objects for comparison
+		const dateA = new Date(a[0].replace(/ /g, ", ")); // Adjust format to original for proper conversion
+		const dateB = new Date(b[0].replace(/ /g, ", ")); // Adjust format to original for proper conversion
+		return dateA.getTime() - dateB.getTime();
+	});
+
+	// Convert the sorted array back into an object
+	const sortedActivities = sortedActivitiesArray.reduce((obj, [key, value]) => {
+		obj[key] = value;
+		return obj;
+	}, {} as PastActivities);
+
+	return sortedActivities;
 }

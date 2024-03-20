@@ -1,9 +1,8 @@
 import React from 'react';
-import { Box, Typography, Button } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
+import { Box, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 
-export default function Profile({ username, picture, setCurrentPage }) {
+export default function Profile({ username, picture }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
@@ -38,32 +37,6 @@ export default function Profile({ username, picture, setCurrentPage }) {
 					<Typography style={{ fontWeight: 'bold' }}>{username}</Typography>
 				</div>
 			</Box>
-			{!isMobileView && (
-				<Button
-					className='mt-3'
-					style={{
-						height: '30px',
-						width: 'fit',
-						borderRadius: '40px',
-						background: '#BFA285',
-						boxShadow: '4px 6px 6px 0px rgba(0, 0, 0, 0.08)',
-						display: 'inline-flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-						color: 'white',
-						fontFamily: 'inherit',
-						fontStyle: 'normal',
-						fontSize: '10px',
-						textTransform: 'none',
-					}}
-					onClick={() => {
-						setCurrentPage('Profile');
-					}}
-				>
-					<PersonIcon className='self-center justify-center' />
-					View Profile
-				</Button>
-			)}
 		</Box>
 	);
 }

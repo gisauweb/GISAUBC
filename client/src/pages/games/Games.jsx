@@ -6,10 +6,11 @@ import { useMediaQuery } from 'react-responsive';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
-import Profile from './pages/profile/Profile';
-import Sidebar from './pages/Sidebar';
+import Sidebar from './pages/Sidebar/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
 import Pomodoro from './pages/pomodoro/Pomodoro';
+import ComingSoon from './pages/ComingSoon';
+import Settings from './pages/settings/Settings';
 
 export default function Games() {
 	const {
@@ -59,7 +60,7 @@ export default function Games() {
 				const result = await getAccessTokenSilently();
 				setToken(result);
 				if (!account && user) {
-					fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
+					await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 						headers: {
 							'Content-Type': 'application/json',
 							Accept: 'application/json',
@@ -91,7 +92,7 @@ export default function Games() {
 	}, [isAuthenticated, loginWithPopup]);
 
 	async function updateAccountState() {
-		fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
+		await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
@@ -116,32 +117,26 @@ export default function Games() {
 			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
 				<Dashboard account={account} token={token} />
-			) : currentPage === 'Profile' ? (
-				<Profile
-					account={account}
-					token={token}
-					setCurrentPage={setCurrentPage}
-					updateAccountState={() => updateAccountState()}
-				/>
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : null}
+			) : currentPage === 'Settings' ? (
+				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : (
+				<ComingSoon />
+			)}
 		</div>
 	) : (
 		<div className='flex h-screen bg-white'>
 			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
-			) : currentPage === 'Profile' ? (
-				<Profile
-					account={account}
-					token={token}
-					setCurrentPage={setCurrentPage}
-					updateAccountState={() => updateAccountState()}
-				/>
+				<Dashboard account={account} token={token} />
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : null}
+			) : currentPage === 'Settings' ? (
+				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
+			) : (
+				<ComingSoon />
+			)}
 		</div>
 	);
 }
