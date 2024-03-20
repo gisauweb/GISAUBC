@@ -7,7 +7,7 @@ import Points from './components/Points';
 import Activity from './components/Activity';
 import Leaderboard from './components/Leaderboard';
 
-export default function Dashboard({ account, token, setCurrentPage }) {
+export default function Dashboard({ account, token }) {
 	const { user } = useAuth0();
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const [loadingLeader, setLoadingLeader] = useState(true);
@@ -44,7 +44,7 @@ export default function Dashboard({ account, token, setCurrentPage }) {
 		<>
 			<div className='flex-1 flex flex-col items-center h-screen justify-center'>
 				<div className='flex h-1/3 w-4/5'>
-					<Profile username={account.nickname} picture={user.picture} setCurrentPage={setCurrentPage} />
+					<Profile username={account.nickname} picture={user.picture} />
 					<Points account={account} leaderboard={leaderboard} />
 				</div>
 				<div className='flex h-1/2 w-4/5'>
