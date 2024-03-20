@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/jsx-indent */
 /* eslint-disable object-curly-newline */
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Card,
 	Typography,
@@ -21,6 +21,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
+import ConfirmationDialog from './ConfirmationDialog';
 
 function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
 	return (
@@ -42,24 +43,46 @@ function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick
 }
 
 export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
-	const [open, setOpen] = React.useState(0);
+	const [open, setOpen] = useState(0);
+	const [showLeaveConfirmation, setShowLeaveConfirmation] = useState(false);
+	const [nextPage, setNextPage] = useState(null);
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const { logout } = useAuth0();
+
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};
+
 	const handleLogout = () => {
 		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
 	};
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
+
 	const handleCloseSidebar = () => {
 		setOpen(0);
 		onCloseSidebar(false);
 	};
 
-	const handleMenuItemClick = (page) => {
-		setCurrentPage(page);
+	const handleCloseLeaveDialog = () => {
+		setShowLeaveConfirmation(false);
+	};
+
+	const handleLeaveConfirm = () => {
+		setShowLeaveConfirmation(false);
+		setCurrentPage(nextPage);
 		if (isMobileView) {
 			handleCloseSidebar();
+		}
+	};
+
+	const handleMenuItemClick = (page) => {
+		if (currentPage === 'Pomodoro' && page !== 'Pomodoro') {
+			setShowLeaveConfirmation(true);
+			setNextPage(page); // Store the next page the user wants to navigate to
+		} else {
+			setCurrentPage(page);
+			if (isMobileView) {
+				handleCloseSidebar();
+			}
 		}
 	};
 
@@ -202,6 +225,11 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 					Sign Out
 				</ListItem>
 			</List>
+			<ConfirmationDialog
+				open={showLeaveConfirmation}
+				onClose={handleCloseLeaveDialog}
+				onLeave={handleLeaveConfirm}
+			/>
 		</Card>
 	);
 }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Box, Typography, IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import TaskDialog from './TaskDialog';
-import CompleteDialog from './CompleteDialog';
+import { Box } from '@mui/material';
+
+import TaskDialog from './components/TaskDialog';
+import CompleteDialog from './components/CompleteDialog';
+import TaskList from './components/TaskList';
+import Header from './components/Header';
 
 function Todo() {
 	const [tasks, setTasks] = useState([]);
@@ -89,91 +89,18 @@ function Todo() {
 
 	return (
 		<Box className='relative w-full h-full flex flex-col justify-center items-start'>
-			<Box className='w-full pb-2 top-0 mt-1/5 absolute flex flex-row justify-between items-center px-24'>
-				<Typography
-					className='text-center'
-					style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
-				>
-					Task List
-				</Typography>
-				<Box className='flex flex-row gap-3 justify-center items-center'>
-					<AddIcon
-						onClick={handleOpen}
-						style={{ cursor: 'pointer', color: '#014900', width: '30px', height: '30px' }}
-					>
-						Add
-					</AddIcon>
-					<EditIcon
-						onClick={() => handleEditIconClick(selectedTaskIndex)}
-						style={{ cursor: 'pointer', color: '#003249' }}
-					>
-						Edit
-					</EditIcon>
-					<DeleteIcon onClick={deleteTask} style={{ cursor: 'pointer', color: '#732727' }}>
-						Delete
-					</DeleteIcon>
-				</Box>
-			</Box>
-
-			{tasks.length === 0 ? (
-				<Box className='flex flex-col justify-center self-center h-full'>
-					<Typography className='text-slate-600'>No tasks left.</Typography>
-				</Box>
-			) : (
-				<Box
-					className='flex flex-col h-full mt-[33%] mb-1/10
-								w-full px-12 items-center'
-					sx={{
-						overflowY: 'scroll',
-						scrollbarWidth: 'none',
-						'&::-webkit-scrollbar': { display: 'none' },
-					}}
-				>
-					{tasks
-						.slice(0)
-						.reverse()
-						.map((task, index) => (
-							<Box
-								// eslint-disable-next-line react/no-array-index-key
-								key={index}
-								className='text-slate-600 bg-white rounded-2xl py-4 w-3/4
-								flex flex-row mb-4 gap-10 items-center'
-								style={{
-									borderLeft:
-										selectedTaskIndex === tasks.length - 1 - index
-											? '20px solid #732727'
-											: '20px solid white',
-									cursor: 'pointer',
-								}}
-								onClick={() => handleTaskClick(tasks.length - 1 - index)}
-							>
-								<Box className='flex flex-col ml-5 w-full overflow-x-auto'>
-									<Typography style={{ fontWeight: 'bold' }}>{task.title}</Typography>
-									<Typography>{task.description}</Typography>
-								</Box>
-								<Box className='flex gap-3 w-1/5 mr-3 justify-end'>
-									<Typography style={{ fontWeight: 'bold' }}>{task.cycles}</Typography>
-									<IconButton
-										onClick={() => handleTaskCompletion(tasks.length - 1 - index)}
-										style={{
-											backgroundColor: task.complete ? 'green' : 'grey',
-											width: '25px',
-											height: '25px',
-											display: 'flex',
-											justifyContent: 'center',
-											alignItems: 'center',
-										}}
-										className='items-center'
-									>
-										<span style={{ color: 'white', fontSize: '16px' }}>✔</span>
-									</IconButton>
-								</Box>
-							</Box>
-						))
-						.reverse()}
-				</Box>
-			)}
-
+			<Header
+				handleOpen={handleOpen}
+				handleEditIconClick={handleEditIconClick}
+				selectedTaskIndex={selectedTaskIndex}
+				deleteTask={deleteTask}
+			/>
+			<TaskList
+				tasks={tasks}
+				handleTaskClick={handleTaskClick}
+				handleTaskCompletion={handleTaskCompletion}
+				selectedTaskIndex={selectedTaskIndex}
+			/>
 			<TaskDialog
 				open={open}
 				handleClose={handleClose}

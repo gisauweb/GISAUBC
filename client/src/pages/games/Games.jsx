@@ -6,7 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
-import Sidebar from './pages/Sidebar';
+import Sidebar from './pages/Sidebar/Sidebar';
 import MobileSideBar from './pages/MobileSidebar';
 import Pomodoro from './pages/pomodoro/Pomodoro';
 import ComingSoon from './pages/ComingSoon';
@@ -129,7 +129,7 @@ export default function Games() {
 		<div className='flex h-screen bg-white'>
 			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
 			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} setCurrentPage={setCurrentPage} />
+				<Dashboard account={account} token={token} />
 			) : currentPage === 'Pomodoro' ? (
 				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
 			) : currentPage === 'Settings' ? (
