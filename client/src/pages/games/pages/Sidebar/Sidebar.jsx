@@ -76,7 +76,6 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 
 	const handleMenuItemClick = (page) => {
 		if (currentPage === 'Pomodoro' && page !== 'Pomodoro') {
-			console.log(currentPage, page);
 			setShowLeaveConfirmation(true);
 			setNextPage(page); // Store the next page the user wants to navigate to
 		} else {
