@@ -7,6 +7,28 @@ import bang from 'assets/home-page/events/upcoming_event.svg';
 import plane from 'assets/games/plane.svg';
 import trophy from 'assets/games/trophy.svg';
 
+const handlePastActivities = (userPastActivities) => {
+	if (!userPastActivities) {
+		return {};
+	}
+
+	const pastActivities = userPastActivities;
+	const sortedActivitiesArray = Object.entries(pastActivities).sort((a, b) => {
+		const dateA = new Date(a[0].replace(/ /g, ', ')); // Adjust format to original for proper conversion
+		const dateB = new Date(b[0].replace(/ /g, ', ')); // Adjust format to original for proper conversion
+		return dateA.getTime() - dateB.getTime();
+	});
+
+	// Convert the sorted array back into an object
+	const sortedActivities = sortedActivitiesArray.reduce((obj, [key, value]) => {
+		// eslint-disable-next-line no-param-reassign
+		obj[key] = value;
+		return obj;
+	}, {});
+
+	return sortedActivities;
+};
+
 export default function Activity({ account }) {
 	const chartRef = useRef(null);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
@@ -15,7 +37,7 @@ export default function Activity({ account }) {
 		if (!account) {
 			return () => {};
 		}
-		const pastActivities = account.past_activities || {};
+		const pastActivities = handlePastActivities(account.past_activities);
 		const ctx = chartRef.current.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, 300);
 		gradient.addColorStop(0, '#BFA4856E');
