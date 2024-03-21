@@ -60,7 +60,7 @@ export default function Points({ account, leaderboard }) {
 	}, [points, targetPoints]);
 
 	return (
-		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center'>
+		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center ml-4'>
 			{isMobileView && (
 				<div style={{ position: 'absolute', width: '100vw' }}>
 					<img

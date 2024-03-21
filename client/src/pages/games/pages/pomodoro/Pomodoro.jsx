@@ -29,19 +29,22 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 			</Box>
 		</div>
 	) : (
-		<div className='flex flex-col w-full h-fit items-center py-5 gap-7 justify-center overflow-y-auto'>
-			<Typography style={{ fontWeight: 'bold', marginTop: '30px', fontSize: '20px' }}> Pomodoro Timer</Typography>
+		<div className='flex flex-col w-full h-screen items-center gap-7 justify-center overflow-y-auto'>
+			<Typography style={{ fontWeight: 'bold', marginTop: '-200px', fontSize: '20px' }}>
+				{' '}
+				Pomodoro Timer
+			</Typography>
 			<Box className='bg-gamesBox w-5/6 py-3 rounded-2xl flex'>
 				<Points account={account} />
 			</Box>
 			<Box className='bg-gamesBox w-5/6 py-5 rounded-2xl flex'>
 				<Timer account={account} token={token} updateAccountState={updateAccountState} />
 			</Box>
-			<Box className='w-5/6 h-auto py-5 rounded-2xl flex justify-center mt-20 items-center overflow-y-auto'>
+			<Box className='w-5/6 h-auto py-5 rounded-2xl flex justify-center items-center overflow-y-auto'>
 				<img
 					src={Clipboard}
 					alt='Clipboard'
-					className='w-5/6 h-auto py-5 rounded-2xl z-1 absolute top-3/4 self-center justify-center'
+					className='w-5/6 h-auto py-5 rounded-2xl z-1 absolute top-1/2 mt-32 self-center justify-center'
 				/>
 				<Todo />
 			</Box>
