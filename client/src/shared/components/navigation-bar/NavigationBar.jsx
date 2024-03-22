@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau_white.svg';
-import { ReactComponent as NavLogoSmall } from 'assets/gisau-logo/gisau_white_small.svg';
 import pages from './constants';
-import MenuInterface from './MenuInterface';
+import MobileNavBar from './components/MobileNavBar';
+import NavBarLogo from './components/NavBarLogo';
+import DesktopNavBar from './components/DesktopNavBar';
 
 export default function NavigationBar() {
 	const location = useLocation();
@@ -16,26 +16,6 @@ export default function NavigationBar() {
 	const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-	const handleClosingMenu = () => {
-		setIsMenuOpen(false);
-
-		// Unsets Background Scrolling to use when SideDrawer/Modal is closed
-		document.body.style.overflow = 'unset';
-	};
-
-	const handleOpeningMenu = () => {
-		setIsMenuOpen(true);
-
-		// Disables Background Scrolling whilst the SideDrawer/Modal is open
-		if (typeof window !== 'undefined' && window.document) {
-			document.body.style.overflow = 'hidden';
-		}
-	};
-
-	useEffect(() => {
-		handleClosingMenu(); // Close the navigation panel
-	}, [location.pathname]);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -54,52 +34,28 @@ export default function NavigationBar() {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
+	const isGamesPage = location.pathname === '/games';
 
-	const ScrollToTop = () => {
-		window.scrollTo(0, 0);
-	};
-
-	return (
+	return isGamesPage ? (
+		<Outlet />
+	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
 			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
-				<Box className='ml-6 sm:ml-20 md:ml-6 lg:ml-20'>
-					<Link to='/'>
-						{hasLandingImage ? (
-							<NavLogoBig className='w-14 sm:w-16 h-auto' />
-						) : (
-							<NavLogoSmall className='w-14 sm:w-16 h-auto' />
-						)}
-					</Link>
-				</Box>
+				<NavBarLogo hasLandingImage={hasLandingImage} />
 				{isMobile ? (
-					<div className='mr-6 sm:mr-20'>
-						<MenuInterface
-							isOpen={isMenuOpen}
-							closeHandler={handleClosingMenu}
-							openHandler={handleOpeningMenu}
-							hasLandingImage={hasLandingImage}
-						/>
-					</div>
+					<MobileNavBar
+						isMenuOpen={isMenuOpen}
+						setIsMenuOpen={setIsMenuOpen}
+						hasLandingImage={hasLandingImage}
+						location={location}
+					/>
 				) : (
-					<Box className='right-0 fixed'>
-						<Box
-							className={`flex mr-6 lg:mr-20 navbar ${
-								hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
-							} h-14 rounded-[15px]`}
-						>
-							{pages.map((page) => (
-								<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop}>
-									<p
-										className={`underline-animation font-oswald text-xl 
-									${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-									${page.path === location.pathname && 'underlined'}`}
-									>
-										{page.name}
-									</p>
-								</Link>
-							))}
-						</Box>
-					</Box>
+					<DesktopNavBar
+						bgColor={bgColor}
+						hasLandingImage={hasLandingImage}
+						location={location}
+						pages={pages}
+					/>
 				)}
 			</Box>
 			<Box>

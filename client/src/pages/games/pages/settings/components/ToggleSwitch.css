@@ -1,0 +1,71 @@
+.toggle-switch {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-family: Arial, sans-serif; /* Or replace with 'Poppins' if the font is loaded */
+  }
+  
+  .switch {
+	position: relative;
+	display: inline-block;
+	width: 5rem; /* Consider using em/rem for responsiveness */
+	height: 2rem;
+	font-family: inherit;
+  }
+  
+  .switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+  }
+  
+  .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	transition: 0.4s;
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1rem;
+	color: white;
+	font-size: 1.2em;
+  }
+  
+  .slider-circle {
+	position: absolute;
+	height: 1.5rem;
+	width: 1.5rem;
+	left: 0.4rem; /* Initial position */
+	bottom: 0.25rem; /* Adjusted for vertical centering */
+	background-color: white;
+	border-radius: 50%;
+	transition: 0.4s all ease; /* Ensures smooth animation */
+  }
+  
+  /* Adjust position when the switch is in the 'checked' state */
+  .slider .slider-circle.checked {
+	transform: translateX(3rem); /* Adjust based on the switch width minus the circle diameter */
+	left: 0.1rem;
+  }
+  
+  .switch.on .slider {
+	background-color: #727D5B; /* ON state background color */
+  }
+  
+  .switch.off .slider {
+	background-color: #732727; /* OFF state background color */
+	justify-content: flex-end; /* Aligns 'off' text correctly when toggled off */
+  }
+  
+  /* Ensure text is vertically centered */
+  .slider span {
+	display: flex;
+	align-items: center;
+}
+  

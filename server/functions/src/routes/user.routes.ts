@@ -4,33 +4,38 @@
 import { Application } from "express";
 import {
 	createUserIfNotExists,
+	editUser,
 	getAllUsers,
 	getUser,
 	removeUser,
 } from "../controllers/user.controller";
 
-import { requiresAuth } from "express-openid-connect";
 
 
-export function userRoutes(app: Application) {
+export default function userRoutes(app: Application) {
 	/**
 	* Create user
 	**/
-	app.post("/users/create", requiresAuth(), createUserIfNotExists);
+	app.post("/users/create", createUserIfNotExists);
 
 	/**
 	* Get all users
 	**/
-	app.get("/users", requiresAuth(), getAllUsers);
+	app.get("/users", getAllUsers);
 
 	/**
-	* GET user with :sid
+	* GET user with :uid
 	**/
-	app.get("/users/user/:sid", requiresAuth(), getUser);
+	app.get("/users/user/:uid", getUser);
 
 	/**
-	* Delete user with :sid
+	* Edit user's fields
 	**/
-	app.delete("/users/remove/:id", requiresAuth(), removeUser);
+	app.put("/users/user", editUser);
+
+	/**
+	* Delete user with :uid
+	**/
+	app.delete("/users/remove/:uid", removeUser);
 
 }
