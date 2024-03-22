@@ -41,7 +41,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 				<img
 					src={Clipboard}
 					alt='Clipboard'
-					className='w-5/6 h-auto py-5 rounded-2xl z-1 absolute top-1/2 mt-32 self-center justify-center'
+					className='w-5/6 h-fit py-5 rounded-2xl z-1 absolute top-1/2 mt-32 self-center justify-center'
 				/>
 				<Todo />
 			</Box>

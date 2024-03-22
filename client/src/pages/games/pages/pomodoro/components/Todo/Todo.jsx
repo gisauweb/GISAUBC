@@ -57,7 +57,7 @@ function Todo() {
 		if (selectedTaskIndex !== null) {
 			const updatedTasks = tasks.filter((_, index) => index !== selectedTaskIndex);
 			setTasks(updatedTasks);
-			setSelectedTaskIndex(null); // Reset selected task
+			setSelectedTaskIndex(0); // Reset selected task
 		}
 	};
 
