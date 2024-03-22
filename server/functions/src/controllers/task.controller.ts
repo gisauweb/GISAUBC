@@ -23,7 +23,7 @@ import * as taskRepository from "../repository/task.repository";
 
 export async function upsertTask(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { uid, id, title, description, cycles, target, done } = JSON.parse(req.body)
+		const { uid, id, title, description, cycles, target, done, edit } = JSON.parse(req.body)
 		const currentDate = getCurrentTimestamp();
 		const upsertTaskPayload: upsertTaskModel = {
 			uid: uid,
@@ -33,6 +33,7 @@ export async function upsertTask(req: Request, res: Response, next: NextFunction
 			cycles: cycles,
 			target: target,
 			done: done,
+			edit: edit,
 			updated_at: currentDate,
 		};
 		return await requestValidator(upsertTaskPayload, taskUpsertionSchema, res, next).then(async () => {
@@ -41,7 +42,7 @@ export async function upsertTask(req: Request, res: Response, next: NextFunction
 			const user = await getUserByUID(upsertTaskPayload.uid) as User;
 			if (user) {
 				try {
-					await taskRepository.upsertTask(user, upsertTaskPayload);
+					await taskRepository.upsertTask(upsertTaskPayload, user.taskCounter);
 					return res.status(201).send({
 						result: true,
 						message: `Task ${id} has been added successfully`

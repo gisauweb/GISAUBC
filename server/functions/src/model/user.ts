@@ -16,6 +16,7 @@ export interface User {
 	last_name: string,
 	past_activities: PastActivities,
 	total_points: number,
+	taskCounter: number,
 	tasks: Tasks,
 	created_at: string,
 	updated_at: string

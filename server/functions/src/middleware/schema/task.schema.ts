@@ -9,6 +9,7 @@ export const taskUpsertionSchema: Schema = {
 		cycles: "number",
 		target: "number",
 		done: "boolean",
+		edit: "boolean",
 		updated_at: "string"
 	},
 	required: [
