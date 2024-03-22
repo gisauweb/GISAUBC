@@ -45,9 +45,12 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
-						<Button text='Register' handleClickButton={() => handleRegisterButton(item.registrationLink)} />
+						<Button
+							text={item.title === 'GISAU Core 2024/25 Hiring' ? 'Apply' : 'Register'}
+							handleClickButton={() => handleRegisterButton(item.registrationLink)}
+						/>
 						<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
-							<Button text='View Event Details' background='transparentBg' />
+							<Button text='View Details' background='transparentBg' />
 						</a>
 					</Box>
 				)}

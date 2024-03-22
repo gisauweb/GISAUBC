@@ -33,7 +33,7 @@ export default function Leaderboard({ uid, leaderboard }) {
 					isMobileView ? 'bottom-10 mt-10' : 'mr-10'
 				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
 			>
-				<Typography style={{ fontWeight: 'bold' }} className='mt-3'>
+				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
 					Leaderboard
 				</Typography>
 				<Box className='flex flex-row w-auto h-auto'>

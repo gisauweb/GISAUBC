@@ -14,7 +14,7 @@ export default function EventLayout(props) {
 	const handleClickButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
-			action: 'Clicked register for UBUD',
+			action: 'Clicked register for GISAU Hiring',
 		});
 		window.open(link, '_blank', 'noreferrer');
 	};

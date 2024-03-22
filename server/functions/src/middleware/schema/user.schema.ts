@@ -9,6 +9,7 @@ export const userCreation: Schema = {
 		last_name: "string",
 		nickname: "string",
 		email: "string",
+		past_activities: "object",
 		created_at: "string",
 		updated_at: "string"
     },
@@ -20,6 +21,7 @@ export const userCreation: Schema = {
 		"first_name",
 		"last_name",
 		"nickname",
+		"past_activities",
 		"created_at",
 		"updated_at"
     ],

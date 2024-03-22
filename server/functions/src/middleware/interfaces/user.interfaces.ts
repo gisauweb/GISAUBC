@@ -35,6 +35,7 @@ export interface createUserModel {
 	last_name: string,
 	nickname: string,
 	email: string,
+	past_activities: object,
 	created_at: string,
 	updated_at: string
 }
