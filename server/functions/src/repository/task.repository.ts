@@ -13,7 +13,7 @@ export async function upsertTask(taskPayload: upsertTaskModel, taskCounter: numb
         description: taskPayload.description,
         cycles: taskPayload.cycles,
         target: taskPayload.target,
-        done: taskPayload.done
+        completed: taskPayload.completed
     };
     const uuid = sha256(taskPayload.uid + secretCode);
     const userDocRef = db.collection("users").doc(uuid);

@@ -23,7 +23,7 @@ import * as taskRepository from "../repository/task.repository";
 
 export async function upsertTask(req: Request, res: Response, next: NextFunction) {
 	try {
-		const { uid, id, title, description, cycles, target, done, edit } = JSON.parse(req.body)
+		const { uid, id, title, description, cycles, target, completed, edit } = req.body
 		const currentDate = getCurrentTimestamp();
 		const upsertTaskPayload: upsertTaskModel = {
 			uid: uid,
@@ -32,7 +32,7 @@ export async function upsertTask(req: Request, res: Response, next: NextFunction
 			description: description,
 			cycles: cycles,
 			target: target,
-			done: done,
+			completed: completed,
 			edit: edit,
 			updated_at: currentDate,
 		};
