@@ -42,9 +42,9 @@ export async function upsertTask(req: Request, res: Response, next: NextFunction
 			const user = await getUserByUID(upsertTaskPayload.uid) as User;
 			if (user) {
 				try {
-					await taskRepository.upsertTask(upsertTaskPayload, user.taskCounter);
+					const counter = await taskRepository.upsertTask(upsertTaskPayload, user.taskCounter);
 					return res.status(201).send({
-						result: true,
+						taskCounter: counter,
 						message: `Task ${id} has been added successfully`
 					})
 				} catch (error) {

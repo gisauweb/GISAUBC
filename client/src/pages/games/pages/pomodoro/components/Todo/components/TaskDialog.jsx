@@ -2,30 +2,19 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Box, Typography, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-function TaskDialog({
-	open,
-	handleClose,
-	newTask,
-	setNewTask,
-	description,
-	setDescription,
-	cycles,
-	setCycles,
-	editTask,
-	addTask,
-	editedTaskIndex,
-}) {
+// eslint-disable-next-line object-curly-newline
+function TaskDialog({ open, handleClose, newTask, updateNewTaskField, editTask, addTask }) {
 	return (
 		<Dialog open={open} onClose={handleClose} PaperProps={{ sx: { borderRadius: '20px' } }}>
 			<Box sx={{ backgroundColor: '#F5F1ED' }} className='flex flex-col'>
 				<DialogTitle>
 					<Typography sx={{ fontWeight: 'bold', textAlign: 'center', marginTop: '5px' }}>
-						Task Details
+						{newTask.edit ? 'Edit Task' : 'Add Task'}
 					</Typography>
 					<IconButton
 						aria-label='close'
 						onClick={handleClose}
-						sx={{ position: 'absolute', right: 0, top: 0, color: '#BFA285' }}
+						sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }}
 					>
 						<CloseIcon />
 					</IconButton>
@@ -35,18 +24,18 @@ function TaskDialog({
 					<input
 						type='text'
 						placeholder='Enter task name'
-						value={newTask}
-						onChange={(e) => setNewTask(e.target.value)}
+						value={newTask.title}
+						onChange={(e) => updateNewTaskField('title', e.target.value)}
 						className='self-center flex-grow w-full h-12 px-4 mb-2 transition duration-200
-                        bg-white outline outline-none rounded-2xl shadow-sm appearance-none'
+								bg-white outline outline-none rounded-2xl shadow-sm appearance-none'
 					/>
 					<Typography sx={{ fontWeight: 'bold', marginTop: '5px' }}>Description (optional)</Typography>
 					<textarea
 						placeholder='Enter task description'
-						value={description}
-						onChange={(e) => setDescription(e.target.value)}
+						value={newTask.description}
+						onChange={(e) => updateNewTaskField('description', e.target.value)}
 						className='self-center flex-grow w-full h-24 px-4 mb-2 transition duration-200
-                        bg-white outline-none rounded-2xl shadow-sm appearance-none'
+								bg-white outline-none rounded-2xl shadow-sm appearance-none'
 						style={{ resize: 'none' }}
 					/>
 					<Box
@@ -58,36 +47,30 @@ function TaskDialog({
 						}}
 						className='items-center'
 					>
-						<Typography sx={{ fontWeight: 'bold' }}>
-							Total cycles needed
-							<br />
-							to complete task
-						</Typography>
+						<Typography sx={{ fontWeight: 'bold' }}>Total cycles needed to complete task</Typography>
 						<input
 							type='number'
-							value={cycles}
-							onChange={(e) => {
-								setCycles(parseInt(e.target.value, 10));
-							}}
+							value={newTask.target}
+							onChange={(e) => updateNewTaskField('target', parseInt(e.target.value, 10) || 0)}
 							className='self-center w-1/5 px-4 transition duration-200
-                        bg-white outline-none rounded-xl shadow-sm ml-2'
+									bg-white outline-none rounded-xl shadow-sm ml-2'
 							style={{ borderRadius: '20px' }}
 						/>
 					</Box>
 				</DialogContent>
 				<Box sx={{ display: 'flex', justifyContent: 'end', p: 2 }}>
 					<Button
-						onClick={editedTaskIndex !== null ? editTask : addTask}
+						onClick={() => (newTask.edit ? editTask() : addTask())}
 						variant='contained'
 						sx={{
 							backgroundColor: '#BFA285',
 							color: 'white',
-							borderRadius: '40px',
+							'&:hover': { backgroundColor: '#A08064' },
+							borderRadius: '20px',
 							textTransform: 'none',
-							fontStyle: 'normal',
 						}}
 					>
-						{editedTaskIndex !== null ? 'Update' : 'Done'}
+						{newTask.edit ? 'Update Task' : 'Add Task'}
 					</Button>
 				</Box>
 			</Box>

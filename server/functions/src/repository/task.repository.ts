@@ -6,7 +6,7 @@ import { Task } from "../model/task";
 
 const secretCode = process.env.HASH_SECRET_CODE;
 
-export async function upsertTask(taskPayload: upsertTaskModel, taskCounter: number) {
+export async function  upsertTask(taskPayload: upsertTaskModel, taskCounter: number) {
     const task: Task = {
         id: taskPayload.id,
         title: taskPayload.title,
@@ -17,12 +17,15 @@ export async function upsertTask(taskPayload: upsertTaskModel, taskCounter: numb
     };
     const uuid = sha256(taskPayload.uid + secretCode);
     const userDocRef = db.collection("users").doc(uuid);
+	const counter = taskPayload.edit ? taskCounter : taskCounter + 1;
 
     await userDocRef.update({
-		taskCounter: taskPayload.edit ? taskCounter : taskCounter + 1,
+		taskCounter: counter,
         [`tasks.${task.id}`]: task,
         updated_at: taskPayload.updated_at
     });
+
+	return counter;
 }
 
 

@@ -25,7 +25,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 					alt='Clipboard'
 					className='w-auto h-full rounded-2xl z-1 absolute top-0 self-center justify-center'
 				/>
-				<Todo />
+				<Todo account={account} token={token} updateAccountState={updateAccountState} />
 			</Box>
 		</div>
 	) : (
@@ -43,7 +43,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 					alt='Clipboard'
 					className='w-5/6 h-fit py-5 rounded-2xl z-1 absolute top-1/2 mt-32 self-center justify-center'
 				/>
-				<Todo />
+				<Todo account={account} token={token} updateAccountState={updateAccountState} />
 			</Box>
 		</div>
 	);
