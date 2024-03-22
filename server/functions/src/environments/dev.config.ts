@@ -19,15 +19,6 @@ dotenv.config();
 // export const MAILING_PORT = Number(process.env.MAILING_PORT!);
 // export const PHONE_AUTH_BASE_URL = process.env.PHONE_AUTH_BASE_URL!;
 
-export const AUTH0_CONFIG = {
-	authRequired: false,
-	auth0Logout: true,
-	secret: process.env.AUTH0_SECRET,
-	baseURL: "http://localhost:5001/gisaubc-dev/us-central1/api",
-	clientID: process.env.AUTH0_CLIENTID,
-	issuerBaseURL: process.env.AUTH0_BASEURL
-};
-
 export const FB_SERVICE_ACCOUNT = {
 	"type": "service_account",
 	"project_id": "gisaubc-dev",

@@ -29,10 +29,13 @@ export function mapUser(user: admin.auth.UserRecord) {
 
 export interface createUserModel {
 	sid: string,
-	email: string,
+	uid: string,
+	profile_picture: string,
 	first_name: string,
 	last_name: string,
-	picture: string,
+	nickname: string,
+	email: string,
+	past_activities: object,
 	created_at: string,
 	updated_at: string
 }
@@ -43,7 +46,12 @@ export interface getUsersModel {
 }
 
 export interface getUserModel {
-    sid: string
+    uid: string
+}
+
+export interface editUserModel {
+    uid: string,
+	nickname: string
 }
 
 export interface updateUserPhoneModel {

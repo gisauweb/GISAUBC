@@ -41,5 +41,5 @@ export interface userAuthPasswordModel {
 }
 
 export interface userAuthUserModel {
-    id: string
+    uid: string
 }
