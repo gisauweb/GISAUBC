@@ -29,10 +29,8 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 			</Box>
 		</div>
 	) : (
-		<div className='flex flex-col w-full h-screen items-center gap-7 justify-center overflow-y-auto'>
-			<Typography style={{ fontWeight: 'bold', marginTop: '-200px', fontSize: '20px' }}>
-				Pomodoro Timer
-			</Typography>
+		<div className='flex flex-col w-full h-fit items-center gap-7 justify-center'>
+			<Typography style={{ fontWeight: 'bold', marginTop: '55px', fontSize: '20px' }}>Pomodoro Timer</Typography>
 			<Box className='bg-gamesBox w-5/6 py-3 rounded-2xl flex'>
 				<Points account={account} />
 			</Box>
