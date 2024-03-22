@@ -9,10 +9,10 @@ export default function Profile({ username, picture }) {
 		<Box
 			className={`bg-${
 				isMobileView ? 'transparent' : 'gamesBox'
-			} w-full h-full rounded-2xl flex flex-col justify-center items-center mr-2`}
+			} w-5/6 h-4/5 rounded-2xl flex flex-col justify-center items-center mr-2 self-center`}
 		>
-			<Typography style={{ fontSize: '14px' }}>Welcome,</Typography>
-			<Box className='flex flex-row justify-center items-center my-5 gap-3'>
+			<Typography style={{ fontSize: '18px' }}>Welcome,</Typography>
+			<Box className='flex flex-row justify-center items-center my-5 gap-5'>
 				{!isMobileView && (
 					<img
 						src={picture}
@@ -34,7 +34,7 @@ export default function Profile({ username, picture }) {
 						maxWidth: isMobileView ? '100%' : '70%',
 					}}
 				>
-					<Typography style={{ fontWeight: 'bold' }}>{username}</Typography>
+					<Typography style={{ fontWeight: 'bold', fontSize: '20px' }}>{username}</Typography>
 				</div>
 			</Box>
 		</Box>

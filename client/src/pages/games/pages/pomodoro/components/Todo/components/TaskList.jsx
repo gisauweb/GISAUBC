@@ -1,15 +1,18 @@
 import React from 'react';
 import { Box, Typography, IconButton } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskIndex }) {
+	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	return tasks.length === 0 ? (
-		<Box className='flex flex-col justify-center self-center h-full'>
+		<Box className={`flex flex-col justify-center self-center h-full ${isMobileView ? 'mt-60' : ''}`}>
 			<Typography className='text-slate-600'>No tasks left.</Typography>
 		</Box>
 	) : (
 		<Box
-			className='flex flex-col h-full mt-[33%] mb-1/10
-							w-full px-12 items-center'
+			className={`flex flex-col h-${isMobileView ? '96' : 'full'} 
+					${isMobileView ? 'mt-32' : 'mt-[33%]'} mb-1/10
+					w-full px-12 items-center`}
 			sx={{
 				overflowY: 'scroll',
 				scrollbarWidth: 'none',

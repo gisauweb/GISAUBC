@@ -7,28 +7,6 @@ import bang from 'assets/home-page/events/upcoming_event.svg';
 import plane from 'assets/games/plane.svg';
 import trophy from 'assets/games/trophy.svg';
 
-const handlePastActivities = (userPastActivities) => {
-	if (!userPastActivities) {
-		return {};
-	}
-
-	const pastActivities = userPastActivities;
-	const sortedActivitiesArray = Object.entries(pastActivities).sort((a, b) => {
-		const dateA = new Date(a[0].replace(/ /g, ', ')); // Adjust format to original for proper conversion
-		const dateB = new Date(b[0].replace(/ /g, ', ')); // Adjust format to original for proper conversion
-		return dateA.getTime() - dateB.getTime();
-	});
-
-	// Convert the sorted array back into an object
-	const sortedActivities = sortedActivitiesArray.reduce((obj, [key, value]) => {
-		// eslint-disable-next-line no-param-reassign
-		obj[key] = value;
-		return obj;
-	}, {});
-
-	return sortedActivities;
-};
-
 export default function Activity({ account }) {
 	const chartRef = useRef(null);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
@@ -37,7 +15,7 @@ export default function Activity({ account }) {
 		if (!account) {
 			return () => {};
 		}
-		const pastActivities = handlePastActivities(account.past_activities);
+		const pastActivities = account.past_activities || {};
 		const ctx = chartRef.current.getContext('2d');
 		const gradient = ctx.createLinearGradient(0, 0, 0, 300);
 		gradient.addColorStop(0, '#BFA4856E');
@@ -102,8 +80,8 @@ export default function Activity({ account }) {
 
 	return (
 		<Box
-			className='h-50 justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
-			style={{ width: isMobileView ? '80vw' : '100%' }}
+			className='justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
+			style={{ width: isMobileView ? '80vw' : '100%', height: isMobileView ? 'h-96' : 'h-50' }}
 		>
 			{isMobileView && (
 				<div style={{ position: 'relative' }}>
@@ -118,23 +96,36 @@ export default function Activity({ account }) {
 							right: '-10px',
 							marginTop: '-5px',
 						}}
+						className='gap-3 justify-between'
 					/>
 				</div>
 			)}
-			<Box className='flex flex-row'>
-				<img src={icon} alt='icon' className='w-auto h-16 mt-2' style={{ transform: 'scaleX(-1)' }} />
+			<Box className='flex flex-row mt-5 ml-3'>
+				<img src={icon} alt='icon' className='w-auto h-16 mt-3' style={{ transform: 'scaleX(-1)' }} />
 				<Box className='flex flex-col mt-5'>
-					<Typography style={{ fontWeight: 'bold', fontSize: '15px' }}>Activity Overview</Typography>
-					<Typography style={{ fontSize: '12px' }}>Your daily activeness for the past 14 days</Typography>
+					<Typography style={{ fontWeight: 'bold', fontSize: '18px' }}>Activity Overview</Typography>
+					<Typography style={{ fontSize: '15px' }}>Your daily activeness for the past 14 days</Typography>
 				</Box>
 			</Box>
-			<canvas
-				ref={chartRef}
-				id='chart'
-				width='80%'
-				height='70%'
-				style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
-			/>
+			{!isMobileView ? (
+				<Box className='flex w-full h-5/6 justify-center items-center' style={{ marginTop: '-50px' }}>
+					<canvas
+						ref={chartRef}
+						id='chart'
+						width='100%'
+						height='100%'
+						style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
+					/>
+				</Box>
+			) : (
+				<canvas
+					ref={chartRef}
+					id='chart'
+					width='100%'
+					height='100%'
+					style={{ maxHeight: '70%', marginTop: '0px', marginBottom: '3px' }}
+				/>
+			)}
 			{isMobileView && (
 				<div style={{ position: 'relative' }}>
 					<img

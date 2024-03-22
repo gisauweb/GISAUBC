@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-
 import TaskDialog from './components/TaskDialog';
 import CompleteDialog from './components/CompleteDialog';
 import TaskList from './components/TaskList';
@@ -58,7 +57,7 @@ function Todo() {
 		if (selectedTaskIndex !== null) {
 			const updatedTasks = tasks.filter((_, index) => index !== selectedTaskIndex);
 			setTasks(updatedTasks);
-			setSelectedTaskIndex(null); // Reset selected task
+			setSelectedTaskIndex(0); // Reset selected task
 		}
 	};
 
