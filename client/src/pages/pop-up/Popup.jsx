@@ -24,7 +24,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ isOpen, onClose }) {
-	const upcomingEvent = UPCOMING_EVENTS[1];
+	const upcomingEvent = UPCOMING_EVENTS[0];
 
 	return (
 		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
