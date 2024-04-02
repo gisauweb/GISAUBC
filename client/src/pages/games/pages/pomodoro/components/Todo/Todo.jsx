@@ -10,8 +10,8 @@ export default function Todo({ account, token, updateAccountState }) {
 	const [open, setOpen] = useState(false);
 	const [tasks, setTasks] = useState(account.tasks);
 	const [taskCounter, setTaskCounter] = useState(account.taskCounter);
-	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10) || null;
-	const [selectedTaskId, setSelectedTaskId] = useState(selectedTaskIdDefault);
+	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
+	const [selectedTaskId, setSelectedTaskId] = useState(selectedTaskIdDefault || null);
 	const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
 
 	const NEW_TASK_INITIAL_VALUE = {
@@ -27,7 +27,11 @@ export default function Todo({ account, token, updateAccountState }) {
 	const [newTask, setNewTask] = useState(NEW_TASK_INITIAL_VALUE);
 
 	const updateNewTaskField = (task, field, value) => {
-		setNewTask({ ...task, [field]: value });
+		let tempTask = task;
+		if (!tempTask) {
+			tempTask = NEW_TASK_INITIAL_VALUE;
+		}
+		setNewTask({ ...tempTask, [field]: value });
 	};
 
 	const handleCloseCompleteDialog = () => {
