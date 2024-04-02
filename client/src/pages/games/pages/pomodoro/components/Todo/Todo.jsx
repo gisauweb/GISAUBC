@@ -23,8 +23,6 @@ export default function Todo({ account, token, updateAccountState }) {
 		completed: false,
 		edit: false,
 	};
-	console.log(selectedTaskId);
-	console.log(tasks);
 
 	const [newTask, setNewTask] = useState(NEW_TASK_INITIAL_VALUE);
 
@@ -63,13 +61,19 @@ export default function Todo({ account, token, updateAccountState }) {
 		})
 			.then((res) => res.json())
 			.then((result) => {
-				const newTasks = { ...tasks, [taskCounter]: newTask };
-				setTasks(newTasks);
+				const newOrUpdatedTaskId = edit ? task.id : result.taskCounter;
+
+				const updatedTasks = { ...tasks, [newOrUpdatedTaskId]: { ...task, id: newOrUpdatedTaskId } };
+
+				setTasks(updatedTasks);
+
 				if (!edit) {
-					setSelectedTaskId(taskCounter);
+					setSelectedTaskId(newOrUpdatedTaskId);
 				}
+
 				updateAccountState();
-				setTaskCounter(result.taskCounter);
+
+				setTaskCounter(result.taskCounter + 1);
 				handleClose();
 			})
 			.catch((err) => {
@@ -135,7 +139,11 @@ export default function Todo({ account, token, updateAccountState }) {
 	};
 
 	const handleEditIconClick = (id) => {
+		console.log(id);
+		console.log(tasks);
+
 		const task = tasks[id];
+		console.log(task);
 		if (task) {
 			setNewTask(task);
 			handleOpen(true);
