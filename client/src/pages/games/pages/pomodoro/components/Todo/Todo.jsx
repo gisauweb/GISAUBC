@@ -26,16 +26,16 @@ export default function Todo({ account, token, updateAccountState }) {
 
 	const [newTask, setNewTask] = useState(NEW_TASK_INITIAL_VALUE);
 
-	const updateNewTaskField = (field, value) => {
-		setNewTask({ ...newTask, [field]: value });
+	const updateNewTaskField = (task, field, value) => {
+		setNewTask({ ...task, [field]: value });
 	};
 
 	const handleCloseCompleteDialog = () => {
 		setOpenCompleteDialog(false);
 	};
 
-	const handleOpen = (edit) => {
-		updateNewTaskField('edit', edit);
+	const handleOpen = (task, edit) => {
+		updateNewTaskField(task, 'edit', edit);
 		setOpen(true);
 	};
 
@@ -63,7 +63,10 @@ export default function Todo({ account, token, updateAccountState }) {
 			.then((result) => {
 				const newOrUpdatedTaskId = edit ? task.id : result.taskCounter;
 
-				const updatedTasks = { ...tasks, [newOrUpdatedTaskId]: { ...task, id: newOrUpdatedTaskId } };
+				const updatedTasks = {
+					...tasks,
+					[newOrUpdatedTaskId]: { ...task, id: newOrUpdatedTaskId, edit },
+				};
 
 				setTasks(updatedTasks);
 
@@ -139,14 +142,10 @@ export default function Todo({ account, token, updateAccountState }) {
 	};
 
 	const handleEditIconClick = (id) => {
-		console.log(id);
-		console.log(tasks);
-
-		const task = tasks[id];
-		console.log(task);
-		if (task) {
-			setNewTask(task);
-			handleOpen(true);
+		const editedTask = tasks[id];
+		if (editedTask) {
+			setNewTask(editedTask);
+			handleOpen(editedTask, true);
 		}
 	};
 
@@ -165,6 +164,7 @@ export default function Todo({ account, token, updateAccountState }) {
 				selectedTaskId={selectedTaskId}
 			/>
 			<TaskDialog
+				key={selectedTaskId}
 				open={open}
 				handleClose={handleClose}
 				newTask={newTask}
