@@ -31,7 +31,7 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId
 							<Typography style={{ fontWeight: 'bold' }}>{task.title}</Typography>
 							<Typography>{task.description}</Typography>
 						</Box>
-						<Box className='flex gap-3 w-1/5 mr-3 justify-end'>
+						<Box className='flex gap-3 w-2/5 pr-3 justify-end'>
 							<Typography style={{ fontWeight: 'bold' }}>{`${task.cycles}/${task.target}`}</Typography>
 							<Box
 								onClick={(e) => {
@@ -42,8 +42,8 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId
 									cursor: 'pointer',
 									backgroundColor: task.completed ? 'green' : 'grey',
 									borderRadius: '50%',
-									padding: '5px',
 								}}
+								className='flex justify-center items-center w-[30px] h-[30px]'
 							>
 								<Typography style={{ color: 'white' }}>✔</Typography>
 							</Box>
