@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { Sentry } from 'libs/sentry';
 import TaskDialog from './components/TaskDialog';
@@ -6,13 +6,20 @@ import CompleteDialog from './components/CompleteDialog';
 import TaskList from './components/TaskList';
 import Header from './components/Header';
 
-export default function Todo({ account, token, updateAccountState }) {
+export default function Todo({ account, token, updateAccountState, selectedTaskId, setSelectedTaskId }) {
 	const [open, setOpen] = useState(false);
 	const [tasks, setTasks] = useState(account.tasks);
 	const [taskCounter, setTaskCounter] = useState(account.taskCounter);
-	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
-	const [selectedTaskId, setSelectedTaskId] = useState(selectedTaskIdDefault || null);
 	const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
+	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
+
+	useEffect(() => {
+		setTasks(account.tasks);
+	}, [account.tasks]);
+
+	useEffect(() => {
+		setSelectedTaskId(selectedTaskIdDefault || null);
+	}, [selectedTaskIdDefault, setSelectedTaskId]);
 
 	const NEW_TASK_INITIAL_VALUE = {
 		id: taskCounter,
@@ -74,9 +81,7 @@ export default function Todo({ account, token, updateAccountState }) {
 
 				setTasks(updatedTasks);
 
-				if (!edit) {
-					setSelectedTaskId(newOrUpdatedTaskId);
-				}
+				setSelectedTaskId(newOrUpdatedTaskId);
 
 				updateAccountState();
 
