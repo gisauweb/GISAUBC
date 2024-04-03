@@ -8,7 +8,8 @@ export const taskUpsertionSchema: Schema = {
 		description: "string",
 		cycles: "number",
 		target: "number",
-		done: "boolean",
+		completed: "boolean",
+		edit: "boolean",
 		updated_at: "string"
 	},
 	required: [
@@ -18,7 +19,8 @@ export const taskUpsertionSchema: Schema = {
 		"description",
 		"cycles",
 		"target",
-		"done",
+		"completed",
+		"edit",
 		"updated_at"
 	],
 };

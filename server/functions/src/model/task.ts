@@ -4,5 +4,5 @@ export interface Task {
 	description: string,
 	cycles: number,
 	target: number,
-	done: boolean
+	completed: boolean
 }

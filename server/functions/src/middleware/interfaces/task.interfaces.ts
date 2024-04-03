@@ -8,7 +8,8 @@ export interface upsertTaskModel {
 	description: string,
 	cycles: number,
 	target: number,
-	done: boolean,
+	completed: boolean,
+	edit: boolean,
 	updated_at: string
 }
 
