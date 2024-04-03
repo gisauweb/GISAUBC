@@ -11,6 +11,7 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 	const [tasks, setTasks] = useState(account.tasks);
 	const [taskCounter, setTaskCounter] = useState(account.taskCounter);
 	const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
+	const [viewArchives, setViewArchives] = useState(false);
 	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
 
 	useEffect(() => {
@@ -165,12 +166,15 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 				handleEditIconClick={handleEditIconClick}
 				selectedTaskId={selectedTaskId}
 				deleteTask={deleteTask}
+				viewArchives={viewArchives}
+				setViewArchives={setViewArchives}
 			/>
 			<TaskList
 				tasks={Object.values(tasks)}
 				handleTaskClick={handleTaskClick}
 				handleTaskCompletion={handleTaskCompletion}
 				selectedTaskId={selectedTaskId}
+				viewArchives={viewArchives}
 			/>
 			<TaskDialog
 				key={selectedTaskId}

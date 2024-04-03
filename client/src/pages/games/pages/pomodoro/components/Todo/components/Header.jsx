@@ -1,11 +1,16 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
-import AddIcon from '@mui/icons-material/Add';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Add, Edit, Delete, Archive, Unarchive } from '@mui/icons-material';
 
-export default function Header({ handleOpen, handleEditIconClick, selectedTaskId, deleteTask }) {
+export default function Header({
+	handleOpen,
+	handleEditIconClick,
+	selectedTaskId,
+	deleteTask,
+	viewArchives,
+	setViewArchives,
+}) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
@@ -17,21 +22,28 @@ export default function Header({ handleOpen, handleEditIconClick, selectedTaskId
 				className='text-center'
 				style={{ display: 'flex', justifyContent: 'center', fontWeight: 'bold' }}
 			>
-				Task List
+				{viewArchives ? 'Archives' : 'Task List'}
 			</Typography>
-			<Box className='flex flex-row gap-3 justify-center items-center'>
-				<AddIcon
-					onClick={() => handleOpen(false)}
-					style={{ cursor: 'pointer', color: '#014900', width: '30px', height: '30px' }}
-				/>
+			<Box className='flex flex-row gap-3 justify-center items-center h-[30px]'>
+				{viewArchives ? (
+					<Unarchive onClick={() => setViewArchives(false)} style={{ cursor: 'pointer', color: '#003249' }} />
+				) : (
+					<Archive onClick={() => setViewArchives(true)} style={{ cursor: 'pointer', color: '#003249' }} />
+				)}
+				{!viewArchives && (
+					<Add
+						onClick={() => handleOpen(false)}
+						style={{ cursor: 'pointer', color: '#014900', width: '30px', height: '30px' }}
+					/>
+				)}
 				{selectedTaskId !== null && (
-					<EditIcon
+					<Edit
 						onClick={() => handleEditIconClick(selectedTaskId)}
 						style={{ cursor: 'pointer', color: '#003249' }}
 					/>
 				)}
 				{selectedTaskId !== null && (
-					<DeleteIcon
+					<Delete
 						onClick={() => deleteTask(selectedTaskId)}
 						style={{ cursor: 'pointer', color: '#732727' }}
 					/>
