@@ -76,13 +76,18 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 
 	const handleMenuItemClick = (page) => {
 		if (currentPage === 'Pomodoro' && page !== 'Pomodoro') {
-			setShowLeaveConfirmation(true);
-			setNextPage(page); // Store the next page the user wants to navigate to
+			const isRunning = sessionStorage.getItem('isRunning') === 'true';
+			if (isRunning) {
+				setShowLeaveConfirmation(isRunning);
+				setNextPage(page);
+			} else {
+				setCurrentPage(page);
+			}
 		} else {
 			setCurrentPage(page);
-			if (isMobileView) {
-				handleCloseSidebar();
-			}
+		}
+		if (isMobileView) {
+			handleCloseSidebar();
 		}
 	};
 

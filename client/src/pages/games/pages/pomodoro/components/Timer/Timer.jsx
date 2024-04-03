@@ -22,6 +22,10 @@ function Timer({ account, token, updateAccountState, selectedTaskId }) {
 	const [showTimerPopup, setShowTimerPopup] = useState(false);
 
 	useEffect(() => {
+		sessionStorage.setItem('isRunning', isRunning);
+	}, [isRunning]);
+
+	useEffect(() => {
 		const workerScriptUrl = `${process.env.PUBLIC_URL}/timerWorker.js`;
 		const worker = new Worker(workerScriptUrl);
 
