@@ -12,15 +12,22 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 	const [taskCounter, setTaskCounter] = useState(account.taskCounter);
 	const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
 	const [viewArchives, setViewArchives] = useState(false);
-	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
+	const [filteredTasks, setFilteredTasks] = useState([]);
+
+	useEffect(() => {
+		const arrayTasks = Object.values(tasks);
+		const filteretedTasks = arrayTasks.filter((task) => (viewArchives ? task.completed : !task.completed));
+		setFilteredTasks(filteretedTasks);
+	}, [viewArchives, tasks]);
 
 	useEffect(() => {
 		setTasks(account.tasks);
 	}, [account.tasks]);
 
 	useEffect(() => {
-		setSelectedTaskId(selectedTaskIdDefault || null);
-	}, [selectedTaskIdDefault, setSelectedTaskId]);
+		const firstTask = filteredTasks[0] || null;
+		setSelectedTaskId(firstTask ? firstTask.id : firstTask);
+	}, [setSelectedTaskId, viewArchives, filteredTasks]);
 
 	const NEW_TASK_INITIAL_VALUE = {
 		id: taskCounter,
@@ -82,8 +89,6 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 
 				setTasks(updatedTasks);
 
-				setSelectedTaskId(newOrUpdatedTaskId);
-
 				updateAccountState();
 
 				setTaskCounter(result.taskCounter + 1);
@@ -122,8 +127,6 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 						delete updatedTasks[selectedTaskId];
 						setTasks(updatedTasks);
 						await updateAccountState();
-						const updatedId = parseInt(Object.keys(updatedTasks)[0], 10) || null;
-						setSelectedTaskId(updatedId);
 					} else {
 						Sentry.captureException('Failed to delete task');
 					}
@@ -170,7 +173,7 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 				setViewArchives={setViewArchives}
 			/>
 			<TaskList
-				tasks={Object.values(tasks)}
+				tasks={filteredTasks}
 				handleTaskClick={handleTaskClick}
 				handleTaskCompletion={handleTaskCompletion}
 				selectedTaskId={selectedTaskId}
