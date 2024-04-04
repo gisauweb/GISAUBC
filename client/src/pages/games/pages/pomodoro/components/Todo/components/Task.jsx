@@ -8,7 +8,7 @@ function Task({ task, onEdit, onDelete, onComplete }) {
 		<Box
 			className='text-slate-600 bg-white rounded-2xl py-4 w-3/4 flex flex-row mb-4 gap-10 items-center'
 			style={{
-				borderLeft: task.complete ? '20px solid green' : '20px solid white',
+				borderLeft: task.completed ? '20px solid green' : '20px solid white',
 				cursor: 'pointer',
 			}}
 		>
@@ -24,7 +24,7 @@ function Task({ task, onEdit, onDelete, onComplete }) {
 						onComplete();
 					}}
 					style={{
-						backgroundColor: task.complete ? 'green' : 'grey',
+						backgroundColor: task.completed ? 'green' : 'grey',
 						width: '25px',
 						height: '25px',
 						display: 'flex',

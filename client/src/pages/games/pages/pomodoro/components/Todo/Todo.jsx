@@ -1,88 +1,161 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
+import { Sentry } from 'libs/sentry';
 import TaskDialog from './components/TaskDialog';
 import CompleteDialog from './components/CompleteDialog';
 import TaskList from './components/TaskList';
 import Header from './components/Header';
 
-function Todo() {
-	const [tasks, setTasks] = useState([]);
+export default function Todo({ account, token, updateAccountState, selectedTaskId, setSelectedTaskId }) {
 	const [open, setOpen] = useState(false);
-	const [newTask, setNewTask] = useState('');
-	const [description, setDescription] = useState('');
-	const [cycles, setCycles] = useState(1);
-	const [selectedTaskIndex, setSelectedTaskIndex] = useState(null);
-	const [editedTaskIndex, setEditedTaskIndex] = useState(null);
+	const [tasks, setTasks] = useState(account.tasks);
+	const [taskCounter, setTaskCounter] = useState(account.taskCounter);
 	const [openCompleteDialog, setOpenCompleteDialog] = useState(false);
+	const [viewArchives, setViewArchives] = useState(false);
+	const selectedTaskIdDefault = parseInt(Object.keys(tasks)[0], 10);
+
+	useEffect(() => {
+		setTasks(account.tasks);
+	}, [account.tasks]);
+
+	useEffect(() => {
+		setSelectedTaskId(selectedTaskIdDefault || null);
+	}, [selectedTaskIdDefault, setSelectedTaskId]);
+
+	const NEW_TASK_INITIAL_VALUE = {
+		id: taskCounter,
+		title: '',
+		description: '',
+		cycles: 0,
+		target: 1,
+		completed: false,
+		edit: false,
+	};
+
+	const [newTask, setNewTask] = useState(NEW_TASK_INITIAL_VALUE);
+
+	const updateNewTaskField = (task, field, value) => {
+		let tempTask = task;
+		if (!tempTask) {
+			tempTask = NEW_TASK_INITIAL_VALUE;
+		}
+		setNewTask({ ...tempTask, [field]: value });
+	};
 
 	const handleCloseCompleteDialog = () => {
 		setOpenCompleteDialog(false);
 	};
 
-	const handleOpen = () => {
+	const handleOpen = (task, edit) => {
+		updateNewTaskField(task, 'edit', edit);
 		setOpen(true);
 	};
 
 	const handleClose = () => {
 		setOpen(false);
-		setNewTask('');
-		setDescription('');
-		setCycles(1); // This should be a number
+		setNewTask(NEW_TASK_INITIAL_VALUE);
+	};
+
+	const upsertTask = (task, edit = false) => {
+		fetch(`${process.env.REACT_APP_SERVER_URL}/tasks/upsert`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify({
+				...task,
+				id: taskCounter,
+				uid: account.uid,
+				edit,
+				updated_at: new Date().toISOString(),
+			}),
+		})
+			.then((res) => res.json())
+			.then((result) => {
+				const newOrUpdatedTaskId = edit ? task.id : result.taskCounter;
+
+				const updatedTasks = {
+					...tasks,
+					[newOrUpdatedTaskId]: { ...task, id: newOrUpdatedTaskId, edit },
+				};
+
+				setTasks(updatedTasks);
+
+				setSelectedTaskId(newOrUpdatedTaskId);
+
+				updateAccountState();
+
+				setTaskCounter(result.taskCounter + 1);
+				handleClose();
+			})
+			.catch((err) => {
+				Sentry.captureException('Failed to upsert task:', err);
+			});
 	};
 
 	const addTask = () => {
-		if (newTask.trim() !== '') {
-			const task = {
-				title: newTask,
-				description,
-				cycles,
-				complete: false,
-			};
-			setTasks([...tasks, task]);
-			handleClose();
-			setSelectedTaskIndex(tasks.length); // Adjusted to set to the new last index
+		if (newTask.title.trim() !== '') {
+			upsertTask(newTask, false);
 		}
 	};
 
 	const editTask = () => {
-		if (editedTaskIndex !== null) {
-			const editedTask = { ...tasks[editedTaskIndex], title: newTask, description, cycles };
-			setTasks([...tasks.slice(0, editedTaskIndex), editedTask, ...tasks.slice(editedTaskIndex + 1)]);
-			handleClose();
-			setEditedTaskIndex(null);
+		if (selectedTaskId !== null) {
+			upsertTask(newTask, true);
 		}
 	};
 
 	const deleteTask = () => {
-		if (selectedTaskIndex !== null) {
-			const updatedTasks = tasks.filter((_, index) => index !== selectedTaskIndex);
-			setTasks(updatedTasks);
-			setSelectedTaskIndex(0); // Reset selected task
+		if (selectedTaskId !== null) {
+			fetch(`${process.env.REACT_APP_SERVER_URL}/tasks/remove`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({ uid: account.uid, id: selectedTaskId }),
+			})
+				.then(async (res) => {
+					if (res.ok) {
+						const updatedTasks = { ...tasks };
+						delete updatedTasks[selectedTaskId];
+						setTasks(updatedTasks);
+						await updateAccountState();
+						const updatedId = parseInt(Object.keys(updatedTasks)[0], 10) || null;
+						setSelectedTaskId(updatedId);
+					} else {
+						Sentry.captureException('Failed to delete task');
+					}
+				})
+				.catch((err) => {
+					Sentry.captureException('Error deleting task:', err);
+				});
 		}
 	};
 
-	const handleTaskClick = (index) => {
-		setSelectedTaskIndex(index);
+	const handleTaskClick = (id) => {
+		setSelectedTaskId(id);
 	};
 
-	const handleTaskCompletion = (index) => {
-		const updatedTasks = tasks.map((task, idx) => (idx === index ? { ...task, complete: !task.complete } : task));
+	const handleTaskCompletion = (id) => {
+		const updatedTasks = {
+			...tasks,
+			[id]: { ...tasks[id], complete: !tasks[id].complete },
+		};
 		setTasks(updatedTasks);
 
-		const allTasksCompleted = updatedTasks.every((task) => task.complete);
+		const allTasksCompleted = Object.values(updatedTasks).every((task) => task.completed);
 		if (allTasksCompleted) {
 			setOpenCompleteDialog(true);
 		}
 	};
 
-	const handleEditIconClick = (index) => {
-		if (tasks.length > 0) {
-			// Check if there are tasks
-			setEditedTaskIndex(index);
-			setNewTask(tasks[index].title);
-			setDescription(tasks[index].description);
-			setCycles(tasks[index].cycles);
-			handleOpen();
+	const handleEditIconClick = (id) => {
+		const editedTask = tasks[id];
+		if (editedTask) {
+			setNewTask(editedTask);
+			handleOpen(editedTask, true);
 		}
 	};
 
@@ -91,31 +164,28 @@ function Todo() {
 			<Header
 				handleOpen={handleOpen}
 				handleEditIconClick={handleEditIconClick}
-				selectedTaskIndex={selectedTaskIndex}
+				selectedTaskId={selectedTaskId}
 				deleteTask={deleteTask}
+				viewArchives={viewArchives}
+				setViewArchives={setViewArchives}
 			/>
 			<TaskList
-				tasks={tasks}
+				tasks={Object.values(tasks)}
 				handleTaskClick={handleTaskClick}
 				handleTaskCompletion={handleTaskCompletion}
-				selectedTaskIndex={selectedTaskIndex}
+				selectedTaskId={selectedTaskId}
+				viewArchives={viewArchives}
 			/>
 			<TaskDialog
+				key={selectedTaskId}
 				open={open}
 				handleClose={handleClose}
 				newTask={newTask}
-				setNewTask={setNewTask}
-				description={description}
-				setDescription={setDescription}
-				cycles={cycles}
-				setCycles={setCycles}
+				updateNewTaskField={updateNewTaskField}
 				editTask={editTask}
 				addTask={addTask}
-				editedTaskIndex={editedTaskIndex}
 			/>
 			<CompleteDialog open={openCompleteDialog} handleClose={handleCloseCompleteDialog} />
 		</Box>
 	);
 }
-
-export default Todo;

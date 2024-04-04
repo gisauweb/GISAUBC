@@ -10,7 +10,7 @@ const TimerState = {
 	BREAK: 2,
 };
 
-function Timer({ account, token, updateAccountState }) {
+function Timer({ account, token, updateAccountState, selectedTaskId }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	const [focusDuration, setFocusDuration] = useState(25);
 	const [breakDuration, setBreakDuration] = useState(5);
@@ -20,6 +20,10 @@ function Timer({ account, token, updateAccountState }) {
 	const [isChangingFocus, setIsChangingFocus] = useState(false);
 	const [chosenTime, setChosenTime] = useState('');
 	const [showTimerPopup, setShowTimerPopup] = useState(false);
+
+	useEffect(() => {
+		sessionStorage.setItem('isRunning', isRunning);
+	}, [isRunning]);
 
 	useEffect(() => {
 		const workerScriptUrl = `${process.env.PUBLIC_URL}/timerWorker.js`;
@@ -34,6 +38,38 @@ function Timer({ account, token, updateAccountState }) {
 			updateAccountState();
 		}
 
+		async function updateTask() {
+			const res = await (
+				await fetch(`${process.env.REACT_APP_SERVER_URL}/tasks/${account.uid}`, {
+					method: 'GET',
+					headers: { Authorization: `Bearer ${token}` },
+				})
+			).json();
+			const tasks = res.result;
+
+			// increment task's cycles
+			const task = tasks[selectedTaskId];
+			task.cycles = Math.min(task.cycles + 1, task.target);
+			task.completed = task.cycles >= task.target;
+			task.edit = true;
+
+			// update task
+			await fetch(`${process.env.REACT_APP_SERVER_URL}/tasks/upsert`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`,
+				},
+				body: JSON.stringify({
+					...task,
+					uid: account.uid,
+					updated_at: new Date().toISOString(),
+				}),
+			});
+
+			updateAccountState();
+		}
+
 		if (isRunning) {
 			worker.postMessage({ command: 'start' });
 			worker.onmessage = () => {
@@ -44,6 +80,7 @@ function Timer({ account, token, updateAccountState }) {
 						setIsRunning(false);
 						if (timerState === TimerState.FOCUS) {
 							updatePoints(focusDuration);
+							updateTask();
 							setTime(breakDuration * 60);
 							setTimerState(TimerState.BREAK);
 							return breakDuration * 60;
@@ -52,7 +89,7 @@ function Timer({ account, token, updateAccountState }) {
 						setTimerState(TimerState.FOCUS);
 						return focusDuration * 60;
 					}
-					return prevTime - 1;
+					return prevTime - 300;
 				});
 			};
 		} else {
@@ -61,7 +98,7 @@ function Timer({ account, token, updateAccountState }) {
 
 		// Clean up function
 		return () => worker.postMessage({ command: 'stop' });
-	}, [timerState, account.uid, token, focusDuration, breakDuration, isRunning, updateAccountState]);
+	}, [timerState, account.uid, token, focusDuration, breakDuration, isRunning, selectedTaskId, updateAccountState]);
 
 	const handleButtonChange = () => {
 		setIsRunning(!isRunning);
