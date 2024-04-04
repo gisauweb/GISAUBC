@@ -89,7 +89,7 @@ function Timer({ account, token, updateAccountState, selectedTaskId }) {
 						setTimerState(TimerState.FOCUS);
 						return focusDuration * 60;
 					}
-					return prevTime - 1;
+					return prevTime - 300;
 				});
 			};
 		} else {
