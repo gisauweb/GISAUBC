@@ -2,9 +2,8 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
 
-function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId, viewArchives }) {
+function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-	const filteredTasks = tasks.filter((task) => (viewArchives ? task.completed : !task.completed));
 
 	return (
 		<Box
@@ -13,10 +12,10 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId
 			} mb-1/10 w-full px-12 items-center`}
 			sx={{ overflowY: 'scroll', scrollbarWidth: 'none', '&::-webkit-scrollbar': { display: 'none' } }}
 		>
-			{filteredTasks.length === 0 ? (
+			{tasks.length === 0 ? (
 				<Typography className='text-slate-600'>No tasks left.</Typography>
 			) : (
-				filteredTasks.map((task) => (
+				tasks.map((task) => (
 					<Box
 						key={task.title}
 						className='text-slate-600 bg-white rounded-2xl mb-4
