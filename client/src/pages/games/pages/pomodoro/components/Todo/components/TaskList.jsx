@@ -17,7 +17,7 @@ function TaskList({ tasks, handleTaskClick, handleTaskCompletion, selectedTaskId
 			) : (
 				tasks.map((task) => (
 					<Box
-						key={task.title}
+						key={task.id}
 						className='text-slate-600 bg-white rounded-2xl mb-4
 									py-4 w-3/4 flex flex-row gap-10 items-center'
 						style={{
