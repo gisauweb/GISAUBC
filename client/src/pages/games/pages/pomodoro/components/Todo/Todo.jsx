@@ -72,7 +72,7 @@ export default function Todo({ account, token, updateAccountState, selectedTaskI
 			},
 			body: JSON.stringify({
 				...task,
-				id: taskCounter,
+				id: edit ? task.id : taskCounter,
 				uid: account.uid,
 				edit,
 				updated_at: new Date().toISOString(),
