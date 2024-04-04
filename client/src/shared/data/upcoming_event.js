@@ -1,27 +1,14 @@
 import { EVENTS_23_24 } from 'assets/events-page/past-events';
-import agm from 'assets/events-page/AGM.pdf';
-import lanusa from 'assets/events-page/lanusa.pdf';
+import galau from 'assets/events-page/past-events/GALAU.pdf';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_23_24[11],
-		title: "GISAU's Annual General Meeting",
-		date: 'Friday, March 22 | 6PM',
-		loc: 'AMS Nest Room 2306/2309',
-		registrationLink:
-			// eslint-disable-next-line max-len
-			'https://docs.google.com/forms/d/e/1FAIpQLSfC7t4EqAPzbHNciAFSAlJYTUweqsLyzrOhxxnvYUN155L3uQ/viewform?usp=sf_link',
-		infoLink: agm,
-	},
-	{
-		image: EVENTS_23_24[12],
-		title: 'LA NUSA',
-		date: 'Saturday, March 23 | 10PM',
-		loc: 'AURA Nightclub (Downtown)',
-		registrationLink:
-			// eslint-disable-next-line max-len
-			'https://docs.google.com/forms/d/e/1FAIpQLScwEwNidJrym2XqL1Tfx_j0pYcwpnO_CDK-6pzNy-E2vmJQIA/viewform?usp=sf_link',
-		infoLink: lanusa,
+		image: EVENTS_23_24[13],
+		title: 'GALA(U)',
+		date: 'Monday, April 8 | 5:30PM',
+		loc: 'AMS Nest Great Hall South',
+		registrationLink: 'https://forms.gle/5EhZYwjkqbVB2raRA',
+		infoLink: galau,
 	},
 ];
 
