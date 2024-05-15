@@ -8,8 +8,8 @@ import pages from './shared/components/navigation-bar/constants';
 import './App.css';
 
 function App() {
-	const POPUP_ACTIVATION = true;
-	const [isPopupOpen, setPopupOpen] = useState(true);
+	const POPUP_ACTIVATION = false;
+	const [isPopupOpen, setPopupOpen] = useState(false);
 	const handleClosePopup = () => {
 		setPopupOpen(false);
 	};
