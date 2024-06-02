@@ -3,6 +3,12 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[13],
+			title: 'GALA(U)',
+			date: 'Monday, April 8 | 5:30PM',
+			loc: 'AMS Nest Great Hall South',
+		},
+		{
 			image: EVENTS_23_24[12],
 			title: 'LA NUSA',
 			date: 'Saturday, March 23 | 10PM',
