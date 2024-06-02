@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
-import { useTheme } from '@material-tailwind/react';
-import { useTheme as theme2 } from '@mui/material';
 import Dashboard from './pages/dashboard/Dashboard';
 import Onboarding from './pages/onboarding/Onboarding';
 import AlertDialog from './pages/onboarding/components/AlertDialog';
@@ -15,13 +13,6 @@ import ComingSoon from './pages/ComingSoon';
 import Settings from './pages/settings/Settings';
 
 export default function Games() {
-	const theme = useTheme();
-	// eslint-disable-next-line no-console
-	console.log('Material Tailwind theme: ', theme);
-	const themeMUI = theme2();
-	// eslint-disable-next-line no-console
-	console.log('Material UI theme: ', themeMUI);
-
 	const {
 		isAuthenticated,
 		isLoading,
