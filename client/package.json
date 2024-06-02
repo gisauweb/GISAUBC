@@ -9,7 +9,7 @@
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
 		"@heroicons/react": "^2.0.18",
-		"@material-tailwind/react": "^2.1.4",
+		"@material-tailwind/react": "^2.1.9",
 		"@mui/icons-material": "^5.10.14",
 		"@mui/joy": "^5.0.0-alpha.56",
 		"@mui/material": "^5.13.1",
