@@ -11,6 +11,7 @@ import {
 	Accordion,
 	AccordionHeader,
 	AccordionBody,
+	useTheme,
 } from '@material-tailwind/react';
 import logo from 'assets/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
@@ -43,6 +44,8 @@ function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick
 }
 
 export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
+	const theme = useTheme();
+	console.log('theme: ', theme);
 	const [open, setOpen] = useState(0);
 	const [showLeaveConfirmation, setShowLeaveConfirmation] = useState(false);
 	const [nextPage, setNextPage] = useState(null);
