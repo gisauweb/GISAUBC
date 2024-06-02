@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import theme from 'libs/theme';
 import { ThemeProvider, responsiveFontSizes } from '@mui/material';
-// import { ThemeProvider as ThemeProviderTailwind } from '@material-tailwind/react';
+import { ThemeProvider as TailwindThemeProvider } from '@material-tailwind/react';
 import { Auth0Provider } from '@auth0/auth0-react';
 import getAuthConfig from 'libs/config';
 import history from 'libs/history';
@@ -38,9 +38,9 @@ root.render(
 		<BrowserRouter>
 			<Auth0Provider {...providerConfig}>
 				<ThemeProvider theme={responsiveTheme}>
-					{/* <ThemeProviderTailwind> */}
-					<App />
-					{/* </ThemeProviderTailwind> */}
+					<TailwindThemeProvider>
+						<App />
+					</TailwindThemeProvider>
 				</ThemeProvider>
 			</Auth0Provider>
 		</BrowserRouter>
