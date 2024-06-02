@@ -3,7 +3,6 @@
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
 import {
-	Card,
 	Typography,
 	List,
 	ListItem,
@@ -21,6 +20,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
+import { Card } from '@mui/material';
 import ConfirmationDialog from './ConfirmationDialog';
 
 function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
@@ -95,13 +95,15 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 
 	return (
 		<Card
-			className='h-full max-w-[18rem] p-4
-			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
+			className='shadow-xl shadow-blue-gray-900/5'
 			style={{
 				height: '100dvh',
 				width: isMobileView ? '75vw' : '20vw',
 				borderRadius: '0 30px 30px 0',
 				color: 'white',
+				maxWidth: '18rem',
+				padding: 4,
+				backgroundColor: '#732727',
 			}}
 		>
 			<div
