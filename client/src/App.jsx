@@ -8,15 +8,15 @@ import pages from './shared/components/navigation-bar/constants';
 import './App.css';
 
 function App() {
-	const POPUP_ACTIVATION = true;
-	const [isPopupOpen, setPopupOpen] = useState(true);
+	const ACTIVATE_POPUP = false;
+	const [isPopupOpen, setPopupOpen] = useState(ACTIVATE_POPUP);
 	const handleClosePopup = () => {
 		setPopupOpen(false);
 	};
 	const location = useLocation();
 	// TODO: create a util function that all other pages can use to check if it's games page
 	const isGamesPage = location.pathname === '/games';
-	const shouldOpenPopup = POPUP_ACTIVATION && !isGamesPage;
+	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage;
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
