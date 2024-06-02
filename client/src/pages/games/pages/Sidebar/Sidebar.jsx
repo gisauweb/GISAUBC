@@ -3,16 +3,16 @@
 /* eslint-disable react/jsx-indent */
 /* eslint-disable object-curly-newline */
 import React, { useState } from 'react';
-import {
-	Card,
-	Typography,
-	List,
-	ListItem,
-	ListItemPrefix,
-	Accordion,
-	AccordionHeader,
-	AccordionBody,
-} from '@material-tailwind/react';
+// import {
+// 	Card,
+// 	Typography,
+// 	List,
+// 	ListItem,
+// 	ListItemPrefix,
+// 	Accordion,
+// 	AccordionHeader,
+// 	AccordionBody,
+// } from '@material-tailwind/react';
 import logo from 'assets/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
@@ -24,24 +24,24 @@ import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
 import ConfirmationDialog from './ConfirmationDialog';
 
-function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
-	return (
-		<ListItem
-			onClick={onClick}
-			style={{
-				backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-				position: 'relative',
-				display: 'flex',
-				alignItems: 'center',
-			}}
-		>
-			<ListItemPrefix>
-				<PrefixIcon className='h-5 w-5' />
-			</ListItemPrefix>
-			{label}
-		</ListItem>
-	);
-}
+// function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick }) {
+// 	return (
+// 		<ListItem
+// 			onClick={onClick}
+// 			style={{
+// 				backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
+// 				position: 'relative',
+// 				display: 'flex',
+// 				alignItems: 'center',
+// 			}}
+// 		>
+// 			<ListItemPrefix>
+// 				<PrefixIcon className='h-5 w-5' />
+// 			</ListItemPrefix>
+// 			{label}
+// 		</ListItem>
+// 	);
+// }
 
 export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
 	const [open, setOpen] = useState(0);
