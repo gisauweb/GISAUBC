@@ -1,9 +1,12 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Box, Typography, IconButton, Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useTheme } from '@mui/material/styles';
 
 // eslint-disable-next-line object-curly-newline
 function TaskDialog({ open, handleClose, newTask, updateNewTaskField, editTask, addTask }) {
+	const theme = useTheme();
+
 	return (
 		<Dialog open={open} onClose={handleClose} PaperProps={{ sx: { borderRadius: '20px' } }}>
 			<Box sx={{ backgroundColor: '#F5F1ED' }} className='flex flex-col'>
@@ -14,7 +17,7 @@ function TaskDialog({ open, handleClose, newTask, updateNewTaskField, editTask, 
 					<IconButton
 						aria-label='close'
 						onClick={handleClose}
-						sx={{ position: 'absolute', right: 8, top: 8, color: (theme) => theme.palette.grey[500] }}
+						sx={{ position: 'absolute', right: 8, top: 8, color: theme.palette.grey[500] }}
 					>
 						<CloseIcon />
 					</IconButton>
