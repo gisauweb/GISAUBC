@@ -16,7 +16,6 @@ export const taskUpsertionSchema: Schema = {
 		"uid",
 		"id",
 		"title",
-		"description",
 		"cycles",
 		"target",
 		"completed",
