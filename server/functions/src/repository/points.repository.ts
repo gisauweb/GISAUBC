@@ -4,17 +4,25 @@ import { AddPointsModel } from "../middleware/interfaces/points.interfaces";
 import { PastActivities, User } from "../model/user";
 
 const secretCode = process.env.HASH_SECRET_CODE;
+const MAX_POINTS_LIMIT = 300
 
-export async function addPoints(user: User, userPayload: AddPointsModel) {
-	const uuid = sha256(userPayload.uid + secretCode)
+export async function addPoints(user: User, pointsPayload: AddPointsModel) {
+	const date = pointsPayload.updated_at.split(" ")[0];
+
+	const uuid = sha256(pointsPayload.uid + secretCode);
 	const userDocRef = db.collection("users").doc(uuid);
-	const total_points = user.total_points || 0 
-	const totalPoints = total_points + userPayload.points;
-	const pastActivities = handlePastActivities(userPayload.points, user.past_activities, userPayload.updated_at)
+	const total_points = user.total_points || 0 ;
+	
+	let points = pointsPayload.points;
+	if (user.past_activities && user.past_activities[date] + pointsPayload.points > MAX_POINTS_LIMIT ) {
+		points = MAX_POINTS_LIMIT - user.past_activities[date]
+	}
+	const pastActivities = handlePastActivities(points, user.past_activities, date);
+	const totalPoints = total_points + points;
 	await userDocRef.update({
 		total_points: totalPoints,
 		past_activities: pastActivities,
-		updated_at: userPayload.updated_at
+		updated_at: pointsPayload.updated_at
 	});
 }
 
@@ -54,10 +62,7 @@ export async function getLeaderboard() {
 }
 
 
-function handlePastActivities(points: number, pastActivities: PastActivities, dateTimestamp: string) {
-	const date = dateTimestamp.split(" ")[0]
-	
-	console.log(date);
+function handlePastActivities(points: number, pastActivities: PastActivities, date: string) {
 	if (!pastActivities || !(date in pastActivities)) {
 		pastActivities = {
 			...pastActivities,

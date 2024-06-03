@@ -1,8 +1,7 @@
-import h1 from 'assets/about/higlights/img_1.png';
-import h2 from 'assets/about/higlights/img_2.png';
-import h3 from 'assets/about/higlights/img_3.png';
-import h4 from 'assets/about/higlights/img_4.png';
+import h1 from 'assets/about/higlights/1.png';
+import h2 from 'assets/about/higlights/2.png';
+import h3 from 'assets/about/higlights/3.png';
 
-const HIGHLIGHTS = [h1, h2, h3, h4];
+const HIGHLIGHTS = [h1, h2, h3];
 
 export default HIGHLIGHTS;

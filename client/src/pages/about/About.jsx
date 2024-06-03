@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import aboutLandingImage from 'assets/landing-image/about.jpeg';
+import aboutLandingImage from 'assets/landing-image/about.png';
 import Introduction from './components/Introduction';
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
 import Highlights from './components/Highlights';
 
 export default function About() {
-	const [selectedYear, setSelectedYear] = useState('2022/2023');
+	const [selectedYear, setSelectedYear] = useState('2023/2024');
 	const [selectedButton, setSelectedButton] = useState('All');
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [data, setData] = useState([]);
