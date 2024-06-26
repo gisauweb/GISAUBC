@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = [
 		title: 'Summer Hiring',
 		date: 'Monday, July 1 | 11:59PM',
 		loc: 'Submit Via Email',
-		registrationLink: 'drive.google.com/file/d/1QO74HYHxK4CHa-2WXFeJpf_u78X0idA4/view?usp=sharing',
+		registrationLink: 'https://drive.google.com/file/d/1QO74HYHxK4CHa-2WXFeJpf_u78X0idA4/view?usp=sharing',
 		infoLink: hiring,
 	},
 ];
