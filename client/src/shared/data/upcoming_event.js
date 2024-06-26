@@ -5,8 +5,8 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[0],
 		title: 'Summer Hiring',
-		date: 'By Monday, July 1| 11:59PM',
-		loc: 'Online',
+		date: 'Monday, July 1 | 11:59PM',
+		loc: 'Submit Via Email',
 		registrationLink: 'drive.google.com/file/d/1QO74HYHxK4CHa-2WXFeJpf_u78X0idA4/view?usp=sharing',
 		infoLink: hiring,
 	},
