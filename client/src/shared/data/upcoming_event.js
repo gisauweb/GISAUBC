@@ -1,6 +1,16 @@
-// import { EVENTS_23_24 } from 'assets/events-page/past-events';
+import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import hiring from 'assets/events-page/past-events/hiring.svg';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[0],
+		title: 'Summer Hiring',
+		date: 'By Monday, July 1| 11:59PM',
+		loc: 'Online',
+		registrationLink: 'drive.google.com/file/d/1QO74HYHxK4CHa-2WXFeJpf_u78X0idA4/view?usp=sharing',
+		infoLink: hiring,
+	},
+];
 
 export default UPCOMING_EVENTS;
 
