@@ -1,5 +1,5 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import hiring from 'assets/events-page/past-events/hiring.svg';
+import hiring from 'assets/events-page/hiring.pdf';
 
 const UPCOMING_EVENTS = [
 	{
