@@ -18,7 +18,7 @@ export default function DesktopNavBar({ hasLandingImage, bgColor, pages, locatio
 			>
 				{pages.map((page) => (
 					<Link key={page.name} to={page.path} className='px-5 pt-3' onClick={ScrollToTop} target='_self'>
-						{isGamesPage(location.pathname) ? (
+						{isGamesPage(page.path) ? (
 							<GameMenu hasLandingImage={hasLandingImage} page={page} location={location} />
 						) : (
 							<p
