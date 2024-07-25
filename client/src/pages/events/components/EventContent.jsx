@@ -7,7 +7,7 @@ import GridContent from 'shared/components/grid/GridContent';
 import PAST_EVENTS from './constants';
 
 function EventContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2023/2024');
+	const [selectedYear, setSelectedYear] = useState('2024/2025');
 	const eventData = upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear];
 
 	return (

@@ -1,6 +1,14 @@
-import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index';
+import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/past-events/index';
 
 const PAST_EVENTS = {
+	'2024/2025': [
+		{
+			image: EVENTS_24_25[0],
+			title: 'Summer Hiring',
+			date: 'Monday, July 1 | 11:59PM',
+			loc: 'Submit Via Email',
+		},
+	],
 	'2023/2024': [
 		{
 			image: EVENTS_23_24[13],

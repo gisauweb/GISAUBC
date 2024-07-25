@@ -1,14 +1,16 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import hiring from 'assets/events-page/hiring.pdf';
+import ubud from 'assets/events-page/ubud.pdf';
+
+const link = 'https://docs.google.com/forms/d/e/1FAIpQLScGKKv3lGiwqnB6S0wfAJGLFS-ywHWNMIiHEXP03BITOD9iSQ/viewform';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_24_25[0],
-		title: 'Summer Hiring',
-		date: 'Monday, July 1 | 11:59PM',
-		loc: 'Submit Via Email',
-		registrationLink: 'https://drive.google.com/file/d/1QO74HYHxK4CHa-2WXFeJpf_u78X0idA4/view?usp=sharing',
-		infoLink: hiring,
+		image: EVENTS_24_25[1],
+		title: 'UBUD: UBC Udah Dekat',
+		date: 'Friday, August 2 | 8:00PM PDT',
+		loc: 'Online on Zoom',
+		registrationLink: link,
+		infoLink: ubud,
 	},
 ];
 

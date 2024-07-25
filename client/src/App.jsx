@@ -6,6 +6,7 @@ import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import pages from './shared/components/navigation-bar/constants';
 import './App.css';
+import isGamesPage from './routeUtils';
 
 function App() {
 	const ACTIVATE_POPUP = true;
@@ -15,8 +16,7 @@ function App() {
 	};
 	const location = useLocation();
 	// TODO: create a util function that all other pages can use to check if it's games page
-	const isGamesPage = location.pathname === '/games';
-	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage;
+	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage(location.pathname);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
