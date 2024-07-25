@@ -6,6 +6,7 @@ import pages from './constants';
 import MobileNavBar from './components/MobileNavBar';
 import NavBarLogo from './components/NavBarLogo';
 import DesktopNavBar from './components/DesktopNavBar';
+import isGamesPage from '../../../routeUtils';
 
 export default function NavigationBar() {
 	const location = useLocation();
@@ -34,9 +35,8 @@ export default function NavigationBar() {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
-	const isGamesPage = location.pathname === '/games';
 
-	return isGamesPage ? (
+	return isGamesPage(location.pathname) ? (
 		<Outlet />
 	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
