@@ -15,7 +15,6 @@ function App() {
 		setPopupOpen(false);
 	};
 	const location = useLocation();
-	// TODO: create a util function that all other pages can use to check if it's games page
 	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage(location.pathname);
 
 	return (
