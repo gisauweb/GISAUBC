@@ -9,13 +9,12 @@ import './App.css';
 import isGamesPage from './routeUtils';
 
 function App() {
-	const ACTIVATE_POPUP = true;
+	const ACTIVATE_POPUP = false;
 	const [isPopupOpen, setPopupOpen] = useState(ACTIVATE_POPUP);
 	const handleClosePopup = () => {
 		setPopupOpen(false);
 	};
 	const location = useLocation();
-	// TODO: create a util function that all other pages can use to check if it's games page
 	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage(location.pathname);
 
 	return (
