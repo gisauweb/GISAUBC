@@ -3,6 +3,12 @@ import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/pas
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[1],
+			title: 'UBUD: UBC Udah Dekat',
+			date: 'Friday, August 2 | 8:00PM PDT',
+			loc: 'Online on Zoom',
+		},
+		{
 			image: EVENTS_24_25[0],
 			title: 'Summer Hiring',
 			date: 'Monday, July 1 | 11:59PM',
