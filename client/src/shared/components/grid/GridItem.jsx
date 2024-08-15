@@ -43,13 +43,14 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} />
 					{item.button && (
-						<Button
-							text={item.button.name}
-							className='mt-5'
-							onClick={() => {
-								window.open(item.button.link, '_blank');
-							}}
-						/>
+						<a
+							href={item.button.link}
+							target='_blank'
+							rel='noreferrer'
+							className='mt-5 flex justify-center'
+						>
+							<Button text={item.button.name} />
+						</a>
 					)}
 				</Box>
 				{upcomingEvent && (
