@@ -39,9 +39,21 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				<a href={item.infoLink} target='_blank' rel='noreferrer'>
 					<img src={item.image} alt='item_image' className='rounded-2xl z-10' loading='lazy' />
 				</a>
-				<Box className='text-center flex flex-col py-4'>
+				<Box className='text-center justify-center flex flex-col py-4'>
 					<span className='py-2 font-semibold text-xl'>{item.title}</span>
 					<GridItemDescription item={item} itemType={itemType} />
+					{item.button && (
+						<Button
+							text='Download Booklet'
+							className='mt-5'
+							onClick={() => {
+								window.open(
+									'https://stackoverflow.com/questions/42962603/href-with-onclick-in-reactjs',
+									'_blank',
+								);
+							}}
+						/>
+					)}
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
