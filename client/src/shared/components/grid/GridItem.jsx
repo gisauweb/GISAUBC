@@ -44,13 +44,10 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 					<GridItemDescription item={item} itemType={itemType} />
 					{item.button && (
 						<Button
-							text='Download Booklet'
+							text={item.button.name}
 							className='mt-5'
 							onClick={() => {
-								window.open(
-									'https://stackoverflow.com/questions/42962603/href-with-onclick-in-reactjs',
-									'_blank',
-								);
+								window.open(item.button.link, '_blank');
 							}}
 						/>
 					)}

@@ -7,7 +7,10 @@ const PAST_EVENTS = {
 			title: 'UBUD: UBC Udah Dekat',
 			date: 'Friday, August 2 | 8:00PM PDT',
 			loc: 'Online on Zoom',
-			button: {},
+			button: {
+				name: 'Download Booklet',
+				link: 'https://stackoverflow.com/questions/42962603/href-with-onclick-in-reactjs',
+			},
 		},
 		{
 			image: EVENTS_24_25[0],
