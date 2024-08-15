@@ -1,4 +1,5 @@
 import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/past-events/index';
+import booklet from 'assets/events-page/booklet.pdf';
 
 const PAST_EVENTS = {
 	'2024/2025': [
@@ -7,6 +8,10 @@ const PAST_EVENTS = {
 			title: 'UBUD: UBC Udah Dekat',
 			date: 'Friday, August 2 | 8:00PM PDT',
 			loc: 'Online on Zoom',
+			button: {
+				name: 'Download Booklet',
+				link: booklet,
+			},
 		},
 		{
 			image: EVENTS_24_25[0],
