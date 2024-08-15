@@ -48,6 +48,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 							target='_blank'
 							rel='noreferrer'
 							className='mt-5 flex justify-center'
+							aria-label={item.button.name}
 						>
 							<Button text={item.button.name} />
 						</a>
