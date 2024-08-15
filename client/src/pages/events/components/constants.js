@@ -1,4 +1,5 @@
 import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/past-events/index';
+import booklet from 'assets/events-page/booklet.pdf';
 
 const PAST_EVENTS = {
 	'2024/2025': [
@@ -9,7 +10,7 @@ const PAST_EVENTS = {
 			loc: 'Online on Zoom',
 			button: {
 				name: 'Download Booklet',
-				link: 'https://stackoverflow.com/questions/42962603/href-with-onclick-in-reactjs',
+				link: booklet,
 			},
 		},
 		{
