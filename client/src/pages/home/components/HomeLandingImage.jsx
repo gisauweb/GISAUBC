@@ -2,7 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import ReactGA from 'react-ga4';
 import { Button, LandingImage } from 'shared/components';
 import gisauLogo from 'assets/gisau-logo/gisau.png';
-import homeLandingImg from 'assets/landing-image/home.jpg';
+import homeLandingImg from 'assets/landing-image/home.webp';
 
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
