@@ -12,13 +12,13 @@ export default function Footer({ showPlane }) {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px)' });
 
 	return (
-		<div id='contact' className='w-full relative bottom-0'>
+		<div id='contact' className='w-full relative bg-bgPrimary'>
 			{showPlane && (
-				<div className='w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex'>
+				<div className='w-4/5 mx-auto justify-end py-28 pb-60 hidden lg:flex bg-bgPrimary relative'>
 					<img src={plane} alt='paper-plane' loading='lazy' />
 				</div>
 			)}
-			<div className='footer mt-24 lg:mt-36'>
+			<div className='footer mt-24 lg:mt-36 bg-bgPrimary'>
 				<div className='footer-title text-lg sm:text-2xl'>Connect with us!</div>
 				<div className='footer-icons'>
 					<a href='https://www.instagram.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
