@@ -24,10 +24,10 @@ export default function About() {
 	}, [selectedButton, selectedYear]);
 
 	return (
-		<Box>
+		<Box position='relative'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
-				<Box className='w-[85%] mx-auto space-y-16'>
+				<Box className='w-[85%] mx-auto'>
 					<Introduction />
 					<Highlights />
 					<OurTeam

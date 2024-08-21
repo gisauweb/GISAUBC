@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function LandingImage({ bgImage, text, isHomePage, children }) {
 	return (
-		<div className='h-screen w-screen items-center'>
-			<div className='fixed -z-index-10 flex justify-center items-center h-full w-full'>
+		<div className='relative h-screen w-screen items-center'>
+			<div className='fixed -z-index-10 flex justify-center items-center h-screen w-full'>
 				<img
-					className='h-screen w-full absolute top-0 object-cover brightness-[0.4]'
+					className='h-[115vh] w-full absolute top-0 object-cover bg-white brightness-[0.4]'
 					src={bgImage}
 					alt='hero'
 				/>
