@@ -11,7 +11,7 @@ function EventContent({ upcoming }) {
 	const eventData = upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear];
 
 	return (
-		<Box className='my-20'>
+		<Box className={`py-20 ${upcoming ? '' : 'pb-24 lg:pb-36'}`}>
 			<Box className='flex flex-col w-full justify-between'>
 				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
 					{`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}

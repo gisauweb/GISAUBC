@@ -29,7 +29,7 @@ export default function ScrollButton({ threshold }) {
 
 	return (
 		<div
-			className='sb fixed right-12 sm:right-32 2xl:right-64 z-10 bottom-48 sm:bottom-52 lg:bottom-64'
+			className='sb fixed right-12 sm:right-32 2xl:right-64 z-30 bottom-48 sm:bottom-52 lg:bottom-64'
 			style={{ display: visible ? 'inline' : 'none' }}
 		>
 			<div

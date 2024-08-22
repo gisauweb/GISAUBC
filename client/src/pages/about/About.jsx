@@ -27,7 +27,7 @@ export default function About() {
 		<Box position='relative'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
-				<Box className='w-[85%] mx-auto'>
+				<Box className='w-[85%] mx-auto pb-24 lg:pb-36'>
 					<Introduction />
 					<Highlights />
 					<OurTeam

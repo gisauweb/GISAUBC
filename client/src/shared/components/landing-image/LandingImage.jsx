@@ -5,7 +5,7 @@ export default function LandingImage({ bgImage, text, isHomePage, children }) {
 		<div className='relative h-screen w-screen items-center'>
 			<div className='fixed -z-index-10 flex justify-center items-center h-screen w-full'>
 				<img
-					className='h-[115vh] w-full absolute top-0 object-cover bg-white brightness-[0.4]'
+					className='h-[115vh] w-full absolute top-0 object-cover bg-bgPrimary brightness-[0.4]'
 					src={bgImage}
 					alt='hero'
 				/>
