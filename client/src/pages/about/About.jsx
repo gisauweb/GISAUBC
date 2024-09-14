@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import aboutLandingImage from 'assets/landing-image/about.png';
+import aboutLandingImage from 'assets/landing-image/about.webp';
 import Introduction from './components/Introduction';
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
@@ -24,10 +24,10 @@ export default function About() {
 	}, [selectedButton, selectedYear]);
 
 	return (
-		<Box>
+		<Box position='relative'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 			<MainContainer>
-				<Box className='w-[85%] mx-auto space-y-16'>
+				<Box className='w-[85%] mx-auto pb-24 lg:pb-36'>
 					<Introduction />
 					<Highlights />
 					<OurTeam

@@ -8,8 +8,8 @@ import TeamGridContent from './TeamGridContent';
 export default function OurTeam({ data, states }) {
 	// eslint-disable-next-line prettier/prettier
 	const {
-		selectedYear, selectedButton, selectedCard,
-		setSelectedYear, setSelectedButton, setSelectedCard,
+		selectedYear, selectedButton, selectedCard, setSelectedYear, setSelectedButton, setSelectedCard,
+
 	} = states;
 
 	return (

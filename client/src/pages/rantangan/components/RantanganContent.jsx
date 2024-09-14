@@ -12,7 +12,7 @@ function RantanganContent({ upcoming }) {
 	const eventData = upcoming ? UPCOMING_RANTANGAN : PAST_RANTANGAN[selectedYear];
 
 	return (
-		<Box className='my-20 relative'>
+		<Box className={`py-20 relative ${upcoming ? '' : 'pb-24 lg:pb-36'}`}>
 			<Box className='absolute w-screen left-0'>
 				{!upcoming && (
 					<img

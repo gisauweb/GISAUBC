@@ -10,7 +10,7 @@ import Partners from './components/partners/Partners';
 
 export default function Home() {
 	return (
-		<Box>
+		<Box position='relative'>
 			<HomeLandingImg />
 			<MainContainer>
 				<About />

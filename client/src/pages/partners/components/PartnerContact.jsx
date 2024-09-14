@@ -13,7 +13,7 @@ function PartnerContact() {
 	};
 
 	return (
-		<Container style={containerStyle} className='mt-5 sm:my-3'>
+		<Container style={containerStyle} className='mt-5 sm:py-3 pb-24 lg:pb-36'>
 			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
 				Interested to partner with us?
 			</Typography>
