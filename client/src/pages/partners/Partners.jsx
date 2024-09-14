@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Divider } from '@mui/material';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import partnersLandingImg from 'assets/landing-image/partners.jpeg';
+import partnersLandingImg from 'assets/landing-image/partners.webp';
 import MainContainer from 'shared/layout/MainContainer';
 import { PartnerRegistration, PartnerTitle, PartnerList, PartnerContact } from './components/index';
 
