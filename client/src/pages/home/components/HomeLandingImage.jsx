@@ -9,12 +9,20 @@ import memberButtonIcon from 'assets/home-page/buttons/memberBtnIcon.svg';
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
-	const handleClickButton = () => {
+	const handleMemberButton = () => {
 		ReactGA.event({
 			category: 'Join Member',
-			action: 'Clicked register for membership',
+			action: 'Click to register for membership',
 		});
 		window.open('https://forms.gle/VF4Vvascc56iujT67', '_blank', 'noreferrer');
+	};
+
+	const handleGamesButton = () => {
+		ReactGA.event({
+			category: 'GISAU Games',
+			action: 'Take me to GISAU Games',
+		});
+		window.open('/games', '_blank', 'noreferrer');
 	};
 
 	// const handleClickButton2 = () => {
@@ -54,7 +62,7 @@ export default function HomeLandingImage() {
 						text='Become a member'
 						icon={memberButtonIcon}
 						landingButton
-						handleClickButton={handleClickButton}
+						handleClickButton={handleMemberButton}
 					/>
 				</div>
 				<div className='flex fl justify-center mt-1 sm:mt-0'>
@@ -62,7 +70,7 @@ export default function HomeLandingImage() {
 						text='Take Me to GISAU Games'
 						icon={gamesButtonIcon}
 						landingButton
-						handleClickButton={handleClickButton}
+						handleClickButton={handleGamesButton}
 					/>
 				</div>
 			</div>
