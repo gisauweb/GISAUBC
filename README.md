@@ -34,6 +34,7 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 <a href="https://github.com/Julian-UBC"><img src="https://avatars.githubusercontent.com/u/84741001?v=4" title="Julian Widjaja" width="100" height="100"></a>
 <a href="https://github.com/jenaarianto"><img src="https://avatars.githubusercontent.com/u/91300516?v=4" title="Jena Arianto" width="100" height="100"></a>
 <a href="https://github.com/msamanthaf"><img src="https://avatars.githubusercontent.com/u/104884933?v=4" title="Marie Samantha" width="100" height="100"></a>
+<a href="https://github.com/MatthewAnder"><img src="https://avatars.githubusercontent.com/u/93026560?v=4" title="Matthew Andersen" width="100" height="100"></a>
 <a href="https://github.com/Kirby7777"><img src="https://avatars.githubusercontent.com/u/129033549?v=4" title="Jennifer Tjen" width="100" height="100"></a>
 <a href="https://github.com/jessiemgn"><img src="https://avatars.githubusercontent.com/u/136426370?v=4" title="Jessie Megan" width="100" height="100"></a>
 
