@@ -1,4 +1,5 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import soto from 'assets/events-page/SOTO.pdf';
 
 // const link = '';
 
@@ -9,7 +10,7 @@ const UPCOMING_EVENTS = [
 		date: 'Friday, September 20 | 5:30PM-Finish',
 		loc: 'AMS Great Hall South',
 		registrationLink: 'https://forms.gle/dD9eXu1zYvBi76KZ9',
-		infoLink: 'assets/events-page/SOTO.pdf',
+		infoLink: soto,
 	},
 ];
 
