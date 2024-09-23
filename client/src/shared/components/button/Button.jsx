@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import './Button.css';
 
