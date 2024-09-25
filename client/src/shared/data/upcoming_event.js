@@ -8,7 +8,7 @@ const UPCOMING_EVENTS = [
 		image: EVENTS_24_25[2],
 		title: 'SOTO: Sobat Tongkrongan',
 		date: 'Friday, September 20 | 5:30PM',
-		loc: 'AMS Great Hall South',
+		loc: 'AMS Nest Great Hall South',
 		registrationLink: 'https://forms.gle/dD9eXu1zYvBi76KZ9',
 		infoLink: soto,
 	},
