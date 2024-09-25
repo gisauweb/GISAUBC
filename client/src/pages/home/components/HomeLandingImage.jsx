@@ -3,16 +3,26 @@ import ReactGA from 'react-ga4';
 import { Button, LandingImage } from 'shared/components';
 import gisauLogo from 'assets/gisau-logo/gisau.png';
 import homeLandingImg from 'assets/landing-image/home.webp';
+import gamesButtonIcon from 'assets/home-page/buttons/gameBtnIcon.svg';
+import memberButtonIcon from 'assets/home-page/buttons/memberBtnIcon.svg';
 
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
 
-	const handleClickButton = () => {
+	const handleMemberButton = () => {
 		ReactGA.event({
 			category: 'Join Member',
-			action: 'Clicked register for membership',
+			action: 'Click to register for membership',
 		});
-		window.open('https://forms.gle/VF4Vvascc56iujT67', '_blank', 'noreferrer');
+		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
+	};
+
+	const handleGamesButton = () => {
+		ReactGA.event({
+			category: 'GISAU Games',
+			action: 'Take me to GISAU Games',
+		});
+		window.open('/games', '_blank', 'noreferrer');
 	};
 
 	// const handleClickButton2 = () => {
@@ -46,12 +56,22 @@ export default function HomeLandingImage() {
 				{!isMobileView && <br />}
 				of UBC
 			</h1>
-			<div className='flex flex-col sm:flex-row sm:gap-x-4 justify-center'>
-				{/* <div className='grid justify-center'>
-					<Button text='Become an executive!' landingButton handleClickButton={handleClickButton2} />
-				</div> */}
-				<div className='grid justify-center mt-4 sm:mt-0'>
-					<Button text='Become a member!' landingButton handleClickButton={handleClickButton} />
+			<div className='flex flex-col sm:flex-row sm:gap-x-4 gap-y-4 justify-center w-full'>
+				<div className='flex fl justify-center mt-4 sm:mt-0'>
+					<Button
+						text='Become a member'
+						icon={memberButtonIcon}
+						landingButton
+						handleClickButton={handleMemberButton}
+					/>
+				</div>
+				<div className='flex fl justify-center mt-1 sm:mt-0'>
+					<Button
+						text='Take Me to GISAU Games'
+						icon={gamesButtonIcon}
+						landingButton
+						handleClickButton={handleGamesButton}
+					/>
 				</div>
 			</div>
 		</LandingImage>
