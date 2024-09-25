@@ -1,6 +1,7 @@
 import { useMediaQuery } from 'react-responsive';
 import ReactGA from 'react-ga4';
 import { Button, LandingImage } from 'shared/components';
+import { Link } from 'react-router-dom';
 import gisauLogo from 'assets/gisau-logo/gisau.png';
 import homeLandingImg from 'assets/landing-image/home.webp';
 import gamesButtonIcon from 'assets/home-page/buttons/gameBtnIcon.svg';
@@ -18,11 +19,7 @@ export default function HomeLandingImage() {
 	};
 
 	const handleGamesButton = () => {
-		ReactGA.event({
-			category: 'GISAU Games',
-			action: 'Take me to GISAU Games',
-		});
-		window.open('/games', '_blank', 'noreferrer');
+		ReactGA.event({ category: 'GISAU Games', action: 'Take me to GISAU Games' });
 	};
 
 	// const handleClickButton2 = () => {
@@ -66,12 +63,9 @@ export default function HomeLandingImage() {
 					/>
 				</div>
 				<div className='flex fl justify-center mt-1 sm:mt-0'>
-					<Button
-						text='Take Me to GISAU Games'
-						icon={gamesButtonIcon}
-						landingButton
-						handleClickButton={handleGamesButton}
-					/>
+					<Link to='/games' onClick={handleGamesButton}>
+						<Button text='Take Me to GISAU Games' icon={gamesButtonIcon} landingButton />
+					</Link>
 				</div>
 			</div>
 		</LandingImage>
