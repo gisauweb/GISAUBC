@@ -6,8 +6,8 @@ import soto from 'assets/events-page/SOTO.pdf';
 const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[2],
-		title: 'Sobat Tongkrongan',
-		date: 'Friday, September 20 | 5:30PM-Finish',
+		title: 'SOTO: Sobat Tongkrongan',
+		date: 'Friday, September 20 | 5:30PM',
 		loc: 'AMS Great Hall South',
 		registrationLink: 'https://forms.gle/dD9eXu1zYvBi76KZ9',
 		infoLink: soto,
