@@ -1,16 +1,15 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import soto from 'assets/events-page/SOTO.pdf';
 
 // const link = '';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_24_25[2],
-		title: 'SOTO: Sobat Tongkrongan',
-		date: 'Friday, September 20 | 5:30PM',
-		loc: 'AMS Nest Great Hall South',
-		registrationLink: 'https://forms.gle/dD9eXu1zYvBi76KZ9',
-		infoLink: soto,
+		image: EVENTS_24_25[3],
+		title: 'Fall Hiring',
+		date: 'Tuesday, October 8 | 11:59PM',
+		loc: 'Submit Via Email',
+		registrationLink: 'mailto://contact.gisau@gmail.com',
+		infoLink: 'https://drive.google.com/file/d/1LP_S_VJh70v3oO1Rx5wKtsjvARCGcYyd/view',
 	},
 ];
 
