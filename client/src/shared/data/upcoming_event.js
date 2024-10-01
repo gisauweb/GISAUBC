@@ -9,7 +9,7 @@ const UPCOMING_EVENTS = [
 		date: 'Tuesday, October 8 | 11:59PM',
 		loc: 'Submit Via Email',
 		registrationLink: 'mailto://contact.gisau@gmail.com',
-		infoLink: 'https://drive.google.com/file/d/1LP_S_VJh70v3oO1Rx5wKtsjvARCGcYyd/view',
+		infoLink: 'https://drive.google.com/file/d/11jcrVd9MMiSHC0-rUByLZgqVsIL5wYw8/view?usp=drive_link',
 	},
 ];
 
