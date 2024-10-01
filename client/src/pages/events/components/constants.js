@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[2],
+			title: 'SOTO: Sobat Tongkrongan',
+			date: 'Friday, September 27 | 5:30PM PDT',
+			loc: 'AMS Nest Great Hall South',
+		},
+		{
 			image: EVENTS_24_25[1],
 			title: 'UBUD: UBC Udah Dekat',
 			date: 'Friday, August 2 | 8:00PM PDT',
