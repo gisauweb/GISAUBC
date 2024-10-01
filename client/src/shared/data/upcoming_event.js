@@ -8,7 +8,7 @@ const UPCOMING_EVENTS = [
 		title: 'Fall Hiring',
 		date: 'Tuesday, October 8 | 11:59PM',
 		loc: 'Submit Via Email',
-		registrationLink: 'mailto://contact.gisau@gmail.com',
+		registrationLink: 'mailto:contact.gisau@gmail.com',
 		infoLink: 'https://drive.google.com/file/d/11jcrVd9MMiSHC0-rUByLZgqVsIL5wYw8/view?usp=drive_link',
 	},
 ];
