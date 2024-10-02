@@ -60,9 +60,11 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 							text={item.title === 'Fall Hiring' ? 'Apply' : 'Register'}
 							handleClickButton={() => handleRegisterButton(item.registrationLink)}
 						/>
-						<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
-							<Button text='View Details' background='transparentBg' />
-						</a>
+						{item.title !== 'Fall Hiring' && (
+							<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
+								<Button text='View Details' background='transparentBg' />
+							</a>
+						)}
 					</Box>
 				)}
 			</Box>
