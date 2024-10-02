@@ -12,7 +12,7 @@ function PartnerContainer({ name, logo, description, link }) {
 				<img alt={name} src={logo} className='w-52 h-52' loading='lazy' />
 			</a>
 			<Box className='flex flex-col w-3/4 pt-6 sm:pt-8 gap-4 justify-center items-center'>
-				<Typography variant='h4' color='maroon' className='text-left w-full'>
+				<Typography variant='h4' color='black' className='text-left w-full'>
 					{name}
 				</Typography>
 				<Typography variant='body1' color='black' className='text-left'>
