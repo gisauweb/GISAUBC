@@ -21,16 +21,16 @@ export const UPCOMINGEVENTS = {
 	},
 };
 
-export const HIRING = {
-	title: 'Upcoming Events',
-	events: HIRING,
-	icon: <img src={hiring} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' loading='lazy' />,
-	button1: 'View Hiring Package',
-	button2: {
-		name: 'View Past Events',
-		path: 'hiring',
-	},
-};
+// export const HIRING = {
+// 	title: 'Upcoming Events',
+// 	events: HIRING,
+// 	icon: <img src={hiring} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' loading='lazy' />,
+// 	button1: 'View Hiring Package',
+// 	button2: {
+// 		name: 'View Past Events',
+// 		path: 'hiring',
+// 	},
+// };
 
 export const RANTANGAN = {
 	title: 'Rantangan',
