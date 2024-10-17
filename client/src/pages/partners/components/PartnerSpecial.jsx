@@ -14,8 +14,13 @@ export default function PartnerSpecial() {
 					SPECIAL FOR GISAU PARTNERS
 				</Typography>
 			</div>
+<<<<<<< HEAD
 			<div className='flex lg:flex-row flex-col w-full gap-5 pb-10 md:pb-36'>
 				<div className='w-full lg:w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+=======
+			<div className='flex w-full gap-5 pb-36'>
+				<div className='w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+>>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
 					<img src={searchIcon} alt='search.png' className='pb-4' />
 					<div className='flex flex-col gap-4'>
 						<Typography variant='h4' color='black'>
@@ -28,7 +33,11 @@ export default function PartnerSpecial() {
 						</Typography>
 					</div>
 				</div>
+<<<<<<< HEAD
 				<div className='w-full lg:w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+=======
+				<div className='w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+>>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
 					<img src={destinationIcon} alt='search.png' className='pb-4' />
 					<div className='flex flex-col gap-4'>
 						<Typography variant='h4' color='black'>
@@ -41,7 +50,11 @@ export default function PartnerSpecial() {
 						</Typography>
 					</div>
 				</div>
+<<<<<<< HEAD
 				<div className='w-full lg:w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+=======
+				<div className='w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+>>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
 					<img src={peopleIcon} alt='search.png' className='pb-4' />
 					<div className='flex flex-col gap-4'>
 						<Typography variant='h4' color='black'>

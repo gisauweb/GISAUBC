@@ -4,6 +4,7 @@ import PartnerTitle from './PartnerTitle';
 import PartnerRegistration from './PartnerRegistration';
 import PartnerContact from './PartnerContact';
 import PartnerSpecial from './PartnerSpecial';
+<<<<<<< HEAD
 import PartnerHeadline from './PartnerHeadline';
 
 // const SPECIAL_FOR_PARTNERS = [
@@ -39,3 +40,7 @@ export {
 	PartnerHeadline,
 };
 >>>>>>> d717414 (GW-143: Partner Headline)
+=======
+
+export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial };
+>>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
