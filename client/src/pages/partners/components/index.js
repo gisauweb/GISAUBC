@@ -25,17 +25,5 @@ import PartnerHeadline from './PartnerHeadline';
 // 	},
 // ];
 
-<<<<<<< HEAD
 // eslint-disable-next-line prettier/prettier, max-len
 export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial, PartnerHeadline };
-=======
-export {
-	PartnerContainer,
-	PartnerList,
-	PartnerRegistration,
-	PartnerTitle,
-	PartnerContact,
-	PartnerSpecial,
-	PartnerHeadline,
-};
->>>>>>> d717414 (GW-143: Partner Headline)

@@ -15,12 +15,17 @@ function PartnerContact() {
 
 	return (
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<Container style={containerStyle} className='flex mt-5 sm:py-3 pb-28 md:pb-36'>
 			<div className='flex w-full pb-3 lg:pb-10'>
 =======
 		<Container style={containerStyle} className='flex mt-5 sm:py-3 pb-24 lg:pb-36'>
 			<div className='flex w-full pb-10'>
 >>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
+=======
+		<Container style={containerStyle} className='flex mt-5 sm:py-3 pb-24 lg:pb-36'>
+			<div className='flex w-full pb-10'>
+>>>>>>> 632d35e (GW-143: Special for GISAU Partners Section)
 				<img src={wavy} alt='wavy.png' />
 				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6 uppercase'>
 					Interested to become a partner?
@@ -29,10 +34,14 @@ function PartnerContact() {
 			<a
 				href='mailto:sponsorship.gisau@gmail.com'
 <<<<<<< HEAD
+<<<<<<< HEAD
 				className='flex flex-col gap-5 mt-5 lg:mt-10 border-3 border-primary rounded-full'
 =======
 				className='flex flex-col gap-5 mt-10 border-3 border-primary rounded-full'
 >>>>>>> e9711f6 (GW-143: Special for GISAU Partners Section)
+=======
+				className='flex flex-col gap-5 mt-10 border-3 border-primary rounded-full'
+>>>>>>> 632d35e (GW-143: Special for GISAU Partners Section)
 				aria-label='Save'
 			>
 				<Typography variant='h4' color='black' className='pt-4 lg:pt-6 uppercase'>
