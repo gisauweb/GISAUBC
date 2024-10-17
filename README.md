@@ -45,7 +45,7 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 [<kbd> <br> :smiley_cat: Marie Samantha <br> </kbd>](https://github.com/msamanthaf)
 <br/>
 [<kbd> <br> :cool: Matthew Andersen <br> </kbd>](https://github.com/MatthewAnder)
-[<kbd> <br> 🍵 Jennifer Tjen <br> </kbd>](https://github.com/Kirby7777)
+[<kbd> <br> 🍵 Jennifer Tjen <br> </kbd>](https://github.com/JenniferTjen)
 [<kbd> <br> 🍬 Jessie Megan <br> </kbd>](https://github.com/jessiemgn)
 
 </div>

@@ -24,6 +24,7 @@ module.exports = {
 				bgGames: '#FFFFFF',
 				gamesRed: '#732727',
 				gamesBox: '#F5F1ED',
+				bgCream: '#F5EFE4',
 			},
 			fontSize: { '5xl': ['3rem', 1.3] },
 		},
