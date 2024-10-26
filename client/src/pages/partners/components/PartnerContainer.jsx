@@ -9,7 +9,9 @@ function PartnerContainer({ name, logo, description, link }) {
 			}`}
 		>
 			<a href={link} target='_blank' rel='noreferrer'>
-				<img alt={name} src={logo} className='w-52 h-52' loading='lazy' />
+				<div className='w-52 h-52 flex items-center object-contain'>
+					<img alt={name} src={logo} loading='lazy' />
+				</div>
 			</a>
 			<Box className='flex flex-col w-3/4 pt-6 sm:pt-8 gap-4 justify-center items-center'>
 				<Typography variant='h4' color='maroon' className='text-left w-full'>
