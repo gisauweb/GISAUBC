@@ -47,9 +47,9 @@ function Popup({ isOpen, onClose }) {
 					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' loading='lazy' />
 				</a>
 				<Typography variant='h5' className='mt-11' gutterBottom>
-					Fall Hiring Is Now Open!
+					Upcoming Event
 				</Typography>
-				<Typography variant='body1'>Check out our fall hiring package below!</Typography>
+				<Typography variant='body1'>Check out our newest event!</Typography>
 				<Box mt={2} className='flex justify-center'>
 					<a aria-label='Save' href='#events' onClick={onClose}>
 						<Button background='transparentBg' text='Take me there' />
