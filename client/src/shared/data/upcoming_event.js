@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[4],
 		title: 'Liwetan',
-		date: 'Friday, November 8 | 5:30PM',
+		date: 'Friday, November 8 | 5:30-8PM',
 		loc: 'Consulate General of Indonesia (KJRI)',
 		registrationLink: link,
 		infoLink: liwetan,
