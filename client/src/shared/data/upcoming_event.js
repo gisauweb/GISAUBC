@@ -5,7 +5,7 @@ const link = 'https://docs.google.com/forms/d/e/1FAIpQLScI6tJlEQ-EBCtcNQfhKh0WcH
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_24_25[5],
+		image: EVENTS_24_25[4],
 		title: 'Liwetan',
 		date: 'Friday, November 8 | 5:30PM',
 		loc: 'Consulate General of Indonesia (KJRI)',
