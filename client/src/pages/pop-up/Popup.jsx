@@ -44,7 +44,7 @@ function Popup({ isOpen, onClose }) {
 					rel='noreferrer'
 					className='my-3 flex justify-center items-center'
 				>
-					<img src={upcomingEvent.image} alt='Event Soto' className='w-4/5' loading='lazy' />
+					<img src={upcomingEvent.image} alt='Upcoming Event' className='w-4/5' loading='lazy' />
 				</a>
 				<Typography variant='h5' className='mt-11' gutterBottom>
 					Upcoming Event
