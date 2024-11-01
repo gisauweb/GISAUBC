@@ -4,6 +4,7 @@ import searchIcon from 'assets/partners/searchIcon.svg';
 import destinationIcon from 'assets/partners/destinationIcon.svg';
 import peopleIcon from 'assets/partners/peopleIcon.svg';
 import stars from 'assets/partners/text decor.svg';
+import {SPECIAL_FOR_PARTNERS} from './index';
 
 export default function PartnerSpecial() {
 	return (
