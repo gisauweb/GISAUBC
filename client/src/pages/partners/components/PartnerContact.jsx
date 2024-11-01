@@ -14,8 +14,8 @@ function PartnerContact() {
 	};
 
 	return (
-		<Container style={containerStyle} className='flex mt-5 sm:py-3 pb-24 lg:pb-36'>
-			<div className='flex w-full pb-10'>
+		<Container style={containerStyle} className='flex mt-5 sm:py-3 pb-28 md:pb-36'>
+			<div className='flex w-full pb-3 lg:pb-10'>
 				<img src={wavy} alt='wavy.png' />
 				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6 uppercase'>
 					Interested to become a partner?
@@ -23,7 +23,7 @@ function PartnerContact() {
 			</div>
 			<a
 				href='mailto:sponsorship.gisau@gmail.com'
-				className='flex flex-col gap-5 mt-10 border-3 border-primary rounded-full'
+				className='flex flex-col gap-5 mt-5 lg:mt-10 border-3 border-primary rounded-full'
 				aria-label='Save'
 			>
 				<Typography variant='h4' color='black' className='pt-4 lg:pt-6 uppercase'>
