@@ -4,8 +4,15 @@ import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import partnersLandingImg from 'assets/landing-image/partners.webp';
 import { Footer, LandingImage, ScrollButton } from 'shared/components/index';
 import MainContainer from 'shared/layout/MainContainer';
-import { PartnerContact, PartnerList, PartnerRegistration, PartnerTitle, PartnerSpecial, PartnerHeadline } from './components/index';
-import PartnerButton from './components/PartnerButton';
+import {
+	PartnerRegistration,
+	PartnerTitle,
+	PartnerList,
+	PartnerContact,
+	PartnerSpecial,
+	PartnerHeadline,
+} from './components/index';
+import PartnerButton from './PartnerButton';
 import PartnerBackgroundIcons from './components/PartnerBackgroundIcons';
 
 export default function Partners() {
