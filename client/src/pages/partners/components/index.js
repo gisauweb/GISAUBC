@@ -4,6 +4,7 @@ import PartnerTitle from './PartnerTitle';
 import PartnerRegistration from './PartnerRegistration';
 import PartnerContact from './PartnerContact';
 import PartnerSpecial from './PartnerSpecial';
+import PartnerHeadline from './PartnerHeadline';
 
 // const SPECIAL_FOR_PARTNERS = [
 // 	{
@@ -24,4 +25,12 @@ import PartnerSpecial from './PartnerSpecial';
 // 	},
 // ];
 
-export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial };
+export {
+	PartnerContainer,
+	PartnerList,
+	PartnerRegistration,
+	PartnerTitle,
+	PartnerContact,
+	PartnerSpecial,
+	PartnerHeadline,
+};
