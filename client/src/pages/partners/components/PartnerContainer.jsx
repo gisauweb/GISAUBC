@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 function PartnerContainer({ name, logo, description, link }) {
 	return (
 		<Box
-			className={`flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 ${
+			className={`flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40 ${
 				name === 'Wizeprep' ? 'mb-0' : 'mb-20'
 			}`}
 		>

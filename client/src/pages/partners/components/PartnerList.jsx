@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { PARTNERS } from 'shared/data/partners';
 import PartnerContainer from './PartnerContainer';
 
