@@ -4,11 +4,12 @@ import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import partnersLandingImg from 'assets/landing-image/partners.webp';
 import MainContainer from 'shared/layout/MainContainer';
 import { PartnerRegistration, PartnerTitle, PartnerList, PartnerContact } from './components/index';
+import PartnerButton from './PartnerButton';
 
 export default function Partners() {
 	return (
 		<Box>
-			<LandingImage bgImage={partnersLandingImg} text='Our Partners' />
+			<LandingImage bgImage={partnersLandingImg} text='Our Partners' button={<PartnerButton />} />
 			<MainContainer>
 				<PartnerTitle />
 				<Divider className='py-[0.5px]' color='black' />
