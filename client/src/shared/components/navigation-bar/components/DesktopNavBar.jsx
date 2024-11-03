@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import ReactGA from 'react-ga4';
 import { Link } from 'react-router-dom';
 import { Button } from 'shared/components';
+import NavBarLogo from './NavBarLogo';
 // import GameMenu from './GameMenu';
 // import isGamesPage from '../../../../routeUtils';
 
@@ -19,8 +20,8 @@ export default function DesktopNavBar({ hasLandingImage, pages, location }) {
 	};
 
 	return (
-		<Box className='w-full flex justify-around'>
-			<Box>LOGO</Box>
+		<Box className='w-full flex justify-between align-middle mx-10'>
+			<NavBarLogo />
 			<Box
 				className={`flex mx-6 navbar px-4 ${
 					hasLandingImage ? 'bg-gamesRed h-14 rounded-[20px]' : 'bg-white bg-opacity-70'
@@ -38,13 +39,11 @@ export default function DesktopNavBar({ hasLandingImage, pages, location }) {
 					</Link>
 				))}
 			</Box>
-			<Box>
-				<Button
-					text='Become a member'
-					className='bg-[#222222] border-2 border-gamesRed h-full'
-					handleClickButton={handleMemberButton}
-				/>
-			</Box>
+			<Button
+				text='Become a member'
+				className='!bg-[#222222] border-2 border-gamesRed h-14'
+				handleClickButton={handleMemberButton}
+			/>
 		</Box>
 	);
 }

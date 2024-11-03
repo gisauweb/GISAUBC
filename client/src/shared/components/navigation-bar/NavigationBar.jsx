@@ -4,7 +4,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import pages from './constants';
 import MobileNavBar from './components/MobileNavBar';
-import NavBarLogo from './components/NavBarLogo';
+// import NavBarLogo from './components/NavBarLogo';
 import DesktopNavBar from './components/DesktopNavBar';
 import isGamesPage from '../../../routeUtils';
 
@@ -22,7 +22,7 @@ export default function NavigationBar() {
 	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
 			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
-				<NavBarLogo hasLandingImage={hasLandingImage} />
+				{/* <NavBarLogo hasLandingImage={hasLandingImage} /> */}
 				{isMobile ? (
 					<MobileNavBar
 						isMenuOpen={isMenuOpen}
