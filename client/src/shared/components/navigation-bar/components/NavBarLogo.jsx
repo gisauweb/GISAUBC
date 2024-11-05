@@ -6,7 +6,7 @@ import { ReactComponent as NavLogoBig } from 'assets/gisau-logo/gisau.svg';
 
 export default function NavBarLogo({ hasLandingImage }) {
 	return (
-		<Box className='ml-3 sm:ml-6 lg:ml-16'>
+		<Box className='ml-6 lg:ml-16'>
 			<Link to='/'>
 				{hasLandingImage ? (
 					<NavLogoBig className='w-14 sm:w-16 h-auto' />
