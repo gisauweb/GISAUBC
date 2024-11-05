@@ -1,30 +1,22 @@
 import { Box } from '@mui/material';
-import ReactGA from 'react-ga4';
 import { Link } from 'react-router-dom';
-import { Button } from 'shared/components';
 import NavBarLogo from './NavBarLogo';
 // import GameMenu from './GameMenu';
 // import isGamesPage from '../../../../routeUtils';
 
-export default function DesktopNavBar({ hasLandingImage, pages, location }) {
+export default function DesktopNavBar({ bgColor, hasLandingImage, pages, location }) {
 	const ScrollToTop = () => {
 		window.scrollTo(0, 0);
 	};
 
-	const handleMemberButton = () => {
-		ReactGA.event({
-			category: 'Join Member',
-			action: 'Click to register for membership',
-		});
-		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
-	};
-
 	return (
-		<Box className='w-full flex justify-between align-middle mx-10'>
-			<NavBarLogo />
+		<Box className='fixed w-full flex justify-between align-middle px-10 mt-8'>
+			<Box className='w-1/3'>
+				<NavBarLogo />
+			</Box>
 			<Box
-				className={`flex mx-6 navbar px-4 ${
-					hasLandingImage ? 'bg-gamesRed h-14 rounded-[20px]' : 'bg-white bg-opacity-70'
+				className={`flex mx-6 navbar px-4 align-middle ${
+					hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
 				} h-14 rounded-full`}
 			>
 				{pages.map((page) => (
@@ -39,11 +31,15 @@ export default function DesktopNavBar({ hasLandingImage, pages, location }) {
 					</Link>
 				))}
 			</Box>
-			<Button
-				text='Become a member'
-				className='!bg-[#222222] border-2 border-gamesRed h-14'
-				handleClickButton={handleMemberButton}
-			/>
+			<Box className='w-1/3 flex justify-end'>
+				<Link
+					to='/'
+					className='bg-[#222222] border-2 rounded-full border-gamesRed h-12
+					justify-center items-center px-7 py-2.5 hidden lg:flex xl:w-1/2'
+				>
+					<p className='underline-animation font-oswald text-sm md:text-base text-white'>Become a member</p>
+				</Link>
+			</Box>
 		</Box>
 	);
 }
