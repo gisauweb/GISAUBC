@@ -34,7 +34,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 			<Box className='w-1/3 flex justify-end'>
 				<Link
 					to='https://forms.gle/33ovq6wBh1jaXjBu7'
-					className='bg-[#222222] border-2 rounded-full border-gamesRed h-12
+					className='bg-bgBlack border-2 rounded-full border-gamesRed h-12
 					justify-center items-center px-7 py-2.5 hidden lg:flex xl:w-1/2'
 				>
 					<p className='underline-animation font-oswald text-sm md:text-base text-white'>Become a Member</p>
