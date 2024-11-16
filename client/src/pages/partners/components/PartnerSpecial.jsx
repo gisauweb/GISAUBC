@@ -28,7 +28,7 @@ export default function PartnerSpecial() {
 						</Typography>
 					</div>
 				</div>
-				<div className='w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
+				<div className='w-full lg:w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
 					<img src={destinationIcon} alt='search.png' className='pb-4' />
 					<div className='flex flex-col gap-4'>
 						<Typography variant='h4' color='black'>
