@@ -8,7 +8,7 @@ export default function PartnerButton() {
 			category: 'Join Member',
 			action: 'Click to register for membership',
 		});
-		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
+		window.open('mailto:sponsorship.gisau@gmail.com', '_blank', 'noreferrer');
 	};
 	return <Button text='Become a Partner' icon={emailIcon} handleClickButton={handlePartnerButton} />;
 }

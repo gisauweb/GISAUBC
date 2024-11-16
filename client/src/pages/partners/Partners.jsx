@@ -3,7 +3,7 @@ import partnersLandingImg from 'assets/landing-image/partners.webp';
 import { Footer, LandingImage, ScrollButton } from 'shared/components/index';
 import MainContainer from 'shared/layout/MainContainer';
 import { PartnerContact, PartnerList, PartnerRegistration, PartnerTitle } from './components/index';
-import PartnerButton from './PartnerButton';
+import PartnerButton from './components/PartnerButtonrtnerButton';
 import PartnerBackgroundIcons from './components/PartnerBackgroundIcons';
 
 export default function Partners() {
