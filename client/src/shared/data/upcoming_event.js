@@ -1,18 +1,7 @@
-import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import liwetan from 'assets/events-page/liwetan.pdf';
+// import { EVENTS_24_25 } from 'assets/events-page/past-events';
+// const link = '';
 
-const link = 'https://docs.google.com/forms/d/e/1FAIpQLScI6tJlEQ-EBCtcNQfhKh0WcHRXWvdciM5yiMC_jV0HQVuVXA/viewform';
-
-const UPCOMING_EVENTS = [
-	{
-		image: EVENTS_24_25[4],
-		title: 'Liwetan',
-		date: 'Friday, November 8 | 5:30-8PM',
-		loc: 'Consulate General of Indonesia (KJRI)',
-		registrationLink: link,
-		infoLink: liwetan,
-	},
-];
+const UPCOMING_EVENTS = [];
 
 export default UPCOMING_EVENTS;
 

@@ -23,7 +23,7 @@ export default function NavigationBar() {
 			const { scrollY } = window;
 			const scrollThreshold = 50;
 			if (scrollY > scrollThreshold) {
-				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[20px]');
+				setBgColor('bg-gamesRed h-14 rounded-[20px]');
 			} else {
 				setBgColor('');
 			}
@@ -40,15 +40,18 @@ export default function NavigationBar() {
 		<Outlet />
 	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
-				<NavBarLogo hasLandingImage={hasLandingImage} />
+			<Box className='flex justify-between items-center z-50 w-full mt-[5vh] absolute'>
+				{/* <NavBarLogo hasLandingImage={hasLandingImage} /> */}
 				{isMobile ? (
-					<MobileNavBar
-						isMenuOpen={isMenuOpen}
-						setIsMenuOpen={setIsMenuOpen}
-						hasLandingImage={hasLandingImage}
-						location={location}
-					/>
+					<>
+						<NavBarLogo />
+						<MobileNavBar
+							isMenuOpen={isMenuOpen}
+							setIsMenuOpen={setIsMenuOpen}
+							hasLandingImage={hasLandingImage}
+							location={location}
+						/>
+					</>
 				) : (
 					<DesktopNavBar
 						bgColor={bgColor}
