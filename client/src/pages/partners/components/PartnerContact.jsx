@@ -29,7 +29,7 @@ function PartnerContact() {
 				<Typography variant='h4' color='black' className='pt-4 lg:pt-6 uppercase'>
 					Contact us at
 				</Typography>
-				<Button text='sponsorship.gisau@gmail.com' background='transparentBg' />
+				<Button text='sponsorship.gisau@gmail.com' />
 			</a>
 		</Container>
 	);
