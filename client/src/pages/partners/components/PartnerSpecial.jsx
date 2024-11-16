@@ -7,9 +7,9 @@ import stars from 'assets/partners/text decor.svg';
 
 export default function PartnerSpecial() {
 	return (
-		<Box className='flex flex-col w-full h-auto align-bottom'>
-			<div className='flex w-full pb-10'>
-				<img src={stars} alt='wavy.png' />
+		<Box className='relative flex flex-col w-full h-auto align-bottom'>
+			<div className='relative flex w-full pb-10'>
+				<img src={stars} alt='wavy.png' className='absolute -top-4 -left-10 h-12 w-12' />
 				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6 uppercase'>
 					SPECIAL FOR GISAU PARTNERS
 				</Typography>
