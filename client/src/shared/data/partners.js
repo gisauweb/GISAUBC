@@ -21,7 +21,7 @@ const PARTNERS = [
 		name: 'Honeydew Labs',
 		logo: honeydewLabs,
 		description:
-			'Honeydew Labs is dedicated to delivering natural, proven skincare ingredients that are effortlessly enjoyable for daily use. We firmly believe that skincare should be a delightful journey, fostering self-love and empowerment, while leaving unrealistic standards of perfection behind.',
+			'Founded by two UBC Sauder alumni, Honeydew Labs is dedicated to delivering natural, proven skincare ingredients that are effortlessly enjoyable for daily use. We firmly believe that skincare should be a delightful journey, fostering self-love and empowerment, while leaving unrealistic standards of perfection behind.',
 		link: 'https://www.honeydewlabs.com/',
 		yearlong: true,
 	},
