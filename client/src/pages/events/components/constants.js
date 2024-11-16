@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[4],
+			title: 'Liwetan',
+			date: 'Friday, November 8 | 5:30-8PM',
+			loc: 'Consulate General of Indonesia (KJRI)',
+		},
+		{
 			image: EVENTS_24_25[3],
 			title: 'Fall Hiring',
 			date: 'Tuesday, October 8 | 11:59PM',
