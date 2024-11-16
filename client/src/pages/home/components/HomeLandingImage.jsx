@@ -55,16 +55,11 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex flex-col sm:flex-row sm:gap-x-4 gap-y-4 justify-center w-full'>
 				<div className='flex fl justify-center mt-4 sm:mt-0'>
-					<Button
-						text='Become a member'
-						icon={memberButtonIcon}
-						landingButton
-						handleClickButton={handleMemberButton}
-					/>
+					<Button text='Become a Member' icon={memberButtonIcon} handleClickButton={handleMemberButton} />
 				</div>
 				<div className='flex fl justify-center mt-1 sm:mt-0'>
 					<Link to='/games' onClick={handleGamesButton}>
-						<Button text='Take Me to GISAU Games' icon={gamesButtonIcon} landingButton />
+						<Button text='Take Me to GISAU Games' icon={gamesButtonIcon} />
 					</Link>
 				</div>
 			</div>
