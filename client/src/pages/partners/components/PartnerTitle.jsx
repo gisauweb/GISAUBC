@@ -8,7 +8,7 @@ export default function PartnerTitle() {
 			<img src={shineIcon} alt='stars.png' />
 			<div className='flex flex-col justify-end'>
 				<Typography variant='h4' color='primary' className=''>
-					Our Year-Long Partners
+					OUR YEAR-LONG PARTNERS
 				</Typography>
 			</div>
 		</Box>
