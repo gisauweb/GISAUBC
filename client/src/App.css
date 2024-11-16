@@ -40,8 +40,8 @@ p {
 	position: absolute;
 	width: 100%;
 	transform: scaleX(0);
-	height: 2.5px;
-	bottom: -5px;
+	height: 1.5px;
+	bottom: -1px;
 	left: 0;
 	transform-origin: bottom right;
 	transition: transform 0.3s ease-out;
@@ -53,8 +53,8 @@ p {
 	position: absolute;
 	width: 100%;
 	transform: scaleX(0);
-	height: 2.5px;
-	bottom: -5px;
+	height: 1.5px;
+	bottom: -1px;
 	left: 0;
 	transform-origin: bottom right;
 	transition: transform 0.3s ease-out;
