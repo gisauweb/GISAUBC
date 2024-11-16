@@ -40,7 +40,7 @@ export default function NavigationBar() {
 		<Outlet />
 	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
+			<Box className='flex justify-between items-center z-50 w-full mt-[5vh] absolute'>
 				{/* <NavBarLogo hasLandingImage={hasLandingImage} /> */}
 				{isMobile ? (
 					<>

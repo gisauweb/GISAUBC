@@ -1,8 +1,9 @@
-import { Box, Divider } from '@mui/material';
+import React from 'react';
+import { Box } from '@mui/material';
+import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import partnersLandingImg from 'assets/landing-image/partners.webp';
-import { Footer, LandingImage, ScrollButton } from 'shared/components/index';
 import MainContainer from 'shared/layout/MainContainer';
-import { PartnerContact, PartnerList, PartnerRegistration, PartnerTitle } from './components/index';
+import { PartnerTitle, PartnerList, PartnerContact, PartnerSpecial, PartnerHeadline } from './components/index';
 import PartnerButton from './components/PartnerButton';
 import PartnerBackgroundIcons from './components/PartnerBackgroundIcons';
 
@@ -11,12 +12,10 @@ export default function Partners() {
 		<Box>
 			<LandingImage bgImage={partnersLandingImg} text='Our Partners' button={<PartnerButton />} />
 			<MainContainer>
+				<PartnerHeadline />
+				<PartnerSpecial />
 				<PartnerTitle />
-				<Divider className='py-[0.5px]' color='black' />
 				<PartnerList />
-				<Divider className='py-[0.5px]' color='black' />
-				<PartnerRegistration />
-				<Divider className='py-[0.5px]' color='black' />
 				<PartnerContact />
 				<PartnerBackgroundIcons />
 				<ScrollButton threshold={1 / 2} />
