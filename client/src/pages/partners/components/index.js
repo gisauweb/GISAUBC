@@ -25,12 +25,5 @@ import PartnerHeadline from './PartnerHeadline';
 // 	},
 // ];
 
-export {
-	PartnerContainer,
-	PartnerList,
-	PartnerRegistration,
-	PartnerTitle,
-	PartnerContact,
-	PartnerSpecial,
-	PartnerHeadline,
-};
+// eslint-disable-next-line prettier/prettier, max-len
+export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial, PartnerHeadline };
