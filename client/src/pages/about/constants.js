@@ -1,4 +1,4 @@
-import { EXECS_22_23, EXECS_23_24 } from 'assets/about/executives';
+import { EXECS_22_23, EXECS_23_24, EXECS_24_25 } from 'assets/about/executives';
 
 const BUTTONS = ['All', 'Core', 'Events', 'External', 'F&B', 'Marketing'];
 
