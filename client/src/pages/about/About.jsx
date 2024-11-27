@@ -9,7 +9,7 @@ import OurTeam from './components/OurTeam';
 import Highlights from './components/Highlights';
 
 export default function About() {
-	const [selectedYear, setSelectedYear] = useState('2023/2024');
+	const [selectedYear, setSelectedYear] = useState('2024/2025');
 	const [selectedButton, setSelectedButton] = useState('All');
 	const [selectedCard, setSelectedCard] = useState(null);
 	const [data, setData] = useState([]);
