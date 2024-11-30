@@ -14,22 +14,24 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 			<Box className='w-1/3'>
 				<NavBarLogo />
 			</Box>
-			<Box
-				className={`flex items-center mx-6 navbar px-4 ${
-					hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
-				} h-full rounded-full`}
-			>
-				{pages.map((page) => (
-					<Link key={page.name} to={page.path} className='px-5' onClick={ScrollToTop} target='_self'>
-						<p
-							className={`underline-animation font-oswald text-md
+			<Box className='relative h-full items-center pt-2'>
+				<Box
+					className={`relative flex items-center mx-6 navbar px-4 ${
+						hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
+					} h-12 rounded-full`}
+				>
+					{pages.map((page) => (
+						<Link key={page.name} to={page.path} className='px-5' onClick={ScrollToTop} target='_self'>
+							<p
+								className={`underline-animation font-oswald text-md
 								${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
 								${page.path === location.pathname && 'underlined'}`}
-						>
-							{page.name}
-						</p>
-					</Link>
-				))}
+							>
+								{page.name}
+							</p>
+						</Link>
+					))}
+				</Box>
 			</Box>
 			<Box className='w-1/3 flex justify-end items-center h-full'>
 				<Link
