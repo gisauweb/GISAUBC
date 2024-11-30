@@ -1,4 +1,6 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import examCarePackage from 'assets/events-page/examCarePackage.pdf';
+
 const link = 'https://docs.google.com/forms/d/e/1FAIpQLSeaHgZWC-FZyplz082yRw1G7BaqZjFGOPboKiB1HjfF2jq2ZQ/viewform';
 
 const UPCOMING_EVENTS = [
