@@ -5,8 +5,8 @@ import emailIcon from 'assets/partners/emailIcon.svg';
 export default function PartnerButton() {
 	const handlePartnerButton = () => {
 		ReactGA.event({
-			category: 'Join Member',
-			action: 'Click to register for membership',
+			category: 'Join Partner',
+			action: 'Click to register for partnership',
 		});
 		window.open('mailto:sponsorship.gisau@gmail.com', '_blank', 'noreferrer');
 	};

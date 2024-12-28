@@ -1,23 +1,20 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import partnersLandingImg from 'assets/landing-image/partners.webp';
+import membersLandingImg from 'assets/landing-image/members.webp';
 import MainContainer from 'shared/layout/MainContainer';
-import { PartnerTitle, PartnerList, PartnerContact, PartnerSpecial, PartnerHeadline } from './components/index';
-import PartnerButton from './components/PartnerButton';
-import PartnerBackgroundIcons from './components/PartnerBackgroundIcons';
+import { MemberTitle, MemberContact, MemberSpecial, MemberHeadline } from './components/index';
+import PartnerButton from './components/MemberButton';
 
 export default function Members() {
 	return (
 		<Box>
-			<LandingImage bgImage={partnersLandingImg} text='Our Partners' button={<PartnerButton />} />
+			<LandingImage bgImage={membersLandingImg} text='Become A Member' button={<PartnerButton />} />
 			<MainContainer>
-				<PartnerHeadline />
-				<PartnerSpecial />
-				<PartnerTitle />
-				<PartnerList />
-				<PartnerContact />
-				<PartnerBackgroundIcons />
+				<MemberHeadline />
+				<MemberSpecial />
+				<MemberTitle />
+				<MemberContact />
 				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer showPlane={false} />

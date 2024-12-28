@@ -1,0 +1,14 @@
+import ReactGA from 'react-ga4';
+import { Button } from 'shared/components';
+import penIcon from 'assets/members/penIcon.svg';
+
+export default function MemberButton() {
+	const handleMemberButton = () => {
+		ReactGA.event({
+			category: 'Join Member',
+			action: 'Click to register for membership',
+		});
+		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
+	};
+	return <Button text='GISAU Membership Form' icon={penIcon} handleClickButton={handleMemberButton} />;
+}
