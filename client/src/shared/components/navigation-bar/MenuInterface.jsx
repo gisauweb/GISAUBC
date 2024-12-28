@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import pages from './constants';
+import { pages } from './constants';
 import MenuLogo from './MenuLogo';
 
 function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {

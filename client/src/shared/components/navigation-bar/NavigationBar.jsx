@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import pages from './constants';
+import { pages } from './constants';
 import MobileNavBar from './components/MobileNavBar';
 import NavBarLogo from './components/NavBarLogo';
 import DesktopNavBar from './components/DesktopNavBar';
