@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[5],
+			title: 'Exam Care Package',
+			date: 'Tuesday & Wednesday, December 3-4 | 12-3PM',
+			loc: 'AMS Nest',
+		},
+		{
 			image: EVENTS_24_25[4],
 			title: 'Liwetan',
 			date: 'Friday, November 8 | 5:30-8PM',
