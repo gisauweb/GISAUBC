@@ -49,7 +49,7 @@ export const button = [
 	{
 		name: 'Members',
 		path: '/members',
-		hasLandingImage: false,
+		hasLandingImage: true,
 		element: <Members />,
 	},
 ];
