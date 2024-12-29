@@ -24,7 +24,7 @@ function MemberContact() {
 			<Typography variant='h4' color='black' className='pt-4 lg:pt-6 pb-8'>
 				Fill out the form below!
 			</Typography>
-			<MemberButton showIcon={false} />
+			<MemberButton showIcon={false} text='GISAU Membership Form' />
 		</Container>
 	);
 }
