@@ -2,7 +2,7 @@ import ReactGA from 'react-ga4';
 import { Button } from 'shared/components';
 import penIcon from 'assets/members/penIcon.svg';
 
-export default function MemberButton() {
+export default function MemberButton({ showIcon = true }) {
 	const handleMemberButton = () => {
 		ReactGA.event({
 			category: 'Join Member',
@@ -10,5 +10,12 @@ export default function MemberButton() {
 		});
 		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
 	};
-	return <Button text='GISAU Membership Form' icon={penIcon} handleClickButton={handleMemberButton} />;
+
+	return (
+		<Button
+			text='GISAU Membership Form'
+			icon={showIcon ? penIcon : undefined}
+			handleClickButton={handleMemberButton}
+		/>
+	);
 }
