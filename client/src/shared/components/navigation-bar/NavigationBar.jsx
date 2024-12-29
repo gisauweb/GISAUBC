@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import pages from './constants';
+import { pages, button } from './constants';
 import MobileNavBar from './components/MobileNavBar';
 import NavBarLogo from './components/NavBarLogo';
 import DesktopNavBar from './components/DesktopNavBar';
@@ -10,7 +10,8 @@ import isGamesPage from '../../../routeUtils';
 
 export default function NavigationBar() {
 	const location = useLocation();
-	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
+	const combinedPaths = [...pages, ...button];
+	const filteredPaths = combinedPaths.filter((page) => page.hasLandingImage).map((page) => page.path);
 	const hasLandingImage = filteredPaths.includes(location.pathname);
 	const [bgColor, setBgColor] = useState('');
 
