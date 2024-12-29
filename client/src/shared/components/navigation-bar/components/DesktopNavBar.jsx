@@ -34,6 +34,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 			<Box className='w-1/3 flex justify-end items-center h-full'>
 				<Link
 					to='/members'
+					onClick={ScrollToTop}
 					className='bg-bgBlack border-2 rounded-full border-gamesRed h-fit
 					justify-center items-center px-3 md:px-7 py-2 md:py-2.5 hidden lg:flex xl:w-1/2'
 				>
