@@ -21,7 +21,7 @@ export default function Members() {
 				<MemberContact />
 				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
-			<Footer showPlane={false} />
+			<Footer />
 		</Box>
 	);
 }

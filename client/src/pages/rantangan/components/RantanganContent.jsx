@@ -12,7 +12,7 @@ function RantanganContent({ upcoming }) {
 	const eventData = upcoming ? UPCOMING_RANTANGAN : PAST_RANTANGAN[selectedYear];
 
 	return (
-		<Box className={`py-20 relative ${upcoming ? '' : 'pb-24 lg:pb-36'}`}>
+		<Box className={`relative ${upcoming ? '' : 'pb-4 lg:pb-6'}`}>
 			<Box className='absolute w-screen left-0'>
 				{!upcoming && (
 					<img
@@ -24,7 +24,7 @@ function RantanganContent({ upcoming }) {
 				)}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography variant='h4' color='primary' className={`pt-0.5 ${!upcoming && 'pb-3 sm:pb-0'}`}>
+				<Typography variant='h4' color='primary' className={`pt-0.5 ${upcoming ? 'pt-20' : 'pb-3 sm:pb-0'}`}>
 					{`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
 				</Typography>
 
