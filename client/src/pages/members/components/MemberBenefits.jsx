@@ -5,6 +5,7 @@ import shineIcon from 'assets/members/shineIcon.svg';
 import stepIcon1 from 'assets/members/step1.svg';
 import stepIcon2 from 'assets/members/step2.svg';
 import stepIcon3 from 'assets/members/step3.svg';
+import lineConnector from 'assets/members/lineConnector.svg';
 import MemberButton from './MemberButton';
 
 function MemberBenefits() {
@@ -41,7 +42,8 @@ function MemberBenefits() {
 	const stepsBoxStyle = {
 		display: 'flex',
 		flexDirection: isMobileView ? 'column' : 'row',
-		alignItems: isMobileView ? 'flex-start' : 'center',
+		alignItems: 'center',
+		position: 'relative',
 		width: '100%',
 		gap: isMobileView ? '16px' : '0',
 	};
@@ -53,6 +55,7 @@ function MemberBenefits() {
 		textAlign: 'center',
 		width: '100%',
 		marginBottom: isMobileView ? '16px' : '0',
+		position: 'relative',
 	};
 
 	return (
@@ -65,21 +68,39 @@ function MemberBenefits() {
 					</Typography>
 				</div>
 			</Box>
-			<Box style={stepsBoxStyle} className='mb-8'>
-				{steps.map((step) => (
-					<Box style={stepBoxStyle} key={step.id} className='flex flex-col justify-center items-center'>
-						<img
-							src={step.icon}
-							alt={`step-${step.id}`}
-							className={`h-${isMobileView ? '20' : '30'} w-${isMobileView ? '20' : '30'}`}
-						/>
-						<Typography variant='h5' className='pt-4 bold'>
-							{step.title}
-						</Typography>
-						<Typography variant='body1' className={`px-${isMobileView ? '4' : '8'} pt-4`}>
-							{step.description}
-						</Typography>
-					</Box>
+			<Box style={stepsBoxStyle} className='mb-8 pt-8'>
+				{steps.map((step, index) => (
+					<React.Fragment key={step.id}>
+						<Box style={stepBoxStyle} className='flex flex-col justify-center items-center'>
+							<img
+								src={step.icon}
+								alt={`step-${step.id}`}
+								className={`h-${isMobileView ? '20' : '30'} w-${isMobileView ? '20' : '30'} z-10`}
+							/>
+							<Typography variant='h5' className='pt-4 bold'>
+								{step.title}
+							</Typography>
+							<Typography variant='body1' className={`px-${isMobileView ? '4' : '8'} pt-4`}>
+								{step.description}
+							</Typography>
+						</Box>
+						{!isMobileView && index < steps.length - 1 && (
+							<img
+								src={lineConnector}
+								alt='line-connector'
+								className='absolute'
+								style={{
+									position: 'absolute',
+									top: 'calc(50% - 50px)',
+									left: `calc(${33.33 * (index + 1)}% - 100px)`,
+									transform: 'translateY(-50%)',
+									width: '200px',
+									height: '150px',
+									zIndex: 0,
+								}}
+							/>
+						)}
+					</React.Fragment>
 				))}
 			</Box>
 		</Container>
