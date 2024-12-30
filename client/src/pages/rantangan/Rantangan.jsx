@@ -17,7 +17,7 @@ export default function Rantangan() {
 				</Box>
 				<RantanganContent upcoming />
 				<RantanganContent upcoming={false} />
-				<ScrollButton threshold={7 / 10} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer />
 		</Box>

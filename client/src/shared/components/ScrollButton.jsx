@@ -33,12 +33,11 @@ export default function ScrollButton({ threshold }) {
 			style={{ display: visible ? 'inline' : 'none' }}
 		>
 			<div
-				className='w-10 h-10 sm:w-12 sm:h-12
-							flex justify-center items-center hover:cursor-pointer
-							rounded-full border-2 border-primary bg-red-100'
+				className='flex justify-center items-center hover:cursor-pointer circleButton bg-primary rounded-full'
+				style={{ width: '3rem', height: '3rem' }}
 				onClick={scrollToTop}
 			>
-				<KeyboardArrowUp style={{ color: 'rgb(125 2 2)' }} fontSize={isMobile ? 'medium' : 'large'} />
+				<KeyboardArrowUp style={{ color: '#FFFDF7' }} fontSize={isMobile ? 'medium' : 'large'} />
 			</div>
 		</div>
 	);
