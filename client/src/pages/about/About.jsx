@@ -42,7 +42,7 @@ export default function About() {
 						}}
 					/>
 				</Box>
-				<ScrollButton threshold={7 / 10} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer />
 		</Box>

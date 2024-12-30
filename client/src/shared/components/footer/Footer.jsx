@@ -14,7 +14,11 @@ export default function Footer({ showPlane = true }) {
 	return (
 		<div id='contact' className='w-full h-full relative bg-bgPrimary'>
 			<div className='flex flex-row gap-6'>
-				<Typography variant='h3' color='primary' className='pl-12 w-full pt-48'>
+				<Typography
+					variant='h3'
+					color='primary'
+					className={`${isMobile ? 'px-24 justify-center font-small w-full pt-12' : 'pl-12 w-full pt-48'}`}
+				>
 					Thanks for stopping by!
 				</Typography>
 				{showPlane && (
@@ -23,14 +27,23 @@ export default function Footer({ showPlane = true }) {
 					</div>
 				)}
 			</div>
-			<div className='footer-email text-base sm:text-xl underline flex flex-row gap-6 pb-8'>
-				<div className='text-base sm:text-xl absolute left-12'>&#169; 2024 GISAU</div>
-				<a href='mailto:contact.gisau@gmail.com' fontSize={isMobile ? 'small' : 'medium'}>
+			<div
+				className={`footer-email text-base sm:text-xl flex ${
+					isMobile ? 'flex-col gap-2' : 'flex-row gap-6'
+				} pb-8`}
+			>
+				<a href='mailto:contact.gisau@gmail.com' className='underline' fontSize={isMobile ? 'small' : 'medium'}>
 					Email Us
 				</a>
-				<Link to='/partners' fontSize={isMobile ? 'small' : 'medium'} onClick={ScrollToTop}>
+				<Link
+					to='/partners'
+					className='underline'
+					fontSize={isMobile ? 'small' : 'medium'}
+					onClick={ScrollToTop}
+				>
 					Become a Partner
 				</Link>
+				<div className={`footer-email flex ${isMobile ? '' : 'absolute left-12'}`}>&#169; 2024 GISAU</div>
 			</div>
 		</div>
 	);
