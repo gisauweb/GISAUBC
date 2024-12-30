@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -76,36 +78,54 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 								<img src={emailIcon} alt='email-icon' loading='lazy' />
 							</a>
 							<a
-								href='https://www.instagram.com/gisaubc/'
-								target='_blank'
-								rel='noreferrer'
+								href='#'
+								onClick={() =>
+									window.open('https://www.instagram.com/gisaubc/', '_blank', 'noopener,noreferrer')
+								}
 								className='icon'
 							>
 								<img src={instagramIcon} alt='instagram-icon' loading='lazy' />
 							</a>
-							<a href='https://www.tiktok.com/@gisaubc' target='_blank' rel='noreferrer' className='icon'>
+							<a
+								href='#'
+								onClick={() =>
+									window.open('https://www.tiktok.com/@gisaubc', '_blank', 'noopener,noreferrer')
+								}
+								className='icon'
+							>
 								<img src={tiktokIcon} alt='tiktok-icon' loading='lazy' />
 							</a>
 							<a
-								href='https://ca.linkedin.com/company/gisau'
-								target='_blank'
-								rel='noreferrer'
+								href='#'
+								onClick={() =>
+									window.open(
+										'https://ca.linkedin.com/company/gisau',
+										'_blank',
+										'noopener,noreferrer',
+									)
+								}
 								className='icon'
 							>
 								<img src={linkedinIcon} alt='linkedin-icon' loading='lazy' />
 							</a>
 							<a
-								href='https://www.facebook.com/gisaubc/'
-								target='_blank'
-								rel='noreferrer'
+								href='#'
+								onClick={() =>
+									window.open('https://www.facebook.com/gisaubc/', '_blank', 'noopener,noreferrer')
+								}
 								className='icon'
 							>
 								<img src={facebookIcon} alt='facebook-icon' loading='lazy' />
 							</a>
 							<a
-								href='https://open.spotify.com/show/4n3LXi2mKxLpscsIGVAgnR?si=e5a5fed87a694f17'
-								target='_blank'
-								rel='noreferrer'
+								href='#'
+								onClick={() =>
+									window.open(
+										'https://open.spotify.com/show/4n3LXi2mKxLpscsIGVAgnR?si=e5a5fed87a694f17',
+										'_blank',
+										'noopener,noreferrer',
+									)
+								}
 								className='icon'
 							>
 								<img src={spotifyIcon} alt='spotify-icon' loading='lazy' />
