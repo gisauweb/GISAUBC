@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import spotifyIcon from 'assets/footer/spotify-icon.svg';
 import instagramIcon from 'assets/footer/instagram-icon.svg';
 import linkedinIcon from 'assets/footer/linkedin-icon.svg';
@@ -14,13 +14,33 @@ import NavBarLogo from './NavBarLogo';
 
 export default function DesktopNavBar({ bgColor, hasLandingImage, pages, location }) {
 	const [isHovered, setIsHovered] = useState(false);
+	const [lastScrollY, setLastScrollY] = useState(0);
+	const [isVisible, setIsVisible] = useState(true);
 
 	const ScrollToTop = () => {
 		window.scrollTo(0, 0);
 	};
 
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > lastScrollY) {
+				setIsVisible(false);
+			} else {
+				setIsVisible(true);
+			}
+			setLastScrollY(window.scrollY);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, [lastScrollY]);
+
 	return (
-		<Box className='fixed w-full h-16 flex justify-between px-10 mt-8'>
+		<Box
+			className={`fixed w-full h-16 flex justify-between px-10 mt-8 transition-all duration-300 ${
+				isVisible ? 'top-0' : '-top-24'
+			}`}
+		>
 			<Box className='w-1/3'>
 				<NavBarLogo />
 			</Box>
@@ -34,8 +54,8 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 						<Link key={page.name} to={page.path} className='px-5' onClick={ScrollToTop} target='_self'>
 							<p
 								className={`underline-animation font-oswald text-md
-								${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
-								${page.path === location.pathname && 'underlined'}`}
+                ${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+                ${page.path === location.pathname && 'underlined'}`}
 							>
 								{page.name}
 							</p>
@@ -48,7 +68,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 					to='/members'
 					onClick={ScrollToTop}
 					className='bg-bgBlack border-2 rounded-full border-gamesRed h-fit
-					justify-center items-center px-3 md:px-7 py-2 md:py-2.5 hidden lg:flex xl:w-1/2'
+          justify-center items-center px-3 md:px-7 py-2 md:py-2.5 hidden lg:flex xl:w-1/2'
 				>
 					<p className='underline-animation font-oswald text-sm md:text-base text-white'>Become a Member</p>
 				</Link>
@@ -63,7 +83,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 				<Link
 					onClick={ScrollToTop}
 					className='bg-bgBlack border-2 rounded-full border-gamesRed h-full w-full
-					flex items-center justify-center overflow-hidden'
+          flex items-center justify-center overflow-hidden'
 				>
 					{isHovered ? (
 						<Box className='footer-icons flex'>
@@ -132,7 +152,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 							</a>
 						</Box>
 					) : (
-						<p className='font-oswald text-sm md:text-base text-white'>Let&apos;s Connect</p>
+						<p className='font-oswald text-sm md:text-base text-white'>Let&apos;s Connect !</p>
 					)}
 				</Link>
 			</Box>
