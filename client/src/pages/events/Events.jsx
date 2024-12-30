@@ -17,7 +17,7 @@ export default function Events() {
 				</Box>
 				<EventContent upcoming />
 				<EventContent upcoming={false} />
-				<ScrollButton threshold={7 / 10} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer />
 		</Box>

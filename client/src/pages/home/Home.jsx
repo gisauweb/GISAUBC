@@ -17,7 +17,7 @@ export default function Home() {
 				<Activities />
 				<Events />
 				<Partners />
-				<ScrollButton threshold={13 / 20} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer showPlane />
 		</Box>

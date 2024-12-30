@@ -20,7 +20,7 @@ export default function Partners() {
 				<PartnerBackgroundIcons />
 				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
-			<Footer showPlane={false} />
+			<Footer />
 		</Box>
 	);
 }
