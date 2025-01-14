@@ -37,7 +37,15 @@ import EVENT_24_25_5 from './24_25/5.svg';
 import EVENT_24_25_6 from './24_25/6.svg';
 import EVENT_24_25_7 from './24_25/7.svg';
 
-const EVENTS_24_25 = [EVENT_24_25_1, EVENT_24_25_2, EVENT_24_25_3, EVENT_24_25_4, EVENT_24_25_5, EVENT_24_25_6,EVENT_24_25_7];
+const EVENTS_24_25 = [
+	EVENT_24_25_1,
+	EVENT_24_25_2,
+	EVENT_24_25_3,
+	EVENT_24_25_4,
+	EVENT_24_25_5,
+	EVENT_24_25_6,
+	EVENT_24_25_7,
+];
 
 const EVENTS_23_24 = [
 	EVENT_23_24_1,
