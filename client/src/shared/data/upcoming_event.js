@@ -1,11 +1,22 @@
-// import { EVENTS_24_25 } from 'assets/events-page/past-events';
-// import examCarePackage from 'assets/events-page/examCarePackage.pdf';
+import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import infoFile from 'assets/events-page/info.pdf';
 
 // const link = 'https://docs.google.com/forms/d/e/1FAIpQLSeaHgZWC-FZyplz082yRw1G7BaqZjFGOPboKiB1HjfF2jq2ZQ/viewform';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[6],
+		title: 'La Nusa',
+		date: 'Wednesday, January 31 | 10pm-Late',
+		loc: '455 Granville St.',
+		registrationLink: 'https://www.bouncelife.com/events/6784903714042ff6e31190c2?invite=3a0df7c1',
+		infoLink: infoFile,
+	},
+];
 
 export default UPCOMING_EVENTS;
+
+// upcoming event's template:
 
 // upcoming event's template:
 // {
