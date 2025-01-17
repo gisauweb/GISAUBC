@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[6],
 		title: 'La Nusa',
-		date: 'Wednesday, January 31 | 10pm-Late',
+		date: 'Wednesday, January 31 | 10PM-Late',
 		loc: '455 Granville St.',
 		registrationLink: 'https://www.bouncelife.com/events/6784903714042ff6e31190c2?invite=3a0df7c1',
 		infoLink: infoFile,

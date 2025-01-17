@@ -5,7 +5,7 @@ const UPCOMING_RANTANGAN = [
 	{
 		image: RANTANGAN_24_25[0],
 		title: 'Bakso Malang',
-		description: 'Friday, January 24 | 12 - 4PM',
+		description: 'Friday, January 24 | 12-4PM',
 		loc: 'UBC AMS Student Nest',
 		price: '$13 for GISAU members, $15 for non-members',
 		registrationLink: '',
