@@ -8,7 +8,7 @@ const UPCOMING_RANTANGAN = [
 		description: 'Pickup Date: Friday, January 24 | 12-4PM',
 		loc: 'UBC AMS Student Nest',
 		price: '$13 for GISAU members, $15 for non-members',
-		registrationLink: '',
+		registrationLink: 'https://forms.gle/6744yakAveEV7d4j7',
 		infoLink: infoFile,
 	},
 ];
