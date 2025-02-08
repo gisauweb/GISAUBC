@@ -5,7 +5,7 @@ const PAST_RANTANGAN = {
 		{
 			image: RANTANGAN_24_25[0],
 			title: 'Bakso Malang',
-			description: 'Pickup Date: Friday, January 24 | 12-4PM',
+			description: 'Friday, January 24 | 12-4PM',
 		},
 	],
 	'2023/2024': [
