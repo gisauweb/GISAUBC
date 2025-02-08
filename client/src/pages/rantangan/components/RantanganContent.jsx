@@ -9,7 +9,7 @@ import PAST_RANTANGAN from './constants';
 import GridContent from '../../../shared/components/grid/GridContent';
 
 function RantanganContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2023/2024');
+	const [selectedYear, setSelectedYear] = useState('2024/2025');
 	const eventData = upcoming ? UPCOMING_RANTANGAN : PAST_RANTANGAN[selectedYear];
 	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
