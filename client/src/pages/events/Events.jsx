@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import eventLandingImage from 'assets/landing-image/event.png';
+import eventLandingImage from 'assets/landing-image/event.webp';
 import EventContent from './components/EventContent';
 
 export default function Events() {
@@ -17,7 +17,7 @@ export default function Events() {
 				</Box>
 				<EventContent upcoming />
 				<EventContent upcoming={false} />
-				<ScrollButton threshold={7 / 10} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer />
 		</Box>

@@ -8,7 +8,7 @@ export default function Highlights() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
-		<Box className=''>
+		<Box className='pt-20'>
 			<Box className=''>
 				<Typography variant='h3' color='primary'>
 					Highlights

@@ -22,10 +22,12 @@
 }
 
 .icon {
-	color: #7d0202;
-	width: 100%;
-	height: auto;
-	margin: 0px 6px;
+	color: #FFFFFF;
+	width: auto;
+	height: 20px;
+	margin: 0px 4px;
+	align-items: center;
+	align-content: center;
 }
 
 .footer-icons > a > img {
@@ -37,7 +39,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #7d0202;
+	color: #732727;
 	font-weight: 400;
 	margin: 0.5rem 0;
 }

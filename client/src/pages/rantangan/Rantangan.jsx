@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
-import rantanganLandingImage from 'assets/landing-image/rantangan.jpg';
+import rantanganLandingImage from 'assets/landing-image/rantangan.webp';
 import RantanganContent from './components/RantanganContent';
 
 export default function Rantangan() {
@@ -17,7 +17,7 @@ export default function Rantangan() {
 				</Box>
 				<RantanganContent upcoming />
 				<RantanganContent upcoming={false} />
-				<ScrollButton threshold={7 / 10} />
+				<ScrollButton threshold={1 / 2} />
 			</MainContainer>
 			<Footer />
 		</Box>

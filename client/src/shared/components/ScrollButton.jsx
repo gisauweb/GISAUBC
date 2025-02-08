@@ -29,16 +29,15 @@ export default function ScrollButton({ threshold }) {
 
 	return (
 		<div
-			className='sb fixed right-12 sm:right-32 2xl:right-64 z-10 bottom-48 sm:bottom-52 lg:bottom-64'
+			className='sb fixed right-12 sm:right-32 2xl:right-64 z-30 bottom-48 sm:bottom-52 lg:bottom-64'
 			style={{ display: visible ? 'inline' : 'none' }}
 		>
 			<div
-				className='w-10 h-10 sm:w-12 sm:h-12
-							flex justify-center items-center hover:cursor-pointer
-							rounded-full border-2 border-primary bg-red-100'
+				className='flex justify-center items-center hover:cursor-pointer circleButton bg-primary rounded-full'
+				style={{ width: '3rem', height: '3rem' }}
 				onClick={scrollToTop}
 			>
-				<KeyboardArrowUp style={{ color: 'rgb(125 2 2)' }} fontSize={isMobile ? 'medium' : 'large'} />
+				<KeyboardArrowUp style={{ color: '#FFFDF7' }} fontSize={isMobile ? 'medium' : 'large'} />
 			</div>
 		</div>
 	);

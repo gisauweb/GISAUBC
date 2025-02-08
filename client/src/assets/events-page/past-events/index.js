@@ -29,6 +29,24 @@ import EVENT_23_24_12 from './23_24/12.svg';
 import EVENT_23_24_13 from './23_24/13.svg';
 import EVENT_23_24_14 from './23_24/14.svg';
 
+import EVENT_24_25_1 from './24_25/1.svg';
+import EVENT_24_25_2 from './24_25/2.svg';
+import EVENT_24_25_3 from './24_25/3.svg';
+import EVENT_24_25_4 from './24_25/4.svg';
+import EVENT_24_25_5 from './24_25/5.svg';
+import EVENT_24_25_6 from './24_25/6.svg';
+import EVENT_24_25_7 from './24_25/7.svg';
+
+const EVENTS_24_25 = [
+	EVENT_24_25_1,
+	EVENT_24_25_2,
+	EVENT_24_25_3,
+	EVENT_24_25_4,
+	EVENT_24_25_5,
+	EVENT_24_25_6,
+	EVENT_24_25_7,
+];
+
 const EVENTS_23_24 = [
 	EVENT_23_24_1,
 	EVENT_23_24_2,
@@ -63,4 +81,4 @@ const EVENTS_22_23 = [
 	EVENT_22_23_14,
 ];
 
-export { EVENTS_22_23, EVENTS_23_24 };
+export { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 };

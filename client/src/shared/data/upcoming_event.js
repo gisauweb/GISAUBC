@@ -1,4 +1,7 @@
-// import { EVENTS_23_24 } from 'assets/events-page/past-events';
+// import { EVENTS_24_25 } from 'assets/events-page/past-events';
+// import infoFile from 'assets/events-page/info.pdf';
+
+// const link = '';
 
 const UPCOMING_EVENTS = [];
 

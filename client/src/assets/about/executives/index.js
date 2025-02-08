@@ -1,56 +1,85 @@
-import img1 from './22_23/christie.png';
-import img2 from './22_23/christo.png';
-import img3 from './22_23/findy.png';
-import img4 from './22_23/ian.png';
-import img5 from './22_23/iervinny.png';
-import img6 from './22_23/imel.png';
-import img7 from './22_23/jade.png';
-import img8 from './22_23/jena.png';
-import img9 from './22_23/nico.png';
-import img10 from './22_23/josan.png';
-import img11 from './22_23/valyne.png';
-import img12 from './22_23/julian.png';
-import img13 from './22_23/kelly.png';
-import img14 from './22_23/kent.png';
-import img15 from './22_23/sasha.png';
-import img16 from './22_23/louistrycia.png';
-import img17 from './22_23/luna.png';
-import img18 from './22_23/mj.png';
-import img19 from './22_23/nadya.png';
-import img20 from './22_23/nando.png';
-import img21 from './22_23/rachel.png';
-import img22 from './22_23/richelle.png';
-import img23 from './22_23/russell.png';
-import img24 from './22_23/sidney.png';
-import img25 from './22_23/tavaella.png';
-import img26 from './22_23/vincent.png';
+import img1 from './22_23/christie.webp';
+import img2 from './22_23/christo.webp';
+import img3 from './22_23/findy.webp';
+import img4 from './22_23/ian.webp';
+import img5 from './22_23/iervinny.webp';
+import img6 from './22_23/imel.webp';
+import img7 from './22_23/jade.webp';
+import img8 from './22_23/jena.webp';
+import img9 from './22_23/nico.webp';
+import img10 from './22_23/josan.webp';
+import img11 from './22_23/valyne.webp';
+import img12 from './22_23/julian.webp';
+import img13 from './22_23/kelly.webp';
+import img14 from './22_23/kent.webp';
+import img15 from './22_23/sasha.webp';
+import img16 from './22_23/louistrycia.webp';
+import img17 from './22_23/luna.webp';
+import img18 from './22_23/mj.webp';
+import img19 from './22_23/nadya.webp';
+import img20 from './22_23/nando.webp';
+import img21 from './22_23/rachel.webp';
+import img22 from './22_23/richelle.webp';
+import img23 from './22_23/russell.webp';
+import img24 from './22_23/sidney.webp';
+import img25 from './22_23/tavaella.webp';
+import img26 from './22_23/vincent.webp';
 
-import img27 from './23_24/imel.JPG';
-import img28 from './23_24/nadya.JPG';
-import img29 from './23_24/nico.JPG';
-import img30 from './23_24/jade.JPG';
-import img31 from './23_24/kent.JPG';
-import img32 from './23_24/justin.JPG';
-import img33 from './23_24/christie.JPG';
-import img34 from './23_24/nathania.JPG';
-import img35 from './23_24/anabel.JPG';
-import img36 from './23_24/findy.JPG';
-import img37 from './23_24/sasha.JPG';
-import img38 from './23_24/charlene.JPG';
-import img39 from './23_24/joselyn.JPG';
-import img40 from './23_24/richelle.JPG';
-import img41 from './23_24/roswell.JPG';
-import img42 from './23_24/yumi.JPG';
-import img43 from './23_24/wk.JPG';
-import img44 from './23_24/mj.JPG';
-import img45 from './23_24/ella.JPG';
-import img46 from './23_24/christo.JPG';
-import img47 from './23_24/luna.JPG';
-import img48 from './23_24/jessie.JPG';
-import img49 from './23_24/sam.JPG';
-import img50 from './23_24/dhira.JPG';
-import img51 from './23_24/angel.JPG';
-import img52 from './23_24/shannon.JPG';
+import img27 from './23_24/imel.webp';
+import img28 from './23_24/nadya.webp';
+import img29 from './23_24/nico.webp';
+import img30 from './23_24/jade.webp';
+import img31 from './23_24/kent.webp';
+import img32 from './23_24/justin.webp';
+import img33 from './23_24/christie.webp';
+import img34 from './23_24/nathania.webp';
+import img35 from './23_24/anabel.webp';
+import img36 from './23_24/findy.webp';
+import img37 from './23_24/sasha.webp';
+import img38 from './23_24/charlene.webp';
+import img39 from './23_24/joselyn.webp';
+import img40 from './23_24/richelle.webp';
+import img41 from './23_24/roswell.webp';
+import img42 from './23_24/yumi.webp';
+import img43 from './23_24/wk.webp';
+import img44 from './23_24/mj.webp';
+import img45 from './23_24/ella.webp';
+import img46 from './23_24/christo.webp';
+import img47 from './23_24/luna.webp';
+import img48 from './23_24/jessie.webp';
+import img49 from './23_24/sam.webp';
+import img50 from './23_24/dhira.webp';
+import img51 from './23_24/angel.webp';
+import img52 from './23_24/shannon.webp';
+
+import img53 from './24_25/justin.webp';
+import img54 from './24_25/christie.webp';
+import img55 from './24_25/roswell.webp';
+import img56 from './24_25/valen.webp';
+import img57 from './24_25/aiko.webp';
+import img58 from './24_25/wk.webp';
+import img59 from './24_25/bradley.webp';
+import img60 from './24_25/dion.webp';
+import img61 from './24_25/tiffany.webp';
+import img62 from './24_25/nathania.webp';
+import img63 from './24_25/anabel.webp';
+import img64 from './24_25/vanessa.webp';
+import img65 from './24_25/gabriellaaiko.webp';
+import img66 from './24_25/yumi.webp';
+import img67 from './24_25/audri.webp';
+import img68 from './24_25/adrian.webp';
+import img69 from './24_25/trigo.webp';
+import img70 from './24_25/dhira.webp';
+import img71 from './24_25/angel.webp';
+import img72 from './24_25/sam.webp';
+import img73 from './24_25/accita.webp';
+import img74 from './24_25/latascha.webp';
+import img75 from './24_25/eileen.webp';
+import img76 from './24_25/brenda.webp';
+import img77 from './24_25/ray.webp';
+import img78 from './24_25/jessie.webp';
+import img79 from './24_25/matthew.webp';
+import img80 from './24_25/jennifer.webp';
 
 const EXECS_22_23 = [
 	img1,
@@ -110,4 +139,35 @@ const EXECS_23_24 = [
 	img52,
 ];
 
-export { EXECS_22_23, EXECS_23_24 };
+const EXECS_24_25 = [
+	img53,
+	img54,
+	img55,
+	img56,
+	img57,
+	img58,
+	img59,
+	img60,
+	img61,
+	img62,
+	img63,
+	img64,
+	img65,
+	img66,
+	img67,
+	img68,
+	img69,
+	img70,
+	img71,
+	img72,
+	img73,
+	img74,
+	img75,
+	img76,
+	img77,
+	img78,
+	img79,
+	img80,
+];
+
+export { EXECS_22_23, EXECS_23_24, EXECS_24_25 };

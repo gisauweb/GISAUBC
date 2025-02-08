@@ -1,6 +1,55 @@
-import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index';
+import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/past-events/index';
+import booklet from 'assets/events-page/booklet.pdf';
 
 const PAST_EVENTS = {
+	'2024/2025': [
+		{
+			image: EVENTS_24_25[6],
+			title: 'La Nusa',
+			date: 'Wednesday, January 31 | 10PM-Late',
+			loc: '455 Granville St.',
+		},
+		{
+			image: EVENTS_24_25[5],
+			title: 'Exam Care Package',
+			date: 'Tue - Wed, December 3-4 | 12-3PM',
+			loc: 'AMS Nest',
+		},
+		{
+			image: EVENTS_24_25[4],
+			title: 'Liwetan',
+			date: 'Friday, November 8 | 5:30-8PM',
+			loc: 'Consulate General of Indonesia (KJRI)',
+		},
+		{
+			image: EVENTS_24_25[3],
+			title: 'Fall Hiring',
+			date: 'Tuesday, October 8 | 11:59PM',
+			loc: 'Submit Via Email',
+		},
+		{
+			image: EVENTS_24_25[2],
+			title: 'SOTO: Sobat Tongkrongan',
+			date: 'Friday, September 27 | 5:30PM PDT',
+			loc: 'AMS Nest Great Hall South',
+		},
+		{
+			image: EVENTS_24_25[1],
+			title: 'UBUD: UBC Udah Dekat',
+			date: 'Friday, August 2 | 8:00PM PDT',
+			loc: 'Online on Zoom',
+			button: {
+				name: 'Download Booklet',
+				link: booklet,
+			},
+		},
+		{
+			image: EVENTS_24_25[0],
+			title: 'Summer Hiring',
+			date: 'Monday, July 1 | 11:59PM',
+			loc: 'Submit Via Email',
+		},
+	],
 	'2023/2024': [
 		{
 			image: EVENTS_23_24[13],

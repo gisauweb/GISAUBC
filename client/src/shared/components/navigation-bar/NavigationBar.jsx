@@ -2,14 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import pages from './constants';
+import { pages, button } from './constants';
 import MobileNavBar from './components/MobileNavBar';
 import NavBarLogo from './components/NavBarLogo';
 import DesktopNavBar from './components/DesktopNavBar';
+import isGamesPage from '../../../routeUtils';
 
 export default function NavigationBar() {
 	const location = useLocation();
-	const filteredPaths = pages.filter((page) => page.hasLandingImage).map((page) => page.path);
+	const combinedPaths = [...pages, ...button];
+	const filteredPaths = combinedPaths.filter((page) => page.hasLandingImage).map((page) => page.path);
 	const hasLandingImage = filteredPaths.includes(location.pathname);
 	const [bgColor, setBgColor] = useState('');
 
@@ -22,7 +24,7 @@ export default function NavigationBar() {
 			const { scrollY } = window;
 			const scrollThreshold = 50;
 			if (scrollY > scrollThreshold) {
-				setBgColor('bg-primary bg-opacity-90 h-14 rounded-[20px]');
+				setBgColor('bg-gamesRed h-12 rounded-[20px]');
 			} else {
 				setBgColor('');
 			}
@@ -34,21 +36,23 @@ export default function NavigationBar() {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
-	const isGamesPage = location.pathname === '/games';
 
-	return isGamesPage ? (
+	return isGamesPage(location.pathname) ? (
 		<Outlet />
 	) : (
 		<div className={isMenuOpen ? 'overflow-y-hidden' : 'overflow-y-visible'}>
-			<Box className='flex justify-between items-center z-30 w-full mt-[5vh] absolute'>
-				<NavBarLogo hasLandingImage={hasLandingImage} />
+			<Box className='flex justify-between items-center z-50 w-full mt-[5vh] absolute'>
+				{/* <NavBarLogo hasLandingImage={hasLandingImage} /> */}
 				{isMobile ? (
-					<MobileNavBar
-						isMenuOpen={isMenuOpen}
-						setIsMenuOpen={setIsMenuOpen}
-						hasLandingImage={hasLandingImage}
-						location={location}
-					/>
+					<>
+						<NavBarLogo />
+						<MobileNavBar
+							isMenuOpen={isMenuOpen}
+							setIsMenuOpen={setIsMenuOpen}
+							hasLandingImage={hasLandingImage}
+							location={location}
+						/>
+					</>
 				) : (
 					<DesktopNavBar
 						bgColor={bgColor}

@@ -1,11 +1,10 @@
 import { Box } from '@mui/material';
-import React from 'react';
 import { PARTNERS } from 'shared/data/partners';
 import PartnerContainer from './PartnerContainer';
 
 function PartnerList() {
 	return (
-		<Box className='flex flex-col my-8 sm:my-14'>
+		<Box className='flex flex-col my-8 sm:my-14 z-1'>
 			{PARTNERS.filter((sponsor) => sponsor.yearlong).map((sponsor) => (
 				<PartnerContainer
 					name={sponsor.name}

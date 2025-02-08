@@ -26,7 +26,7 @@ function EventContent({ events, button1, handleClickButton, isMobileView }) {
 				{isMobileView && <p className='text-center text-xl xl:text-2xl font-bold'>{event.title}</p>}
 				<div className='grid justify-center lg:w-[95%]'>
 					<Button
-						text={event.title === 'GISAU Core 2024/25 Hiring' ? 'Apply' : button1}
+						text={event.title === 'Summer Hiring' ? 'Apply' : button1}
 						handleClickButton={() => handleClickButton(event.registrationLink)}
 					/>
 				</div>

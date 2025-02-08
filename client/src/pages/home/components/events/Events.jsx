@@ -9,7 +9,7 @@ export default function Events() {
 	const isRantanganShowed = !(RANTANGAN.events.length === 0 && isMobileView);
 
 	return (
-		<div className={`${!isMobileView && 'flex'} justify-between flex-wrap pt-24`}>
+		<div className={`${!isMobileView && 'flex'} justify-between flex-wrap pt-24 pb-5`}>
 			<EventLayout
 				id='events'
 				className={`${isRantanganShowed && 'basis-1/3'} `}

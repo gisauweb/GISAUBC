@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Popup from 'pages/pop-up/Popup';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
+import { pages, button } from './shared/components/navigation-bar/constants';
 import ScrollToTop from './shared/components/ScrollToTop';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
-import pages from './shared/components/navigation-bar/constants';
+import isGamesPage from './routeUtils';
 import './App.css';
 
 function App() {
@@ -14,9 +15,7 @@ function App() {
 		setPopupOpen(false);
 	};
 	const location = useLocation();
-	// TODO: create a util function that all other pages can use to check if it's games page
-	const isGamesPage = location.pathname === '/games';
-	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage;
+	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage(location.pathname);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
@@ -25,6 +24,9 @@ function App() {
 				<Route path='/' element={<NavigationBar />}>
 					{pages.map((page) => (
 						<Route key={page.name} path={page.path} element={page.element} />
+					))}
+					{button.map((btn) => (
+						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
 				</Route>
 				<Route path='*' element={<Navigate replace to='/' />} />

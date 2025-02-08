@@ -10,7 +10,7 @@ export default function ContactUs() {
 	return (
 		<Box className='' sx={{ background: 'linear-gradient(#EDE6CB, #FFFDF5);' }}>
 			<Title />
-			<Box className='w-3/4 md:w-[80%] xl:w-[72%] mx-auto my-12 pb-12'>
+			<Box className='w-3/4 md:w-[80%] xl:w-[72%] mx-auto my-12 pb-36'>
 				<PlugBox />
 				<Location />
 			</Box>
