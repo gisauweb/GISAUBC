@@ -1,6 +1,13 @@
-import { RANTANGAN_22_23, RANTANGAN_23_24 } from 'assets/rantangan-page/past-rantangan/index';
+import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantangan-page/past-rantangan/index';
 
 const PAST_RANTANGAN = {
+	'2024/2025': [
+		{
+			image: RANTANGAN_24_25[0],
+			title: 'Bakso Malang',
+			description: 'Pickup Date: Friday, January 24 | 12-4PM',
+		},
+	],
 	'2023/2024': [
 		{
 			image: RANTANGAN_23_24[0],
