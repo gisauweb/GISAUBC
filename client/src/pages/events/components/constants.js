@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[6],
+			title: 'La Nusa',
+			date: 'Wednesday, January 31 | 10PM-Late',
+			loc: '455 Granville St.',
+		},
+		{
 			image: EVENTS_24_25[5],
 			title: 'Exam Care Package',
 			date: 'Tue - Wed, December 3-4 | 12-3PM',
