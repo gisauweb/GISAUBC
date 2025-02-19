@@ -7,7 +7,7 @@ const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[7],
 		title: 'Indomie Olympics',
-		date: 'Wednesday, February 27 | 4-7PM',
+		date: 'Friday, February 28 | 4-7PM',
 		loc: 'AMS Nest Lower Atrium',
 		registrationLink: 'https://forms.gle/oHvgTnguBJZHStBh9',
 		infoLink: infoFile,
