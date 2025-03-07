@@ -7,6 +7,11 @@ const PAST_RANTANGAN = {
 			title: 'Bakso Malang',
 			description: 'Friday, January 24 | 12-4PM',
 		},
+		{
+			image: RANTANGAN_24_25[1],
+			title: 'Nasi Padang',
+			description: 'Friday, March 14 | 12-4PM',
+		},
 	],
 	'2023/2024': [
 		{
