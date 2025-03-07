@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[7],
+			title: 'Indomie Olympics',
+			date: 'Friday, February 28 | 4-7PM',
+			loc: 'AMS Nest Lower Atrium',
+		},
+		{
 			image: EVENTS_24_25[6],
 			title: 'La Nusa',
 			date: 'Wednesday, January 31 | 10PM-Late',

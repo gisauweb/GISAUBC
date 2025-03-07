@@ -3,7 +3,8 @@ import { Modal, Typography, IconButton, Box } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { Button } from 'shared/components';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
+// import UPCOMING_EVENTS from 'shared/data/upcoming_event';
+import UPCOMING_EVENTS from 'shared/data/upcoming_rantangan';
 
 const PopupWrapper = styled('div')({
 	background: 'linear-gradient(rgba(140, 28, 22, 0.7), rgba(188, 112, 89, 0.7))',
