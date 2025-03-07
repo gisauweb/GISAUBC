@@ -1,18 +1,9 @@
-import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import infoFile from 'assets/events-page/info.pdf';
+// import { EVENTS_24_25 } from 'assets/events-page/past-events';
+// import infoFile from 'assets/events-page/info.pdf';
 
 // const link = '';
 
-const UPCOMING_EVENTS = [
-	{
-		image: EVENTS_24_25[7],
-		title: 'Indomie Olympics',
-		date: 'Friday, February 28 | 4-7PM',
-		loc: 'AMS Nest Lower Atrium',
-		registrationLink: 'https://forms.gle/oHvgTnguBJZHStBh9',
-		infoLink: infoFile,
-	},
-];
+const UPCOMING_EVENTS = [];
 
 export default UPCOMING_EVENTS;
 
