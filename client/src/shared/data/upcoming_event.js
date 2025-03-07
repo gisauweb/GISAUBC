@@ -1,5 +1,5 @@
-import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import infoFile from 'assets/events-page/info.pdf';
+// import { EVENTS_24_25 } from 'assets/events-page/past-events';
+// import infoFile from 'assets/events-page/info.pdf';
 
 // const link = '';
 
