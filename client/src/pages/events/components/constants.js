@@ -8,12 +8,20 @@ const PAST_EVENTS = {
 			title: 'Indomie Olympics',
 			date: 'Friday, February 28 | 4-7PM',
 			loc: 'AMS Nest Lower Atrium',
+			button: {
+				name: 'View Photos',
+				link: 'https://drive.google.com/drive/folders/12MkRif6AXtwpxKqThxAb8idFmshVdD3T',
+			},
 		},
 		{
 			image: EVENTS_24_25[6],
 			title: 'La Nusa',
 			date: 'Wednesday, January 31 | 10PM-Late',
 			loc: '455 Granville St.',
+			button: {
+				name: 'View Photos',
+				link: 'https://drive.google.com/drive/folders/1NyysJqqihtPAOrNluPqZ5XwqnHZld7MT',
+			},
 		},
 		{
 			image: EVENTS_24_25[5],
