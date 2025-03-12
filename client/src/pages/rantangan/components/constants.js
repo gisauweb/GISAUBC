@@ -3,6 +3,11 @@ import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantan
 const PAST_RANTANGAN = {
 	'2024/2025': [
 		{
+			image: RANTANGAN_24_25[1],
+			title: 'Nasi Padang',
+			description: 'Friday, March 14 | 12-4PM',
+		},
+		{
 			image: RANTANGAN_24_25[0],
 			title: 'Bakso Malang',
 			description: 'Friday, January 24 | 12-4PM',
