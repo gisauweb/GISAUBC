@@ -1,9 +1,18 @@
-// import { EVENTS_24_25 } from 'assets/events-page/past-events';
-// import infoFile from 'assets/events-page/info.pdf';
+import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import infoFile from 'assets/events-page/AGM.pdf';
 
-// const link = '';
+const link = '';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[8],
+		title: 'Core Hiring',
+		date: 'Wednesday, March 19 | 11:59PM',
+		loc: 'Register Via Link',
+		registrationLink: link,
+		infoLink: infoFile,
+	},
+];
 
 export default UPCOMING_EVENTS;
 
