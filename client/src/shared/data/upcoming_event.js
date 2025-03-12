@@ -1,7 +1,7 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
 import infoFile from 'assets/events-page/AGM.pdf';
 
-const link = '';
+const link = 'https://ubc.ca1.qualtrics.com/jfe/form/SV_8FTBPmAurq9vHE2';
 
 const UPCOMING_EVENTS = [
 	{
