@@ -1,7 +1,6 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
 import infoFile from 'assets/events-page/AGM.pdf';
-
-const link = 'https://ubc.ca1.qualtrics.com/jfe/form/SV_8FTBPmAurq9vHE2';
+import hiringPackage from 'assets/events-page/package.pdf'
 
 const UPCOMING_EVENTS = [
 	{
@@ -9,7 +8,7 @@ const UPCOMING_EVENTS = [
 		title: 'Core Hiring',
 		date: 'Wednesday, March 19 | 11:59PM',
 		loc: 'Register Via Link',
-		registrationLink: link,
+		registrationLink: hiringPackage,
 		infoLink: infoFile,
 	},
 ];
