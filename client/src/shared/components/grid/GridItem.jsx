@@ -57,7 +57,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
 						<Button
-							text={item.title === 'Fall Hiring' ? 'Apply' : 'Register'}
+							text={item.title === 'Core Hiring' ? 'View Hiring Package' : 'Register'}
 							handleClickButton={() => handleRegisterButton(item.registrationLink)}
 						/>
 						{item.title !== 'Fall Hiring' && (
