@@ -1,13 +1,13 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
 import infoFile from 'assets/events-page/AGM.pdf';
-import hiringPackage from 'assets/events-page/package.pdf'
+import hiringPackage from 'assets/events-page/package.pdf';
 
 const UPCOMING_EVENTS = [
 	{
 		image: EVENTS_24_25[8],
 		title: 'Core Hiring',
 		date: 'Wednesday, March 19 | 11:59PM',
-		loc: 'Register Via Link',
+		loc: 'Register Via Link in Hiring Package',
 		registrationLink: hiringPackage,
 		infoLink: infoFile,
 	},
