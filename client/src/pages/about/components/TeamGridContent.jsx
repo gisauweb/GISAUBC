@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import PastEventGrow from 'shared/components/grid/PastGridGrow';
+import PastGridGrow from 'shared/components/grid/PastGridGrow';
 import TeamGridItem from './TeamGridItem';
 
 export default function TeamGridContent({ data, selectedCard, setSelectedCard }) {
@@ -17,7 +17,14 @@ export default function TeamGridContent({ data, selectedCard, setSelectedCard })
 					setSelectedCard={setSelectedCard}
 				/>
 			))}
-			{dataLength >= 6 && <PastEventGrow data={data} dataLength={dataLength} isMobile={isMobile} />}
+			{dataLength >= 6 && (
+				<PastGridGrow
+					data={data}
+					dataLength={dataLength}
+					isMobile={isMobile}
+					teamGridCard={{ selectedCard, setSelectedCard }}
+				/>
+			)}
 		</>
 	);
 }

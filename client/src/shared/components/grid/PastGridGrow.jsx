@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
 import Button from 'shared/components/button/Button';
-import EventGridItem from './GridItem';
+import TeamGridItem from 'pages/about/components/TeamGridItem';
+import GridItem from './GridItem';
 
-function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
+function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard }) {
 	const [grow, setGrow] = useState(false);
-	const firstGrowLength = [Math.ceil(dataLength / 3), Math.ceil((dataLength * 2) / 3)];
+	const firstGrowLength = Math.ceil(dataLength / 3);
 	const secondGrowLength = Math.ceil((dataLength * 2) / 3);
+	// eslint-disable-next-line one-var, one-var-declaration-per-line
+	let selectedCard, setSelectedCard;
+
+	if (teamGridCard) {
+		({ selectedCard, setSelectedCard } = teamGridCard);
+	}
 
 	const handleChange = () => {
 		setGrow(!grow);
@@ -17,9 +24,19 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 			<Grow in={grow} style={{ transformOrigin: '0 0 0', width: '100%' }} timeout={grow ? 3000 : 0}>
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
-						{data.slice(firstGrowLength[0], firstGrowLength[1]).map((item) => (
-							<EventGridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
-						))}
+						{data.slice(firstGrowLength, secondGrowLength).map((item) => {
+							if (teamGridCard) {
+								return (
+									<TeamGridItem
+										item={item}
+										key={item.name}
+										selectedCard={selectedCard}
+										setSelectedCard={setSelectedCard}
+									/>
+								);
+							}
+							return <GridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />;
+						})}
 					</Grid>
 				</Grid>
 			</Grow>
@@ -27,9 +44,19 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 			<Grow in={grow} style={{ transformOrigin: '0 0 0', width: '100%' }} timeout={grow ? 3000 : 0}>
 				<Grid item xs={1} sm={2} md={2}>
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
-						{data.slice(secondGrowLength).map((item) => (
-							<EventGridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />
-						))}
+						{data.slice(secondGrowLength).map((item) => {
+							if (teamGridCard) {
+								return (
+									<TeamGridItem
+										item={item}
+										key={item.name}
+										selectedCard={selectedCard}
+										setSelectedCard={setSelectedCard}
+									/>
+								);
+							}
+							return <GridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />;
+						})}
 					</Grid>
 				</Grid>
 			</Grow>
@@ -46,4 +73,4 @@ function PastEventGrow({ data, dataLength, upcomingEvent, isMobile }) {
 	);
 }
 
-export default PastEventGrow;
+export default PastGridGrow;

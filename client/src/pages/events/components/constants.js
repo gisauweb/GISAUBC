@@ -3,6 +3,54 @@ import { EVENTS_22_23, EVENTS_23_24 } from 'assets/events-page/past-events/index
 const PAST_EVENTS = {
 	'2023/2024': [
 		{
+			image: EVENTS_23_24[13],
+			title: 'GALA(U)',
+			date: 'Monday, April 8 | 5:30PM',
+			loc: 'AMS Nest Great Hall South',
+		},
+		{
+			image: EVENTS_23_24[12],
+			title: 'LA NUSA',
+			date: 'Saturday, March 23 | 10PM',
+			loc: 'AURA Nightclub (Downtown)',
+		},
+		{
+			image: EVENTS_23_24[11],
+			title: "GISAU's Annual General Meeting",
+			date: 'Friday, March 22 | 6PM',
+			loc: 'AMS Nest Room 2306/2309',
+		},
+		{
+			image: EVENTS_23_24[10],
+			title: 'GISAU Core 2024/25 Hiring',
+			date: 'Thursday, March 14 | 11:59PM',
+			loc: 'Submit Via Email',
+		},
+		{
+			image: EVENTS_23_24[9],
+			title: 'Indomie-T Me At The Finish Line',
+			date: 'Friday, March 1 | 4-7PM',
+			loc: 'Nest Lower Atrium',
+		},
+		{
+			image: EVENTS_23_24[8],
+			title: 'Bermain Bersama GISAU',
+			date: 'February 9-11',
+			loc: 'Online | Metrotown',
+		},
+		{
+			image: EVENTS_23_24[7],
+			title: 'Exam Care Package',
+			date: 'Wednesday, December 5 | 12-5PM / Thursday, December 6 | 1-5:30PM ',
+			loc: 'AMS Nest',
+		},
+		{
+			image: EVENTS_23_24[6],
+			title: 'Study Cafe',
+			date: 'Wednesday, December 6 | 1-5:30PM',
+			loc: 'AMS Lev Bukhman (Bird Nest)',
+		},
+		{
 			image: EVENTS_23_24[5],
 			title: 'Malem Mingguan',
 			date: 'Saturday, November 18 | 3:30PM',
