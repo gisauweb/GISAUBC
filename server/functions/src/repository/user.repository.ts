@@ -63,7 +63,7 @@ export async function getAllUsers() {
 }
 
 export async function getMembershipBySID(sid: string) {
-	const snapshot = await db.collection("memberships").doc(sid).get();
+	const snapshot = await db.collection("memberships24-25").doc(sid).get();
 
 	return snapshot.data();
 }
