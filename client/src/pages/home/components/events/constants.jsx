@@ -15,7 +15,8 @@ export const UPCOMINGEVENTS = {
 	events: UPCOMING_EVENTS,
 	icon: <img src={upcomingEvent} alt='' className='ml-[25%] w-[80%] sm:ml-[35%] sm:w-full' loading='lazy' />,
 	button1: 'View Hiring Package',
-	button2: {
+	button2: 'Register Here',
+	button3: {
 		name: 'View Past Events',
 		path: 'events',
 	},
