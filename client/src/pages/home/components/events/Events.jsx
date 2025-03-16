@@ -16,8 +16,10 @@ export default function Events() {
 				title={UPCOMINGEVENTS.title}
 				events={UPCOMINGEVENTS.events}
 				icon={UPCOMINGEVENTS.icon}
-				button1={UPCOMINGEVENTS.button1}
-				button2={UPCOMINGEVENTS.button2}
+				button1={
+					UPCOMINGEVENTS.title === 'Annual General Meeting' ? UPCOMINGEVENTS.button2 : UPCOMINGEVENTS.button1
+				}
+				button2={UPCOMINGEVENTS.button3}
 				isMobileView={isMobileView}
 			/>
 			{isRantanganShowed && (
