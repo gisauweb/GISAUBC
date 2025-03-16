@@ -18,6 +18,7 @@ export default function Events() {
 				icon={UPCOMINGEVENTS.icon}
 				button1={UPCOMINGEVENTS.button1}
 				button2={UPCOMINGEVENTS.button2}
+				button3={UPCOMINGEVENTS.button3}
 				isMobileView={isMobileView}
 			/>
 			{isRantanganShowed && (
