@@ -32,21 +32,12 @@ export default function EventLayout(props) {
 				<div className='events-icon'>{icon}</div>
 			</div>
 			<div className='mt-10 grid gap-y-12'>
-				{title === 'Annual General Meeting' ? (
-					<EventContent
-						events={events}
-						button1={button2}
-						handleClickButton={handleClickButton}
-						isMobileView={isMobileView}
-					/>
-				) : (
-					<EventContent
-						events={events}
-						button1={button1}
-						handleClickButton={handleClickButton}
-						isMobileView={isMobileView}
-					/>
-				)}
+				<EventContent
+					events={events}
+					button1={button1}
+					handleClickButton={handleClickButton}
+					isMobileView={isMobileView}
+				/>
 			</div>
 			<div className={`grid justify-center lg:w-[95%] ${events.length === 0 ? 'mt-12' : 'mt-4'} `}>
 				<Button text={button2.name} background='transparentBg' handleClickButton={handleClickButton2} />
