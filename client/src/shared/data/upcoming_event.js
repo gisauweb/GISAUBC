@@ -1,8 +1,18 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
 import infoFile from 'assets/events-page/AGM.pdf';
+import infoAgm from 'assets/events-page/infoAgm.pdf';
 import hiringPackage from 'assets/events-page/package.pdf';
 
 const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[9],
+		title: 'Annual General Meeting',
+		date: 'Thursday, March 27 | 5:30PM - end',
+		loc: 'Asian Centre',
+		registrationLink:
+			'https://docs.google.com/forms/d/e/1FAIpQLSfVH0B4QYpNr-1NTpGMYJHyt8rpvb-sPkWXxKXu6fJcANBY9w/viewform',
+		infoLink: infoAgm,
+	},
 	{
 		image: EVENTS_24_25[8],
 		title: 'Core Hiring',
