@@ -27,13 +27,29 @@ const PopupWrapper = styled('div')({
 function Popup({ isOpen, onClose }) {
 	const upcomingEvent = UPCOMING_EVENTS[0];
 
+	const handleClose = () => {
+		onClose();
+
+		if (!document.getElementById('chatling-embed-script')) {
+			window.chtlConfig = { chatbotId: '1938486472' };
+
+			const script = document.createElement('script');
+			script.src = 'https://chatling.ai/js/embed.js';
+			script.async = true;
+			script.setAttribute('data-id', '1938486472');
+			script.id = 'chatling-embed-script';
+
+			document.body.appendChild(script);
+		}
+	};
+
 	return (
-		<Modal open={isOpen} onClose={onClose} disableAutoFocus>
+		<Modal open={isOpen} onClose={handleClose} disableAutoFocus>
 			<PopupWrapper>
 				<IconButton
 					aria-label='Close'
 					color='inherit'
-					onClick={onClose}
+					onClick={handleClose}
 					size='small'
 					sx={{ position: 'absolute', right: '0.3rem', top: '0.1rem' }}
 				>
@@ -52,7 +68,7 @@ function Popup({ isOpen, onClose }) {
 				</Typography>
 				<Typography variant='body1'>Check out our newest event!</Typography>
 				<Box mt={2} className='flex justify-center'>
-					<a aria-label='Save' href='#events' onClick={onClose}>
+					<a aria-label='Save' href='#events' onClick={handleClose}>
 						<Button background='transparentBg' text='Take me there' />
 					</a>
 				</Box>

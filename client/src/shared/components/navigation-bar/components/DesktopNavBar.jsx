@@ -74,7 +74,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 				</Link>
 			</Box>
 			<Box
-				className={`fixed bottom-8 right-8 transition-all duration-300 ${
+				className={`fixed bottom-6 right-20 transition-all duration-300 ${
 					isHovered ? 'w-48' : 'w-32'
 				} h-12 flex justify-center items-center`}
 				onMouseEnter={() => setIsHovered(true)}
