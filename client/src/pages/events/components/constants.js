@@ -4,6 +4,12 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[8],
+			title: 'Core Hiring',
+			date: 'Wednesday, March 19 | 11:59PM',
+			loc: 'Register Via Link',
+		},
+		{
 			image: EVENTS_24_25[7],
 			title: 'Indomie Olympics',
 			date: 'Friday, February 28 | 4-7PM',
