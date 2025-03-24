@@ -1,6 +1,6 @@
 import { EVENTS_24_25 } from 'assets/events-page/past-events';
 import infoAgm from 'assets/events-page/infoAgm.pdf';
-import gala from 'assets/events-page/gala.pdf'
+import gala from 'assets/events-page/gala.pdf';
 
 const UPCOMING_EVENTS = [
 	{
