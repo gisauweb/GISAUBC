@@ -25,7 +25,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ isOpen, onClose }) {
-	const upcomingEvent = UPCOMING_EVENTS[0];
+	const upcomingEvent = UPCOMING_EVENTS[1];
 
 	const handleClose = () => {
 		onClose();
