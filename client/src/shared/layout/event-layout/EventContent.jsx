@@ -30,7 +30,7 @@ function EventContent({ events, button1, handleClickButton, isMobileView }) {
 							event.title === 'Summer Hiring'
 								? 'Apply'
 								: event.title === 'Annual General Meeting'
-								? 'Register Here'
+								? 'Register'
 								: button1
 						}
 						handleClickButton={() => handleClickButton(event.registrationLink)}
