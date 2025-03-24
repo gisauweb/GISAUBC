@@ -1,9 +1,10 @@
-import React from 'react';
 import { Box, Grid } from '@mui/material';
-import Button from 'shared/components/button/Button';
+import circleBtn from 'assets/events-page/circle-btn.svg';
 import ReactGA from 'react-ga4';
-import GridItemDescription from 'shared/components/grid/GridItemDescription';
 import { useMediaQuery } from 'react-responsive';
+import Button from 'shared/components/button/Button';
+import GridItemDescription from 'shared/components/grid/GridItemDescription';
+import GridItemTag from './GridItemTag';
 
 export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
@@ -39,20 +40,32 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				<a href={item.infoLink} target='_blank' rel='noreferrer'>
 					<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
 				</a>
-				<Box className='text-center justify-center flex flex-col py-4'>
-					<span className='py-2 font-semibold text-xl'>{item.title}</span>
-					<GridItemDescription item={item} itemType={itemType} />
-					{item.button && (
+				<Box className='flex flex-row justify-between align-middle py-4 w-full'>
+					<div>
+						<span className='py-2 font-bold text-xl md:text-2xl my-2'>{item.title}</span>
+						<GridItemTag date={item.date} />
+						{upcomingEvent && <GridItemDescription item={item} itemType={itemType} />}
+					</div>
+					{/* {item.button && (
 						<a
-							href={item.button.link}
+						href={item.button.link}
 							target='_blank'
 							rel='noreferrer'
-							className='mt-5 flex justify-center'
+							className='mt-5 flex justify-start'
 							aria-label={item.button.name}
 						>
 							<Button text={item.button.name} />
 						</a>
-					)}
+					)} */}
+					<div className='w-10'>
+						<a
+							href='https://gisauweb.atlassian.net/jira/software/c/projects/GW/boards/3'
+							target='_blank'
+							rel='noreferrer'
+						>
+							<img src={circleBtn} alt='button' className='h-10 md:h-12 w-10 md:w-12' />
+						</a>
+					</div>
 				</Box>
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
