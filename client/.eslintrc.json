@@ -46,7 +46,7 @@
 	"settings": {
 		"import/resolver": {
 			"node": {
-				"paths": ["client/src/"]
+				"paths": ["src"]
 			}
 		}
 	}
