@@ -1,5 +1,5 @@
 import { Box, Grid } from '@mui/material';
-import circleBtn from 'assets/events-page/circle-btn.svg';
+import playBtn from 'assets/events-page/play.png';
 import ReactGA from 'react-ga4';
 import { useMediaQuery } from 'react-responsive';
 import Button from 'shared/components/button/Button';
@@ -42,7 +42,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				</a>
 				<Box className='flex flex-row justify-between align-middle py-4 w-full'>
 					<div>
-						<span className='py-2 font-bold text-xl md:text-2xl my-2'>{item.title}</span>
+						<span className='py-2 font-bold text-xl md:text-2xl my-2 mr-2'>{item.title}</span>
 						<GridItemTag date={item.date} />
 						{upcomingEvent && <GridItemDescription item={item} itemType={itemType} />}
 					</div>
@@ -57,13 +57,19 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 							<Button text={item.button.name} />
 						</a>
 					)} */}
-					<div className='w-10'>
+					<div className='w-12 h-12'>
 						<a
 							href='https://gisauweb.atlassian.net/jira/software/c/projects/GW/boards/3'
 							target='_blank'
 							rel='noreferrer'
 						>
-							<img src={circleBtn} alt='button' className='h-10 md:h-12 w-10 md:w-12' />
+							<div
+								className='flex justify-center items-center border-2
+								hover:cursor-pointer circleButton rounded-full'
+								style={{ width: '3rem', height: '3rem', borderColor: '#732727' }}
+							>
+								<img src={playBtn} alt='Play Button' style={{ width: '1rem', height: '1.2rem' }} />
+							</div>
 						</a>
 					</div>
 				</Box>
