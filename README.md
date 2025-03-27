@@ -11,7 +11,7 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 
 `Here's a quick preview of our page!`
 <br/>
-[![GIF Demo](client/src/assets/ReadMe/demo_preview.gif)](https://www.gisaubc.com)
+[![GIF Demo](client/src/assets/ReadMe/demo_2025.gif)](https://www.gisaubc.com)
 
 </div>
 
@@ -41,12 +41,12 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 
 [<kbd> <br> :sunglasses: Christopher Hadrian <br> </kbd>](https://github.com/chrishadrian)
 [<kbd> <br> :computer: Julian Widjaja <br> </kbd>](https://github.com/Julian-UBC)
-[<kbd> <br> :art: Jena Arianto <br> </kbd>](https://github.com/jenaarianto)
+[<kbd> <br> :paintbrush: Jena Arianto <br> </kbd>](https://github.com/jenaarianto)
 [<kbd> <br> :smiley_cat: Marie Samantha <br> </kbd>](https://github.com/msamanthaf)
 <br/>
 [<kbd> <br> :cool: Matthew Andersen <br> </kbd>](https://github.com/MatthewAnder)
-[<kbd> <br> 🍵 Jennifer Tjen <br> </kbd>](https://github.com/JenniferTjen)
-[<kbd> <br> 🍬 Jessie Megan <br> </kbd>](https://github.com/jessiemgn)
+[<kbd> <br> :tea: Jennifer Tjen <br> </kbd>](https://github.com/JenniferTjen)
+[<kbd> <br> :art: Jessie Megan <br> </kbd>](https://github.com/jessiemgn)
 
 </div>
 
