@@ -37,26 +37,51 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		// event
 		<Grid item xs={1} sm={1.5} md={2}>
 			<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
-				<a href={item.infoLink} target='_blank' rel='noreferrer'>
-					<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
-				</a>
+				<Box className='relative w-full'>
+					<a href={item.infoLink} target='_blank' rel='noreferrer'>
+						<img
+							src={item.image}
+							alt='item_image'
+							className='rounded-2xl z-10 object-cover'
+							loading='lazy'
+						/>
+					</a>
+					{item.button && (
+						<a
+							href={item.button.link}
+							target='_blank'
+							rel='noreferrer'
+							className='absolute bottom-4 right-4'
+							aria-label={item.button.name}
+						>
+							<Box
+								className='flex items-center justify-center text-center'
+								sx={{
+									backgroundColor: '#222222',
+									border: '2px solid #732727',
+									borderRadius: '20px',
+									padding: '6px 12px',
+									fontSize: '0.875rem',
+									color: 'white',
+									textDecoration: 'none',
+									cursor: 'pointer',
+								}}
+							>
+								<p className='underline-animation font-oswald text-sm md:text-base text-white'>
+									{item.button.name}
+								</p>
+							</Box>
+						</a>
+					)}
+				</Box>
+
 				<Box className='flex flex-row justify-between align-middle py-4 w-full'>
 					<div>
 						<span className='py-2 font-bold text-xl md:text-2xl my-2 mr-2'>{item.title}</span>
 						<GridItemTag date={item.date} />
 						{upcomingEvent && <GridItemDescription item={item} itemType={itemType} />}
 					</div>
-					{/* {item.button && (
-						<a
-						href={item.button.link}
-							target='_blank'
-							rel='noreferrer'
-							className='mt-5 flex justify-start'
-							aria-label={item.button.name}
-						>
-							<Button text={item.button.name} />
-						</a>
-					)} */}
+
 					<div className='w-12 h-12'>
 						<a href={item.recap} target='_blank' rel='noreferrer'>
 							<div
@@ -69,6 +94,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 						</a>
 					</div>
 				</Box>
+
 				{upcomingEvent && (
 					<Box className='flex flex-col items-center justify-center space-y-6'>
 						<Button
