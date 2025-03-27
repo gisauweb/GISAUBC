@@ -58,11 +58,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 						</a>
 					)} */}
 					<div className='w-12 h-12'>
-						<a
-							href='https://gisauweb.atlassian.net/jira/software/c/projects/GW/boards/3'
-							target='_blank'
-							rel='noreferrer'
-						>
+						<a href={item.recap} target='_blank' rel='noreferrer'>
 							<div
 								className='flex justify-center items-center border-2
 								hover:cursor-pointer circleButton rounded-full'
