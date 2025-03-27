@@ -1,22 +1,15 @@
-import React from 'react';
 import { Box, Grid } from '@mui/material';
-import Button from 'shared/components/button/Button';
-import ReactGA from 'react-ga4';
-import GridItemDescription from 'shared/components/grid/GridItemDescription';
 import { useMediaQuery } from 'react-responsive';
+import Button from 'shared/components/button/Button';
+import GridItemDescription from 'shared/components/grid/GridItemDescription';
+import PastGridItem from './PastGridItem';
+import UpcomingGridItem from './UpcomingGridItem';
 
 export default function GridItem({ item, upcomingEvent, itemType }) {
 	const handleClickButton = (link) => {
 		window.open(link, '_blank', 'noreferrer');
 	};
 	const isMobileView = useMediaQuery({ query: '(max-width: 750px)' });
-	const handleRegisterButton = (link) => {
-		ReactGA.event({
-			category: 'Event',
-			action: 'Clicked register for SOTO',
-		});
-		window.open(link, '_blank', 'noreferrer');
-	};
 
 	return itemType === 'rantangan' && upcomingEvent ? (
 		// upcoming rantangan
@@ -35,39 +28,11 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 	) : (
 		// event
 		<Grid item xs={1} sm={1.5} md={2}>
-			<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
-				<a href={item.infoLink} target='_blank' rel='noreferrer'>
-					<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
-				</a>
-				<Box className='text-center justify-center flex flex-col py-4'>
-					<span className='py-2 font-semibold text-xl'>{item.title}</span>
-					<GridItemDescription item={item} itemType={itemType} />
-					{item.button && (
-						<a
-							href={item.button.link}
-							target='_blank'
-							rel='noreferrer'
-							className='mt-5 flex justify-center'
-							aria-label={item.button.name}
-						>
-							<Button text={item.button.name} />
-						</a>
-					)}
-				</Box>
-				{upcomingEvent && (
-					<Box className='flex flex-col items-center justify-center space-y-6'>
-						<Button
-							text={item.title === 'Core Hiring' ? 'View Hiring Package' : 'Register'}
-							handleClickButton={() => handleRegisterButton(item.registrationLink)}
-						/>
-						{item.title !== 'Fall Hiring' && (
-							<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
-								<Button text='View Details' background='transparentBg' />
-							</a>
-						)}
-					</Box>
-				)}
-			</Box>
+			{upcomingEvent ? (
+				<UpcomingGridItem item={item} upcomingEvent={upcomingEvent} itemType={itemType} />
+			) : (
+				<PastGridItem item={item} />
+			)}
 		</Grid>
 	);
 }

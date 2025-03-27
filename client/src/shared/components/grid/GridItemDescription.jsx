@@ -7,7 +7,7 @@ export default function GridItemDescription({ item, itemType, upcomingEvent }) {
 			<div style={{ zIndex: 5 }} className='zindex'>
 				<span>{item.description}</span>
 				{upcomingEvent && (
-					<div className='flex flex-row space-x-4 z-5'>
+					<div className='flex flex-row z-5'>
 						<div style={{ backgroundColor: '#F3F1E7', display: 'inline-block' }} className='rounded-lg p-4'>
 							<span>
 								Pick up:&nbsp;
