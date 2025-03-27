@@ -11,7 +11,10 @@ Founded in early 2000s, the Gado-Gado Indonesian Students Association of UBC (GI
 
 `Here's a quick preview of our page!`
 <br/>
-[![GIF Demo](client/src/assets/ReadMe/demo_2025.gif)](https://www.gisaubc.com)
+
+<a href="https://www.gisaubc.com">
+<img src="client/src/assets/ReadMe/demo_2025.gif" width="800" height="auto"/>
+</a>
 
 </div>
 
