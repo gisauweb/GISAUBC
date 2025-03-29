@@ -6,7 +6,7 @@ const PAST_EVENTS = {
 		{
 			image: EVENTS_24_25[9],
 			title: 'Annual General Meeting',
-			date: 'Thursday, March 27 | 5:30PM',
+			date: 'March 27, 2025',
 			loc: 'Asian Centre',
 			recap: 'https://www.instagram.com/stories/highlights/17904438159079326/',
 		},
