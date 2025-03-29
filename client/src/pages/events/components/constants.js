@@ -4,6 +4,13 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[9],
+			title: 'Annual General Meeting',
+			date: 'Thursday, March 27 | 5:30PM',
+			loc: 'Asian Centre',
+			recap: 'https://www.instagram.com/stories/highlights/17904438159079326/',
+		},
+		{
 			image: EVENTS_24_25[8],
 			title: 'Core Hiring',
 			date: 'March 19, 2025',
