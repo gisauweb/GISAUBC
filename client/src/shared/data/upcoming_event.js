@@ -1,16 +1,6 @@
-import { EVENTS_24_25 } from 'assets/events-page/past-events';
-import gala from 'assets/events-page/gala.pdf';
+// import { EVENTS_24_25 } from 'assets/events-page/past-events';
 
-const UPCOMING_EVENTS = [
-	{
-		image: EVENTS_24_25[10],
-		title: 'GALA(LAND)',
-		date: 'Friday, April 4 | 5:00PM',
-		loc: 'AMS Nest Great Hall South',
-		registrationLink: 'https://forms.gle/79R2RPW78LPGTkW66',
-		infoLink: gala,
-	},
-];
+const UPCOMING_EVENTS = [];
 
 export default UPCOMING_EVENTS;
 

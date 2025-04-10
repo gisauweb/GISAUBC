@@ -4,11 +4,22 @@ import booklet from 'assets/events-page/booklet.pdf';
 const PAST_EVENTS = {
 	'2024/2025': [
 		{
+			image: EVENTS_24_25[10],
+			title: 'GALA(LAND)',
+			date: 'April 4, 2025',
+			loc: 'AMS Nest Great Hall South',
+			button: {
+				name: 'View Photos',
+				link: 'https://drive.google.com/drive/folders/1rJ-WHsjfbpb7My9VEY5GdAgOS_NLS7zz?usp=sharing',
+			},
+			recap: 'https://www.instagram.com/reel/DIPz4EmSqE5/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+		},
+		{
 			image: EVENTS_24_25[9],
 			title: 'Annual General Meeting',
 			date: 'March 27, 2025',
 			loc: 'Asian Centre',
-			recap: 'https://www.instagram.com/stories/highlights/17904438159079326/',
+			recap: 'https://www.instagram.com/reel/DIILf31pXN6/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
 		},
 		{
 			image: EVENTS_24_25[8],
