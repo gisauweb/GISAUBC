@@ -1,35 +1,19 @@
 import { Box } from '@mui/material';
-import { useState } from 'react';
 import GridItemTag from './GridItemTag';
 
 export default function PastGridItem({ item }) {
-	const [loaded, setLoaded] = useState(false);
-
 	return (
 		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 			<Box className='relative w-full'>
-				<a href={item.infoLink} target='_blank' rel='noreferrer' className='relative'>
-					{!loaded && (
-						<div
-							style={{
-								position: 'absolute',
-								top: 0,
-								left: 0,
-								right: 0,
-								bottom: 0,
-								backgroundColor: '#ccc',
-								animation: 'pulse 1.5s infinite',
-							}}
+				<a href={item.infoLink} target='_blank' rel='noreferrer'>
+					<div className='relative aspect-square'>
+						<img
+							src={item.image}
+							alt='item_image'
+							className='rounded-2xl absolute w-full h-full top-0 left-0 object-cover'
+							loading='lazy'
 						/>
-					)}
-					<img
-						src={item.image}
-						alt='item_image'
-						className='rounded-2xl z-10 w-ful h-full object-cover'
-						loading='lazy'
-						onLoad={() => setLoaded(true)}
-						style={{ display: loaded ? 'block' : 'none' }}
-					/>
+					</div>
 				</a>
 				{item.button && (
 					<a
