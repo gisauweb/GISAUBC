@@ -1,13 +1,35 @@
 import { Box } from '@mui/material';
-import playBtn from 'assets/events-page/play.png';
+import { useState } from 'react';
 import GridItemTag from './GridItemTag';
 
 export default function PastGridItem({ item }) {
+	const [loaded, setLoaded] = useState(false);
+
 	return (
 		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 			<Box className='relative w-full'>
-				<a href={item.infoLink} target='_blank' rel='noreferrer'>
-					<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
+				<a href={item.infoLink} target='_blank' rel='noreferrer' className='relative'>
+					{!loaded && (
+						<div
+							style={{
+								position: 'absolute',
+								top: 0,
+								left: 0,
+								right: 0,
+								bottom: 0,
+								backgroundColor: '#ccc',
+								animation: 'pulse 1.5s infinite',
+							}}
+						/>
+					)}
+					<img
+						src={item.image}
+						alt='item_image'
+						className='rounded-2xl z-10 w-ful h-full object-cover'
+						loading='lazy'
+						onLoad={() => setLoaded(true)}
+						style={{ display: loaded ? 'block' : 'none' }}
+					/>
 				</a>
 				{item.button && (
 					<a
@@ -51,7 +73,11 @@ export default function PastGridItem({ item }) {
         hover:cursor-pointer circleButton rounded-full'
 							style={{ width: '3rem', height: '3rem', borderColor: '#732727' }}
 						>
-							<img src={playBtn} alt='Play Button' style={{ width: '1rem', height: '1.2rem' }} />
+							<img
+								src='past-events/play.png'
+								alt='Play Button'
+								style={{ width: '1rem', height: '1.2rem' }}
+							/>
 						</div>
 					</a>
 				</div>
