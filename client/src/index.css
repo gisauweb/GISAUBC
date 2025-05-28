@@ -5,6 +5,12 @@
 /* Proxima Nova */
 @import url('https://use.typekit.net/mqr7lhi.css');
 
+@layer base {
+	html {
+		@apply font-proxima;
+	}
+}
+
 /* Montserrat */
 @font-face {
 	font-family: 'Montserrat';
