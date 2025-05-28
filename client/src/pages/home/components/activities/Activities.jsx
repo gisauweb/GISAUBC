@@ -8,31 +8,27 @@ function Activities() {
 	const isMobile = useMediaQuery({ query: '(max-width: 1023px) ' });
 
 	return (
-		<Box className='pt-24'>
-			<Box className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
+		<div className='pt-24'>
+			<div className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
 				<Typography variant='h4' color='primary'>
 					WHAT WE DO
 				</Typography>
 				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' loading='lazy' />
-			</Box>
-			<Box className='w-full flex lg:py-8'>
+			</div>
+			<div className='w-full relative flex flex-col lg:py-8'>
 				{isMobile ? (
 					<ActivitiesSlider className='mt-8 sm:mt-12' />
 				) : (
 					<>
 						{activities.map((activity) => (
-							<Box
-								key={activity.id}
-								className='w-1/3 flex flex-col'
-								sx={{ alignItems: activity.alignment }}
-							>
-								<Box className='w-5/6 relative'>
-									<div className='h-48 2xl:h-56 flex overflow-hidden rounded-xl'>
+							<Box key={activity.id} className='relative w-full flex flex-row items-center'>
+								<div className='relative w-1/4 py-3'>
+									<div className='relative aspect-video w-full overflow-hidden rounded-xl'>
 										<img
 											alt='Activity'
 											id={activity.id}
 											src={activity.image}
-											className='w-full object-cover'
+											className='w-full h-full object-cover'
 											loading='lazy'
 										/>
 									</div>
@@ -42,19 +38,21 @@ function Activities() {
 										className={`absolute ${activity.iconStyle}`}
 										loading='lazy'
 									/>
-								</Box>
-								<Box className='w-5/6 text-center px-3'>
-									<Box className='font-montserrat text-2xl' sx={{ my: 3, fontWeight: 'bold' }}>
-										{activity.title}
-									</Box>
-									<Box className='font-montserrat text-lg'>{activity.description}</Box>
-								</Box>
+								</div>
+
+								<div className='relative w-5/6 h-full px-3'>
+									<div className='font-oswald text-6xl font-extrabold text-primary'>
+										{activity.header}
+									</div>
+									<div className='font-oswald text-xl/10 font-bold'>{activity.title}</div>
+									<div className='font-montserrat text-sm'>{activity.description}</div>
+								</div>
 							</Box>
 						))}
 					</>
 				)}
-			</Box>
-		</Box>
+			</div>
+		</div>
 	);
 }
 export default Activities;
