@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { useMediaQuery } from 'react-responsive';
+import SubHeading from 'shared/components/SubHeading';
 import { activities, smiley } from './constants';
 import ActivitiesSlider from './Slider';
 
@@ -9,12 +9,17 @@ function Activities() {
 
 	return (
 		<div className='pt-24'>
-			<div className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
+			{/* <div className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
 				<Typography variant='h4' color='primary'>
 					WHAT WE DO
 				</Typography>
 				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' loading='lazy' />
-			</div>
+			</div> */}
+			<SubHeading text='WHAT WE DO'>
+				<div className='absolute top-0 -left-10 lg:-left-14'>
+					<img src={smiley} alt='Sunshine' className='h-10 lg:h-full -scale-x-100' loading='lazy' />
+				</div>
+			</SubHeading>
 			<div className='w-full relative flex flex-col lg:py-8'>
 				{isMobile ? (
 					<ActivitiesSlider className='mt-8 sm:mt-12' />
@@ -45,7 +50,7 @@ function Activities() {
 										{activity.header}
 									</div>
 									<div className='font-oswald text-xl/10 font-bold'>{activity.title}</div>
-									<div className='font-montserrat text-sm'>{activity.description}</div>
+									<div className='font-proxima text-sm'>{activity.description}</div>
 								</div>
 							</Box>
 						))}

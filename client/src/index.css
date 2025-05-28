@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Proxima Nova */
+@import url('https://use.typekit.net/mqr7lhi.css');
+
 /* Montserrat */
 @font-face {
 	font-family: 'Montserrat';
@@ -22,50 +25,50 @@
 
 /* Poppins Regular */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* Poppins Medium */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-Medium.ttf') format('truetype');
-    font-weight: 500; /* Medium weight is typically 500 */
-    font-style: normal;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-Medium.ttf') format('truetype');
+	font-weight: 500; /* Medium weight is typically 500 */
+	font-style: normal;
 }
 
 /* Poppins SemiBold */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
-    font-weight: 600; /* SemiBold weight is typically 600 */
-    font-style: normal;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+	font-weight: 600; /* SemiBold weight is typically 600 */
+	font-style: normal;
 }
 
 /* Poppins Bold */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
-    font-weight: bold; /* Bold weight is typically 700 */
-    font-style: normal;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-Bold.ttf') format('truetype');
+	font-weight: bold; /* Bold weight is typically 700 */
+	font-style: normal;
 }
 
 /* Poppins Italic */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
 }
 
 /* ... additional @font-face rules for other weights and styles ... */
 
 /* Poppins Black */
 @font-face {
-    font-family: 'Poppins';
-    src: url('./fonts/Poppins/Poppins-Black.ttf') format('truetype');
-    font-weight: 900; /* Black weight is typically 900 */
-    font-style: normal;
+	font-family: 'Poppins';
+	src: url('./fonts/Poppins/Poppins-Black.ttf') format('truetype');
+	font-weight: 900; /* Black weight is typically 900 */
+	font-style: normal;
 }
