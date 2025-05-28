@@ -1,8 +1,6 @@
 .button {
-	width: fit-content;
 	text-align: center;
 	border-radius: 5rem;
-	padding: 0.75rem 2rem;
 
 	position: relative;
 	z-index: 1;
@@ -147,5 +145,3 @@
 .landing-button:hover:before {
 	mask-composite: initial;
 }
-
-

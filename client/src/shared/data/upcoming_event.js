@@ -1,6 +1,16 @@
-// import { EVENTS_24_25 } from 'assets/events-page/past-events';
+import { EVENTS_24_25 } from 'assets/events-page';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[4],
+		title: 'Rumah Hantu',
+		date: 'October 27, 2024',
+		time: '3:00PM - 8:30PM',
+		loc: 'AMS Nest Room 2314',
+		registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
+		// infoLink: ruhan,
+	},
+];
 
 export default UPCOMING_EVENTS;
 
