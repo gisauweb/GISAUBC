@@ -5,7 +5,7 @@ export default function Events() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	return (
-		<div className={`${!isMobileView && 'flex'} justify-between flex-wrap pt-24 pb-5`}>
+		<div id='events' className={`${!isMobileView && 'flex'} justify-between flex-wrap pt-24 pb-5`}>
 			<EventLayout />
 		</div>
 	);
