@@ -24,12 +24,12 @@ export default function Button({ landingButton, className, text, background, han
 		<div
 			className={`${
 				landingButton ? landingButtonClass : 'button'
-			} ${backgroundClass} ${className} flex justify-center items-center bg-gamesRed w-fit px-8 py-3 text-lg font-normal`}
+			} ${backgroundClass} ${className} flex justify-center items-center bg-gamesRed px-5 py-2.5`}
 			onClick={handleClickButton}
 			style={{ minWidth: 'fit-content', display: 'inline-flex', alignItems: 'center' }}
 		>
 			{icon && <img src={icon} alt='icon' className='mr-2' style={{ height: '18px', width: 'auto' }} />}
-			<span className='font-proxima'>{text}</span>
+			<span>{text}</span>
 		</div>
 	);
 }

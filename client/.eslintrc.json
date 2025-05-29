@@ -37,7 +37,7 @@
 		"react/jsx-indent-props": "off",
 		"jsx-a11y/click-events-have-key-events": "off",
 		"jsx-a11y/no-static-element-interactions": "off",
-		"max-len": ["error", 250],
+		"max-len": ["error", 120],
 		"operator-linebreak": "off",
 		"react/jsx-props-no-spreading": "off",
 		"import/no-extraneous-dependencies": "off",

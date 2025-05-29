@@ -1,4 +1,6 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
+import memberIcon from 'assets/navbar/member-icon.svg';
 import { pages } from './constants';
 import MenuLogo from './MenuLogo';
 
@@ -42,7 +44,7 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 												font-oswald text-3xl leading-[250%] uppercase
 												flex flex-row items-center'
 							>
-								<img src='assets/navbar/member-icon.svg' alt='search.png' className='h-6 w-auto pr-4' />
+								<img src={memberIcon} alt='search.png' className='h-6 w-auto pr-4' />
 								Become a Member
 							</p>
 						</Link>
