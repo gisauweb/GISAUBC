@@ -1,4 +1,4 @@
-import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantangan-page/past-rantangan/index';
+import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantangan-page/index';
 
 const PAST_RANTANGAN = {
 	'2024/2025': [
