@@ -24,7 +24,7 @@ export default function Button({ landingButton, className, text, background, han
 		<div
 			className={`${
 				landingButton ? landingButtonClass : 'button'
-			} ${backgroundClass} ${className} flex justify-center items-center bg-gamesRed w-fit px-8 py-3`}
+			} ${backgroundClass} ${className} flex justify-center items-center bg-gamesRed w-fit px-8 py-3 text-lg font-normal`}
 			onClick={handleClickButton}
 			style={{ minWidth: 'fit-content', display: 'inline-flex', alignItems: 'center' }}
 		>

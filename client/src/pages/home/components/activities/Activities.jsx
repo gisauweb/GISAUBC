@@ -15,11 +15,7 @@ function Activities() {
 				</Typography>
 				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' loading='lazy' />
 			</div> */}
-			<SubHeading text='WHAT WE DO'>
-				<div className='absolute top-0 -left-10 lg:-left-14'>
-					<img src={smiley} alt='Sunshine' className='h-10 lg:h-full -scale-x-100' loading='lazy' />
-				</div>
-			</SubHeading>
+			<SubHeading text='WHAT WE DO' isRight icon={smiley} />
 			<div className='w-full relative flex flex-col lg:py-8'>
 				{isMobile ? (
 					<ActivitiesSlider className='mt-8 sm:mt-12' />

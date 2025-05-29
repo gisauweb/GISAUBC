@@ -26,16 +26,7 @@ function About() {
 				</a>
 
 				<div className='w-full md:w-1/2 h-full md:pr-16'>
-					<SubHeading text='WHO WE ARE'>
-						<div className='absolute top-0 -left-10 lg:-left-14'>
-							<img
-								src={sunshineImg}
-								alt='Sunshine'
-								className='h-10 lg:h-full -scale-x-100'
-								loading='lazy'
-							/>
-						</div>
-					</SubHeading>
+					<SubHeading text='WHO WE ARE' isLeft isMirror icon={sunshineImg} />
 					<p className='font-oswald text-xl md:text-3xl/10 font-extrabold my-7'>
 						Halo! We are GISAU, a student-led club promoting Indonesian culture based in the UBC Vancouver
 						campus.
