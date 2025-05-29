@@ -2,5 +2,8 @@
 	"compilerOptions": {
 		"baseUrl": "src"
 	},
-	"include": ["src", "public/timerWorker.js", "public/about", "public/executives"]
+	"include": [
+		"src",
+		"public/timerWorker.js"
+	]
 }

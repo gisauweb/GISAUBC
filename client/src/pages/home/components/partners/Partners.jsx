@@ -1,8 +1,8 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import React from 'react';
 import Marquee from 'react-fast-marquee';
-import { useMediaQuery } from 'react-responsive';
-import SubHeading from 'shared/components/SubHeading';
 import { PARTNERS, rainbow } from 'shared/data/partners';
+import { useMediaQuery } from 'react-responsive';
 
 function Partners() {
 	const isBigDisplay = useMediaQuery({ query: '(min-width: 1440px)' });
@@ -10,7 +10,12 @@ function Partners() {
 
 	return (
 		<Box className={`pt-28 ${isMobile && 'hidden'}`}>
-			<SubHeading text='OUR PARTNERS' isLeft isMirror icon={rainbow} />
+			<Box className='w-full flex pb-3 justify-start'>
+				<Typography variant='h4' color='primary'>
+					OUR PARTNERS
+				</Typography>
+				<img src={rainbow} alt='Rainbow' className='w-10 relative right-5 -top-5' loading='lazy' />
+			</Box>
 			<Box className='py-14'>
 				<Marquee gradient={false} speed={isBigDisplay ? 80 : 50}>
 					<div className='flex items-center justify-around flex-wrap'>

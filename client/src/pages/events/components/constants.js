@@ -1,4 +1,5 @@
-import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/index';
+import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/past-events/index';
+import booklet from 'assets/events-page/booklet.pdf';
 
 const PAST_EVENTS = {
 	'2024/2025': [
@@ -84,7 +85,7 @@ const PAST_EVENTS = {
 			loc: 'Online on Zoom',
 			button: {
 				name: 'Download Booklet',
-				link: '/past-events/booklet.pdf',
+				link: booklet,
 			},
 			recap: 'https://www.instagram.com/p/C9099p8yHES/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
 		},

@@ -14,9 +14,8 @@ module.exports = {
 			fontFamily: {
 				oswald: ['Oswald', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
-				inter: ['Inter', 'sans-serif'],
-				poppins: ['Poppins', 'sans-serif'],
-				proxima: ['proxima-nova', 'sans-serif'],
+				inter: ['Inter', 'sans_serif'],
+				poppins: ['Poppins', 'sans_serif'],
 			},
 			lineHeight: { 12: '3rem' },
 			colors: {
