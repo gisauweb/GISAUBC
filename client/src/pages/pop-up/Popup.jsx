@@ -61,7 +61,14 @@ function Popup({ isOpen, onClose }) {
 					rel='noreferrer'
 					className='my-3 flex justify-center items-center'
 				>
-					<img src={upcomingEvent.image} alt='Upcoming Event' className='w-4/5' loading='lazy' />
+					<div className='w-4/5 aspect-square rounded-md'>
+						<img
+							src={upcomingEvent.image}
+							alt='Upcoming Event'
+							className='w-full h-full object-cover rounded-2xl'
+							loading='lazy'
+						/>
+					</div>
 				</a>
 				<Typography variant='h5' className='mt-11' gutterBottom>
 					Upcoming Event

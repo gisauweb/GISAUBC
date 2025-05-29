@@ -1,56 +1,44 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
 import aboutImg from 'assets/home-page/about/about.png';
 import aboutMobileImg from 'assets/home-page/about/about_mobile.png';
 import sunshineImg from 'assets/home-page/about/sunshine.svg';
-import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import Button from 'shared/components/button/Button';
-
-const typographyStyle = 'text-base xl:text-xl font-montserrat my-5 w-full lg:pr-6';
+import SubHeading from 'shared/components/SubHeading';
+// import { useNavigate } from 'react-router-dom';
+// import Button from 'shared/components/button/Button';
 
 function About() {
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const isMobile = useMediaQuery({ query: '(max-width: 1039px) ' });
-	const handleClickButton = () => {
-		navigate('about');
-	};
+	// const handleClickButton = () => {
+	// 	navigate('about');
+	// };
 
 	return (
-		<Box className='flex flex-col w-full text-center lg:text-left justify-center items-center lg:items-start'>
-			<Box className='w-full lg:w-1/2 flex justify-start pb-3 lg:pb-1.5'>
-				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6'>
-					WHO WE ARE
-				</Typography>
-				<img
-					src={sunshineImg}
-					alt='Sunshine'
-					className='h-6 sm:h-10 xl:h-full relative right-2 top-1 sm:right-3 sm:top-0 lg:top-2 xl:top-0'
-					loading='lazy'
-				/>
-			</Box>
-			<a href='/about' className='sm:pb-1 lg:w-1/3 2xl:w-fit lg:absolute lg:right-1/10'>
-				<img
-					src={isMobile ? aboutMobileImg : aboutImg}
-					alt='GISAU Executives'
-					className='w-3/4 lg:w-full mx-auto mt-6 rounded-3xl'
-					loading='lazy'
-				/>
-			</a>
-			<Box className='w-3/4 sm:w-1/2 h-full'>
-				<p className={typographyStyle}>
-					<i className='pr-2'>Halo!</i>
-					{`We are a non-profit cultural organization centered in promoting
-					Indonesian hospitality around the UBC Vancouver campus.`}
-				</p>
-				<p className={typographyStyle}>
-					GISAU aims to foster an inclusive, close-knitted, and connected community that exemplifies the
-					signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and non-Indonesian
-					students alike.
-				</p>
-			</Box>
-			<Button text='Learn More' handleClickButton={handleClickButton} />
-		</Box>
+		<div className='flex flex-col w-full lg:text-left justify-center items-center lg:items-start'>
+			<div className='relative flex flex-col lg:flex-row-reverse justify-between items-center'>
+				<a href='/about' className='lg:w-2/3'>
+					<img
+						src={isMobile ? aboutMobileImg : aboutImg}
+						alt='GISAU Executives'
+						className='w-full mx-auto rounded-3xl'
+						loading='lazy'
+					/>
+				</a>
+
+				<div className='w-full md:w-1/2 h-full md:pr-16'>
+					<SubHeading text='WHO WE ARE' isLeft isMirror icon={sunshineImg} />
+					<p className='font-oswald text-xl md:text-3xl/10 font-extrabold my-7'>
+						Halo! We are GISAU, a student-led club promoting Indonesian culture based in the UBC Vancouver
+						campus.
+					</p>
+					<p className='font-proxima text-sm'>
+						We aim to foster an inclusive, close-knitted, and connected community that exemplifies the
+						signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and
+						non-Indonesian students alike.
+					</p>
+				</div>
+			</div>
+		</div>
 	);
 }
 

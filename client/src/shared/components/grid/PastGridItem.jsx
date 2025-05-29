@@ -1,5 +1,4 @@
 import { Box } from '@mui/material';
-import playBtn from 'assets/events-page/play.png';
 import GridItemTag from './GridItemTag';
 
 export default function PastGridItem({ item }) {
@@ -7,7 +6,14 @@ export default function PastGridItem({ item }) {
 		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 			<Box className='relative w-full'>
 				<a href={item.infoLink} target='_blank' rel='noreferrer'>
-					<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
+					<div className='relative aspect-square'>
+						<img
+							src={item.image}
+							alt='item_image'
+							className='rounded-2xl absolute w-full h-full top-0 left-0 object-cover'
+							loading='lazy'
+						/>
+					</div>
 				</a>
 				{item.button && (
 					<a
@@ -51,7 +57,11 @@ export default function PastGridItem({ item }) {
         hover:cursor-pointer circleButton rounded-full'
 							style={{ width: '3rem', height: '3rem', borderColor: '#732727' }}
 						>
-							<img src={playBtn} alt='Play Button' style={{ width: '1rem', height: '1.2rem' }} />
+							<img
+								src='past-events/play.png'
+								alt='Play Button'
+								style={{ width: '1rem', height: '1.2rem' }}
+							/>
 						</div>
 					</a>
 				</div>

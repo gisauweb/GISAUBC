@@ -1,12 +1,11 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import Marquee from 'react-fast-marquee';
-import HIGHLIGHTS from 'assets/about/higlights/index';
+import HIGHLIGHTS from 'assets/about/higlights';
 import { useMediaQuery } from 'react-responsive';
 
 export default function Highlights() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-
 	return (
 		<Box className='pt-20'>
 			<Box className=''>
