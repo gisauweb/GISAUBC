@@ -15,7 +15,12 @@ export default function UpcomingGridItem({ item, itemType }) {
 	return (
 		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 			<a href={item.infoLink} target='_blank' rel='noreferrer'>
-				<img src={item.image} alt='item_image' className='rounded-2xl z-10 object-cover' loading='lazy' />
+				<img
+					src={item.image}
+					alt='item_image'
+					className='rounded-2xl z-10 aspect-square object-cover'
+					loading='lazy'
+				/>
 			</a>
 			<Box className='text-center justify-center flex flex-col py-4'>
 				<span className='py-2 font-semibold text-xl'>{item.title}</span>
@@ -34,10 +39,10 @@ export default function UpcomingGridItem({ item, itemType }) {
 			</Box>
 			<Box className='flex flex-col items-center justify-center space-y-6'>
 				<Button
-					text={item.title === 'Summer Hiring' ? 'View Hiring Package' : 'Register'}
+					text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Register'}
 					handleClickButton={() => handleRegisterButton(item.registrationLink)}
 				/>
-				{item.title !== 'Summer Hiring' && (
+				{item.title !== 'Fall Hiring' && (
 					<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
 						<Button text='View Details' background='transparentBg' />
 					</a>
