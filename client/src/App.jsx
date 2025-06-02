@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react';
-import Popup from 'pages/pop-up/Popup';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { pages, button } from './shared/components/navigation-bar/constants';
-import ScrollToTop from './shared/components/ScrollToTop';
-import NavigationBar from './shared/components/navigation-bar/NavigationBar';
-import isGamesPage from './routeUtils';
+import Popup from 'pages/pop-up/Popup';
+import { useEffect, useState } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import './App.css';
+import isGamesPage from './routeUtils';
+import { button, pages } from './shared/components/navigation-bar/constants';
+import NavigationBar from './shared/components/navigation-bar/NavigationBar';
+import ScrollToTop from './shared/components/ScrollToTop';
 
 function App() {
-	const ACTIVATE_POPUP = true;
+	const ACTIVATE_POPUP = UPCOMING_EVENTS.length > 0;
 	const [isPopupOpen, setPopupOpen] = useState(ACTIVATE_POPUP);
 	const handleClosePopup = () => {
 		setPopupOpen(false);

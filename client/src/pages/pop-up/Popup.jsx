@@ -70,10 +70,14 @@ function Popup({ isOpen, onClose }) {
 						/>
 					</div>
 				</a>
-				<Typography variant='h5' className='mt-11' gutterBottom>
-					Upcoming Event
+				<Typography variant='h4' className='mt-11' gutterBottom>
+					Upcoming
+					{upcomingEvent.isEvent ? ' Event' : ' Rantangan'}
 				</Typography>
-				<Typography variant='body1'>Check out our newest event!</Typography>
+				<Typography variant='body1'>
+					Check out our newest
+					{upcomingEvent.isEvent ? ' event!' : ' rantangan!'}
+				</Typography>
 				<Box mt={2} className='flex justify-center'>
 					<a aria-label='Save' href='#events' onClick={handleClose}>
 						<Button background='transparentBg' text='Take me there' />
