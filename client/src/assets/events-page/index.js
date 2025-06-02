@@ -46,4 +46,6 @@ const EVENTS_22_23 = [
 	'/past-events/22_23/14.svg',
 ];
 
-export { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 };
+const EVENTS_25_26 = [];
+
+export { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 };

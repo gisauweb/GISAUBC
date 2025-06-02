@@ -17,7 +17,7 @@ function EventCards({ data }) {
 					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.time}</p>
 					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.loc}</p>
 				</div>
-				<Link to='/events' className='relative w-full sm:w-7/12 mt-5 sm:mt-0'>
+				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
 					<Button text={data.isEvent ? 'Register Now' : 'Order Now'} className='w-full text-start' />
 				</Link>
 			</div>

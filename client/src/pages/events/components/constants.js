@@ -1,6 +1,7 @@
 import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/index';
 
 const PAST_EVENTS = {
+	'2025/2026': [],
 	'2024/2025': [
 		{
 			image: EVENTS_24_25[10],

@@ -34,10 +34,10 @@ export default function UpcomingGridItem({ item, itemType }) {
 			</Box>
 			<Box className='flex flex-col items-center justify-center space-y-6'>
 				<Button
-					text={item.title === 'Core Hiring' ? 'View Hiring Package' : 'Register'}
+					text={item.title === 'Summer Hiring' ? 'View Hiring Package' : 'Register'}
 					handleClickButton={() => handleRegisterButton(item.registrationLink)}
 				/>
-				{item.title !== 'Fall Hiring' && (
+				{item.title !== 'Summer Hiring' && (
 					<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
 						<Button text='View Details' background='transparentBg' />
 					</a>

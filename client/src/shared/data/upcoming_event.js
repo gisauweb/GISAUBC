@@ -1,8 +1,18 @@
-// import { EVENTS_24_25 } from 'assets/events-page';
+import { EVENTS_24_25 } from 'assets/events-page';
 // import { RANTANGAN_24_25 } from 'assets/rantangan-page';
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
-const UPCOMING_EVENTS = [];
+const UPCOMING_EVENTS = [
+	{
+		image: EVENTS_24_25[4],
+		title: 'Summer Hiring',
+		date: 'June 7th | 11:59PM PDT',
+		loc: 'Online',
+		registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
+		isEvent: true,
+		infoLink: '',
+	},
+];
 
 export default UPCOMING_EVENTS;
 

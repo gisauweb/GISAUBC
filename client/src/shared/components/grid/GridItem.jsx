@@ -27,7 +27,7 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 		</Grid>
 	) : (
 		// event
-		<Grid item xs={1} sm={1.5} md={2}>
+		<Grid id='upcoming_event' item xs={1} sm={1.5} md={2}>
 			{upcomingEvent ? (
 				<UpcomingGridItem item={item} upcomingEvent={upcomingEvent} itemType={itemType} />
 			) : (
