@@ -8,7 +8,7 @@ import './EventLayout.css';
 function EventCards({ data }) {
 	return (
 		<div className='flex flex-col w-fit'>
-			<img src={data.image} alt='' className='aspect-square object-cover w-full md:w-[440px] ' />
+			<img src={data.image} alt='' className='aspect-square rounded-2xl object-cover w-full md:w-[440px] ' />
 			<div className='flex flex-col sm:flex-row justify-start sm:justify-between items-center'>
 				<div className='flex flex-col space-y-2 w-full sm:w-fit'>
 					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
@@ -18,7 +18,7 @@ function EventCards({ data }) {
 					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.loc}</p>
 				</div>
 				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
-					<Button text={data.isEvent ? 'Register Now' : 'Order Now'} className='w-full text-start' />
+					<Button text={data.isEvent ? 'Apply Now' : 'Order Now'} className='w-full text-start' />
 				</Link>
 			</div>
 		</div>
