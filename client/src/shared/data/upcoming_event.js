@@ -10,7 +10,7 @@ const UPCOMING_EVENTS = [
 		loc: 'Online',
 		registrationLink: 'https://forms.gle/gETkqXraA23afTTv8',
 		isEvent: true,
-		infoLink: '',
+		infoLink: '/past-events/package.pdf',
 	},
 ];
 
