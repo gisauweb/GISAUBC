@@ -25,14 +25,14 @@ export default function GridItem({ item, upcomingEvent, itemType }) {
 				</Box>
 			</Box>
 		</Grid>
+	) : // event
+	upcomingEvent ? (
+		<Grid item>
+			<UpcomingGridItem item={item} upcomingEvent={upcomingEvent} itemType={itemType} />
+		</Grid>
 	) : (
-		// event
 		<Grid id='upcoming_event' item xs={1} sm={1.5} md={2}>
-			{upcomingEvent ? (
-				<UpcomingGridItem item={item} upcomingEvent={upcomingEvent} itemType={itemType} />
-			) : (
-				<PastGridItem item={item} />
-			)}
+			<PastGridItem item={item} />
 		</Grid>
 	);
 }

@@ -1,9 +1,9 @@
-import React from 'react';
 import { Box } from '@mui/material';
-import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import membersLandingImg from 'assets/landing-image/members.webp';
+import { Footer, LandingImage, ScrollButton } from 'shared/components/index';
+import PageHeading from 'shared/components/PageHeading';
 import MainContainer from 'shared/layout/MainContainer';
-import { MemberBenefits, MemberContact, MemberSpecial, MemberHeadline } from './components/index';
+import { MemberBenefits, MemberContact, MemberSpecial } from './components/index';
 import MemberButton from './components/MemberButton';
 
 export default function Members() {
@@ -15,7 +15,7 @@ export default function Members() {
 				button={<MemberButton text='GISAU Membership Form' />}
 			/>
 			<MainContainer>
-				<MemberHeadline />
+				<PageHeading>Join our community and unlock exclusive member benefits.</PageHeading>
 				<MemberSpecial />
 				<MemberBenefits />
 				<MemberContact />

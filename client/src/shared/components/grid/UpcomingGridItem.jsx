@@ -13,41 +13,40 @@ export default function UpcomingGridItem({ item, itemType }) {
 	};
 
 	return (
-		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
-			<a href={item.infoLink} target='_blank' rel='noreferrer'>
+		<Box className='flex flex-col md:flex-row w-full justify-start md:space-x-10 mb-20'>
+			<a
+				href={item.infoLink}
+				target='_blank'
+				rel='noreferrer'
+				className='overflow-hidden rounded-2xl aspect-square bg-black relative'
+			>
 				<img
 					src={item.image}
 					alt='item_image'
-					className='rounded-2xl z-10 aspect-square object-cover'
+					className='rounded-2xl z-10 aspect-square object-cover size-full'
 					loading='lazy'
 				/>
 			</a>
-			<Box className='text-center justify-center flex flex-col py-4'>
-				<span className='py-2 font-semibold text-xl'>{item.title}</span>
-				<GridItemDescription item={item} itemType={itemType} />
-				{item.button && (
-					<a
-						href={item.button.link}
-						target='_blank'
-						rel='noreferrer'
-						className='mt-5 flex justify-center'
-						aria-label={item.button.name}
-					>
-						<Button text={item.button.name} />
-					</a>
-				)}
-			</Box>
-			<Box className='flex flex-col items-center justify-center space-y-6'>
-				<Button
-					text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Apply Here'}
-					handleClickButton={() => handleRegisterButton(item.registrationLink)}
-				/>
-				{item.title !== 'Fall Hiring' && (
-					<a href={item.infoLink} target='_blank' rel='noreferrer' aria-label='Save'>
-						<Button text='Hiring Package' background='transparentBg' />
-					</a>
-				)}
-			</Box>
+			<div>
+				<Box className='flex flex-col mb-4 h-fit'>
+					<span className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</span>
+					<span className='whitespace-pre-line'>{item.caption}</span>
+					<GridItemDescription item={item} itemType={itemType} />
+				</Box>
+				<Box className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-6'>
+					<Button
+						text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Apply Here'}
+						handleClickButton={() => handleRegisterButton(item.registrationLink)}
+					/>
+					{item.title !== 'Fall Hiring' && (
+						<Button
+							text='Hiring Package'
+							background='transparentBg'
+							handleClickButton={() => handleRegisterButton(item.infoLink)}
+						/>
+					)}
+				</Box>
+			</div>
 		</Box>
 	);
 }
