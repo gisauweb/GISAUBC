@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import bakmiIcon from 'assets/rantangan-page/bakmiIcon.svg';
+import { useState } from 'react';
 import GridContainer from 'shared/components/grid/GridContainer';
 import { DropdownMenu } from 'shared/components/index';
-import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
-import bakmiIcon from 'assets/rantangan-page/bakmiIcon.svg';
-import PAST_RANTANGAN from './constants';
+import SubHeading from 'shared/components/SubHeading';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import GridContent from '../../../shared/components/grid/GridContent';
+import PAST_RANTANGAN from './constants';
 
 function RantanganContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2024/2025');
-	const eventData = upcoming ? UPCOMING_RANTANGAN : PAST_RANTANGAN[selectedYear];
-	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
+	const eventData = upcoming ? UPCOMING_EVENTS.filter((el) => !el.isEvent) : PAST_RANTANGAN[selectedYear];
 
 	return (
 		<Box className={`relative ${upcoming ? '' : 'pb-4 lg:pb-6'}`}>
@@ -26,13 +25,7 @@ function RantanganContent({ upcoming }) {
 				)}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography
-					variant='h4'
-					color='primary'
-					className={`pt-0.5 ${upcoming ? 'pt-20' : 'pb-3 sm:pb-0'} ${isMobile && !upcoming ? 'pt-12' : ''}`}
-				>
-					{`${upcoming ? 'UPCOMING' : 'PAST'} RANTANGAN`}
-				</Typography>
+				<SubHeading text={upcoming ? 'UPCOMING' : 'PAST RANTANGAN'} isLeft />
 
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />

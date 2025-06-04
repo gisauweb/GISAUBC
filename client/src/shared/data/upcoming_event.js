@@ -1,5 +1,5 @@
 import { EVENTS_25_26 } from 'assets/events-page';
-// import { RANTANGAN_24_25 } from 'assets/rantangan-page';
+import { RANTANGAN_24_25 } from 'assets/rantangan-page';
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
 const UPCOMING_EVENTS = [
@@ -27,6 +27,19 @@ We are accepting applications until Saturday, June 7th, 2025 at 11:59pm PDT 🗓
 		isEvent: true,
 		infoLink: '/past-events/package.pdf',
 	},
+	{
+		image: RANTANGAN_24_25[0],
+		title: 'Bakso Malang',
+		caption: `Pre-order our Rawon Rice Bowls 🍲 
+Made with love by our amazing F&B team!`,
+		date: 'June 7th | 11:59PM PDT',
+		loc: 'AMS NEST',
+		priceMember: ' $13',
+		priceRegular: ' $15',
+		registrationLink: 'https://forms.gle/gETkqXraA23afTTv8',
+		isEvent: false,
+		infoLink: '/past-events/package.pdf',
+	},
 ];
 
 export default UPCOMING_EVENTS;
@@ -35,9 +48,27 @@ export default UPCOMING_EVENTS;
 // {
 // 	image: EVENTS_23_24[4],
 // 	title: 'Rumah Hantu',
-// 	date: 'Wednesday, October 27 | 3-8:30PM',
+//  caption: ``,
+// 	date: 'October 27th | 3-8:30PM',
+//  time: '', optional
 // 	loc: 'AMS Nest Room 2314',
 // 	registrationLink: 'https://forms.gle/rDxe3Ho5aJn9aBiN9',
-//  isEvent: false, true = an event & false = a rantangan
-// 	infoLink: 'ruhan',
+//  isEvent: true,
+// 	infoLink: '/past-events/package.pdf',
+// },
+
+// upcoming rantangan's tempalte:
+// {
+// 	image: RANTANGAN_24_25[0],
+// 	title: 'Bakso Malang',
+// 	caption: `Pre-order our Rawon Rice Bowls 🍲
+// Made with love by our amazing F&B team!`,
+// 	date: 'June 7th | 11:59PM PDT',
+//  time: '', optional
+// 	loc: 'AMS NEST',
+// 	priceMember: '$13',
+// 	priceRegular: '$15',
+// 	registrationLink: 'https://forms.gle/gETkqXraA23afTTv8',
+// 	isEvent: false,
+// 	infoLink: '/past-events/package.pdf',
 // },

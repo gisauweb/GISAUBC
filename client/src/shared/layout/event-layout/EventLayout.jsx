@@ -10,12 +10,14 @@ function EventCards({ data }) {
 		<div className='flex flex-col w-fit'>
 			<img src={data.image} alt='' className='aspect-square rounded-2xl object-cover w-full md:w-[440px] ' />
 			<div className='flex flex-col sm:flex-row justify-start sm:justify-between items-center'>
-				<div className='flex flex-col space-y-2 w-full sm:w-fit'>
+				<div className='flex flex-col space-y-3 w-full sm:w-fit'>
 					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
 					<p className='font-oswald font-semibold text-3xl'>{data.title}</p>
-					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.date}</p>
-					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.time}</p>
-					<p className='text-sm bg-bgCream w-fit px-2 rounded-md'>{data.loc}</p>
+					<div className='flex flex-row flex-wrap gap-1'>
+						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.date}</p>
+						{data.time && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.time}</p>}
+						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.loc}</p>
+					</div>
 				</div>
 				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
 					<Button text={data.isEvent ? 'Apply Now' : 'Order Now'} className='w-full text-start' />
