@@ -1,9 +1,8 @@
 import { Box } from '@mui/material';
 import ReactGA from 'react-ga4';
 import Button from 'shared/components/button/Button';
-import GridItemDescription from 'shared/components/grid/GridItemDescription';
 
-export default function UpcomingGridItem({ item, itemType }) {
+export default function UpcomingGridItem({ item }) {
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
@@ -13,12 +12,16 @@ export default function UpcomingGridItem({ item, itemType }) {
 	};
 
 	return (
-		<Box className='flex flex-col md:flex-row w-full justify-start md:space-x-10 mb-20'>
+		<Box
+			className={`flex flex-col md:flex-row w-full justify-start md:space-x-10 mb-20 ${
+				!item.isEvent && 'items-center'
+			}`}
+		>
 			<a
 				href={item.infoLink}
 				target='_blank'
 				rel='noreferrer'
-				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-[26rem] bg-black relative'
+				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-[26rem] relative'
 			>
 				<img
 					src={item.image}
@@ -48,21 +51,29 @@ export default function UpcomingGridItem({ item, itemType }) {
 							{item.priceRegular}
 						</p>
 					)}
-					<GridItemDescription item={item} itemType={itemType} />
 				</Box>
-				<Box className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-6'>
-					<Button
-						text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Apply Here'}
-						handleClickButton={() => handleRegisterButton(item.registrationLink)}
-					/>
-					{item.title !== 'Fall Hiring' && (
+				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-6'>
+					{item.isEvent ? (
+						<>
+							<Button
+								text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Apply Here'}
+								handleClickButton={() => handleRegisterButton(item.registrationLink)}
+							/>
+							{item.title !== 'Fall Hiring' && (
+								<Button
+									text='Hiring Package'
+									background='transparentBg'
+									handleClickButton={() => handleRegisterButton(item.infoLink)}
+								/>
+							)}
+						</>
+					) : (
 						<Button
-							text='Hiring Package'
-							background='transparentBg'
-							handleClickButton={() => handleRegisterButton(item.infoLink)}
+							text='Order Now'
+							handleClickButton={() => handleRegisterButton(item.registrationLink)}
 						/>
 					)}
-				</Box>
+				</div>
 			</div>
 		</Box>
 	);

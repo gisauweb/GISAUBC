@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import klepon from 'assets/home-page/activities/klepon.svg';
 import bakmiIcon from 'assets/rantangan-page/bakmiIcon.svg';
 import { useState } from 'react';
 import GridContainer from 'shared/components/grid/GridContainer';
@@ -9,7 +10,7 @@ import GridContent from '../../../shared/components/grid/GridContent';
 import PAST_RANTANGAN from './constants';
 
 function RantanganContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2024/2025');
+	const [selectedYear, setSelectedYear] = useState('2025/2026');
 	const eventData = upcoming ? UPCOMING_EVENTS.filter((el) => !el.isEvent) : PAST_RANTANGAN[selectedYear];
 
 	return (
@@ -25,7 +26,11 @@ function RantanganContent({ upcoming }) {
 				)}
 			</Box>
 			<Box className='flex flex-col w-full justify-between'>
-				<SubHeading text={upcoming ? 'UPCOMING' : 'PAST RANTANGAN'} isLeft />
+				<SubHeading
+					text={upcoming ? 'UPCOMING' : 'PAST RANTANGAN'}
+					isLeft
+					icon={upcoming ? '/icons/noodle.svg' : klepon}
+				/>
 
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
