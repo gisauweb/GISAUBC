@@ -27,6 +27,7 @@ module.exports = {
 				gamesBox: '#F5F1ED',
 				bgCream: '#F5EFE4',
 				bgBlack: '#222222',
+				translucent: 'rgba(34, 34, 34, 0.4)',
 			},
 			fontSize: { '5xl': ['3rem', 1.3] },
 		},

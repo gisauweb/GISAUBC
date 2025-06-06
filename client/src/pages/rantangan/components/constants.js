@@ -1,6 +1,7 @@
 import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantangan-page/index';
 
 const PAST_RANTANGAN = {
+	'2025/2026': [],
 	'2024/2025': [
 		{
 			image: RANTANGAN_24_25[1],

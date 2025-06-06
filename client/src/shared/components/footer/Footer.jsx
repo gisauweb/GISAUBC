@@ -12,7 +12,7 @@ export default function Footer({ showPlane = true }) {
 	return (
 		<div id='contact' className='w-full h-full relative bg-bgPrimary'>
 			<div className='flex flex-row gap-6'>
-				<h3 className='px-4 md:px-0 md:pl-12 w-full pt-12 mb-10 md:pt-48 font-oswald text-5xl md:text-7xl font-bold text-primary'>
+				<h3 className='px-2 md:px-0 md:pl-12 w-full pt-12 mb-10 md:pt-48 font-oswald text-3xl sm:text-5xl md:text-7xl font-bold text-primary'>
 					Thanks for stopping by!
 				</h3>
 				{showPlane && (

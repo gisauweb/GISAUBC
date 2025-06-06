@@ -4,21 +4,17 @@ import moneyIcon from 'assets/members/moneyIcon.svg';
 import tagIcon from 'assets/members/tagIcon.svg';
 import communityIcon from 'assets/members/communityIcon.svg';
 import stars from 'assets/partners/text decor.svg';
+import SubHeading from 'shared/components/SubHeading';
 
 export default function MemberSpecial() {
 	return (
 		<Box className='relative flex flex-col w-full h-auto align-bottom z-10'>
-			<div className='relative flex w-full pb-10'>
-				<img src={stars} alt='wavy.png' className='absolute -top-4 -left-10 h-12 w-12' />
-				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6 uppercase'>
-					SPECIAL FOR GISAU MEMBERS
-				</Typography>
-			</div>
+			<SubHeading text='SPECIAL FOR GISAU MEMBERS' isLeft icon={stars} />
 			<div className='flex lg:flex-row flex-col w-full gap-5 pb-10 md:pb-36'>
 				<div className='w-full lg:w-1/3 h-auto bg-bgCream p-7 rounded-xl'>
 					<img src={moneyIcon} alt='search.png' className='pb-4' />
 					<div className='flex flex-col gap-4'>
-						<Typography variant='h4' color='black'>
+						<Typography variant='h4' color='black' className='font-oswald'>
 							Member Pricing
 						</Typography>
 						<Typography variant='body1'>

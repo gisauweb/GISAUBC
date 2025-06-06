@@ -1,6 +1,4 @@
-import React from 'react';
-import { Container, Typography } from '@mui/material';
-import wavy from 'assets/partners/text decor 3.svg';
+import { Container } from '@mui/material';
 import MemberButton from './MemberButton';
 
 function MemberContact() {
@@ -14,17 +12,14 @@ function MemberContact() {
 	};
 
 	return (
-		<Container style={containerStyle} className='relative mt-5 sm:py-3 pb-28 md:pb-36'>
-			<div className='relative flex w-full pb-10'>
-				<img src={wavy} alt='wavy.png' className='absolute -top-4 -left-10 h-12 w-12' />
-				<Typography variant='h4' color='primary' className='pt-4 lg:pt-6 uppercase'>
-					Interested to become a member?
-				</Typography>
+		<Container style={containerStyle} className='relative sm:py-3 pb-28 md:pb-36'>
+			<div
+				className='flex flex-col gap-5 justify-center items-center mt-5 border-3 border-primary rounded-full'
+				aria-label='Save'
+			>
+				<h4 className='pt-4 lg:pt-6 font-oswald font-bold text-3xl md:text-4xl'>Fill out the form below!</h4>
+				<MemberButton showIcon={false} text='GISAU Membership Form' />
 			</div>
-			<Typography variant='h4' color='black' className='pt-4 lg:pt-6 pb-8'>
-				Fill out the form below!
-			</Typography>
-			<MemberButton showIcon={false} text='GISAU Membership Form' />
 		</Container>
 	);
 }

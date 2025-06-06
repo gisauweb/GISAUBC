@@ -25,9 +25,6 @@ export default function GridItemDescription({ item, itemType, upcomingEvent }) {
 			</div>
 		</>
 	) : itemType === 'event' ? (
-		<>
-			<span>{item.date}</span>
-			<span>{item.loc}</span>
-		</>
+		<> </>
 	) : null;
 }

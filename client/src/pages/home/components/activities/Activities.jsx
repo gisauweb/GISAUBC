@@ -9,12 +9,6 @@ function Activities() {
 
 	return (
 		<div className='pt-24'>
-			{/* <div className='w-full flex justify-start items-center pb-1 sm:pb-0 lg:pb-3'>
-				<Typography variant='h4' color='primary'>
-					WHAT WE DO
-				</Typography>
-				<img src={smiley} alt='Smiley' className='h-6 sm:h-10 xl:h-full ml-1' loading='lazy' />
-			</div> */}
 			<SubHeading text='WHAT WE DO' isRight icon={smiley} />
 			<div className='w-full relative flex flex-col lg:py-8'>
 				{isMobile ? (
