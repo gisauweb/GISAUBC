@@ -36,7 +36,7 @@ function RantanganContent({ upcoming }) {
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Rantangan' />
 				)}
 			</Box>
-			<GridContainer className='sm:my-28'>
+			<GridContainer className='my-10 sm:my-28'>
 				<GridContent upcomingEvent={upcoming} data={eventData} itemType='rantangan' />
 			</GridContainer>
 		</Box>
