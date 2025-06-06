@@ -18,7 +18,7 @@ function PartnerContact() {
 				className='flex flex-col gap-5 mt-5 border-3 border-primary rounded-full'
 				aria-label='Save'
 			>
-				<h4 className='pt-4 lg:pt-6 uppercase font-oswald font-bold text-4xl'>Contact us at</h4>
+				<h4 className='pt-4 lg:pt-6 font-oswald font-bold text-4xl'>Contact us at</h4>
 				<Button text='sponsorship.gisau@gmail.com' />
 			</a>
 		</Container>
