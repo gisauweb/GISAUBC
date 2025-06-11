@@ -8,13 +8,13 @@ import TeamGridContent from './TeamGridContent';
 export default function OurTeam({ data, states }) {
 	// eslint-disable-next-line prettier/prettier
 	const {
-		selectedYear, selectedButton, selectedCard,
-		setSelectedYear, setSelectedButton, setSelectedCard,
+		selectedYear, selectedButton, selectedCard, setSelectedYear, setSelectedButton, setSelectedCard,
+
 	} = states;
 
 	return (
 		<Box>
-			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10'>
+			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10 pt-20'>
 				<Typography variant='h3' color='primary'>
 					Meet our team.
 				</Typography>

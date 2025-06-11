@@ -1,29 +1,25 @@
 import React from 'react';
 
-export default function LandingImage({ bgImage, text, isHomePage, children }) {
-	const backgroundStyles = {
-		filter: 'brightness(0.4)',
-		backgroundSize: 'cover',
-		backgroundImage: `url(${bgImage})`,
-		backgroundRepeat: 'no-repeat',
-		backgroundPosition: 'center',
-	};
-
+export default function LandingImage({ bgImage, text, isHomePage, children, button }) {
 	return (
-		<div className='h-screen w-screen items-center overflow-hidden'>
-			<div className='absolute w-screen h-screen' style={backgroundStyles} />
-			<div className='relative flex justify-center items-center h-full w-full'>
-				<div className='w-full mt-1/20'>
+		<div className='relative h-screen w-screen items-center'>
+			<div className='-z-index-10 flex justify-center items-center h-screen w-full'>
+				<img className='h-full w-full absolute top-0 object-cover bg-bgPrimary' src={bgImage} alt='hero' />
+				<div className='absolute top-0 left-0 h-full w-full bg-black opacity-60' />
+				<div className='w-full mt-1/20 relative'>
 					{isHomePage ? (
 						children
 					) : (
-						<h1
-							className='my-4 md:my-8 mx-2 tracking-wide
-										text-center text-white text-3xl sm:text-5xl lg:text-7xl
-										font-montserrat font-semibold uppercase'
-						>
-							{text}
-						</h1>
+						<>
+							<h1
+								className='relative my-4 md:my-8 mx-2 tracking-wide
+							text-center text-white text-3xl sm:text-5xl lg:text-7xl
+							font-montserrat font-semibold uppercase'
+							>
+								{text}
+							</h1>
+							<div className='flex fl justify-center mt-4 sm:mt-0'>{button}</div>
+						</>
 					)}
 				</div>
 			</div>

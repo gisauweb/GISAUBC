@@ -1,51 +1,43 @@
-import React from 'react';
-import './Footer.css';
-import { Email } from '@mui/icons-material';
-import spotifyIcon from 'assets/footer/spotify-icon.svg';
-import instagramIcon from 'assets/footer/instagram-icon.svg';
-import linkedinIcon from 'assets/footer/linkedin-icon.svg';
-import facebookIcon from 'assets/footer/facebook-icon.svg';
 import plane from 'assets/footer/plane.svg';
 import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
+import './Footer.css';
 
-export default function Footer({ showPlane }) {
+export default function Footer({ showPlane = true }) {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px)' });
+	const ScrollToTop = () => {
+		window.scrollTo(0, 0);
+	};
 
 	return (
-		<div id='contact' className='w-full relative bottom-0'>
-			{showPlane && (
-				<div className='w-4/5 mx-auto justify-end my-28 mb-60 hidden lg:flex'>
-					<img src={plane} alt='paper-plane' loading='lazy' />
-				</div>
-			)}
-			<div className='footer mt-24 lg:mt-36'>
-				<div className='footer-title text-lg sm:text-2xl'>Connect with us!</div>
-				<div className='footer-icons'>
-					<a href='https://www.instagram.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
-						<img src={instagramIcon} alt='instagram-icon' loading='lazy' />
-					</a>
-					<a href='https://ca.linkedin.com/company/gisau' target='_blank' rel='noreferrer' className='icon'>
-						<img src={linkedinIcon} alt='linkedin-icon' loading='lazy' />
-					</a>
-					<a href='https://www.facebook.com/gisaubc/' target='_blank' rel='noreferrer' className='icon'>
-						<img src={facebookIcon} alt='facebook-icon' loading='lazy' />
-					</a>
-					<a
-						href='https://open.spotify.com/show/4n3LXi2mKxLpscsIGVAgnR?si=e5a5fed87a694f17'
-						target='_blank'
-						rel='noreferrer'
-						className='icon'
-					>
-						<img src={spotifyIcon} alt='spotify-icon' loading='lazy' />
-					</a>
-				</div>
-				<div className='footer-email text-base sm:text-xl'>
-					<a href='mailto:contact.gisau@gmail.com'>
-						<Email className='mr-1 pb-0.5' fontSize={isMobile ? 'small' : 'medium'} />
-						contact.gisau@gmail.com
-					</a>
-				</div>
-				<div className='footer-copyright text-base sm:text-xl'>GISAUBC &#169; 2023</div>
+		<div id='contact' className='w-full h-full relative bg-bgPrimary'>
+			<div className='flex flex-row gap-6'>
+				<h3 className='px-2 md:px-0 md:pl-12 w-full pt-12 mb-10 md:pt-48 font-oswald text-3xl sm:text-5xl md:text-7xl font-bold text-primary'>
+					Thanks for stopping by!
+				</h3>
+				{showPlane && (
+					<div className='w-4/5 justify-end pb-60 hidden lg:flex bg-bgPrimary'>
+						<img src={plane} alt='paper-plane' loading='lazy' />
+					</div>
+				)}
+			</div>
+			<div
+				className={`footer-email text-base sm:text-xl flex ${
+					isMobile ? 'flex-col gap-2' : 'flex-row gap-6'
+				} pb-8`}
+			>
+				<a href='mailto:contact.gisau@gmail.com' className='underline' fontSize={isMobile ? 'small' : 'medium'}>
+					Email Us
+				</a>
+				<Link
+					to='/partners'
+					className='underline'
+					fontSize={isMobile ? 'small' : 'medium'}
+					onClick={ScrollToTop}
+				>
+					Become a Partner
+				</Link>
+				<div className={`footer-email flex ${isMobile ? '' : 'absolute left-12'}`}>&#169; 2024 GISAU</div>
 			</div>
 		</div>
 	);

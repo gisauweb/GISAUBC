@@ -1,46 +1,54 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga4';
-import { Typography } from '@mui/material';
-import Button from '../../components/button/Button';
+import upcomingEvent from 'assets/home-page/events/upcoming_event.svg';
+import SubHeading from 'shared/components/SubHeading';
+import eventDatas from 'shared/data/upcoming_event';
+import { Link } from 'react-router-dom';
+import { Button } from 'shared/components';
 import './EventLayout.css';
-import EventContent from './EventContent';
 
-export default function EventLayout(props) {
-	// eslint-disable-next-line object-curly-newline
-	const { id, className, title, events, icon, button1, button2, isMobileView } = props;
-	const navigate = useNavigate();
-
-	const handleClickButton = (link) => {
-		ReactGA.event({
-			category: 'Event',
-			action: 'Clicked register for GISAU Hiring',
-		});
-		window.open(link, '_blank', 'noreferrer');
-	};
-
-	const handleClickButton2 = () => {
-		navigate(button2.path);
-	};
-
+function EventCards({ data }) {
 	return (
-		<div className={className} id={id}>
-			<div className='uppercase flex items-center justify-start h-10'>
-				<Typography variant='h4' color='primary'>
-					{title}
-				</Typography>
-				<div className='events-icon'>{icon}</div>
+		<div className='flex flex-col w-fit'>
+			<img src={data.image} alt='' className='aspect-square rounded-2xl object-cover w-full md:w-[440px] ' />
+			<div className='flex flex-col sm:flex-row justify-start sm:justify-between items-center'>
+				<div className='flex flex-col space-y-3 w-full sm:w-fit'>
+					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
+					<p className='font-oswald font-semibold text-3xl'>{data.title}</p>
+					<div className='flex flex-row flex-wrap gap-1'>
+						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.date}</p>
+						{data.time && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.time}</p>}
+						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.loc}</p>
+					</div>
+				</div>
+				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
+					<Button text={data.isEvent ? 'Apply Now' : 'Order Now'} className='w-full text-start' />
+				</Link>
 			</div>
-			<div className='mt-10 grid gap-y-12'>
-				<EventContent
-					events={events}
-					button1={button1}
-					handleClickButton={handleClickButton}
-					isMobileView={isMobileView}
-				/>
-			</div>
-			<div className={`grid justify-center lg:w-[95%] ${events.length === 0 ? 'mt-12' : 'mt-4'} `}>
-				<Button text={button2.name} background='transparentBg' handleClickButton={handleClickButton2} />
+		</div>
+	);
+}
+
+export default function EventLayout() {
+	return (
+		<div className='w-full'>
+			<SubHeading text='UPCOMING' isLeft icon={upcomingEvent} />
+			<div className='mt-10 flex flex-col lg:flex-row justify-start items-center gap-8'>
+				{eventDatas.length >= 1 ? (
+					eventDatas.map((data) => <EventCards key={data.date} data={data} />)
+				) : (
+					<div className='w-full text-center'>
+						<h3 className='font-oswald font-bold text-bgBlack opacity-70 text-3xl sm:text-4xl md:text-5xl'>
+							Stay tuned for more excitement!
+						</h3>
+						<div className='flex flex-col md:flex-row justify-center gap-4 md:gap-10 mt-14'>
+							<Link to='/events' className='relative w-full lg:w-4/12 mt-5 sm:mt-0'>
+								<Button text='View Past Events' className='w-full text-base md:text-lg' />
+							</Link>
+							<Link to='/rantangan' className='relative w-full lg:w-4/12 mt-5 sm:mt-0'>
+								<Button text='View Past Rantangan' className='w-full text-base md:text-lg' />
+							</Link>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

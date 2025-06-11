@@ -1,16 +1,30 @@
 /* eslint-disable max-len */
-import indomie from 'assets/partners/indomie.png';
-import lemonjarz from 'assets/partners/lemonjarz.svg';
-import milkcow from 'assets/partners/milkcow.svg';
-import steves from 'assets/partners/steves.svg';
-import wizeprep from 'assets/partners/wizeprep.svg';
 import rainbowSVG from 'assets/home-page/rainbow.svg';
-import evo from 'assets/partners/evo.svg';
-import righteous from 'assets/partners/righteous.svg';
-import modoyoga from 'assets/partners/modoyoga.svg';
-import rainorshine from 'assets/partners/rainorshine.svg';
+import bananaLeaf from 'assets/partners/bananaLeaf.svg';
+import honeydewLabs from 'assets/partners/honeydewLabs.svg';
+import indomie from 'assets/partners/indomie.svg';
+import prestigeOptical from 'assets/partners/prestigeOptical.svg';
+import stevesPoke from 'assets/partners/steves.svg';
+import storageHotel from 'assets/partners/storageHotel.svg';
+import wizePrep from 'assets/partners/wizeprep.svg';
 
 const PARTNERS = [
+	{
+		name: 'Banana Leaf Vancouver',
+		logo: bananaLeaf,
+		description:
+			'Banana Leaf is a journey through Malaysian and Southeast Asian flavors and hospitality. Founded in 1995, we’ve grown from a cozy spot to five locations across Metro Vancouver. Blending Malaysian roots with influences from Indonesia, Singapore, Thailand, China, and India, we offer unique dishes bursting with diverse flavors.',
+		link: 'https://www.bananaleaf-vancouver.com/',
+		yearlong: true,
+	},
+	{
+		name: 'Honeydew Labs',
+		logo: honeydewLabs,
+		description:
+			'Founded by two UBC Sauder alumni, Honeydew Labs is dedicated to delivering natural, proven skincare ingredients that are effortlessly enjoyable for daily use. We firmly believe that skincare should be a delightful journey, fostering self-love and empowerment, while leaving unrealistic standards of perfection behind.',
+		link: 'https://www.honeydewlabs.com/',
+		yearlong: true,
+	},
 	{
 		name: 'Indomie',
 		logo: indomie,
@@ -20,60 +34,36 @@ const PARTNERS = [
 		yearlong: true,
 	},
 	{
-		name: 'Lemon Jarz',
-		logo: lemonjarz,
+		name: 'Prestige Optical',
+		logo: prestigeOptical,
 		description:
-			'Dried lemon slices beautifully crafted in a mason jar. The only ingredient is lemon! No added sugar or preservatives. Perfect to add to a hot cup of tea, a cocktail, a glass of sparkling water, or even plain water for a refreshing drink. Lemonjarz serves as a great housewarming gift or for your lemon-loving friends. Made in Vancouver, B.C.',
-		link: 'https://www.lemonjarz.com/',
-		yearlong: true,
-	},
-	{
-		name: 'Milkcow Cafe',
-		logo: milkcow,
-		description:
-			'All about desserts, Milkcow is a premium dessert cafe that emphasizes on creativity and innovation. Milkcow ice-cream is distinctive in that it tastes milkier and creamier than your traditional soft serve, as its organically sourced without preservatives.',
-		link: 'https://milkcowcafe.ca/',
+			'Prestige Optical is a one stop boutique optical store located in Kitsilano, Vancouver, founded and operated by Licensed Opticians with over 70 years of lineage in vision care providing high-quality eye care and fashionable eyewear.',
+		link: 'https://prestigeoptical.ca/',
 		yearlong: true,
 	},
 	{
 		name: "Steve's Poke bar",
-		logo: steves,
+		logo: stevesPoke,
 		description:
 			"Discover authentic Hawaiian poké at Steve's Poké Bar in Metro Vancouver. Our house-made sauce marinated poké sets us apart from other spots",
 		link: 'https://www.stevespokebar.ca/',
 		yearlong: true,
 	},
 	{
+		name: 'Storagehotel',
+		logo: storageHotel,
+		description:
+			"Storagehotel is UBC and UofT's #1 student storage service! We pick up, store, and deliver. Free boxes and tape. Starting at $5/month. Upfront pricing.",
+		link: 'https://www.storagehotel.ca/',
+		yearlong: true,
+	},
+	{
 		name: 'Wizeprep',
-		logo: wizeprep,
+		logo: wizePrep,
 		description:
 			'Wizeprep is an all-in-one education platform offering instant online access to course-tailored university exam-prep, tutorials, expert tutors, and many more study tools. This cutting-edge platform delivers a seamless learning experience stocked with all the tools needed to help students reach their full academic potential.',
 		link: 'https://www.wizeprep.com/',
 		yearlong: true,
-	},
-	{
-		name: 'Evo',
-		logo: evo,
-		link: 'https://evo.ca/',
-		yearlong: false,
-	},
-	{
-		name: 'Rain or Shine',
-		logo: rainorshine,
-		link: 'https://www.rainorshineicecream.com/',
-		yearlong: false,
-	},
-	{
-		name: 'Rightheous Gelato',
-		logo: righteous,
-		link: 'https://www.righteousgelato.com/',
-		yearlong: false,
-	},
-	{
-		name: 'Modo Yoga',
-		logo: modoyoga,
-		link: 'https://modoyoga.com/vancouver/',
-		yearlong: false,
 	},
 ];
 
