@@ -9,6 +9,10 @@
 	color: #fff;
 	line-height: 1.75rem /* 28px */;
 	cursor: pointer;
+	border: solid 3px transparent;
+	background: #732727;
+	transition: all 300ms ease-out;
+	-webkit-transition: all 300ms ease-out;
 }
 
 .button.transparent_bg {
@@ -49,6 +53,9 @@
 .button:hover {
 	color: #fff;
 	box-shadow: none;
+	background: linear-gradient(225deg, #8c1c16, #bc7059);
+	background-origin: border-box;
+	background-clip: border-box;
 }
 
 .button:hover::before {
