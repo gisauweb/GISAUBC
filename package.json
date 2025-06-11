@@ -1,25 +1,25 @@
 {
-	"name": "gisaubc",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"server": "npm run serve --prefix server/functions",
-		"client": "npm start --prefix client",
-		"watch": "npm run build:watch --prefix server/functions",
-		"deploy": "npm run deploy --prefix server/functions",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
-	},
-	"author": "",
-	"license": "ISC",
-	"description": "",
-	"devDependencies": {
-		"concurrently": "^7.6.0"
-	},
-	"dependencies": {
-		"dotenv": "^16.3.1",
-		"express": "^4.18.2",
-		"firebase": "^10.7.2",
-		"react-spring": "^9.7.3"
-	}
+  "name": "gisaubc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "npm run serve --prefix server/functions",
+    "client": "npm start --prefix client",
+    "watch": "npm run build:watch --prefix server/functions",
+    "deploy": "npm run deploy --prefix server/functions",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "firebase": "^10.14.1",
+    "react-spring": "^9.7.3"
+  }
 }
