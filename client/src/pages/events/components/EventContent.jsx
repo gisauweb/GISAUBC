@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import sunshineImg from 'assets/home-page/about/sunshine.svg';
+import stars from 'assets/home-page/activities/stars.svg';
+import { useState } from 'react';
 import GridContainer from 'shared/components/grid/GridContainer';
-import { DropdownMenu } from 'shared/components/index';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import GridContent from 'shared/components/grid/GridContent';
+import { DropdownMenu } from 'shared/components/index';
+import SubHeading from 'shared/components/SubHeading';
+import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
 
 function EventContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2025/2026');
-	const eventData = upcoming ? UPCOMING_EVENTS : PAST_EVENTS[selectedYear];
-	const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
+	const eventData = upcoming ? UPCOMING_EVENTS.filter((el) => el.isEvent) : PAST_EVENTS[selectedYear];
 
 	return (
 		<Box className={`${upcoming ? '' : 'pb-4 lg:pb-6'}`}>
 			<Box className='flex flex-col w-full justify-between'>
-				<Typography
-					variant='h4'
-					color='primary'
-					className={`pt-0.5 ${upcoming ? 'pt-20' : 'pb-3 sm:pb-0'} ${isMobile && !upcoming ? 'pt-12' : ''}`}
-				>
-					{`${upcoming ? 'UPCOMING' : 'PAST'} EVENTS`}
-				</Typography>
+				<SubHeading
+					text={upcoming ? 'UPCOMING' : 'PAST EVENTS'}
+					isLeft
+					isMirror
+					icon={upcoming ? sunshineImg : stars}
+				/>
 				{!upcoming && (
 					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='Event' />
 				)}

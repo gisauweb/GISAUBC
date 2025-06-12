@@ -9,8 +9,15 @@ export default function GridContent({ data, upcomingEvent, itemType }) {
 	const dataLength = data.length;
 
 	return dataLength === 0 ? (
-		<Grid style={{ zIndex: 5 }} item xs={1} sm={2} md={2}>
-			<p>Stay tuned :)</p>
+		<Grid item className='w-full relative z-10'>
+			{upcomingEvent ? (
+				<h4 className='text-center w-full font-oswald text-2xl sm:text-3xl md:text-5xl font-bold text-translucent'>
+					Stay tuned for more
+					{itemType === 'event' ? ' exciting events!' : ' Indonesian delicacies!'}
+				</h4>
+			) : (
+				<p>Stay tuned :)</p>
+			)}
 		</Grid>
 	) : (
 		<>
