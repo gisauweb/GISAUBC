@@ -1,11 +1,12 @@
-import React from 'react';
 import { Box, Container, Typography } from '@mui/material';
-import { useMediaQuery } from 'react-responsive';
+import lineConnector from 'assets/members/lineConnector.svg';
 import shineIcon from 'assets/members/shineIcon.svg';
 import stepIcon1 from 'assets/members/step1.svg';
 import stepIcon2 from 'assets/members/step2.svg';
 import stepIcon3 from 'assets/members/step3.svg';
-import lineConnector from 'assets/members/lineConnector.svg';
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import SubHeading from 'shared/components/SubHeading';
 import MemberButton from './MemberButton';
 
 function MemberBenefits() {
@@ -59,15 +60,8 @@ function MemberBenefits() {
 	};
 
 	return (
-		<Container style={containerStyle} className='mt-5 sm:my-3'>
-			<Box className='relative w-full pb-3 align-bottom'>
-				<img src={shineIcon} alt='stars.png' className='absolute -top-6 -left-10 h-10 w-10' />
-				<div className='flex flex-col justify-end'>
-					<Typography variant='h4' color='primary'>
-						How To Access Member Benefits?
-					</Typography>
-				</div>
-			</Box>
+		<Container style={containerStyle} className='mt-5 sm:my-5'>
+			<SubHeading text='HOW TO ACCESS MEMBER BENEFITS?' isLeft icon={shineIcon} />
 			<Box style={stepsBoxStyle} className='mb-8 pt-8'>
 				{steps.map((step, index) => (
 					<React.Fragment key={step.id}>

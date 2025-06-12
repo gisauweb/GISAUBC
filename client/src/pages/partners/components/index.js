@@ -4,7 +4,6 @@ import PartnerTitle from './PartnerTitle';
 import PartnerRegistration from './PartnerRegistration';
 import PartnerContact from './PartnerContact';
 import PartnerSpecial from './PartnerSpecial';
-import PartnerHeadline from './PartnerHeadline';
 
 // const SPECIAL_FOR_PARTNERS = [
 // 	{
@@ -26,4 +25,4 @@ import PartnerHeadline from './PartnerHeadline';
 // ];
 
 // eslint-disable-next-line prettier/prettier, max-len
-export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial, PartnerHeadline };
+export { PartnerContainer, PartnerList, PartnerRegistration, PartnerTitle, PartnerContact, PartnerSpecial };

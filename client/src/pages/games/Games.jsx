@@ -145,7 +145,7 @@ function Loading({ params }) {
 	const { alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert } = params;
 	return (
 		<>
-			<div>Loading...</div>
+			<div className='w-full h-screen'>Loading...</div>
 			{alert && (
 				<div
 					onClick={() => {
