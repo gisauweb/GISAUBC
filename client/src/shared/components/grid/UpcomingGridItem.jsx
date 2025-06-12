@@ -52,7 +52,7 @@ export default function UpcomingGridItem({ item }) {
 						</p>
 					)}
 				</Box>
-				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-6'>
+				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
 					{item.isEvent ? (
 						<>
 							<Button

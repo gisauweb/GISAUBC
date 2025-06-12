@@ -10,7 +10,7 @@ function EventCards({ data }) {
 		<div className='flex flex-col w-fit'>
 			<img src={data.image} alt='' className='aspect-square rounded-2xl object-cover w-full md:w-[440px] ' />
 			<div className='flex flex-col sm:flex-row justify-start sm:justify-between items-center'>
-				<div className='flex flex-col space-y-3 w-full sm:w-fit'>
+				<div className='flex flex-col mt-3 w-full gap-y-2 sm:w-fit'>
 					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
 					<p className='font-oswald font-semibold text-3xl'>{data.title}</p>
 					<div className='flex flex-row flex-wrap gap-1'>
