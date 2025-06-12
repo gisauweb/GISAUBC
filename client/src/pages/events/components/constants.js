@@ -1,7 +1,15 @@
-import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25 } from 'assets/events-page/index';
+import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 } from 'assets/events-page/index';
 
 const PAST_EVENTS = {
-	'2025/2026': [],
+	'2025/2026': [
+		{
+			image: EVENTS_25_26[0],
+			title: 'Summer Hiring',
+			date: 'June 7, 2025',
+			loc: 'Online',
+			recap: 'https://www.instagram.com/p/DKYdxglRMwQ/?utm_source=ig_web_copy_link&igsh=MWcxa3U4ejk5MnN0dg==',
+		},
+	],
 	'2024/2025': [
 		{
 			image: EVENTS_24_25[10],
