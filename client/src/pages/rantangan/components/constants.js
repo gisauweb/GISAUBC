@@ -1,7 +1,26 @@
-import { RANTANGAN_22_23 } from 'assets/rantangan-page/past-rantangan/index';
+import { RANTANGAN_22_23, RANTANGAN_23_24, RANTANGAN_24_25 } from 'assets/rantangan-page/index';
 
 const PAST_RANTANGAN = {
-	'2023/2024': [],
+	'2025/2026': [],
+	'2024/2025': [
+		{
+			image: RANTANGAN_24_25[1],
+			title: 'Nasi Padang',
+			description: 'Friday, March 14 | 12-4PM',
+		},
+		{
+			image: RANTANGAN_24_25[0],
+			title: 'Bakso Malang',
+			description: 'Friday, January 24 | 12-4PM',
+		},
+	],
+	'2023/2024': [
+		{
+			image: RANTANGAN_23_24[0],
+			title: 'Beef Rice Bowls',
+			description: 'Wednesday, December 6 | 1-5:30PM',
+		},
+	],
 	'2022/2023': [
 		{
 			image: RANTANGAN_22_23[0],

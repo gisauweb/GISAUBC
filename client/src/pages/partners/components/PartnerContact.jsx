@@ -1,5 +1,4 @@
-import React from 'react';
-import { Container, Typography } from '@mui/material';
+import { Container } from '@mui/material';
 import { Button } from 'shared/components';
 
 function PartnerContact() {
@@ -13,16 +12,14 @@ function PartnerContact() {
 	};
 
 	return (
-		<Container style={containerStyle} className='mt-5 sm:my-3'>
-			<Typography variant='h3' color='primary' className='pt-4 lg:pt-6'>
-				Interested to partner with us?
-			</Typography>
+		<Container style={containerStyle} className='relative sm:py-3 pb-28 md:pb-36'>
 			<a
 				href='mailto:sponsorship.gisau@gmail.com'
-				className='flex mt-10 border-3 border-primary rounded-full'
+				className='flex flex-col gap-5 mt-5 border-3 border-primary rounded-full'
 				aria-label='Save'
 			>
-				<Button text='Contact us at sponsorship.gisau@gmail.com' background='transparentBg' />
+				<h4 className='pt-4 lg:pt-6 font-oswald font-bold text-4xl'>Contact us at</h4>
+				<Button text='sponsorship.gisau@gmail.com' />
 			</a>
 		</Container>
 	);

@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import pages from './constants';
+import { pages } from './constants';
 import MenuLogo from './MenuLogo';
 
 function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
@@ -37,6 +36,16 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 								</p>
 							</Link>
 						))}
+						<Link to='/members' onClick={closeHandler}>
+							<p
+								className='text-white hover:underline underline-offset-8 decoration-2
+												font-oswald text-3xl leading-[250%] uppercase
+												flex flex-row items-center'
+							>
+								<img src='assets/navbar/member-icon.svg' alt='search.png' className='h-6 w-auto pr-4' />
+								Become a Member
+							</p>
+						</Link>
 					</div>
 				</div>
 			</div>

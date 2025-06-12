@@ -1,34 +1,37 @@
 .button {
-	width: fit-content;
 	text-align: center;
-	background: #7d0202;
 	border-radius: 5rem;
-	padding: 0.75rem 2rem;
 
 	position: relative;
 	z-index: 1;
 
 	/* Content (text) */
 	color: #fff;
-	font-family: Oswald, sans-serif;
-	font-weight: 400;
-	font-size: 1.125rem /* 18px */;
 	line-height: 1.75rem /* 28px */;
 	cursor: pointer;
+	border: solid 3px transparent;
+
+	background: linear-gradient(225deg, #7d0202, #0000);
+	background-color: #7d0202;
+	background-origin: border-box;
+	background-clip: border-box;
+
+	transition: 300ms ease-out;
+	-webkit-transition: 300ms ease-out;
 }
 
 .button.transparent_bg {
 	color: #7d0202;
 	border: solid 3px transparent;
-	background: linear-gradient(225deg, #8c1c16, #bc7059);
+	background: linear-gradient(225deg, #7d0202, #bc7059);
 	background-origin: border-box;
 	background-clip: border-box;
 	box-shadow: 2px 1000px 1px #fffdf5 inset;
 
 	transition: 300ms ease-out;
 	-webkit-transition: 300ms ease-out;
-	transition-property: box-shadow, color;
-	-webkit-transition-property: box-shadow, color;
+	transition-property: background, color;
+	-webkit-transition-property: background, color;
 }
 
 .button.gray_bg {
@@ -36,8 +39,34 @@
 	background: #d9d9d9;
 }
 
-.button::before {
-	border-radius: 5rem;
+.button:hover {
+	color: #fff;
+	background-color: #bc7059;
+	box-shadow: none;
+	background-origin: border-box;
+	background-clip: border-box;
+}
+
+.circleButton {
+	width: 3rem;
+	height: 3rem;
+	text-align: center;
+	border-radius: 100%;
+	padding: 0.75rem;
+
+	position: relative;
+	z-index: 1;
+
+	color: #fff;
+	font-family: Oswald, sans-serif;
+	font-weight: 400;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	cursor: pointer;
+}
+
+.circleButton::before {
+	border-radius: 100%;
 
 	position: absolute;
 	content: '';
@@ -52,12 +81,12 @@
 	-webkit-transition: opacity 300ms ease-out;
 }
 
-.button:hover {
+.circleButton:hover {
 	color: #fff;
 	box-shadow: none;
 }
 
-.button:hover::before {
+.circleButton:hover::before {
 	opacity: 1;
 }
 

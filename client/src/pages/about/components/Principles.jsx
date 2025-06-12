@@ -23,7 +23,7 @@ export default function Principles() {
 					Values
 				</Typography>
 			</Box>
-			<Box className='flex flex-col w-full sm:w-1/2 justify-center space-y-4'>
+			<Box className='flex flex-col w-full sm:w-1/2 justify-center space-y-4 hover:cursor-pointer'>
 				{VISION_MISSION.map((item) => (
 					<ExpandableBox
 						title={item.vision}

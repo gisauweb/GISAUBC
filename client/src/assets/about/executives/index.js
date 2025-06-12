@@ -1,57 +1,90 @@
-import img1 from './22_23/christie.png';
-import img2 from './22_23/christo.png';
-import img3 from './22_23/findy.png';
-import img4 from './22_23/ian.png';
-import img5 from './22_23/iervinny.png';
-import img6 from './22_23/imel.png';
-import img7 from './22_23/jade.png';
-import img8 from './22_23/jena.png';
-import img9 from './22_23/nico.png';
-import img10 from './22_23/josan.png';
-import img11 from './22_23/valyne.png';
-import img12 from './22_23/julian.png';
-import img13 from './22_23/kelly.png';
-import img14 from './22_23/kent.png';
-import img15 from './22_23/sasha.png';
-import img16 from './22_23/louistrycia.png';
-import img17 from './22_23/luna.png';
-import img18 from './22_23/mj.png';
-import img19 from './22_23/nadya.png';
-import img20 from './22_23/nando.png';
-import img21 from './22_23/rachel.png';
-import img22 from './22_23/richelle.png';
-import img23 from './22_23/russell.png';
-import img24 from './22_23/sidney.png';
-import img25 from './22_23/tavaella.png';
-import img26 from './22_23/vincent.png';
-
 const EXECS_22_23 = [
-	img1,
-	img2,
-	img3,
-	img4,
-	img5,
-	img6,
-	img7,
-	img8,
-	img9,
-	img10,
-	img11,
-	img12,
-	img13,
-	img14,
-	img15,
-	img16,
-	img17,
-	img18,
-	img19,
-	img20,
-	img21,
-	img22,
-	img23,
-	img24,
-	img25,
-	img26,
+	'/executives/22_23/christie.webp',
+	'/executives/22_23/christo.webp',
+	'/executives/22_23/findy.webp',
+	'/executives/22_23/ian.webp',
+	'/executives/22_23/iervinny.webp',
+	'/executives/22_23/imel.webp',
+	'/executives/22_23/jade.webp',
+	'/executives/22_23/jena.webp',
+	'/executives/22_23/nico.webp',
+	'/executives/22_23/josan.webp',
+	'/executives/22_23/valyne.webp',
+	'/executives/22_23/julian.webp',
+	'/executives/22_23/kelly.webp',
+	'/executives/22_23/kent.webp',
+	'/executives/22_23/sasha.webp',
+	'/executives/22_23/louistrycia.webp',
+	'/executives/22_23/luna.webp',
+	'/executives/22_23/mj.webp',
+	'/executives/22_23/nadya.webp',
+	'/executives/22_23/nando.webp',
+	'/executives/22_23/rachel.webp',
+	'/executives/22_23/richelle.webp',
+	'/executives/22_23/russell.webp',
+	'/executives/22_23/sidney.webp',
+	'/executives/22_23/tavaella.webp',
+	'/executives/22_23/vincent.webp',
 ];
 
-export default EXECS_22_23;
+const EXECS_23_24 = [
+	'/executives/23_24/imel.webp',
+	'/executives/23_24/nadya.webp',
+	'/executives/23_24/nico.webp',
+	'/executives/23_24/jade.webp',
+	'/executives/23_24/kent.webp',
+	'/executives/23_24/justin.webp',
+	'/executives/23_24/christie.webp',
+	'/executives/23_24/nathania.webp',
+	'/executives/23_24/anabel.webp',
+	'/executives/23_24/findy.webp',
+	'/executives/23_24/sasha.webp',
+	'/executives/23_24/charlene.webp',
+	'/executives/23_24/joselyn.webp',
+	'/executives/23_24/richelle.webp',
+	'/executives/23_24/roswell.webp',
+	'/executives/23_24/yumi.webp',
+	'/executives/23_24/wk.webp',
+	'/executives/23_24/mj.webp',
+	'/executives/23_24/ella.webp',
+	'/executives/23_24/christo.webp',
+	'/executives/23_24/luna.webp',
+	'/executives/23_24/jessie.webp',
+	'/executives/23_24/sam.webp',
+	'/executives/23_24/dhira.webp',
+	'/executives/23_24/angel.webp',
+	'/executives/23_24/shannon.webp',
+];
+
+const EXECS_24_25 = [
+	'/executives/24_25/justin.webp',
+	'/executives/24_25/christie.webp',
+	'/executives/24_25/roswell.webp',
+	'/executives/24_25/valen.webp',
+	'/executives/24_25/aiko.webp',
+	'/executives/24_25/wk.webp',
+	'/executives/24_25/bradley.webp',
+	'/executives/24_25/dion.webp',
+	'/executives/24_25/tiffany.webp',
+	'/executives/24_25/nathania.webp',
+	'/executives/24_25/anabel.webp',
+	'/executives/24_25/vanessa.webp',
+	'/executives/24_25/gabriellaaiko.webp',
+	'/executives/24_25/yumi.webp',
+	'/executives/24_25/audri.webp',
+	'/executives/24_25/adrian.webp',
+	'/executives/24_25/trigo.webp',
+	'/executives/24_25/dhira.webp',
+	'/executives/24_25/angel.webp',
+	'/executives/24_25/sam.webp',
+	'/executives/24_25/accita.webp',
+	'/executives/24_25/latascha.webp',
+	'/executives/24_25/eileen.webp',
+	'/executives/24_25/brenda.webp',
+	'/executives/24_25/ray.webp',
+	'/executives/24_25/jessie.webp',
+	'/executives/24_25/matthew.webp',
+	'/executives/24_25/jennifer.webp',
+];
+
+export { EXECS_22_23, EXECS_23_24, EXECS_24_25 };
