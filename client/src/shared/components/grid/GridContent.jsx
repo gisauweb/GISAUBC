@@ -13,7 +13,7 @@ export default function GridContent({ data, upcomingEvent, itemType }) {
 			{upcomingEvent ? (
 				<h4 className='text-center w-full font-oswald text-2xl sm:text-3xl md:text-5xl font-bold text-translucent'>
 					Stay tuned for more
-					{data.isEvent ? ' exciting events!' : ' Indonesian delicacies!'}
+					{itemType === 'event' ? ' exciting events!' : ' Indonesian delicacies!'}
 				</h4>
 			) : (
 				<p>Stay tuned :)</p>

@@ -49,6 +49,8 @@ export const db = getFirestore();
 // 	extended: true,
 // }) as RequestHandler);
 app.use(cors({ origin: appOrigin }));
+app.options("*", cors({ origin: appOrigin })); // Preflight CORS support
+
 app.use(helmet());
 app.use(jwtCheck);
 
