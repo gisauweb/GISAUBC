@@ -34,7 +34,7 @@ export default function UpcomingGridItem({ item }) {
 				<Box className='flex flex-col mb-4 h-fit'>
 					<h4 className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</h4>
 					<div className='flex flex-row flex-wrap gap-1 mb-2'>
-						<p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.date}</p>
+						{item.date && <p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.date}</p>}
 						{item.time && <p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.time}</p>}
 						<p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.loc}</p>
 					</div>
@@ -56,16 +56,17 @@ export default function UpcomingGridItem({ item }) {
 					{item.isEvent ? (
 						<>
 							<Button
-								text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Apply Here'}
+								text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Register Here'}
 								handleClickButton={() => handleRegisterButton(item.registrationLink)}
 							/>
-							{item.title !== 'Fall Hiring' && (
+							{/* Below here is for hiring package usually for hiring */}
+							{/* {item.title !== 'Fall Hiring' && (
 								<Button
 									text='Hiring Package'
 									background='transparentBg'
 									handleClickButton={() => handleRegisterButton(item.infoLink)}
 								/>
-							)}
+							)} */}
 						</>
 					) : (
 						<Button
