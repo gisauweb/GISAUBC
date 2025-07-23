@@ -14,13 +14,13 @@ function EventCards({ data }) {
 					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
 					<p className='font-oswald font-semibold text-3xl'>{data.title}</p>
 					<div className='flex flex-row flex-wrap gap-1'>
-						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.date}</p>
+						{data.date && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.date}</p>}
 						{data.time && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.time}</p>}
 						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.loc}</p>
 					</div>
 				</div>
 				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
-					<Button text={data.isEvent ? 'Apply Now' : 'Order Now'} className='w-full text-start' />
+					<Button text={data.isEvent ? 'Register Now' : 'Order Now'} className='w-full text-start' />
 				</Link>
 			</div>
 		</div>
