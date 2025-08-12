@@ -1,31 +1,33 @@
-// import { EVENTS_25_26 } from 'assets/events-page';
+import { EVENTS_25_26 } from 'assets/events-page';
 // import { RANTANGAN_24_25 } from 'assets/rantangan-page';
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
 const UPCOMING_EVENTS = [
-	// 	{
-	// 		image: EVENTS_25_26[1],
-	// 		title: 'UBUD',
-	// 		caption: `📍 What is UBUD?
-	// UBC Udah Deket (UBUD) is our annual online info session hosted by GISAU for
-	// incoming UBC Vancouver students and their parents! Whether you’re feeling
-	// excited, nervous, or a bit of both, we’ve got all the answers you need before takeoff 🛫
-	// 🗓️ When & Where?
-	// 🇮🇩 Saturday, August 2, 2025 (10 AM WIB)
-	// 🇨🇦 Friday, August 1, 2025 (8 PM PDT)
-	// 📍 Zoom — join from anywhere!
-	// 💬 With guest speakers from:
-	// 🎤 UBC International Office
-	// 🎤 UBC Indonesian Parents
-	// 🎤 KJRI Vancouver (@indonesiainvancouver)
-	// 🎤 PERMIKA Vancouver (@permika.van)`,
-	// 		// date: 'August 1th | 11:59PM PDT',
-	// 		loc: 'Online',
-	// 		registrationLink:
-	// 			'https://docs.google.com/forms/d/e/1FAIpQLScbFceCYzxtPs-NBSX0rKM_T5xitUoO5rb0Yb2sPA5ISgPHGA/viewform?usp=dialog',
-	// 		isEvent: true,
-	// 		// infoLink: '/past-events/package.pdf',
-	// 	},
+	{
+		image: EVENTS_25_26[1],
+		title: 'UBUD',
+		caption: `📍 What is UBUD?
+UBC Udah Deket (UBUD) is our annual online info session hosted by GISAU for 
+incoming UBC Vancouver students and their parents! Whether you’re feeling 
+excited, nervous, or a bit of both, we’ve got all the answers you need before takeoff 🛫
+
+🗓️ When & Where?
+🇮🇩 Saturday, August 2, 2025 (10 AM WIB) 
+🇨🇦 Friday, August 1, 2025 (8 PM PDT)
+📍 Zoom — join from anywhere!
+
+💬 With guest speakers from:
+🎤 UBC International Office
+🎤 UBC Indonesian Parents
+🎤 KJRI Vancouver (@indonesiainvancouver)
+🎤 PERMIKA Vancouver (@permika.van)`,
+		// date: 'August 1th | 11:59PM PDT',
+		loc: 'Online',
+		registrationLink:
+			'https://docs.google.com/forms/d/e/1FAIpQLScbFceCYzxtPs-NBSX0rKM_T5xitUoO5rb0Yb2sPA5ISgPHGA/viewform?usp=dialog',
+		isEvent: true,
+		// infoLink: '/past-events/package.pdf',
+	},
 ];
 
 export default UPCOMING_EVENTS;
