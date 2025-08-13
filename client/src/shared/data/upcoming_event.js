@@ -3,7 +3,7 @@
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
 const UPCOMING_EVENTS = [
-	// 	{
+	// 	{ test
 	// 		image: EVENTS_25_26[1],
 	// 		title: 'UBUD',
 	// 		caption: `📍 What is UBUD?
