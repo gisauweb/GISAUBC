@@ -1,4 +1,4 @@
-// import { EVENTS_25_26 } from 'assets/events-page';
+import { EVENTS_25_26 } from 'assets/events-page';
 // import { RANTANGAN_24_25 } from 'assets/rantangan-page';
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
