@@ -46,6 +46,6 @@ const EVENTS_22_23 = [
 	'/past-events/22_23/14.svg',
 ];
 
-const EVENTS_25_26 = ['/past-events/25_26/1.webp', '/past-events/25_26/2.png'];
+const EVENTS_25_26 = ['/past-events/25_26/1.webp', '/past-events/25_26/2.webp', '/past-events/25_26/3.webp'];
 
 export { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 };
