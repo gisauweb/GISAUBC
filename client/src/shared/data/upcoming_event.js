@@ -1,31 +1,32 @@
-// import { EVENTS_25_26 } from 'assets/events-page';
+import { EVENTS_25_26 } from 'assets/events-page';
 // import { RANTANGAN_24_25 } from 'assets/rantangan-page';
 // import infoFile from 'assets/rantangan-page/info.pdf';
 
 const UPCOMING_EVENTS = [
-	// 	{ test
-	// 		image: EVENTS_25_26[1],
-	// 		title: 'UBUD',
-	// 		caption: `📍 What is UBUD?
-	// UBC Udah Deket (UBUD) is our annual online info session hosted by GISAU for
-	// incoming UBC Vancouver students and their parents! Whether you’re feeling
-	// excited, nervous, or a bit of both, we’ve got all the answers you need before takeoff 🛫
-	// 🗓️ When & Where?
-	// 🇮🇩 Saturday, August 2, 2025 (10 AM WIB)
-	// 🇨🇦 Friday, August 1, 2025 (8 PM PDT)
-	// 📍 Zoom — join from anywhere!
-	// 💬 With guest speakers from:
-	// 🎤 UBC International Office
-	// 🎤 UBC Indonesian Parents
-	// 🎤 KJRI Vancouver (@indonesiainvancouver)
-	// 🎤 PERMIKA Vancouver (@permika.van)`,
-	// 		// date: 'August 1th | 11:59PM PDT',
-	// 		loc: 'Online',
-	// 		registrationLink:
-	// 			'https://docs.google.com/forms/d/e/1FAIpQLScbFceCYzxtPs-NBSX0rKM_T5xitUoO5rb0Yb2sPA5ISgPHGA/viewform?usp=dialog',
-	// 		isEvent: true,
-	// 		// infoLink: '/past-events/package.pdf',
-	// 	},
+	{
+		image: EVENTS_25_26[2],
+		title: 'KUY!',
+		caption: `Are you a first-year student? An international student new to Vancouver? Or just someone looking to connect with RBC industry professionals?
+
+You're in luck! GISAU is teaming up with RBC (the Royal Bank of Canada) for a fun & beginner-friendly session on:
+🏦 Opening a bank account
+📊 Saving & investing basics
+🧠 Smart student money habits
+
+When & Where?
+🗓 Thursday, Sept 11, 2025
+🕔 5:00 – 6:40 PM PDT
+📍 Room 2306/2309, AMS Nest | UBC Vancouver
+
+📢 RSVP by September 10 to save your spot!
+Let’s take the first step to financial independence together 🫰🇨🇦`,
+		// date: 'August 1th | 11:59PM PDT',
+		loc: 'AMS Nest',
+		registrationLink:
+			'https://docs.google.com/forms/d/e/1FAIpQLSd_ZnNHJB9YR6XAIvpKWPwONgrUeGUmJJ5P3vrv9jnDhkK9KQ/viewform?fbclid=PAdGRleAMnRUNleHRuA2FlbQIxMQABpz0auZShiLoNhbtCFd9DCMk3fDxysBTUj_1xK7nRUIQgrlVG8ze_z1HLIvMP_aem_B8swQbTuZW3oGC9a5iHdJQ',
+		isEvent: true,
+		// infoLink: '/past-events/package.pdf',
+	},
 ];
 
 export default UPCOMING_EVENTS;
