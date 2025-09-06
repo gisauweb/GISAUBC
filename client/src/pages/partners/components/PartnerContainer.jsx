@@ -3,13 +3,9 @@ import { Box, Typography } from '@mui/material';
 
 function PartnerContainer({ name, logo, description, link }) {
 	return (
-		<Box
-			className={`flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40 ${
-				name === 'Wizeprep' ? 'mb-0' : 'mb-20'
-			}`}
-		>
+		<Box className='flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40 '>
 			<a href={link} target='_blank' rel='noreferrer'>
-				<div className='w-52 h-52 flex items-center object-contain'>
+				<div className='rounded-xl w-52 h-52 flex items-center object-cover'>
 					<img alt={name} src={logo} loading='lazy' />
 				</div>
 			</a>
