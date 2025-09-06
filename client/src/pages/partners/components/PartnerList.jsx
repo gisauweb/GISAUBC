@@ -4,7 +4,7 @@ import PartnerContainer from './PartnerContainer';
 
 function PartnerList() {
 	return (
-		<Box className='flex flex-col my-8 sm:my-14 z-1'>
+		<Box className='flex flex-col my-8 sm:my-14 gap-14 z-1'>
 			{PARTNERS.filter((sponsor) => sponsor.yearlong).map((sponsor) => (
 				<PartnerContainer
 					name={sponsor.name}
