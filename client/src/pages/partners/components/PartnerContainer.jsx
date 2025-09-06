@@ -5,7 +5,7 @@ function PartnerContainer({ name, logo, description, link }) {
 	return (
 		<Box className='flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40 '>
 			<a href={link} target='_blank' rel='noreferrer'>
-				<div className='bg-bgCream rounded-xl w-52 h-52 flex items-center object-cover'>
+				<div className='rounded-xl w-52 h-52 flex items-center object-cover'>
 					<img alt={name} src={logo} loading='lazy' />
 				</div>
 			</a>
