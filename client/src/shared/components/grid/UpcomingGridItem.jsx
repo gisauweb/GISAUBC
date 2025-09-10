@@ -17,19 +17,19 @@ export default function UpcomingGridItem({ item }) {
 				!item.isEvent && 'items-center'
 			}`}
 		>
-			<a
+			{/* <a
 				href={item.infoLink}
 				target='_blank'
 				rel='noreferrer'
 				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-[26rem] relative'
-			>
-				<img
-					src={item.image}
-					alt='item_image'
-					className='rounded-2xl z-10 aspect-square object-cover size-full'
-					loading='lazy'
-				/>
-			</a>
+			> */}
+			<img
+				src={item.image}
+				alt='item_image'
+				className='rounded-2xl z-10 aspect-square size-full md:size-[26rem] object-cover'
+				loading='lazy'
+			/>
+			{/* </a> */}
 			<div>
 				<Box className='flex flex-col mb-4 h-fit'>
 					<h4 className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</h4>
