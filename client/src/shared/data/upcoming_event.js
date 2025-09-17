@@ -4,26 +4,23 @@ import { EVENTS_25_26 } from 'assets/events-page';
 
 const UPCOMING_EVENTS = [
 	{
-		image: EVENTS_25_26[2],
-		title: 'KUY!',
-		caption: `Are you a first-year student? An international student new to Vancouver? Or just someone looking to connect with RBC industry professionals?
+		image: EVENTS_25_26[3],
+		title: 'SOTO',
+		caption: `Hey Thunderbirds... SOTO 2025 is FINALLY here! 🌟
 
-You're in luck! GISAU is teaming up with RBC (the Royal Bank of Canada) for a fun & beginner-friendly session on:
-🏦 Opening a bank account
-📊 Saving & investing basics
-🧠 Smart student money habits
+From fun games 🤸‍♀️, huge prizes 🏆, to a free Indonesian dinner 😋, SOTO is the perfect chance for you to meet new friends, reconnect with old ones, and learn more about what GISAU has planned for the year. 
 
-When & Where?
-🗓 Thursday, Sept 11, 2025
-🕔 5:00 – 6:40 PM PDT
-📍 Room 2306/2309, AMS Nest | UBC Vancouver
+📍 AMS Nest Great Hall South
+🕠 5:30PM – END
+📅 Friday, Sept 26, 2025
 
-📢 RSVP by September 10 to save your spot!
-Let’s take the first step to financial independence together 🫰🇨🇦`,
+So make sure you invite your Sobat Tongkrongan(s)! and start your school years the right way — with community, culture, and lots of laughter. Sampai jumpa, we’ll see you there! 👋
+
+*This event is for GISAU Members only. Purchase your membership at the AMS Clubs Fair 💳`,
 		// date: 'August 1th | 11:59PM PDT',
 		loc: 'AMS Nest',
 		registrationLink:
-			'https://docs.google.com/forms/d/e/1FAIpQLSd_ZnNHJB9YR6XAIvpKWPwONgrUeGUmJJ5P3vrv9jnDhkK9KQ/viewform?fbclid=PAdGRleAMnRUNleHRuA2FlbQIxMQABpz0auZShiLoNhbtCFd9DCMk3fDxysBTUj_1xK7nRUIQgrlVG8ze_z1HLIvMP_aem_B8swQbTuZW3oGC9a5iHdJQ',
+			'https://docs.google.com/forms/d/e/1FAIpQLScgRLJGYr_iI1t3470sgXFYJtNdneWHJXD0QfAjtJHms3Zpfw/viewform?usp=sharing&ouid=102355813688502067773',
 		isEvent: true,
 		// infoLink: '/past-events/package.pdf',
 	},

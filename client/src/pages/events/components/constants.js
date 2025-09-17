@@ -3,6 +3,13 @@ import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 } from 'assets/e
 const PAST_EVENTS = {
 	'2025/2026': [
 		{
+			image: EVENTS_25_26[2],
+			title: 'KUY!',
+			date: 'September 11, 2025',
+			loc: 'AMS Nest',
+			recap: 'https://www.instagram.com/reel/DOr0dgTibqI/?utm_source=ig_web_copy_link&igsh=Z2lkNTZxd3pvN25q',
+		},
+		{
 			image: EVENTS_25_26[1],
 			title: 'UBUD',
 			date: 'August 1, 2025',
