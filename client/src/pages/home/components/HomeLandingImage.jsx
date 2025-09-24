@@ -15,7 +15,7 @@ export default function HomeLandingImage() {
 			category: 'Join Member',
 			action: 'Click to register for membership',
 		});
-		window.open('https://forms.gle/33ovq6wBh1jaXjBu7', '_blank', 'noreferrer');
+		window.open('https://forms.gle/eEoMYZDpf8yofAAYA', '_blank', 'noreferrer');
 	};
 
 	const handleGamesButton = () => {
