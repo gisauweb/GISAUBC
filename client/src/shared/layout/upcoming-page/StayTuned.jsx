@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoSpinning from 'shared/components/logo-spinning/LogoSpinning';
+import LogoSpinning from 'app/shared/components/logo-spinning/LogoSpinning';
 
 export default function StayTuned() {
 	return (

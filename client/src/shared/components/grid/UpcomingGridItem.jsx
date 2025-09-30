@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import ReactGA from 'react-ga4';
-import Button from 'shared/components/button/Button';
+import Button from 'app/shared/components/button/Button';
 
 export default function UpcomingGridItem({ item }) {
 	const handleRegisterButton = (link) => {

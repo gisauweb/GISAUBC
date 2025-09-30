@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import MainContainer from 'shared/layout/MainContainer';
-import StayTuned from 'shared/layout/upcoming-page/StayTuned';
-import Footer from 'shared/components/footer/Footer';
+import MainContainer from 'app/shared/layout/MainContainer';
+import StayTuned from 'app/shared/layout/upcoming-page/StayTuned';
+import Footer from 'app/shared/components/footer/Footer';
 
 export default function UpcomingPage() {
 	return (

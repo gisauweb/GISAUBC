@@ -2,6 +2,18 @@
 	"name": "gisaubc",
 	"version": "0.1.0",
 	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"start": "react-scripts start",
+		"build": "react-scripts build && npm run sentry:sourcemaps",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"lint": "npx eslint src",
+		"lint:fix": "npm run lint -- --fix",
+		"prettier": "npx prettier src --check",
+		"prettier:fix": "npm run prettier -- --write",
+		"sentry:sourcemaps": "sentry-cli sourcemaps inject --org gisaubc --project javascript-react ./build && sentry-cli sourcemaps upload --org gisaubc --project javascript-react ./build"
+	},
 	"dependencies": {
 		"@auth0/auth0-react": "^2.2.4",
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -26,6 +38,7 @@
 		"flowbite": "^2.1.1",
 		"flowbite-react": "^0.6.4",
 		"history": "^5.3.0",
+		"next": "^15.5.4",
 		"react": "^18.2.0",
 		"react-audio-player": "^0.17.0",
 		"react-chartjs-2": "^5.2.0",
@@ -41,40 +54,14 @@
 		"react-spring": "^9.7.3",
 		"react-switch": "^7.0.0",
 		"slick-carousel": "^1.8.1",
-		"tailwindcss": "^3.4.3",
 		"web-vitals": "^2.1.4",
 		"winston": "^3.9.0"
 	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build && npm run sentry:sourcemaps",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"lint": "npx eslint src",
-		"lint:fix": "npm run lint -- --fix",
-		"prettier": "npx prettier src --check",
-		"prettier:fix": "npm run prettier -- --write",
-		"sentry:sourcemaps": "sentry-cli sourcemaps inject --org gisaubc --project javascript-react ./build && sentry-cli sourcemaps upload --org gisaubc --project javascript-react ./build"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
 	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.13",
+		"@types/node": "^24.6.0",
+		"@types/react": "^19.1.15",
+		"@types/react-dom": "^19.1.9",
 		"autoprefixer": "^10.4.13",
 		"eslint": "^8.42.0",
 		"eslint-config-airbnb": "^19.0.4",
@@ -84,8 +71,10 @@
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
-		"postcss": "^8.4.38",
+		"postcss": "^8.5.6",
 		"prettier": "2.8.8",
-		"react-scripts": "^5.0.1"
+		"react-scripts": "^5.0.1",
+		"tailwindcss": "^4.1.13",
+		"typescript": "^5.9.2"
 	}
 }

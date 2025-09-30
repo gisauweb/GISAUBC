@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
-import Button from 'shared/components/button/Button';
-import TeamGridItem from 'pages/about/components/TeamGridItem';
+import Button from 'app/shared/components/button/Button';
+import TeamGridItem from 'app/about/components/TeamGridItem';
 import GridItem from './GridItem';
 
 function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard }) {
