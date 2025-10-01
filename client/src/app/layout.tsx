@@ -2,7 +2,6 @@ import RootProvider from "@/shared/provider";
 import type { Metadata } from "next";
 import React from "react";
 import "./globals.css";
-import "./index.css";
 
 export const metadata: Metadata = {
   title: "GISAUBC",

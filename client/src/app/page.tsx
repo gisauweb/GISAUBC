@@ -40,6 +40,7 @@ function App() {
       <Link href={"/"} className="">
         halo
       </Link>
+      <NavigationBar />
       {/* <Routes>
 				<Route path='/' element={<NavigationBar />}>
 					{pages.map((page) => (
