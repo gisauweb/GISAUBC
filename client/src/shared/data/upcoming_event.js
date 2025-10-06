@@ -20,14 +20,14 @@ We’re hiring for:
 🌐 Webmaster
 🍳 F&B Coordinator
 
-🗓️ Applications close Friday, October 10th, 2025 at 11:59PM PST!
+🗓️ Applications close Friday, October 10th, 2025 at 11:59PM PDT!
 
 (For any hiring-related inquiries, DM us or email contact.gisau@gmail.com)`,
 		// date: 'August 1th | 11:59PM PDT',
 		loc: 'Online',
 		registrationLink: 'https://forms.gle/XTprZog16sn8g71J7',
 		isEvent: true,
-		infoLink: 'https://drive.google.com/file/d/1FJk_yMbl3MIIHhSYIQ92RRuAqKCA6up4/view?usp=sharing',
+		infoLink: 'https://drive.google.com/file/d/1fm4Z25HcffvlhWRKTXv5m0KLnr1-Qpyx/view?usp=sharing',
 	},
 ];
 
