@@ -1,10 +1,10 @@
-import Home from 'pages/home/Home';
+import About from 'pages/about/About';
 import Events from 'pages/events/Events';
+import Games from 'pages/games/Games';
+import Home from 'pages/home/Home';
+import Members from 'pages/members/Members';
 import Partners from 'pages/partners/Partners';
 import Rantangan from 'pages/rantangan/Rantangan';
-import About from 'pages/about/About';
-import Games from 'pages/games/Games';
-import Members from 'pages/members/Members';
 
 export const pages = [
 	{
