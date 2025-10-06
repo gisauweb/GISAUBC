@@ -27,7 +27,7 @@ We’re hiring for:
 		loc: 'Online',
 		registrationLink: 'https://forms.gle/XTprZog16sn8g71J7',
 		isEvent: true,
-		infoLink: 'https://drive.google.com/file/d/1fm4Z25HcffvlhWRKTXv5m0KLnr1-Qpyx/view?usp=sharing',
+		infoLink: 'https://drive.google.com/file/d/1TDJwPMWMKcoTyrl4oGH3BR_KkBH3Sz7J/view?usp=sharing',
 	},
 ];
 
