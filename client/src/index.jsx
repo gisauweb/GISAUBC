@@ -11,7 +11,7 @@ import history from 'libs/history';
 import { Sentry, sentryConfig } from 'libs/sentry';
 import App from './App';
 
-ReactGA.initialize(process.env.REACT_APP_GID);
+ReactGA.initialize(import.meta.env.VITE_APP_GID);
 Sentry.init(sentryConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const responsiveTheme = responsiveFontSizes(theme);
@@ -36,9 +36,7 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Auth0Provider {...providerConfig}>
-				<ThemeProvider theme={responsiveTheme}>
-					<App />
-				</ThemeProvider>
+				<ThemeProvider theme={responsiveTheme}>{/* <App /> */}</ThemeProvider>
 			</Auth0Provider>
 		</BrowserRouter>
 	</React.StrictMode>,

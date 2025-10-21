@@ -2,6 +2,18 @@
 	"name": "gisaubc",
 	"version": "0.1.0",
 	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build && npm run sentry:sourcemaps",
+		"preview": "vite preview",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"lint": "npx eslint src",
+		"lint:fix": "npm run lint -- --fix",
+		"prettier": "npx prettier src --check",
+		"prettier:fix": "npm run prettier -- --write",
+		"sentry:sourcemaps": "sentry-cli sourcemaps inject --org gisaubc --project javascript-react ./build && sentry-cli sourcemaps upload --org gisaubc --project javascript-react ./build"
+	},
 	"dependencies": {
 		"@auth0/auth0-react": "^2.2.4",
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -47,17 +59,6 @@
 		"web-vitals": "^2.1.4",
 		"winston": "^3.9.0"
 	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build && npm run sentry:sourcemaps",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"lint": "npx eslint src",
-		"lint:fix": "npm run lint -- --fix",
-		"prettier": "npx prettier src --check",
-		"prettier:fix": "npm run prettier -- --write",
-		"sentry:sourcemaps": "sentry-cli sourcemaps inject --org gisaubc --project javascript-react ./build && sentry-cli sourcemaps upload --org gisaubc --project javascript-react ./build"
-	},
 	"eslintConfig": {
 		"extends": [
 			"react-app",
@@ -77,6 +78,7 @@
 		]
 	},
 	"devDependencies": {
+		"@vitejs/plugin-react": "^5.0.4",
 		"autoprefixer": "^10.4.13",
 		"eslint": "^8.42.0",
 		"eslint-config-airbnb": "^19.0.4",
@@ -88,6 +90,6 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"postcss": "^8.4.38",
 		"prettier": "2.8.8",
-		"react-scripts": "^5.0.1"
+		"vite": "^7.1.11"
 	}
 }
