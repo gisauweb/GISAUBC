@@ -4,7 +4,6 @@ import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
-import './App.css';
 import isGamesPage from './routeUtils';
 import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';

@@ -60,7 +60,7 @@ function ScareDoor() {
 	);
 
 	const renderYoutube = () => (
-		<div className='flex flex-col justify-center items-center h-[100vh]'>
+		<div className='flex flex-col justify-center items-center h-screen'>
 			{isMobileView ? (
 				<iframe
 					width='300'

@@ -20,7 +20,7 @@ export default function PlugBox() {
 		>
 			{PLUGS.map((plug, index) => (
 				<Box
-					className='bg-bgPrimary w-full sm:w-1/2 border-2 rounded-2xl
+					className='bg-bg-primary w-full sm:w-1/2 border-2 rounded-2xl
 								border-[#F2F0E3] hover:border-[#7D0202] hover:cursor-pointer'
 					onMouseEnter={() => handleBoxHover(index)}
 					onMouseLeave={() => handleBoxHover(null)}

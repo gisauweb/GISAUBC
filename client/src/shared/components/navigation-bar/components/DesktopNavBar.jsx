@@ -67,7 +67,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 				<Link
 					to='/members'
 					onClick={ScrollToTop}
-					className='bg-bgBlack border-2 rounded-full border-gamesRed h-fit
+					className='bg-bg-black border-2 rounded-full border-games-red h-fit
           justify-center items-center px-3 md:px-7 py-2 md:py-2.5 hidden lg:flex xl:w-1/2'
 				>
 					<p className='underline-animation font-oswald text-sm md:text-base text-white'>Become a Member</p>
@@ -82,7 +82,7 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 			>
 				<Link
 					onClick={ScrollToTop}
-					className='bg-bgBlack border-2 rounded-full border-gamesRed h-full w-full
+					className='bg-bg-black border-2 rounded-full border-games-red h-full w-full
           flex items-center justify-center overflow-hidden'
 				>
 					{isHovered ? (

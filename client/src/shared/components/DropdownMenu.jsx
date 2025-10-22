@@ -58,7 +58,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 		>
 			<button
 				type='button'
-				className={`bg-bgPrimary hover:bg-gray-200 text-primary text-base sm:text-xl 
+				className={`bg-bg-primary hover:bg-gray-200 text-primary text-base sm:text-xl 
 							${isOpen ? 'rounded-t-2xl' : 'rounded-2xl'} focus:border-b border-gray-400 
 							font-inter font-semibold flex items-center justify-between w-full py-1`}
 				onClick={handleToggle}
@@ -72,7 +72,7 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 					<button
 						key={year}
 						type='button'
-						className={`block w-full py-2 bg-bgPrimary hover:bg-primary
+						className={`block w-full py-2 bg-bg-primary hover:bg-primary
 									${i === years.length - 1 && 'rounded-b-xl'} text-base sm:text-xl
 									text-primary hover:text-white font-inter font-semibold `}
 						onClick={() => handleSelect(year)}

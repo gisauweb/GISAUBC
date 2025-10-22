@@ -20,7 +20,7 @@ function MenuInterface({ isOpen, closeHandler, openHandler, hasLandingImage }) {
 				onClick={closeHandler}
 			/>
 			<div
-				className={`fixed bg-primary top-0 right-0 w-[21rem] h-full z-40  duration-1000 ${
+				className={`fixed bg-primary top-0 right-0 w-84 h-full z-40  duration-1000 ${
 					isOpen ? 'translate-x-0 visible' : 'invisible translate-x-full'
 				}`}
 			>

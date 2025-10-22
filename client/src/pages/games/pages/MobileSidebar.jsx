@@ -25,7 +25,7 @@ export default function MobileSideBar({ currentPage, setCurrentPage }) {
 		<>
 			{sidebarVisible && (
 				<div
-					className='fixed top-0 left-0 w-screen h-full bg-black opacity-60 z-50 rounded-none blur'
+					className='fixed top-0 left-0 w-screen h-full bg-black opacity-60 z-50 rounded-none blur-sm'
 					onClick={onCloseSidebar}
 				/>
 			)}

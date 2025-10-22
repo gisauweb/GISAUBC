@@ -24,7 +24,7 @@ export default function NavigationBar() {
 			const { scrollY } = window;
 			const scrollThreshold = 50;
 			if (scrollY > scrollThreshold) {
-				setBgColor('bg-gamesRed h-12 rounded-[20px]');
+				setBgColor('bg-games-red h-12 rounded-[20px]');
 			} else {
 				setBgColor('');
 			}
