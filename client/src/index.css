@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 /* Proxima Nova */
 @import url('https://use.typekit.net/mqr7lhi.css');
