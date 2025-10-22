@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-curly-newline */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Box } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
