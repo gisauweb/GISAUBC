@@ -36,7 +36,9 @@ root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<Auth0Provider {...providerConfig}>
-				<ThemeProvider theme={responsiveTheme}>{/* <App /> */}</ThemeProvider>
+				<ThemeProvider theme={responsiveTheme}>
+					<App />
+				</ThemeProvider>
 			</Auth0Provider>
 		</BrowserRouter>
 	</React.StrictMode>,
