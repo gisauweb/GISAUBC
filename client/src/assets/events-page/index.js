@@ -52,6 +52,7 @@ const EVENTS_25_26 = [
 	'/past-events/25_26/3.webp',
 	'/past-events/25_26/4.webp',
 	'/past-events/25_26/5.webp',
+	'/past-events/25_26/6.webp',
 ];
 
 export { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 };
