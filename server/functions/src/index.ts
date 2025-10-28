@@ -18,7 +18,7 @@ import userRoutes from "./routes/user.routes";
 const LOCAL_DEV_ENV = true;
 
 const appOrigin = LOCAL_DEV_ENV
-  ? "http://localhost:3000"
+  ? "http://localhost:5173"
   : "https://deploy-preview-185--gisaubcv3.netlify.app";
 
 const getSecret = jwks.expressJwtSecret({
