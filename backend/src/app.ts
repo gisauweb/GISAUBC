@@ -1,11 +1,10 @@
 import express from "express";
+import post from "./routes/post";
 
 const app = express();
-const port = 3000;
+const port = 8000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!\n");
-});
+app.use("/post", post);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
