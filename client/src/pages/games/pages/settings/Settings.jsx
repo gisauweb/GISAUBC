@@ -16,12 +16,12 @@ export default function Settings({ account, token, updateAccountState }) {
 					className='w-[85%] xl:w-1/2 xl:h-3/4 flex flex-col
 							justify-start xl:justify-between mx-auto gap-y-14 pb-4'
 				>
-					<Box className='h-1/2 flex flex-col justify-start gap-y-[1.25rem]'>
+					<Box className='h-1/2 flex flex-col justify-start gap-y-5'>
 						<span className='font-bold font-poppins text-2xl'>Profile Visibility</span>
 						<ToggleSwitch id='show_profile' label='Show my profile to others' />
 						<ToggleSwitch id='show_profile_picture' label='Show my profile picture to others' />
 					</Box>
-					<Box className='h-1/2 flex flex-col justify-start gap-y-[1.25rem]'>
+					<Box className='h-1/2 flex flex-col justify-start gap-y-5'>
 						<span className='font-bold font-poppins text-2xl'>Email Notifications</span>
 						<ToggleSwitch id='show_profile' label='Daily reminders' />
 						<ToggleSwitch id='show_profile_picture' label='Weekly updates' />

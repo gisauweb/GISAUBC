@@ -10,7 +10,7 @@ import logger from 'libs/winston';
 const production = process.env.NODE_ENV === 'prod';
 
 const firebaseProdConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	apiKey: process.env.VITE_FIREBASE_API_KEY,
 	authDomain: 'gisaubc-prod.firebaseapp.com',
 	projectId: 'gisaubc-prod',
 	storageBucket: 'gisaubc-prod.appspot.com',
@@ -20,7 +20,7 @@ const firebaseProdConfig = {
 };
 
 const firebaseDevConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	apiKey: process.env.VITE_FIREBASE_API_KEY,
 	authDomain: 'gisaubc-dev.firebaseapp.com',
 	projectId: 'gisaubc-dev',
 	storageBucket: 'gisaubc-dev.appspot.com',

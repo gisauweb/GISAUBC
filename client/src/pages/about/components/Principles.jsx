@@ -9,7 +9,7 @@ export default function Principles() {
 	return (
 		<Box
 			className='flex flex-col items-center sm:flex-row sm:items-left
-				mt-10 p-8 bg-[#FEF8EF] rounded-xl min-h-[20rem]'
+				mt-10 p-8 bg-[#FEF8EF] rounded-xl min-h-80'
 			sx={{
 				gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
 				boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.2)',
