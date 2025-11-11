@@ -14,19 +14,19 @@ export default function UpcomingGridItem({ item }) {
 	return (
 		<Box
 			className={`flex flex-col md:flex-row w-full justify-start md:space-x-10 mb-20 ${
-				!item.isEvent && 'items-center'
+				!item.is_event && 'items-center'
 			}`}
 		>
 			{/* <a
 				href={item.infoLink}
 				target='_blank'
 				rel='noreferrer'
-				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-[26rem] relative'
+				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-104 relative'
 			> */}
 			<img
 				src={item.image}
 				alt='item_image'
-				className='rounded-2xl z-10 aspect-square size-full md:size-[26rem] object-cover'
+				className='rounded-2xl z-10 aspect-square size-full md:size-104 object-cover'
 				loading='lazy'
 			/>
 			{/* </a> */}
@@ -34,9 +34,9 @@ export default function UpcomingGridItem({ item }) {
 				<Box className='flex flex-col mb-4 h-fit'>
 					<h4 className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</h4>
 					<div className='flex flex-row flex-wrap gap-1 mb-2'>
-						{item.date && <p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.date}</p>}
-						{item.time && <p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.time}</p>}
-						<p className='px-3 py-1 bg-bgCream w-fit rounded-md text-sm'>{item.loc}</p>
+						{/* {item.date && <p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.date}</p>} */}
+						{item.time && <p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.time}</p>}
+						<p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.location}</p>
 					</div>
 					<p className='whitespace-pre-line text-base font-proxima'>{item.caption}</p>
 					{item.priceMember && (
@@ -53,7 +53,7 @@ export default function UpcomingGridItem({ item }) {
 					)}
 				</Box>
 				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
-					{item.isEvent ? (
+					{item.is_event ? (
 						<>
 							<Button
 								text='Register Here'
@@ -71,7 +71,7 @@ export default function UpcomingGridItem({ item }) {
 					) : (
 						<Button
 							text='Order Now'
-							handleClickButton={() => handleRegisterButton(item.registrationLink)}
+							handleClickButton={() => handleRegisterButton(item.registration_link)}
 						/>
 					)}
 				</div>

@@ -13,7 +13,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 	return !isMobileView ? (
 		<div className='flex xl:w-[80vw] h-full gap-7 px-16 justify-center items-center'>
 			<div className='w-[55%] h-5/6 rounded-2xl pl-2 flex flex-col justify-center items-center gap-5'>
-				<Box className='bg-gamesBox w-full h-96 rounded-2xl flex justify-center items-center'>
+				<Box className='bg-games-box w-full h-96 rounded-2xl flex justify-center items-center'>
 					<Timer
 						account={account}
 						token={token}
@@ -21,7 +21,7 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 						selectedTaskId={selectedTaskId}
 					/>
 				</Box>
-				<Box className='bg-gamesBox w-full h-1/3 rounded-2xl flex top-3'>
+				<Box className='bg-games-box w-full h-1/3 rounded-2xl flex top-3'>
 					<Points account={account} />
 				</Box>
 			</div>
@@ -43,10 +43,10 @@ export default function Pomodoro({ account, token, updateAccountState }) {
 	) : (
 		<div className='flex flex-col w-full h-fit items-center gap-7 justify-center'>
 			<Typography style={{ fontWeight: 'bold', marginTop: '55px', fontSize: '20px' }}>Pomodoro Timer</Typography>
-			<Box className='bg-gamesBox w-5/6 py-3 rounded-2xl flex'>
+			<Box className='bg-games-box w-5/6 py-3 rounded-2xl flex'>
 				<Points account={account} />
 			</Box>
-			<Box className='bg-gamesBox w-5/6 py-5 rounded-2xl flex'>
+			<Box className='bg-games-box w-5/6 py-5 rounded-2xl flex'>
 				<Timer
 					account={account}
 					token={token}

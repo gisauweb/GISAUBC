@@ -20,7 +20,7 @@ function RantanganContent({ upcoming }) {
 					<img
 						src={bakmiIcon}
 						alt='bakmi-icon'
-						className='absolute w-[30%] right-10 z-[0] -top-80'
+						className='absolute w-[30%] right-10 z-0 -top-80'
 						loading='lazy'
 					/>
 				)}

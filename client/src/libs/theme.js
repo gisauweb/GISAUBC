@@ -1,5 +1,4 @@
-/* eslint-disable object-curly-newline */
-const { createTheme } = require('@mui/material');
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
 	typography: {
