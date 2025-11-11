@@ -56,17 +56,17 @@ export default function UpcomingGridItem({ item }) {
 					{item.is_event ? (
 						<>
 							<Button
-								text={item.title === 'Fall Hiring' ? 'View Hiring Package' : 'Register Here'}
-								handleClickButton={() => handleRegisterButton(item.registration_link)}
+								text='Register Here'
+								handleClickButton={() => handleRegisterButton(item.registrationLink)}
 							/>
 							{/* Below here is for hiring package usually for hiring */}
-							{/* {item.title !== 'Fall Hiring' && (
+							{item.title === 'Fall Hiring' && (
 								<Button
 									text='Hiring Package'
 									background='transparentBg'
 									handleClickButton={() => handleRegisterButton(item.infoLink)}
 								/>
-							)} */}
+							)}
 						</>
 					) : (
 						<Button
