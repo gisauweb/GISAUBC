@@ -14,9 +14,9 @@ function EventCards({ data }) {
 					<p className='font-oswald text-primary font-medium'>{data.isEvent ? 'EVENT' : 'RANTANGAN'}</p>
 					<p className='font-oswald font-semibold text-3xl'>{data.title}</p>
 					<div className='flex flex-row flex-wrap gap-1'>
-						{data.date && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.date}</p>}
-						{data.time && <p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.time}</p>}
-						<p className='text-sm bg-bgCream w-fit px-3 py-1 rounded-md'>{data.loc}</p>
+						{data.date && <p className='text-sm bg-bg-cream w-fit px-3 py-1 rounded-md'>{data.date}</p>}
+						{data.time && <p className='text-sm bg-bg-cream w-fit px-3 py-1 rounded-md'>{data.time}</p>}
+						<p className='text-sm bg-bg-cream w-fit px-3 py-1 rounded-md'>{data.loc}</p>
 					</div>
 				</div>
 				<Link to='/events' className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
@@ -36,7 +36,7 @@ export default function EventLayout() {
 					eventDatas.map((data) => <EventCards key={data.date} data={data} />)
 				) : (
 					<div className='w-full text-center'>
-						<h3 className='font-oswald font-bold text-bgBlack opacity-70 text-3xl sm:text-4xl md:text-5xl'>
+						<h3 className='font-oswald font-bold text-bg-black opacity-70 text-3xl sm:text-4xl md:text-5xl'>
 							Stay tuned for more excitement!
 						</h3>
 						<div className='flex flex-col md:flex-row justify-center gap-4 md:gap-10 mt-14'>

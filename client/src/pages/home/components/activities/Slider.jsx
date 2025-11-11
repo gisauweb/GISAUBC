@@ -23,12 +23,12 @@ function CustomArrow(props) {
 	const { direction, onClick } = props;
 	return direction === 'left' ? (
 		<ArrowBackIosNew
-			className='absolute top-16 -left-10 text-[2.2rem] sm:top-[5rem] sm:-left-14 sm:text-[3rem]'
+			className='absolute top-16 -left-10 text-[2.2rem] sm:top-20 sm:-left-14 sm:text-5xl-0'
 			onClick={onClick}
 		/>
 	) : (
 		<ArrowForwardIos
-			className='absolute top-16 -right-10 text-[2.2rem] sm:top-[5rem] sm:-right-14 sm:text-[3rem]'
+			className='absolute top-16 -right-10 text-[2.2rem] sm:top-20 sm:-right-14 sm:text-5xl-0'
 			onClick={onClick}
 		/>
 	);

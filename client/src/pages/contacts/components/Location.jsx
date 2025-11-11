@@ -18,7 +18,7 @@ export default function Location() {
 
 	return (
 		<Box
-			className='bg-bgPrimary border-2 border-[#F2F0E3] hover:border-[#7D0202] rounded-2xl hover:cursor-pointer'
+			className='bg-bg-primary border-2 border-[#F2F0E3] hover:border-[#7D0202] rounded-2xl hover:cursor-pointer'
 			onMouseEnter={() => handleBoxHover(true)}
 			onMouseLeave={() => handleBoxHover(false)}
 			onClick={handleLocationClick}

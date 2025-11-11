@@ -26,16 +26,16 @@ function TaskDialog({ open, handleClose, newTask, updateNewTaskField, editTask, 
 						placeholder='Enter task name'
 						value={newTask.title}
 						onChange={(e) => updateNewTaskField(newTask, 'title', e.target.value)}
-						className='self-center flex-grow w-full h-12 px-4 mb-2 transition duration-200
-								bg-white outline outline-none rounded-2xl shadow-sm appearance-none'
+						className='self-center grow w-full h-12 px-4 mb-2 transition duration-200
+								bg-white outline outline-hidden rounded-2xl shadow-xs appearance-none'
 					/>
 					<Typography sx={{ fontWeight: 'bold', marginTop: '5px' }}>Description (optional)</Typography>
 					<textarea
 						placeholder='Enter task description'
 						value={newTask.description}
 						onChange={(e) => updateNewTaskField(newTask, 'description', e.target.value)}
-						className='self-center flex-grow w-full h-24 px-4 mb-2 transition duration-200
-								bg-white outline-none rounded-2xl shadow-sm appearance-none'
+						className='self-center grow w-full h-24 px-4 mb-2 transition duration-200
+								bg-white outline-hidden rounded-2xl shadow-xs appearance-none'
 						style={{ resize: 'none' }}
 					/>
 					<Box
@@ -53,7 +53,7 @@ function TaskDialog({ open, handleClose, newTask, updateNewTaskField, editTask, 
 							value={newTask.target}
 							onChange={(e) => updateNewTaskField(newTask, 'target', parseInt(e.target.value, 10) || 0)}
 							className='self-center w-1/5 px-4 transition duration-200
-									bg-white outline-none rounded-xl shadow-sm ml-2'
+									bg-white outline-hidden rounded-xl shadow-xs ml-2'
 							style={{ borderRadius: '20px' }}
 						/>
 					</Box>

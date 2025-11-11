@@ -102,7 +102,7 @@ export default function Activity({ account }) {
 
 	return (
 		<Box
-			className='justify-center items-center mt-5 bg-gamesBox rounded-2xl px-2'
+			className='justify-center items-center mt-5 bg-games-box rounded-2xl px-2'
 			style={{ width: isMobileView ? '80vw' : '100%', height: isMobileView ? 'h-96' : 'h-50' }}
 		>
 			{isMobileView && (

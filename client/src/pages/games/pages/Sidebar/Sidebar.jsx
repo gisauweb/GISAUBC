@@ -96,7 +96,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 	return (
 		<Card
 			className='h-full max-w-[18rem] p-4
-			shadow-xl shadow-blue-gray-900/5 bg-gamesRed'
+			shadow-xl shadow-blue-gray-900/5 bg-games-red'
 			style={{
 				height: '100dvh',
 				width: isMobileView ? '75vw' : '20vw',
