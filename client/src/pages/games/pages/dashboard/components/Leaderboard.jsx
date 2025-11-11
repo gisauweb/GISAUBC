@@ -31,7 +31,7 @@ export default function Leaderboard({ uid, leaderboard }) {
 				}}
 				className={`${
 					isMobileView ? 'bottom-10 mt-10' : 'mr-10'
-				} bg-gamesBox flex flex-col items-center gap-5 py-3 `}
+				} bg-games-box flex flex-col items-center gap-5 py-3 `}
 			>
 				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
 					Leaderboard
@@ -52,7 +52,7 @@ export default function Leaderboard({ uid, leaderboard }) {
 							className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
 							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
 						>
-							<Typography className='text-gamesRed' style={{ fontWeight: 'bold' }}>
+							<Typography className='text-games-red' style={{ fontWeight: 'bold' }}>
 								{index + 4}
 							</Typography>
 							<img
@@ -116,7 +116,7 @@ function thirdPlace(user, uid) {
 				}}
 			/>
 			<Typography
-				className='absolute top-1/3 right-5 bg-right-bottom text-gamesRed'
+				className='absolute top-1/3 right-5 bg-bottom-right text-games-red'
 				style={{ fontWeight: 'bold', fontSize: 20, zIndex: 100 }}
 			>
 				3
@@ -162,7 +162,7 @@ function firstPlace(user, isBigger, uid) {
 				}}
 			/>
 			<Typography
-				className='absolute top-14 right-3 bg-right-bottom text-gamesRed'
+				className='absolute top-14 right-3 bg-bottom-right text-games-red'
 				style={{ fontWeight: 'bold', fontSize: 20, zIndex: 100 }}
 			>
 				1
@@ -194,7 +194,7 @@ function secondPlace(user, uid) {
 				}}
 			/>
 			<Typography
-				className='absolute top-1/3 right-5 bg-right-bottom text-gamesRed'
+				className='absolute top-1/3 right-5 bg-bottom-right text-games-red'
 				style={{ fontWeight: 'bold', fontSize: 20, zIndex: 100 }}
 			>
 				2

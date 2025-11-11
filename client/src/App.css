@@ -1,22 +1,6 @@
-html {
-	scroll-behavior: smooth;
-	overflow-x: hidden !important;
-}
-
 body {
-	font-family: 'montserrat', sans-serif;
+	/* font-family: 'montserrat', sans-serif; */
 	overflow-x: hidden !important;
-}
-
-h1 {
-	font-size: 3rem;
-	line-height: 4rem;
-}
-
-p {
-	font-family: 'Montserrat', sans-serif;
-	font-size: 1.125rem;
-	line-height: 1.75rem;
 }
 
 .title {

@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
+import Admin from 'pages/admin/Admin';
 import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import UPCOMING_EVENTS from 'shared/data/upcoming_event';
-import './App.css';
 import isGamesPage from './routeUtils';
 import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
@@ -44,6 +44,7 @@ function App() {
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
 				</Route>
+				<Route path='/admin' element={<Admin />} />
 				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
 			{shouldOpenPopup && <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />}
