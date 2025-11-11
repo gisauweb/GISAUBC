@@ -8,9 +8,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
-	build: {
-		outDir: 'build', // CRA's default build output
-	},
 	resolve: {
 		alias: {
 			pages: path.resolve(__dirname, './src/pages'),
