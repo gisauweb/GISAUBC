@@ -9,9 +9,9 @@ function Partners() {
 	const isMobile = useMediaQuery({ query: '(max-width: 639px)' });
 
 	return (
-		<Box className={`pt-28 ${isMobile && 'hidden'}`}>
+		<div className={`pt-28 ${isMobile && 'hidden'}`}>
 			<SubHeading text='OUR PARTNERS' isLeft isMirror icon={rainbow} />
-			<Box className='py-14'>
+			<div className='py-14'>
 				<Marquee gradient={false} speed={isBigDisplay ? 80 : 50}>
 					<div className='flex items-center justify-around flex-wrap'>
 						{PARTNERS.map((partner) => (
@@ -21,8 +21,8 @@ function Partners() {
 						))}
 					</div>
 				</Marquee>
-			</Box>
-		</Box>
+			</div>
+		</div>
 	);
 }
 
