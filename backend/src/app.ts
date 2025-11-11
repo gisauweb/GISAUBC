@@ -1,12 +1,14 @@
-// import post from "./routes/post";
+import post from "./routes/post";
 import express from "express";
 
 const app = express();
 
-// app.use("/post", post);
+app.use(express.json());
 
-app.get("/posts", (req, res) => {
-  res.json({ message: "Hello from Express on Vercel!" });
+app.get("/", (req, res) => {
+  res.json({ message: "GISAU Backend API" });
 });
+
+app.use("/posts", post);
 
 export default app;
