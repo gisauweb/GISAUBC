@@ -2,10 +2,14 @@ import express from "express";
 import post from "./routes/post";
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.use("/post", post);
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
+  });
+}
+
+export default app;
