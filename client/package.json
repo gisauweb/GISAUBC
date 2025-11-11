@@ -4,7 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite",
-		"build": "vite build && npm run sentry:sourcemaps",
+		"build": "vite build",
+		"build:sentry": "vite build && npm run sentry:sourcemaps",
 		"preview": "vite preview",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
