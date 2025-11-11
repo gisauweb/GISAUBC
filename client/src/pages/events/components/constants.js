@@ -3,6 +3,13 @@ import { EVENTS_22_23, EVENTS_23_24, EVENTS_24_25, EVENTS_25_26 } from 'assets/e
 const PAST_EVENTS = {
 	'2025/2026': [
 		{
+			image: EVENTS_25_26[5],
+			title: 'Liwetan',
+			date: 'November 10, 2025',
+			loc: 'KJRI Vancouver',
+			recap: 'https://www.instagram.com/p/DQVZLNUiauY/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+		},
+		{
 			image: EVENTS_25_26[4],
 			title: 'Fall Hiring',
 			date: 'October 10, 2025',
