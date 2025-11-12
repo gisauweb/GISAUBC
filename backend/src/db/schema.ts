@@ -38,6 +38,7 @@ export const usersTable = pgTable("users", {
 });
 
 export const postTypeEnum = pgEnum("post_type", ["event", "rantangan"]);
+export const postStatusEnum = pgEnum("post_status", ["upcoming", "past"]);
 
 export const postsTable = pgTable("posts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
@@ -49,6 +50,7 @@ export const postsTable = pgTable("posts", {
 
   // post type: event or rantangan
   type: postTypeEnum().notNull(),
+  status: postStatusEnum().notNull().default("upcoming"),
 
   price: numeric({ precision: 10, scale: 2 }).notNull(), // supports decimals (e.g., 5.00)
   coverImage: varchar({ length: 512 }).notNull(), // URL to event cover image

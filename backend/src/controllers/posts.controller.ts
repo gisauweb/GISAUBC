@@ -1,7 +1,7 @@
 import type { InferSelectModel } from "drizzle-orm";
 import { eq } from "drizzle-orm";
-import db from "../db/database";
-import { postsTable } from "../db/schema";
+import db from "../db/database.js";
+import { postsTable } from "../db/schema.js";
 
 // Automatically inferred type of a post
 export type Post = InferSelectModel<typeof postsTable>;
