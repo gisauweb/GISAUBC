@@ -1,5 +1,5 @@
-import db from "../database";
-import { usersTable } from "../schema";
+import db from "../database.js";
+import { usersTable } from "../schema.js";
 
 export const add_post = async () => {
   await db.insert(usersTable).values({ name: "halo" });
