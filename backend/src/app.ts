@@ -1,10 +1,11 @@
 import express from "express";
-import post from "./routes/post.js";
-import user from "./routes/user.js";
+import post from "./api/post.js";
+import user from "./api/user.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(express.json());
 app.use("/posts", post);
 app.use("/users", user);
 
