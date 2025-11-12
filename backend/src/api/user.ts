@@ -2,9 +2,13 @@ import express from "express";
 
 const router = express.Router();
 
-// get all posts
+// get all users
 router.get("/", (req, res) => {
-  res.json({ message: "Hello from Express on Vercel!" });
+  try {
+    res.json({ message: "Sucessful!" });
+  } catch {
+    res.json({ message: "Error" });
+  }
 });
 
 export default router;
