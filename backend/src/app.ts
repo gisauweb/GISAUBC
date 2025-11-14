@@ -1,9 +1,18 @@
+import cors from "cors";
 import express from "express";
 import post from "./api/post.js";
 import user from "./api/user.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // must match your frontend URL exactly
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true, // if you use cookies or auth
+  })
+);
 
 app.use(express.json());
 app.use("/posts", post);

@@ -1,5 +1,5 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { eq } from "drizzle-orm";
+import { eq, gt, lt } from "drizzle-orm";
 import db from "../db/database.js";
 import { postsTable } from "../db/schema.js";
 
@@ -55,6 +55,42 @@ export const add_post = async (postData: CreatePostInput): Promise<Post> => {
     return result;
   } catch (err) {
     console.error("Error adding post:", err);
+    throw err;
+  }
+};
+
+/**
+ * Get upcoming posts
+ * - Filters posts where date is in the future
+ */
+export const get_upcoming_posts = async (): Promise<Post[]> => {
+  try {
+    const now = new Date();
+    const result = await db
+      .select()
+      .from(postsTable)
+      .where(gt(postsTable.date, now)); // date > now
+    return result;
+  } catch (err) {
+    console.error("Error fetching upcoming posts:", err);
+    throw err;
+  }
+};
+
+/**
+ * Get past posts
+ * - Filters posts where date is in the past
+ */
+export const get_past_posts = async (): Promise<Post[]> => {
+  try {
+    const now = new Date();
+    const result = await db
+      .select()
+      .from(postsTable)
+      .where(lt(postsTable.date, now)); // date < now
+    return result;
+  } catch (err) {
+    console.error("Error fetching past posts:", err);
     throw err;
   }
 };
