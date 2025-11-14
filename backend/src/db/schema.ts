@@ -55,8 +55,10 @@ export const postsTable = pgTable("posts", {
   price: numeric({ precision: 10, scale: 2 }).notNull(), // supports decimals (e.g., 5.00)
   coverImage: varchar({ length: 512 }).notNull(), // URL to event cover image
 
-  // optional Instagram link
+  // optional links
   instagramLink: varchar({ length: 512 }),
+  registrationLink: varchar({ length: 512 }), // URL to register
+  infoLink: varchar({ length: 512 }), // URL to event details page / info
 
   // timestamps
   createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),

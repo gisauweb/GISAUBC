@@ -1,10 +1,8 @@
 import React from 'react';
-import { Modal, Typography, IconButton, Box } from '@mui/material';
+import { Modal, Typography, IconButton, Box, CircularProgress } from '@mui/material';
 import { CancelRounded as CancelRoundedIcon } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import { Button } from 'shared/components';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
-// import UPCOMING_RANTANGAN from 'shared/data/upcoming_rantangan';
 
 const PopupWrapper = styled('div')({
 	background: 'linear-gradient(rgba(140, 28, 22, 0.7), rgba(188, 112, 89, 0.7))',
@@ -24,9 +22,7 @@ const PopupWrapper = styled('div')({
 	backdropFilter: 'blur(20px)',
 });
 
-function Popup({ isOpen, onClose }) {
-	const upcomingEvent = UPCOMING_EVENTS[0];
-
+function Popup({ data, isOpen, onClose, loading, error }) {
 	const handleClose = () => {
 		onClose();
 
@@ -55,34 +51,43 @@ function Popup({ isOpen, onClose }) {
 				>
 					<CancelRoundedIcon />
 				</IconButton>
-				<a
-					href={upcomingEvent.infoLink}
-					target='_blank'
-					rel='noreferrer'
-					className='my-3 flex justify-center items-center'
-				>
-					<div className='w-4/5 aspect-square rounded-md'>
-						<img
-							src={upcomingEvent.image}
-							alt='Upcoming Event'
-							className='w-full h-full object-cover rounded-2xl'
-							loading='lazy'
-						/>
-					</div>
-				</a>
-				<Typography variant='h4' className='mt-11' gutterBottom>
-					Upcoming
-					{upcomingEvent.isEvent ? ' Event' : ' Rantangan'}
-				</Typography>
-				<Typography variant='body1'>
-					Check out our newest
-					{upcomingEvent.isEvent ? ' event!' : ' rantangan!'}
-				</Typography>
-				<Box mt={2} className='flex justify-center'>
-					<a aria-label='Save' href='#events' onClick={handleClose}>
-						<Button background='transparentBg' text='Take me there' />
-					</a>
-				</Box>
+
+				{loading && (
+					<Box display='flex' justifyContent='center' alignItems='center' height='200px'>
+						<CircularProgress color='inherit' />
+					</Box>
+				)}
+
+				{error && <Typography color='error'>Failed to load data</Typography>}
+
+				{!loading && !error && data && (
+					<>
+						<div className='my-3 flex justify-center items-center'>
+							<div className='w-4/5 aspect-square rounded-md'>
+								<img
+									src={data.coverImage}
+									alt='Upcoming Event'
+									className='w-full h-full object-cover rounded-2xl'
+									loading='lazy'
+								/>
+							</div>
+						</div>
+
+						<Typography variant='h4' className='mt-4' gutterBottom>
+							Upcoming {data.type === 'event' ? 'Event' : 'Rantangan'}
+						</Typography>
+
+						<Typography variant='body1'>
+							Check out our newest {data.type === 'event' ? 'event!' : 'rantangan!'}
+						</Typography>
+
+						<Box mt={2} display='flex' justifyContent='center'>
+							<a aria-label='Save' href='#events' onClick={handleClose}>
+								<Button background='transparentBg' text='Take me there' />
+							</a>
+						</Box>
+					</>
+				)}
 			</PopupWrapper>
 		</Modal>
 	);

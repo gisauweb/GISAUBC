@@ -3,8 +3,7 @@ import {
   add_post,
   get_all_posts,
   get_past_posts,
-  get_post,
-  get_upcoming_posts,
+  get_upcoming_posts
 } from "../controllers/posts.controller.js";
 
 const router = express.Router();
@@ -45,28 +44,6 @@ router.get("/past", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to fetch past posts" });
-  }
-});
-
-/**
- * GET a single post by id
- */
-router.get("/:id", async (req, res) => {
-  try {
-    const postId = Number(req.params.id);
-    if (Number.isNaN(postId)) {
-      return res.status(400).json({ error: "Invalid post id" });
-    }
-
-    const post = await get_post(postId);
-    if (!post) {
-      return res.status(404).json({ error: "Post not found" });
-    }
-
-    res.json(post);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "Failed to fetch post" });
   }
 });
 

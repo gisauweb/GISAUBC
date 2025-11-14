@@ -1,5 +1,5 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { eq, gt, lt } from "drizzle-orm";
+import { gt, lt } from "drizzle-orm";
 import db from "../db/database.js";
 import { postsTable } from "../db/schema.js";
 
@@ -23,23 +23,6 @@ export const get_all_posts = async (): Promise<Post[] | null> => {
     return result;
   } catch (err) {
     console.error("Error fetching posts:", err);
-    throw err;
-  }
-};
-
-/**
- * Get a single post
- */
-export const get_post = async (id: number): Promise<Post | null> => {
-  try {
-    const [post] = await db
-      .select()
-      .from(postsTable)
-      .where(eq(postsTable.id, id));
-
-    return post || null; // return null if not found
-  } catch (err) {
-    console.error("Error fetching post by id:", err);
     throw err;
   }
 };

@@ -9,30 +9,15 @@ import { DropdownMenu } from 'shared/components/index';
 import SubHeading from 'shared/components/SubHeading';
 // import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import PAST_EVENTS from './constants';
+import { usePastPosts, useUpcomingPosts } from 'hooks/usePosts';
 
 function EventContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2025/2026');
-	const [posts, setPosts] = useState([]);
 
-	async function getPosts() {
-		const { data, error } = await supabase.from('posts').select();
+	const { posts: upcomingPosts, loading: upcomingLoading, error: upcomingError } = useUpcomingPosts();
+	const { posts: pastPosts, loading: pastLoading, error: pastError } = usePastPosts();
 
-		console.log('Supabase response:', { data, error });
-		console.log('Data length:', data?.length);
-
-		if (error) {
-			console.error('Error fetching posts:', error);
-			return;
-		}
-
-		setPosts(data || []);
-	}
-
-	useEffect(() => {
-		getPosts();
-	}, []);
-
-	const eventData = upcoming ? posts.filter((el) => el.is_event && el.is_published) : PAST_EVENTS[selectedYear];
+	const eventData = upcoming ? upcomingPosts : PAST_EVENTS[selectedYear];
 
 	return (
 		<Box className={`${upcoming ? '' : 'pb-4 lg:pb-6'}`}>
