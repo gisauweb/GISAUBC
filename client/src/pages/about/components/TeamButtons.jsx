@@ -13,11 +13,16 @@ export default function TeamButtons({ selectedButton, setSelectedButton }) {
 				<Button
 					key={buttonName}
 					text={buttonName}
-					background={selectedButton === buttonName ? '' : 'grayBg'}
+					background={selectedButton === buttonName ? '' : 'cremeBg'}
 					handleClickButton={() => {
 						handleClickButton(buttonName);
 					}}
 					className='mr-4 mb-4 sm:mr-6 sm:mb-6 2xl:mr-0 2xl:mb-0'
+					style={{
+						padding: '0px 0px', // Smaller padding for a smaller button
+						fontSize: '10px', // Smaller text
+						minWidth: 'auto', // Automatically adjust based on content size
+					}}
 				/>
 			))}
 		</Box>

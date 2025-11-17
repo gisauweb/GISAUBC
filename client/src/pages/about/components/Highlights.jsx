@@ -7,12 +7,7 @@ import { useMediaQuery } from 'react-responsive';
 export default function Highlights() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 	return (
-		<Box className='pt-20'>
-			<Box className=''>
-				<Typography variant='h3' color='primary'>
-					Highlights
-				</Typography>
-			</Box>
+		<Box className='pt-0 pb-20 sm:pt-15 sm-pb-40'>
 			<Marquee
 				gradient
 				gradientWidth={isMobileView ? 10 : 100}
@@ -23,7 +18,7 @@ export default function Highlights() {
 				<div className='flex items-center justify-around flex-wrap'>
 					{HIGHLIGHTS.map((image) => (
 						<div className='mx-5' key={image}>
-							<img src={image} alt='higlight' className='h-44 sm:h-60 lg:h-80' loading='lazy' />
+							<img src={image} alt='higlight' className='h-44 sm:h-60 lg:h-80 rounded-[20px]' loading='lazy' />
 						</div>
 					))}
 				</div>
