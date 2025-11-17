@@ -14,6 +14,9 @@ export default function Button({ landingButton, className, text, background, han
 			case 'grayBg':
 				setBackgroundClass('gray_bg');
 				break;
+			case 'cremeBg':
+				setBackgroundClass('creme_bg');
+				break;
 			default:
 				setBackgroundClass('');
 				break;
@@ -22,9 +25,8 @@ export default function Button({ landingButton, className, text, background, han
 
 	return (
 		<div
-			className={`${
-				landingButton ? landingButtonClass : 'button'
-			} ${backgroundClass} ${className} flex justify-center items-center w-fit px-8 py-3 text-lg font-normal`}
+			className={`${landingButton ? landingButtonClass : 'button'
+				} ${backgroundClass} ${className} flex justify-center items-center w-fit px-8 py-3 text-lg font-normal`}
 			onClick={handleClickButton}
 			style={{ minWidth: 'fit-content', display: 'inline-flex', alignItems: 'center' }}
 		>

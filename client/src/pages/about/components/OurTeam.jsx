@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import GridContainer from 'shared/components/grid/GridContainer';
 import { DropdownMenu } from 'shared/components/index';
 import TeamButtons from './TeamButtons';
+import SearchInput from './SearchInput';
 import TeamGridContent from './TeamGridContent';
 
 export default function OurTeam({ data, states }) {
 	// eslint-disable-next-line prettier/prettier
 	const {
 		selectedYear, selectedButton, selectedCard, setSelectedYear, setSelectedButton, setSelectedCard,
-
 	} = states;
 
+	const [searchQuery, setSearchQuery] = useState('');
+
+	const handleSearchChange = (query) => {
+		setSearchQuery(query);
+	};
+
+	const filteredData = data.filter((teamMember) =>
+	(
+		teamMember.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+		teamMember.position?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+		teamMember.education?.toLowerCase().includes(searchQuery.toLowerCase()))
+	);
+
+
 	return (
-		<Box>
-			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10 pt-20'>
-				<Typography variant='h3' color='primary'>
-					Meet our team.
+		<Box className="pt-0">
+			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10 pt-0'>
+				<Typography variant='h5' color='primary' sx={{ fontWeight: "bold", textTransform: "upperCase" }}>
+					Meet our team
 				</Typography>
 			</Box>
 			<Box>
-				<Box className='flex flex-col'>
-					<TeamButtons selectedButton={selectedButton} setSelectedButton={setSelectedButton} />
-					<DropdownMenu selectedYear={selectedYear} setSelectedYear={setSelectedYear} source='About' />
+				<Box className="mb-4">
+					<SearchInput searchQuery={searchQuery} onSearchChange={handleSearchChange} />
+				</Box>
+				<Box className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+					<TeamButtons
+						selectedButton={selectedButton}
+						setSelectedButton={setSelectedButton}
+					/>
+					<DropdownMenu
+						selectedYear={selectedYear}
+						setSelectedYear={setSelectedYear}
+						source="About"
+					/>
 				</Box>
 				<GridContainer className='sm:mt-14'>
-					<TeamGridContent data={data} selectedCard={selectedCard} setSelectedCard={setSelectedCard} />
+					<TeamGridContent data={filteredData} selectedCard={selectedCard} setSelectedCard={setSelectedCard} />
 				</GridContainer>
 			</Box>
 		</Box>

@@ -12,7 +12,7 @@ import history from 'libs/history';
 import { Sentry, sentryConfig } from 'libs/sentry';
 import App from './App';
 
-ReactGA.initialize(import.meta.env.VITE_GID);
+// ReactGA.initialize(import.meta.env.VITE_GID);
 Sentry.init(sentryConfig);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const responsiveTheme = responsiveFontSizes(theme);

@@ -7,7 +7,9 @@
 
 	/* Content (text) */
 	color: #fff;
-	line-height: 1.75rem /* 28px */;
+	line-height: 1.75rem
+		/* 28px */
+	;
 	cursor: pointer;
 	border: solid 3px transparent;
 
@@ -37,6 +39,11 @@
 .button.gray_bg {
 	color: #000000;
 	background: #d9d9d9;
+}
+
+.button.creme_bg {
+	color: #222222;
+	background: #D9C6B3;
 }
 
 .button:hover {
