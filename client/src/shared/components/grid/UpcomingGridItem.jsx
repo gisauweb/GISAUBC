@@ -40,18 +40,8 @@ export default function UpcomingGridItem({ item }) {
 						<p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.location}</p>
 					</div>
 					<p className='whitespace-pre-line text-base font-proxima'>{item.description}</p>
-					{item.priceMember && (
-						<p className='text-lg font-semibold mt-3'>
-							Members:
-							{item.priceMember}
-						</p>
-					)}
-					{item.priceRegular && (
-						<p className='text-lg font-semibold'>
-							Non-members:
-							{item.priceRegular}
-						</p>
-					)}
+					{item.priceMember && <p className='text-lg font-semibold mt-3'>Members: ${item.priceMember}</p>}
+					{item.priceRegular && <p className='text-lg font-semibold'>Non-members: ${item.priceRegular}</p>}
 				</Box>
 				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
 					{isEvent ? (
@@ -61,7 +51,7 @@ export default function UpcomingGridItem({ item }) {
 								handleClickButton={() => handleRegisterButton(item.registrationLink)}
 							/>
 							{/* Below here is for hiring package usually for hiring */}
-							{item.title === 'Fall Hiring' && (
+							{item.title === 'Fall Hiring' && item.infoLink && (
 								<Button
 									text='Hiring Package'
 									background='transparentBg'
