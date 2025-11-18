@@ -51,7 +51,9 @@ export const postsTable = pgTable("posts", {
   // post type: event or rantangan
   type: postTypeEnum().notNull(),
 
-  price: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
+  priceMember: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
+  priceRegular: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
+
   coverImage: varchar({ length: 512 }).notNull(), // URL to event cover image
 
   // optional links
