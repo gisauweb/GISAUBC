@@ -2,20 +2,27 @@ import { Box } from '@mui/material';
 import GridItemTag from './GridItemTag';
 
 export default function PastGridItem({ item }) {
+	const date = new Date(item.date);
+
+	const formattedDate = date.toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
 	return (
 		<Box className='flex flex-col mx-7 sm:mx-0 justify-center items-center'>
 			<Box className='relative w-full'>
 				<a href={item.infoLink} target='_blank' rel='noreferrer'>
 					<div className='relative aspect-square'>
 						<img
-							src={item.image}
+							src={item.coverImage}
 							alt='item_image'
 							className='rounded-2xl absolute w-full h-full top-0 left-0 object-cover'
 							loading='lazy'
 						/>
 					</div>
 				</a>
-				{item.button && (
+				{/* {item.button && (
 					<a
 						href={item.button.link}
 						target='_blank'
@@ -41,17 +48,17 @@ export default function PastGridItem({ item }) {
 							</p>
 						</Box>
 					</a>
-				)}
+				)} */}
 			</Box>
 
 			<Box className='flex flex-row justify-between align-middle py-4 w-full'>
 				<div>
 					<span className='py-2 font-bold text-xl md:text-2xl my-2 mr-2'>{item.title}</span>
-					<GridItemTag date={item.date} />
+					<GridItemTag date={formattedDate} />
 				</div>
 
 				<div className='w-12 h-12'>
-					<a href={item.recap} target='_blank' rel='noreferrer'>
+					<a href={item.instagramLink} target='_blank' rel='noreferrer'>
 						<div
 							className='flex justify-center items-center border-2
         hover:cursor-pointer circleButton rounded-full'
