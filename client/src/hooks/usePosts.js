@@ -1,11 +1,17 @@
 import axios from 'axios';
 import useSWR from 'swr';
 
+export const EventType = Object.freeze({
+	EVENT: 'event',
+	RANTANGAN: 'rantangan',
+});
+
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 // Hook to fetch all upcoming posts
-export function useUpcomingPosts() {
-	const { data: posts, error } = useSWR('http://localhost:3000/posts/upcoming', fetcher);
+export function useUpcomingPosts(type) {
+	const query = type ? `?eventType=${type}` : '';
+	const { data: posts, error } = useSWR(`${import.meta.env.VITE_API_BASE_URL}/posts/upcoming${query}`, fetcher);
 
 	return {
 		posts: posts || [], // default to empty array
@@ -15,8 +21,20 @@ export function useUpcomingPosts() {
 }
 
 // Hook to fetch all posts
-export function usePastPosts() {
-	const { data: posts, error } = useSWR('http://localhost:3000/posts/past', fetcher);
+export function usePastPosts(type) {
+	const query = type ? `?eventType=${type}` : '';
+	const { data: posts, error } = useSWR(`${import.meta.env.VITE_API_BASE_URL}/posts/past${query}`, fetcher);
+
+	return {
+		posts: posts || [], // default to empty array
+		loading: !error && !posts,
+		error,
+	};
+}
+
+export function usePastPostsYear(year, type) {
+	const query = type ? `&eventType=${type}` : '';
+	const { data: posts, error } = useSWR(`${import.meta.env.VITE_API_BASE_URL}/posts?year=${year}${query}`, fetcher);
 
 	return {
 		posts: posts || [], // default to empty array

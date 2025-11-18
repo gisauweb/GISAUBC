@@ -1,17 +1,22 @@
 import { Box } from '@mui/material';
 import klepon from 'assets/home-page/activities/klepon.svg';
 import bakmiIcon from 'assets/rantangan-page/bakmiIcon.svg';
+import { EventType, usePastPostsYear, useUpcomingPosts } from 'hooks/usePosts';
 import { useState } from 'react';
 import GridContainer from 'shared/components/grid/GridContainer';
 import { DropdownMenu } from 'shared/components/index';
 import SubHeading from 'shared/components/SubHeading';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import GridContent from '../../../shared/components/grid/GridContent';
-import PAST_RANTANGAN from './constants';
 
 function RantanganContent({ upcoming }) {
 	const [selectedYear, setSelectedYear] = useState('2025/2026');
-	const eventData = upcoming ? UPCOMING_EVENTS.filter((el) => !el.isEvent) : PAST_RANTANGAN[selectedYear];
+
+	const yearNumber = Number(selectedYear.split('/')[0]);
+
+	const { posts: upcomingPosts, loading: upcomingLoading } = useUpcomingPosts(EventType.RANTANGAN);
+	const { posts: pastPosts, loading: pastLoading } = usePastPostsYear(yearNumber, EventType.RANTANGAN);
+
+	const eventData = upcoming ? upcomingPosts : pastPosts;
 
 	return (
 		<Box className={`relative ${upcoming ? '' : 'pb-4 lg:pb-6'}`}>

@@ -1,14 +1,15 @@
 import cors from "cors";
+import "dotenv/config";
 import express from "express";
-import post from "./api/post.js";
-import user from "./api/user.js";
+import post from "./api/post.route.js";
+import user from "./api/user.route.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // must match your frontend URL exactly
+    origin: `${process.env.CLIENT_ORIGIN}`, // must match your frontend URL exactly
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // if you use cookies or auth
   })
