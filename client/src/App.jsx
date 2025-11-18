@@ -1,40 +1,44 @@
 import { Box } from '@mui/material';
+import { useUpcomingPosts } from 'hooks/usePosts';
 import Admin from 'pages/admin/Admin';
 import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import UPCOMING_EVENTS from 'shared/data/upcoming_event';
 import isGamesPage from './routeUtils';
 import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import ScrollToTop from './shared/components/ScrollToTop';
 
 function App() {
-	const ACTIVATE_POPUP = UPCOMING_EVENTS.length > 0;
-	const [isPopupOpen, setPopupOpen] = useState(ACTIVATE_POPUP);
-	const handleClosePopup = () => {
-		setPopupOpen(false);
-	};
+	const { posts, loading, error } = useUpcomingPosts();
 	const location = useLocation();
-	const shouldOpenPopup = ACTIVATE_POPUP && !isGamesPage(location.pathname);
 
+	const [isPopupOpen, setPopupOpen] = useState(false);
+
+	// Open popup when posts are ready and we are not on a "games" page
 	useEffect(() => {
-		if (!ACTIVATE_POPUP && !document.getElementById('chatling-embed-script')) {
-			window.chtlConfig = { chatbotId: '1938486472' };
+		if (posts.length > 0 && !isGamesPage(location.pathname) && !isPopupOpen) {
+			setPopupOpen(true);
+		}
+	}, [posts]);
 
+	// Inject chat script once
+	useEffect(() => {
+		if (!document.getElementById('chatling-embed-script')) {
+			window.chtlConfig = { chatbotId: '1938486472' };
 			const script = document.createElement('script');
 			script.src = 'https://chatling.ai/js/embed.js';
 			script.async = true;
 			script.setAttribute('data-id', '1938486472');
 			script.id = 'chatling-embed-script';
-
 			document.body.appendChild(script);
 		}
-	}, [ACTIVATE_POPUP]);
+	}, []);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
 			<ScrollToTop />
+
 			<Routes>
 				<Route path='/' element={<NavigationBar />}>
 					{pages.map((page) => (
@@ -44,10 +48,19 @@ function App() {
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
 				</Route>
+
 				<Route path='/admin' element={<Admin />} />
 				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
-			{shouldOpenPopup && <Popup isOpen={isPopupOpen} onClose={handleClosePopup} />}
+
+			{/* Always mount the popup but pass data safely */}
+			<Popup
+				data={posts[0] ?? null}
+				isOpen={isPopupOpen}
+				onClose={() => setPopupOpen(false)}
+				loading={loading}
+				error={error}
+			/>
 		</Box>
 	);
 }

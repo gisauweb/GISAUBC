@@ -3,6 +3,7 @@ import ReactGA from 'react-ga4';
 import Button from 'shared/components/button/Button';
 
 export default function UpcomingGridItem({ item }) {
+	const isEvent = item.type === 'event';
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
@@ -14,7 +15,7 @@ export default function UpcomingGridItem({ item }) {
 	return (
 		<Box
 			className={`flex flex-col md:flex-row w-full justify-start md:space-x-10 mb-20 ${
-				!item.is_event && 'items-center'
+				!isEvent && 'items-center'
 			}`}
 		>
 			{/* <a
@@ -24,7 +25,7 @@ export default function UpcomingGridItem({ item }) {
 				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-104 relative'
 			> */}
 			<img
-				src={item.image}
+				src={item.coverImage}
 				alt='item_image'
 				className='rounded-2xl z-10 aspect-square size-full md:size-104 object-cover'
 				loading='lazy'
@@ -38,7 +39,7 @@ export default function UpcomingGridItem({ item }) {
 						{item.time && <p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.time}</p>}
 						<p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.location}</p>
 					</div>
-					<p className='whitespace-pre-line text-base font-proxima'>{item.caption}</p>
+					<p className='whitespace-pre-line text-base font-proxima'>{item.description}</p>
 					{item.priceMember && (
 						<p className='text-lg font-semibold mt-3'>
 							Members:
@@ -53,7 +54,7 @@ export default function UpcomingGridItem({ item }) {
 					)}
 				</Box>
 				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
-					{item.is_event ? (
+					{isEvent ? (
 						<>
 							<Button
 								text='Register Here'
@@ -71,7 +72,7 @@ export default function UpcomingGridItem({ item }) {
 					) : (
 						<Button
 							text='Order Now'
-							handleClickButton={() => handleRegisterButton(item.registration_link)}
+							handleClickButton={() => handleRegisterButton(item.registrationLink)}
 						/>
 					)}
 				</div>
