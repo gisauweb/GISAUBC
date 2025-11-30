@@ -20,7 +20,7 @@ function EventCards({ data }) {
 						<p className='text-sm bg-bg-cream w-fit px-3 py-1 rounded-md'>{data.location}</p>
 					</div>
 				</div>
-				<Link to={isEvent ? '/event' : '/rantangan'} className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
+				<Link to={isEvent ? '/events' : '/rantangan'} className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
 					<Button text={isEvent ? 'Register Now' : 'Order Now'} className='w-full text-start' />
 				</Link>
 			</div>
