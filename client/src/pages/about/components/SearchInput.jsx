@@ -3,25 +3,25 @@ import React from 'react';
 
 export default function SearchInput({ searchQuery, onSearchChange }) {
 	return (
-		<Box className='flex flex-wrap lg:space-x-6 3xl:space-x-10 pb-1 sm:pb-0'>
+		<Box className='flex flex-wrap lg:space-x-6 3xl:space-x-10 mb-1 sm:mb-0'>
 			<TextField
-				id="search-team"
-				label="Type to Search..."
+				id='search-team'
+				label='Type to Search...'
 				value={searchQuery}
 				onChange={(e) => onSearchChange(e.target.value)}
 				sx={{
-					width: "100%",
+					width: '100%',
 					'& .MuiOutlinedInput-root': {
 						'& fieldset': {
 							borderRadius: '40px',
-							border: "2px solid #732727"
+							border: '2px solid #732727',
 						},
 						'&:hover fieldset': {
-							border: "2px solid #732727",
+							border: '2px solid #732727',
 						},
 					},
 				}}
-				variant="outlined"
+				variant='outlined'
 			/>
 		</Box>
 	);

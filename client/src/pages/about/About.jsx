@@ -3,8 +3,8 @@ import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import aboutLandingImage from 'assets/landing-image/about.webp';
-import indoMapImage from '/icons/indo map.png'
-import pura from '/icons/pura.svg'
+import indoMapImage from '/icons/indo map.png';
+import pura from '/icons/pura.svg';
 import Introduction from './components/Introduction';
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
@@ -26,7 +26,7 @@ export default function About() {
 	}, [selectedButton, selectedYear]);
 
 	return (
-		<Box position="relative">
+		<Box position='relative'>
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
 
 			<MainContainer>
@@ -36,11 +36,11 @@ export default function About() {
 			</MainContainer>
 
 			<Box>
-				<img src={indoMapImage} alt="indo-map-illustration" />
+				<img src={indoMapImage} alt='indo-map-illustration' />
 			</Box>
 
-			<MainContainer className="pt-0 relative z-[2]">
-				<Box className="w-[85%] mx-auto pb-24 lg:pb-36 pt-0">
+			<MainContainer className='pt-0 relative z-2'>
+				<Box className='w-[85%] mx-auto pb-24 lg:pb-36 pt-0'>
 					<OurTeam
 						data={data}
 						states={{
@@ -70,7 +70,7 @@ export default function About() {
 				}}
 			/> */}
 
-			<Box position="relative" sx={{ zIndex: 2 }}>
+			<Box position='relative' sx={{ zIndex: 2 }}>
 				<Highlights />
 			</Box>
 
