@@ -45,7 +45,6 @@ export default function NavigationBar() {
 				{/* <NavBarLogo hasLandingImage={hasLandingImage} /> */}
 				{isMobile ? (
 					<>
-						<NavBarLogo />
 						<MobileNavBar
 							isMenuOpen={isMenuOpen}
 							setIsMenuOpen={setIsMenuOpen}
