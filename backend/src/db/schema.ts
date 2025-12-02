@@ -38,25 +38,30 @@ export const usersTable = pgTable("users", {
 });
 
 export const postTypeEnum = pgEnum("post_type", ["event", "rantangan"]);
-export const postStatusEnum = pgEnum("post_status", ["upcoming", "past"]);
+export const postStatusEnum = pgEnum("post_status", ["draft", "published"]);
 
 export const postsTable = pgTable("posts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
 
   title: varchar({ length: 255 }).notNull(),
-  description: text().notNull(),
+  description: text(),
   date: timestamp({ withTimezone: true }).notNull(), // event date/time
   location: varchar({ length: 255 }).notNull(),
 
   // post type: event or rantangan
   type: postTypeEnum().notNull(),
-  status: postStatusEnum().notNull().default("upcoming"),
 
-  price: numeric({ precision: 10, scale: 2 }).notNull(), // supports decimals (e.g., 5.00)
+  priceMember: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
+  priceRegular: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
+
   coverImage: varchar({ length: 512 }).notNull(), // URL to event cover image
 
-  // optional Instagram link
+  // optional links
   instagramLink: varchar({ length: 512 }),
+  registrationLink: varchar({ length: 512 }), // URL to register
+  infoLink: varchar({ length: 512 }), // URL to event details page / info
+
+  status: postStatusEnum().default("draft").notNull(),
 
   // timestamps
   createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
