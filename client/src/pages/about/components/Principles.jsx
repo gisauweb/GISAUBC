@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Grid, Box, Typography } from '@mui/material';
+import SubHeading from 'shared/components/SubHeading';
+import blueLine from 'assets/home-page/activities/blue-line.svg';
 import VALUES from 'assets/about/values';
 import ExpandableBox from './ExpandableBox';
 import { VISION_MISSION } from '../constants';
@@ -9,13 +11,15 @@ export default function Principles() {
 
 	return (
 		<Box>
-			<Typography variant='h6' color='primary' align="left" sx={{ fontWeight: "bold", textTransform: "upperCase", paddingBottom: 2 }}>
-				Our Values
-			</Typography>
+			<SubHeading
+				text='Our Values'
+				isLeft
+				icon={blueLine}
+			/>
 
 			<Grid container spacing={2}>
-				{VALUES.map((image) => (
-					<Grid item xs={12} md={6}>
+				{VALUES.map((image, i) => (
+					<Grid item xs={12} md={6} key={`values${i}`}>
 						<Box
 							component="img"
 							src={image}
@@ -72,7 +76,7 @@ export default function Principles() {
 					</Grid>
 				))}
 			</Grid>
-		</Box>
+		</Box >
 
 		// <Box
 		// 	className='flex flex-col items-center sm:flex-row sm:items-left

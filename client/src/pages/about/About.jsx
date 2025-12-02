@@ -3,7 +3,8 @@ import { Box } from '@mui/material';
 import MainContainer from 'shared/layout/MainContainer';
 import { ScrollButton, LandingImage, Footer } from 'shared/components/index';
 import aboutLandingImage from 'assets/landing-image/about.webp';
-import indoMapImage from 'assets/about/bg-illustration/indo map.png'
+import indoMapImage from '/icons/indo map.png'
+import pura from '/icons/pura.svg'
 import Introduction from './components/Introduction';
 import { EXECUTIVES } from './constants';
 import OurTeam from './components/OurTeam';
@@ -25,18 +26,21 @@ export default function About() {
 	}, [selectedButton, selectedYear]);
 
 	return (
-		<Box position='relative'>
+		<Box position="relative">
 			<LandingImage bgImage={aboutLandingImage} text='About Us' />
+
 			<MainContainer>
 				<Box className='w-[85%] mx-auto pb-0 lg:pb-0'>
 					<Introduction />
 				</Box>
 			</MainContainer>
+
 			<Box>
 				<img src={indoMapImage} alt="indo-map-illustration" />
 			</Box>
-			<MainContainer sx={{paddingTop: "0 !important"}}>
-				<Box className='w-[85%] mx-auto pb-24 lg:pb-36 pt-0'>
+
+			<MainContainer className="pt-0 relative z-[2]">
+				<Box className="w-[85%] mx-auto pb-24 lg:pb-36 pt-0">
 					<OurTeam
 						data={data}
 						states={{
@@ -50,9 +54,27 @@ export default function About() {
 					/>
 				</Box>
 				<ScrollButton threshold={1 / 2} />
-			</MainContainer >
-			<Highlights />
+			</MainContainer>
+
+			{/* <img
+				src={pura}
+				alt="pura"
+				className='hidden md:block'
+				style={{
+					position: "absolute",
+					right: 0,
+					top: "71%",
+					width: "400px",
+					zIndex: 1, 
+					pointerEvents: "none"
+				}}
+			/> */}
+
+			<Box position="relative" sx={{ zIndex: 2 }}>
+				<Highlights />
+			</Box>
+
 			<Footer />
-		</Box >
+		</Box>
 	);
 }

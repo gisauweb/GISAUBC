@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Typography } from '@mui/material';
+import SubHeading from 'shared/components/SubHeading';
+import smiley from 'assets/home-page/activities/smiley.svg';
 import GridContainer from 'shared/components/grid/GridContainer';
 import { DropdownMenu } from 'shared/components/index';
 import TeamButtons from './TeamButtons';
@@ -29,9 +31,11 @@ export default function OurTeam({ data, states }) {
 	return (
 		<Box className="pt-0">
 			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10 pt-0'>
-				<Typography variant='h5' color='primary' sx={{ fontWeight: "bold", textTransform: "upperCase" }}>
-					Meet our team
-				</Typography>
+				<SubHeading
+					text='MEET OUR TEAM'
+					isRight
+					icon={smiley}
+				/>
 			</Box>
 			<Box>
 				<Box className="mb-4">
