@@ -1,35 +1,51 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
-import './TeamGridItem.css';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
+import { CiInstagram, CiLinkedin } from "react-icons/ci";
+import { FaSpotify } from "react-icons/fa";
+import './TeamGridItem.css'; // For custom styling
 
-export default function TeamGridItem({ item, selectedCard, setSelectedCard }) {
-	const isFlipped = selectedCard === item.name;
-
-	const handleClickButton = () => {
-		setSelectedCard((prevCard) => (prevCard === item.name ? null : item.name));
-	};
-
+export default function TeamGridItem({ item }) {
 	return (
-		<Grid item xs={1} sm={1.5} md={2} lg={1.5}>
-			<Box className='flex flex-col mx-7 sm:mx-0'>
-				<button
-					type='button'
-					onClick={handleClickButton}
-					className={`image-button ${isFlipped ? 'flipped' : ''}`}
-				>
-					<div className='card'>
-						<div className='front'>
-							<img src={item.image} alt='item_image' className='team-image' loading='lazy' />
-						</div>
-						<div className='back bg-primary rounded-2xl text-white'>
-							<div className='my-[45%] space-y-1'>
-								<p className='text-[1rem] lg:text-[0.85rem] xl:text-[1rem]'>{item.name}</p>
-								<p className='text-[0.8rem] xl:text-[0.85rem]'>{item.position}</p>
-								<p className='text-[0.8rem] xl:text-[0.85rem]'>{item.education}</p>
-							</div>
-						</div>
-					</div>
-				</button>
+		<Grid item xs={12} sm={6} md={4} lg={3}>
+			<Box className="card">
+				<Box className="card-content" sx={{ display: 'flex', alignItems: 'center', padding: 0 }}>
+					<Box
+						component="img"
+						src={item.image}
+						alt="team-member"
+						className="team-image"
+						sx={{
+							width: '50%',
+							height: '50%',
+							borderRadius: '15px',
+							marginRight: 2,
+						}}
+					/>
+
+					<Box sx={{ flexGrow: 1 }}>
+						<Typography variant="body2" className="position" sx={{ textTransform: "uppercase", fontWeight: "bold" }} color="primary">
+							{item.position}
+						</Typography>
+						<Typography variant="h6" className="name" sx={{ textTransform: "capitalize", fontWeight: "bold" }}>
+							{item.name}
+						</Typography>
+						<Typography variant="body2" className="education">
+							{item.education}
+						</Typography>
+
+						<Box className="social-icons" sx={{ marginTop: 1 }}>
+							<IconButton href={item.instagram} className='social-icon' target="_blank" color="primary">
+								<CiInstagram />
+							</IconButton>
+							<IconButton href={item.linkedin} className='social-icon' target="_blank" color="primary">
+								<CiLinkedin />
+							</IconButton>
+							<IconButton href={item.spotify} className='social-icon' target="_blank" color="primary">
+								<FaSpotify />
+							</IconButton>
+						</Box>
+					</Box>
+				</Box>
 			</Box>
 		</Grid>
 	);

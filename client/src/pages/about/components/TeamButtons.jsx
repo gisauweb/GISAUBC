@@ -8,16 +8,16 @@ export default function TeamButtons({ selectedButton, setSelectedButton }) {
 		setSelectedButton(buttonName);
 	};
 	return (
-		<Box className='flex flex-wrap lg:space-x-6 3xl:space-x-10 pb-1 sm:pb-0'>
+		<Box className='flex flex-wrap lg:space-x-6 3xl:space-x-10 mb-1 sm:mb-0'>
 			{BUTTONS.map((buttonName) => (
 				<Button
 					key={buttonName}
 					text={buttonName}
-					background={selectedButton === buttonName ? '' : 'grayBg'}
+					background={selectedButton === buttonName ? '' : 'cremeBg'}
 					handleClickButton={() => {
 						handleClickButton(buttonName);
 					}}
-					className='mr-4 mb-4 sm:mr-6 sm:mb-6 2xl:mr-0 2xl:mb-0'
+					className='mr-4 mb-4 sm:mr-6 sm:mb-1 2xl:mr-0 text-sm! px-6! h-full!'
 				/>
 			))}
 		</Box>

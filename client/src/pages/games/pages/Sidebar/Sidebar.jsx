@@ -12,7 +12,7 @@ import {
 	AccordionHeader,
 	AccordionBody,
 } from '@material-tailwind/react';
-import logo from 'assets/gisau-logo/gisau.svg';
+import logo from '/gisau-logo/gisau.svg';
 import rectangle from 'assets/games/Rectangle.png';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';

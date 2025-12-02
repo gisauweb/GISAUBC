@@ -52,14 +52,15 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 
 	return (
 		<div
-			className={`w-40 sm:w-64 relative ${display} ${rightSpacing}
-						rounded-2xl border-2 border-spacing-2 border-primary stroke-primary z-20`}
+			className={`w-full sm:w-64 relative ${display} ${rightSpacing}
+						${isOpen ? 'rounded-t-4xl' : 'rounded-4xl'} z-20`}
 			ref={dropdownRef}
 		>
 			<button
 				type='button'
-				className={`bg-bg-primary hover:bg-gray-200 text-primary text-base sm:text-xl 
-							${isOpen ? 'rounded-t-2xl' : 'rounded-2xl'} focus:border-b border-gray-400 
+				className={`bg-bg-primary hover:bg-gray-200 text-primary text-base sm:text-xl  
+							${isOpen ? 'rounded-t-4xl' : 'rounded-4xl'} border-2
+							border-primary stroke-primary 
 							font-inter font-semibold flex items-center justify-between w-full py-1`}
 				onClick={handleToggle}
 			>
@@ -67,19 +68,24 @@ export default function DropdownMenu({ selectedYear, setSelectedYear, source }) 
 				<span className='font-inter pl-3 sm:pl-9'>{selectedYear}</span>
 				<KeyboardArrowDownIcon fontSize={isMobile ? 'medium' : 'large'} className='font-inter' />
 			</button>
-			{isOpen &&
-				years.map((year, i) => (
-					<button
-						key={year}
-						type='button'
-						className={`block w-full py-2 bg-bg-primary hover:bg-primary
-									${i === years.length - 1 && 'rounded-b-xl'} text-base sm:text-xl
-									text-primary hover:text-white font-inter font-semibold `}
-						onClick={() => handleSelect(year)}
-					>
-						{year}
-					</button>
-				))}
+			{isOpen && (
+				<div
+					className='absolute left-0 top-full w-full shadow-lg border-2 border-primary border-t-0 rounded-b-4xl
+				   bg-bg-primary overflow-hidden'
+				>
+					{years.map((year, i) => (
+						<button
+							key={year}
+							type='button'
+							className={`block w-full py-2 bg-bg-primary hover:bg-primary text-base sm:text-xl
+						text-primary hover:text-white font-inter font-semibold `}
+							onClick={() => handleSelect(year)}
+						>
+							{year}
+						</button>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }

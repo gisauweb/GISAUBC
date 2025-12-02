@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useSpring, animated } from 'react-spring';
-import logo from 'assets/gisau-logo/gisau.svg';
+import { useSpring, animated } from '@react-spring/web';
+import logo from '/gisau-logo/gisau.svg';
 import sidemenu from 'assets/games/sidebar.svg';
 import { useAuth0 } from '@auth0/auth0-react';
 import Sidebar from './Sidebar/Sidebar';
