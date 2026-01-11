@@ -23,6 +23,243 @@ const VISION_MISSION = [
 ];
 
 const EXECUTIVES = {
+	'2025/2026': {
+		Core: [
+			{
+				name: 'Adni Sadhira Dharmakusuma',
+				position: 'President',
+				department: 'Core',
+				image: null,
+				education: '3rd Year Arts',
+			},
+			{
+				name: 'Aiko Josephine Sumarno',
+				position: 'Vice President',
+				department: 'Core',
+				image: null,
+				education: '3rd Year Science',
+			},
+			{
+				name: 'Adrian Nicholas Hasjim',
+				position: 'Treasurer',
+				department: 'Core',
+				image: null,
+				education: '3rd Year Science',
+			},
+			{
+				name: 'Bradley Eugene Sakran',
+				position: 'Internal Affairs',
+				department: 'Core',
+				image: null,
+				education: '3rd Year Science',
+			},
+			{
+				name: 'Angelica Eileen Indarto',
+				position: 'Secretary',
+				department: 'Core',
+				image: null,
+				education: '3rd Year Arts',
+			},
+		],
+
+		Events: [
+			{
+				name: 'Tiffany Hersa',
+				position: 'Events Director',
+				department: 'Events',
+				image: null,
+				education: '2nd Year Sauder Commerce',
+			},
+			{
+				name: 'Dion Raphael Sunotoredjo',
+				position: 'Logistics Director',
+				department: 'Events',
+				image: null,
+				education: '3rd Year Commerce',
+			},
+			{
+				name: 'Briana Vincentia Nugraha',
+				position: 'Events Coordinator',
+				department: 'Events',
+				image: null,
+				education: '2nd Year Arts',
+			},
+			{
+				name: 'Abigail Perwata',
+				position: 'Events Coordinator',
+				department: 'Events',
+				image: null,
+				education: '2nd Year Commerce',
+			},
+			{
+				name: 'Emily Razali',
+				position: 'Events Coordinator',
+				department: 'Events',
+				image: null,
+				education: '1st Year Commerce',
+			},
+		],
+
+		External: [
+			{
+				name: 'Gabriella Aiko',
+				position: 'Sponsorship Director',
+				department: 'External',
+				image: null,
+				education: '3rd Year Applied Science',
+			},
+			{
+				name: 'Bagus Ramadi Putra',
+				position: 'Sponsorship Coordinator',
+				department: 'External',
+				image: null,
+				education: '2nd Year Arts',
+			},
+			{
+				name: 'Nevan Nicholas Leo',
+				position: 'Sponsorship Coordinator',
+				department: 'External',
+				image: null,
+				education: '2nd Year Science',
+			},
+			{
+				name: 'Valencia Gabrielle Hartono',
+				position: 'Outreach Director',
+				department: 'External',
+				image: null,
+				education: '5th Year Commerce',
+			},
+			{
+				name: 'Chriscenci Priscilla Susanto',
+				position: 'Outreach Coordinator',
+				department: 'External',
+				image: null,
+				education: '3rd Year Science',
+			},
+		],
+
+		'F&B': [
+			{
+				name: 'Trigo Prawira',
+				position: 'F&B Director',
+				department: 'F&B',
+				image: null,
+				education: '3rd Year Commerce',
+			},
+			{
+				name: 'Audri Silvi Orinko',
+				position: 'F&B Coordinator',
+				department: 'F&B',
+				image: null,
+				education: '3rd Year Land & Food Systems',
+			},
+			{
+				name: 'Jeanne Audy Kurniawan',
+				position: 'F&B Coordinator',
+				department: 'F&B',
+				image: null,
+				education: '3rd Year Commerce',
+			},
+			{
+				name: 'Melody Annabelle',
+				position: 'F&B Coordinator',
+				department: 'F&B',
+				image: null,
+				education: '2nd Year Commerce',
+			},
+		],
+
+		Marketing: [
+			{
+				name: 'Ray Danavaro Tandjung',
+				position: 'Marketing Director',
+				department: 'Marketing',
+				image: null,
+				education: '2nd Year Commerce',
+			},
+			{
+				name: 'Matthew Andersen Haryanto',
+				position: 'Webmaster Lead',
+				department: 'Marketing',
+				image: null,
+				education: '3rd Year Science',
+				instagram: 'https://www.instagram.com/matthewanh_',
+				linkedin: 'https://www.linkedin.com/in/matthewanh/',
+				spotify: 'https://open.spotify.com/playlist/1lUySyPYilxmZMWRSGqEzb?si=CXwRXMXpQ9K1ikMT-OL8lQ',
+			},
+			{
+				name: 'Gaida Amzar',
+				position: 'Web Developer',
+				department: 'Marketing',
+				image: null,
+				education: '1st Year Science',
+			},
+			{
+				name: 'Adelio Windiarto',
+				position: 'UI/UX Designer',
+				department: 'Marketing',
+				image: null,
+				education: '3rd Year Arts',
+			},
+			{
+				name: 'Anindrya Chattra',
+				position: 'UI/UX Designer',
+				department: 'Marketing',
+				image: null,
+				education: '1st Year Science',
+			},
+			{
+				name: 'Latascha Hartarto',
+				position: 'Content Creator (Lead)',
+				department: 'Marketing',
+				image: null,
+				education: '2nd Year Arts',
+			},
+			{
+				name: 'Jennifer Saphira Evani Tjen',
+				position: 'Content Creator',
+				department: 'Marketing',
+				image: null,
+				education: '3rd Year Science',
+			},
+			{
+				name: 'Marshia Angeline Soendjaja',
+				position: 'Content Creator',
+				department: 'Marketing',
+				image: null,
+				education: '2nd Year Pharmaceutical Science',
+			},
+			{
+				name: 'Alfredo Austin',
+				position: 'Creative Director',
+				department: 'Marketing',
+				image: null,
+				education: '2nd Year Pharmaceutical Science',
+			},
+			{
+				name: 'Edward Farrell Budiman',
+				position: 'Creative Coordinator',
+				department: 'Marketing',
+				image: null,
+				education: '3rd Year Science',
+			},
+			{
+				name: 'Randy Ryansha',
+				position: 'Creative Coordinator',
+				department: 'Marketing',
+				image: null,
+				education: '1st Year Applied Science',
+			},
+			{
+				name: 'Kiarra Nayana Hartanto',
+				position: 'Creative Coordinator',
+				department: 'Marketing',
+				image: null,
+				education: '1st Year Arts',
+			},
+		],
+	},
+
 	'2024/2025': {
 		Core: [
 			{
