@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Grid, Grow } from '@mui/material';
 import Button from 'shared/components/button/Button';
 import TeamGridItem from 'pages/about/components/TeamGridItem';
+import MobileTeamGridItem from 'pages/about/components/MobileTeamGridItem';
 import GridItem from './GridItem';
 
 function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard }) {
@@ -10,6 +11,8 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 	const secondGrowLength = Math.ceil((dataLength * 2) / 3);
 	// eslint-disable-next-line one-var, one-var-declaration-per-line
 	let selectedCard, setSelectedCard;
+
+	// const isMobile = useMediaQuery({ query: '(max-width: 639px) ' });
 
 	if (teamGridCard) {
 		({ selectedCard, setSelectedCard } = teamGridCard);
@@ -26,14 +29,25 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(firstGrowLength, secondGrowLength).map((item) => {
 							if (teamGridCard) {
-								return (
-									<TeamGridItem
-										item={item}
-										key={item.name}
-										selectedCard={selectedCard}
-										setSelectedCard={setSelectedCard}
-									/>
-								);
+								if (isMobile) {
+									return (
+										<MobileTeamGridItem
+											item={item}
+											key={item.name}
+											selectedCard={selectedCard}
+											setSelectedCard={setSelectedCard}
+										/>
+									);
+								} else {
+									return (
+										<TeamGridItem
+											item={item}
+											key={item.name}
+											selectedCard={selectedCard}
+											setSelectedCard={setSelectedCard}
+										/>
+									);
+								}
 							}
 							return <GridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />;
 						})}
@@ -46,14 +60,25 @@ function PastGridGrow({ data, dataLength, upcomingEvent, isMobile, teamGridCard 
 					<Grid container spacing={{ xs: 10, md: 12 }} columns={{ xs: 1, sm: 4, md: 6 }}>
 						{data.slice(secondGrowLength).map((item) => {
 							if (teamGridCard) {
-								return (
-									<TeamGridItem
-										item={item}
-										key={item.name}
-										selectedCard={selectedCard}
-										setSelectedCard={setSelectedCard}
-									/>
-								);
+								if (isMobile) {
+									return (
+										<MobileTeamGridItem
+											item={item}
+											key={item.name}
+											selectedCard={selectedCard}
+											setSelectedCard={setSelectedCard}
+										/>
+									);
+								} else {
+									return (
+										<TeamGridItem
+											item={item}
+											key={item.name}
+											selectedCard={selectedCard}
+											setSelectedCard={setSelectedCard}
+										/>
+									);
+								}
 							}
 							return <GridItem item={item} upcomingEvent={upcomingEvent} key={item.title} />;
 						})}
