@@ -5,40 +5,50 @@ function PartnerContainer({ name, logo, description, link, code }) {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <Box className='flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40'>
+        <Box className="flex flex-col sm:flex-row items-center sm:items-start sm:gap-12 z-40">
             <a
                 href={link}
-                target='_blank'
-                rel='noreferrer'
+                target="_blank"
+                rel="noreferrer"
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
+                className="block"
             >
-                <div className='rounded-xl w-52 h-52 flex items-center justify-center'>
-                    {hovered ? (
-                        <div className="flex flex-col items-center justify-center
-                w-full h-full
-                bg-sky-100
-                border-2 border-sky-300
-                rounded-xl
-                text-sky-900">
-                            <span className="text-sm font-semibold tracking-wide uppercase">
-                                Code
-                            </span>
-                            <span className="text-2xl font-bold tracking-wider mt-1">
-                                {code ?? "-"}
-                            </span>
+                <div className="relative w-52 h-52 [perspective:1000px]">
+                    <div
+                        className={`
+                            absolute inset-0
+                            transition-transform duration-700 ease-in-out
+                            [transform-style:preserve-3d]
+                            ${hovered ? '[transform:rotateY(180deg)]' : ''}
+                        `}
+                    >
+                        <div className="absolute inset-0 backface-hidden rounded-xl
+                                        flex items-center justify-center">
+                            <img alt={name} src={logo} loading="lazy" />
                         </div>
-                    ) : (
-                        <img alt={name} src={logo} loading='lazy' />
-                    )}
+
+                        <div
+                            className="absolute inset-0 backface-hidden rounded-xl [transform:rotateY(180deg)] flex items-center justify-center bg-[#F5F1ED] text-[#222222]"
+                        >
+                            <div className="text-center">
+                                <span className="text-sm font-semibold uppercase tracking-wide">
+                                    Code
+                                </span>
+                                <div className="text-2xl font-bold tracking-wider mt-1">
+                                    {code ?? '-'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </a>
 
-            <Box className='flex flex-col w-3/4 pt-6 sm:pt-8 gap-4 justify-center items-center'>
-                <Typography variant='h4' color='maroon' className='text-left w-full'>
+            <Box className="flex flex-col w-3/4 pt-6 sm:pt-8 gap-4 justify-center items-center">
+                <Typography variant="h4" color="maroon" className="text-left w-full">
                     {name}
                 </Typography>
-                <Typography variant='body1' color='black' className='text-left'>
+                <Typography variant="body1" color="black" className="text-left">
                     {description}
                 </Typography>
             </Box>
