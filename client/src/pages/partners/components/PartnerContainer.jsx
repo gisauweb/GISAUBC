@@ -35,7 +35,7 @@ function PartnerContainer({ name, logo, description, link, code }) {
                                 <span className="text-sm font-semibold uppercase tracking-wide">
                                     Code
                                 </span>
-                                <div className="text-2xl font-bold tracking-wider mt-1">
+                                <div className="text-xl font-bold tracking-wider mt-1">
                                     {code ?? '-'}
                                 </div>
                             </div>
