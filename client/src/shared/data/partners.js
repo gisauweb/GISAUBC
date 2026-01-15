@@ -42,6 +42,7 @@ const PARTNERS = [
 		description:
 			"Storagehotel is UBC and UofT's #1 student storage service! We pick up, store, and deliver. Free boxes and tape. Starting at $5/month. Upfront pricing.",
 		link: 'https://www.storagehotel.ca/',
+        code: 'GISAU',
 		yearlong: true,
 	},
 	{
