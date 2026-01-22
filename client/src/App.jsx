@@ -1,6 +1,8 @@
 import { Box } from '@mui/material';
 import { useUpcomingPosts } from 'hooks/usePosts';
 import Admin from 'pages/admin/Admin';
+import NotFound from 'pages/404/NotFound';
+import WorkInProgress from 'pages/404/WorkInProgress';
 import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
@@ -47,10 +49,11 @@ function App() {
 					{button.map((btn) => (
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
+					<Route path='/games' element={<Navigate replace to='/wip' />} />
+					<Route path='*' element={<NotFound />} />
 				</Route>
 
 				<Route path='/admin' element={<Admin />} />
-				<Route path='*' element={<Navigate replace to='/' />} />
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}
