@@ -14,7 +14,7 @@ export default function WorkInProgress() {
                 <div className='flex flex-col items-center justify-center min-h-[60vh] text-center gap-6 py-10'>
 
                     <div className='space-y-5 mt-20'>
-                        <h1 className='text-6xl font-bold font-oswald text-primary'>UNDER CONSTRUCTION</h1>
+                        <h1 className='text-3xl md:text-6xl font-bold font-oswald text-primary'>UNDER CONSTRUCTION</h1>
                         <p className='text-[#222222] font-proxima font-bold text-xl'>
                             Sorry! This game is still in progress
                         </p>
