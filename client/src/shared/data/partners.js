@@ -8,6 +8,7 @@ const PARTNERS = [
 		description:
 			'Founded by two UBC Sauder alumni, Honeydew Labs is dedicated to delivering natural, proven skincare ingredients that are effortlessly enjoyable for daily use. We firmly believe that skincare should be a delightful journey, fostering self-love and empowerment, while leaving unrealistic standards of perfection behind.',
 		link: 'https://www.honeydewlabs.com/',
+        code: 'GISAU15OFF',
 		yearlong: true,
 	},
 	// {
@@ -32,6 +33,7 @@ const PARTNERS = [
 		description:
 			"Discover authentic Hawaiian poké at Steve's Poké Bar in Metro Vancouver. Our house-made sauce marinated poké sets us apart from other spots",
 		link: 'https://www.stevespokebar.ca/',
+        code: 'SCHOOLSPB2025',
 		yearlong: true,
 	},
 	{
@@ -40,6 +42,7 @@ const PARTNERS = [
 		description:
 			"Storagehotel is UBC and UofT's #1 student storage service! We pick up, store, and deliver. Free boxes and tape. Starting at $5/month. Upfront pricing.",
 		link: 'https://www.storagehotel.ca/',
+        code: 'GISAU',
 		yearlong: true,
 	},
 	{
@@ -48,6 +51,7 @@ const PARTNERS = [
 		description:
 			'Wizeprep is an all-in-one education platform offering instant online access to course-tailored university exam-prep, tutorials, expert tutors, and many more study tools. This cutting-edge platform delivers a seamless learning experience stocked with all the tools needed to help students reach their full academic potential.',
 		link: 'https://www.wizeprep.com/',
+        code: 'UBCGISAU',
 		yearlong: true,
 	},
 	{
