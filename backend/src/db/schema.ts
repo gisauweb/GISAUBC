@@ -6,6 +6,7 @@ import {
   text,
   timestamp,
   varchar,
+  uuid,
 } from "drizzle-orm/pg-core";
 
 export const membershipTypeEnum = pgEnum("membership_type", [
@@ -66,4 +67,17 @@ export const postsTable = pgTable("posts", {
   // timestamps
   createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
+});
+
+export const profiles = pgTable("profiles", {
+  id: uuid("id").primaryKey(),
+  firstName: text("first_name").notNull(),
+  lastName: text("last_name").notNull(),
+  studentId: text("student_id").notNull().unique(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
 });

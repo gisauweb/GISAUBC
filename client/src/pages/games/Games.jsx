@@ -1,171 +1,66 @@
-/* eslint-disable object-curly-newline */
-import React, { useEffect, useState } from 'react';
-
-import { useAuth0 } from '@auth0/auth0-react';
-import { useMediaQuery } from 'react-responsive';
-import Dashboard from './pages/dashboard/Dashboard';
-import Onboarding from './pages/onboarding/Onboarding';
-import AlertDialog from './pages/onboarding/components/AlertDialog';
-import Sidebar from './pages/Sidebar/Sidebar';
-import MobileSideBar from './pages/MobileSidebar';
-import Pomodoro from './pages/pomodoro/Pomodoro';
+import AuthBootstrap from 'auth/AuthBootstrap';
+import supabase from 'libs/supabaseClient';
+import { useEffect, useState } from 'react';
 import ComingSoon from './pages/ComingSoon';
+import Dashboard from './pages/dashboard/Dashboard';
+import Pomodoro from './pages/pomodoro/Pomodoro';
 import Settings from './pages/settings/Settings';
+import Sidebar from './pages/Sidebar/Sidebar';
 
 export default function Games() {
-	const {
-		isAuthenticated,
-		isLoading,
-		getAccessTokenSilently,
-		getAccessTokenWithPopup,
-		loginWithPopup,
-		user,
-		logout,
-	} = useAuth0();
-	const [token, setToken] = useState(null);
-	const [account, setAccount] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-	const [alert, setAlert] = useState(false);
+	const [email, setEmail] = useState(null);
 	const [currentPage, setCurrentPage] = useState('Dashboard');
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
-	const handleLoginAgain = async () => {
-		try {
-			await loginWithPopup();
-			setError('');
-			setLoading(false);
-		} catch (err) {
-			setError(err.message);
-		}
+	useEffect(() => {
+		(async () => {
+			const { data } = await supabase.auth.getSession();
+			setEmail(data.session?.user?.email ?? null);
+		})();
+	}, []);
+
+	const login = () => {
+		window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
 	};
 
-	const handleConsent = async () => {
-		try {
-			await getAccessTokenWithPopup();
-			setError('');
-			setLoading(false);
-		} catch (err) {
-			setError(err.message);
-		}
+	const logout = async () => {
+		await supabase.auth.signOut();
+		setEmail(null);
 	};
 
-	useEffect(() => {
-		setAlert(!!error);
-	}, [error]);
+	// const callApi = async () => {
+	// 	const { data } = await supabase.auth.getSession();
+	// 	const token = data.session?.access_token;
 
-	useEffect(() => {
-		async function getToken() {
-			try {
-				const result = await getAccessTokenSilently();
-				setToken(result);
-				if (!account && user) {
-					await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
-						headers: {
-							'Content-Type': 'application/json',
-							Accept: 'application/json',
-							Authorization: `Bearer ${result}`,
-						},
-					})
-						.then((res) => res.json())
-						.then((res) => {
-							setAccount(res.result);
-							setLoading(false);
-						})
-						.catch((err) => {
-							setError(err.message);
-						});
-				}
-			} catch (err) {
-				setError(err.message);
-			}
-		}
-		if (isAuthenticated && user && !account) {
-			getToken();
-		}
-	}, [isAuthenticated, user, account, getAccessTokenSilently]);
+	// 	const res = await fetch('http://localhost:3000/auth/me', {
+	// 		headers: { Authorization: `Bearer ${token}` },
+	// 	});
 
-	useEffect(() => {
-		if (!isAuthenticated) {
-			loginWithPopup();
-		}
-	}, [isAuthenticated, loginWithPopup]);
+	// 	console.log(await res.json());
+	// };
 
-	async function updateAccountState() {
-		await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${token}`,
-			},
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setAccount(res.result);
-			})
-			.catch((err) => {
-				setError(err.message);
-			});
-	}
-
-	return isLoading || loading || alert ? (
-		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
-	) : !account ? (
-		<Onboarding token={token} setAccount={setAccount} />
-	) : isMobileView ? (
-		<div className='w-screen flex flex-col h-screen items-center gap-3 relative bg-overlay bg-white'>
-			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
-			) : currentPage === 'Pomodoro' ? (
-				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : currentPage === 'Settings' ? (
-				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : (
-				<ComingSoon />
-			)}
-		</div>
-	) : (
-		<div className='flex h-screen bg-white'>
-			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
-			) : currentPage === 'Pomodoro' ? (
-				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : currentPage === 'Settings' ? (
-				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : (
-				<ComingSoon />
-			)}
-		</div>
-	);
-}
-
-function Loading({ params }) {
-	const { alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert } = params;
 	return (
-		<>
-			<div className='w-full h-screen'>Loading...</div>
-			{alert && (
-				<div
-					onClick={() => {
-						if (error === 'Consent required') {
-							handleConsent();
-						} else if (error === 'Login required') {
-							handleLoginAgain();
-						} else {
-							logout({
-								logoutParams: {
-									returnTo: `${window.location.origin.toString()}`,
-								},
-							});
-						}
-						setLoading(true);
-					}}
-				>
-					<AlertDialog open={alert} setOpen={setAlert} serverError={error} />
-				</div>
+		<div>
+			<AuthBootstrap />
+			<div>User: {email ?? 'NOT SIGNED IN'}</div>
+
+			{!email && <button onClick={login}>Sign in with Google</button>}
+			{email && (
+				<>
+					<button onClick={logout}>Log out</button> <br />
+					<div className='flex h-screen bg-white'>
+						<Sidebar username={email} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+						{currentPage === 'Dashboard' ? (
+							<Dashboard />
+						) : currentPage === 'Pomodoro' ? (
+							<Pomodoro updateAccountState={() => updateAccountState()} />
+						) : currentPage === 'Settings' ? (
+							<Settings updateAccountState={() => updateAccountState()} />
+						) : (
+							<ComingSoon />
+						)}
+					</div>
+				</>
 			)}
-		</>
+		</div>
 	);
 }

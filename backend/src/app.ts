@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 import post from "./api/post.route.js";
 import user from "./api/user.route.js";
+import auth from "./api/auth.route.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ app.use(
 app.use(express.json());
 app.use("/posts", post);
 app.use("/users", user);
+app.use("/auth", auth);
 
 app.get("/", (req, res) => {
   res.json({ message: "GISAU Backend API" });
