@@ -16,6 +16,7 @@
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.7",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
     "pg-promise": "^12.2.0",
     "postgres": "^3.4.7"
   },
@@ -23,6 +24,7 @@
     "@biomejs/biome": "2.3.1",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.9.1",
     "drizzle-kit": "^0.31.6",
     "tsx": "^4.20.6",
