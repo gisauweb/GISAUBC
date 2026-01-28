@@ -1,6 +1,6 @@
 import About from 'pages/about/About';
 import Events from 'pages/events/Events';
-import Games from 'pages/games/Games';
+import WorkInProgress from 'pages/404/WorkInProgress';
 import Home from 'pages/home/Home';
 import Members from 'pages/members/Members';
 import Partners from 'pages/partners/Partners';
@@ -39,9 +39,9 @@ export const pages = [
 	},
 	{
 		name: 'Games',
-		path: '/games',
+		path: '/wip',
 		hasLandingImage: false,
-		element: <Games />,
+		element: <WorkInProgress />,
 	},
 ];
 
