@@ -1,6 +1,6 @@
 import cors from "cors";
 import "dotenv/config";
-import express from "express";
+import express, { Router } from "express";
 import post from "./api/post.route.js";
 import user from "./api/user.route.js";
 import auth from "./api/auth.route.js";
@@ -17,9 +17,13 @@ app.use(
 );
 
 app.use(express.json());
-app.use("/posts", post);
-app.use("/users", user);
-app.use("/auth", auth);
+
+const api = Router();
+api.use("/posts", post);
+api.use("/users", user);
+api.use("/auth", auth);
+
+app.use("/api/v1", api);
 
 app.get("/", (req, res) => {
   res.json({ message: "GISAU Backend API" });
