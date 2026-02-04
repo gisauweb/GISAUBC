@@ -12,6 +12,9 @@ export default function Games() {
 	const [email, setEmail] = useState(null);
 	const [registered, setRegistered] = useState(null); // null = loading
 	const [currentPage, setCurrentPage] = useState('Dashboard');
+	const [profile, setProfile] = useState(null);
+	const [avatarUrl, setAvatarUrl] = useState(null);
+	const [token, setToken] = useState(null);
 
 	const refreshAccountState = async () => {
 		const { data } = await supabase.auth.getSession();
@@ -20,19 +23,24 @@ export default function Games() {
 		if (!session) {
 			setEmail(null);
 			setRegistered(null);
+			setProfile(null);
+			setToken(null);
 			return;
 		}
 
-		setEmail(session.user.email);
+		setAvatarUrl(session.user.user_metadata?.avatar_url ?? session.user.user_metadata?.picture ?? null);
 
-		const token = session.access_token;
+		const accessToken = session.access_token;
+		setEmail(session.user.email);
+		setToken(accessToken);
 
 		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
-			headers: { Authorization: `Bearer ${token}` },
+			headers: { Authorization: `Bearer ${accessToken}` },
 		});
 
 		const body = await res.json();
-		setRegistered(!!body.registered);
+		setProfile(body.profile ?? null);
+		setRegistered(Boolean(body.registered));
 	};
 
 	useEffect(() => {
@@ -53,33 +61,43 @@ export default function Games() {
 		await supabase.auth.signOut();
 		setEmail(null);
 		setRegistered(null);
+		setProfile(null);
+		setToken(null);
 	};
 
 	return (
 		<div>
 			<AuthBootstrap />
-			<div>User: {email ?? 'NOT SIGNED IN'}</div>
-
 			{!email && <button onClick={login}>Sign in with Google</button>}
 
 			{email && !registered && (
 				<>
-					<button onClick={logout}>Log out</button>
 					<RegisterForm onSuccess={refreshAccountState} />
 				</>
 			)}
 
 			{email && registered && (
 				<>
-					<button onClick={logout}>Log out</button> <br />
 					<div className='flex h-screen bg-white'>
-						<Sidebar username={email} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+						<Sidebar
+							username={profile.firstName}
+							picture={avatarUrl}
+							currentPage={currentPage}
+							setCurrentPage={setCurrentPage}
+							handleLogout={logout}
+						/>
 						{currentPage === 'Dashboard' ? (
-							<Dashboard />
+							<Dashboard account={profile} picture={avatarUrl} token={token} />
 						) : currentPage === 'Pomodoro' ? (
 							<Pomodoro updateAccountState={() => updateAccountState()} />
 						) : currentPage === 'Settings' ? (
-							<Settings updateAccountState={() => updateAccountState()} />
+							<Settings
+								account={profile}
+								email={email}
+								picture={avatarUrl}
+								token={token}
+								updateAccountState={() => updateAccountState()}
+							/>
 						) : (
 							<ComingSoon />
 						)}

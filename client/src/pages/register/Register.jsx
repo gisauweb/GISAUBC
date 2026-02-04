@@ -5,6 +5,12 @@ export default function RegisterForm({ onSuccess }) {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [studentId, setStudentId] = useState('');
+
+	const [faculty, setFaculty] = useState('');
+	const [membershipType, setMembershipType] = useState('full');
+	const [yearOfStudy, setYearOfStudy] = useState('');
+	const [lookingForward, setLookingForward] = useState('');
+
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
 
@@ -24,7 +30,15 @@ export default function RegisterForm({ onSuccess }) {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${token}`,
 				},
-				body: JSON.stringify({ firstName, lastName, studentId }),
+				body: JSON.stringify({
+					firstName,
+					lastName,
+					studentId,
+					faculty,
+					membershipType,
+					yearOfStudy,
+					lookingForward,
+				}),
 			});
 
 			if (!res.ok) {
@@ -33,7 +47,7 @@ export default function RegisterForm({ onSuccess }) {
 			}
 
 			const result = await res.json();
-			onSuccess?.(result); // e.g. navigate to dashboard
+			onSuccess?.(result);
 		} catch (err) {
 			setError(err.message);
 		} finally {
@@ -63,6 +77,46 @@ export default function RegisterForm({ onSuccess }) {
 				<label>
 					Student ID
 					<input value={studentId} onChange={(e) => setStudentId(e.target.value)} required />
+				</label>
+			</div>
+
+			<div>
+				<label>
+					Faculty
+					<input value={faculty} onChange={(e) => setFaculty(e.target.value)} required />
+				</label>
+			</div>
+
+			<div>
+				<label>
+					Membership Type
+					<select value={membershipType} onChange={(e) => setMembershipType(e.target.value)}>
+						<option value='full'>Full</option>
+						<option value='half'>Half</option>
+					</select>
+				</label>
+			</div>
+
+			<div>
+				<label>
+					Year of Study
+					<select value={yearOfStudy} onChange={(e) => setYearOfStudy(e.target.value)} required>
+						<option value='' disabled>
+							Select year
+						</option>
+						<option value='1'>1</option>
+						<option value='2'>2</option>
+						<option value='3'>3</option>
+						<option value='4'>4</option>
+						<option value='5+'>5+</option>
+					</select>
+				</label>
+			</div>
+
+			<div>
+				<label>
+					What are you looking forward to?
+					<textarea value={lookingForward} onChange={(e) => setLookingForward(e.target.value)} rows={3} />
 				</label>
 			</div>
 
