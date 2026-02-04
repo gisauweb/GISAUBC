@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import express from "express";
-import { profiles } from "../../drizzle/schema";
+import { profiles } from "../db/schema";
 import db from "../db/database";
 import { requireAuth } from "../middleware";
 
@@ -45,7 +45,15 @@ router.get("/callback", (req, res) => {
 
 router.post("/register", requireAuth, async (req, res) => {
   const userId = req.user!.sub;
-  const { firstName, lastName, studentId } = req.body;
+  const {
+    firstName,
+    lastName,
+    studentId,
+    faculty,
+    membershipType,
+    yearOfStudy,
+    lookingForward,
+  } = req.body;
 
   // basic validation (use zod)
   if (!firstName || !lastName || !studentId) {
@@ -66,7 +74,17 @@ router.post("/register", requireAuth, async (req, res) => {
   try {
     const created = await db
       .insert(profiles)
-      .values({ id: userId, firstName, lastName, studentId })
+      .values({
+        id: userId,
+        firstName,
+        lastName,
+        studentId,
+        faculty,
+        membershipType,
+        yearOfStudy,
+        lookingForward,
+        role: "member",
+      })
       .returning();
 
     res.json({ registered: true, profile: created[0] });
