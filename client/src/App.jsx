@@ -3,6 +3,7 @@ import { useUpcomingPosts } from 'hooks/usePosts';
 import Admin from 'pages/admin/Admin';
 import NotFound from 'pages/404/NotFound';
 import WorkInProgress from 'pages/404/WorkInProgress';
+import MemberForm from 'assets/member-form/MemberForm';
 import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
@@ -54,6 +55,7 @@ function App() {
 				</Route>
 
 				<Route path='/admin' element={<Admin />} />
+				<Route path='/member-form' element={<MemberForm />} />
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}
