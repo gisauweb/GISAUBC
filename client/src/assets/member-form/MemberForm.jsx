@@ -80,21 +80,21 @@ export default function MemberForm() {
                 <React.Fragment key={num}>
                     <div className="flex flex-col items-center relative z-10">
                         <div
-                            className={`w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold border-2 transition-colors duration-300
+                            className={`w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-lg font-bold border-2 transition-colors duration-300
                 ${step === num ? 'bg-[#732727] text-white border-[#732727]' :
                                     step > num ? 'bg-[#732727] text-white border-[#732727]' :
                                         'bg-gray-200 text-gray-500 border-gray-300'}`}
                         >
                             {num}
                         </div>
-                        <span className="text-xs mt-2 absolute top-12 whitespace-nowrap text-gray-600 font-medium">
+                        <span className="text-[10px] md:text-xs mt-2 absolute top-10 md:top-12 text-gray-600 font-medium w-20 text-center leading-tight">
                             {num === 1 && 'Personal Information'}
                             {num === 2 && 'Membership Pricing'}
                             {num === 3 && 'Payment'}
                         </span>
                     </div>
                     {num < 3 && (
-                        <div className={`w-24 h-1 transition-colors duration-300 mx-2 ${step > num ? 'bg-[#732727]' : 'bg-gray-300'}`} />
+                        <div className={`w-12 md:w-24 h-1 transition-colors duration-300 mx-1 md:mx-2 ${step > num ? 'bg-[#732727]' : 'bg-gray-300'}`} />
                     )}
                 </React.Fragment>
             ))}
@@ -216,7 +216,7 @@ export default function MemberForm() {
                 {/* Left Side: Merch Selection */}
                 <div className="flex-1">
                     <div className="bg-[#732727] text-white p-3 rounded-md mb-6 inline-block">
-                        <h2 className="text-xl font-bold font-oswald pl-2 pr-4">{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — ${selectedMembership?.price || 0}</h2>
+                        <h2 className="text-base md:text-xl font-bold font-oswald pl-2 pr-4">{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — ${selectedMembership?.price || 0}</h2>
                     </div>
 
                     <h3 className="text-gray-700 mb-4">Select your merchandise (optional)!</h3>
@@ -410,8 +410,9 @@ export default function MemberForm() {
 
             </div>
 
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-100 pointer-events-none z-0" style={{ backgroundImage: `url(${Batik})`, backgroundSize: '300px', backgroundRepeat: 'repeat' }}></div>
+            {/* Background Decor */}
+            <div className="absolute top-24 right-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-right-top z-0" style={{ backgroundImage: `url(${Batik})` }}></div>
+            <div className="absolute bottom-0 left-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-right-top z-0" style={{ backgroundImage: `url(${Batik})`, transform: 'rotate(180deg)' }}></div>
 
         </div>
     );
