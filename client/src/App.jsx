@@ -1,12 +1,10 @@
 import { Box } from '@mui/material';
 import { useUpcomingPosts } from 'hooks/usePosts';
-import Admin from 'pages/admin/Admin';
 import NotFound from 'pages/404/NotFound';
-import WorkInProgress from 'pages/404/WorkInProgress';
-import MemberForm from 'pages/members/MemberForm';
+import Games from 'pages/games/Games';
 import Popup from 'pages/pop-up/Popup';
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import isGamesPage from './routeUtils';
 import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
@@ -50,12 +48,12 @@ function App() {
 					{button.map((btn) => (
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
-					<Route path='/games' element={<Navigate replace to='/wip' />} />
 					<Route path='*' element={<NotFound />} />
 				</Route>
-
-				<Route path='/admin' element={<Admin />} />
-				<Route path='/member-form' element={<MemberForm />} />
+				<Route path='/'>
+					<Route path='/app' element={<Games />} />
+					{/* <Route path='/admin' element={<Admin />} /> */}
+				</Route>
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}

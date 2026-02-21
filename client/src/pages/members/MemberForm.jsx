@@ -1,8 +1,6 @@
-import {
-	Box
-} from '@mui/material';
-import GisauLogo from 'assets/gisau-logo/gisau_white.svg'; // Adjust path if needed
-import React, { useState } from 'react';
+import { Box } from '@mui/material';
+import supabase from 'libs/supabaseClient';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,7 +35,9 @@ export default function MemberForm() {
 	const navigate = useNavigate();
 	const [step, setStep] = useState(1);
 	const [isSubmitted, setIsSubmitted] = useState(false);
-
+	const [loading, setLoading] = useState(false);
+	const [apiError, setApiError] = useState(null);
+	
 	const {
 		register,
 		handleSubmit,
@@ -50,15 +50,27 @@ export default function MemberForm() {
 			firstName: '',
 			lastName: '',
 			email: '',
-			studentNumber: '',
+			studentId: '',
 			faculty: '',
-			year: '',
-			food: '',
+			yearOfStudy: '',
+			recommendation: '',
 			membershipType: 'full',
 			merch: [],
-			paymentMethod: 'etransfer',
+			paymentMethod: 'online',
 		},
 	});
+
+	useEffect(() => {
+		const fetchUser = async () => {
+			const {
+				data: { session },
+			} = await supabase.auth.getSession();
+			if (session?.user?.email) {
+				setValue('email', session.user.email);
+			}
+		};
+		fetchUser();
+	}, [setValue]);
 
 	const formValues = watch();
 
@@ -76,17 +88,42 @@ export default function MemberForm() {
 		return total;
 	};
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		if (step < 3) {
 			setStep(step + 1);
 		} else {
-			console.log('Form Submitted:', data);
-			setIsSubmitted(true);
-		}
-	};
+			setLoading(true);
+			setApiError(null);
 
-	const handleBack = () => {
-		if (step > 1) setStep(step - 1);
+			try {
+				const { data: authData } = await supabase.auth.getSession();
+				const token = authData.session?.access_token;
+				if (!token) throw new Error('Not authenticated. Please log in first.');
+
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify({
+						...data,
+						// totalPrice: calculateTotal(), // Sending the calculated total
+					}),
+				});
+
+				if (!res.ok) {
+					const body = await res.json().catch(() => ({}));
+					throw new Error(body.error || 'Registration failed');
+				}
+
+				setIsSubmitted(true);
+			} catch (err) {
+				setApiError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		}
 	};
 
 	// --- Render Steps ---
@@ -108,9 +145,9 @@ export default function MemberForm() {
 							className={`w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-lg font-bold border-2 transition-colors duration-300
                 ${
 					step === num
-						? 'bg-[#732727] text-white border-[#732727]'
+						? 'bg-primary text-white border-primary'
 						: step > num
-						? 'bg-[#732727] text-white border-[#732727]'
+						? 'bg-primary text-white border-primary'
 						: 'bg-gray-200 text-gray-500 border-gray-300'
 				}`}
 						>
@@ -125,7 +162,7 @@ export default function MemberForm() {
 					{num < 3 && (
 						<div
 							className={`w-12 md:w-24 h-1 transition-colors duration-300 mx-1 md:mx-2 ${
-								step > num ? 'bg-[#732727]' : 'bg-gray-300'
+								step > num ? 'bg-primary' : 'bg-gray-300'
 							}`}
 						/>
 					)}
@@ -140,48 +177,49 @@ export default function MemberForm() {
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>First Name</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>First Name *</label>
 					<input
 						{...register('firstName', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none'
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
 						placeholder=''
 					/>
 					{errors.firstName && <span className='text-red-500 text-xs'>Required</span>}
 				</div>
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Last Name</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>Last Name *</label>
 					<input
 						{...register('lastName', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none'
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
 						placeholder=''
 					/>
 					{errors.lastName && <span className='text-red-500 text-xs'>Required</span>}
 				</div>
 
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Email</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>Email *</label>
 					<input
 						{...register('email', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none'
-						placeholder=''
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
+						placeholder='Loading email...'
+						disabled
 					/>
 					{errors.email && <span className='text-red-500 text-xs'>Required</span>}
 				</div>
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Student Number</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>Student Number *</label>
 					<input
-						{...register('studentNumber', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none'
+						{...register('studentId', { required: true })}
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
 						placeholder=''
 					/>
-					{errors.studentNumber && <span className='text-red-500 text-xs'>Required</span>}
+					{errors.studentId && <span className='text-red-500 text-xs'>Required</span>}
 				</div>
 
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Faculty</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>Faculty *</label>
 					<select
 						{...register('faculty', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none appearance-none'
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none appearance-none'
 					>
 						<option value='' disabled>
 							Choose One
@@ -195,10 +233,10 @@ export default function MemberForm() {
 					{errors.faculty && <span className='text-red-500 text-xs'>Required</span>}
 				</div>
 				<div>
-					<label className='block text-sm font-medium text-gray-700 mb-1'>Year of Study</label>
+					<label className='block text-sm font-medium text-gray-700 mb-1'>Year of Study *</label>
 					<select
-						{...register('year', { required: true })}
-						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none appearance-none'
+						{...register('yearOfStudy', { required: true })}
+						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none appearance-none'
 					>
 						<option value='' disabled>
 							Choose One
@@ -218,8 +256,8 @@ export default function MemberForm() {
 					What foods or events are you looking forward for GISAU to host? We will try make it happen!
 				</label>
 				<textarea
-					{...register('food')}
-					className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-[#732727] outline-none h-24 resize-none'
+					{...register('recommendation')}
+					className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none h-24 resize-none'
 					placeholder=''
 				/>
 			</div>
@@ -233,7 +271,7 @@ export default function MemberForm() {
 								type='radio'
 								value={type.id}
 								{...register('membershipType', { required: true })}
-								className='accent-[#732727] w-5 h-5'
+								className='accent-primary w-5 h-5'
 							/>
 							<span className='text-sm text-gray-700'>
 								{type.label} = ${type.price}
@@ -246,7 +284,7 @@ export default function MemberForm() {
 			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
-					className='bg-[#732727] text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
 				>
 					Continue
 				</button>
@@ -262,7 +300,7 @@ export default function MemberForm() {
 			<div className='max-w-5xl mx-auto flex flex-col md:flex-row gap-8'>
 				{/* Left Side: Merch Selection */}
 				<div className='flex-1'>
-					<div className='bg-[#732727] text-white p-3 rounded-md mb-6 inline-block'>
+					<div className='bg-primary text-white p-3 rounded-md mb-6 inline-block'>
 						<h2 className='text-base md:text-xl font-bold font-oswald pl-2 pr-4'>
 							{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
 							{selectedMembership?.price || 0}
@@ -277,7 +315,7 @@ export default function MemberForm() {
 									type='checkbox'
 									value={item.id}
 									{...register('merch')}
-									className='accent-[#732727] w-5 h-5 rounded'
+									className='accent-primary w-5 h-5 rounded'
 								/>
 								<span className='text-gray-700'>
 									{item.label} (+${item.price})
@@ -285,7 +323,7 @@ export default function MemberForm() {
 							</label>
 						))}
 						<label className='flex items-center space-x-3 cursor-pointer'>
-							<input type='checkbox' className='accent-[#732727] w-5 h-5 rounded' />
+							<input type='checkbox' className='accent-primary w-5 h-5 rounded' />
 							<span className='text-gray-700'>No Merchandise</span>
 						</label>
 					</div>
@@ -323,7 +361,7 @@ export default function MemberForm() {
 					<div className='pointer-events-auto'>
 						<button
 							onClick={handleSubmit(onSubmit)}
-							className='bg-[#732727] text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
 						>
 							Continue
 						</button>
@@ -335,7 +373,7 @@ export default function MemberForm() {
 
 	const renderStep3 = () => (
 		<div className='max-w-4xl mx-auto'>
-			<div className='bg-[#732727] text-white p-3 rounded-md mb-6 inline-block'>
+			<div className='bg-primary text-white p-3 rounded-md mb-6 inline-block'>
 				<h2 className='text-xl font-bold font-oswald pl-2 pr-4'>Select Method of Payment</h2>
 			</div>
 
@@ -345,16 +383,16 @@ export default function MemberForm() {
 						type='radio'
 						value='etransfer'
 						{...register('paymentMethod', { required: true })}
-						className='accent-[#732727] w-5 h-5'
+						className='accent-primary w-5 h-5'
 					/>
-					<span className='text-gray-700 font-medium'>INTERAC e-Transfer</span>
+					<span className='text-gray-700 font-medium'>Card</span>
 				</label>
 				<label className='flex items-center space-x-3 cursor-pointer'>
 					<input
 						type='radio'
 						value='cash'
 						{...register('paymentMethod', { required: true })}
-						className='accent-[#732727] w-5 h-5'
+						className='accent-primary w-5 h-5'
 					/>
 					<span className='text-gray-700 font-medium'>Cash</span>
 				</label>
@@ -365,27 +403,6 @@ export default function MemberForm() {
 					<h3 className='text-[#A04040] font-bold text-lg mb-4'>Transfer Details:</h3>
 					<p className='mb-2 font-medium'>Send your payment via INTERAC e-Transfer to:</p>
 					<p className='text-blue-600 font-bold mb-6'>📧 finance.gisau@gmail.com</p>
-
-					<p className='font-bold text-sm mb-2'>In the e-Transfer note/message, please include:</p>
-					<ul className='list-disc pl-5 space-y-1 text-sm text-gray-700 mb-6'>
-						<li>Your full name</li>
-						<li>Your student number</li>
-						<li>Your membership type</li>
-					</ul>
-
-					<p className='text-gray-600 text-sm italic mb-6'>
-						Example: "Joko Widodo, 12345678, GISAU Full Year Membership"
-					</p>
-
-					<p className='font-bold text-sm mb-4'>
-						Upload your proof of payment (screenshot or confirmation) to this form once your transfer is
-						complete.
-					</p>
-
-					<div className='border border-[#732727] rounded-md inline-flex items-center p-2 cursor-pointer hover:bg-gray-50 transition-colors bg-white'>
-						<span className='text-[#732727] font-bold px-4'>⬆ Add File</span>
-					</div>
-					<p className='text-xs text-gray-400 mt-2'>Upload 1 supported file. Max 10 MB.</p>
 				</div>
 			) : (
 				<div className='bg-[#F0F4FA] p-8 rounded-lg mb-8'>
@@ -400,9 +417,9 @@ export default function MemberForm() {
 			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
-					className='bg-[#732727] text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+					className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
 				>
-					Submit
+					{loading ? 'Submitting...' : 'Submit'}
 				</button>
 			</div>
 		</div>
@@ -413,7 +430,7 @@ export default function MemberForm() {
 			<div className='bg-white p-12 rounded-xl shadow-lg text-center max-w-lg border border-gray-100'>
 				{/* Placeholder for custom confetti/mascot image if available */}
 				<div className='text-6xl mb-4'>🍁</div>
-				<h2 className='text-4xl font-bold font-oswald text-[#732727] mb-4'>THANK YOU!</h2>
+				<h2 className='text-4xl font-bold font-oswald text-primary mb-4'>THANK YOU!</h2>
 				<p className='text-gray-600 mb-8 text-sm'>
 					Your membership registration has been submitted successfully.
 					<br />
@@ -423,7 +440,7 @@ export default function MemberForm() {
 
 				<button
 					onClick={() => navigate('/')}
-					className='bg-[#732727] text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors text-sm'
+					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors text-sm'
 				>
 					Return to Home
 				</button>
@@ -433,9 +450,9 @@ export default function MemberForm() {
 
 	if (isSubmitted) {
 		return (
-			<div className='min-h-screen bg-[#732727] flex items-center justify-center p-4'>
+			<div className='min-h-screen bg-primary flex items-center justify-center p-4'>
 				<Box className='absolute top-8 left-8'>
-					<img src={GisauLogo} alt='GISAU Logo' className='h-16 w-auto' />
+					<img src='/gisau-logo/gisau.svg' alt='GISAU Logo' className='h-16 w-auto' />
 				</Box>
 
 				{renderSuccess()}
@@ -447,7 +464,7 @@ export default function MemberForm() {
 		<div className='min-h-screen flex flex-col bg-[#FFFDF5] relative overflow-hidden'>
 			{/* Main Content */}
 			<div className='flex-1 w-full max-w-7xl mx-auto px-4 py-8 relative z-10'>
-				<h1 className='text-5xl font-bold font-oswald text-center text-[#732727] mb-8 mt-4 tracking-wide uppercase'>
+				<h1 className='text-5xl font-bold font-oswald text-center text-primary mb-8 mt-4 tracking-wide uppercase'>
 					GISAU MEMBERSHIP
 				</h1>
 
