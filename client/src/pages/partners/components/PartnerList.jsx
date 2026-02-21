@@ -12,6 +12,7 @@ function PartnerList() {
 					description={sponsor.description}
 					link={sponsor.link}
 					key={sponsor.name}
+                    code={sponsor.code}
 				/>
 			))}
 		</Box>

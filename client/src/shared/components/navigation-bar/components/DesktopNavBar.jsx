@@ -34,24 +34,21 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 
 	return (
 		<Box
-			className={`fixed w-full h-16 flex justify-between px-10 mt-8 transition-all duration-300 ${
-				isVisible ? 'top-0' : '-top-24'
-			}`}
+			className={`fixed w-full h-16 flex justify-between px-10 mt-8 transition-all duration-300 ${isVisible ? 'top-0' : '-top-24'
+				}`}
 		>
 			<Box className='w-1/3'>
 				<NavBarLogo />
 			</Box>
 			<Box className='relative h-full items-center pt-2'>
 				<Box
-					className={`relative flex items-center mx-6 navbar px-4 ${
-						hasLandingImage ? bgColor : 'bg-white bg-opacity-70'
-					} h-12 rounded-full`}
+					className={`relative flex items-center mx-6 navbar px-4 ${hasLandingImage ? bgColor : 'bg-[#732727]'
+						} h-12 rounded-full`}
 				>
 					{pages.map((page) => (
 						<Link key={page.name} to={page.path} className='px-5' onClick={ScrollToTop} target='_self'>
 							<p
-								className={`underline-animation font-oswald text-md
-                ${hasLandingImage ? 'text-white' : 'text-primary underline-animation-red'}
+								className={`underline-animation font-oswald text-md text-white
                 ${page.path === location.pathname && 'underlined'}`}
 							>
 								{page.name}
@@ -71,9 +68,8 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 				</Link>
 			</Box>
 			<Box
-				className={`fixed bottom-6 right-20 transition-all duration-300 ${
-					isHovered ? 'w-48' : 'w-32'
-				} h-12 flex justify-center items-center`}
+				className={`fixed bottom-6 right-20 transition-all duration-300 ${isHovered ? 'w-48' : 'w-32'
+					} h-12 flex justify-center items-center`}
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
