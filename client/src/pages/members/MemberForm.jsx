@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
+import { ApplePay, CreditCard, PaymentForm } from 'react-square-web-payments-sdk';
+
 // --- Constants ---
 const FACULTIES = [
 	'Arts',
@@ -37,7 +39,7 @@ export default function MemberForm() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(null);
-	
+
 	const {
 		register,
 		handleSubmit,
@@ -381,8 +383,9 @@ export default function MemberForm() {
 				<label className='flex items-center space-x-3 cursor-pointer'>
 					<input
 						type='radio'
-						value='etransfer'
+						value='card'
 						{...register('paymentMethod', { required: true })}
+						defaultChecked
 						className='accent-primary w-5 h-5'
 					/>
 					<span className='text-gray-700 font-medium'>Card</span>
@@ -398,11 +401,20 @@ export default function MemberForm() {
 				</label>
 			</div>
 
-			{watch('paymentMethod') === 'etransfer' ? (
-				<div className='bg-[#F0F4FA] p-8 rounded-lg mb-8'>
-					<h3 className='text-[#A04040] font-bold text-lg mb-4'>Transfer Details:</h3>
-					<p className='mb-2 font-medium'>Send your payment via INTERAC e-Transfer to:</p>
-					<p className='text-blue-600 font-bold mb-6'>📧 finance.gisau@gmail.com</p>
+			{watch('paymentMethod') === 'card' ? (
+				<div className='bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
+					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
+					{/* <div className='mb-4'>
+						<ApplePay />
+					</div> */}
+
+					<CreditCard
+						buttonProps={{
+							className: 'bg-primary! rounded-full! font-bold! ',
+							text: `Pay $${() => calculateTotal()}`,
+						}}
+					/>
+					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>
 			) : (
 				<div className='bg-[#F0F4FA] p-8 rounded-lg mb-8'>
@@ -411,17 +423,17 @@ export default function MemberForm() {
 					<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
 					<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
 					<p className='font-bold'>We look forward to seeing you!</p>
+
+					<div className='flex justify-center mt-8'>
+						<button
+							onClick={handleSubmit(onSubmit)}
+							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+						>
+							{loading ? 'Submitting...' : 'Submit'}
+						</button>
+					</div>
 				</div>
 			)}
-
-			<div className='flex justify-center mt-8'>
-				<button
-					onClick={handleSubmit(onSubmit)}
-					className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-				>
-					{loading ? 'Submitting...' : 'Submit'}
-				</button>
-			</div>
 		</div>
 	);
 
@@ -470,11 +482,20 @@ export default function MemberForm() {
 
 				{renderStepIndicator()}
 
-				<div className='mt-8 transition-opacity duration-500 ease-in-out'>
-					{step === 1 && renderStep1()}
-					{step === 2 && renderStep2()}
-					{step === 3 && renderStep3()}
-				</div>
+				<PaymentForm
+					applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
+					locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
+					cardTokenizeResponseReceived={async (token, buyer) => {
+						// await handleOnlinePayment(token.token);
+						console.log(token.token);
+					}}
+				>
+					<div className='mt-8 transition-opacity duration-500 ease-in-out'>
+						{step === 1 && renderStep1()}
+						{step === 2 && renderStep2()}
+						{step === 3 && renderStep3()}
+					</div>
+				</PaymentForm>
 			</div>
 
 			{/* Background Decor */}
