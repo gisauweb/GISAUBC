@@ -77,15 +77,15 @@ export const posts = pgTable("posts", {
   }),
   title: varchar({ length: 255 }).notNull(),
   description: text(),
-  date: timestamp({ withTimezone: true, mode: "string" }).notNull(),
+  date: timestamp({ withTimezone: true }).notNull(),
   location: varchar({ length: 255 }).notNull(),
   type: postType().notNull(),
   coverImage: varchar("cover_image", { length: 512 }).notNull(),
   instagramLink: varchar("instagram_link", { length: 512 }),
-  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+  createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+  updatedAt: timestamp("updated_at", { withTimezone: true })
     .defaultNow()
     .notNull(),
   registrationLink: varchar("registration_link", { length: 512 }),

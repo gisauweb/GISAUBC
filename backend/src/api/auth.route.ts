@@ -25,8 +25,7 @@ router.get("/me", requireAuth, async (req, res) => {
 });
 
 router.get("/google", (req, res) => {
-  const callback = "http://localhost:3000/auth/callback";
-  const redirectTo = "http://localhost:5173/app";
+  const redirectTo = `${process.env.CLIENT_ORIGIN}/app`;
   const url =
     `${process.env.SUPABASE_URL}/authorize` +
     `?provider=google` +
@@ -40,7 +39,9 @@ router.get("/callback", (req, res) => {
   if (!code) return res.status(400).send("Missing code");
 
   // send user to React callback route
-  res.redirect(`http://localhost:5173/app?code=${encodeURIComponent(code)}`);
+  res.redirect(
+    `${process.env.CLIENT_ORIGIN}/app?code=${encodeURIComponent(code)}`
+  );
 });
 
 router.post("/register", requireAuth, async (req, res) => {

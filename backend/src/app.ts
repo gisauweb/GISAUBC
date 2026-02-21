@@ -1,9 +1,8 @@
 import cors from "cors";
 import "dotenv/config";
 import express, { Router } from "express";
-import post from "./api/post.route.js";
-import user from "./api/user.route.js";
 import auth from "./api/auth.route.js";
+import post from "./api/post.route.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,7 +19,6 @@ app.use(express.json());
 
 const api = Router();
 api.use("/posts", post);
-api.use("/users", user);
 api.use("/auth", auth);
 
 app.use("/api/v1", api);
