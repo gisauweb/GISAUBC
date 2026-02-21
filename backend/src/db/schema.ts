@@ -9,8 +9,11 @@ import {
   varchar,
   numeric,
   pgEnum,
+  boolean,
+  decimal,
+  serial,
 } from "drizzle-orm/pg-core";
-import { sql } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 
 export const postStatus = pgEnum("post_status", ["draft", "published"]);
 export const postType = pgEnum("post_type", ["event", "rantangan"]);
@@ -25,12 +28,17 @@ export const profiles = pgTable(
     lastName: text("last_name").notNull(),
     studentId: text("student_id").notNull(),
 
+    email: text("email").notNull(),
+
     faculty: text("faculty").notNull().default(""),
     membershipType: membershipType("membership_type").notNull().default("full"),
-    yearOfStudy: text("year_of_study").notNull().default(""),
-    lookingForward: text("looking_forward").notNull().default(""),
+    yearOfStudy: text("year_of_study").notNull(),
+    recommendation: text("recommendation").default(""),
 
     role: userRole("user_role").notNull().default("member"),
+
+    paymentMethod: text("payment_method").notNull().default("card"),
+    hasPayed: boolean("has_payed").notNull().default(false),
 
     createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
@@ -52,6 +60,12 @@ export const profiles = pgTable(
   ]
 );
 
+export const merch = pgTable("merch", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
+});
+
 export const posts = pgTable("posts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity({
     name: "posts_id_seq",
@@ -66,17 +80,42 @@ export const posts = pgTable("posts", {
   date: timestamp({ withTimezone: true, mode: "string" }).notNull(),
   location: varchar({ length: 255 }).notNull(),
   type: postType().notNull(),
-  coverImage: varchar({ length: 512 }).notNull(),
-  instagramLink: varchar({ length: 512 }),
-  createdAt: timestamp({ withTimezone: true, mode: "string" })
+  coverImage: varchar("cover_image", { length: 512 }).notNull(),
+  instagramLink: varchar("instagram_link", { length: 512 }),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
     .defaultNow()
     .notNull(),
-  updatedAt: timestamp({ withTimezone: true, mode: "string" })
+  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
     .defaultNow()
     .notNull(),
-  registrationLink: varchar({ length: 512 }),
-  infoLink: varchar({ length: 512 }),
+  registrationLink: varchar("registration_link", { length: 512 }),
+  infoLink: varchar("info_link", { length: 512 }),
   status: postStatus().default("draft").notNull(),
-  priceMember: numeric({ precision: 10, scale: 2 }),
-  priceRegular: numeric({ precision: 10, scale: 2 }),
+  priceMember: numeric("price_member", { precision: 10, scale: 2 }),
+  priceRegular: numeric("price_regular", { precision: 10, scale: 2 }),
 });
+
+export const memberMerch = pgTable("member_merch", {
+  id: serial("id").primaryKey(),
+  memberId: uuid("member_id").references(() => profiles.id, {
+    onDelete: "cascade",
+  }),
+  merchId: text("merch_id").references(() => merch.id, { onDelete: "cascade" }),
+  purchasedAt: timestamp("purchased_at").defaultNow(),
+});
+
+export const membersRelations = relations(profiles, ({ many }) => ({
+  purchases: many(memberMerch),
+}));
+
+export const merchRelations = relations(merch, ({ many }) => ({
+  soldTo: many(memberMerch),
+}));
+
+export const memberMerchRelations = relations(memberMerch, ({ one }) => ({
+  member: one(profiles, {
+    fields: [memberMerch.memberId],
+    references: [profiles.id],
+  }),
+  item: one(merch, { fields: [memberMerch.merchId], references: [merch.id] }),
+}));

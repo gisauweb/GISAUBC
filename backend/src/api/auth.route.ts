@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import express from "express";
-import { profiles } from "../db/schema";
+import { memberMerch, profiles } from "../db/schema";
 import db from "../db/database";
 import { requireAuth } from "../middleware";
 
@@ -26,7 +26,7 @@ router.get("/me", requireAuth, async (req, res) => {
 
 router.get("/google", (req, res) => {
   const callback = "http://localhost:3000/auth/callback";
-  const redirectTo = "http://localhost:5173/games";
+  const redirectTo = "http://localhost:5173/app";
   const url =
     `${process.env.SUPABASE_URL}/authorize` +
     `?provider=google` +
@@ -40,7 +40,7 @@ router.get("/callback", (req, res) => {
   if (!code) return res.status(400).send("Missing code");
 
   // send user to React callback route
-  res.redirect(`http://localhost:5173/games?code=${encodeURIComponent(code)}`);
+  res.redirect(`http://localhost:5173/app?code=${encodeURIComponent(code)}`);
 });
 
 router.post("/register", requireAuth, async (req, res) => {
@@ -49,50 +49,76 @@ router.post("/register", requireAuth, async (req, res) => {
     firstName,
     lastName,
     studentId,
+    email,
     faculty,
     membershipType,
     yearOfStudy,
-    lookingForward,
+    recommendation,
+    paymentMethod,
+    merch,
+    // totalPrice
   } = req.body;
 
   // basic validation (use zod)
-  if (!firstName || !lastName || !studentId) {
-    return res.status(400).json({ error: "Missing fields" });
-  }
-
-  // Prevent overwriting an existing profile
-  const existing = await db
-    .select({ id: profiles.id })
-    .from(profiles)
-    .where(eq(profiles.id, userId))
-    .limit(1);
-
-  if (existing.length) {
-    return res.status(409).json({ error: "Already registered" });
+  if (!firstName || !lastName || !studentId || !email) {
+    return res.status(400).json({ error: "Missing required fields" });
   }
 
   try {
-    const created = await db
-      .insert(profiles)
-      .values({
-        id: userId,
-        firstName,
-        lastName,
-        studentId,
-        faculty,
-        membershipType,
-        yearOfStudy,
-        lookingForward,
-        role: "member",
-      })
-      .returning();
+    const result = await db.transaction(async (tx) => {
+      const existing = await tx
+        .select({ id: profiles.id })
+        .from(profiles)
+        .where(eq(profiles.id, userId))
+        .limit(1);
 
-    res.json({ registered: true, profile: created[0] });
+      if (existing.length) {
+        throw new Error("ALREADY_EXISTS");
+      }
+
+      const [newProfile] = await tx
+        .insert(profiles)
+        .values({
+          id: userId,
+          firstName,
+          lastName,
+          email,
+          studentId,
+          faculty,
+          membershipType,
+          yearOfStudy,
+          recommendation,
+          paymentMethod,
+          role: "member",
+        })
+        .returning();
+
+      if (merch && Array.isArray(merch) && merch.length > 0) {
+        const merchRows = merch.map((merchId: string) => ({
+          memberId: userId,
+          merchId: merchId,
+        }));
+
+        await tx.insert(memberMerch).values(merchRows);
+      }
+
+      return newProfile;
+    });
+
+    res.json({ registered: true, profile: result });
   } catch (e: any) {
-    // student_id unique violation in Postgres is 23505
-    if (e?.code === "23505") {
-      return res.status(409).json({ error: "Student ID already in use" });
+    // Handle specific errors
+    if (e.message === "ALREADY_EXISTS") {
+      return res.status(409).json({ error: "Already registered" });
     }
+
+    if (e?.code === "23505") {
+      return res
+        .status(409)
+        .json({ error: "Student ID or Email already in use" });
+    }
+
+    console.error("Registration Error:", e);
     return res.status(500).json({ error: "Server error" });
   }
 });

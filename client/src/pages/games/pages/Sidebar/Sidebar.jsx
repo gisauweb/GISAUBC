@@ -124,7 +124,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 				)}
 
 				<Typography variant='h5' color='blue-gray'>
-					GISAU GAMES
+					GISAU MEMBER
 				</Typography>
 				<img src={rectangle} alt='border' style={{ maxWidth: '100px', height: 'auto', marginTop: '5px' }} />
 			</div>

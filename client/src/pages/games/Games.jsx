@@ -70,6 +70,14 @@ export default function Games() {
 			<AuthBootstrap />
 			{!email && (
 				<div className='relative h-screen flex items-center text-center justify-center'>
+					<div
+						className='absolute top-0 right-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
+						style={{ backgroundImage: `url(/form/batik.png)` }}
+					/>
+					<div
+						className='absolute bottom-0 left-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
+						style={{ backgroundImage: `url(/form/batik.png)`, transform: 'rotate(180deg)' }}
+					/>
 					<div className='z-10 bg-white p-10 rounded-2xl shadow-xl flex flex-col items-center max-w-sm w-full mx-4 border border-gray-100'>
 						<h1 className='text-4xl font-bold font-oswald text-primary mb-2 tracking-wide'>GISAU</h1>
 						<p className='text-gray-500 mb-8 font-medium'>Membership Portal</p>
@@ -106,7 +114,16 @@ export default function Games() {
 				</div>
 			)}
 
-			{email && !registered && <MemberForm />}
+			{email && registered === null && (
+				<div className='h-screen flex items-center justify-center bg-[#FFFDF5]'>
+					<div className='text-center'>
+						<div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4'></div>
+						<p className='text-gray-600 font-medium'>Verifying membership...</p>
+					</div>
+				</div>
+			)}
+
+			{email && registered === false && <MemberForm />}
 
 			{email && registered && (
 				<>
@@ -121,7 +138,8 @@ export default function Games() {
 						{currentPage === 'Dashboard' ? (
 							<Dashboard account={profile} picture={avatarUrl} token={token} />
 						) : currentPage === 'Pomodoro' ? (
-							<Pomodoro updateAccountState={() => updateAccountState()} />
+							// <Pomodoro updateAccountState={() => updateAccountState()} />
+							<ComingSoon />
 						) : currentPage === 'Settings' ? (
 							<Settings
 								account={profile}
