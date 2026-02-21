@@ -27,11 +27,9 @@ function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick
 	return (
 		<ListItem
 			onClick={onClick}
+			className='relative flex items-center'
 			style={{
 				backgroundColor: isSelected ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-				position: 'relative',
-				display: 'flex',
-				alignItems: 'center',
 			}}
 		>
 			<ListItemPrefix>
@@ -42,20 +40,20 @@ function SelectableListItem({ prefixIcon: PrefixIcon, label, isSelected, onClick
 	);
 }
 
-export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage }) {
+export default function Sidebar({ username, picture, onCloseSidebar, currentPage, setCurrentPage, handleLogout }) {
 	const [open, setOpen] = useState(0);
 	const [showLeaveConfirmation, setShowLeaveConfirmation] = useState(false);
 	const [nextPage, setNextPage] = useState(null);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-	const { logout } = useAuth0();
+	// const { logout } = useAuth0();
 
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};
 
-	const handleLogout = () => {
-		logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
-	};
+	// const handleLogout = () => {
+	// 	logout({ logoutParams: { returnTo: `${window.location.origin.toString()}` } });
+	// };
 
 	const handleCloseSidebar = () => {
 		setOpen(0);
@@ -126,7 +124,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 				)}
 
 				<Typography variant='h5' color='blue-gray'>
-					GISAU GAMES
+					GISAU MEMBER
 				</Typography>
 				<img src={rectangle} alt='border' style={{ maxWidth: '100px', height: 'auto', marginTop: '5px' }} />
 			</div>
@@ -223,7 +221,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 						</ListItem>
 					</>
 				)}
-				<ListItem onClick={() => handleLogout()}>
+				<ListItem onClick={() => handleLogout()} className='relative flex items-center'>
 					<ListItemPrefix>
 						<FaSignOutAlt className='h-5 w-5 ml-1' />
 					</ListItemPrefix>

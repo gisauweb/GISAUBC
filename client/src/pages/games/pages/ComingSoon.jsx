@@ -11,7 +11,7 @@ export default function ComingSoon() {
 			<div className='text-center'>
 				<p className='font-bold'>coming soon...</p>
 				<p>stay tuned for tons of exciting</p>
-				<p>merch and benefits!</p>
+				<p>merch and fun!</p>
 			</div>
 		</div>
 	);

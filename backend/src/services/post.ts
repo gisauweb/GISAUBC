@@ -1,10 +1,10 @@
 import type { InferSelectModel } from "drizzle-orm";
 import { and, desc, eq, gt, gte, lt } from "drizzle-orm";
 import db from "../db/database.js";
-import { postsTable } from "../db/schema.js";
+import { posts } from "../db/schema.js";
 
 // Automatically inferred type of a post
-export type Post = InferSelectModel<typeof postsTable>;
+export type Post = InferSelectModel<typeof posts>;
 
 // Type for creating a post (exclude id and timestamps)
 export type CreatePostInput = Omit<Post, "id" | "createdAt" | "updatedAt">;
@@ -29,7 +29,7 @@ export enum PostStatus {
  */
 export const get_all_posts = async (): Promise<Post[] | null> => {
   try {
-    const result = await db.select().from(postsTable);
+    const result = await db.select().from(posts);
     return result;
   } catch (err) {
     console.error("Error fetching posts:", err);
@@ -43,7 +43,7 @@ export const get_all_posts = async (): Promise<Post[] | null> => {
 export const add_post = async (postData: CreatePostInput): Promise<Post> => {
   try {
     postData.date = new Date(postData.date);
-    const [result] = await db.insert(postsTable).values(postData).returning();
+    const [result] = await db.insert(posts).values(postData).returning();
     if (!result) throw new Error("Failed to insert post");
     return result;
   } catch (err) {
@@ -64,25 +64,20 @@ export const get_upcoming_posts = async (
     if (type) {
       return await db
         .select()
-        .from(postsTable)
+        .from(posts)
         .where(
           and(
-            gt(postsTable.date, now),
-            eq(postsTable.type, type),
-            eq(postsTable.status, PostStatus.Published)
+            gt(posts.date, now),
+            eq(posts.type, type),
+            eq(posts.status, PostStatus.Published)
           )
         ); // date > now
     }
 
     return await db
       .select()
-      .from(postsTable)
-      .where(
-        and(
-          gt(postsTable.date, now),
-          eq(postsTable.status, PostStatus.Published)
-        )
-      ); // date > now
+      .from(posts)
+      .where(and(gt(posts.date, now), eq(posts.status, PostStatus.Published))); // date > now
   } catch (err) {
     console.error("Error fetching upcoming posts:", err);
     throw err;
@@ -98,13 +93,8 @@ export const get_past_posts = async (): Promise<Post[]> => {
     const now = new Date();
     return await db
       .select()
-      .from(postsTable)
-      .where(
-        and(
-          lt(postsTable.date, now),
-          eq(postsTable.status, PostStatus.Published)
-        )
-      ); // date < now
+      .from(posts)
+      .where(and(lt(posts.date, now), eq(posts.status, PostStatus.Published))); // date < now
   } catch (err) {
     console.error("Error fetching past posts:", err);
     throw err;
@@ -131,31 +121,31 @@ export const get_posts_by_year = async (
     if (type) {
       return await db
         .select()
-        .from(postsTable)
+        .from(posts)
         .where(
           and(
-            gte(postsTable.date, start),
-            lt(postsTable.date, end),
-            lt(postsTable.date, now),
-            eq(postsTable.type, type),
-            eq(postsTable.status, PostStatus.Published)
+            gte(posts.date, start),
+            lt(posts.date, end),
+            lt(posts.date, now),
+            eq(posts.type, type),
+            eq(posts.status, PostStatus.Published)
           )
         )
-        .orderBy(desc(postsTable.date));
+        .orderBy(desc(posts.date));
     }
 
     return await db
       .select()
-      .from(postsTable)
+      .from(posts)
       .where(
         and(
-          gte(postsTable.date, start),
-          lt(postsTable.date, end),
-          lt(postsTable.date, now),
-          eq(postsTable.status, PostStatus.Published)
+          gte(posts.date, start),
+          lt(posts.date, end),
+          lt(posts.date, now),
+          eq(posts.status, PostStatus.Published)
         )
       )
-      .orderBy(desc(postsTable.date));
+      .orderBy(desc(posts.date));
   } catch (err) {
     console.error("Error fetching posts by academic year:", err);
     throw err;
