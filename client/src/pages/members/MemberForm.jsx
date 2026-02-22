@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import supabase from 'libs/supabaseClient';
+import BackButton from 'pages/games/BackButton';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -474,9 +475,9 @@ export default function MemberForm() {
 
 	return (
 		<div className='min-h-screen flex flex-col bg-[#FFFDF5] relative overflow-hidden'>
-			{/* Main Content */}
+			<BackButton />
 			<div className='flex-1 w-full max-w-7xl mx-auto px-4 py-8 relative z-10'>
-				<h1 className='text-5xl font-bold font-oswald text-center text-primary mb-8 mt-4 tracking-wide uppercase'>
+				<h1 className='text-4xl md:text-5xl font-bold font-oswald text-center text-primary mb-8 mt-10 md:mt-4 tracking-wide uppercase'>
 					GISAU MEMBERSHIP
 				</h1>
 

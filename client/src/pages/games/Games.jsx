@@ -1,12 +1,12 @@
-import AuthBootstrap from 'auth/AuthBootstrap';
 import supabase from 'libs/supabaseClient';
 import MemberForm from 'pages/members/MemberForm';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ComingSoon from './pages/ComingSoon';
 import Dashboard from './pages/dashboard/Dashboard';
-import Pomodoro from './pages/pomodoro/Pomodoro';
 import Settings from './pages/settings/Settings';
 import Sidebar from './pages/Sidebar/Sidebar';
+import BackButton from './BackButton';
 
 export default function Games() {
 	const [email, setEmail] = useState(null);
@@ -15,6 +15,7 @@ export default function Games() {
 	const [profile, setProfile] = useState(null);
 	const [avatarUrl, setAvatarUrl] = useState(null);
 	const [token, setToken] = useState(null);
+	const navigate = useNavigate();
 
 	const refreshAccountState = async () => {
 		const { data } = await supabase.auth.getSession();
@@ -46,15 +47,22 @@ export default function Games() {
 	useEffect(() => {
 		refreshAccountState();
 
-		const { data: sub } = supabase.auth.onAuthStateChange(() => {
-			refreshAccountState();
+		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+				refreshAccountState();
+			}
 		});
 
 		return () => sub.subscription.unsubscribe();
 	}, []);
 
-	const login = () => {
-		window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google`;
+	const login = async () => {
+		await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: {
+				redirectTo: `${window.location.origin}/auth/callback`,
+			},
+		});
 	};
 
 	const logout = async () => {
@@ -67,9 +75,10 @@ export default function Games() {
 
 	return (
 		<div>
-			<AuthBootstrap />
+			{/* <AuthBootstrap /> */}
 			{!email && (
 				<div className='relative h-screen flex items-center text-center justify-center'>
+					<BackButton />
 					<div
 						className='absolute top-0 right-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
 						style={{ backgroundImage: `url(/form/batik.png)` }}
@@ -78,7 +87,7 @@ export default function Games() {
 						className='absolute bottom-0 left-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
 						style={{ backgroundImage: `url(/form/batik.png)`, transform: 'rotate(180deg)' }}
 					/>
-					<div className='z-10 bg-white p-10 rounded-2xl shadow-xl flex flex-col items-center max-w-sm w-full mx-4 border border-gray-100'>
+					<div className='relative z-10 bg-white p-10 rounded-2xl shadow-xl flex flex-col items-center max-w-sm w-full mx-4 border border-gray-100'>
 						<h1 className='text-4xl font-bold font-oswald text-primary mb-2 tracking-wide'>GISAU</h1>
 						<p className='text-gray-500 mb-8 font-medium'>Membership Portal</p>
 
@@ -138,7 +147,7 @@ export default function Games() {
 						{currentPage === 'Dashboard' ? (
 							<Dashboard account={profile} picture={avatarUrl} token={token} />
 						) : currentPage === 'Pomodoro' ? (
-							// <Pomodoro updateAccountState={() => updateAccountState()} />
+							// <Pomodoro updateAccountState={() => refreshAccountState()} />
 							<ComingSoon />
 						) : currentPage === 'Settings' ? (
 							<Settings
@@ -146,7 +155,7 @@ export default function Games() {
 								email={email}
 								picture={avatarUrl}
 								token={token}
-								updateAccountState={() => updateAccountState()}
+								updateAccountState={() => refreshAccountState()}
 							/>
 						) : (
 							<ComingSoon />
@@ -154,7 +163,6 @@ export default function Games() {
 					</div>
 				</>
 			)}
-			{email && registered === null && <div>Checking account…</div>}
 		</div>
 	);
 }
