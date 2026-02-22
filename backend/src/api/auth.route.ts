@@ -1,9 +1,9 @@
 import "dotenv/config";
 import { eq } from "drizzle-orm";
 import express from "express";
-import db from "../db/database";
-import { memberMerch, profiles } from "../db/schema";
-import { requireAuth } from "../middleware";
+import db from "../db/database.js";
+import { memberMerch, profiles } from "../db/schema.js";
+import { requireAuth } from "../middleware.js";
 
 const router = express.Router();
 
