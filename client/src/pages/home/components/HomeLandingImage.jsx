@@ -1,11 +1,10 @@
-import { useMediaQuery } from 'react-responsive';
-import ReactGA from 'react-ga4';
-import { Button, LandingImage } from 'shared/components';
-import { Link, useNavigate } from 'react-router-dom';
 import gisauLogo from 'assets/gisau-logo/gisau.png';
-import homeLandingImg from 'assets/landing-image/home.webp';
 import gamesButtonIcon from 'assets/home-page/buttons/gameBtnIcon.svg';
 import memberButtonIcon from 'assets/home-page/buttons/memberBtnIcon.svg';
+import homeLandingImg from 'assets/landing-image/home.webp';
+import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
+import { Button, LandingImage } from 'shared/components';
 
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
