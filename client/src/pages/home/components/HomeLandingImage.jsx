@@ -31,7 +31,11 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex flex-col sm:flex-row sm:gap-x-4 gap-y-4 justify-center w-full'>
 				<div className='flex fl justify-center mt-4 sm:mt-0'>
-					<Button text='Become a Member' icon={memberButtonIcon} handleClickButton={() => navigate('/app')} />
+					<Button
+						text='Become a Member'
+						icon={memberButtonIcon}
+						handleClickButton={() => navigate('/members')}
+					/>
 				</div>
 				<div className='flex fl justify-center mt-1 sm:mt-0'>
 					<Button

@@ -439,23 +439,25 @@ export default function MemberForm() {
 	);
 
 	const renderSuccess = () => (
-		<div className='flex flex-col items-center justify-center min-h-[50vh]'>
-			<div className='bg-white p-12 rounded-xl shadow-lg text-center max-w-lg border border-gray-100'>
-				{/* Placeholder for custom confetti/mascot image if available */}
-				<div className='text-6xl mb-4'>🍁</div>
+		<div className='flex items-center justify-center min-h-[50vh]'>
+			<div className='bg-white p-12 rounded-xl shadow-lg text-center max-w-lg border border-gray-100 flex flex-col items-center'>
+				<img src='/gisau-logo/madu.png' alt='GISAU logo' className='w-14 mb-4 object-contain' />
+
 				<h2 className='text-4xl font-bold font-oswald text-primary mb-4'>THANK YOU!</h2>
-				<p className='text-gray-600 mb-8 text-sm'>
+
+				<p className='text-gray-600 mb-6 text-sm'>
 					Your membership registration has been submitted successfully.
 					<br />
 					If you have any questions, feel free to contact us.
 				</p>
+
 				<p className='text-gray-800 font-medium mb-8'>Welcome to GISAU!</p>
 
 				<button
-					onClick={() => navigate('/')}
+					onClick={() => navigate('/app')}
 					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors text-sm'
 				>
-					Return to Home
+					Continue
 				</button>
 			</div>
 		</div>

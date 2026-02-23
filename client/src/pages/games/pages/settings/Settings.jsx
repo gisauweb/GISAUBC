@@ -5,8 +5,8 @@ import ToggleSwitch from './components/ToggleSwitch';
 
 export default function Settings({ account, email, picture, token, updateAccountState }) {
 	return (
-		<Box className='py-1/10 xl:p-10 xl:pt-14 xl:pb-7 xl:justify-center w-screen xl:w-[80vw] xl:h-[95%]'>
-			<span className='text-xl xl:text-3xl font-bold hidden xl:inline-block'>Settings</span>
+		<Box className='h-screen w-full overflow-y-auto'>
+			{/* <span className='text-xl xl:text-3xl font-bold hidden xl:inline-block'>Settings</span> */}
 			<Box
 				className='flex flex-col xl:flex-row xl:px-7 xl:pt-10 xl:pb-7 justify-between
 				w-screen xl:w-full xl:h-full gap-y-14 xl:gap-y-0'
