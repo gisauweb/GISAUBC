@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import supabase from 'libs/supabaseClient';
+import BackButton from 'pages/games/BackButton';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -399,29 +400,46 @@ export default function MemberForm() {
 					/>
 					<span className='text-gray-700 font-medium'>Cash</span>
 				</label>
+				<label className='flex items-center space-x-3 cursor-pointer'>
+					<input
+						type='radio'
+						value='payed'
+						{...register('paymentMethod', { required: true })}
+						className='accent-primary w-5 h-5'
+					/>
+					<span className='text-gray-700 font-medium'>I am a member!</span>
+				</label>
 			</div>
 
 			{watch('paymentMethod') === 'card' ? (
-				<div className='bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
+				<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
 					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
-					{/* <div className='mb-4'>
-						<ApplePay />
-					</div> */}
-
-					<CreditCard
-						buttonProps={{
-							className: 'bg-primary! rounded-full! font-bold! ',
-							text: `Pay $${() => calculateTotal()}`,
+					<PaymentForm
+						applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
+						locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
+						cardTokenizeResponseReceived={async (token, buyer) => {
+							// await handleOnlinePayment(token.token);
+							console.log(token.token);
 						}}
-					/>
+					>
+						<CreditCard
+							buttonProps={{
+								className: 'bg-primary! rounded-full! font-bold! ',
+								text: `Pay $${calculateTotal()}`,
+							}}
+						/>
+					</PaymentForm>
+
 					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>
-			) : (
-				<div className='bg-[#F0F4FA] p-8 rounded-lg mb-8'>
+			) : watch('paymentMethod') === 'cash' ? (
+				<div className='bg-games-box p-8 rounded-lg mb-8'>
 					<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
+
 					<p className='font-bold mb-2'>Please meet us at:</p>
 					<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
 					<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
+
 					<p className='font-bold'>We look forward to seeing you!</p>
 
 					<div className='flex justify-center mt-8'>
@@ -433,28 +451,63 @@ export default function MemberForm() {
 						</button>
 					</div>
 				</div>
-			)}
+			) : watch('paymentMethod') === 'payed' ? (
+				<div className='bg-games-box p-8 rounded-lg mb-8 text-center'>
+					<h3 className='font-bold text-lg mb-2'>Payment on File ✅</h3>
+
+					<p className='text-sm'>
+						We have your payment recorded (in-person or previous membership). Please submit this form to
+						complete your registration in our new system.
+					</p>
+					<p className='text-sm mt-3'>If you were a member during Winter 25/26, please select this option.</p>
+
+					<div className='flex justify-center mt-8'>
+						<button
+							onClick={handleSubmit(onSubmit)}
+							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+							disabled={loading}
+						>
+							{loading ? 'Submitting...' : 'Submit'}
+						</button>
+					</div>
+					{apiError && (
+						<div className='mt-6 text-red-600 text-sm'>
+							<p>We couldn’t find your membership in our system.</p>
+							<p>
+								If you believe this is a mistake, please contact us at{' '}
+								<a href='mailto:gisauweb@gmail.com' className='underline font-semibold'>
+									gisauweb@gmail.com
+								</a>
+								.
+							</p>
+						</div>
+					)}
+					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
+				</div>
+			) : null}
 		</div>
 	);
 
 	const renderSuccess = () => (
-		<div className='flex flex-col items-center justify-center min-h-[50vh]'>
-			<div className='bg-white p-12 rounded-xl shadow-lg text-center max-w-lg border border-gray-100'>
-				{/* Placeholder for custom confetti/mascot image if available */}
-				<div className='text-6xl mb-4'>🍁</div>
+		<div className='flex items-center justify-center min-h-[50vh]'>
+			<div className='bg-white p-12 rounded-xl shadow-lg text-center max-w-lg border border-gray-100 flex flex-col items-center'>
+				<img src='/gisau-logo/madu.png' alt='GISAU logo' className='w-14 mb-4 object-contain' />
+
 				<h2 className='text-4xl font-bold font-oswald text-primary mb-4'>THANK YOU!</h2>
-				<p className='text-gray-600 mb-8 text-sm'>
+
+				<p className='text-gray-600 mb-6 text-sm'>
 					Your membership registration has been submitted successfully.
 					<br />
 					If you have any questions, feel free to contact us.
 				</p>
+
 				<p className='text-gray-800 font-medium mb-8'>Welcome to GISAU!</p>
 
 				<button
-					onClick={() => navigate('/')}
+					onClick={() => navigate('/app')}
 					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors text-sm'
 				>
-					Return to Home
+					Continue
 				</button>
 			</div>
 		</div>
@@ -474,28 +527,19 @@ export default function MemberForm() {
 
 	return (
 		<div className='min-h-screen flex flex-col bg-[#FFFDF5] relative overflow-hidden'>
-			{/* Main Content */}
+			<BackButton />
 			<div className='flex-1 w-full max-w-7xl mx-auto px-4 py-8 relative z-10'>
-				<h1 className='text-5xl font-bold font-oswald text-center text-primary mb-8 mt-4 tracking-wide uppercase'>
+				<h1 className='text-4xl md:text-5xl font-bold font-oswald text-center text-primary mb-8 mt-10 md:mt-4 tracking-wide uppercase'>
 					GISAU MEMBERSHIP
 				</h1>
 
 				{renderStepIndicator()}
 
-				<PaymentForm
-					applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
-					locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
-					cardTokenizeResponseReceived={async (token, buyer) => {
-						// await handleOnlinePayment(token.token);
-						console.log(token.token);
-					}}
-				>
-					<div className='mt-8 transition-opacity duration-500 ease-in-out'>
-						{step === 1 && renderStep1()}
-						{step === 2 && renderStep2()}
-						{step === 3 && renderStep3()}
-					</div>
-				</PaymentForm>
+				<div className='mt-8 transition-opacity duration-500 ease-in-out'>
+					{step === 1 && renderStep1()}
+					{step === 2 && renderStep2()}
+					{step === 3 && renderStep3()}
+				</div>
 			</div>
 
 			{/* Background Decor */}

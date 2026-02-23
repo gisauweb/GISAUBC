@@ -29,35 +29,35 @@ function easeInOut(t) {
 
 export default function Points({ account, leaderboard }) {
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-	const { rank, target, targetPoints } = leaderboard[account.uid];
-	const targetRank = rank === 1 ? 1 : rank - 1;
-	const points = account.total_points;
-	const rankSuffix = getRankSuffix(targetRank);
+	// const { rank, target, targetPoints } = leaderboard[account.uid];
+	// const targetRank = rank === 1 ? 1 : rank - 1;
+	// const points = account.total_points;
+	// const rankSuffix = getRankSuffix(targetRank);
 
-	const [animatedValue, setAnimatedValue] = useState(0);
+	// const [animatedValue, setAnimatedValue] = useState(0);
 
-	useEffect(() => {
-		const animationDuration = 1500;
+	// useEffect(() => {
+	// 	const animationDuration = 1500;
 
-		let startTime;
+	// 	let startTime;
 
-		function animate(timestamp) {
-			if (!startTime) startTime = timestamp;
-			const progress = Math.min(1, (timestamp - startTime) / animationDuration);
+	// 	function animate(timestamp) {
+	// 		if (!startTime) startTime = timestamp;
+	// 		const progress = Math.min(1, (timestamp - startTime) / animationDuration);
 
-			setAnimatedValue(easeInOut(progress) * (points / targetPoints) * 100);
+	// 		setAnimatedValue(easeInOut(progress) * (points / targetPoints) * 100);
 
-			if (progress < 1) {
-				requestAnimationFrame(animate);
-			}
-		}
+	// 		if (progress < 1) {
+	// 			requestAnimationFrame(animate);
+	// 		}
+	// 	}
 
-		requestAnimationFrame(animate);
+	// 	requestAnimationFrame(animate);
 
-		return () => {
-			setAnimatedValue((points / targetPoints) * 100);
-		};
-	}, [points, targetPoints]);
+	// 	return () => {
+	// 		setAnimatedValue((points / targetPoints) * 100);
+	// 	};
+	// }, [points, targetPoints]);
 
 	return (
 		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center ml-4'>
@@ -79,7 +79,7 @@ export default function Points({ account, leaderboard }) {
 			)}
 			<Box className={`${isMobileView ? 'h-5/6' : 'h-full'}`} style={{ aspectRatio: '1 / 1' }}>
 				<CircularProgressbarWithChildren
-					value={animatedValue}
+					value={50}
 					className='z-10'
 					styles={{
 						height: '100%',
@@ -90,20 +90,9 @@ export default function Points({ account, leaderboard }) {
 					<div className='flex flex-col justify-center items-center gap-3'>
 						<strong style={{ fontSize: 15 }}>Total Points</strong>
 						<div className='flex items-center'>
-							<strong style={{ fontSize: 18 }}>{points}</strong>
+							<strong style={{ fontSize: 18 }}>0</strong>
 							<img src={pointIcon} alt='' className='w-10 ml-7 mb-7 absolute' />
 						</div>
-					</div>
-					<div
-						className='w-1/2 flex flex-col mt-3 justify-center items-center text-center'
-						style={{ fontSize: 10 }}
-					>
-						Earn&nbsp;
-						{target}
-						&nbsp;points to reach&nbsp;
-						{targetRank}
-						{rankSuffix}
-						&nbsp;place!
 					</div>
 				</CircularProgressbarWithChildren>
 			</Box>
@@ -126,3 +115,70 @@ export default function Points({ account, leaderboard }) {
 		</Box>
 	);
 }
+
+// return (
+// 		<Box className='w-full h-full rounded-2xl flex flex-col justify-center items-center ml-4'>
+// 			{isMobileView && (
+// 				<div style={{ position: 'absolute', width: '100vw' }}>
+// 					<img
+// 						src={treasure}
+// 						alt='treasure'
+// 						style={{
+// 							width: '110px',
+// 							height: '110px',
+// 							position: 'absolute',
+// 							right: 0,
+// 							top: '-150px',
+// 							zIndex: 0,
+// 						}}
+// 					/>
+// 				</div>
+// 			)}
+// 			<Box className={`${isMobileView ? 'h-5/6' : 'h-full'}`} style={{ aspectRatio: '1 / 1' }}>
+// 				<CircularProgressbarWithChildren
+// 					value={animatedValue}
+// 					className='z-10'
+// 					styles={{
+// 						height: '100%',
+// 						path: { stroke: '#BFA285' },
+// 						trail: { stroke: '#F5F1ED' },
+// 					}}
+// 				>
+// 					<div className='flex flex-col justify-center items-center gap-3'>
+// 						<strong style={{ fontSize: 15 }}>Total Points</strong>
+// 						<div className='flex items-center'>
+// 							<strong style={{ fontSize: 18 }}>0</strong>
+// 							<img src={pointIcon} alt='' className='w-10 ml-7 mb-7 absolute' />
+// 						</div>
+// 					</div>
+// 					<div
+// 						className='w-1/2 flex flex-col mt-3 justify-center items-center text-center'
+// 						style={{ fontSize: 10 }}
+// 					>
+// 						Earn&nbsp;
+// 						{target}
+// 						&nbsp;points to reach&nbsp;
+// 						{targetRank}
+// 						{rankSuffix}
+// 						&nbsp;place!
+// 					</div>
+// 				</CircularProgressbarWithChildren>
+// 			</Box>
+// 			{isMobileView && (
+// 				<div style={{ position: 'absolute', width: '100vw' }}>
+// 					<img
+// 						src={game}
+// 						alt='game'
+// 						style={{
+// 							width: '100px',
+// 							height: '100px',
+// 							position: 'absolute',
+// 							left: 0,
+// 							bottom: '-150px',
+// 							zIndex: 0,
+// 						}}
+// 					/>
+// 				</div>
+// 			)}
+// 		</Box>
+// 	);

@@ -1,11 +1,10 @@
-import { useMediaQuery } from 'react-responsive';
-import ReactGA from 'react-ga4';
-import { Button, LandingImage } from 'shared/components';
-import { Link, useNavigate } from 'react-router-dom';
 import gisauLogo from 'assets/gisau-logo/gisau.png';
-import homeLandingImg from 'assets/landing-image/home.webp';
 import gamesButtonIcon from 'assets/home-page/buttons/gameBtnIcon.svg';
 import memberButtonIcon from 'assets/home-page/buttons/memberBtnIcon.svg';
+import homeLandingImg from 'assets/landing-image/home.webp';
+import { useMediaQuery } from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
+import { Button, LandingImage } from 'shared/components';
 
 export default function HomeLandingImage() {
 	const isMobileView = useMediaQuery({ query: '(max-width: 639px)' });
@@ -31,7 +30,11 @@ export default function HomeLandingImage() {
 			</h1>
 			<div className='flex flex-col sm:flex-row sm:gap-x-4 gap-y-4 justify-center w-full'>
 				<div className='flex fl justify-center mt-4 sm:mt-0'>
-					<Button text='Become a Member' icon={memberButtonIcon} handleClickButton={() => navigate('/app')} />
+					<Button
+						text='Become a Member'
+						icon={memberButtonIcon}
+						handleClickButton={() => navigate('/members')}
+					/>
 				</div>
 				<div className='flex fl justify-center mt-1 sm:mt-0'>
 					<Button

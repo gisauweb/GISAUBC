@@ -13,7 +13,12 @@ export default function MemberButton({ showIcon = true, text }) {
 			action: 'Click to register for membership',
 		});
 
-		navigate('/app');
+		// navigate('/app');
+		window.open(
+			'https://docs.google.com/forms/d/e/1FAIpQLSdHMPd5oMU9QtgukJYjcuDP1L7uC9t8WjoYIdLVoc0H-Xlmzw/viewform',
+			'_blank',
+			'noreferrer',
+		);
 	};
 
 	return <Button text={text} icon={showIcon ? penIcon : undefined} handleClickButton={handleMemberButton} />;

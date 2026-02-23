@@ -19,11 +19,11 @@ export default function Profile({ account, email, picture, token, updateAccountS
 				<span className='font-bold font-poppins text-2xl'>My profile</span>
 			</Box>
 			<Box className='flex flex-col h-full x-full px-[8vw] xl:px-0'>
-				<Box className='flex justify-center h-1/4 xl:h-1/3 my-10 xl:my-4'>
+				<Box className='flex justify-center h-1/4 xl:h-fit my-10 xl:my-4'>
 					<img
 						src={picture}
 						alt="User's profile"
-						style={{ height: '100%', borderRadius: '50%', borderWidth: '1px' }}
+						style={{ height: '7rem', borderRadius: '50%', borderWidth: '1px' }}
 					/>
 				</Box>
 				<Box className='flex justify-between gap-x-5'>

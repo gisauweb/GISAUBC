@@ -59,6 +59,8 @@ export default function Activity({ account }) {
 				],
 			},
 			options: {
+				responsive: true,
+				maintainAspectRatio: false,
 				animation: {
 					x: {
 						duration: 5000,
@@ -102,8 +104,9 @@ export default function Activity({ account }) {
 
 	return (
 		<Box
-			className='justify-center items-center mt-5 bg-games-box rounded-2xl px-2'
-			style={{ width: isMobileView ? '80vw' : '100%', height: isMobileView ? 'h-96' : 'h-50' }}
+			className={`bg-games-box rounded-2xl px-2 flex flex-col ${
+				isMobileView ? 'h-96 w-[80vw]' : 'w-full h-[40vh] min-h-92'
+			}`}
 		>
 			{isMobileView && (
 				<div style={{ position: 'relative' }}>
@@ -130,14 +133,8 @@ export default function Activity({ account }) {
 				</Box>
 			</Box>
 			{!isMobileView ? (
-				<Box className='flex w-full h-5/6 justify-center items-center' style={{ marginTop: '-50px' }}>
-					<canvas
-						ref={chartRef}
-						id='chart'
-						width='100%'
-						height='100%'
-						style={{ maxHeight: '70%', marginTop: 'auto', marginBottom: '3px' }}
-					/>
+				<Box className='flex-1 px-4 pb-4 overflow-hidden'>
+					<canvas ref={chartRef} id='chart' style={{ width: '100%', height: '100%' }} />
 				</Box>
 			) : (
 				<canvas
