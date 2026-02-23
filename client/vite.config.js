@@ -15,6 +15,7 @@ export default defineConfig({
 			libs: path.resolve(__dirname, './src/libs'),
 			assets: path.resolve(__dirname, './src/assets'),
 			hooks: path.resolve(__dirname, './src/hooks'),
+			auth: path.resolve(__dirname, './src/auth'),
 		},
 	},
 });

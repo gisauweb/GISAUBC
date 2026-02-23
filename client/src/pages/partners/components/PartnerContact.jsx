@@ -15,10 +15,10 @@ function PartnerContact() {
 		<Container style={containerStyle} className='relative sm:py-3 pb-28 md:pb-36'>
 			<a
 				href='mailto:sponsorship.gisau@gmail.com'
-				className='flex flex-col gap-5 mt-5 border-transparent border-3 rounded-full'
+				className='flex flex-col gap-5 justify-center items-center mt-5'
 				aria-label='Save'
 			>
-				<h4 className='pt-4 lg:pt-6 font-oswald font-bold text-4xl'>Contact us at</h4>
+				<h4 className='pt-4 lg:pt-6 font-oswald font-bold text-3xl md:text-4xl'>Contact us at</h4>
 				<Button text='sponsorship.gisau@gmail.com' />
 			</a>
 		</Container>

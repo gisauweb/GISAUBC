@@ -37,7 +37,7 @@ export default function Footer({ showPlane = true }) {
 				>
 					Become a Partner
 				</Link>
-				<div className={`footer-email flex ${isMobile ? '' : 'absolute left-12'}`}>&#169; 2024 GISAU</div>
+				<div className={`footer-email flex ${isMobile ? '' : 'absolute left-12'}`}>&#169; 2026 GISAU</div>
 			</div>
 		</div>
 	);

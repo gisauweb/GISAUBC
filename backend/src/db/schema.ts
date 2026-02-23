@@ -1,69 +1,121 @@
 import {
-  integer,
-  numeric,
-  pgEnum,
   pgTable,
+  unique,
+  pgPolicy,
+  uuid,
   text,
   timestamp,
+  integer,
   varchar,
+  numeric,
+  pgEnum,
+  boolean,
+  decimal,
+  serial,
 } from "drizzle-orm/pg-core";
+import { relations, sql } from "drizzle-orm";
 
-export const membershipTypeEnum = pgEnum("membership_type", [
-  "fullYear",
-  "halfYear",
-]);
-export const userRoleEnum = pgEnum("user_role", ["user", "admin"]);
+export const postStatus = pgEnum("post_status", ["draft", "published"]);
+export const postType = pgEnum("post_type", ["event", "rantangan"]);
+export const userRole = pgEnum("user_role", ["member", "admin"]);
+export const membershipType = pgEnum("membership_type", ["full", "half"]);
 
-export const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+export const profiles = pgTable(
+  "profiles",
+  {
+    id: uuid().primaryKey().notNull(),
+    firstName: text("first_name").notNull(),
+    lastName: text("last_name").notNull(),
+    studentId: text("student_id").notNull(),
 
-  // Basic information
-  email: varchar({ length: 255 }).notNull().unique(),
-  firstName: varchar({ length: 100 }).notNull(),
-  lastName: varchar({ length: 100 }).notNull(),
+    email: text("email").notNull(),
 
-  // Student details
-  studentNumber: varchar({ length: 20 }).notNull(),
-  faculty: varchar({ length: 100 }).notNull(),
-  yearOfStudy: integer().notNull(),
+    faculty: text("faculty").notNull().default(""),
+    membershipType: membershipType("membership_type").notNull().default("full"),
+    yearOfStudy: text("year_of_study").notNull(),
+    recommendation: text("recommendation").default(""),
 
-  // Role (user or admin)
-  role: userRoleEnum().notNull().default("user"),
+    role: userRole("user_role").notNull().default("member"),
 
-  // Preferences
-  lookingForward: text().notNull(), // foods/events they look forward to
-  membershipType: membershipTypeEnum().notNull(),
-  createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
+    paymentMethod: text("payment_method").notNull().default("card"),
+    hasPayed: boolean("has_payed").notNull().default(false),
+
+    createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
+      .defaultNow()
+      .notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => [
+    unique("profiles_first_name_unique").on(table.firstName),
+    unique("profiles_last_name_unique").on(table.lastName),
+    unique("profiles_student_id_unique").on(table.studentId),
+    pgPolicy("Enable insert for authenticated users only", {
+      as: "permissive",
+      for: "insert",
+      to: ["authenticated"],
+      withCheck: sql`(( SELECT auth.uid() AS uid) = id)`,
+    }),
+  ]
+);
+
+export const merch = pgTable("merch", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull(),
 });
 
-export const postTypeEnum = pgEnum("post_type", ["event", "rantangan"]);
-export const postStatusEnum = pgEnum("post_status", ["draft", "published"]);
-
-export const postsTable = pgTable("posts", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-
+export const posts = pgTable("posts", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity({
+    name: "posts_id_seq",
+    startWith: 1,
+    increment: 1,
+    minValue: 1,
+    maxValue: 2147483647,
+    cache: 1,
+  }),
   title: varchar({ length: 255 }).notNull(),
   description: text(),
-  date: timestamp({ withTimezone: true }).notNull(), // event date/time
+  date: timestamp({ withTimezone: true }).notNull(),
   location: varchar({ length: 255 }).notNull(),
-
-  // post type: event or rantangan
-  type: postTypeEnum().notNull(),
-
-  priceMember: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
-  priceRegular: numeric({ precision: 10, scale: 2 }), // supports decimals (e.g., 5.00)
-
-  coverImage: varchar({ length: 512 }).notNull(), // URL to event cover image
-
-  // optional links
-  instagramLink: varchar({ length: 512 }),
-  registrationLink: varchar({ length: 512 }), // URL to register
-  infoLink: varchar({ length: 512 }), // URL to event details page / info
-
-  status: postStatusEnum().default("draft").notNull(),
-
-  // timestamps
-  createdAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp({ withTimezone: true }).defaultNow().notNull(),
+  type: postType().notNull(),
+  coverImage: varchar("cover_image", { length: 512 }).notNull(),
+  instagramLink: varchar("instagram_link", { length: 512 }),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  registrationLink: varchar("registration_link", { length: 512 }),
+  infoLink: varchar("info_link", { length: 512 }),
+  status: postStatus().default("draft").notNull(),
+  priceMember: numeric("price_member", { precision: 10, scale: 2 }),
+  priceRegular: numeric("price_regular", { precision: 10, scale: 2 }),
 });
+
+export const memberMerch = pgTable("member_merch", {
+  id: serial("id").primaryKey(),
+  memberId: uuid("member_id").references(() => profiles.id, {
+    onDelete: "cascade",
+  }),
+  merchId: text("merch_id").references(() => merch.id, { onDelete: "cascade" }),
+  purchasedAt: timestamp("purchased_at").defaultNow(),
+});
+
+export const membersRelations = relations(profiles, ({ many }) => ({
+  purchases: many(memberMerch),
+}));
+
+export const merchRelations = relations(merch, ({ many }) => ({
+  soldTo: many(memberMerch),
+}));
+
+export const memberMerchRelations = relations(memberMerch, ({ one }) => ({
+  member: one(profiles, {
+    fields: [memberMerch.memberId],
+    references: [profiles.id],
+  }),
+  item: one(merch, { fields: [memberMerch.merchId], references: [merch.id] }),
+}));
