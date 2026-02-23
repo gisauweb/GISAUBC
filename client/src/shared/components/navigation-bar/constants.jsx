@@ -5,6 +5,7 @@ import Home from 'pages/home/Home';
 import Members from 'pages/members/Members';
 import Partners from 'pages/partners/Partners';
 import Rantangan from 'pages/rantangan/Rantangan';
+import MemberForm from 'pages/members/MemberForm';
 
 export const pages = [
 	{
@@ -37,12 +38,12 @@ export const pages = [
 		hasLandingImage: true,
 		element: <Partners />,
 	},
-	{
-		name: 'Games',
-		path: '/wip',
-		hasLandingImage: false,
-		element: <WorkInProgress />,
-	},
+	// {
+	// 	name: 'Games',
+	// 	path: '/members-form',
+	// 	hasLandingImage: false,
+	// 	element: <MemberForm />,
+	// },
 ];
 
 export const button = [

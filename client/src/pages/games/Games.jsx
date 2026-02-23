@@ -1,171 +1,121 @@
-/* eslint-disable object-curly-newline */
-import React, { useEffect, useState } from 'react';
-
-import { useAuth0 } from '@auth0/auth0-react';
-import { useMediaQuery } from 'react-responsive';
-import Dashboard from './pages/dashboard/Dashboard';
-import Onboarding from './pages/onboarding/Onboarding';
-import AlertDialog from './pages/onboarding/components/AlertDialog';
-import Sidebar from './pages/Sidebar/Sidebar';
-import MobileSideBar from './pages/MobileSidebar';
-import Pomodoro from './pages/pomodoro/Pomodoro';
+import supabase from 'libs/supabaseClient';
+import MemberForm from 'pages/members/MemberForm';
+import { useEffect, useState } from 'react';
 import ComingSoon from './pages/ComingSoon';
+import Dashboard from './pages/dashboard/Dashboard';
 import Settings from './pages/settings/Settings';
+import Sidebar from './pages/Sidebar/Sidebar';
+import SignIn from './SignIn';
 
 export default function Games() {
-	const {
-		isAuthenticated,
-		isLoading,
-		getAccessTokenSilently,
-		getAccessTokenWithPopup,
-		loginWithPopup,
-		user,
-		logout,
-	} = useAuth0();
-	const [token, setToken] = useState(null);
-	const [account, setAccount] = useState(false);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-	const [alert, setAlert] = useState(false);
+	const [email, setEmail] = useState(null);
+	const [registered, setRegistered] = useState(null); // null = loading
 	const [currentPage, setCurrentPage] = useState('Dashboard');
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
+	const [profile, setProfile] = useState(null);
+	const [avatarUrl, setAvatarUrl] = useState(null);
+	const [token, setToken] = useState(null);
 
-	const handleLoginAgain = async () => {
-		try {
-			await loginWithPopup();
-			setError('');
-			setLoading(false);
-		} catch (err) {
-			setError(err.message);
-		}
-	};
+	const refreshAccountState = async () => {
+		const { data } = await supabase.auth.getSession();
+		const session = data.session;
 
-	const handleConsent = async () => {
-		try {
-			await getAccessTokenWithPopup();
-			setError('');
-			setLoading(false);
-		} catch (err) {
-			setError(err.message);
+		if (!session) {
+			setEmail(null);
+			setRegistered(null);
+			setProfile(null);
+			setToken(null);
+			return;
 		}
+
+		setAvatarUrl(session.user.user_metadata?.avatar_url ?? session.user.user_metadata?.picture ?? null);
+
+		const accessToken = session.access_token;
+		setEmail(session.user.email);
+		setToken(accessToken);
+
+		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
+			headers: { Authorization: `Bearer ${accessToken}` },
+		});
+
+		const body = await res.json();
+		setProfile(body.profile ?? null);
+		setRegistered(Boolean(body.registered));
 	};
 
 	useEffect(() => {
-		setAlert(!!error);
-	}, [error]);
+		refreshAccountState();
 
-	useEffect(() => {
-		async function getToken() {
-			try {
-				const result = await getAccessTokenSilently();
-				setToken(result);
-				if (!account && user) {
-					await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
-						headers: {
-							'Content-Type': 'application/json',
-							Accept: 'application/json',
-							Authorization: `Bearer ${result}`,
-						},
-					})
-						.then((res) => res.json())
-						.then((res) => {
-							setAccount(res.result);
-							setLoading(false);
-						})
-						.catch((err) => {
-							setError(err.message);
-						});
-				}
-			} catch (err) {
-				setError(err.message);
+		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+				refreshAccountState();
 			}
-		}
-		if (isAuthenticated && user && !account) {
-			getToken();
-		}
-	}, [isAuthenticated, user, account, getAccessTokenSilently]);
+		});
 
-	useEffect(() => {
-		if (!isAuthenticated) {
-			loginWithPopup();
-		}
-	}, [isAuthenticated, loginWithPopup]);
+		return () => sub.subscription.unsubscribe();
+	}, []);
 
-	async function updateAccountState() {
-		await fetch(`${process.env.REACT_APP_SERVER_URL}/users/user/${user.sub}`, {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${token}`,
+	const login = async () => {
+		await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: {
+				redirectTo: `${window.location.origin}/auth/callback`,
 			},
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				setAccount(res.result);
-			})
-			.catch((err) => {
-				setError(err.message);
-			});
-	}
+		});
+	};
 
-	return isLoading || loading || alert ? (
-		<Loading params={(alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert)} />
-	) : !account ? (
-		<Onboarding token={token} setAccount={setAccount} />
-	) : isMobileView ? (
-		<div className='w-screen flex flex-col h-screen items-center gap-3 relative bg-overlay bg-white'>
-			<MobileSideBar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
-			) : currentPage === 'Pomodoro' ? (
-				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : currentPage === 'Settings' ? (
-				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : (
-				<ComingSoon />
-			)}
-		</div>
-	) : (
-		<div className='flex h-screen bg-white'>
-			<Sidebar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-			{currentPage === 'Dashboard' ? (
-				<Dashboard account={account} token={token} />
-			) : currentPage === 'Pomodoro' ? (
-				<Pomodoro account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : currentPage === 'Settings' ? (
-				<Settings account={account} token={token} updateAccountState={() => updateAccountState()} />
-			) : (
-				<ComingSoon />
-			)}
-		</div>
-	);
-}
+	const logout = async () => {
+		await supabase.auth.signOut();
+		setEmail(null);
+		setRegistered(null);
+		setProfile(null);
+		setToken(null);
+	};
 
-function Loading({ params }) {
-	const { alert, error, handleConsent, handleLoginAgain, logout, setLoading, setAlert } = params;
 	return (
-		<>
-			<div className='w-full h-screen'>Loading...</div>
-			{alert && (
-				<div
-					onClick={() => {
-						if (error === 'Consent required') {
-							handleConsent();
-						} else if (error === 'Login required') {
-							handleLoginAgain();
-						} else {
-							logout({
-								logoutParams: {
-									returnTo: `${window.location.origin.toString()}`,
-								},
-							});
-						}
-						setLoading(true);
-					}}
-				>
-					<AlertDialog open={alert} setOpen={setAlert} serverError={error} />
+		<div>
+			{/* <AuthBootstrap /> */}
+			{!email && <SignIn login={login} />}
+
+			{email && registered === null && (
+				<div className='h-screen flex items-center justify-center'>
+					<div className='text-center'>
+						<div className='animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4'></div>
+						<p className='text-gray-600 font-medium'>Verifying membership...</p>
+					</div>
 				</div>
 			)}
-		</>
+
+			{email && registered === false && <MemberForm />}
+
+			{email && registered && (
+				<>
+					<div className='flex h-screen bg-white'>
+						<Sidebar
+							username={profile.firstName}
+							picture={avatarUrl}
+							currentPage={currentPage}
+							setCurrentPage={setCurrentPage}
+							handleLogout={logout}
+						/>
+						{currentPage === 'Dashboard' ? (
+							<Dashboard account={profile} picture={avatarUrl} token={token} />
+						) : currentPage === 'Pomodoro' ? (
+							// <Pomodoro updateAccountState={() => refreshAccountState()} />
+							<ComingSoon />
+						) : currentPage === 'Settings' ? (
+							<Settings
+								account={profile}
+								email={email}
+								picture={avatarUrl}
+								token={token}
+								updateAccountState={() => refreshAccountState()}
+							/>
+						) : (
+							<ComingSoon />
+						)}
+					</div>
+				</>
+			)}
+		</div>
 	);
 }

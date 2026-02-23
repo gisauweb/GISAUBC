@@ -10,7 +10,38 @@ export default function Leaderboard({ uid, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
-	const sortedLeaderboard = Object.entries(leaderboard).map(([, value]) => value);
+	// const sortedLeaderboard = Object.entries(leaderboard ?? {}).map(([, value]) => value);
+
+	const sortedLeaderboard = leaderboard ?? [];
+
+	if (!sortedLeaderboard.length) {
+		return (
+			<Box
+				className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}
+			>
+				<Box
+					style={{
+						borderRadius: '30px',
+						height: isMobileView ? 'fit' : '92vh',
+						width: isMobileView ? '80vw' : '25vw',
+						zIndex: 1,
+					}}
+					className={`${
+						isMobileView ? 'bottom-10 mt-10' : 'mr-10'
+					} bg-games-box flex flex-col items-center justify-center`}
+				>
+					<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
+						Leaderboard
+					</Typography>
+
+					<Typography className='text-gray-500 mt-6 text-center px-6'>
+						Coming soon — play games to earn points and climb the rankings!
+					</Typography>
+					<Box className='mt-6 animate-pulse text-games-red font-bold'>🏆 Rankings unlock soon</Box>
+				</Box>
+			</Box>
+		);
+	}
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {

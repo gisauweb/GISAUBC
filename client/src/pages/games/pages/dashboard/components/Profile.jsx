@@ -8,8 +8,8 @@ export default function Profile({ username, picture }) {
 	return (
 		<Box
 			className={`bg-${
-				isMobileView ? 'transparent' : 'gamesBox'
-			} w-5/6 h-4/5 rounded-2xl flex flex-col justify-center items-center mr-2 self-center`}
+				isMobileView ? 'transparent' : 'games-box'
+			} w-full h-full rounded-2xl flex flex-col justify-center items-center mr-2 self-center`}
 		>
 			<Typography style={{ fontSize: '18px' }}>Welcome,</Typography>
 			<Box className='flex flex-row justify-center items-center my-5 gap-5'>
