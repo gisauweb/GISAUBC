@@ -400,29 +400,46 @@ export default function MemberForm() {
 					/>
 					<span className='text-gray-700 font-medium'>Cash</span>
 				</label>
+				<label className='flex items-center space-x-3 cursor-pointer'>
+					<input
+						type='radio'
+						value='payed'
+						{...register('paymentMethod', { required: true })}
+						className='accent-primary w-5 h-5'
+					/>
+					<span className='text-gray-700 font-medium'>I am a member!</span>
+				</label>
 			</div>
 
 			{watch('paymentMethod') === 'card' ? (
-				<div className='bg-white p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
+				<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
 					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
-					{/* <div className='mb-4'>
-						<ApplePay />
-					</div> */}
-
-					<CreditCard
-						buttonProps={{
-							className: 'bg-primary! rounded-full! font-bold! ',
-							text: `Pay $${() => calculateTotal()}`,
+					<PaymentForm
+						applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
+						locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
+						cardTokenizeResponseReceived={async (token, buyer) => {
+							// await handleOnlinePayment(token.token);
+							console.log(token.token);
 						}}
-					/>
+					>
+						<CreditCard
+							buttonProps={{
+								className: 'bg-primary! rounded-full! font-bold! ',
+								text: `Pay $${calculateTotal()}`,
+							}}
+						/>
+					</PaymentForm>
+
 					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>
-			) : (
-				<div className='bg-[#F0F4FA] p-8 rounded-lg mb-8'>
+			) : watch('paymentMethod') === 'cash' ? (
+				<div className='bg-games-box p-8 rounded-lg mb-8'>
 					<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
+
 					<p className='font-bold mb-2'>Please meet us at:</p>
 					<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
 					<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
+
 					<p className='font-bold'>We look forward to seeing you!</p>
 
 					<div className='flex justify-center mt-8'>
@@ -434,7 +451,40 @@ export default function MemberForm() {
 						</button>
 					</div>
 				</div>
-			)}
+			) : watch('paymentMethod') === 'payed' ? (
+				<div className='bg-games-box p-8 rounded-lg mb-8 text-center'>
+					<h3 className='font-bold text-lg mb-2'>Payment on File ✅</h3>
+
+					<p className='text-sm'>
+						We have your payment recorded (in-person or previous membership). Please submit this form to
+						complete your registration in our new system.
+					</p>
+					<p className='text-sm mt-3'>If you were a member during Winter 25/26, please select this option.</p>
+
+					<div className='flex justify-center mt-8'>
+						<button
+							onClick={handleSubmit(onSubmit)}
+							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+							disabled={loading}
+						>
+							{loading ? 'Submitting...' : 'Submit'}
+						</button>
+					</div>
+					{apiError && (
+						<div className='mt-6 text-red-600 text-sm'>
+							<p>We couldn’t find your membership in our system.</p>
+							<p>
+								If you believe this is a mistake, please contact us at{' '}
+								<a href='mailto:gisauweb@gmail.com' className='underline font-semibold'>
+									gisauweb@gmail.com
+								</a>
+								.
+							</p>
+						</div>
+					)}
+					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
+				</div>
+			) : null}
 		</div>
 	);
 
@@ -485,20 +535,11 @@ export default function MemberForm() {
 
 				{renderStepIndicator()}
 
-				<PaymentForm
-					applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
-					locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
-					cardTokenizeResponseReceived={async (token, buyer) => {
-						// await handleOnlinePayment(token.token);
-						console.log(token.token);
-					}}
-				>
-					<div className='mt-8 transition-opacity duration-500 ease-in-out'>
-						{step === 1 && renderStep1()}
-						{step === 2 && renderStep2()}
-						{step === 3 && renderStep3()}
-					</div>
-				</PaymentForm>
+				<div className='mt-8 transition-opacity duration-500 ease-in-out'>
+					{step === 1 && renderStep1()}
+					{step === 2 && renderStep2()}
+					{step === 3 && renderStep3()}
+				</div>
 			</div>
 
 			{/* Background Decor */}

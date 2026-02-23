@@ -75,9 +75,9 @@ export default function Dashboard({ account, picture, token }) {
 	) : (
 		<div className='flex flex-col my-16 h-fit items-center gap-3 relative'>
 			<Profile username={account.firstName} picture={picture} />
-			{/* <Points account={account} leaderboard={leaderboard} /> */}
-			{/* <Activity account={account} /> */}
-			{/* <Leaderboard uid={account.uid} leaderboard={leaderboard} /> */}
+			<Points account={account} leaderboard={leaderboard} />
+			<Activity account={account} />
+			<Leaderboard uid={account.uid} leaderboard={leaderboard} />
 		</div>
 	);
 }

@@ -10,6 +10,7 @@ import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import ScrollToTop from './shared/components/ScrollToTop';
 import AuthCallback from 'auth/AuthCallback';
+import WorkInProgress from 'pages/404/WorkInProgress';
 
 function App() {
 	const { posts, loading, error } = useUpcomingPosts();
@@ -50,8 +51,9 @@ function App() {
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
 					<Route path='*' element={<NotFound />} />
+					<Route path='/app' element={<WorkInProgress />} />
 				</Route>
-				<Route path='/app' element={<Games />} />
+				{/* <Route path='/app' element={<Games />} /> */}
 				<Route path='/auth/callback' element={<AuthCallback />} />
 				{/* <Route path='/admin' element={<Admin />} /> */}
 			</Routes>
@@ -60,7 +62,7 @@ function App() {
 			<Popup
 				data={posts[0] ?? null}
 				isOpen={isPopupOpen}
-				onClose={() => setPopupOpen(false)}	
+				onClose={() => setPopupOpen(false)}
 				loading={loading}
 				error={error}
 			/>
