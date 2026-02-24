@@ -1,11 +1,16 @@
 import { Box } from '@mui/material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
+import CheckoutForm from 'pages/games/pages/CheckoutForm';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { ApplePay, CreditCard, PaymentForm } from 'react-square-web-payments-sdk';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+const stripe = loadStripe(
+	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
+);
 
 // --- Constants ---
 const FACULTIES = [
@@ -414,7 +419,7 @@ export default function MemberForm() {
 			{watch('paymentMethod') === 'card' ? (
 				<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
 					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
-					<PaymentForm
+					{/* <PaymentForm
 						applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
 						locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
 						cardTokenizeResponseReceived={async (token, buyer) => {
@@ -428,7 +433,10 @@ export default function MemberForm() {
 								text: `Pay $${calculateTotal()}`,
 							}}
 						/>
-					</PaymentForm>
+					</PaymentForm> */}
+					<Elements stripe={stripe}>
+						<CheckoutForm />
+					</Elements>
 
 					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>

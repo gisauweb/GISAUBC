@@ -51,9 +51,9 @@ function App() {
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
 					<Route path='*' element={<NotFound />} />
-					<Route path='/app' element={<WorkInProgress />} />
+					{/* <Route path='/app' element={<WorkInProgress />} /> */}
 				</Route>
-				{/* <Route path='/app' element={<Games />} /> */}
+				<Route path='/app' element={<Games />} />
 				<Route path='/auth/callback' element={<AuthCallback />} />
 				{/* <Route path='/admin' element={<Admin />} /> */}
 			</Routes>
