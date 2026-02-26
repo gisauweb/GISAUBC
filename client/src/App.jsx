@@ -60,7 +60,7 @@ function App() {
 
 			{/* Always mount the popup but pass data safely */}
 			<Popup
-				data={posts[0] ?? null}
+				data={posts ?? null}
 				isOpen={isPopupOpen}
 				onClose={() => setPopupOpen(false)}
 				loading={loading}

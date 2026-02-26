@@ -23,6 +23,7 @@ const PopupWrapper = styled('div')({
 });
 
 function Popup({ data, isOpen, onClose, loading, error }) {
+	const post = data[0];
 	const handleClose = () => {
 		onClose();
 
@@ -32,7 +33,7 @@ function Popup({ data, isOpen, onClose, loading, error }) {
 			const script = document.createElement('script');
 			script.src = 'https://chatling.ai/js/embed.js';
 			script.async = true;
-			script.setAttribute('data-id', '1938486472');
+			script.setAttribute('post-id', '1938486472');
 			script.id = 'chatling-embed-script';
 
 			document.body.appendChild(script);
@@ -58,27 +59,37 @@ function Popup({ data, isOpen, onClose, loading, error }) {
 					</Box>
 				)}
 
-				{error && <Typography color='error'>Failed to load data</Typography>}
+				{error && <Typography color='error'>Failed to load post</Typography>}
 
-				{!loading && !error && data && (
+				{!loading && !error && post && (
 					<>
-						<div className='my-3 flex justify-center items-center'>
+						<div className='my-3 flex justify-center items-center gap-1 md:gap-3'>
 							<div className='w-4/5 aspect-square rounded-md'>
 								<img
-									src={data.coverImage}
+									src={post.coverImage}
 									alt='Upcoming Event'
 									className='w-full h-full object-cover rounded-2xl'
 									loading='lazy'
 								/>
 							</div>
+							{data[1] && (
+								<div className='w-4/5 aspect-square rounded-md'>
+									<img
+										src={data[1].coverImage}
+										alt='Upcoming Event'
+										className='w-full h-full object-cover rounded-2xl'
+										loading='lazy'
+									/>
+								</div>
+							)}
 						</div>
 
 						<Typography variant='h4' className='mt-4' gutterBottom>
-							Upcoming {data.type === 'event' ? 'Event' : 'Rantangan'}
+							Upcoming {post.type === 'event' ? 'Event' : 'Rantangan'}
 						</Typography>
 
 						<Typography variant='body1'>
-							Check out our newest {data.type === 'event' ? 'event!' : 'rantangan!'}
+							Check out our newest {post.type === 'event' ? 'event!' : 'rantangan!'}
 						</Typography>
 
 						<Box mt={2} display='flex' justifyContent='center'>
