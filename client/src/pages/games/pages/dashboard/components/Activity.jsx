@@ -2,10 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import Chart from 'chart.js/auto';
 import icon from 'assets/games/activity_icon.gif';
-import { useMediaQuery } from 'react-responsive';
-import bang from 'assets/home-page/events/upcoming_event.svg';
-import plane from 'assets/games/plane.svg';
-import trophy from 'assets/games/trophy.svg';
 
 const handlePastActivities = (userPastActivities) => {
 	if (!userPastActivities) {
@@ -31,7 +27,6 @@ const handlePastActivities = (userPastActivities) => {
 
 export default function Activity({ account }) {
 	const chartRef = useRef(null);
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
 
 	useEffect(() => {
 		if (!account) {
@@ -103,28 +98,7 @@ export default function Activity({ account }) {
 	}, [account]);
 
 	return (
-		<Box
-			className={`bg-games-box rounded-2xl px-2 flex flex-col ${
-				isMobileView ? 'h-96 w-[80vw]' : 'w-full h-[40vh] min-h-92'
-			}`}
-		>
-			{isMobileView && (
-				<div style={{ position: 'relative' }}>
-					<img
-						src={bang}
-						alt='bang'
-						style={{
-							width: '30px',
-							height: '30px',
-							position: 'absolute',
-							zIndex: 30,
-							right: '-10px',
-							marginTop: '-5px',
-						}}
-						className='gap-3 justify-between'
-					/>
-				</div>
-			)}
+		<Box className='bg-games-box rounded-2xl px-2 flex flex-col w-full h-[40vh] min-h-52'>
 			<Box className='flex flex-row mt-5 ml-3'>
 				<img src={icon} alt='icon' className='w-auto h-16 mt-3' style={{ transform: 'scaleX(-1)' }} />
 				<Box className='flex flex-col mt-5'>
@@ -132,47 +106,9 @@ export default function Activity({ account }) {
 					<Typography style={{ fontSize: '15px' }}>Your daily activeness for the past 14 days</Typography>
 				</Box>
 			</Box>
-			{!isMobileView ? (
-				<Box className='flex-1 px-4 pb-4 overflow-hidden'>
-					<canvas ref={chartRef} id='chart' style={{ width: '100%', height: '100%' }} />
-				</Box>
-			) : (
-				<canvas
-					ref={chartRef}
-					id='chart'
-					width='100%'
-					height='100%'
-					style={{ maxHeight: '70%', marginTop: '0px', marginBottom: '3px' }}
-				/>
-			)}
-			{isMobileView && (
-				<div style={{ position: 'relative' }}>
-					<img
-						src={plane}
-						alt='plane'
-						style={{
-							width: '100px',
-							height: '100px',
-							objectFit: 'cover',
-							position: 'absolute',
-							left: '-2px',
-							marginBottom: '-8px',
-							zIndex: 20,
-						}}
-					/>
-					<img
-						src={trophy}
-						alt='trophy'
-						style={{
-							width: '100px',
-							height: '100px',
-							position: 'absolute',
-							right: '-10vw',
-							zIndex: 0,
-						}}
-					/>
-				</div>
-			)}
+			<Box className='flex-1 px-4 pb-4 overflow-hidden'>
+				<canvas ref={chartRef} id='chart' style={{ width: '100%', height: '100%' }} />
+			</Box>
 		</Box>
 	);
 }

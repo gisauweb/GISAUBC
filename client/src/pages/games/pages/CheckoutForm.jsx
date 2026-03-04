@@ -6,6 +6,7 @@ export default function CheckoutForm({ onSuccess, total }) {
 	const elements = useElements();
 	const [message, setMessage] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	const [succeeded, setSucceeded] = useState(false);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -29,11 +30,30 @@ export default function CheckoutForm({ onSuccess, total }) {
 				setMessage('An unexpected error occurred.');
 			}
 		} else if (paymentIntent && paymentIntent.status === 'succeeded') {
+			setSucceeded(true);
 			onSuccess(paymentIntent.id);
 		}
 
 		setIsLoading(false);
 	};
+
+	if (succeeded) {
+		return (
+			<div className='flex flex-col items-center gap-3 py-6 text-center'>
+				<div className='w-14 h-14 rounded-full bg-green-100 flex items-center justify-center'>
+					<svg className='w-7 h-7 text-green-600' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+						<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2.5} d='M5 13l4 4L19 7' />
+					</svg>
+				</div>
+				<div>
+					<p className='font-semibold text-gray-800'>Payment successful!</p>
+					<p className='text-sm text-gray-500 mt-1'>
+						A receipt has been sent to your email. Click Submit below to complete your registration.
+					</p>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<form onSubmit={handleSubmit} className='space-y-4'>
