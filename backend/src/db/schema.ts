@@ -39,6 +39,7 @@ export const profiles = pgTable(
 
     paymentMethod: text("payment_method").notNull().default("card"),
     hasPayed: boolean("has_payed").notNull().default(false),
+    totalPrice: numeric("total_price", { precision: 10, scale: 2 }).default("0").notNull(),
 
     createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
@@ -102,6 +103,13 @@ export const memberMerch = pgTable("member_merch", {
   }),
   merchId: text("merch_id").references(() => merch.id, { onDelete: "cascade" }),
   purchasedAt: timestamp("purchased_at").defaultNow(),
+});
+
+export const existingMembers = pgTable("existing_members", {
+	id: serial("id").primaryKey(),
+	studentId: text("student_id").notNull().unique(),
+	academicYear: text("academic_year").notNull().default("2025-2026"),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const membersRelations = relations(profiles, ({ many }) => ({

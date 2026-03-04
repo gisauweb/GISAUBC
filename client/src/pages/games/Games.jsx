@@ -85,7 +85,14 @@ export default function Games() {
 				</div>
 			)}
 
-			{email && registered === false && <MemberForm />}
+			{email && registered === false && (
+				<MemberForm
+					onRegistered={(profile) => {
+						setProfile(profile);
+						setRegistered(true);
+					}}
+				/>
+			)}
 
 			{email && registered && (
 				<>
