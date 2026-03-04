@@ -16,8 +16,8 @@ export default function UpcomingEventCard() {
 
 			<div className='bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row'>
 				{/* LEFT: Image */}
-				<div className='md:w-[18rem] w-full'>
-					<img src={upcomingEvent.image} alt='' className='w-full h-44 md:h-full object-cover' />
+				<div className='w-full md:w-36 shrink-0 aspect-square'>
+					<img src={upcomingEvent.image} alt='' className='h-full aspect-square' />
 				</div>
 
 				{/* MIDDLE: Details */}

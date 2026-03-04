@@ -4,11 +4,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export const createPaymentIntent = async (
 	amountCents: number,
+	receiptEmail: string,
 ): Promise<{ clientSecret: string; paymentIntentId: string }> => {
 	const intent = await stripe.paymentIntents.create({
 		amount: amountCents,
 		currency: "cad",
 		automatic_payment_methods: { enabled: true, allow_redirects: "never" },
+		receipt_email: receiptEmail,
 	});
 
 	return {
