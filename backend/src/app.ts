@@ -2,6 +2,8 @@ import cors from "cors";
 import "dotenv/config";
 import express, { Router } from "express";
 import auth from "./api/auth.route.js";
+import merch from "./api/merch.route.js";
+import payment from "./api/payment.route.js";
 import post from "./api/post.route.js";
 
 const app = express();
@@ -20,6 +22,8 @@ app.use(express.json());
 const api = Router();
 api.use("/posts", post);
 api.use("/auth", auth);
+api.use("/merch", merch);
+api.use("/payment", payment);
 
 app.use("/api/v1", api);
 

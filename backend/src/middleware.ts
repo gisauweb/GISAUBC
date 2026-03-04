@@ -1,7 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
-import { createRemoteJWKSet, jwtVerify, type JWTPayload } from "jose";
-
-type SupabaseJwt = JWTPayload & { sub: string };
+import { createRemoteJWKSet, jwtVerify } from "jose";
+import type { SupabaseJwt } from "./auth/types.js";
 
 const SUPABASE_URL = process.env.SUPABASE_URL!;
 const JWKS_URL = new URL(`${SUPABASE_URL}/.well-known/jwks.json`);

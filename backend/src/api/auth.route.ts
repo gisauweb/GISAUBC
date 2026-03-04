@@ -1,128 +1,32 @@
-import "dotenv/config";
-import { eq } from "drizzle-orm";
 import express from "express";
-import db from "../db/database.js";
-import { memberMerch, profiles } from "../db/schema.js";
+import * as AuthController from "../controllers/auth.controller.js";
 import { requireAuth } from "../middleware.js";
 
 const router = express.Router();
 
-router.get("/me", requireAuth, async (req, res) => {
-  const userId = req.user!.sub;
+/**
+ * GET /auth/me
+ * Returns the current user's profile. Requires auth.
+ */
+router.get("/me", requireAuth, AuthController.me);
 
-  const rows = await db
-    .select()
-    .from(profiles)
-    .where(eq(profiles.id, userId))
-    .limit(1);
+/**
+ * GET /auth/google
+ * Redirects to Supabase Google OAuth.
+ */
+router.get("/google", AuthController.googleAuth);
 
-  const profile = rows[0] ?? null;
+/**
+ * GET /auth/callback
+ * Receives the OAuth code and forwards it to the client.
+ */
+router.get("/callback", AuthController.callback);
 
-  res.json({
-    userId,
-    registered: !!profile,
-    profile,
-  });
-});
-
-router.get("/google", (req, res) => {
-  const redirectTo = `${process.env.CLIENT_ORIGIN}/app`;
-  const url =
-    `${process.env.SUPABASE_URL}/authorize` +
-    `?provider=google` +
-    `&redirect_to=${encodeURIComponent(redirectTo)}`;
-
-  res.redirect(url);
-});
-
-router.get("/callback", (req, res) => {
-  const code = req.query.code as string | undefined;
-  if (!code) return res.status(400).send("Missing code");
-
-  // send user to React callback route
-  res.redirect(
-    `${process.env.CLIENT_ORIGIN}/app?code=${encodeURIComponent(code)}`
-  );
-});
-
-router.post("/register", requireAuth, async (req, res) => {
-  const userId = req.user!.sub;
-  const {
-    firstName,
-    lastName,
-    studentId,
-    email,
-    faculty,
-    membershipType,
-    yearOfStudy,
-    recommendation,
-    paymentMethod,
-    merch,
-    // totalPrice
-  } = req.body;
-
-  // basic validation (use zod)
-  if (!firstName || !lastName || !studentId || !email) {
-    return res.status(400).json({ error: "Missing required fields" });
-  }
-
-  try {
-    const result = await db.transaction(async (tx) => {
-      const existing = await tx
-        .select({ id: profiles.id })
-        .from(profiles)
-        .where(eq(profiles.id, userId))
-        .limit(1);
-
-      if (existing.length) {
-        throw new Error("ALREADY_EXISTS");
-      }
-
-      const [newProfile] = await tx
-        .insert(profiles)
-        .values({
-          id: userId,
-          firstName,
-          lastName,
-          email,
-          studentId,
-          faculty,
-          membershipType,
-          yearOfStudy,
-          recommendation,
-          paymentMethod,
-          role: "member",
-        })
-        .returning();
-
-      if (merch && Array.isArray(merch) && merch.length > 0) {
-        const merchRows = merch.map((merchId: string) => ({
-          memberId: userId,
-          merchId: merchId,
-        }));
-
-        await tx.insert(memberMerch).values(merchRows);
-      }
-
-      return newProfile;
-    });
-
-    res.json({ registered: true, profile: result });
-  } catch (e: any) {
-    // Handle specific errors
-    if (e.message === "ALREADY_EXISTS") {
-      return res.status(409).json({ error: "Already registered" });
-    }
-
-    if (e?.code === "23505") {
-      return res
-        .status(409)
-        .json({ error: "Student ID or Email already in use" });
-    }
-
-    console.error("Registration Error:", e);
-    return res.status(500).json({ error: "Server error" });
-  }
-});
+/**
+ * POST /auth/register
+ * Creates a new member profile with optional merch selections.
+ * Requires auth.
+ */
+router.post("/register", requireAuth, AuthController.register);
 
 export default router;
