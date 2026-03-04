@@ -44,7 +44,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 	const [open, setOpen] = useState(0);
 	const [showLeaveConfirmation, setShowLeaveConfirmation] = useState(false);
 	const [nextPage, setNextPage] = useState(null);
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
+	const isMobileView = useMediaQuery({ query: '(max-width: 1023px)' });
 	// const { logout } = useAuth0();
 
 	const handleOpen = (value) => {

@@ -3,42 +3,25 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import crown from 'assets/games/crown.png';
-import { useMediaQuery } from 'react-responsive';
-import curls from 'assets/home-page/events/rantangan.svg';
 
 export default function Leaderboard({ uid, leaderboard }) {
 	const [isBigger, setIsBigger] = useState(true);
-	const isMobileView = useMediaQuery({ query: '(max-width: 1039px)' });
-
-	// const sortedLeaderboard = Object.entries(leaderboard ?? {}).map(([, value]) => value);
 
 	const sortedLeaderboard = leaderboard ?? [];
 
 	if (!sortedLeaderboard.length) {
 		return (
 			<Box
-				className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}
+				style={{ borderRadius: '30px' }}
+				className='bg-games-box w-full flex flex-col items-center justify-center py-10 px-6 text-center'
 			>
-				<Box
-					style={{
-						borderRadius: '30px',
-						height: isMobileView ? 'fit' : '92vh',
-						width: isMobileView ? '80vw' : '25vw',
-						zIndex: 1,
-					}}
-					className={`${
-						isMobileView ? 'bottom-10 mt-10' : 'mr-10'
-					} bg-games-box flex flex-col items-center justify-center`}
-				>
-					<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
-						Leaderboard
-					</Typography>
-
-					<Typography className='text-gray-500 mt-6 text-center px-6'>
-						Coming soon — play games to earn points and climb the rankings!
-					</Typography>
-					<Box className='mt-6 animate-pulse text-games-red font-bold'>🏆 Rankings unlock soon</Box>
-				</Box>
+				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mb-4'>
+					Leaderboard
+				</Typography>
+				<Typography className='text-gray-500'>
+					Coming soon — play games to earn points and climb the rankings!
+				</Typography>
+				<Box className='mt-6 animate-pulse text-games-red font-bold'>🏆 Rankings unlock soon</Box>
 			</Box>
 		);
 	}
@@ -52,99 +35,58 @@ export default function Leaderboard({ uid, leaderboard }) {
 	}, []);
 
 	return (
-		<Box className={`${isMobileView ? 'h-fit' : 'h-full'} rounded-2xl flex flex-col justify-center items-center`}>
-			<Box
-				style={{
-					borderRadius: '30px',
-					height: isMobileView ? 'fit' : '92vh',
-					width: isMobileView ? '80vw' : '25vw',
-					zIndex: 1,
-				}}
-				className={`${
-					isMobileView ? 'bottom-10 mt-10' : 'mr-10'
-				} bg-games-box flex flex-col items-center gap-5 py-3 `}
-			>
-				<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
-					Leaderboard
-				</Typography>
-				<Box className='flex flex-row w-auto h-auto'>
-					{secondPlace(sortedLeaderboard[1], uid)}
-					{firstPlace(sortedLeaderboard[0], isBigger, uid)}
-					{thirdPlace(sortedLeaderboard[2], uid)}
-				</Box>
-				<Box
-					className={`${
-						isMobileView ? 'overflow-y-hidden' : 'overflow-y-auto'
-					} flex flex-col gap-3 mt-5 items-center w-full`}
-				>
-					{sortedLeaderboard.slice(3).map((user, index) => (
-						<Box
-							key={user.nickname}
-							className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
-							style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
-						>
-							<Typography className='text-games-red' style={{ fontWeight: 'bold' }}>
-								{index + 4}
-							</Typography>
-							<img
-								src={user.profilePicture}
-								alt={`profile_pic_${index}`}
-								style={{
-									width: '40px',
-									height: '40px',
-									objectFit: 'cover',
-									borderRadius: '50%',
-								}}
-							/>
-							<div
-								style={{
-									width: '50%',
-									maxWidth: '50%',
-								}}
-							>
-								<Typography
-									style={{
-										fontWeight: user.uid === uid ? 'bold' : 'normal',
-									}}
-								>
-									{user.uid === uid ? 'Me' : user.nickname}
-								</Typography>
-							</div>
-							<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
-						</Box>
-					))}
-				</Box>
+		<Box
+			style={{ borderRadius: '30px' }}
+			className='bg-games-box w-full flex flex-col items-center gap-5 py-3'
+		>
+			<Typography style={{ fontWeight: 'bold', fontSize: '20px' }} className='mt-5'>
+				Leaderboard
+			</Typography>
+			<Box className='flex flex-row w-auto h-auto'>
+				{secondPlace(sortedLeaderboard[1], uid)}
+				{firstPlace(sortedLeaderboard[0], isBigger, uid)}
+				{thirdPlace(sortedLeaderboard[2], uid)}
 			</Box>
-			{isMobileView && (
-				<img
-					src={curls}
-					alt='curls'
-					style={{
-						width: '50px',
-						height: '50px',
-						objectFit: 'cover',
-						marginLeft: '-75vw',
-						marginTop: '-30px',
-						transform: 'scaleX(-1)',
-						zIndex: 10,
-					}}
-				/>
-			)}
+			<Box className='overflow-y-auto flex flex-col gap-3 mt-5 items-center w-full'>
+				{sortedLeaderboard.slice(3).map((user, index) => (
+					<Box
+						key={user.nickname}
+						className='bg-white rounded-xl p-2 flex items-center gap-5 px-4'
+						style={{ width: '80%', maxWidth: '80%', flexShrink: 0 }}
+					>
+						<Typography className='text-games-red' style={{ fontWeight: 'bold' }}>
+							{index + 4}
+						</Typography>
+						<img
+							src={user.profilePicture}
+							alt={`profile_pic_${index}`}
+							style={{
+								width: '40px',
+								height: '40px',
+								objectFit: 'cover',
+								borderRadius: '50%',
+							}}
+						/>
+						<div style={{ width: '50%', maxWidth: '50%' }}>
+							<Typography style={{ fontWeight: user.uid === uid ? 'bold' : 'normal' }}>
+								{user.uid === uid ? 'Me' : user.nickname}
+							</Typography>
+						</div>
+						<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
+					</Box>
+				))}
+			</Box>
 		</Box>
 	);
 }
+
 function thirdPlace(user, uid) {
 	return (
 		<Box className='flex flex-col mt-32 ml-[-2] items-center relative w-1/3'>
 			<img
 				src={user.profilePicture}
 				alt='profile_pic'
-				style={{
-					width: '60px',
-					height: 'auto',
-					objectFit: 'cover',
-					borderRadius: '50%',
-				}}
+				style={{ width: '60px', height: 'auto', objectFit: 'cover', borderRadius: '50%' }}
 			/>
 			<Typography
 				className='absolute top-1/3 right-5 bg-bottom-right text-games-red'
@@ -152,12 +94,7 @@ function thirdPlace(user, uid) {
 			>
 				3
 			</Typography>
-			<Typography
-				style={{
-					textAlign: 'center',
-					fontWeight: user.uid === uid ? 'bold' : 'normal',
-				}}
-			>
+			<Typography style={{ textAlign: 'center', fontWeight: user.uid === uid ? 'bold' : 'normal' }}>
 				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
@@ -184,13 +121,7 @@ function firstPlace(user, isBigger, uid) {
 			<img
 				src={user.profilePicture}
 				alt='profile_pic'
-				style={{
-					width: '80px',
-					height: 'auto',
-					objectFit: 'cover',
-					borderRadius: '50%',
-					zIndex: 10,
-				}}
+				style={{ width: '80px', height: 'auto', objectFit: 'cover', borderRadius: '50%', zIndex: 10 }}
 			/>
 			<Typography
 				className='absolute top-14 right-3 bg-bottom-right text-games-red'
@@ -198,12 +129,7 @@ function firstPlace(user, isBigger, uid) {
 			>
 				1
 			</Typography>
-			<Typography
-				style={{
-					textAlign: 'center',
-					fontWeight: user.uid === uid ? 'bold' : 'normal',
-				}}
-			>
+			<Typography style={{ textAlign: 'center', fontWeight: user.uid === uid ? 'bold' : 'normal' }}>
 				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
@@ -217,12 +143,7 @@ function secondPlace(user, uid) {
 			<img
 				src={user.profilePicture}
 				alt='profile_pic'
-				style={{
-					width: '60px',
-					height: 'auto',
-					objectFit: 'cover',
-					borderRadius: '50%',
-				}}
+				style={{ width: '60px', height: 'auto', objectFit: 'cover', borderRadius: '50%' }}
 			/>
 			<Typography
 				className='absolute top-1/3 right-5 bg-bottom-right text-games-red'
@@ -230,12 +151,7 @@ function secondPlace(user, uid) {
 			>
 				2
 			</Typography>
-			<Typography
-				style={{
-					textAlign: 'center',
-					fontWeight: user.uid === uid ? 'bold' : 'normal',
-				}}
-			>
+			<Typography style={{ textAlign: 'center', fontWeight: user.uid === uid ? 'bold' : 'normal' }}>
 				{user.uid === uid ? 'Me' : user.nickname}
 			</Typography>
 			<Typography style={{ fontWeight: 'bold' }}>{user.points}</Typography>
