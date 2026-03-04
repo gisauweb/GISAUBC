@@ -1,11 +1,15 @@
 import { Box } from '@mui/material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
+import CheckoutForm from 'pages/games/pages/CheckoutForm';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
-import { ApplePay, CreditCard, PaymentForm } from 'react-square-web-payments-sdk';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+const stripe = loadStripe(
+	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
+);
 
 // --- Constants ---
 const FACULTIES = [
@@ -34,12 +38,14 @@ const MERCHANDISE = [
 	{ id: 'umbrella', label: 'Umbrella', price: 5 },
 ];
 
-export default function MemberForm() {
-	const navigate = useNavigate();
+export default function MemberForm({ onRegistered }) {
 	const [step, setStep] = useState(1);
 	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [registeredProfile, setRegisteredProfile] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(null);
+	const [clientSecret, setClientSecret] = useState(null);
+	const [paymentIntentId, setPaymentIntentId] = useState(null);
 
 	const {
 		register,
@@ -59,7 +65,7 @@ export default function MemberForm() {
 			recommendation: '',
 			membershipType: 'full',
 			merch: [],
-			paymentMethod: 'online',
+			paymentMethod: 'card',
 		},
 	});
 
@@ -74,6 +80,40 @@ export default function MemberForm() {
 		};
 		fetchUser();
 	}, [setValue]);
+
+	const paymentMethod = watch('paymentMethod');
+
+	useEffect(() => {
+		setApiError(null);
+
+		if (step !== 3 || paymentMethod !== 'card') return;
+
+		const fetchIntent = async () => {
+			try {
+				const { data: authData } = await supabase.auth.getSession();
+				const token = authData.session?.access_token;
+				if (!token) return;
+
+				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-intent`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify({ amountCents: Math.round(calculateTotal() * 100) }),
+				});
+
+				if (res.ok) {
+					const { clientSecret: secret } = await res.json();
+					setClientSecret(secret);
+				}
+			} catch (err) {
+				console.error('Failed to create payment intent', err);
+			}
+		};
+
+		fetchIntent();
+	}, [step, paymentMethod]);
 
 	const formValues = watch();
 
@@ -95,6 +135,11 @@ export default function MemberForm() {
 		if (step < 3) {
 			setStep(step + 1);
 		} else {
+			if (data.paymentMethod === 'card' && !paymentIntentId) {
+				setApiError('Please complete the card payment before submitting.');
+				return;
+			}
+
 			setLoading(true);
 			setApiError(null);
 
@@ -111,15 +156,17 @@ export default function MemberForm() {
 					},
 					body: JSON.stringify({
 						...data,
-						// totalPrice: calculateTotal(), // Sending the calculated total
+						totalPrice: calculateTotal(),
+						...(data.paymentMethod === 'card' && { paymentIntentId }),
 					}),
 				});
 
+				const body = await res.json().catch(() => ({}));
 				if (!res.ok) {
-					const body = await res.json().catch(() => ({}));
 					throw new Error(body.error || 'Registration failed');
 				}
 
+				setRegisteredProfile(body.profile ?? null);
 				setIsSubmitted(true);
 			} catch (err) {
 				setApiError(err.message);
@@ -176,7 +223,7 @@ export default function MemberForm() {
 
 	const renderStep1 = () => (
 		<div className='space-y-6 max-w-4xl mx-auto'>
-			<h2 className='text-xl font-bold font-oswald mb-4'>Personal Information</h2>
+			<h2 className='text-xl font-bold font-oswald mb-4 text-primary'>Personal Information</h2>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 				<div>
@@ -325,10 +372,6 @@ export default function MemberForm() {
 								</span>
 							</label>
 						))}
-						<label className='flex items-center space-x-3 cursor-pointer'>
-							<input type='checkbox' className='accent-primary w-5 h-5 rounded' />
-							<span className='text-gray-700'>No Merchandise</span>
-						</label>
 					</div>
 				</div>
 
@@ -414,21 +457,45 @@ export default function MemberForm() {
 			{watch('paymentMethod') === 'card' ? (
 				<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
 					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
-					<PaymentForm
-						applicationId={`${import.meta.env.VITE_SQUARE_APPLICATION_ID}`}
-						locationId={`${import.meta.env.VITE_SQUARE_LOCATION_ID}`}
-						cardTokenizeResponseReceived={async (token, buyer) => {
-							// await handleOnlinePayment(token.token);
-							console.log(token.token);
-						}}
-					>
-						<CreditCard
-							buttonProps={{
-								className: 'bg-primary! rounded-full! font-bold! ',
-								text: `Pay $${calculateTotal()}`,
+
+					{clientSecret ? (
+						<Elements
+							stripe={stripe}
+							fonts={[{ cssSrc: 'https://use.typekit.net/mqr7lhi.css' }]}
+							options={{
+								clientSecret,
+								appearance: {
+									theme: 'stripe',
+									variables: {
+										colorPrimary: '#732727',
+										colorBackground: '#ffffff',
+										colorText: '#1f2937',
+										colorDanger: '#dc2626',
+										fontFamily: 'proxima-nova, sans-serif',
+										borderRadius: '8px',
+									},
+								},
 							}}
-						/>
-					</PaymentForm>
+						>
+							<CheckoutForm onSuccess={(id) => setPaymentIntentId(id)} total={calculateTotal()} />
+						</Elements>
+					) : (
+						<div className='flex justify-center py-8'>
+							<div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
+						</div>
+					)}
+
+					{paymentIntentId && (
+						<div className='flex justify-center mt-6'>
+							<button
+								onClick={handleSubmit(onSubmit)}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+								disabled={loading}
+							>
+								{loading ? 'Submitting...' : 'Submit'}
+							</button>
+						</div>
+					)}
 
 					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>
@@ -450,6 +517,7 @@ export default function MemberForm() {
 							{loading ? 'Submitting...' : 'Submit'}
 						</button>
 					</div>
+					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 				</div>
 			) : watch('paymentMethod') === 'payed' ? (
 				<div className='bg-games-box p-8 rounded-lg mb-8 text-center'>
@@ -504,7 +572,7 @@ export default function MemberForm() {
 				<p className='text-gray-800 font-medium mb-8'>Welcome to GISAU!</p>
 
 				<button
-					onClick={() => navigate('/app')}
+					onClick={() => onRegistered(registeredProfile)}
 					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors text-sm'
 				>
 					Continue
