@@ -18,10 +18,14 @@ function App() {
 
 	const [isPopupOpen, setPopupOpen] = useState(false);
 
-	// Open popup when posts are ready and we are not on a "games" page
+	// Open popup only if there's a new event the user hasn't seen yet
 	useEffect(() => {
-		if (posts.length > 0 && !isGamesPage(location.pathname) && !isPopupOpen) {
-			setPopupOpen(true);
+		if (posts.length > 0 && !isGamesPage(location.pathname)) {
+			const latestId = String(posts[0].id);
+			const seenId = localStorage.getItem('gisau_popup_seen');
+			if (seenId !== latestId) {
+				setPopupOpen(true);
+			}
 		}
 	}, [posts]);
 
@@ -62,7 +66,10 @@ function App() {
 			<Popup
 				data={posts ?? null}
 				isOpen={isPopupOpen}
-				onClose={() => setPopupOpen(false)}
+				onClose={() => {
+					setPopupOpen(false);
+					if (posts.length > 0) localStorage.setItem('gisau_popup_seen', String(posts[0].id));
+				}}
 				loading={loading}
 				error={error}
 			/>

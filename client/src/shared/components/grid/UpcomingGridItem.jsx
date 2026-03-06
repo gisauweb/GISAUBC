@@ -4,6 +4,8 @@ import Button from 'shared/components/button/Button';
 
 export default function UpcomingGridItem({ item }) {
 	const isEvent = item.type === 'event';
+	const isMembersOnly = item.priceRegular == null;
+
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
 			category: 'Event',
@@ -18,24 +20,16 @@ export default function UpcomingGridItem({ item }) {
 				!isEvent && 'items-center'
 			}`}
 		>
-			{/* <a
-				href={item.infoLink}
-				target='_blank'
-				rel='noreferrer'
-				className='overflow-hidden rounded-2xl aspect-square mb-5 md:mb-0 size-full md:size-104 relative'
-			> */}
 			<img
 				src={item.coverImage}
 				alt='item_image'
 				className='rounded-2xl z-10 aspect-square size-full md:size-104 object-cover'
 				loading='lazy'
 			/>
-			{/* </a> */}
 			<div>
 				<Box className='flex flex-col mb-4 h-fit'>
 					<h4 className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</h4>
 					<div className='flex flex-row flex-wrap gap-1 mb-2'>
-						{/* {item.date && <p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.date}</p>} */}
 						{item.time && <p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.time}</p>}
 						<p className='px-3 py-1 bg-bg-cream w-fit rounded-md text-sm'>{item.location}</p>
 					</div>
@@ -43,14 +37,24 @@ export default function UpcomingGridItem({ item }) {
 					{item.priceMember && <p className='text-lg font-semibold mt-3'>Members: ${item.priceMember}</p>}
 					{item.priceRegular && <p className='text-lg font-semibold'>Non-members: ${item.priceRegular}</p>}
 				</Box>
-				<div className='flex flex-col lg:flex-row  lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
+				<div className='flex flex-col lg:flex-row lg:items-center space-y-6 lg:space-y-0 lg:space-x-3'>
 					{isEvent ? (
 						<>
-							<Button
-								text='Register Here'
-								handleClickButton={() => handleRegisterButton(item.registrationLink)}
-							/>
-							{/* Below here is for hiring package usually for hiring */}
+							{isMembersOnly ? (
+								<div className='flex flex-col gap-2'>
+									<Button
+										text='Members Only — Sign In'
+										background='transparentBg'
+										handleClickButton={() => (window.location.href = '/app')}
+									/>
+									<p className='text-sm text-gray-500'>This event is exclusive to GISAU members.</p>
+								</div>
+							) : (
+								<Button
+									text='Register Here'
+									handleClickButton={() => handleRegisterButton(item.registrationLink)}
+								/>
+							)}
 							{item.infoLink && (
 								<Button
 									text='Hiring Package'
