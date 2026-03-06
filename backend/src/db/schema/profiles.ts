@@ -10,7 +10,7 @@ import {
   serial,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-import { membershipType, userRole, paymentStatus } from "./enums.js";
+import { membershipType, userRole, paymentStatus } from "./enums";
 
 export const profiles = pgTable(
   "profiles",
@@ -33,7 +33,9 @@ export const profiles = pgTable(
     hasPayed: boolean("has_payed").notNull().default(false),
     paymentStatus: paymentStatus("payment_status").notNull().default("unpaid"),
     paymentIntentId: text("payment_intent_id"),
-    totalPrice: numeric("total_price", { precision: 10, scale: 2 }).default("0").notNull(),
+    totalPrice: numeric("total_price", { precision: 10, scale: 2 })
+      .default("0")
+      .notNull(),
 
     createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
@@ -43,9 +45,8 @@ export const profiles = pgTable(
       .notNull(),
   },
   (table) => [
-    unique("profiles_first_name_unique").on(table.firstName),
-    unique("profiles_last_name_unique").on(table.lastName),
     unique("profiles_student_id_unique").on(table.studentId),
+    unique("profiles_email_unique").on(table.email),
     pgPolicy("Enable insert for authenticated users only", {
       as: "permissive",
       for: "insert",

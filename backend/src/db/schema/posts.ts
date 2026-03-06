@@ -8,8 +8,8 @@ import {
   serial,
   uuid,
 } from "drizzle-orm/pg-core";
-import { postStatus, postType, registrationStatus } from "./enums.js";
-import { profiles } from "./profiles.js";
+import { postStatus, postType, registrationStatus } from "./enums";
+import { profiles } from "./profiles";
 
 export const posts = pgTable("posts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity({
@@ -27,8 +27,12 @@ export const posts = pgTable("posts", {
   type: postType().notNull(),
   coverImage: varchar("cover_image", { length: 512 }).notNull(),
   instagramLink: varchar("instagram_link", { length: 512 }),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
   registrationLink: varchar("registration_link", { length: 512 }),
   infoLink: varchar("info_link", { length: 512 }),
   status: postStatus().default("draft").notNull(),
@@ -47,5 +51,7 @@ export const eventRegistrations = pgTable("event_registrations", {
     .references(() => profiles.id, { onDelete: "cascade" }),
   status: registrationStatus("status").notNull().default("confirmed"),
   paymentIntentId: text("payment_intent_id"),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
 });
