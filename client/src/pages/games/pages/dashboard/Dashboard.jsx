@@ -18,7 +18,7 @@ export default function Dashboard({ account, picture, token }) {
 						</div>
 					</div>
 					<Activity account={account} />
-					<UpcomingEventCard />
+					<UpcomingEventCard isMember={true} />
 				</div>
 			</div>
 		</div>
