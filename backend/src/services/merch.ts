@@ -1,6 +1,6 @@
 import type { InferSelectModel } from "drizzle-orm";
 import db from "../db/database.js";
-import { merch } from "../db/schema.js";
+import { merch } from "../db/schema/index.js";
 
 export type Merch = InferSelectModel<typeof merch>;
 

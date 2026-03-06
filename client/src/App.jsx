@@ -18,12 +18,10 @@ function App() {
 
 	const [isPopupOpen, setPopupOpen] = useState(false);
 
-	// Open popup only if there's a new event the user hasn't seen yet
+	// Show popup once per session
 	useEffect(() => {
 		if (posts.length > 0 && !isGamesPage(location.pathname)) {
-			const latestId = String(posts[0].id);
-			const seenId = localStorage.getItem('gisau_popup_seen');
-			if (seenId !== latestId) {
+			if (!sessionStorage.getItem('gisau_popup_shown')) {
 				setPopupOpen(true);
 			}
 		}
@@ -68,7 +66,7 @@ function App() {
 				isOpen={isPopupOpen}
 				onClose={() => {
 					setPopupOpen(false);
-					if (posts.length > 0) localStorage.setItem('gisau_popup_seen', String(posts[0].id));
+					sessionStorage.setItem('gisau_popup_shown', 'true');
 				}}
 				loading={loading}
 				error={error}
