@@ -1,7 +1,7 @@
-import { MapPinIcon, TagIcon } from '@heroicons/react/24/solid';
+import { MapPinIcon, TagIcon, UserGroupIcon, LockClosedIcon } from '@heroicons/react/24/solid';
 import { useUpcomingPosts, EventType } from 'hooks/usePosts';
 
-export default function UpcomingEventCard() {
+export default function UpcomingEventCard({ isMember = false }) {
 	const { posts, loading, error } = useUpcomingPosts(EventType.EVENT);
 
 	return (
@@ -38,65 +38,84 @@ export default function UpcomingEventCard() {
 			)}
 
 			<div className='flex flex-col gap-4'>
-				{posts.map((event) => (
-					<div
-						key={event.id}
-						className='bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex flex-col sm:flex-row hover:shadow-md transition-shadow duration-200 group'
-					>
-						{/* Cover Image */}
-						<div className='w-full h-44 sm:h-auto sm:w-44 shrink-0 overflow-hidden'>
-							<img
-								src={event.coverImage}
-								alt={event.title}
-								className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
-							/>
-						</div>
+				{posts.map((event) => {
+					const isOpenToAll = event.priceRegular != null;
+					const canRegister = isMember || isOpenToAll;
 
-						{/* Content */}
-						<div className='flex-1 p-5 flex flex-col justify-between gap-4'>
-							<div className='flex flex-col gap-2'>
-								<h3 className='text-base sm:text-lg font-bold text-gray-900 leading-snug'>
-									{event.title}
-								</h3>
+					return (
+						<div
+							key={event.id}
+							className='bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden flex flex-col sm:flex-row hover:shadow-md transition-shadow duration-200 group'
+						>
+							{/* Cover Image */}
+							<div className='w-full h-44 sm:h-auto sm:w-44 shrink-0 overflow-hidden'>
+								<img
+									src={event.coverImage}
+									alt={event.title}
+									className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-300'
+								/>
+							</div>
 
-								{/* Pills */}
-								<div className='flex flex-wrap gap-2'>
-									{event.type && (
-										<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-games-red border border-red-200'>
-											<TagIcon className='w-3 h-3' />
-											{event.type.charAt(0).toUpperCase() + event.type.slice(1)}
-										</span>
-									)}
-									{event.location && (
-										<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200'>
-											<MapPinIcon className='w-3 h-3' />
-											{event.location}
-										</span>
+							{/* Content */}
+							<div className='flex-1 p-5 flex flex-col justify-between gap-4'>
+								<div className='flex flex-col gap-2'>
+									<h3 className='text-base sm:text-lg font-bold text-gray-900 leading-snug'>
+										{event.title}
+									</h3>
+
+									{/* Pills */}
+									<div className='flex flex-wrap gap-2'>
+										{event.type && (
+											<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-games-red border border-red-200'>
+												<TagIcon className='w-3 h-3' />
+												{event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+											</span>
+										)}
+										{event.location && (
+											<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200'>
+												<MapPinIcon className='w-3 h-3' />
+												{event.location}
+											</span>
+										)}
+										{isOpenToAll ? (
+											<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200'>
+												<UserGroupIcon className='w-3 h-3' />
+												Open to All
+											</span>
+										) : (
+											<span className='inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200'>
+												<LockClosedIcon className='w-3 h-3' />
+												Members Only
+											</span>
+										)}
+									</div>
+
+									{event.description && (
+										<p className='text-sm text-gray-500 line-clamp-2 leading-relaxed'>
+											{event.description}
+										</p>
 									)}
 								</div>
 
-								{event.description && (
-									<p className='text-sm text-gray-500 line-clamp-2 leading-relaxed'>
-										{event.description}
-									</p>
-								)}
-							</div>
-
-							{event.registrationLink && (
-								<div className='flex items-center justify-between gap-3'>
+								{/* Register button — context-aware */}
+								{canRegister && event.registrationLink ? (
 									<a
 										href={event.registrationLink}
 										target='_blank'
 										rel='noopener noreferrer'
-										className='inline-block bg-primary text-white text-xs px-5 py-2 rounded-full font-semibold hover:bg-[#5a1e1e] transition-colors duration-150'
+										className='self-start inline-block bg-primary text-white text-xs px-5 py-2 rounded-full font-semibold hover:bg-[#5a1e1e] transition-colors duration-150'
 									>
 										Register →
 									</a>
-								</div>
-							)}
+								) : !isMember && !isOpenToAll ? (
+									<p className='text-xs text-gray-400 italic'>
+										This event is for GISAU members only.
+									</p>
+								) : null}
+							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 		</div>
 	);
