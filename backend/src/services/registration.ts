@@ -26,25 +26,64 @@ export type RegistrationWithMember = EventRegistration & {
 };
 
 /**
- * Register a user for an event.
- * Checks for capacity and duplicate registrations inside a transaction.
+ * Determine the price in cents a user should pay for an event.
+ * Also exported for use by the payment controller to create a Stripe intent.
+ *
  * Throws named errors:
- *   - "EVENT_NOT_FOUND"       — event does not exist or is not published
- *   - "ALREADY_REGISTERED"   — user already has a confirmed registration
- *   - "EVENT_FULL"           — capacity has been reached
+ *   - "EVENT_NOT_FOUND" — event does not exist or is not published
+ *   - "MEMBER_ONLY"     — event requires membership (priceRegular is null)
+ */
+export const get_event_price_for_user = async (
+	userId: string,
+	eventId: number,
+): Promise<{ amountCents: number; isMember: boolean }> => {
+	const [event] = await db
+		.select({
+			priceMember: posts.priceMember,
+			priceRegular: posts.priceRegular,
+		})
+		.from(posts)
+		.where(and(eq(posts.id, eventId), eq(posts.status, "published")))
+		.limit(1);
+
+	if (!event) throw new Error("EVENT_NOT_FOUND");
+
+	const [profileRow] = await db
+		.select({ hasPayed: profiles.hasPayed })
+		.from(profiles)
+		.where(eq(profiles.id, userId))
+		.limit(1);
+
+	const isMember = profileRow?.hasPayed === true;
+
+	// Non-member trying to register for a member-only event
+	if (!isMember && event.priceRegular === null && Number(event.priceMember ?? 0) > 0) {
+		throw new Error("MEMBER_ONLY");
+	}
+
+	const priceStr = isMember ? event.priceMember : event.priceRegular;
+	const amountCents = Math.round(Number(priceStr ?? "0") * 100);
+
+	return { amountCents, isMember };
+};
+
+/**
+ * Register a user for an event.
+ * Payment verification is handled by the caller (controller or webhook handler).
+ *
+ * Throws named errors:
+ *   - "ALREADY_REGISTERED"  — user already has a confirmed registration
+ *   - "EVENT_FULL"          — capacity has been reached
  */
 export const register_for_event = async (
 	input: RegisterForEventInput,
 ): Promise<EventRegistration> => {
 	return await db.transaction(async (tx) => {
-		// Fetch the event to validate it exists and check capacity
 		const [event] = await tx
-			.select({ id: posts.id, capacity: posts.capacity, status: posts.status })
+			.select({ id: posts.id, capacity: posts.capacity })
 			.from(posts)
-			.where(and(eq(posts.id, input.eventId), eq(posts.status, "published")))
+			.where(eq(posts.id, input.eventId))
 			.limit(1);
-
-		if (!event) throw new Error("EVENT_NOT_FOUND");
 
 		// Check for duplicate confirmed registration
 		const [duplicate] = await tx
@@ -62,7 +101,7 @@ export const register_for_event = async (
 		if (duplicate) throw new Error("ALREADY_REGISTERED");
 
 		// Enforce capacity if set
-		if (event.capacity !== null) {
+		if (event?.capacity !== null && event?.capacity !== undefined) {
 			const countResult = await tx
 				.select({ confirmedCount: count() })
 				.from(eventRegistrations)
@@ -197,6 +236,25 @@ export const get_event_registrations = async (
 		throw err;
 	}
 };
+
+/**
+ * Confirm a registration from a Stripe webhook (payment_intent.succeeded).
+ * Skips payment verification since Stripe already confirmed the payment.
+ * Idempotent — silently ignores duplicate registrations.
+ */
+export const confirm_registration_from_webhook = async (
+	userId: string,
+	eventId: number,
+	paymentIntentId: string,
+): Promise<void> => {
+	try {
+		await register_for_event({ userId, eventId, paymentIntentId });
+	} catch (e: any) {
+		if (e.message === "ALREADY_REGISTERED") return; // idempotent
+		throw e;
+	}
+};
+
 
 /**
  * Get the number of confirmed registrations for an event.

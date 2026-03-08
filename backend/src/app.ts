@@ -18,7 +18,11 @@ app.use(
   })
 );
 
-app.use(express.json());
+// Exclude the Stripe webhook path from JSON parsing — it needs the raw body for signature verification
+app.use((req, res, next) => {
+  if (req.originalUrl === "/api/v1/payment/webhook") return next();
+  express.json()(req, res, next);
+});
 
 const api = Router();
 api.use("/posts", post);

@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import * as PaymentService from "../services/payment.js";
 import * as RegistrationService from "../services/registration.js";
 
 /**
@@ -15,6 +16,20 @@ export async function registerForEvent(req: Request, res: Response) {
 	}
 
 	try {
+		// Determine the applicable price and validate access
+		const { amountCents } = await RegistrationService.get_event_price_for_user(userId, eventId);
+
+		// Verify payment for paid events
+		if (amountCents > 0) {
+			if (!paymentIntentId) {
+				return res.status(402).json({ error: "Payment required for this event" });
+			}
+			const valid = await PaymentService.verifyPayment(paymentIntentId, amountCents);
+			if (!valid) {
+				return res.status(402).json({ error: "Payment not completed or amount mismatch" });
+			}
+		}
+
 		const registration = await RegistrationService.register_for_event({
 			userId,
 			eventId,
@@ -24,6 +39,9 @@ export async function registerForEvent(req: Request, res: Response) {
 	} catch (e: any) {
 		if (e.message === "EVENT_NOT_FOUND") {
 			return res.status(404).json({ error: "Event not found" });
+		}
+		if (e.message === "MEMBER_ONLY") {
+			return res.status(403).json({ error: "This event is for GISAU members only" });
 		}
 		if (e.message === "ALREADY_REGISTERED") {
 			return res.status(409).json({ error: "Already registered for this event" });
