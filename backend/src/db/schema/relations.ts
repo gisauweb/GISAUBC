@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
-import { profiles } from "./profiles";
-import { posts, eventRegistrations } from "./posts";
-import { merch, memberMerch } from "./merch";
+import { profiles } from "./profiles.js";
+import { posts, eventRegistrations } from "./posts.js";
+import { merch, memberMerch } from "./merch.js";
 
 export const membersRelations = relations(profiles, ({ many }) => ({
   purchases: many(memberMerch),

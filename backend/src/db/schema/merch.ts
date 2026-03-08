@@ -6,7 +6,7 @@ import {
   uuid,
   timestamp,
 } from "drizzle-orm/pg-core";
-import { profiles } from "./profiles";
+import { profiles } from "./profiles.js";
 
 export const merch = pgTable("merch", {
   id: text("id").primaryKey(),

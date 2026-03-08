@@ -8,8 +8,8 @@ import {
   serial,
   uuid,
 } from "drizzle-orm/pg-core";
-import { postStatus, postType, registrationStatus } from "./enums";
-import { profiles } from "./profiles";
+import { postStatus, postType, registrationStatus } from "./enums.js";
+import { profiles } from "./profiles.js";
 
 export const posts = pgTable("posts", {
   id: integer().primaryKey().generatedAlwaysAsIdentity({

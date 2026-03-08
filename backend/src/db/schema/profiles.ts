@@ -10,7 +10,7 @@ import {
   serial,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
-import { membershipType, userRole, paymentStatus } from "./enums";
+import { membershipType, userRole, paymentStatus } from "./enums.js";
 
 export const profiles = pgTable(
   "profiles",
