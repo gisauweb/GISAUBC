@@ -1,0 +1,2 @@
+-- Baseline migration
+-- Schema already exists in Supabasenpx drizzle-kit generate

@@ -1,7 +1,7 @@
 import type { InferSelectModel } from "drizzle-orm";
 import { eq, inArray } from "drizzle-orm";
 import db from "../db/database.js";
-import { existingMembers, memberMerch, merch as merchTable, profiles } from "../db/schema.js";
+import { existingMembers, memberMerch, merch as merchTable, profiles } from "../db/schema/index.js";
 
 const MEMBERSHIP_PRICES: Record<string, number> = {
 	full: 9,
@@ -47,6 +47,8 @@ export type RegisterInput = {
 	recommendation?: string;
 	paymentMethod: string;
 	hasPayed: boolean;
+	paymentStatus: "unpaid" | "paid_card" | "paid_cash" | "paid_existing_member" | "refunded";
+	paymentIntentId?: string;
 	totalPrice: string;
 	merch?: string[];
 };
@@ -102,6 +104,8 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
 				recommendation: input.recommendation,
 				paymentMethod: input.paymentMethod,
 				hasPayed: input.hasPayed,
+				paymentStatus: input.paymentStatus,
+				paymentIntentId: input.paymentIntentId,
 				totalPrice: input.totalPrice,
 				role: "member",
 			})
