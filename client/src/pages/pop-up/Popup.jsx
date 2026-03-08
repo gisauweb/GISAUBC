@@ -93,7 +93,7 @@ function Popup({ data, isOpen, onClose, loading, error }) {
 						</Typography>
 
 						<Box mt={2} display='flex' justifyContent='center'>
-							<a aria-label='Save' href='#events' onClick={handleClose}>
+							<a aria-label='Save' href='/events' onClick={handleClose}>
 								<Button background='transparentBg' text='Take me there' />
 							</a>
 						</Box>
