@@ -2,6 +2,7 @@ import cors from "cors";
 import "dotenv/config";
 import express, { Router } from "express";
 import auth from "./api/auth.route.js";
+import member from "./api/member.route.js";
 import merch from "./api/merch.route.js";
 import payment from "./api/payment.route.js";
 import post from "./api/post.route.js";
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 const api = Router();
 api.use("/posts", post);
 api.use("/auth", auth);
+api.use("/members", member);
 api.use("/merch", merch);
 api.use("/payment", payment);
 api.use("/registrations", registration);
