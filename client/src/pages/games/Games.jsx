@@ -133,7 +133,7 @@ export default function Games() {
 									<path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
 								</svg>
 							</button>
-							<img src='/gisau-logo/gisau.svg' alt='GISAU' className='h-8' />
+							<a href='/'><img src='/gisau-logo/gisau.svg' alt='GISAU' className='h-8 w-auto' /></a>
 							<div className='w-10' />
 						</div>
 

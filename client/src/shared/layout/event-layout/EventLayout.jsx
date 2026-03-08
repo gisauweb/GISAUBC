@@ -7,6 +7,16 @@ import './EventLayout.css';
 
 function EventCards({ data }) {
 	const isEvent = data.type === 'event';
+	const isMembersOnly = data.priceRegular == null;
+
+	const handleClick = () => {
+		if (isEvent && isMembersOnly) {
+			window.location.href = '/app';
+		} else if (data.registrationLink) {
+			window.open(data.registrationLink, '_blank', 'noreferrer');
+		}
+	};
+
 	return (
 		<div className='flex flex-col w-fit'>
 			<img src={data.coverImage} alt='' className='aspect-square rounded-2xl object-cover w-full md:w-[440px] ' />
@@ -20,9 +30,12 @@ function EventCards({ data }) {
 						<p className='text-sm bg-bg-cream w-fit px-3 py-1 rounded-md'>{data.location}</p>
 					</div>
 				</div>
-				<Link to={isEvent ? '/events' : '/rantangan'} className='relative w-full sm:w-6/12 mt-5 sm:mt-0'>
-					<Button text={isEvent ? 'Register Now' : 'Order Now'} className='w-full text-start' />
-				</Link>
+				<div className='relative w-full sm:w-6/12 mt-5 sm:mt-0' onClick={handleClick}>
+					<Button
+						text={isEvent ? (isMembersOnly ? 'Members Only' : 'Register Now') : 'Order Now'}
+						className='w-full text-start'
+					/>
+				</div>
 			</div>
 		</div>
 	);

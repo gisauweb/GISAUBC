@@ -120,7 +120,7 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 						/>
 					</div>
 				) : (
-					<img src={logo} href='/home' alt='GISAU logo red' style={{ maxWidth: '70px', height: 'auto' }} />
+				<a href='/'><img src={logo} alt='GISAU logo' className='w-14 h-auto' /></a>
 				)}
 
 				<Typography variant='h5' color='blue-gray'>

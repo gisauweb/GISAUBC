@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { get_event_price_for_user } from "./registration.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -17,6 +18,44 @@ export const createPaymentIntent = async (
 		clientSecret: intent.client_secret!,
 		paymentIntentId: intent.id,
 	};
+};
+
+/**
+ * Create a Stripe PaymentIntent for an event, priced based on the user's membership status.
+ * Throws named errors from get_event_price_for_user (EVENT_NOT_FOUND, MEMBER_ONLY).
+ * Throws "FREE_EVENT" if the event has no applicable charge.
+ */
+export const createEventPaymentIntent = async (
+	userId: string,
+	eventId: number,
+	receiptEmail: string,
+): Promise<{ clientSecret: string; paymentIntentId: string; amountCents: number }> => {
+	const { amountCents } = await get_event_price_for_user(userId, eventId);
+
+	if (amountCents === 0) throw new Error("FREE_EVENT");
+
+	const intent = await stripe.paymentIntents.create({
+		amount: amountCents,
+		currency: "cad",
+		automatic_payment_methods: { enabled: true, allow_redirects: "never" },
+		receipt_email: receiptEmail,
+		// Store event/user context so the webhook can create the registration as a fallback
+		metadata: { eventId: String(eventId), userId },
+	});
+
+	return {
+		clientSecret: intent.client_secret!,
+		paymentIntentId: intent.id,
+		amountCents,
+	};
+};
+
+/**
+ * Construct and verify a Stripe webhook event from the raw request body.
+ * Throws if the signature is invalid.
+ */
+export const constructWebhookEvent = (rawBody: Buffer, signature: string): import("stripe").default.Event => {
+	return stripe.webhooks.constructEvent(rawBody, signature, process.env.STRIPE_WEBHOOK_SECRET!);
 };
 
 /**

@@ -69,6 +69,7 @@ export async function register(req: Request, res: Response) {
 	const totalPrice = String(expectedAmountCents / 100);
 
 	let hasPayed = false;
+	let resolvedPaymentStatus: "unpaid" | "paid_card" | "paid_cash" | "paid_existing_member" | "refunded" = "unpaid";
 
 	if (paymentMethod === "card") {
 		if (!paymentIntentId) {
@@ -80,10 +81,13 @@ export async function register(req: Request, res: Response) {
 			return res.status(402).json({ error: "Payment not completed or amount mismatch" });
 		}
 		hasPayed = true;
+		resolvedPaymentStatus = "paid_card";
+	} else if (paymentMethod === "cash") {
+		resolvedPaymentStatus = "unpaid"; // cash collected later by admin
 	} else if (paymentMethod === "payed") {
 		hasPayed = true;
+		resolvedPaymentStatus = "paid_existing_member";
 	}
-	// cash: hasPayed stays false
 
 	try {
 		const profile = await AuthService.register_user({
@@ -98,6 +102,8 @@ export async function register(req: Request, res: Response) {
 			recommendation,
 			paymentMethod,
 			hasPayed,
+			paymentStatus: resolvedPaymentStatus,
+			paymentIntentId: paymentMethod === "card" ? paymentIntentId : undefined,
 			totalPrice,
 			merch: merchIds,
 		});
