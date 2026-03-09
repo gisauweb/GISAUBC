@@ -2,15 +2,6 @@ import type { Request, Response } from "express";
 import * as MemberService from "../services/member.js";
 
 /**
- * GET /members/student-ids
- * Returns all unique student IDs from profiles + existing_members.
- */
-export async function getAllStudentIds(req: Request, res: Response) {
-  const studentIds = await MemberService.get_all_student_ids();
-  res.json({ studentIds });
-}
-
-/**
  * GET /members/check?studentId=<id>
  * Checks if a student ID exists in the database. Designed for Qualtrics integration.
  * Returns { exists: true | false }
