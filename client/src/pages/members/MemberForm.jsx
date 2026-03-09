@@ -1,42 +1,17 @@
-import { Box } from '@mui/material';
+import { Alert, Box, Snackbar } from '@mui/material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
 import CheckoutForm from 'pages/games/pages/CheckoutForm';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { StepContainer, StepHeading } from './components/index';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { FACULTIES, MEMBERSHIP_TYPES, YEARS } from './constants';
 const stripe = loadStripe(
 	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
 );
-
-// --- Constants ---
-const FACULTIES = [
-	'Arts',
-	'Science',
-	'Engineering',
-	'Sauder',
-	'Land & Food Systems',
-	'Kinesiology',
-	'Forestry',
-	'Other',
-];
-const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th+ Year', 'Graduate'];
-
-const MEMBERSHIP_TYPES = [
-	{ id: 'full', label: 'Full term membership (September 2025 - April 2026)', price: 9 },
-	{ id: 'sem1', label: 'Half term membership (September 2025 - December 2025)', price: 5 },
-	{ id: 'sem2', label: 'Half term membership (January 2026 - April 2026)', price: 5 },
-];
-
-const MERCHANDISE = [
-	{ id: 'keychain', label: 'Keychain', price: 2 },
-	{ id: 'bucketHat', label: 'Bucket Hat', price: 6 },
-	{ id: 'bottle', label: 'Bottle', price: 9 },
-	{ id: 'sticker', label: 'Sticker Sheet', price: 2 },
-	{ id: 'umbrella', label: 'Umbrella', price: 5 },
-];
 
 export default function MemberForm({ onRegistered }) {
 	const [step, setStep] = useState(1);
@@ -46,6 +21,11 @@ export default function MemberForm({ onRegistered }) {
 	const [apiError, setApiError] = useState(null);
 	const [clientSecret, setClientSecret] = useState(null);
 	const [paymentIntentId, setPaymentIntentId] = useState(null);
+	const [isExistingMember, setIsExistingMember] = useState(null);
+	const [checkingMemberId, setCheckingMemberId] = useState(false);
+	const [memberToastOpen, setMemberToastOpen] = useState(false);
+	const [merchItems, setMerchItems] = useState([]);
+	const [merchLoading, setMerchLoading] = useState(true);
 
 	const {
 		register,
@@ -80,6 +60,14 @@ export default function MemberForm({ onRegistered }) {
 		};
 		fetchUser();
 	}, [setValue]);
+
+	useEffect(() => {
+		fetch(`${import.meta.env.VITE_API_BASE_URL}/merch`)
+			.then((r) => r.json())
+			.then((data) => setMerchItems(Array.isArray(data) ? data : []))
+			.catch(() => setMerchItems([]))
+			.finally(() => setMerchLoading(false));
+	}, []);
 
 	const paymentMethod = watch('paymentMethod');
 
@@ -124,16 +112,39 @@ export default function MemberForm({ onRegistered }) {
 
 		if (formValues.merch && Array.isArray(formValues.merch)) {
 			formValues.merch.forEach((itemId) => {
-				const item = MERCHANDISE.find((m) => m.id === itemId);
-				if (item) total += item.price;
+				const item = merchItems.find((m) => m.id === itemId);
+				if (item) total += Number(item.price);
 			});
 		}
 		return total;
 	};
 
+	const handleStudentIdBlur = async (e) => {
+		const id = e.target.value.trim();
+		if (!id) return;
+		setCheckingMemberId(true);
+		try {
+			const res = await fetch(
+				`${import.meta.env.VITE_API_BASE_URL}/members/check?studentId=${encodeURIComponent(id)}`,
+			);
+			if (res.ok) {
+				const { isEligible } = await res.json();
+				setIsExistingMember(isEligible);
+				if (isEligible) {
+					setValue('paymentMethod', 'payed');
+					setMemberToastOpen(true);
+				}
+			}
+		} catch {
+			// silently fail — don't block the user
+		} finally {
+			setCheckingMemberId(false);
+		}
+	};
+
 	const onSubmit = async (data) => {
 		if (step < 3) {
-			setStep(step + 1);
+			setStep(step === 1 && isExistingMember ? 3 : step + 1);
 		} else {
 			if (data.paymentMethod === 'card' && !paymentIntentId) {
 				setApiError('Please complete the card payment before submitting.');
@@ -176,17 +187,14 @@ export default function MemberForm({ onRegistered }) {
 		}
 	};
 
-	// --- Render Steps ---
-
 	const renderStepIndicator = () => (
-		<div className='flex justify-center items-center mb-12'>
+		<div className='flex justify-center items-center mb-20'>
 			{[1, 2, 3].map((num) => (
 				<React.Fragment key={num}>
 					<div
 						className='flex flex-col items-center relative z-10 cursor-pointer'
 						onClick={async () => {
-							if (num < step) {
-								// Always allow going back
+							if (num < step && !(isExistingMember && num === 2)) {
 								setStep(num);
 							}
 						}}
@@ -195,9 +203,9 @@ export default function MemberForm({ onRegistered }) {
 							className={`w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-lg font-bold border-2 transition-colors duration-300
                 ${
 					step === num
-						? 'bg-primary text-white border-primary'
+						? 'bg-bg-black text-white border-bg-black'
 						: step > num
-						? 'bg-primary text-white border-primary'
+						? 'bg-bg-black text-white border-bg-black'
 						: 'bg-gray-200 text-gray-500 border-gray-300'
 				}`}
 						>
@@ -206,13 +214,13 @@ export default function MemberForm({ onRegistered }) {
 						<span className='text-[10px] md:text-xs mt-2 absolute top-10 md:top-12 text-gray-600 font-medium w-20 text-center leading-tight'>
 							{num === 1 && 'Personal Information'}
 							{num === 2 && 'Membership Pricing'}
-							{num === 3 && 'Payment'}
+							{num === 3 && (isExistingMember ? 'Confirm' : 'Payment')}
 						</span>
 					</div>
 					{num < 3 && (
 						<div
 							className={`w-12 md:w-24 h-1 transition-colors duration-300 mx-1 md:mx-2 ${
-								step > num ? 'bg-primary' : 'bg-gray-300'
+								step > num ? 'bg-bg-black' : 'bg-gray-300'
 							}`}
 						/>
 					)}
@@ -222,8 +230,8 @@ export default function MemberForm({ onRegistered }) {
 	);
 
 	const renderStep1 = () => (
-		<div className='space-y-6 max-w-4xl mx-auto'>
-			<h2 className='text-xl font-bold font-oswald mb-4 text-primary'>Personal Information</h2>
+		<StepContainer>
+			<StepHeading>Personal Information</StepHeading>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 				<div>
@@ -259,6 +267,7 @@ export default function MemberForm({ onRegistered }) {
 					<label className='block text-sm font-medium text-gray-700 mb-1'>Student Number *</label>
 					<input
 						{...register('studentId', { required: true })}
+						onBlur={handleStudentIdBlur}
 						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
 						placeholder=''
 					/>
@@ -339,7 +348,7 @@ export default function MemberForm({ onRegistered }) {
 					Continue
 				</button>
 			</div>
-		</div>
+		</StepContainer>
 	);
 
 	const renderStep2 = () => {
@@ -347,214 +356,205 @@ export default function MemberForm({ onRegistered }) {
 		const currentMerch = formValues.merch || [];
 
 		return (
-			<div className='max-w-5xl mx-auto flex flex-col md:flex-row gap-8'>
-				{/* Left Side: Merch Selection */}
-				<div className='flex-1'>
-					<div className='bg-primary text-white p-3 rounded-md mb-6 inline-block'>
-						<h2 className='text-base md:text-xl font-bold font-oswald pl-2 pr-4'>
+			<StepContainer>
+				<div className='flex flex-col md:flex-row gap-8'>
+					{/* Left Side: Merch Selection */}
+					<div className='flex-1'>
+						<StepHeading>
 							{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
 							{selectedMembership?.price || 0}
-						</h2>
-					</div>
+						</StepHeading>
 
-					<h3 className='text-gray-700 mb-4'>Select your merchandise (optional)!</h3>
-					<div className='space-y-3'>
-						{MERCHANDISE.map((item) => (
-							<label key={item.id} className='flex items-center space-x-3 cursor-pointer'>
-								<input
-									type='checkbox'
-									value={item.id}
-									{...register('merch')}
-									className='accent-primary w-5 h-5 rounded'
-								/>
-								<span className='text-gray-700'>
-									{item.label} (+${item.price})
-								</span>
-							</label>
-						))}
-					</div>
-				</div>
-
-				{/* Right Side: Order Summary */}
-				<div className='w-full md:w-96 bg-gray-100 p-6 rounded-sm h-fit'>
-					<h3 className='text-lg font-bold font-oswald uppercase mb-4 tracking-wider border-b border-black pb-2'>
-						ORDER SUMMARY
-					</h3>
-
-					<div className='space-y-2 mb-8 text-sm font-mono'>
-						<div className='flex justify-between'>
-							<span>{selectedMembership?.label.split('(')[0].trim()}</span>
-							<span>${selectedMembership?.price}</span>
+						<h3 className='text-gray-700 mb-4'>Select your merchandise (optional)!</h3>
+						<div className='space-y-3'>
+							{merchLoading ? (
+								<p className='text-sm text-gray-400'>Loading...</p>
+							) : (
+								merchItems.map((item) => (
+									<label key={item.id} className='flex items-center space-x-3 cursor-pointer'>
+										<input
+											type='checkbox'
+											value={item.id}
+											{...register('merch')}
+											className='accent-primary w-5 h-5 rounded'
+										/>
+										<span className='text-gray-700'>
+											{item.name} (+${Number(item.price).toFixed(2).replace(/\.00$/, '')})
+										</span>
+									</label>
+								))
+							)}
 						</div>
-						{currentMerch.map((itemId) => {
-							const item = MERCHANDISE.find((m) => m.id === itemId);
-							return item ? (
-								<div key={item.id} className='flex justify-between'>
-									<span>{item.label}</span>
-									<span>+${item.price}</span>
-								</div>
-							) : null;
-						})}
 					</div>
 
-					<div className='flex justify-between font-bold border-t border-black pt-4'>
-						<span>Total:</span>
-						<span>${calculateTotal()}</span>
+					{/* Right Side: Order Summary */}
+					<div className='w-full md:w-96 bg-gray-100 p-6 rounded-sm h-fit'>
+						<h3 className='text-lg font-bold font-oswald uppercase mb-4 tracking-wider border-b border-black pb-2'>
+							ORDER SUMMARY
+						</h3>
+
+						<div className='space-y-2 mb-8 text-sm font-mono'>
+							<div className='flex justify-between'>
+								<span>{selectedMembership?.label.split('(')[0].trim()}</span>
+								<span>${selectedMembership?.price}</span>
+							</div>
+							{currentMerch.map((itemId) => {
+								const item = merchItems.find((m) => m.id === itemId);
+								return item ? (
+									<div key={item.id} className='flex justify-between'>
+										<span>{item.name}</span>
+										<span>+${Number(item.price).toFixed(2).replace(/\.00$/, '')}</span>
+									</div>
+								) : null;
+							})}
+						</div>
+
+						<div className='flex justify-between font-bold border-t border-black pt-4'>
+							<span>Total:</span>
+							<span>${calculateTotal()}</span>
+						</div>
 					</div>
+
 				</div>
 
-				<div className='flex justify-center w-full md:absolute md:bottom-10 md:left-0 md:right-0 mt-8 md:mt-0 pointer-events-none'>
-					<div className='pointer-events-auto'>
-						<button
-							onClick={handleSubmit(onSubmit)}
-							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-						>
-							Continue
-						</button>
-					</div>
-				</div>
+			<div className='flex justify-center mt-8'>
+				<button
+					onClick={handleSubmit(onSubmit)}
+					className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+				>
+					Continue
+				</button>
 			</div>
+		</StepContainer>
 		);
 	};
 
-	const renderStep3 = () => (
-		<div className='max-w-4xl mx-auto'>
-			<div className='bg-primary text-white p-3 rounded-md mb-6 inline-block'>
-				<h2 className='text-xl font-bold font-oswald pl-2 pr-4'>Select Method of Payment</h2>
-			</div>
+	const renderStep3 = () => {
+		if (isExistingMember) {
+			return (
+				<StepContainer>
+					<StepHeading>Confirm Registration</StepHeading>
 
-			<div className='space-y-2 mb-8 ml-2'>
-				<label className='flex items-center space-x-3 cursor-pointer'>
-					<input
-						type='radio'
-						value='card'
-						{...register('paymentMethod', { required: true })}
-						defaultChecked
-						className='accent-primary w-5 h-5'
-					/>
-					<span className='text-gray-700 font-medium'>Card</span>
-				</label>
-				<label className='flex items-center space-x-3 cursor-pointer'>
-					<input
-						type='radio'
-						value='cash'
-						{...register('paymentMethod', { required: true })}
-						className='accent-primary w-5 h-5'
-					/>
-					<span className='text-gray-700 font-medium'>Cash</span>
-				</label>
-				<label className='flex items-center space-x-3 cursor-pointer'>
-					<input
-						type='radio'
-						value='payed'
-						{...register('paymentMethod', { required: true })}
-						className='accent-primary w-5 h-5'
-					/>
-					<span className='text-gray-700 font-medium'>I am a member!</span>
-				</label>
-			</div>
-
-			{watch('paymentMethod') === 'card' ? (
-				<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
-					<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
-
-					{clientSecret ? (
-						<Elements
-							stripe={stripe}
-							fonts={[{ cssSrc: 'https://use.typekit.net/mqr7lhi.css' }]}
-							options={{
-								clientSecret,
-								appearance: {
-									theme: 'stripe',
-									variables: {
-										colorPrimary: '#732727',
-										colorBackground: '#ffffff',
-										colorText: '#1f2937',
-										colorDanger: '#dc2626',
-										fontFamily: 'proxima-nova, sans-serif',
-										borderRadius: '8px',
-									},
-								},
-							}}
-						>
-							<CheckoutForm onSuccess={(id) => setPaymentIntentId(id)} total={calculateTotal()} />
-						</Elements>
-					) : (
-						<div className='flex justify-center py-8'>
-							<div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
-						</div>
-					)}
-
-					{paymentIntentId && (
-						<div className='flex justify-center mt-6'>
-							<button
-								onClick={handleSubmit(onSubmit)}
-								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-								disabled={loading}
-							>
-								{loading ? 'Submitting...' : 'Submit'}
-							</button>
-						</div>
-					)}
-
-					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
-				</div>
-			) : watch('paymentMethod') === 'cash' ? (
-				<div className='bg-games-box p-8 rounded-lg mb-8'>
-					<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
-
-					<p className='font-bold mb-2'>Please meet us at:</p>
-					<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
-					<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
-
-					<p className='font-bold'>We look forward to seeing you!</p>
-
-					<div className='flex justify-center mt-8'>
-						<button
-							onClick={handleSubmit(onSubmit)}
-							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-						>
-							{loading ? 'Submitting...' : 'Submit'}
-						</button>
+					<div className='space-y-3 mb-10'>
+						<p className='text-gray-700'>
+							Your <span className='font-semibold'>2025/26 membership</span> is already on file — no
+							payment needed.
+						</p>
+						<p className='text-gray-500 text-sm'>
+							Hit the button below to complete your registration and we&apos;ll have your details in our
+							system.
+						</p>
 					</div>
-					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
-				</div>
-			) : watch('paymentMethod') === 'payed' ? (
-				<div className='bg-games-box p-8 rounded-lg mb-8 text-center'>
-					<h3 className='font-bold text-lg mb-2'>Payment on File ✅</h3>
 
-					<p className='text-sm'>
-						We have your payment recorded (in-person or previous membership). Please submit this form to
-						complete your registration in our new system.
-					</p>
-					<p className='text-sm mt-3'>If you were a member during Winter 25/26, please select this option.</p>
-
-					<div className='flex justify-center mt-8'>
+					<div className='flex justify-center'>
 						<button
 							onClick={handleSubmit(onSubmit)}
 							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
 							disabled={loading}
 						>
-							{loading ? 'Submitting...' : 'Submit'}
+							{loading ? 'Submitting...' : 'Complete Registration'}
 						</button>
 					</div>
-					{apiError && (
-						<div className='mt-6 text-red-600 text-sm'>
-							<p>We couldn’t find your membership in our system.</p>
-							<p>
-								If you believe this is a mistake, please contact us at{' '}
-								<a href='mailto:gisauweb@gmail.com' className='underline font-semibold'>
-									gisauweb@gmail.com
-								</a>
-								.
-							</p>
-						</div>
-					)}
-					{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
+					{apiError && <p className='text-red-500 text-sm mt-6 text-center'>{apiError}</p>}
+				</StepContainer>
+			);
+		}
+
+		return (
+			<StepContainer>
+				<StepHeading>Select Method of Payment</StepHeading>
+
+				<div className='space-y-2 mb-8 ml-2'>
+					<label className='flex items-center space-x-3 cursor-pointer'>
+						<input
+							type='radio'
+							value='card'
+							{...register('paymentMethod', { required: true })}
+							defaultChecked
+							className='accent-primary w-5 h-5'
+						/>
+						<span className='text-gray-700 font-medium'>Card</span>
+					</label>
+					<label className='flex items-center space-x-3 cursor-pointer'>
+						<input
+							type='radio'
+							value='cash'
+							{...register('paymentMethod', { required: true })}
+							className='accent-primary w-5 h-5'
+						/>
+						<span className='text-gray-700 font-medium'>Cash</span>
+					</label>
 				</div>
-			) : null}
-		</div>
-	);
+
+				{watch('paymentMethod') === 'card' ? (
+					<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
+						<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
+
+						{clientSecret ? (
+							<Elements
+								stripe={stripe}
+								fonts={[{ cssSrc: 'https://use.typekit.net/mqr7lhi.css' }]}
+								options={{
+									clientSecret,
+									appearance: {
+										theme: 'stripe',
+										variables: {
+											colorPrimary: '#732727',
+											colorBackground: '#ffffff',
+											colorText: '#1f2937',
+											colorDanger: '#dc2626',
+											fontFamily: 'proxima-nova, sans-serif',
+											borderRadius: '8px',
+										},
+									},
+								}}
+							>
+								<CheckoutForm onSuccess={(id) => setPaymentIntentId(id)} total={calculateTotal()} />
+							</Elements>
+						) : (
+							<div className='flex justify-center py-8'>
+								<div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
+							</div>
+						)}
+
+						{paymentIntentId && (
+							<div className='flex justify-center mt-6'>
+								<button
+									onClick={handleSubmit(onSubmit)}
+									className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+									disabled={loading}
+								>
+									{loading ? 'Submitting...' : 'Submit'}
+								</button>
+							</div>
+						)}
+
+						{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
+					</div>
+				) : (
+					<div className='bg-games-box p-8 rounded-lg mb-8'>
+						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
+
+						<p className='font-bold mb-2'>Please meet us at:</p>
+						<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
+						<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
+
+						<p className='font-bold'>We look forward to seeing you!</p>
+
+						<div className='flex justify-center mt-8'>
+							<button
+								onClick={handleSubmit(onSubmit)}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+							>
+								{loading ? 'Submitting...' : 'Submit'}
+							</button>
+						</div>
+						{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
+					</div>
+				)}
+			</StepContainer>
+		);
+	};
 
 	const renderSuccess = () => (
 		<div className='flex items-center justify-center min-h-[50vh]'>
@@ -619,6 +619,23 @@ export default function MemberForm({ onRegistered }) {
 				className='absolute bottom-0 left-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
 				style={{ backgroundImage: `url(/form/batik.png)`, transform: 'rotate(180deg)' }}
 			></div>
+			<Snackbar
+				open={memberToastOpen}
+				autoHideDuration={6000}
+				onClose={(_, reason) => {
+					if (reason !== 'clickaway') setMemberToastOpen(false);
+				}}
+				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+			>
+				<Alert
+					onClose={() => setMemberToastOpen(false)}
+					severity='success'
+					variant='filled'
+					className='w-full text-white!'
+				>
+					You&apos;re recognized as a 2025/26 GISAU member — no payment required!
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 }
