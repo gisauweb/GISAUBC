@@ -36,6 +36,7 @@ export async function register(req: Request, res: Response) {
 	const userId = req.user!.sub;
 	// Use email from the verified JWT, not from the request body.
 	const email = req.user!.email;
+	if (!email) return res.status(400).json({ error: "Email not found in token" });
 
 	const {
 		firstName,
@@ -52,7 +53,7 @@ export async function register(req: Request, res: Response) {
 
 	const trimmedStudentId = typeof studentId === "string" ? studentId.trim() : studentId;
 
-	if (!firstName || !lastName || !trimmedStudentId || !email) {
+	if (!firstName || !lastName || !trimmedStudentId) {
 		return res.status(400).json({ error: "Missing required fields" });
 	}
 
@@ -82,6 +83,23 @@ export async function register(req: Request, res: Response) {
 		}
 		hasPayed = true;
 		resolvedPaymentStatus = "paid_card";
+
+		// Stamp the intent with recovery data so the webhook can recreate the profile
+		// if the registration insert below fails (e.g. server crash, network drop).
+		await PaymentService.stampMembershipMetadata(paymentIntentId, {
+			type: "membership",
+			userId,
+			firstName,
+			lastName,
+			studentId: trimmedStudentId,
+			email: email ?? "",
+			faculty: faculty ?? "",
+			dbMembershipType,
+			yearOfStudy: yearOfStudy ?? "",
+			recommendation: String(recommendation ?? "").slice(0, 450),
+			totalPrice,
+			merch: JSON.stringify(merchIds),
+		});
 	} else if (paymentMethod === "cash") {
 		resolvedPaymentStatus = "unpaid"; // cash collected later by admin
 	} else if (paymentMethod === "payed") {
