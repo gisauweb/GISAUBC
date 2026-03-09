@@ -1,5 +1,3 @@
-import BackButton from './BackButton';
-
 export default function SignIn({ login }) {
 	return (
 		<div className='relative h-screen flex items-center text-center justify-center bg-primary'>
@@ -15,7 +13,6 @@ export default function SignIn({ login }) {
 				style={{ backgroundImage: `url(/form/batik.png)`, transform: 'rotate(180deg)' }}
 			/>
 			<div className='relative z-10 bg-white p-10 rounded-2xl shadow-xl flex flex-col items-center max-w-sm w-full mx-4 border border-gray-100'>
-				<BackButton />
 				<h1 className='text-4xl font-bold font-oswald text-primary mb-2 tracking-wide'>GISAU</h1>
 				<p className='text-gray-500 mb-8 font-medium'>Membership Portal</p>
 

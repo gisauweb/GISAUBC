@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 
 app.use(
   cors({
-    origin: `${process.env.CLIENT_ORIGIN}`, // must match your frontend URL exactly
+    origin: `${process.env.CLIENT_ORIGIN}`,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // if you use cookies or auth
   })

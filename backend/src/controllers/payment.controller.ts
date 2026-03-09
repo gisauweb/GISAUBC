@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import * as AuthService from "../services/auth.js";
 import * as PaymentService from "../services/payment.js";
 import * as RegistrationService from "../services/registration.js";
 
@@ -66,15 +67,18 @@ export async function handleWebhook(req: Request, res: Response) {
 		switch (event.type) {
 			case "payment_intent.succeeded": {
 				const intent = event.data.object as import("stripe").default.PaymentIntent;
-				const { eventId, userId } = intent.metadata;
+				const { eventId, userId, type } = intent.metadata;
 
-				// Only act on event registration intents (those with our metadata)
 				if (eventId && userId) {
+					// Event registration fallback
 					await RegistrationService.confirm_registration_from_webhook(
 						userId,
 						Number(eventId),
 						intent.id,
 					);
+				} else if (type === "membership" && userId) {
+					// Membership registration fallback
+					await AuthService.register_user_from_webhook(intent.metadata, intent.id);
 				}
 				break;
 			}
