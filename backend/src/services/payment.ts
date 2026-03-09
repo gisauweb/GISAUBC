@@ -73,10 +73,10 @@ export const constructWebhookEvent = (
  * Stamps a membership PaymentIntent with registration data for webhook recovery.
  */
 export const stampMembershipMetadata = async (
-	paymentIntentId: string,
-	metadata: Record<string, string>,
+  paymentIntentId: string,
+  metadata: Record<string, string>
 ): Promise<void> => {
-	await stripe.paymentIntents.update(paymentIntentId, { metadata });
+  await stripe.paymentIntents.update(paymentIntentId, { metadata });
 };
 
 /**
