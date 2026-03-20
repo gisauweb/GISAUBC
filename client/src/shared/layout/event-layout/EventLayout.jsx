@@ -7,7 +7,8 @@ import './EventLayout.css';
 
 function EventCards({ data }) {
 	const isEvent = data.type === 'event';
-	const isMembersOnly = data.priceRegular == null;
+	const isFree = data.priceRegular == null && data.priceMember == null;
+	const isMembersOnly = !isFree && data.priceRegular == null;
 
 	const handleClick = () => {
 		if (isEvent && isMembersOnly) {

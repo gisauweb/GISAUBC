@@ -4,7 +4,7 @@ import Button from 'shared/components/button/Button';
 
 export default function UpcomingGridItem({ item }) {
 	const isEvent = item.type === 'event';
-	const isMembersOnly = item.priceRegular == null;
+	const isMembersOnly = item.priceRegular == null && item.priceMember != null;
 
 	const handleRegisterButton = (link) => {
 		ReactGA.event({
