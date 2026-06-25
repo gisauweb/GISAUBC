@@ -1,10 +1,15 @@
 import ReactGA from 'react-ga4';
 import { Button } from 'shared/components';
 import penIcon from 'assets/members/penIcon.svg';
+import { isMembershipOpen } from 'libs/membershipConfig';
 import { useNavigate } from 'react-router-dom';
 
 export default function MemberButton({ showIcon = true, text }) {
 	const navigate = useNavigate();
+
+	if (!isMembershipOpen) {
+		return null;
+	}
 
 	const handleMemberButton = () => {
 		// Analytics

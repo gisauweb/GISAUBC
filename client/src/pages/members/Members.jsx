@@ -1,14 +1,20 @@
 import { Box } from '@mui/material';
 import membersLandingImg from 'assets/landing-image/members.webp';
 import wavy from 'assets/partners/text decor 3.svg';
+import { isMembershipOpen } from 'libs/membershipConfig';
 import { Footer, LandingImage, ScrollButton } from 'shared/components/index';
 import PageHeading from 'shared/components/PageHeading';
 import SubHeading from 'shared/components/SubHeading';
 import MainContainer from 'shared/layout/MainContainer';
 import { MemberBenefits, MemberContact, MemberSpecial } from './components/index';
 import MemberButton from './components/MemberButton';
+import MembershipClosed from './MembershipClosed';
 
 export default function Members() {
+	if (!isMembershipOpen) {
+		return <MembershipClosed />;
+	}
+
 	return (
 		<Box>
 			<LandingImage
