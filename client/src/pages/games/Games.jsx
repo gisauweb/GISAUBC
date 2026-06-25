@@ -1,5 +1,7 @@
+import { isMembershipOpen } from 'libs/membershipConfig';
 import supabase from 'libs/supabaseClient';
 import MemberForm from 'pages/members/MemberForm';
+import MembershipClosed from 'pages/members/MembershipClosed';
 import { useEffect, useState } from 'react';
 import ComingSoon from './pages/ComingSoon';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -85,7 +87,11 @@ export default function Games() {
 				</div>
 			)}
 
-			{email && registered === false && (
+			{email && registered === false && !isMembershipOpen && (
+				<MembershipClosed showSignOut onSignOut={logout} />
+			)}
+
+			{email && registered === false && isMembershipOpen && (
 				<MemberForm
 					onRegistered={(profile) => {
 						setProfile(profile);

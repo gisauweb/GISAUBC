@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { isMembershipOpen } from 'libs/membershipConfig';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import spotifyIcon from 'assets/footer/spotify-icon.svg';
@@ -57,16 +58,20 @@ export default function DesktopNavBar({ bgColor, hasLandingImage, pages, locatio
 					))}
 				</Box>
 			</Box>
-			<Box className='w-1/3 flex justify-end items-center h-full'>
-				<Link
-					to='/members'
-					onClick={ScrollToTop}
-					className='bg-bg-black border-2 rounded-full border-games-red h-fit
+			{isMembershipOpen && (
+				<Box className='w-1/3 flex justify-end items-center h-full'>
+					<Link
+						to='/members'
+						onClick={ScrollToTop}
+						className='bg-bg-black border-2 rounded-full border-games-red h-fit
           justify-center items-center px-3 md:px-7 py-2 md:py-2.5 hidden lg:flex xl:w-1/2'
-				>
-					<p className='underline-animation font-oswald text-sm md:text-base text-white'>Become a Member</p>
-				</Link>
-			</Box>
+					>
+						<p className='underline-animation font-oswald text-sm md:text-base text-white'>
+							Become a Member
+						</p>
+					</Link>
+				</Box>
+			)}
 			<Box
 				className={`fixed bottom-6 right-20 transition-all duration-300 ${isHovered ? 'w-48' : 'w-32'
 					} h-12 flex justify-center items-center`}
