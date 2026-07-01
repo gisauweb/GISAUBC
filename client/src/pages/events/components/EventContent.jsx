@@ -11,7 +11,7 @@ import SubHeading from 'shared/components/SubHeading';
 import { EventType, usePastPostsYear, useUpcomingPosts } from 'hooks/usePosts';
 
 function EventContent({ upcoming }) {
-	const [selectedYear, setSelectedYear] = useState('2025/2026');
+	const [selectedYear, setSelectedYear] = useState('2026/2027');
 
 	const yearNumber = Number(selectedYear.split('/')[0]);
 
