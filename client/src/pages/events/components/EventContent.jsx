@@ -6,8 +6,6 @@ import GridContainer from 'shared/components/grid/GridContainer';
 import GridContent from 'shared/components/grid/GridContent';
 import { DropdownMenu } from 'shared/components/index';
 import SubHeading from 'shared/components/SubHeading';
-// import UPCOMING_EVENTS from 'shared/data/upcoming_event';
-// import PAST_EVENTS from './constants';
 import { EventType, usePastPostsYear, useUpcomingPosts } from 'hooks/usePosts';
 
 function EventContent({ upcoming }) {
