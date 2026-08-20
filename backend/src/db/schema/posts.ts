@@ -35,6 +35,7 @@ export const posts = pgTable("posts", {
     .notNull(),
   registrationLink: varchar("registration_link", { length: 512 }),
   infoLink: varchar("info_link", { length: 512 }),
+  galleryLink: varchar("gallery_link", { length: 512 }),
   status: postStatus().default("draft").notNull(),
   priceMember: numeric("price_member", { precision: 10, scale: 2 }),
   priceRegular: numeric("price_regular", { precision: 10, scale: 2 }),

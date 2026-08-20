@@ -90,6 +90,7 @@ const EXECUTIVES = {
 				department: 'Events',
 				image: null,
 				education: '2nd Year Commerce',
+				linkedin: 'https://www.linkedin.com/in/abigailperwata/',
 			},
 			{
 				name: 'Emily Razali',
@@ -121,6 +122,7 @@ const EXECUTIVES = {
 				department: 'External',
 				image: null,
 				education: '2nd Year Science',
+				linkedin: 'https://www.linkedin.com/in/nevan-leo/',
 			},
 			{
 				name: 'Valencia Gabrielle Hartono',
@@ -193,6 +195,7 @@ const EXECUTIVES = {
 				department: 'Marketing',
 				image: null,
 				education: '1st Year Science',
+				linkedin: 'https://www.linkedin.com/in/gaida-amzar/',
 			},
 			{
 				name: 'Adelio Windiarto',
@@ -235,6 +238,7 @@ const EXECUTIVES = {
 				department: 'Marketing',
 				image: null,
 				education: '2nd Year Pharmaceutical Science',
+				linkedin: `https://www.linkedin.com/in/alfredo-austin-ubc/`
 			},
 			{
 				name: 'Edward Farrell Budiman',
@@ -256,6 +260,7 @@ const EXECUTIVES = {
 				department: 'Marketing',
 				image: null,
 				education: '1st Year Arts',
+				linkedin: 'https://www.linkedin.com/in/kiarra-hartanto-118547384/',
 			},
 		],
 	},

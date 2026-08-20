@@ -4,6 +4,17 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>GISAUBC</title>
+		<!-- Preconnect so the browser opens the socket early -->
+		<link rel="preconnect" href="https://use.typekit.net" crossorigin />
+		<link rel="preconnect" href="https://p.typekit.net" crossorigin />
+		<!-- Load Proxima Nova asynchronously — does NOT block first paint -->
+		<link
+			rel="preload"
+			href="https://use.typekit.net/mqr7lhi.css"
+			as="style"
+			onload="this.onload=null;this.rel='stylesheet'"
+		/>
+		<noscript><link rel="stylesheet" href="https://use.typekit.net/mqr7lhi.css" /></noscript>
 		<link href="/src/index.css" rel="stylesheet" />
 		<!-- SPA redirect decode for GitHub Pages — pairs with public/404.html -->
 		<script>

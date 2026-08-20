@@ -20,12 +20,36 @@ export default function UpcomingGridItem({ item }) {
 				!isEvent && 'items-center'
 			}`}
 		>
+		{item.infoLink ? (
+			<a
+				href={item.infoLink}
+				target='_blank'
+				rel='noreferrer'
+				className='group relative block shrink-0 aspect-square size-full md:size-104'
+			>
+				<img
+					src={item.coverImage}
+					alt='item_image'
+					className='rounded-2xl z-10 w-full h-full object-cover transition-all duration-300 group-hover:brightness-75'
+					loading='lazy'
+				/>
+				<div className='absolute inset-0 flex items-center justify-center rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20'>
+					<div className='bg-black/60 rounded-full px-4 py-2 flex items-center gap-2'>
+						<svg xmlns='http://www.w3.org/2000/svg' className='w-4 h-4 text-white' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2}>
+							<path strokeLinecap='round' strokeLinejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' />
+						</svg>
+						<span className='text-white text-sm font-oswald'>View</span>
+					</div>
+				</div>
+			</a>
+		) : (
 			<img
 				src={item.coverImage}
 				alt='item_image'
 				className='rounded-2xl z-10 aspect-square size-full md:size-104 object-cover'
 				loading='lazy'
 			/>
+		)}
 			<div>
 				<Box className='flex flex-col mb-4 h-fit'>
 					<h4 className='mb-2 font-oswald font-semibold text-2xl'>{item.title}</h4>
