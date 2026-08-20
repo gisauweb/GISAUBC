@@ -8,22 +8,23 @@ export default function TeamGridItem({ item }) {
 		<Grid item xs={12} sm={6} md={4} lg={3}>
 			<Box className='card'>
 				<Box className='card-content' sx={{ display: 'flex', alignItems: 'center', padding: 0 }}>
-					<Box
-						component='img'
-						src={
-							item.image
-								? item.image
-								: `https://hugxahcgzygqbgbxyvcc.supabase.co/storage/v1/object/public/executives/25_26/${firstName}.webp`
-						}
-						alt='team-member'
-						className='team-image'
-						sx={{
-							width: '50%',
-							height: '50%',
-							borderRadius: '15px',
-							marginRight: 2,
-						}}
-					/>
+				<Box
+					component='img'
+					src={
+						item.image
+							? item.image
+							: `https://hugxahcgzygqbgbxyvcc.supabase.co/storage/v1/object/public/executives/25_26/${firstName}.webp`
+					}
+					alt='team-member'
+					className='team-image'
+					loading='lazy'
+					sx={{
+						width: '50%',
+						height: '50%',
+						borderRadius: '15px',
+						marginRight: 2,
+					}}
+				/>
 
 					<Box sx={{ flexGrow: 1 }}>
 						<Typography
