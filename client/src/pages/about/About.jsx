@@ -35,8 +35,8 @@ export default function About() {
 				</Box>
 			</MainContainer>
 
-			<Box>
-				<img src={indoMapImage} alt='indo-map-illustration' />
+		<Box>
+			<img src={indoMapImage} alt='indo-map-illustration' loading='lazy' />
 			</Box>
 
 			<MainContainer className='pt-0 relative z-2'>

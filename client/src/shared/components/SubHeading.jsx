@@ -12,7 +12,7 @@ export default function SubHeading({ text, icon, isRight, isLeft, isMirror }) {
 				</div>
 			)}
 			<h4 className='font-oswald text-2xl md:text-3xl mt-4 lg:mt-6 font-bold text-primary z-0'>{text}</h4>
-			{isRight && <img src={icon} alt='subheading-icon' className='h-full' loading='lazy' />}
+			{isRight && <img src={icon} alt='subheading-icon' className='h-10 lg:h-15 mt-4 lg:mt-6 ml-2' loading='lazy' />}
 		</div>
 	);
 }

@@ -27,7 +27,7 @@ export default function OurTeam({ data, states }) {
 
 	return (
 		<Box className='pt-0'>
-			<Box className='w-full pb-4 sm:pb-6 3xl:pb-10 pt-0'>
+			<Box className='w-full pb-2 3xl:pb-10 pt-0'>
 				<SubHeading text='MEET OUR TEAM' isRight icon={smiley} />
 			</Box>
 			<Box>
