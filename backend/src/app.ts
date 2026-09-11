@@ -1,6 +1,7 @@
 import cors from "cors";
 import "dotenv/config";
 import express, { Router } from "express";
+import rateLimit from "express-rate-limit";
 import auth from "./api/auth.route.js";
 import member from "./api/member.route.js";
 import merch from "./api/merch.route.js";
@@ -10,6 +11,28 @@ import registration from "./api/registration.route.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+// ── Rate limiters ────────────────────────────────────────────────────────────
+
+// General: 120 requests per minute per IP (covers public browsing)
+const generalLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 120,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
+});
+
+// Sensitive: 10 requests per 15 minutes per IP (auth, registration, payment)
+const sensitiveLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many attempts, please try again later." },
+});
+
+app.use(generalLimiter);
 
 app.use(
   cors({
@@ -27,11 +50,11 @@ app.use((req, res, next) => {
 
 const api = Router();
 api.use("/posts", post);
-api.use("/auth", auth);
-api.use("/members", member);
+api.use("/auth", sensitiveLimiter, auth);
+api.use("/members", sensitiveLimiter, member);
 api.use("/merch", merch);
-api.use("/payment", payment);
-api.use("/registrations", registration);
+api.use("/payment", sensitiveLimiter, payment);
+api.use("/registrations", sensitiveLimiter, registration);
 
 app.use("/api/v1", api);
 

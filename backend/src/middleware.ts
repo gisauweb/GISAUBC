@@ -28,7 +28,7 @@ export const requireAuth = async (
     req.accessToken = token;
     next();
   } catch (e: any) {
-    return res.status(403).json({ error: "Invalid token", detail: e?.message });
+    return res.status(403).json({ error: "Invalid token" });
   }
 };
 
