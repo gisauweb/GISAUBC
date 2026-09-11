@@ -1,5 +1,5 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { eq, inArray } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import db from "../db/database.js";
 import {
   existingMembers,
@@ -12,6 +12,18 @@ const MEMBERSHIP_PRICES: Record<string, number> = {
   full: 9,
   sem1: 5,
   sem2: 5,
+};
+
+/**
+ * Returns the current academic year string (e.g. "2026-2027").
+ * Academic year starts June 1 — matches the convention used throughout the codebase.
+ */
+export const getCurrentAcademicYear = (): string => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1; // 1-indexed
+  const startYear = month >= 6 ? year : year - 1;
+  return `${startYear}-${startYear + 1}`;
 };
 
 /**
@@ -119,10 +131,16 @@ export const register_user_from_webhook = async (
 };
 
 export const get_profile = async (userId: string): Promise<Profile | null> => {
+  const currentYear = getCurrentAcademicYear();
   const rows = await db
     .select()
     .from(profiles)
-    .where(eq(profiles.id, userId))
+    .where(
+      and(
+        eq(profiles.userId, userId),
+        eq(profiles.academicYear, currentYear),
+      )
+    )
     .limit(1);
 
   return rows[0] ?? null;
@@ -130,10 +148,18 @@ export const get_profile = async (userId: string): Promise<Profile | null> => {
 
 export const register_user = async (input: RegisterInput): Promise<Profile> => {
   return await db.transaction(async (tx) => {
+    const currentYear = getCurrentAcademicYear();
+
+    // Block duplicate registration for the same user in the same academic year
     const existing = await tx
       .select({ id: profiles.id })
       .from(profiles)
-      .where(eq(profiles.id, input.userId))
+      .where(
+        and(
+          eq(profiles.userId, input.userId),
+          eq(profiles.academicYear, currentYear),
+        )
+      )
       .limit(1);
 
     if (existing.length) {
@@ -143,7 +169,12 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
     const existingMember = await tx
       .select({ id: existingMembers.id })
       .from(existingMembers)
-      .where(eq(existingMembers.studentId, input.studentId.trim()))
+      .where(
+        and(
+          eq(existingMembers.studentId, input.studentId.trim()),
+          eq(existingMembers.academicYear, currentYear),
+        )
+      )
       .limit(1);
 
     if (input.paymentMethod === "payed") {
@@ -158,7 +189,8 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
     const [newProfile] = await tx
       .insert(profiles)
       .values({
-        id: input.userId,
+        userId: input.userId,
+        academicYear: currentYear,
         firstName: input.firstName,
         lastName: input.lastName,
         email: input.email,
@@ -176,15 +208,16 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
       })
       .returning();
 
+    if (!newProfile) throw new Error("Failed to insert profile");
+
     if (input.merch && input.merch.length > 0) {
       const merchRows = input.merch.map((merchId) => ({
-        memberId: input.userId,
+        memberId: newProfile.id, // surrogate UUID, not auth UUID
         merchId,
       }));
       await tx.insert(memberMerch).values(merchRows);
     }
 
-    if (!newProfile) throw new Error("Failed to insert profile");
     return newProfile;
   });
 };
