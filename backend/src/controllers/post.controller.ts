@@ -60,12 +60,6 @@ export async function getPastPosts(req: Request, res: Response) {
  */
 export async function addPost(req: Request, res: Response) {
   try {
-    // Example: Admin check (uncomment if auth middleware is set up)
-    // const user = req.user;
-    // if (!user || user.role !== "admin") {
-    //   return res.status(403).json({ error: "Only admins can create posts" });
-    // }
-
     const postData = req.body;
     const newPost = await PostsService.add_post(postData);
 
