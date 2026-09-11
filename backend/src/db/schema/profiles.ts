@@ -15,7 +15,12 @@ import { membershipType, userRole, paymentStatus } from "./enums.js";
 export const profiles = pgTable(
   "profiles",
   {
-    id: uuid().primaryKey().notNull(),
+    // Surrogate PK — auto-generated, used by member_merch FK
+    id: uuid().primaryKey().defaultRandom().notNull(),
+    // Supabase auth UID — identifies the user across years
+    userId: uuid("user_id").notNull(),
+    academicYear: text("academic_year").notNull(),
+
     firstName: text("first_name").notNull(),
     lastName: text("last_name").notNull(),
     studentId: text("student_id").notNull(),
@@ -45,13 +50,16 @@ export const profiles = pgTable(
       .notNull(),
   },
   (table) => [
-    unique("profiles_student_id_unique").on(table.studentId),
-    unique("profiles_email_unique").on(table.email),
+    // Same user can register again in a new academic year
+    unique("profiles_user_year_unique").on(table.userId, table.academicYear),
+    // Student ID and email must be unique within a given year
+    unique("profiles_student_year_unique").on(table.studentId, table.academicYear),
+    unique("profiles_email_year_unique").on(table.email, table.academicYear),
     pgPolicy("Enable insert for authenticated users only", {
       as: "permissive",
       for: "insert",
       to: ["authenticated"],
-      withCheck: sql`(( SELECT auth.uid() AS uid) = id)`,
+      withCheck: sql`(( SELECT auth.uid() AS uid) = user_id)`,
     }),
   ]
 );
