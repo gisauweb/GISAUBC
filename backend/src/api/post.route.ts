@@ -1,5 +1,6 @@
 import express from "express";
 import * as PostController from "../controllers/post.controller.js";
+import { requireAdmin, requireAuth } from "../middleware.js";
 
 const router = express.Router();
 
@@ -23,6 +24,6 @@ router.get("/past", PostController.getPastPosts);
  * Adds a new post to the database.
  * Only accessible by admins.
  */
-router.post("/", PostController.addPost);
+router.post("/", requireAuth, requireAdmin, PostController.addPost);
 
 export default router;
