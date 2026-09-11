@@ -33,7 +33,6 @@ const sensitiveLimiter = rateLimit({
 });
 
 app.use(generalLimiter);
-const port = process.env.PORT || 3000;
 
 app.use(
   cors({
