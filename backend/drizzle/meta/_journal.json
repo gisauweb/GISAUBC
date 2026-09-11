@@ -71,6 +71,13 @@
       "when": 1753948800000,
       "tag": "0009_add_gallery_link",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1757606400000,
+      "tag": "0010_profiles_academic_year",
+      "breakpoints": true
     }
   ]
 }
