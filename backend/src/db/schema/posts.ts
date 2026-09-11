@@ -47,9 +47,9 @@ export const eventRegistrations = pgTable("event_registrations", {
   eventId: integer("event_id")
     .notNull()
     .references(() => posts.id, { onDelete: "cascade" }),
-  memberId: uuid("member_id")
-    .notNull()
-    .references(() => profiles.id, { onDelete: "cascade" }),
+  // Stores the Supabase auth UUID directly — not a FK to profiles.id
+  // since a user exists across multiple academic years.
+  memberId: uuid("member_id").notNull(),
   status: registrationStatus("status").notNull().default("confirmed"),
   paymentIntentId: text("payment_intent_id"),
   createdAt: timestamp("created_at", { withTimezone: true })

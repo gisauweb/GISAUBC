@@ -2,6 +2,7 @@ import type { InferSelectModel } from "drizzle-orm";
 import { and, count, eq } from "drizzle-orm";
 import db from "../db/database.js";
 import { eventRegistrations, posts, profiles } from "../db/schema/index.js";
+import { getCurrentAcademicYear } from "./auth.js";
 
 export type EventRegistration = InferSelectModel<typeof eventRegistrations>;
 
@@ -51,7 +52,12 @@ export const get_event_price_for_user = async (
 	const [profileRow] = await db
 		.select({ hasPayed: profiles.hasPayed })
 		.from(profiles)
-		.where(eq(profiles.id, userId))
+		.where(
+			and(
+				eq(profiles.userId, userId),
+				eq(profiles.academicYear, getCurrentAcademicYear()),
+			)
+		)
 		.limit(1);
 
 	const isMember = profileRow?.hasPayed === true;
@@ -222,7 +228,13 @@ export const get_event_registrations = async (
 				},
 			})
 			.from(eventRegistrations)
-			.innerJoin(profiles, eq(eventRegistrations.memberId, profiles.id))
+			.innerJoin(
+				profiles,
+				and(
+					eq(eventRegistrations.memberId, profiles.userId),
+					eq(profiles.academicYear, getCurrentAcademicYear()),
+				)
+			)
 			.where(
 				and(
 					eq(eventRegistrations.eventId, eventId),
