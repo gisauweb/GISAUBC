@@ -22,7 +22,7 @@ export type RegistrationWithEvent = EventRegistration & {
 export type RegistrationWithMember = EventRegistration & {
 	member: Pick<
 		InferSelectModel<typeof profiles>,
-		"id" | "firstName" | "lastName" | "email" | "studentId"
+		"userId" | "firstName" | "lastName" | "email" | "studentId"
 	>;
 };
 
@@ -220,7 +220,7 @@ export const get_event_registrations = async (
 				paymentIntentId: eventRegistrations.paymentIntentId,
 				createdAt: eventRegistrations.createdAt,
 				member: {
-					id: profiles.id,
+					userId: profiles.userId,
 					firstName: profiles.firstName,
 					lastName: profiles.lastName,
 					email: profiles.email,
