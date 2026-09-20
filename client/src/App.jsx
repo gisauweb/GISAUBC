@@ -10,6 +10,8 @@ import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import ScrollToTop from './shared/components/ScrollToTop';
 import AuthCallback from 'auth/AuthCallback';
+import AdminAuthCallback from 'auth/AdminAuthCallback';
+import AdminApp from 'pages/admin/Admin';
 import WorkInProgress from 'pages/404/WorkInProgress';
 
 function App() {
@@ -56,8 +58,9 @@ function App() {
 					{/* <Route path='/app' element={<WorkInProgress />} /> */}
 				</Route>
 				<Route path='/app' element={<Games />} />
+				<Route path='/admin' element={<AdminApp />} />
 				<Route path='/auth/callback' element={<AuthCallback />} />
-				{/* <Route path='/admin' element={<Admin />} /> */}
+				<Route path='/auth/admin-callback' element={<AdminAuthCallback />} />
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}
