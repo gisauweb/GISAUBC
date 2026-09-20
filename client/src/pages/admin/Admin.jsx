@@ -1,52 +1,144 @@
 import supabase from 'libs/supabaseClient';
-import EventContent from 'pages/events/components/EventContent';
-import { useForm } from 'react-hook-form';
-import MainContainer from 'shared/layout/MainContainer';
+import { useEffect, useState } from 'react';
+import AdminDashboard from './AdminDashboard';
+import AdminLayout from './AdminLayout';
+import AdminSignIn from './AdminSignIn';
 
-export default function AdminPage() {
-	const {
-		register,
-		handleSubmit,
-		watch,
-		// formState: { errors },
-	} = useForm();
+// Placeholder for sections not yet built
+function ComingSoon({ page }) {
+	return (
+		<div className='p-8 flex flex-col items-center justify-center h-full text-center'>
+			<div className='text-5xl mb-4'>🚧</div>
+			<h2 className='text-xl font-bold text-gray-800 mb-2'>{page}</h2>
+			<p className='text-gray-500 text-sm'>This section is coming soon.</p>
+		</div>
+	);
+}
 
-	const onSubmit = async (data) => {
-		await supabase.from('posts').insert(data);
+export default function AdminApp() {
+	const [email, setEmail] = useState(null);
+	const [profile, setProfile] = useState(null);
+	const [loading, setLoading] = useState(true); // true while checking session
+	const [isAdmin, setIsAdmin] = useState(false);
+	const [token, setToken] = useState(null);
+	const [currentPage, setCurrentPage] = useState('Dashboard');
+
+	const refreshAccountState = async () => {
+		setLoading(true);
+		const { data } = await supabase.auth.getSession();
+		const session = data.session;
+
+		if (!session) {
+			setEmail(null);
+			setProfile(null);
+			setIsAdmin(false);
+			setToken(null);
+			setLoading(false);
+			return;
+		}
+
+		setEmail(session.user.email);
+		setToken(session.access_token);
+
+		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
+			headers: { Authorization: `Bearer ${session.access_token}` },
+		});
+		const body = await res.json();
+		const p = body.profile ?? null;
+		setProfile(p);
+		setIsAdmin(p?.role === 'admin');
+		setLoading(false);
 	};
 
-	console.log(watch('example')); // watch input value by passing the name of it
+	useEffect(() => {
+		refreshAccountState();
+
+		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+				refreshAccountState();
+			}
+		});
+
+		return () => sub.subscription.unsubscribe();
+	}, []);
+
+	const login = async () => {
+		await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: { redirectTo: `${window.location.origin}/auth/admin-callback` },
+		});
+	};
+
+	const logout = async () => {
+		await supabase.auth.signOut();
+		setEmail(null);
+		setProfile(null);
+		setIsAdmin(false);
+		setToken(null);
+		setCurrentPage('Dashboard');
+	};
+
+	// ── Loading spinner ──────────────────────────────────────────────────────
+	if (loading) {
+		return (
+			<div className='h-screen flex items-center justify-center bg-gray-100'>
+				<div className='text-center'>
+					<div className='animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-3' />
+					<p className='text-gray-500 text-sm'>Checking access...</p>
+				</div>
+			</div>
+		);
+	}
+
+	// ── Not signed in ────────────────────────────────────────────────────────
+	if (!email) return <AdminSignIn login={login} />;
+
+	// ── Signed in but not admin ──────────────────────────────────────────────
+	if (!isAdmin) {
+		return (
+			<div className='h-screen flex items-center justify-center bg-gray-100'>
+				<div className='bg-white p-10 rounded-xl shadow-md text-center max-w-sm mx-4 border border-gray-200'>
+					<div className='text-4xl mb-4'>🚫</div>
+					<h2 className='text-xl font-bold text-gray-800 mb-2'>Access Denied</h2>
+					<p className='text-gray-500 text-sm mb-6'>
+						Your account (<span className='font-medium'>{email}</span>) does not have admin privileges.
+					</p>
+					<button
+						onClick={logout}
+						className='text-sm text-red-500 hover:text-red-700 font-medium'
+					>
+						Sign out
+					</button>
+				</div>
+			</div>
+		);
+	}
+
+	// ── Admin ────────────────────────────────────────────────────────────────
+	const renderPage = () => {
+		switch (currentPage) {
+			case 'Dashboard':
+				return <AdminDashboard profile={profile} setCurrentPage={setCurrentPage} />;
+			case 'Members':
+			case 'Cash Payments':
+			case 'Events':
+			case 'Registrations':
+			case 'Existing Members':
+			case 'Merch':
+				return <ComingSoon page={currentPage} />;
+			default:
+				return <AdminDashboard profile={profile} setCurrentPage={setCurrentPage} />;
+		}
+	};
 
 	return (
-		<>
-			{/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
-			<form onSubmit={handleSubmit(onSubmit)}>
-				{/* register your input into the hook by invoking the "register" function */}
-				<div className='flex flex-col'>
-					<input placeholder='Enter Title' {...register('title')} />
-
-					{/* include validation with required or other standard HTML validation rules */}
-					<input placeholder='Enter Caption' {...register('caption', { required: true })} />
-					{/* errors will return when field validation fails  */}
-					{/* {errors.caption && <span className='text-red'>This field is required</span>} */}
-
-					<input placeholder='Enter Location' {...register('location', { required: true })} />
-					<input
-						placeholder='Enter Registration Link'
-						{...register('registration_link', { required: true })}
-					/>
-					<input type='date' {...register('date', { required: true })} />
-					<label htmlFor='event'>
-						Is this an event?
-						<input id='event' type='checkbox' {...register('is_event', { required: true })} />
-					</label>
-				</div>
-
-				<input type='submit' />
-			</form>
-			<MainContainer>
-				<EventContent upcoming />
-			</MainContainer>
-		</>
+		<AdminLayout
+			currentPage={currentPage}
+			setCurrentPage={setCurrentPage}
+			profile={profile}
+			onLogout={logout}
+		>
+			{renderPage()}
+		</AdminLayout>
 	);
 }
