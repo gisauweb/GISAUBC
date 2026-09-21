@@ -1,4 +1,4 @@
-import { and, eq, ilike, or } from "drizzle-orm";
+import { and, desc, eq, ilike, or } from "drizzle-orm";
 import db from "../db/database.js";
 import { existingMembers, profiles } from "../db/schema/index.js";
 import type { Profile } from "./auth.js";
@@ -73,7 +73,7 @@ export const get_all_members = async (filters: MemberFilters): Promise<Profile[]
     .select()
     .from(profiles)
     .where(conditions.length ? and(...conditions) : undefined)
-    .orderBy(profiles.createdAt);
+    .orderBy(desc(profiles.createdAt));
 };
 
 export type MemberUpdateInput = Partial<{

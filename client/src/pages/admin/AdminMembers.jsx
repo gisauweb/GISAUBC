@@ -282,6 +282,8 @@ export default function AdminMembers({ token }) {
 								<th className='px-4 py-3 text-left'>Price</th>
 								<th className='px-4 py-3 text-left'>Role</th>
 								<th className='px-4 py-3 text-left'>Acad. Year</th>
+								<th className='px-4 py-3 text-left'>Recommendation</th>
+								<th className='px-4 py-3 text-left'>Joined</th>
 							</tr>
 						</thead>
 						<tbody className='divide-y divide-gray-100'>
@@ -308,6 +310,8 @@ export default function AdminMembers({ token }) {
 									<td className='px-4 py-3 text-gray-600'>${m.totalPrice}</td>
 									<td className='px-4 py-3 text-gray-600 capitalize'>{m.role}</td>
 									<td className='px-4 py-3 text-gray-600'>{m.academicYear}</td>
+									<td className='px-4 py-3 text-gray-600 max-w-[200px] truncate'>{m.recommendation || '—'}</td>
+									<td className='px-4 py-3 text-gray-600 whitespace-nowrap'>{new Date(m.createdAt).toLocaleDateString()}</td>
 								</tr>
 							))}
 						</tbody>
