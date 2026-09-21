@@ -23,7 +23,8 @@ export default function AdminApp() {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const [token, setToken] = useState(null);
 	const [currentPage, setCurrentPage] = useState('Dashboard');
-	const isRefreshing = useRef(false); // guard: only one fetch at a time
+	const isRefreshing = useRef(false);   // guard: only one fetch at a time
+	const profileLoaded = useRef(false);  // true once profile is successfully fetched
 
 	const refreshAccountState = async () => {
 		// If a fetch is already in-flight, bail out immediately
@@ -53,12 +54,14 @@ export default function AdminApp() {
 			const p = body.profile ?? null;
 			setProfile(p);
 			setIsAdmin(p?.role === 'admin');
+			profileLoaded.current = true;
 		} catch {
 			// Fetch failed — reset to signed-out state
 			setEmail(null);
 			setProfile(null);
 			setIsAdmin(false);
 			setToken(null);
+			profileLoaded.current = false;
 		} finally {
 			setLoading(false);
 			isRefreshing.current = false;
@@ -69,9 +72,10 @@ export default function AdminApp() {
 		refreshAccountState();
 
 		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-			if (event === 'SIGNED_IN') {
-				refreshAccountState();
-			} else if (event === 'TOKEN_REFRESHED' && !profile) {
+			if (event === 'SIGNED_IN' && !profileLoaded.current) {
+				// Only re-fetch on a real new sign-in and we don't have a profile yet.
+				// TOKEN_REFRESHED is intentionally ignored — it fires on tab focus
+				// and doesn't change the profile, only rotates the JWT.
 				refreshAccountState();
 			}
 		});

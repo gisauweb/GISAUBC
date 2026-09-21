@@ -17,7 +17,8 @@ export default function Games() {
 	const [avatarUrl, setAvatarUrl] = useState(null);
 	const [token, setToken] = useState(null);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
-	const isRefreshing = useRef(false); // guard: only one fetch at a time
+	const isRefreshing = useRef(false);   // guard: only one fetch at a time
+	const profileLoaded = useRef(false);  // true once profile is successfully fetched
 
 	const refreshAccountState = async () => {
 		// If a fetch is already in-flight, bail out immediately
@@ -49,6 +50,7 @@ export default function Games() {
 			const body = await res.json();
 			setProfile(body.profile ?? null);
 			setRegistered(Boolean(body.registered));
+			profileLoaded.current = true;
 		} catch {
 			// Fetch failed — drop back to signed-out state so the user
 			// sees the sign-in screen instead of spinning forever
@@ -56,6 +58,7 @@ export default function Games() {
 			setRegistered(null);
 			setProfile(null);
 			setToken(null);
+			profileLoaded.current = false;
 		} finally {
 			// Always release the lock, even if the fetch threw
 			isRefreshing.current = false;
@@ -65,13 +68,11 @@ export default function Games() {
 	useEffect(() => {
 		refreshAccountState();
 
-		const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
-			if (event === 'SIGNED_IN') {
-				// New login — always re-fetch profile
-				refreshAccountState();
-			} else if (event === 'TOKEN_REFRESHED' && !profile) {
-				// Token silently refreshed in background — only fetch if we
-				// don't already have a profile loaded (e.g. page was reloaded)
+		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
+			if (event === 'SIGNED_IN' && !profileLoaded.current) {
+				// Only re-fetch on a real new sign-in and we don't have a profile yet.
+				// TOKEN_REFRESHED is intentionally ignored — it fires on tab focus
+				// and doesn't change the profile, only rotates the JWT.
 				refreshAccountState();
 			}
 		});

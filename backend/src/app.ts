@@ -3,6 +3,8 @@ import "dotenv/config";
 import express, { Router } from "express";
 import rateLimit from "express-rate-limit";
 import auth from "./api/auth.route.js";
+import * as AuthController from "./controllers/auth.controller.js";
+import { requireAuth } from "./middleware.js";
 import member from "./api/member.route.js";
 import merch from "./api/merch.route.js";
 import payment from "./api/payment.route.js";
@@ -59,7 +61,8 @@ app.use((req, res, next) => {
 
 const api = Router();
 api.use("/posts", post);
-api.use("/auth/me", authReadLimiter);       // profile read — light limit
+// /auth/me is registered directly here — bypasses the sensitive limiter entirely
+api.get("/auth/me", authReadLimiter, requireAuth, AuthController.me);
 api.use("/auth", sensitiveLimiter, auth);   // register, google, callback — strict limit
 api.use("/members", sensitiveLimiter, member);
 api.use("/merch", merch);
