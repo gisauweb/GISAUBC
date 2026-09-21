@@ -2,7 +2,7 @@ import { isMembershipOpen } from 'libs/membershipConfig';
 import supabase from 'libs/supabaseClient';
 import MemberForm from 'pages/members/MemberForm';
 import MembershipClosed from 'pages/members/MembershipClosed';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ComingSoon from './pages/ComingSoon';
 import Dashboard from './pages/dashboard/Dashboard';
 import Settings from './pages/settings/Settings';
@@ -17,39 +17,54 @@ export default function Games() {
 	const [avatarUrl, setAvatarUrl] = useState(null);
 	const [token, setToken] = useState(null);
 	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const isRefreshing = useRef(false); // guard: only one fetch at a time
 
 	const refreshAccountState = async () => {
-		const { data } = await supabase.auth.getSession();
-		const session = data.session;
+		// If a fetch is already in-flight, bail out immediately
+		if (isRefreshing.current) return;
+		isRefreshing.current = true;
 
-		if (!session) {
-			setEmail(null);
-			setRegistered(null);
-			setProfile(null);
-			setToken(null);
-			return;
+		try {
+			const { data } = await supabase.auth.getSession();
+			const session = data.session;
+
+			if (!session) {
+				setEmail(null);
+				setRegistered(null);
+				setProfile(null);
+				setToken(null);
+				return;
+			}
+
+			setAvatarUrl(session.user.user_metadata?.avatar_url ?? session.user.user_metadata?.picture ?? null);
+
+			const accessToken = session.access_token;
+			setEmail(session.user.email);
+			setToken(accessToken);
+
+			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
+				headers: { Authorization: `Bearer ${accessToken}` },
+			});
+
+			const body = await res.json();
+			setProfile(body.profile ?? null);
+			setRegistered(Boolean(body.registered));
+		} finally {
+			// Always release the lock, even if the fetch threw
+			isRefreshing.current = false;
 		}
-
-		setAvatarUrl(session.user.user_metadata?.avatar_url ?? session.user.user_metadata?.picture ?? null);
-
-		const accessToken = session.access_token;
-		setEmail(session.user.email);
-		setToken(accessToken);
-
-		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
-			headers: { Authorization: `Bearer ${accessToken}` },
-		});
-
-		const body = await res.json();
-		setProfile(body.profile ?? null);
-		setRegistered(Boolean(body.registered));
 	};
 
 	useEffect(() => {
 		refreshAccountState();
 
-		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+		const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+			if (event === 'SIGNED_IN') {
+				// New login — always re-fetch profile
+				refreshAccountState();
+			} else if (event === 'TOKEN_REFRESHED' && !profile) {
+				// Token silently refreshed in background — only fetch if we
+				// don't already have a profile loaded (e.g. page was reloaded)
 				refreshAccountState();
 			}
 		});
