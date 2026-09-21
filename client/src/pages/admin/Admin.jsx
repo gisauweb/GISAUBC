@@ -1,5 +1,5 @@
 import supabase from 'libs/supabaseClient';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AdminDashboard from './AdminDashboard';
 import AdminLayout from './AdminLayout';
 import AdminSignIn from './AdminSignIn';
@@ -22,39 +22,55 @@ export default function AdminApp() {
 	const [isAdmin, setIsAdmin] = useState(false);
 	const [token, setToken] = useState(null);
 	const [currentPage, setCurrentPage] = useState('Dashboard');
+	const isRefreshing = useRef(false); // guard: only one fetch at a time
 
 	const refreshAccountState = async () => {
-		setLoading(true);
-		const { data } = await supabase.auth.getSession();
-		const session = data.session;
+		// If a fetch is already in-flight, bail out immediately
+		if (isRefreshing.current) return;
+		isRefreshing.current = true;
 
-		if (!session) {
+		setLoading(true);
+		try {
+			const { data } = await supabase.auth.getSession();
+			const session = data.session;
+
+			if (!session) {
+				setEmail(null);
+				setProfile(null);
+				setIsAdmin(false);
+				setToken(null);
+				return;
+			}
+
+			setEmail(session.user.email);
+			setToken(session.access_token);
+
+			const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
+				headers: { Authorization: `Bearer ${session.access_token}` },
+			});
+			const body = await res.json();
+			const p = body.profile ?? null;
+			setProfile(p);
+			setIsAdmin(p?.role === 'admin');
+		} catch {
+			// Fetch failed — reset to signed-out state
 			setEmail(null);
 			setProfile(null);
 			setIsAdmin(false);
 			setToken(null);
+		} finally {
 			setLoading(false);
-			return;
+			isRefreshing.current = false;
 		}
-
-		setEmail(session.user.email);
-		setToken(session.access_token);
-
-		const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/me`, {
-			headers: { Authorization: `Bearer ${session.access_token}` },
-		});
-		const body = await res.json();
-		const p = body.profile ?? null;
-		setProfile(p);
-		setIsAdmin(p?.role === 'admin');
-		setLoading(false);
 	};
 
 	useEffect(() => {
 		refreshAccountState();
 
 		const { data: sub } = supabase.auth.onAuthStateChange((event) => {
-			if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+			if (event === 'SIGNED_IN') {
+				refreshAccountState();
+			} else if (event === 'TOKEN_REFRESHED' && !profile) {
 				refreshAccountState();
 			}
 		});

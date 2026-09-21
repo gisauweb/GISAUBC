@@ -54,13 +54,13 @@ function App() {
 					{button.map((btn) => (
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
-					<Route path='*' element={<NotFound />} />
 					{/* <Route path='/app' element={<WorkInProgress />} /> */}
 				</Route>
 				<Route path='/app' element={<Games />} />
 				<Route path='/admin' element={<AdminApp />} />
 				<Route path='/auth/callback' element={<AuthCallback />} />
 				<Route path='/auth/admin-callback' element={<AdminAuthCallback />} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}
