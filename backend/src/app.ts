@@ -23,13 +23,22 @@ const generalLimiter = rateLimit({
   message: { error: "Too many requests, please try again later." },
 });
 
-// Sensitive: 10 requests per 15 minutes per IP (auth, registration, payment)
+// Sensitive: 10 requests per 15 minutes per IP (registration, payment — actual writes)
 const sensitiveLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Too many attempts, please try again later." },
+});
+
+// Auth read: 60 requests per minute per IP (GET /auth/me — just reading your own profile)
+const authReadLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
 });
 
 app.use(generalLimiter);
@@ -50,7 +59,8 @@ app.use((req, res, next) => {
 
 const api = Router();
 api.use("/posts", post);
-api.use("/auth", sensitiveLimiter, auth);
+api.use("/auth/me", authReadLimiter);       // profile read — light limit
+api.use("/auth", sensitiveLimiter, auth);   // register, google, callback — strict limit
 api.use("/members", sensitiveLimiter, member);
 api.use("/merch", merch);
 api.use("/payment", sensitiveLimiter, payment);
