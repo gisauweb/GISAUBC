@@ -10,6 +10,8 @@ import { button, pages } from './shared/components/navigation-bar/constants';
 import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import ScrollToTop from './shared/components/ScrollToTop';
 import AuthCallback from 'auth/AuthCallback';
+import AdminAuthCallback from 'auth/AdminAuthCallback';
+import AdminApp from 'pages/admin/Admin';
 import WorkInProgress from 'pages/404/WorkInProgress';
 
 function App() {
@@ -27,8 +29,11 @@ function App() {
 		}
 	}, [posts]);
 
-	// Inject chat script once
+	const isAdminRoute = location.pathname.startsWith('/admin');
+
+	// Inject chat script — never on admin routes
 	useEffect(() => {
+		if (isAdminRoute) return;
 		if (!document.getElementById('chatling-embed-script')) {
 			window.chtlConfig = { chatbotId: '1938486472' };
 			const script = document.createElement('script');
@@ -38,7 +43,22 @@ function App() {
 			script.id = 'chatling-embed-script';
 			document.body.appendChild(script);
 		}
-	}, []);
+	}, [isAdminRoute]);
+
+	// Hide chatling on admin routes via a CSS style tag 
+	useEffect(() => {
+		const styleId = 'hide-chatling-admin';
+		if (isAdminRoute) {
+			if (!document.getElementById(styleId)) {
+				const style = document.createElement('style');
+				style.id = styleId;
+				style.textContent = '[id*="chtl"], [class*="chtl"] { display: none !important; }';
+				document.head.appendChild(style);
+			}
+		} else {
+			document.getElementById(styleId)?.remove();
+		}
+	}, [isAdminRoute]);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
@@ -52,12 +72,13 @@ function App() {
 					{button.map((btn) => (
 						<Route key={btn.name} path={btn.path} element={btn.element} />
 					))}
-					<Route path='*' element={<NotFound />} />
 					{/* <Route path='/app' element={<WorkInProgress />} /> */}
 				</Route>
 				<Route path='/app' element={<Games />} />
+				<Route path='/admin/*' element={<AdminApp />} />
 				<Route path='/auth/callback' element={<AuthCallback />} />
-				{/* <Route path='/admin' element={<Admin />} /> */}
+				<Route path='/auth/admin-callback' element={<AdminAuthCallback />} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 
 			{/* Always mount the popup but pass data safely */}
