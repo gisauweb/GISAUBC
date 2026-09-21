@@ -5,12 +5,6 @@ import { requireAuth } from "../middleware.js";
 const router = express.Router();
 
 /**
- * GET /auth/me
- * Returns the current user's profile. Requires auth.
- */
-router.get("/me", requireAuth, AuthController.me);
-
-/**
  * GET /auth/google
  * Redirects to Supabase Google OAuth.
  */
