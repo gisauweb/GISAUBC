@@ -1,16 +1,19 @@
 import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const NAV_ITEMS = [
-	{ id: 'Dashboard', label: 'Dashboard', icon: '🏠' },
-	{ id: 'Members', label: 'Members', icon: '👥' },
-	{ id: 'Cash Payments', label: 'Cash Payments', icon: '💵' },
-	{ id: 'Events', label: 'Events & Rantangan', icon: '📅' },
-	{ id: 'Registrations', label: 'Event Registrations', icon: '🎟️' },
-	{ id: 'Existing Members', label: 'Existing Members', icon: '🎓' },
-	{ id: 'Merch', label: 'Merch', icon: '👕' },
+	{ path: '/admin',                label: 'Dashboard',           icon: '🏠' },
+	{ path: '/admin/members',        label: 'Members',             icon: '👥' },
+	{ path: '/admin/cash',           label: 'Cash Payments',       icon: '💵' },
+	{ path: '/admin/events',         label: 'Events & Rantangan',  icon: '📅' },
+	{ path: '/admin/registrations',  label: 'Event Registrations', icon: '🎟️' },
+	{ path: '/admin/existing',       label: 'Existing Members',    icon: '🎓' },
+	{ path: '/admin/merch',          label: 'Merch',               icon: '👕' },
 ];
 
-function Sidebar({ currentPage, setCurrentPage, profile, onLogout, onClose }) {
+function Sidebar({ profile, onLogout, onClose }) {
+	const { pathname } = useLocation();
+
 	return (
 		<div className='flex flex-col h-full w-64 bg-white border-r border-gray-200'>
 			{/* Logo */}
@@ -19,7 +22,6 @@ function Sidebar({ currentPage, setCurrentPage, profile, onLogout, onClose }) {
 					<img src='/gisau-logo/gisau.svg' alt='GISAU' className='h-7 w-auto' />
 					<span className='font-bold text-primary text-sm uppercase tracking-wider'>Admin</span>
 				</div>
-				{/* Close button — mobile only */}
 				{onClose && (
 					<button onClick={() => onClose(false)} className='lg:hidden text-gray-400 hover:text-gray-700'>
 						<svg className='w-5 h-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
@@ -31,23 +33,28 @@ function Sidebar({ currentPage, setCurrentPage, profile, onLogout, onClose }) {
 
 			{/* Nav */}
 			<nav className='flex-1 px-3 py-4 space-y-1 overflow-y-auto'>
-				{NAV_ITEMS.map((item) => (
-					<button
-						key={item.id}
-						onClick={() => {
-							setCurrentPage(item.id);
-							if (onClose) onClose(false);
-						}}
-						className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
-							currentPage === item.id
-								? 'bg-primary text-white'
-								: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-						}`}
-					>
-						<span>{item.icon}</span>
-						{item.label}
-					</button>
-				))}
+				{NAV_ITEMS.map((item) => {
+					// Dashboard is only active on exact /admin, others match by prefix
+					const isActive = item.path === '/admin'
+						? pathname === '/admin' || pathname === '/admin/'
+						: pathname.startsWith(item.path);
+
+					return (
+						<Link
+							key={item.path}
+							to={item.path}
+							onClick={() => onClose && onClose(false)}
+							className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors duration-150 ${
+								isActive
+									? 'bg-primary text-white'
+									: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+							}`}
+						>
+							<span>{item.icon}</span>
+							{item.label}
+						</Link>
+					);
+				})}
 			</nav>
 
 			{/* User + logout */}
@@ -66,7 +73,7 @@ function Sidebar({ currentPage, setCurrentPage, profile, onLogout, onClose }) {
 	);
 }
 
-export default function AdminLayout({ currentPage, setCurrentPage, profile, onLogout, children }) {
+export default function AdminLayout({ profile, onLogout, children }) {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 
 	return (
@@ -79,19 +86,13 @@ export default function AdminLayout({ currentPage, setCurrentPage, profile, onLo
 				/>
 			)}
 
-			{/* Sidebar — overlay on mobile, static on desktop */}
+			{/* Sidebar */}
 			<div
 				className={`fixed inset-y-0 left-0 z-30 transition-transform duration-300 ease-in-out lg:static lg:z-auto lg:translate-x-0 lg:transition-none ${
 					sidebarOpen ? 'translate-x-0' : '-translate-x-full'
 				}`}
 			>
-				<Sidebar
-					currentPage={currentPage}
-					setCurrentPage={setCurrentPage}
-					profile={profile}
-					onLogout={onLogout}
-					onClose={setSidebarOpen}
-				/>
+				<Sidebar profile={profile} onLogout={onLogout} onClose={setSidebarOpen} />
 			</div>
 
 			{/* Main content */}

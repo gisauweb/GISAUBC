@@ -67,7 +67,7 @@ function App() {
 					{/* <Route path='/app' element={<WorkInProgress />} /> */}
 				</Route>
 				<Route path='/app' element={<Games />} />
-				<Route path='/admin' element={<AdminApp />} />
+				<Route path='/admin/*' element={<AdminApp />} />
 				<Route path='/auth/callback' element={<AuthCallback />} />
 				<Route path='/auth/admin-callback' element={<AdminAuthCallback />} />
 				<Route path='*' element={<NotFound />} />
