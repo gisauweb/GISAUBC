@@ -45,9 +45,7 @@ function App() {
 		}
 	}, [isAdminRoute]);
 
-	// Hide chatling on admin routes via a CSS style tag — this works even if
-	// the widget script loads after the effect runs, since CSS applies instantly
-	// to elements the moment they're added to the DOM.
+	// Hide chatling on admin routes via a CSS style tag 
 	useEffect(() => {
 		const styleId = 'hide-chatling-admin';
 		if (isAdminRoute) {

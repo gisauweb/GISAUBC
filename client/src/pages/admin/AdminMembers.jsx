@@ -186,9 +186,18 @@ export default function AdminMembers({ token }) {
 	const [error, setError] = useState(null);
 	const [selected, setSelected] = useState(null); // member whose panel is open
 
+	// Mirrors the backend getCurrentAcademicYear() logic
+	const getCurrentAcademicYear = () => {
+		const now = new Date();
+		const month = now.getMonth() + 1; // 1-indexed
+		const year = now.getFullYear();
+		const startYear = month >= 6 ? year : year - 1;
+		return `${startYear}-${startYear + 1}`;
+	};
+
 	// Filters
 	const [search, setSearch] = useState('');
-	const [filterYear, setFilterYear] = useState('');
+	const [filterYear, setFilterYear] = useState(getCurrentAcademicYear);
 	const [filterStatus, setFilterStatus] = useState('');
 	const [filterType, setFilterType] = useState('');
 
@@ -250,9 +259,14 @@ export default function AdminMembers({ token }) {
 					<select value={filterYear} onChange={(e) => setFilterYear(e.target.value)}
 						className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white'>
 						<option value=''>All Years</option>
-						<option value='2026-2027'>2026-2027</option>
-						<option value='2025-2026'>2025-2026</option>
-						<option value='2024-2025'>2024-2025</option>
+						{/* Generate last 3 academic years dynamically */}
+						{Array.from({ length: 3 }, (_, i) => {
+							const now = new Date();
+							const month = now.getMonth() + 1;
+							const base = (month >= 6 ? now.getFullYear() : now.getFullYear() - 1) - i;
+							const label = `${base}-${base + 1}`;
+							return <option key={label} value={label}>{label}</option>;
+						})}
 					</select>
 					<select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
 						className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white'>
