@@ -278,6 +278,7 @@ export default function AdminMembers({ token }) {
 									<th className='px-4 py-3 text-left'>Name</th>
 									<th className='px-4 py-3 text-left'>Email</th>
 									<th className='px-4 py-3 text-left'>Student ID</th>
+									<th className='px-4 py-3 text-left'>Year of Study</th>
 									<th className='px-4 py-3 text-left'>Status</th>
 									<th className='px-4 py-3 text-left'>Paid</th>
 									<th className='px-4 py-3 text-left'>Type</th>
@@ -299,6 +300,7 @@ export default function AdminMembers({ token }) {
 										<td className='px-4 py-3 font-medium text-gray-900'>{m.firstName} {m.lastName}</td>
 										<td className='px-4 py-3 text-gray-500'>{m.email}</td>
 										<td className='px-4 py-3 text-gray-500'>{m.studentId}</td>
+										<td className='px-4 py-3 text-gray-500'>{m.yearOfStudy}</td>
 										<td className='px-4 py-3'><StatusBadge status={m.paymentStatus} /></td>
 										<td className='px-4 py-3'>
 										{m.hasPayed

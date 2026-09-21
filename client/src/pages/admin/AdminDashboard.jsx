@@ -16,7 +16,7 @@ export default function AdminDashboard({ profile }) {
 		<div className='p-8'>
 			<div className='mb-8'>
 				<h1 className='text-2xl font-bold text-gray-900'>Welcome back, {profile?.firstName}</h1>
-				<p className='text-gray-500 text-sm mt-1'>GISAU Admin Panel</p>
+				<p className='text-gray-500 text-sm mt-1'>GISAU Admin Panel by Gaida For Gaida With Gaida</p>
 			</div>
 
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
