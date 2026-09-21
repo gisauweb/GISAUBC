@@ -29,8 +29,11 @@ function App() {
 		}
 	}, [posts]);
 
-	// Inject chat script once
+	const isAdminRoute = location.pathname.startsWith('/admin');
+
+	// Inject chat script — never on admin routes
 	useEffect(() => {
+		if (isAdminRoute) return;
 		if (!document.getElementById('chatling-embed-script')) {
 			window.chtlConfig = { chatbotId: '1938486472' };
 			const script = document.createElement('script');
@@ -40,7 +43,14 @@ function App() {
 			script.id = 'chatling-embed-script';
 			document.body.appendChild(script);
 		}
-	}, []);
+	}, [isAdminRoute]);
+
+	// Show/hide the chatbot widget when navigating to/from admin
+	useEffect(() => {
+		// Chatling injects elements with IDs/classes containing 'chtl'
+		const widget = document.querySelector('[id*="chtl"], [class*="chtl"]');
+		if (widget) widget.style.display = isAdminRoute ? 'none' : '';
+	}, [isAdminRoute]);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
