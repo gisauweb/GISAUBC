@@ -3,6 +3,8 @@ import "dotenv/config";
 import express, { Router } from "express";
 import rateLimit from "express-rate-limit";
 import auth from "./api/auth.route.js";
+import * as AuthController from "./controllers/auth.controller.js";
+import { requireAuth } from "./middleware.js";
 import member from "./api/member.route.js";
 import merch from "./api/merch.route.js";
 import payment from "./api/payment.route.js";
@@ -23,7 +25,7 @@ const generalLimiter = rateLimit({
   message: { error: "Too many requests, please try again later." },
 });
 
-// Sensitive: 10 requests per 15 minutes per IP (auth, registration, payment)
+// Sensitive: 10 requests per 15 minutes per IP (registration, payment — actual writes)
 const sensitiveLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
@@ -32,12 +34,21 @@ const sensitiveLimiter = rateLimit({
   message: { error: "Too many attempts, please try again later." },
 });
 
+// Auth read: 60 requests per minute per IP (GET /auth/me — just reading your own profile)
+const authReadLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 60,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many requests, please try again later." },
+});
+
 app.use(generalLimiter);
 
 app.use(
   cors({
     origin: `${process.env.CLIENT_ORIGIN}`,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true, // if you use cookies or auth
   })
 );
@@ -50,8 +61,10 @@ app.use((req, res, next) => {
 
 const api = Router();
 api.use("/posts", post);
-api.use("/auth", sensitiveLimiter, auth);
-api.use("/members", sensitiveLimiter, member);
+// /auth/me is registered directly here — bypasses the sensitive limiter entirely
+api.get("/auth/me", authReadLimiter, requireAuth, AuthController.me);
+api.use("/auth", sensitiveLimiter, auth);   // register, google, callback — strict limit
+api.use("/members", authReadLimiter, member);
 api.use("/merch", merch);
 api.use("/payment", sensitiveLimiter, payment);
 api.use("/registrations", sensitiveLimiter, registration);
