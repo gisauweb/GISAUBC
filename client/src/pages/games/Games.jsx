@@ -49,6 +49,13 @@ export default function Games() {
 			const body = await res.json();
 			setProfile(body.profile ?? null);
 			setRegistered(Boolean(body.registered));
+		} catch {
+			// Fetch failed — drop back to signed-out state so the user
+			// sees the sign-in screen instead of spinning forever
+			setEmail(null);
+			setRegistered(null);
+			setProfile(null);
+			setToken(null);
 		} finally {
 			// Always release the lock, even if the fetch threw
 			isRefreshing.current = false;
