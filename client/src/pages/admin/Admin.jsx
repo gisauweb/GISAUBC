@@ -2,6 +2,7 @@ import supabase from 'libs/supabaseClient';
 import { useEffect, useRef, useState } from 'react';
 import AdminDashboard from './AdminDashboard';
 import AdminLayout from './AdminLayout';
+import AdminMembers from './AdminMembers';
 import AdminSignIn from './AdminSignIn';
 
 // Placeholder for sections not yet built
@@ -136,6 +137,7 @@ export default function AdminApp() {
 			case 'Dashboard':
 				return <AdminDashboard profile={profile} setCurrentPage={setCurrentPage} />;
 			case 'Members':
+				return <AdminMembers token={token} />;
 			case 'Cash Payments':
 			case 'Events':
 			case 'Registrations':
