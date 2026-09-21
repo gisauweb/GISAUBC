@@ -48,7 +48,7 @@ app.use(generalLimiter);
 app.use(
   cors({
     origin: `${process.env.CLIENT_ORIGIN}`,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     credentials: true, // if you use cookies or auth
   })
 );
