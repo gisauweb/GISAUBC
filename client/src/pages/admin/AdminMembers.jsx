@@ -1,3 +1,5 @@
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { useEffect, useState } from 'react';
 
 const PAYMENT_STATUSES = ['unpaid', 'paid_card', 'paid_cash', 'paid_existing_member', 'refunded'];
@@ -298,7 +300,11 @@ export default function AdminMembers({ token }) {
 										<td className='px-4 py-3 text-gray-500'>{m.email}</td>
 										<td className='px-4 py-3 text-gray-500'>{m.studentId}</td>
 										<td className='px-4 py-3'><StatusBadge status={m.paymentStatus} /></td>
-										<td className='px-4 py-3'>{m.hasPayed ? '✅' : '❌'}</td>
+										<td className='px-4 py-3'>
+										{m.hasPayed
+											? <CheckCircleIcon fontSize='small' className='text-green-500' />
+											: <CancelIcon fontSize='small' className='text-red-400' />}
+									</td>
 										<td className='px-4 py-3 text-gray-500 capitalize'>{m.membershipType}</td>
 										<td className='px-4 py-3 text-gray-500 whitespace-nowrap'>{new Date(m.createdAt).toLocaleDateString()}</td>
 									</tr>
