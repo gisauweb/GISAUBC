@@ -64,7 +64,7 @@ api.use("/posts", post);
 // /auth/me is registered directly here — bypasses the sensitive limiter entirely
 api.get("/auth/me", authReadLimiter, requireAuth, AuthController.me);
 api.use("/auth", sensitiveLimiter, auth);   // register, google, callback — strict limit
-api.use("/members", sensitiveLimiter, member);
+api.use("/members", authReadLimiter, member);
 api.use("/merch", merch);
 api.use("/payment", sensitiveLimiter, payment);
 api.use("/registrations", sensitiveLimiter, registration);
