@@ -93,9 +93,26 @@ export type MemberUpdateInput = Partial<{
 }>;
 
 export const update_member = async (id: string, data: MemberUpdateInput): Promise<Profile> => {
+  // Explicit allowlist — TypeScript types are erased at runtime, so we manually
+  // pick only the permitted fields instead of spreading req.body directly.
+  const sanitized: MemberUpdateInput = {};
+  if (data.firstName     !== undefined) sanitized.firstName     = data.firstName;
+  if (data.lastName      !== undefined) sanitized.lastName      = data.lastName;
+  if (data.email         !== undefined) sanitized.email         = data.email;
+  if (data.studentId     !== undefined) sanitized.studentId     = data.studentId;
+  if (data.faculty       !== undefined) sanitized.faculty       = data.faculty;
+  if (data.yearOfStudy   !== undefined) sanitized.yearOfStudy   = data.yearOfStudy;
+  if (data.membershipType !== undefined) sanitized.membershipType = data.membershipType;
+  if (data.recommendation !== undefined) sanitized.recommendation = data.recommendation;
+  if (data.role          !== undefined) sanitized.role          = data.role;
+  if (data.paymentMethod !== undefined) sanitized.paymentMethod = data.paymentMethod;
+  if (data.hasPayed      !== undefined) sanitized.hasPayed      = data.hasPayed;
+  if (data.paymentStatus !== undefined) sanitized.paymentStatus = data.paymentStatus;
+  if (data.totalPrice    !== undefined) sanitized.totalPrice    = data.totalPrice;
+
   const [updated] = await db
     .update(profiles)
-    .set({ ...data, updatedAt: new Date().toISOString() })
+    .set({ ...sanitized, updatedAt: new Date().toISOString() })
     .where(eq(profiles.id, id))
     .returning();
 

@@ -6,10 +6,11 @@ export async function getAllMembers(req: Request, res: Response) {
 
   try {
     const members = await MemberService.get_all_members({
-      academicYear: academicYear as string | undefined,
-      paymentStatus: paymentStatus as string | undefined,
-      membershipType: membershipType as string | undefined,
-      search: search as string | undefined,
+      // Cast query params: only pass if they're non-empty strings
+      ...(typeof academicYear  === "string" && academicYear  ? { academicYear }  : {}),
+      ...(typeof paymentStatus === "string" && paymentStatus ? { paymentStatus } : {}),
+      ...(typeof membershipType === "string" && membershipType ? { membershipType } : {}),
+      ...(typeof search        === "string" && search        ? { search }        : {}),
     });
     res.json(members);
   } catch (e) {
@@ -19,7 +20,9 @@ export async function getAllMembers(req: Request, res: Response) {
 }
 
 export async function updateMember(req: Request, res: Response) {
-  const { id } = req.params;
+  const id = req.params["id"];
+
+  if (!id) return res.status(400).json({ error: "Missing id" });
 
   try {
     const updated = await MemberService.update_member(id, req.body);
