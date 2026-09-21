@@ -45,11 +45,21 @@ function App() {
 		}
 	}, [isAdminRoute]);
 
-	// Show/hide the chatbot widget when navigating to/from admin
+	// Hide chatling on admin routes via a CSS style tag — this works even if
+	// the widget script loads after the effect runs, since CSS applies instantly
+	// to elements the moment they're added to the DOM.
 	useEffect(() => {
-		// Chatling injects elements with IDs/classes containing 'chtl'
-		const widget = document.querySelector('[id*="chtl"], [class*="chtl"]');
-		if (widget) widget.style.display = isAdminRoute ? 'none' : '';
+		const styleId = 'hide-chatling-admin';
+		if (isAdminRoute) {
+			if (!document.getElementById(styleId)) {
+				const style = document.createElement('style');
+				style.id = styleId;
+				style.textContent = '[id*="chtl"], [class*="chtl"] { display: none !important; }';
+				document.head.appendChild(style);
+			}
+		} else {
+			document.getElementById(styleId)?.remove();
+		}
 	}, [isAdminRoute]);
 
 	return (
