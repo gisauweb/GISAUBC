@@ -107,8 +107,10 @@ export async function register(req: Request, res: Response) {
 		resolvedPaymentStatus = "unpaid"; // VP verifies screenshot and manually marks paid
 		// Reject proof URLs that don't originate from our own Supabase storage bucket
 		if (paymentProofUrl) {
-			const expectedOrigin = `${process.env.SUPABASE_URL}/storage/v1/object/public/payment_proofs/`;
-			if (!paymentProofUrl.startsWith(expectedOrigin)) {
+			// SUPABASE_URL includes /auth/v1 — extract just the base origin (https://xxx.supabase.co)
+			const supabaseOrigin = new URL(process.env.SUPABASE_URL!).origin;
+			const expectedPrefix = `${supabaseOrigin}/storage/v1/object/public/payment_proofs/`;
+			if (!paymentProofUrl.startsWith(expectedPrefix)) {
 				return res.status(400).json({ error: "Invalid proof of payment URL" });
 			}
 		}
