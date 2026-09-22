@@ -688,7 +688,13 @@ export default function MemberForm({ onRegistered }) {
 					<div className='bg-games-box p-8 rounded-lg mb-8'>
 						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
 
-						<p className='font-bold mb-2'>Please meet us at:</p>
+						<p className='font-bold mb-3'>Please meet us at:</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1'>During Clubs Fair</p>
+						<p className='text-sm mb-1'>📍 Booth B15 — Sep 23</p>
+						<p className='text-sm mb-4'>📍 Booth B4 — Sep 24</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1'>Outside of Clubs Fair</p>
 						<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
 						<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
 
