@@ -598,7 +598,8 @@ export default function MemberForm({ onRegistered }) {
 						<div className='flex justify-center mt-8'>
 							<button
 								onClick={handleSubmit(onSubmit)}
-								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+								disabled={loading}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 							>
 								{loading ? 'Submitting...' : 'Submit'}
 							</button>
