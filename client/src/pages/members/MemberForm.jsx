@@ -1,4 +1,19 @@
 import { Alert, Box, Snackbar } from '@mui/material';
+import {
+	AutoAwesome,
+	Celebration,
+	CheckCircle,
+	Cottage,
+	DinnerDining,
+	EmojiEvents,
+	Flag,
+	Groups,
+	Lightbulb,
+	Public,
+	RamenDining,
+	School,
+	Whatshot,
+} from '@mui/icons-material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
 import CheckoutForm from 'pages/games/pages/CheckoutForm';
@@ -282,6 +297,82 @@ export default function MemberForm({ onRegistered }) {
 
 	const renderStep1 = () => (
 		<StepContainer>
+			{/* ── GISAU Info Banner ── */}
+			<div className='bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm'>
+				{/* Header */}
+				<div className='bg-primary px-6 py-4'>
+					<p className='text-white font-oswald text-xl font-bold tracking-wide uppercase flex items-center gap-2'>
+						<Flag fontSize='small' /> Welcome to GISAU
+					</p>
+					<p className='text-red-200 text-sm mt-0.5'>Gadjah Indonesian Students' Association at UBC</p>
+				</div>
+
+				<div className='p-6 space-y-6'>
+					{/* Who are we */}
+					<div>
+						<p className='text-sm font-semibold text-primary mb-1 flex items-center gap-1.5'>
+							<AutoAwesome fontSize='small' /> Who is GISAU?
+						</p>
+						<p className='text-sm text-gray-600 leading-relaxed'>
+							At GISAU, our mission is to build an inclusive, close-knit community that radiates Indonesian warmth while welcoming both Indonesian and non-Indonesian students at UBC.
+						</p>
+					</div>
+
+					{/* Events */}
+					<div>
+						<p className='text-sm font-semibold text-primary mb-2 flex items-center gap-1.5'>
+							<Celebration fontSize='small' /> What events do we host?
+						</p>
+						<p className='text-sm text-gray-500 mb-3'>We bring people together through food, culture, and fun!</p>
+						<div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+							{[
+								{ icon: <RamenDining fontSize='small' />, name: 'SOTO', desc: 'Welcome event with games, good vibes & Indonesian food' },
+								{ icon: <DinnerDining fontSize='small' />, name: 'Liwetan', desc: 'A communal feast on banana leaves' },
+								{ icon: <School fontSize='small' />, name: 'Mentorship Program', desc: 'A stepping stone for your career' },
+								{ icon: <Public fontSize='small' />, name: 'LaNusa', desc: 'Celebrating Indonesian culture with the wider community' },
+								{ icon: <Whatshot fontSize='small' />, name: 'Indomie Olympics', desc: 'Our flagship competition full of noodles & laughter' },
+								{ icon: <EmojiEvents fontSize='small' />, name: 'Year-End Gala', desc: 'Closing the year with food, music & memories' },
+							].map(({ icon, name, desc }) => (
+								<div key={name} className='flex gap-2 bg-gray-50 rounded-lg p-3'>
+									<span className='text-primary flex-shrink-0 mt-0.5'>{icon}</span>
+									<div>
+										<p className='text-xs font-semibold text-gray-800'>{name}</p>
+										<p className='text-xs text-gray-500 leading-snug'>{desc}</p>
+									</div>
+								</div>
+							))}
+						</div>
+						<p className='text-sm text-gray-500 mt-3 flex items-center gap-1.5'>
+							<Groups fontSize='small' className='text-gray-400' /> Plus active, mentorship &amp; networking events all year!
+						</p>
+					</div>
+
+					{/* Benefits */}
+					<div className='bg-amber-50 border border-amber-200 rounded-lg p-4'>
+						<p className='text-sm font-semibold text-amber-800 mb-2 flex items-center gap-1.5'>
+							<Lightbulb fontSize='small' /> Why become a member?
+						</p>
+						<ul className='space-y-1'>
+							{[
+								'FREE ticket to SOTO + AGM',
+								'Discounts on events & Rantangan (Indonesian meal catering programme)',
+								'Exclusive rewards from our sponsors all year long!',
+								<span>A welcoming community that feels just like home <Cottage fontSize='inherit' className='align-middle' /></span>,
+							].map((benefit, i) => (
+								<li key={i} className='flex items-start gap-2 text-sm text-amber-900'>
+									<CheckCircle fontSize='small' className='text-amber-500 mt-0.5 flex-shrink-0' />
+									<span>{benefit}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<p className='text-sm text-center text-primary font-semibold flex items-center justify-center gap-1.5'>
+						<AutoAwesome fontSize='small' /> Don't miss out — join GISAU and make your UBC experience unforgettable!
+					</p>
+				</div>
+			</div>
+
 			<StepHeading>Personal Information</StepHeading>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
