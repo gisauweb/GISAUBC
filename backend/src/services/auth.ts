@@ -71,6 +71,7 @@ export type RegisterInput = {
     | "paid_existing_member"
     | "refunded";
   paymentIntentId?: string;
+  paymentProofUrl?: string;
   totalPrice: string;
   merch?: string[];
 };
@@ -203,6 +204,7 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
         hasPayed: input.hasPayed,
         paymentStatus: input.paymentStatus,
         paymentIntentId: input.paymentIntentId,
+        paymentProofUrl: input.paymentProofUrl,
         totalPrice: input.totalPrice,
         role: "member",
       })

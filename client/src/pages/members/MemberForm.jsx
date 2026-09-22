@@ -1,4 +1,19 @@
 import { Alert, Box, Snackbar } from '@mui/material';
+import {
+	AutoAwesome,
+	Celebration,
+	CheckCircle,
+	Cottage,
+	DinnerDining,
+	EmojiEvents,
+	Flag,
+	Groups,
+	Lightbulb,
+	Public,
+	RamenDining,
+	School,
+	Whatshot,
+} from '@mui/icons-material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
 import CheckoutForm from 'pages/games/pages/CheckoutForm';
@@ -9,6 +24,9 @@ import { StepContainer, StepHeading } from './components/index';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { FACULTIES, MEMBERSHIP_TYPES, YEARS } from './constants';
+
+const PROOF_MAX_BYTES = 10 * 1024 * 1024; // 10 MB — well above any real phone screenshot
+
 const stripe = loadStripe(
 	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
 );
@@ -21,6 +39,12 @@ export default function MemberForm({ onRegistered }) {
 	const [apiError, setApiError] = useState(null);
 	const [clientSecret, setClientSecret] = useState(null);
 	const [paymentIntentId, setPaymentIntentId] = useState(null);
+	const [intentAmount, setIntentAmount] = useState(null);
+	const [proofFile, setProofFile] = useState(null);
+	const [proofFileError, setProofFileError] = useState(null);
+	const [proofUploading, setProofUploading] = useState(false);
+	// Cached URL from a successful upload — reused on retry so the same file isn't re-uploaded
+	const [uploadedProofUrl, setUploadedProofUrl] = useState(null);
 	const [isExistingMember, setIsExistingMember] = useState(null);
 	const [checkingMemberId, setCheckingMemberId] = useState(false);
 	const [memberToastOpen, setMemberToastOpen] = useState(false);
@@ -30,7 +54,6 @@ export default function MemberForm({ onRegistered }) {
 	const {
 		register,
 		handleSubmit,
-		control,
 		watch,
 		setValue,
 		formState: { errors },
@@ -45,7 +68,7 @@ export default function MemberForm({ onRegistered }) {
 			recommendation: '',
 			membershipType: 'full',
 			merch: [],
-			paymentMethod: 'card',
+			paymentMethod: 'interac',
 		},
 	});
 
@@ -76,6 +99,16 @@ export default function MemberForm({ onRegistered }) {
 
 		if (step !== 3 || paymentMethod !== 'card') return;
 
+		const currentTotal = calculateTotal();
+
+		// Reuse the existing intent if the amount hasn't changed — avoids creating
+		// orphaned PaymentIntents on Stripe every time the user navigates back and forward.
+		if (clientSecret && intentAmount === currentTotal) return;
+
+		// Amount changed (or first time here) — reset and create a fresh intent
+		setClientSecret(null);
+		setPaymentIntentId(null);
+
 		const fetchIntent = async () => {
 			try {
 				const { data: authData } = await supabase.auth.getSession();
@@ -88,15 +121,20 @@ export default function MemberForm({ onRegistered }) {
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${token}`,
 					},
-					body: JSON.stringify({ amountCents: Math.round(calculateTotal() * 100) }),
+					body: JSON.stringify({ amountCents: Math.round(currentTotal * 100) }),
 				});
 
 				if (res.ok) {
 					const { clientSecret: secret } = await res.json();
 					setClientSecret(secret);
+					setIntentAmount(currentTotal);
+				} else {
+					const body = await res.json().catch(() => ({}));
+					setApiError(body.error || 'Failed to initialize payment. Please try again.');
 				}
 			} catch (err) {
 				console.error('Failed to create payment intent', err);
+				setApiError('Could not connect to payment service. Please check your connection and try again.');
 			}
 		};
 
@@ -133,12 +171,25 @@ export default function MemberForm({ onRegistered }) {
 				if (isEligible) {
 					setValue('paymentMethod', 'payed');
 					setMemberToastOpen(true);
-				}
+			} else {
+				// Reset so a previously-eligible student ID doesn't carry over
+				// when the user goes back and enters a different student number.
+				setValue('paymentMethod', 'interac');
+			}
 			}
 		} catch {
 			// silently fail — don't block the user
 		} finally {
 			setCheckingMemberId(false);
+		}
+	};
+
+	const goBack = () => {
+		setApiError(null);
+		if (step === 3) {
+			setStep(isExistingMember ? 1 : 2);
+		} else if (step === 2) {
+			setStep(1);
 		}
 	};
 
@@ -151,13 +202,44 @@ export default function MemberForm({ onRegistered }) {
 				return;
 			}
 
+			if (data.paymentMethod === 'interac' && !proofFile) {
+				setApiError('Please upload your Interac proof of payment before submitting.');
+				return;
+			}
+
 			setLoading(true);
 			setApiError(null);
 
 			try {
 				const { data: authData } = await supabase.auth.getSession();
 				const token = authData.session?.access_token;
-				if (!token) throw new Error('Not authenticated. Please log in first.');
+				const userId = authData.session?.user?.id;
+				if (!token || !userId) {
+					setApiError('Your session has expired. Please refresh the page and sign in again.');
+					return;
+				}
+
+				// Upload Interac proof screenshot to Supabase Storage.
+				// Reuse a previously-uploaded URL if the registration failed and the user is retrying
+				// — avoids orphaned duplicate files on every retry attempt.
+				let paymentProofUrl = uploadedProofUrl ?? undefined;
+				if (data.paymentMethod === 'interac' && proofFile && !paymentProofUrl) {
+					setProofUploading(true);
+					const nameParts = proofFile.name.split('.');
+					const ext = nameParts.length > 1 ? nameParts.pop() : 'jpg';
+					const path = `${userId}/${Date.now()}.${ext}`;
+					const { error: uploadError } = await supabase.storage
+						.from('payment_proofs')
+						.upload(path, proofFile, { upsert: false });
+					setProofUploading(false);
+					if (uploadError) {
+						console.error('[MemberForm] Proof upload failed:', uploadError);
+						throw new Error('__UPLOAD_FAILED__');
+					}
+					const { data: urlData } = supabase.storage.from('payment_proofs').getPublicUrl(path);
+					paymentProofUrl = urlData?.publicUrl;
+					if (paymentProofUrl) setUploadedProofUrl(paymentProofUrl); // cache for retry
+				}
 
 				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
 					method: 'POST',
@@ -169,32 +251,61 @@ export default function MemberForm({ onRegistered }) {
 						...data,
 						totalPrice: calculateTotal(),
 						...(data.paymentMethod === 'card' && { paymentIntentId }),
+						...(data.paymentMethod === 'interac' && { paymentProofUrl }),
 					}),
 				});
 
 				const body = await res.json().catch(() => ({}));
 				if (!res.ok) {
-					throw new Error(body.error || 'Registration failed');
+					console.error('[MemberForm] Registration failed:', res.status, body);
+					throw new Error(body.error || '__REG_FAILED__');
 				}
 
 				setRegisteredProfile(body.profile ?? null);
 				setIsSubmitted(true);
 			} catch (err) {
-				setApiError(err.message);
+				if (err.message === '__UPLOAD_FAILED__') {
+					setApiError('We couldn\'t upload your proof of payment. Please check your connection and try again. If the issue persists, contact us.');
+				} else if (err.message === '__REG_FAILED__') {
+					setApiError('Something went wrong during registration. Please try again or contact us.');
+				} else {
+					// Backend returned a known user-facing message (e.g. "Already registered")
+					setApiError(err.message);
+				}
 			} finally {
 				setLoading(false);
+				setProofUploading(false);
 			}
 		}
 	};
 
 	const renderStepIndicator = () => (
 		<div className='flex justify-center items-center mb-20'>
-			{[1, 2, 3].map((num) => (
+			<div className='flex items-center'>
+				{/* Back button — always reserves its space so tabs stay centered */}
+				<div className='w-8 md:w-10 mr-3 md:mr-4 flex-shrink-0 flex justify-center'>
+					{step > 1 && (
+						<button
+							type='button'
+							onClick={goBack}
+							className='w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors'
+							aria-label='Go back'
+						>
+							<svg xmlns='http://www.w3.org/2000/svg' className='w-3.5 h-3.5 md:w-4 md:h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2.5}>
+								<path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
+							</svg>
+						</button>
+					)}
+				</div>
+
+				{/* Step bubbles */}
+				{[1, 2, 3].map((num) => (
 				<React.Fragment key={num}>
 					<div
 						className='flex flex-col items-center relative z-10 cursor-pointer'
-						onClick={async () => {
+						onClick={() => {
 							if (num < step && !(isExistingMember && num === 2)) {
+								setApiError(null);
 								setStep(num);
 							}
 						}}
@@ -226,11 +337,91 @@ export default function MemberForm({ onRegistered }) {
 					)}
 				</React.Fragment>
 			))}
+
+				{/* Invisible spacer — mirrors back button width to keep tabs centered */}
+				<div className='w-8 md:w-10 ml-3 md:ml-4 flex-shrink-0' />
+			</div>
 		</div>
 	);
 
 	const renderStep1 = () => (
 		<StepContainer>
+			{/* ── GISAU Info Banner ── */}
+			<div className='bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm'>
+				{/* Header */}
+				<div className='bg-primary px-6 py-4'>
+					<p className='text-white font-oswald text-xl font-bold tracking-wide uppercase flex items-center gap-2'>
+						<Flag fontSize='small' /> Welcome to GISAU
+					</p>
+					<p className='text-red-200 text-sm mt-0.5'>Gadjah Indonesian Students' Association at UBC</p>
+				</div>
+
+				<div className='p-6 space-y-6'>
+					{/* Who are we */}
+					<div>
+						<p className='text-sm font-semibold text-primary mb-1 flex items-center gap-1.5'>
+							<AutoAwesome fontSize='small' /> Who is GISAU?
+						</p>
+						<p className='text-sm text-gray-600 leading-relaxed'>
+							At GISAU, our mission is to build an inclusive, close-knit community that radiates Indonesian warmth while welcoming both Indonesian and non-Indonesian students at UBC.
+						</p>
+					</div>
+
+					{/* Events */}
+					<div>
+						<p className='text-sm font-semibold text-primary mb-2 flex items-center gap-1.5'>
+							<Celebration fontSize='small' /> What events do we host?
+						</p>
+						<p className='text-sm text-gray-500 mb-3'>We bring people together through food, culture, and fun!</p>
+						<div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
+							{[
+								{ icon: <RamenDining fontSize='small' />, name: 'SOTO', desc: 'Welcome event with games, good vibes & Indonesian food' },
+								{ icon: <DinnerDining fontSize='small' />, name: 'Liwetan', desc: 'A communal feast on banana leaves' },
+								{ icon: <School fontSize='small' />, name: 'Mentorship Program', desc: 'A stepping stone for your career' },
+								{ icon: <Public fontSize='small' />, name: 'LaNusa', desc: 'Celebrating Indonesian culture with the wider community' },
+								{ icon: <Whatshot fontSize='small' />, name: 'Indomie Olympics', desc: 'Our flagship competition full of noodles & laughter' },
+								{ icon: <EmojiEvents fontSize='small' />, name: 'Year-End Gala', desc: 'Closing the year with food, music & memories' },
+							].map(({ icon, name, desc }) => (
+								<div key={name} className='flex gap-2 bg-gray-50 rounded-lg p-3'>
+									<span className='text-primary flex-shrink-0 mt-0.5'>{icon}</span>
+									<div>
+										<p className='text-xs font-semibold text-gray-800'>{name}</p>
+										<p className='text-xs text-gray-500 leading-snug'>{desc}</p>
+									</div>
+								</div>
+							))}
+						</div>
+						<p className='text-sm text-gray-500 mt-3 flex items-center gap-1.5'>
+							<Groups fontSize='small' className='text-gray-400' /> Plus active, mentorship &amp; networking events all year!
+						</p>
+					</div>
+
+					{/* Benefits */}
+					<div className='bg-amber-50 border border-amber-200 rounded-lg p-4'>
+						<p className='text-sm font-semibold text-amber-800 mb-2 flex items-center gap-1.5'>
+							<Lightbulb fontSize='small' /> Why become a member?
+						</p>
+						<ul className='space-y-1'>
+							{[
+								'FREE ticket to SOTO + AGM',
+								'Discounts on events & Rantangan (Indonesian meal catering programme)',
+								'Exclusive rewards from our sponsors all year long!',
+								<span>A welcoming community that feels just like home <Cottage fontSize='inherit' className='align-middle' /></span>,
+							].map((benefit, i) => (
+								<li key={i} className='flex items-start gap-2 text-sm text-amber-900'>
+									<CheckCircle fontSize='small' className='text-amber-500 mt-0.5 flex-shrink-0' />
+									<span>{benefit}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+
+					<p className='text-sm text-center text-primary font-semibold flex items-center justify-center gap-1.5'>
+						<AutoAwesome fontSize='small' /> Don't miss out — join GISAU and make your UBC experience unforgettable!
+					</p>
+				</div>
+			</div>
+
 			<StepHeading>Personal Information</StepHeading>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -343,9 +534,10 @@ export default function MemberForm({ onRegistered }) {
 			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
-					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+					disabled={checkingMemberId}
+					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 				>
-					Continue
+					{checkingMemberId ? 'Checking...' : 'Continue'}
 				</button>
 			</div>
 		</StepContainer>
@@ -357,14 +549,14 @@ export default function MemberForm({ onRegistered }) {
 
 		return (
 			<StepContainer>
+				<StepHeading>
+					{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
+					{selectedMembership?.price || 0}
+				</StepHeading>
+
 				<div className='flex flex-col md:flex-row gap-8'>
 					{/* Left Side: Merch Selection */}
 					<div className='flex-1'>
-						<StepHeading>
-							{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
-							{selectedMembership?.price || 0}
-						</StepHeading>
-
 						<h3 className='text-gray-700 mb-4'>Select your merchandise (optional)!</h3>
 						<div className='space-y-3'>
 							{merchLoading ? (
@@ -460,6 +652,8 @@ export default function MemberForm({ onRegistered }) {
 			);
 		}
 
+		const selectedPaymentMethod = watch('paymentMethod');
+
 		return (
 			<StepContainer>
 				<StepHeading>Select Method of Payment</StepHeading>
@@ -468,12 +662,12 @@ export default function MemberForm({ onRegistered }) {
 					<label className='flex items-center space-x-3 cursor-pointer'>
 						<input
 							type='radio'
-							value='card'
+							value='interac'
 							{...register('paymentMethod', { required: true })}
 							defaultChecked
 							className='accent-primary w-5 h-5'
 						/>
-						<span className='text-gray-700 font-medium'>Card</span>
+						<span className='text-gray-700 font-medium'>Interac e-Transfer</span>
 					</label>
 					<label className='flex items-center space-x-3 cursor-pointer'>
 						<input
@@ -486,56 +680,87 @@ export default function MemberForm({ onRegistered }) {
 					</label>
 				</div>
 
-				{watch('paymentMethod') === 'card' ? (
-					<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
-						<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
+				{selectedPaymentMethod === 'interac' && (
+					<div className='bg-games-box p-8 rounded-lg mb-8'>
+						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Interac e-Transfer Instructions</h3>
 
-						{clientSecret ? (
-							<Elements
-								stripe={stripe}
-								fonts={[{ cssSrc: 'https://use.typekit.net/mqr7lhi.css' }]}
-								options={{
-									clientSecret,
-									appearance: {
-										theme: 'stripe',
-										variables: {
-											colorPrimary: '#732727',
-											colorBackground: '#ffffff',
-											colorText: '#1f2937',
-											colorDanger: '#dc2626',
-											fontFamily: 'proxima-nova, sans-serif',
-											borderRadius: '8px',
-										},
-									},
-								}}
+						<p className='text-sm text-gray-700 mb-2'>
+							Send your payment via INTERAC e-Transfer to the following email address:
+						</p>
+						<p className='font-bold mb-5'>📧 finance.gisau@gmail.com</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2'>In the e-Transfer note/message, please include:</p>
+						<ul className='text-sm text-gray-700 space-y-1 ml-4 list-disc mb-2'>
+							<li>Your full name</li>
+							<li>Your student number</li>
+							<li>Your membership type</li>
+						</ul>
+						<p className='text-xs text-gray-500 italic mb-6'>
+							Example: Joko Widodo, 12345678, GISAU Full Year Membership
+						</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2'>Upload proof of payment</p>
+						<p className='text-sm text-gray-700 mb-3'>
+							Upload your proof of payment (screenshot or confirmation) to this form once your transfer is complete:
+						</p>
+						<label className='flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer bg-white hover:bg-gray-50 transition-colors mb-6'>
+							<input
+									type='file'
+									accept='image/*,.pdf'
+									className='hidden'
+									onChange={(e) => {
+										const file = e.target.files?.[0] ?? null;
+										if (file && file.size > PROOF_MAX_BYTES) {
+											setProofFileError(`File is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Please upload a file under 10 MB.`);
+											setProofFile(null);
+											e.target.value = '';
+										} else {
+											setProofFileError(null);
+											setProofFile(file);
+											setUploadedProofUrl(null); // new file selected — clear any cached upload URL
+										}
+									}}
+								/>
+							{proofFile ? (
+								<div className='text-center'>
+									<p className='text-sm font-medium text-green-700'>✅ {proofFile.name}</p>
+									<p className='text-xs text-gray-400 mt-1'>Click to replace</p>
+								</div>
+							) : (
+								<div className='text-center'>
+									<p className='text-sm text-gray-600 font-medium'>Click to upload proof of payment</p>
+									<p className='text-xs text-gray-400 mt-1'>PNG, JPG, PDF accepted</p>
+								</div>
+							)}
+						</label>
+						{proofFileError && (
+							<p className='text-red-500 text-xs mt-2'>{proofFileError}</p>
+						)}
+
+						<div className='flex justify-center mt-6'>
+							<button
+								onClick={handleSubmit(onSubmit)}
+								disabled={loading || proofUploading || !proofFile}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 							>
-								<CheckoutForm onSuccess={(id) => setPaymentIntentId(id)} total={calculateTotal()} />
-							</Elements>
-						) : (
-							<div className='flex justify-center py-8'>
-								<div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
-							</div>
-						)}
-
-						{paymentIntentId && (
-							<div className='flex justify-center mt-6'>
-								<button
-									onClick={handleSubmit(onSubmit)}
-									className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-									disabled={loading}
-								>
-									{loading ? 'Submitting...' : 'Submit'}
-								</button>
-							</div>
-						)}
-
+								{proofUploading ? 'Uploading...' : loading ? 'Submitting...' : 'Submit'}
+							</button>
+						</div>
 						{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 					</div>
-				) : (
+				)}
+
+				{selectedPaymentMethod === 'cash' && (
 					<div className='bg-games-box p-8 rounded-lg mb-8'>
 						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
 
-						<p className='font-bold mb-2'>Please meet us at:</p>
+						<p className='font-bold mb-3'>Please meet us at:</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1'>During Clubs Fair</p>
+						<p className='text-sm mb-1'>📍 Booth B15 — Sep 23</p>
+						<p className='text-sm mb-4'>📍 Booth B4 — Sep 24</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1'>Outside of Clubs Fair</p>
 						<p className='text-sm mb-1'>📍 GISAU Clubs Room: 4302A</p>
 						<p className='text-sm mb-6'>🕒 Monday-Friday, 10 AM - 4 PM</p>
 
@@ -544,7 +769,8 @@ export default function MemberForm({ onRegistered }) {
 						<div className='flex justify-center mt-8'>
 							<button
 								onClick={handleSubmit(onSubmit)}
-								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+								disabled={loading}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 							>
 								{loading ? 'Submitting...' : 'Submit'}
 							</button>
