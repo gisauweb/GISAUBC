@@ -409,14 +409,14 @@ export default function MemberForm({ onRegistered }) {
 
 		return (
 			<StepContainer>
+				<StepHeading>
+					{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
+					{selectedMembership?.price || 0}
+				</StepHeading>
+
 				<div className='flex flex-col md:flex-row gap-8'>
 					{/* Left Side: Merch Selection */}
 					<div className='flex-1'>
-						<StepHeading>
-							{selectedMembership?.label.split('(')[0].trim() || 'Membership'} — $
-							{selectedMembership?.price || 0}
-						</StepHeading>
-
 						<h3 className='text-gray-700 mb-4'>Select your merchandise (optional)!</h3>
 						<div className='space-y-3'>
 							{merchLoading ? (
