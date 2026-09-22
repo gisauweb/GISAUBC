@@ -30,7 +30,6 @@ export default function MemberForm({ onRegistered }) {
 	const {
 		register,
 		handleSubmit,
-		control,
 		watch,
 		setValue,
 		formState: { errors },
