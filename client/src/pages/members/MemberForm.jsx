@@ -24,6 +24,9 @@ import { StepContainer, StepHeading } from './components/index';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { FACULTIES, MEMBERSHIP_TYPES, YEARS } from './constants';
+
+const PROOF_MAX_BYTES = 10 * 1024 * 1024; // 10 MB — well above any real phone screenshot
+
 const stripe = loadStripe(
 	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
 );
@@ -37,6 +40,11 @@ export default function MemberForm({ onRegistered }) {
 	const [clientSecret, setClientSecret] = useState(null);
 	const [paymentIntentId, setPaymentIntentId] = useState(null);
 	const [intentAmount, setIntentAmount] = useState(null);
+	const [proofFile, setProofFile] = useState(null);
+	const [proofFileError, setProofFileError] = useState(null);
+	const [proofUploading, setProofUploading] = useState(false);
+	// Cached URL from a successful upload — reused on retry so the same file isn't re-uploaded
+	const [uploadedProofUrl, setUploadedProofUrl] = useState(null);
 	const [isExistingMember, setIsExistingMember] = useState(null);
 	const [checkingMemberId, setCheckingMemberId] = useState(false);
 	const [memberToastOpen, setMemberToastOpen] = useState(false);
@@ -60,7 +68,7 @@ export default function MemberForm({ onRegistered }) {
 			recommendation: '',
 			membershipType: 'full',
 			merch: [],
-			paymentMethod: 'card',
+			paymentMethod: 'interac',
 		},
 	});
 
@@ -163,11 +171,11 @@ export default function MemberForm({ onRegistered }) {
 				if (isEligible) {
 					setValue('paymentMethod', 'payed');
 					setMemberToastOpen(true);
-				} else {
-					// Reset so a previously-eligible student ID doesn't carry over
-					// when the user goes back and enters a different student number.
-					setValue('paymentMethod', 'card');
-				}
+			} else {
+				// Reset so a previously-eligible student ID doesn't carry over
+				// when the user goes back and enters a different student number.
+				setValue('paymentMethod', 'interac');
+			}
 			}
 		} catch {
 			// silently fail — don't block the user
@@ -194,13 +202,44 @@ export default function MemberForm({ onRegistered }) {
 				return;
 			}
 
+			if (data.paymentMethod === 'interac' && !proofFile) {
+				setApiError('Please upload your Interac proof of payment before submitting.');
+				return;
+			}
+
 			setLoading(true);
 			setApiError(null);
 
 			try {
 				const { data: authData } = await supabase.auth.getSession();
 				const token = authData.session?.access_token;
-				if (!token) throw new Error('Not authenticated. Please log in first.');
+				const userId = authData.session?.user?.id;
+				if (!token || !userId) {
+					setApiError('Your session has expired. Please refresh the page and sign in again.');
+					return;
+				}
+
+				// Upload Interac proof screenshot to Supabase Storage.
+				// Reuse a previously-uploaded URL if the registration failed and the user is retrying
+				// — avoids orphaned duplicate files on every retry attempt.
+				let paymentProofUrl = uploadedProofUrl ?? undefined;
+				if (data.paymentMethod === 'interac' && proofFile && !paymentProofUrl) {
+					setProofUploading(true);
+					const nameParts = proofFile.name.split('.');
+					const ext = nameParts.length > 1 ? nameParts.pop() : 'jpg';
+					const path = `${userId}/${Date.now()}.${ext}`;
+					const { error: uploadError } = await supabase.storage
+						.from('payment_proofs')
+						.upload(path, proofFile, { upsert: false });
+					setProofUploading(false);
+					if (uploadError) {
+						console.error('[MemberForm] Proof upload failed:', uploadError);
+						throw new Error('__UPLOAD_FAILED__');
+					}
+					const { data: urlData } = supabase.storage.from('payment_proofs').getPublicUrl(path);
+					paymentProofUrl = urlData?.publicUrl;
+					if (paymentProofUrl) setUploadedProofUrl(paymentProofUrl); // cache for retry
+				}
 
 				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/register`, {
 					method: 'POST',
@@ -212,20 +251,30 @@ export default function MemberForm({ onRegistered }) {
 						...data,
 						totalPrice: calculateTotal(),
 						...(data.paymentMethod === 'card' && { paymentIntentId }),
+						...(data.paymentMethod === 'interac' && { paymentProofUrl }),
 					}),
 				});
 
 				const body = await res.json().catch(() => ({}));
 				if (!res.ok) {
-					throw new Error(body.error || 'Registration failed');
+					console.error('[MemberForm] Registration failed:', res.status, body);
+					throw new Error(body.error || '__REG_FAILED__');
 				}
 
 				setRegisteredProfile(body.profile ?? null);
 				setIsSubmitted(true);
 			} catch (err) {
-				setApiError(err.message);
+				if (err.message === '__UPLOAD_FAILED__') {
+					setApiError('We couldn\'t upload your proof of payment. Please check your connection and try again. If the issue persists, contact us.');
+				} else if (err.message === '__REG_FAILED__') {
+					setApiError('Something went wrong during registration. Please try again or contact us.');
+				} else {
+					// Backend returned a known user-facing message (e.g. "Already registered")
+					setApiError(err.message);
+				}
 			} finally {
 				setLoading(false);
+				setProofUploading(false);
 			}
 		}
 	};
@@ -603,6 +652,8 @@ export default function MemberForm({ onRegistered }) {
 			);
 		}
 
+		const selectedPaymentMethod = watch('paymentMethod');
+
 		return (
 			<StepContainer>
 				<StepHeading>Select Method of Payment</StepHeading>
@@ -611,12 +662,12 @@ export default function MemberForm({ onRegistered }) {
 					<label className='flex items-center space-x-3 cursor-pointer'>
 						<input
 							type='radio'
-							value='card'
+							value='interac'
 							{...register('paymentMethod', { required: true })}
 							defaultChecked
 							className='accent-primary w-5 h-5'
 						/>
-						<span className='text-gray-700 font-medium'>Card</span>
+						<span className='text-gray-700 font-medium'>Interac e-Transfer</span>
 					</label>
 					<label className='flex items-center space-x-3 cursor-pointer'>
 						<input
@@ -629,62 +680,77 @@ export default function MemberForm({ onRegistered }) {
 					</label>
 				</div>
 
-				<div className='mb-6'>
-					<button
-						type='button'
-						onClick={goBack}
-						className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
-					>
-						← Back
-					</button>
-				</div>
+				{selectedPaymentMethod === 'interac' && (
+					<div className='bg-games-box p-8 rounded-lg mb-8'>
+						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Interac e-Transfer Instructions</h3>
 
-				{watch('paymentMethod') === 'card' ? (
-					<div className='bg-games-box p-6 rounded-lg border border-gray-200 shadow-sm mb-8'>
-						<h3 className='text-primary font-bold text-lg mb-4'>Credit Card Details</h3>
+						<p className='text-sm text-gray-700 mb-2'>
+							Send your payment via INTERAC e-Transfer to the following email address:
+						</p>
+						<p className='font-bold mb-5'>📧 finance.gisau@gmail.com</p>
 
-						{clientSecret ? (
-							<Elements
-								stripe={stripe}
-								fonts={[{ cssSrc: 'https://use.typekit.net/mqr7lhi.css' }]}
-								options={{
-									clientSecret,
-									appearance: {
-										theme: 'stripe',
-										variables: {
-											colorPrimary: '#732727',
-											colorBackground: '#ffffff',
-											colorText: '#1f2937',
-											colorDanger: '#dc2626',
-											fontFamily: 'proxima-nova, sans-serif',
-											borderRadius: '8px',
-										},
-									},
-								}}
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2'>In the e-Transfer note/message, please include:</p>
+						<ul className='text-sm text-gray-700 space-y-1 ml-4 list-disc mb-2'>
+							<li>Your full name</li>
+							<li>Your student number</li>
+							<li>Your membership type</li>
+						</ul>
+						<p className='text-xs text-gray-500 italic mb-6'>
+							Example: Joko Widodo, 12345678, GISAU Full Year Membership
+						</p>
+
+						<p className='text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2'>Upload proof of payment</p>
+						<p className='text-sm text-gray-700 mb-3'>
+							Upload your proof of payment (screenshot or confirmation) to this form once your transfer is complete:
+						</p>
+						<label className='flex flex-col items-center justify-center w-full border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer bg-white hover:bg-gray-50 transition-colors mb-6'>
+							<input
+									type='file'
+									accept='image/*,.pdf'
+									className='hidden'
+									onChange={(e) => {
+										const file = e.target.files?.[0] ?? null;
+										if (file && file.size > PROOF_MAX_BYTES) {
+											setProofFileError(`File is too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Please upload a file under 10 MB.`);
+											setProofFile(null);
+											e.target.value = '';
+										} else {
+											setProofFileError(null);
+											setProofFile(file);
+											setUploadedProofUrl(null); // new file selected — clear any cached upload URL
+										}
+									}}
+								/>
+							{proofFile ? (
+								<div className='text-center'>
+									<p className='text-sm font-medium text-green-700'>✅ {proofFile.name}</p>
+									<p className='text-xs text-gray-400 mt-1'>Click to replace</p>
+								</div>
+							) : (
+								<div className='text-center'>
+									<p className='text-sm text-gray-600 font-medium'>Click to upload proof of payment</p>
+									<p className='text-xs text-gray-400 mt-1'>PNG, JPG, PDF accepted</p>
+								</div>
+							)}
+						</label>
+						{proofFileError && (
+							<p className='text-red-500 text-xs mt-2'>{proofFileError}</p>
+						)}
+
+						<div className='flex justify-center mt-6'>
+							<button
+								onClick={handleSubmit(onSubmit)}
+								disabled={loading || proofUploading || !proofFile}
+								className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 							>
-								<CheckoutForm onSuccess={(id) => setPaymentIntentId(id)} total={calculateTotal()} />
-							</Elements>
-						) : (
-							<div className='flex justify-center py-8'>
-								<div className='w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin'></div>
-							</div>
-						)}
-
-						{paymentIntentId && (
-							<div className='flex justify-center mt-6'>
-								<button
-									onClick={handleSubmit(onSubmit)}
-									className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-									disabled={loading}
-								>
-									{loading ? 'Submitting...' : 'Submit'}
-								</button>
-							</div>
-						)}
-
+								{proofUploading ? 'Uploading...' : loading ? 'Submitting...' : 'Submit'}
+							</button>
+						</div>
 						{apiError && <p className='text-red-500 text-sm mt-4 text-center'>{apiError}</p>}
 					</div>
-				) : (
+				)}
+
+				{selectedPaymentMethod === 'cash' && (
 					<div className='bg-games-box p-8 rounded-lg mb-8'>
 						<h3 className='text-[#A04040] font-bold text-lg mb-4'>Payment Details:</h3>
 

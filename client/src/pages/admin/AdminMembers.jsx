@@ -5,7 +5,23 @@ import { useEffect, useState } from 'react';
 const PAYMENT_STATUSES = ['unpaid', 'paid_card', 'paid_cash', 'paid_existing_member', 'refunded'];
 const MEMBERSHIP_TYPES = ['full', 'half'];
 const ROLES = ['member', 'admin'];
-const PAYMENT_METHODS = ['card', 'cash', 'payed'];
+const PAYMENT_METHODS = ['card', 'cash', 'interac', 'payed'];
+
+// Human-readable labels for enum values
+const STATUS_LABELS = {
+	unpaid: 'Unpaid',
+	paid_card: 'Paid (Card)',
+	paid_cash: 'Paid (Cash)',
+	paid_existing_member: 'Existing Member',
+	refunded: 'Refunded',
+};
+
+const METHOD_LABELS = {
+	card: 'Card',
+	cash: 'Cash',
+	interac: 'Interac e-Transfer',
+	payed: 'Pre-paid Member',
+};
 
 // ── Status Badge ─────────────────────────────────────────────────────────────
 
@@ -19,7 +35,23 @@ function StatusBadge({ status }) {
 	};
 	return (
 		<span className={`text-xs font-medium px-2 py-0.5 rounded-full ${colours[status] ?? 'bg-gray-100 text-gray-600'}`}>
-			{status}
+			{STATUS_LABELS[status] ?? status}
+		</span>
+	);
+}
+
+// ── Payment Method Badge ──────────────────────────────────────────────────────
+
+function MethodBadge({ method }) {
+	const colours = {
+		card: 'bg-purple-100 text-purple-700',
+		cash: 'bg-yellow-100 text-yellow-700',
+		interac: 'bg-orange-100 text-orange-700',
+		payed: 'bg-blue-100 text-blue-700',
+	};
+	return (
+		<span className={`text-xs font-medium px-2 py-0.5 rounded-full ${colours[method] ?? 'bg-gray-100 text-gray-600'}`}>
+			{METHOD_LABELS[method] ?? method}
 		</span>
 	);
 }
@@ -133,7 +165,7 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 		/>
 	);
 
-	const Select = ({ field, options }) => (
+	const Select = ({ field, options, labelMap }) => (
 		<select
 			value={form[field] ?? ''}
 			onChange={(e) => {
@@ -145,7 +177,7 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 			}}
 			className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white w-full'
 		>
-			{options.map((o) => <option key={o} value={o}>{o}</option>)}
+			{options.map((o) => <option key={o} value={o}>{labelMap ? (labelMap[o] ?? o) : o}</option>)}
 		</select>
 	);
 
@@ -177,10 +209,10 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 					<Field label='Student ID'><Input field='studentId' /></Field>
 					<Field label='Faculty'><Input field='faculty' /></Field>
 					<Field label='Year of Study'><Input field='yearOfStudy' /></Field>
-					<Field label='Membership Type'><Select field='membershipType' options={MEMBERSHIP_TYPES} /></Field>
+					<Field label='Membership Type'><Select field='membershipType' options={MEMBERSHIP_TYPES} labelMap={{ full: 'Full Year', half: 'Half Term' }} /></Field>
 					<Field label='Role'><Select field='role' options={ROLES} /></Field>
-					<Field label='Payment Method'><Select field='paymentMethod' options={PAYMENT_METHODS} /></Field>
-					<Field label='Payment Status'><Select field='paymentStatus' options={PAYMENT_STATUSES} /></Field>
+					<Field label='Payment Method'><Select field='paymentMethod' options={PAYMENT_METHODS} labelMap={METHOD_LABELS} /></Field>
+					<Field label='Payment Status'><Select field='paymentStatus' options={PAYMENT_STATUSES} labelMap={STATUS_LABELS} /></Field>
 					<Field label='Has Paid'>
 						<select
 							value={form.hasPayed ? 'true' : 'false'}
@@ -201,6 +233,18 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 						className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary resize-none w-full'
 					/>
 				</Field>
+				{member.paymentProofUrl && (
+					<Field label='Interac Proof Screenshot'>
+						<a
+							href={member.paymentProofUrl}
+							target='_blank'
+							rel='noopener noreferrer'
+							className='text-sm text-primary underline hover:opacity-70 break-all'
+						>
+							View uploaded proof →
+						</a>
+					</Field>
+				)}
 				<div className='text-xs text-gray-400 space-y-1 pt-1'>
 					<p>Academic Year: <span className='text-gray-600'>{member.academicYear}</span></p>
 					<p>Joined: <span className='text-gray-600'>{new Date(member.createdAt).toLocaleString()}</span></p>
@@ -318,12 +362,13 @@ export default function AdminMembers({ token }) {
 					<select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)}
 						className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white'>
 						<option value=''>All Statuses</option>
-						{PAYMENT_STATUSES.map((s) => <option key={s} value={s}>{s}</option>)}
+						{PAYMENT_STATUSES.map((s) => <option key={s} value={s}>{STATUS_LABELS[s] ?? s}</option>)}
 					</select>
 					<select value={filterType} onChange={(e) => setFilterType(e.target.value)}
 						className='border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white'>
 						<option value=''>All Types</option>
-						{MEMBERSHIP_TYPES.map((t) => <option key={t} value={t}>{t}</option>)}
+						<option value='full'>Full Year</option>
+						<option value='half'>Half Term</option>
 					</select>
 				</div>
 
@@ -340,16 +385,18 @@ export default function AdminMembers({ token }) {
 									<th className='px-4 py-3 text-left'>Email</th>
 									<th className='px-4 py-3 text-left'>Student ID</th>
 									<th className='px-4 py-3 text-left'>Year of Study</th>
+									<th className='px-4 py-3 text-left'>Payment Method</th>
 									<th className='px-4 py-3 text-left'>Status</th>
 									<th className='px-4 py-3 text-left'>Paid</th>
 									<th className='px-4 py-3 text-left'>Type</th>
+									<th className='px-4 py-3 text-left'>Proof</th>
 									<th className='px-4 py-3 text-left'>Joined</th>
 								</tr>
 							</thead>
 							<tbody className='divide-y divide-gray-100'>
 								{members.length === 0 && (
 									<tr>
-										<td colSpan={7} className='px-4 py-8 text-center text-gray-400'>No members found</td>
+										<td colSpan={10} className='px-4 py-8 text-center text-gray-400'>No members found</td>
 									</tr>
 								)}
 								{members.map((m) => (
@@ -362,13 +409,19 @@ export default function AdminMembers({ token }) {
 										<td className='px-4 py-3 text-gray-500'>{m.email}</td>
 										<td className='px-4 py-3 text-gray-500'>{m.studentId}</td>
 										<td className='px-4 py-3 text-gray-500'>{m.yearOfStudy}</td>
+										<td className='px-4 py-3'><MethodBadge method={m.paymentMethod} /></td>
 										<td className='px-4 py-3'><StatusBadge status={m.paymentStatus} /></td>
 										<td className='px-4 py-3'>
-										{m.hasPayed
-											? <CheckCircleIcon fontSize='small' className='text-green-500' />
-											: <CancelIcon fontSize='small' className='text-red-400' />}
-									</td>
-										<td className='px-4 py-3 text-gray-500 capitalize'>{m.membershipType}</td>
+											{m.hasPayed
+												? <CheckCircleIcon fontSize='small' className='text-green-500' />
+												: <CancelIcon fontSize='small' className='text-red-400' />}
+										</td>
+										<td className='px-4 py-3 text-gray-500 capitalize'>{m.membershipType === 'full' ? 'Full Year' : 'Half Term'}</td>
+										<td className='px-4 py-3'>
+											{m.paymentProofUrl
+												? <a href={m.paymentProofUrl} target='_blank' rel='noopener noreferrer' className='text-xs text-primary underline hover:opacity-70 whitespace-nowrap' onClick={(e) => e.stopPropagation()}>View Proof</a>
+												: <span className='text-xs text-gray-300'>—</span>}
+										</td>
 										<td className='px-4 py-3 text-gray-500 whitespace-nowrap'>{new Date(m.createdAt).toLocaleDateString()}</td>
 									</tr>
 								))}
