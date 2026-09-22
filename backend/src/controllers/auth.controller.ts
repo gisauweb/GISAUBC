@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import * as AuthService from "../services/auth.js";
 import * as PaymentService from "../services/payment.js";
 
-const VALID_PAYMENT_METHODS = new Set(["card", "cash", "payed"]);
+const VALID_PAYMENT_METHODS = new Set(["card", "cash", "interac", "payed"]);
 
 export async function me(req: Request, res: Response) {
 	const userId = req.user!.sub;
@@ -49,6 +49,7 @@ export async function register(req: Request, res: Response) {
 		paymentMethod,
 		merch,
 		paymentIntentId,
+		paymentProofUrl,
 	} = req.body;
 
 	const trimmedStudentId = typeof studentId === "string" ? studentId.trim() : studentId;
@@ -102,6 +103,15 @@ export async function register(req: Request, res: Response) {
 		});
 	} else if (paymentMethod === "cash") {
 		resolvedPaymentStatus = "unpaid"; // cash collected later by admin
+	} else if (paymentMethod === "interac") {
+		resolvedPaymentStatus = "unpaid"; // VP verifies screenshot and manually marks paid
+		// Reject proof URLs that don't originate from our own Supabase storage bucket
+		if (paymentProofUrl) {
+			const expectedOrigin = `${process.env.SUPABASE_URL}/storage/v1/object/public/payment_proofs/`;
+			if (!paymentProofUrl.startsWith(expectedOrigin)) {
+				return res.status(400).json({ error: "Invalid proof of payment URL" });
+			}
+		}
 	} else if (paymentMethod === "payed") {
 		hasPayed = true;
 		resolvedPaymentStatus = "paid_existing_member";
@@ -122,6 +132,7 @@ export async function register(req: Request, res: Response) {
 			hasPayed,
 			paymentStatus: resolvedPaymentStatus,
 			paymentIntentId: paymentMethod === "card" ? paymentIntentId : undefined,
+			paymentProofUrl: paymentMethod === "interac" ? paymentProofUrl : undefined,
 			totalPrice,
 			merch: merchIds,
 		});

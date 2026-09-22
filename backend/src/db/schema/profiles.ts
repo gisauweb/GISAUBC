@@ -34,10 +34,11 @@ export const profiles = pgTable(
 
     role: userRole("user_role").notNull().default("member"),
 
-    paymentMethod: text("payment_method").notNull().default("card"),
+    paymentMethod: text("payment_method").notNull().default("interac"),
     hasPayed: boolean("has_payed").notNull().default(false),
     paymentStatus: paymentStatus("payment_status").notNull().default("unpaid"),
     paymentIntentId: text("payment_intent_id"),
+    paymentProofUrl: text("payment_proof_url"),
     totalPrice: numeric("total_price", { precision: 10, scale: 2 })
       .default("0")
       .notNull(),
