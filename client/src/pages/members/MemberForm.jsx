@@ -217,7 +217,25 @@ export default function MemberForm({ onRegistered }) {
 
 	const renderStepIndicator = () => (
 		<div className='flex justify-center items-center mb-20'>
-			{[1, 2, 3].map((num) => (
+			<div className='flex items-center'>
+				{/* Back button — always reserves its space so tabs stay centered */}
+				<div className='w-8 md:w-10 mr-3 md:mr-4 flex-shrink-0 flex justify-center'>
+					{step > 1 && (
+						<button
+							type='button'
+							onClick={goBack}
+							className='w-8 h-8 md:w-9 md:h-9 rounded-full border-2 border-primary text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors'
+							aria-label='Go back'
+						>
+							<svg xmlns='http://www.w3.org/2000/svg' className='w-3.5 h-3.5 md:w-4 md:h-4' fill='none' viewBox='0 0 24 24' stroke='currentColor' strokeWidth={2.5}>
+								<path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
+							</svg>
+						</button>
+					)}
+				</div>
+
+				{/* Step bubbles */}
+				{[1, 2, 3].map((num) => (
 				<React.Fragment key={num}>
 					<div
 						className='flex flex-col items-center relative z-10 cursor-pointer'
@@ -255,6 +273,10 @@ export default function MemberForm({ onRegistered }) {
 					)}
 				</React.Fragment>
 			))}
+
+				{/* Invisible spacer — mirrors back button width to keep tabs centered */}
+				<div className='w-8 md:w-10 ml-3 md:ml-4 flex-shrink-0' />
+			</div>
 		</div>
 	);
 
@@ -447,14 +469,7 @@ export default function MemberForm({ onRegistered }) {
 
 				</div>
 
-			<div className='flex justify-center items-center gap-4 mt-8'>
-				<button
-					type='button'
-					onClick={goBack}
-					className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
-				>
-					Back
-				</button>
+			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
 					className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
@@ -483,14 +498,7 @@ export default function MemberForm({ onRegistered }) {
 						</p>
 					</div>
 
-					<div className='flex justify-center items-center gap-4'>
-						<button
-							type='button'
-							onClick={goBack}
-							className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
-						>
-							Back
-						</button>
+					<div className='flex justify-center'>
 						<button
 							onClick={handleSubmit(onSubmit)}
 							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
