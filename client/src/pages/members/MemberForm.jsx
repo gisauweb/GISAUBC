@@ -372,9 +372,10 @@ export default function MemberForm({ onRegistered }) {
 			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
-					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
+					disabled={checkingMemberId}
+					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
 				>
-					Continue
+					{checkingMemberId ? 'Checking...' : 'Continue'}
 				</button>
 			</div>
 		</StepContainer>
