@@ -21,6 +21,7 @@ export default function MemberForm({ onRegistered }) {
 	const [apiError, setApiError] = useState(null);
 	const [clientSecret, setClientSecret] = useState(null);
 	const [paymentIntentId, setPaymentIntentId] = useState(null);
+	const [intentAmount, setIntentAmount] = useState(null);
 	const [isExistingMember, setIsExistingMember] = useState(null);
 	const [checkingMemberId, setCheckingMemberId] = useState(false);
 	const [memberToastOpen, setMemberToastOpen] = useState(false);
@@ -75,6 +76,16 @@ export default function MemberForm({ onRegistered }) {
 
 		if (step !== 3 || paymentMethod !== 'card') return;
 
+		const currentTotal = calculateTotal();
+
+		// Reuse the existing intent if the amount hasn't changed — avoids creating
+		// orphaned PaymentIntents on Stripe every time the user navigates back and forward.
+		if (clientSecret && intentAmount === currentTotal) return;
+
+		// Amount changed (or first time here) — reset and create a fresh intent
+		setClientSecret(null);
+		setPaymentIntentId(null);
+
 		const fetchIntent = async () => {
 			try {
 				const { data: authData } = await supabase.auth.getSession();
@@ -87,15 +98,20 @@ export default function MemberForm({ onRegistered }) {
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${token}`,
 					},
-					body: JSON.stringify({ amountCents: Math.round(calculateTotal() * 100) }),
+					body: JSON.stringify({ amountCents: Math.round(currentTotal * 100) }),
 				});
 
 				if (res.ok) {
 					const { clientSecret: secret } = await res.json();
 					setClientSecret(secret);
+					setIntentAmount(currentTotal);
+				} else {
+					const body = await res.json().catch(() => ({}));
+					setApiError(body.error || 'Failed to initialize payment. Please try again.');
 				}
 			} catch (err) {
 				console.error('Failed to create payment intent', err);
+				setApiError('Could not connect to payment service. Please check your connection and try again.');
 			}
 		};
 
