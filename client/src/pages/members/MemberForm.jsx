@@ -141,6 +141,15 @@ export default function MemberForm({ onRegistered }) {
 		}
 	};
 
+	const goBack = () => {
+		setApiError(null);
+		if (step === 3) {
+			setStep(isExistingMember ? 1 : 2);
+		} else if (step === 2) {
+			setStep(1);
+		}
+	};
+
 	const onSubmit = async (data) => {
 		if (step < 3) {
 			setStep(step === 1 && isExistingMember ? 3 : step + 1);
@@ -192,8 +201,9 @@ export default function MemberForm({ onRegistered }) {
 				<React.Fragment key={num}>
 					<div
 						className='flex flex-col items-center relative z-10 cursor-pointer'
-						onClick={async () => {
+						onClick={() => {
 							if (num < step && !(isExistingMember && num === 2)) {
+								setApiError(null);
 								setStep(num);
 							}
 						}}
@@ -416,7 +426,14 @@ export default function MemberForm({ onRegistered }) {
 
 				</div>
 
-			<div className='flex justify-center mt-8'>
+			<div className='flex justify-center items-center gap-4 mt-8'>
+				<button
+					type='button'
+					onClick={goBack}
+					className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
+				>
+					Back
+				</button>
 				<button
 					onClick={handleSubmit(onSubmit)}
 					className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
@@ -445,7 +462,14 @@ export default function MemberForm({ onRegistered }) {
 						</p>
 					</div>
 
-					<div className='flex justify-center'>
+					<div className='flex justify-center items-center gap-4'>
+						<button
+							type='button'
+							onClick={goBack}
+							className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
+						>
+							Back
+						</button>
 						<button
 							onClick={handleSubmit(onSubmit)}
 							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
@@ -483,6 +507,16 @@ export default function MemberForm({ onRegistered }) {
 						/>
 						<span className='text-gray-700 font-medium'>Cash</span>
 					</label>
+				</div>
+
+				<div className='mb-6'>
+					<button
+						type='button'
+						onClick={goBack}
+						className='border border-primary text-primary px-8 py-2 rounded-full font-bold hover:bg-primary hover:text-white transition-colors'
+					>
+						← Back
+					</button>
 				</div>
 
 				{watch('paymentMethod') === 'card' ? (
