@@ -148,6 +148,10 @@ export default function MemberForm({ onRegistered }) {
 				if (isEligible) {
 					setValue('paymentMethod', 'payed');
 					setMemberToastOpen(true);
+				} else {
+					// Reset so a previously-eligible student ID doesn't carry over
+					// when the user goes back and enters a different student number.
+					setValue('paymentMethod', 'card');
 				}
 			}
 		} catch {
