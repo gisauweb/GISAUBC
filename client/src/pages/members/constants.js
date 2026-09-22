@@ -11,8 +11,12 @@ export const FACULTIES = [
 ];
 export const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year', '5th+ Year', 'Graduate'];
 
+const _now = new Date();
+const _startYear = _now.getMonth() >= 8 ? _now.getFullYear() : _now.getFullYear() - 1; // Sept = month 8
+const _endYear = _startYear + 1;
+
 export const MEMBERSHIP_TYPES = [
-	{ id: 'full', label: 'Full term membership (September 2025 - April 2026)', price: 9 },
-	{ id: 'sem1', label: 'Half term membership (September 2025 - December 2025)', price: 5 },
-	{ id: 'sem2', label: 'Half term membership (January 2026 - April 2026)', price: 5 },
+	{ id: 'full', label: `Full term membership (September ${_startYear} - April ${_endYear})`, price: 9 },
+	{ id: 'sem1', label: `Half term membership (September ${_startYear} - December ${_startYear})`, price: 5 },
+	{ id: 'sem2', label: `Half term membership (January ${_endYear} - April ${_endYear})`, price: 5 },
 ];
