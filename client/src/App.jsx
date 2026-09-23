@@ -11,6 +11,7 @@ import NavigationBar from './shared/components/navigation-bar/NavigationBar';
 import ScrollToTop from './shared/components/ScrollToTop';
 import AuthCallback from 'auth/AuthCallback';
 import AdminAuthCallback from 'auth/AdminAuthCallback';
+import UpdatePassword from 'auth/UpdatePassword';
 import AdminApp from 'pages/admin/Admin';
 import WorkInProgress from 'pages/404/WorkInProgress';
 
@@ -22,7 +23,7 @@ function App() {
 
 	// Show popup once per session
 	useEffect(() => {
-		if (posts.length > 0 && !isGamesPage(location.pathname)) {
+		if (posts.length > 0 && !isGamesPage(location.pathname) && !location.pathname.startsWith('/auth')) {
 			if (!sessionStorage.getItem('gisau_popup_shown')) {
 				setPopupOpen(true);
 			}
@@ -30,10 +31,11 @@ function App() {
 	}, [posts]);
 
 	const isAdminRoute = location.pathname.startsWith('/admin');
+	const isAuthRoute = location.pathname.startsWith('/auth');
 
-	// Inject chat script — never on admin routes
+	// Inject chat script — never on admin or auth callback/reset routes
 	useEffect(() => {
-		if (isAdminRoute) return;
+		if (isAdminRoute || isAuthRoute) return;
 		if (!document.getElementById('chatling-embed-script')) {
 			window.chtlConfig = { chatbotId: '1938486472' };
 			const script = document.createElement('script');
@@ -43,12 +45,12 @@ function App() {
 			script.id = 'chatling-embed-script';
 			document.body.appendChild(script);
 		}
-	}, [isAdminRoute]);
+	}, [isAdminRoute, isAuthRoute]);
 
-	// Hide chatling on admin routes via a CSS style tag 
+	// Hide chatling on admin/auth routes via a CSS style tag 
 	useEffect(() => {
 		const styleId = 'hide-chatling-admin';
-		if (isAdminRoute) {
+		if (isAdminRoute || isAuthRoute) {
 			if (!document.getElementById(styleId)) {
 				const style = document.createElement('style');
 				style.id = styleId;
@@ -58,7 +60,7 @@ function App() {
 		} else {
 			document.getElementById(styleId)?.remove();
 		}
-	}, [isAdminRoute]);
+	}, [isAdminRoute, isAuthRoute]);
 
 	return (
 		<Box className='bg-[#FFFDF5]'>
@@ -76,8 +78,14 @@ function App() {
 				</Route>
 				<Route path='/app' element={<Games />} />
 				<Route path='/admin/*' element={<AdminApp />} />
+				{/* Supabase Auth → URL configuration must allow these Redirect URLs:
+				    http://localhost:5173/auth/callback
+				    http://localhost:5173/auth/update-password
+				    https://www.gisaubc.com/auth/callback
+				    https://www.gisaubc.com/auth/update-password */}
 				<Route path='/auth/callback' element={<AuthCallback />} />
 				<Route path='/auth/admin-callback' element={<AdminAuthCallback />} />
+				<Route path='/auth/update-password' element={<UpdatePassword />} />
 				<Route path='*' element={<NotFound />} />
 			</Routes>
 
