@@ -55,7 +55,10 @@ export const sendWelcomeEmail = async (input: {
     process.env.MAIL_LOGO_URL || `${appUrl}/emails/gisau-logo.png`;
   const mapleUrl =
     process.env.MAIL_MAPLE_URL || `${appUrl}/emails/maple-leaf.png`;
-  const sotoRsvpUrl = process.env.MAIL_SOTO_RSVP_URL || appUrl;
+  // Email links must point to the public site, never localhost.
+  const siteUrl = "https://gisaubc.com";
+  const assetBase = process.env.MAIL_ASSET_BASE || `${siteUrl}/emails`;
+  const sotoRsvpUrl = process.env.MAIL_SOTO_RSVP_URL || `${siteUrl}/events`;
   const giftQrUrl =
     process.env.MAIL_GIFT_QR_URL || `${appUrl}/emails/iqiyi-qr.png`;
   const firstName = input.firstName.trim() || "there";
@@ -65,6 +68,7 @@ export const sendWelcomeEmail = async (input: {
     .replaceAll("{{LOGO_URL}}", escapeHtml(logoUrl))
     .replaceAll("{{MAPLE_URL}}", escapeHtml(mapleUrl))
     .replaceAll("{{SOTO_RSVP_URL}}", escapeHtml(sotoRsvpUrl))
+    .replaceAll("{{ASSET_BASE}}", escapeHtml(assetBase))
     .replaceAll("{{GIFT_QR_URL}}", escapeHtml(giftQrUrl))
     .replaceAll("{{APP_URL}}", escapeHtml(appUrl));
 
