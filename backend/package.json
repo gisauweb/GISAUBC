@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
-    "build": "tsc && node -e \"const fs=require('fs');fs.mkdirSync('dist/emails',{recursive:true});fs.copyFileSync('src/emails/welcome-membership.html','dist/emails/welcome-membership.html')\"",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

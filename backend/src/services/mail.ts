@@ -1,7 +1,5 @@
-import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { Resend } from "resend";
+import { WELCOME_MEMBERSHIP_HTML } from "../emails/welcomeMembershipHtml.js";
 
 const escapeHtml = (value: string): string =>
   value
@@ -10,14 +8,9 @@ const escapeHtml = (value: string): string =>
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
 
-const loadWelcomeHtml = (): string => {
-  const dir = dirname(fileURLToPath(import.meta.url));
-  return readFileSync(join(dir, "../emails/welcome-membership.html"), "utf8");
-};
-
-const buildWelcomeText = (appUrl: string, sotoRsvpUrl: string): string =>
+const buildWelcomeText = (firstName: string, appUrl: string, sotoRsvpUrl: string): string =>
   [
-    "Hello,",
+    `Hello, ${firstName},`,
     "",
     "Thank you so much for becoming a member of GISAU! We are so glad to have you with us.",
     "",
@@ -65,8 +58,10 @@ export const sendWelcomeEmail = async (input: {
   const sotoRsvpUrl = process.env.MAIL_SOTO_RSVP_URL || appUrl;
   const giftQrUrl =
     process.env.MAIL_GIFT_QR_URL || `${appUrl}/emails/iqiyi-qr.png`;
+  const firstName = input.firstName.trim() || "there";
 
-  const html = loadWelcomeHtml()
+  const html = WELCOME_MEMBERSHIP_HTML
+    .replaceAll("{{FIRST_NAME}}", escapeHtml(firstName))
     .replaceAll("{{LOGO_URL}}", escapeHtml(logoUrl))
     .replaceAll("{{MAPLE_URL}}", escapeHtml(mapleUrl))
     .replaceAll("{{SOTO_RSVP_URL}}", escapeHtml(sotoRsvpUrl))
@@ -79,7 +74,7 @@ export const sendWelcomeEmail = async (input: {
     to: input.to,
     subject: "Welcome to GISAU!",
     html,
-    text: buildWelcomeText(appUrl, sotoRsvpUrl),
+    text: buildWelcomeText(firstName, appUrl, sotoRsvpUrl),
   });
 
   if (error) {

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+/** Compiled into dist so Vercel does not need a copied .html file. */
+export const WELCOME_MEMBERSHIP_HTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -11,8 +12,6 @@
     <tr>
       <td align="center" style="padding:24px 12px;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;background-color:#FBF7F0;border-radius:8px;overflow:hidden;">
-
-          <!-- Header -->
           <tr>
             <td align="center" bgcolor="#6B1C20" style="background-color:#6B1C20;padding:28px 24px 32px;">
               <img src="{{LOGO_URL}}" alt="GISAU" width="56" style="display:block;margin:0 auto 14px;height:auto;border:0;" />
@@ -21,8 +20,6 @@
               </p>
             </td>
           </tr>
-
-          <!-- Intro + mascot -->
           <tr>
             <td style="padding:28px 36px 8px;background-color:#FBF7F0;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -39,15 +36,11 @@
               </table>
             </td>
           </tr>
-
-          <!-- Events -->
           <tr>
             <td style="padding:20px 36px 8px;background-color:#FBF7F0;">
               <p style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:bold;color:#6B1C20;">
                 &#127881; What events do we host?
               </p>
-
-              <!-- SOTO featured -->
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F6E4E0;border-radius:10px;margin-bottom:14px;">
                 <tr>
                   <td style="padding:14px 16px;">
@@ -64,28 +57,24 @@
                   </td>
                 </tr>
               </table>
-
               <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
                 &#127793; <strong>Liwetan</strong>
               </p>
               <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
                 communal feast on banana leaves
               </p>
-
               <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
                 &#127988; <strong>Lathusa</strong>
               </p>
               <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
                 celebrating Indonesian culture with the wider UBC community
               </p>
-
               <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
                 &#127836; <strong>Indomie Olympics</strong>
               </p>
               <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
                 our flagship noodle showdown, pure chaos and laughter
               </p>
-
               <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
                 &#128188; <strong>Mentorship Program</strong>
               </p>
@@ -94,8 +83,6 @@
               </p>
             </td>
           </tr>
-
-          <!-- Gift -->
           <tr>
             <td style="padding:16px 36px 8px;background-color:#FBF7F0;">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#C45C5C;border-radius:12px;">
@@ -119,8 +106,6 @@
               </table>
             </td>
           </tr>
-
-          <!-- Terms -->
           <tr>
             <td style="padding:18px 36px 8px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:11px;line-height:1.55;color:#6B1C20;">
               <p style="margin:0 0 8px;font-weight:bold;">IQIYI International Terms &amp; Conditions</p>
@@ -134,15 +119,12 @@
               <p style="margin:0;">8. IQIYI may modify or cancel this offer at any time without prior notice.</p>
             </td>
           </tr>
-
-          <!-- Close -->
           <tr>
             <td style="padding:28px 36px 12px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.7;color:#4A2A2A;">
               <p style="margin:0 0 16px;">We are excited to have you as part of our GISAU family and can&rsquo;t wait to see you at our upcoming events. If you have any questions, feel free to reach out anytime.</p>
               <p style="margin:0;">Warm regards,<br />GISAU</p>
             </td>
           </tr>
-
           <tr>
             <td align="center" style="padding:20px 36px 32px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:11px;line-height:1.5;color:#A89890;">
               You&rsquo;re receiving this email because you signed up as a member of GISAU.
@@ -154,3 +136,4 @@
   </table>
 </body>
 </html>
+`;
