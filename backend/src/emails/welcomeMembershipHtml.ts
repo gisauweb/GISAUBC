@@ -1,103 +1,151 @@
 /** Compiled into dist so Vercel does not need a copied .html file. */
+const FONT = "'Helvetica Neue',Helvetica,Arial,sans-serif";
+const CREAM = "#FFFEF9";
+
+const icon = (file: string, size: number): string =>
+  `<img src="{{ASSET_BASE}}/icons/${file}" alt="" width="${size}" height="${size}" style="display:block;width:${size}px;height:${size}px;border:0;outline:none;text-decoration:none;" />`;
+
+const eventRow = (file: string, title: string, desc: string): string => `
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F4F4F4;border-radius:12px;margin-bottom:10px;">
+                <tr>
+                  <td width="52" valign="middle" align="center" style="width:52px;padding:12px 0 12px 8px;">${icon(file, 28)}</td>
+                  <td valign="middle" style="padding:12px 16px 12px 6px;font-family:${FONT};font-size:14px;line-height:1.5;color:#5A4040;">
+                    <strong style="font-size:15px;color:#3A1F1F;">${title}</strong><br />${desc}
+                  </td>
+                </tr>
+              </table>`;
+
+const terms = [
+  "Available only to first-time users.",
+  "Can only be redeemed in Canada.",
+  "Valid exclusively for IQIYI International.",
+  "You are responsible for payment after this free month.",
+  "Valid for one month from the date of issuance; membership starts on activation.",
+  "Once activated, membership is non-transferable.",
+  "You may cancel at any time after redemption.",
+  "IQIYI may modify or cancel this offer at any time without prior notice.",
+]
+  .map((t, i) => `<p style="margin:0 0 3px;">${i + 1}. ${t}</p>`)
+  .join("\n                          ");
+
 export const WELCOME_MEMBERSHIP_HTML = `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="color-scheme" content="light" />
+  <meta name="supported-color-schemes" content="light" />
   <title>Welcome to GISAU</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <![endif]-->
+  <style>
+    @media only screen and (max-width:620px) {
+      .container { width:100% !important; border-radius:0 !important; }
+      .px { padding-left:20px !important; padding-right:20px !important; }
+      .h1 { font-size:24px !important; }
+      .stack { display:block !important; width:100% !important; }
+      .sprite-cell { padding:4px 20px 20px !important; }
+      .sprite { margin:0 auto !important; }
+      .rsvp, .rsvp tr, .rsvp-copy, .rsvp-btn { display:block !important; width:100% !important; }
+      .rsvp-copy { padding:0 0 10px !important; }
+      .qr { width:180px !important; height:180px !important; }
+      .gift-title { font-size:18px !important; }
+      .outer { padding:0 !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:0;background-color:#F3EEE6;-webkit-text-size-adjust:100%;">
-  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F3EEE6;">
+<body style="margin:0;padding:0;background-color:#F5F5F5;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F5F5F5;">
     <tr>
-      <td align="center" style="padding:24px 12px;">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px;width:100%;background-color:#FBF7F0;border-radius:8px;overflow:hidden;">
+      <td align="center" class="outer" style="padding:24px 12px;">
+        <table role="presentation" class="container" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:600px;background-color:${CREAM};border-radius:16px;overflow:hidden;">
+
+          <!-- Header -->
           <tr>
-            <td align="center" bgcolor="#6B1C20" style="background-color:#6B1C20;padding:28px 24px 32px;">
-              <img src="{{LOGO_URL}}" alt="GISAU" width="56" style="display:block;margin:0 auto 14px;height:auto;border:0;" />
-              <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:22px;line-height:1.3;color:#FBF7F0;">
-                Welcome to GISAU!
-              </p>
+            <td align="center" bgcolor="#6B1C20" class="px" style="background-color:#6B1C20;padding:32px 24px 30px;">
+              <img src="{{LOGO_URL}}" alt="GISAU logo" width="84" height="84" style="display:block;width:84px;height:84px;margin:0 auto 16px;border:0;border-radius:50%;outline:none;" />
+              <h1 class="h1" style="margin:0;font-family:${FONT};font-size:28px;line-height:1.25;font-weight:700;color:#FFFFFF;">Welcome to GISAU!</h1>
             </td>
           </tr>
+
+          <!-- Intro -->
           <tr>
-            <td style="padding:28px 36px 8px;background-color:#FBF7F0;">
+            <td bgcolor="${CREAM}" style="background-color:${CREAM};">
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
-                  <td valign="top" style="font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.7;color:#4A2A2A;padding-right:8px;">
-                    <p style="margin:0 0 14px;">Hello {{FIRST_NAME}}!</p>
+                  <td class="stack px" valign="middle" style="padding:28px 12px 16px 32px;font-family:${FONT};font-size:15px;line-height:1.7;color:#3A1F1F;">
+                    <p style="margin:0 0 14px;font-weight:700;">Hello {{FIRST_NAME}}!</p>
                     <p style="margin:0 0 14px;">Thank you so much for becoming a member of GISAU! We are so glad to have you with us.</p>
                     <p style="margin:0;">We aim to foster an inclusive, close knitted, and connected community that exemplifies the signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and non Indonesian students alike.</p>
                   </td>
-                  <td valign="bottom" width="92" style="width:92px;">
-                    <img src="{{MAPLE_URL}}" alt="" width="88" style="display:block;width:88px;height:auto;border:0;" />
+                  <td class="stack sprite-cell" valign="middle" align="center" width="140" style="width:140px;padding:20px 18px 12px 0;">
+                    <img class="sprite" src="{{MAPLE_URL}}" alt="GISAU maple leaf mascot" width="116" height="96" style="display:block;width:116px;height:96px;border:0;outline:none;" />
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
+
+          <!-- Events -->
           <tr>
-            <td style="padding:20px 36px 8px;background-color:#FBF7F0;">
-              <p style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:15px;font-weight:bold;color:#6B1C20;">
-                &#127881; What events do we host?
-              </p>
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F6E4E0;border-radius:10px;margin-bottom:14px;">
+            <td class="px" style="padding:20px 36px 4px;background-color:${CREAM};">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;">
                 <tr>
-                  <td style="padding:14px 16px;">
-                    <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
-                      &#127869; <strong>SOTO</strong>
-                    </p>
-                    <p style="margin:0 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:13px;line-height:1.5;color:#6B4A4A;">
-                      our big welcome bash, games + good vibes + the food we all miss
-                    </p>
-                    <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B1C20;">
-                      Happening Oct 1, sign up now!&nbsp;&nbsp;
-                      <a href="{{SOTO_RSVP_URL}}" style="display:inline-block;background-color:#6B1C20;color:#FBF7F0;text-decoration:none;font-size:12px;padding:4px 14px;border-radius:999px;font-family:Georgia,'Times New Roman',serif;">RSVP</a>
-                    </p>
-                  </td>
+                  <td valign="middle" style="padding-right:8px;">${icon("party.png", 22)}</td>
+                  <td valign="middle" style="font-family:${FONT};font-size:18px;font-weight:700;color:#6B1C20;">What events do we host?</td>
                 </tr>
               </table>
-              <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
-                &#127793; <strong>Liwetan</strong>
-              </p>
-              <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
-                communal feast on banana leaves
-              </p>
-              <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
-                &#127988; <strong>Lathusa</strong>
-              </p>
-              <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
-                celebrating Indonesian culture with the wider UBC community
-              </p>
-              <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
-                &#127836; <strong>Indomie Olympics</strong>
-              </p>
-              <p style="margin:0 0 14px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
-                our flagship noodle showdown, pure chaos and laughter
-              </p>
-              <p style="margin:0 0 4px;font-family:Georgia,'Times New Roman',serif;font-size:15px;color:#4A2A2A;">
-                &#128188; <strong>Mentorship Program</strong>
-              </p>
-              <p style="margin:0 0 8px;padding-left:22px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#6B4A4A;">
-                your stepping stone for career growth
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:16px 36px 8px;background-color:#FBF7F0;">
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#C45C5C;border-radius:12px;">
+
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F8E1E1;border-radius:12px;margin-bottom:10px;">
                 <tr>
-                  <td align="center" style="padding:28px 24px 24px;">
-                    <p style="margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;font-size:18px;color:#FBF7F0;">
-                      A small welcome gift for you! &#127873;
-                    </p>
-                    <p style="margin:0 0 18px;font-family:Georgia,'Times New Roman',serif;font-size:13px;color:#F8E4E4;">
-                      one month free of IQIYI &mdash; scan to redeem!
-                    </p>
-                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF;border-radius:8px;">
+                  <td width="52" valign="middle" align="center" style="width:52px;padding:12px 0 12px 8px;">${icon("soto.png", 28)}</td>
+                  <td valign="middle" style="padding:14px 16px 14px 6px;font-family:${FONT};font-size:14px;line-height:1.5;color:#5A4040;">
+                    <strong style="font-size:15px;color:#3A1F1F;">SOTO</strong><br />
+                    our big welcome bash, games + good vibes + the food we all miss
+                    <table role="presentation" class="rsvp" cellpadding="0" cellspacing="0" border="0" style="margin-top:12px;">
                       <tr>
-                        <td style="padding:10px;">
-                          <img src="{{GIFT_QR_URL}}" alt="Scan to redeem iQIYI" width="168" height="168" style="display:block;width:168px;height:168px;border:0;" />
+                        <td class="rsvp-copy" valign="middle" style="font-family:${FONT};font-size:14px;font-weight:700;color:#B34949;padding-right:12px;padding-bottom:4px;">Happening Oct 1, sign up now!</td>
+                        <td class="rsvp-btn" valign="middle" style="padding-bottom:4px;">
+                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{SOTO_RSVP_URL}}" style="height:32px;v-text-anchor:middle;width:80px;" arcsize="50%" stroke="f" fillcolor="#6B1C20"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">RSVP</center></v:roundrect><![endif]-->
+                          <!--[if !mso]><!-->
+                          <a href="{{SOTO_RSVP_URL}}" target="_blank" style="display:inline-block;background-color:#6B1C20;color:#FFFFFF;text-decoration:none;font-family:${FONT};font-size:13px;font-weight:700;line-height:32px;padding:0 24px;border-radius:999px;">RSVP</a>
+                          <!--<![endif]-->
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+${eventRow("leaf.png", "Liwetan", "communal feast on banana leaves")}
+${eventRow("flag.png", "LaNusa", "celebrating Indonesian culture with the wider UBC community")}
+${eventRow("noodles.png", "Indomie Olympics", "our flagship noodle showdown, pure chaos and laughter")}
+${eventRow("briefcase.png", "Mentorship Program", "your stepping stone for career growth")}
+            </td>
+          </tr>
+
+          <!-- Gift. #A32323D4 on cream; Outlook uses the flattened solid. -->
+          <tr>
+            <td class="px" style="padding:12px 36px 8px;background-color:${CREAM};">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#B34847" style="background-color:#A32323D4;border-radius:16px;">
+                <tr>
+                  <td align="center" style="padding:30px 24px 28px;">
+                    <p class="gift-title" style="margin:0 0 6px;font-family:${FONT};font-size:20px;line-height:1.3;font-weight:700;color:#FFFFFF;">A small welcome gift for you!</p>
+                    <p style="margin:0 0 20px;font-family:${FONT};font-size:14px;color:#F4DADA;">one month free of iQIYI &mdash; scan to redeem!</p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="background-color:#FFFFFF;border-radius:12px;">
+                      <tr>
+                        <td style="padding:12px;">
+                          <img class="qr" src="{{GIFT_QR_URL}}" alt="QR code to redeem one month free of iQIYI" width="200" height="200" style="display:block;width:200px;height:200px;border:0;" />
+                        </td>
+                      </tr>
+                    </table>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:22px;">
+                      <tr><td height="1" style="height:1px;line-height:1px;font-size:1px;background-color:#C47A7A;">&nbsp;</td></tr>
+                      <tr>
+                        <td align="left" style="padding-top:16px;font-family:${FONT};font-size:11px;line-height:1.55;color:#F4DADA;">
+                          <p style="margin:0 0 8px;font-size:12px;font-weight:700;color:#FFFFFF;">iQIYI International Terms &amp; Conditions</p>
+                          ${terms}
                         </td>
                       </tr>
                     </table>
@@ -106,27 +154,16 @@ export const WELCOME_MEMBERSHIP_HTML = `<!DOCTYPE html>
               </table>
             </td>
           </tr>
+
+          <!-- Sign-off -->
           <tr>
-            <td style="padding:18px 36px 8px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:11px;line-height:1.55;color:#6B1C20;">
-              <p style="margin:0 0 8px;font-weight:bold;">IQIYI International Terms &amp; Conditions</p>
-              <p style="margin:0;">1. Available only to first-time users.</p>
-              <p style="margin:0;">2. Can only be redeemed in Canada.</p>
-              <p style="margin:0;">3. Valid exclusively for IQIYI International.</p>
-              <p style="margin:0;">4. You are responsible for payment after this free month.</p>
-              <p style="margin:0;">5. Valid for one month from the date of issuance; membership starts on activation.</p>
-              <p style="margin:0;">6. Once activated, membership is non-transferable.</p>
-              <p style="margin:0;">7. You may cancel at any time after redemption.</p>
-              <p style="margin:0;">8. IQIYI may modify or cancel this offer at any time without prior notice.</p>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:28px 36px 12px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.7;color:#4A2A2A;">
+            <td class="px" style="padding:26px 36px 12px;background-color:${CREAM};font-family:${FONT};font-size:15px;line-height:1.7;color:#3A1F1F;">
               <p style="margin:0 0 16px;">We are excited to have you as part of our GISAU family and can&rsquo;t wait to see you at our upcoming events. If you have any questions, feel free to reach out anytime.</p>
-              <p style="margin:0;">Warm regards,<br />GISAU</p>
+              <p style="margin:0;">Warm regards,<br /><strong>GISAU</strong></p>
             </td>
           </tr>
           <tr>
-            <td align="center" style="padding:20px 36px 32px;background-color:#FBF7F0;font-family:Georgia,'Times New Roman',serif;font-size:11px;line-height:1.5;color:#A89890;">
+            <td align="center" class="px" style="padding:16px 36px 32px;background-color:${CREAM};font-family:${FONT};font-size:11px;line-height:1.5;color:#9A9A9A;">
               You&rsquo;re receiving this email because you signed up as a member of GISAU.
             </td>
           </tr>

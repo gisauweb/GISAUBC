@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
     "build": "tsc",
+    "email:preview": "tsx scripts/previewWelcomeEmail.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
