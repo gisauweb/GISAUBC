@@ -7,6 +7,7 @@ import { getCurrentAcademicYear } from "./auth.js";
 /**
  * Checks whether a given student ID exists in profiles OR in existing_members
  * for the current academic year.
+ * Deprecated for membership signup (form no longer uses this). Left for Qualtrics / admin tooling.
  */
 export const check_student_id = async (studentId: string): Promise<boolean> => {
   const trimmed = studentId.trim();
@@ -88,7 +89,7 @@ export type MemberUpdateInput = Partial<{
   role: "member" | "admin";
   paymentMethod: string;
   hasPayed: boolean;
-  paymentStatus: "unpaid" | "paid_card" | "paid_cash" | "paid_existing_member" | "refunded";
+  paymentStatus: "unpaid" | "paid_card" | "paid_cash" | "paid_interac" | "paid_existing_member" | "refunded";
   totalPrice: string;
 }>;
 

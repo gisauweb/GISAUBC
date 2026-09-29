@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import * as AuthService from "../services/auth.js";
 import * as PaymentService from "../services/payment.js";
 
-const VALID_PAYMENT_METHODS = new Set(["card", "cash", "interac", "payed"]);
+const VALID_PAYMENT_METHODS = new Set(["card", "cash", "interac"]);
 
 export async function me(req: Request, res: Response) {
 	const userId = req.user!.sub;
@@ -71,7 +71,13 @@ export async function register(req: Request, res: Response) {
 	const totalPrice = String(expectedAmountCents / 100);
 
 	let hasPayed = false;
-	let resolvedPaymentStatus: "unpaid" | "paid_card" | "paid_cash" | "paid_existing_member" | "refunded" = "unpaid";
+	let resolvedPaymentStatus:
+		| "unpaid"
+		| "paid_card"
+		| "paid_cash"
+		| "paid_interac"
+		| "paid_existing_member"
+		| "refunded" = "unpaid";
 
 	if (paymentMethod === "card") {
 		if (!paymentIntentId) {
@@ -104,7 +110,8 @@ export async function register(req: Request, res: Response) {
 	} else if (paymentMethod === "cash") {
 		resolvedPaymentStatus = "unpaid"; // cash collected later by admin
 	} else if (paymentMethod === "interac") {
-		resolvedPaymentStatus = "unpaid"; // VP verifies screenshot and manually marks paid
+		hasPayed = true;
+		resolvedPaymentStatus = "paid_interac";
 		// Reject proof URLs that don't originate from our own Supabase storage bucket
 		if (paymentProofUrl) {
 			// SUPABASE_URL includes /auth/v1 — extract just the base origin (https://xxx.supabase.co)
@@ -114,9 +121,6 @@ export async function register(req: Request, res: Response) {
 				return res.status(400).json({ error: "Invalid proof of payment URL" });
 			}
 		}
-	} else if (paymentMethod === "payed") {
-		hasPayed = true;
-		resolvedPaymentStatus = "paid_existing_member";
 	}
 
 	try {
@@ -143,12 +147,6 @@ export async function register(req: Request, res: Response) {
 	} catch (e: any) {
 		if (e.message === "ALREADY_EXISTS") {
 			return res.status(409).json({ error: "Already registered" });
-		}
-		if (e.message === "NOT_EXISTING_MEMBER") {
-			return res.status(403).json({ error: "Student ID not found in existing members list" });
-		}
-		if (e.message === "MUST_USE_PAYED") {
-			return res.status(403).json({ error: "Your student ID is registered as an existing member. Please select \"I am a member\" as your payment method." });
 		}
 		if (e?.code === "23505") {
 			return res.status(409).json({ error: "Student ID or Email already in use" });

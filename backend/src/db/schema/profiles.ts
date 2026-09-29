@@ -65,6 +65,7 @@ export const profiles = pgTable(
   ]
 );
 
+/** @deprecated Signup no longer consults this allowlist. Table kept in place; do not drop. */
 export const existingMembers = pgTable("existing_members", {
   id: serial("id").primaryKey(),
   studentId: text("student_id").notNull().unique(),

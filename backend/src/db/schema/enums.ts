@@ -8,6 +8,7 @@ export const paymentStatus = pgEnum("payment_status", [
   "unpaid",
   "paid_card",
   "paid_cash",
+  "paid_interac",
   "paid_existing_member",
   "refunded",
 ]);

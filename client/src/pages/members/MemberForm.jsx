@@ -1,4 +1,4 @@
-import { Alert, Box, Snackbar } from '@mui/material';
+import { Box } from '@mui/material';
 import {
 	AutoAwesome,
 	Celebration,
@@ -45,9 +45,6 @@ export default function MemberForm({ onRegistered }) {
 	const [proofUploading, setProofUploading] = useState(false);
 	// Cached URL from a successful upload — reused on retry so the same file isn't re-uploaded
 	const [uploadedProofUrl, setUploadedProofUrl] = useState(null);
-	const [isExistingMember, setIsExistingMember] = useState(null);
-	const [checkingMemberId, setCheckingMemberId] = useState(false);
-	const [memberToastOpen, setMemberToastOpen] = useState(false);
 	const [merchItems, setMerchItems] = useState([]);
 	const [merchLoading, setMerchLoading] = useState(true);
 
@@ -157,37 +154,10 @@ export default function MemberForm({ onRegistered }) {
 		return total;
 	};
 
-	const handleStudentIdBlur = async (e) => {
-		const id = e.target.value.trim();
-		if (!id) return;
-		setCheckingMemberId(true);
-		try {
-			const res = await fetch(
-				`${import.meta.env.VITE_API_BASE_URL}/members/check?studentId=${encodeURIComponent(id)}`,
-			);
-			if (res.ok) {
-				const { isEligible } = await res.json();
-				setIsExistingMember(isEligible);
-				if (isEligible) {
-					setValue('paymentMethod', 'payed');
-					setMemberToastOpen(true);
-			} else {
-				// Reset so a previously-eligible student ID doesn't carry over
-				// when the user goes back and enters a different student number.
-				setValue('paymentMethod', 'interac');
-			}
-			}
-		} catch {
-			// silently fail — don't block the user
-		} finally {
-			setCheckingMemberId(false);
-		}
-	};
-
 	const goBack = () => {
 		setApiError(null);
 		if (step === 3) {
-			setStep(isExistingMember ? 1 : 2);
+			setStep(2);
 		} else if (step === 2) {
 			setStep(1);
 		}
@@ -195,7 +165,7 @@ export default function MemberForm({ onRegistered }) {
 
 	const onSubmit = async (data) => {
 		if (step < 3) {
-			setStep(step === 1 && isExistingMember ? 3 : step + 1);
+			setStep(step + 1);
 		} else {
 			if (data.paymentMethod === 'card' && !paymentIntentId) {
 				setApiError('Please complete the card payment before submitting.');
@@ -304,7 +274,7 @@ export default function MemberForm({ onRegistered }) {
 					<div
 						className='flex flex-col items-center relative z-10 cursor-pointer'
 						onClick={() => {
-							if (num < step && !(isExistingMember && num === 2)) {
+							if (num < step) {
 								setApiError(null);
 								setStep(num);
 							}
@@ -325,7 +295,7 @@ export default function MemberForm({ onRegistered }) {
 						<span className='text-[10px] md:text-xs mt-2 absolute top-10 md:top-12 text-gray-600 font-medium w-20 text-center leading-tight'>
 							{num === 1 && 'Personal Information'}
 							{num === 2 && 'Membership Pricing'}
-							{num === 3 && (isExistingMember ? 'Confirm' : 'Payment')}
+							{num === 3 && 'Payment'}
 						</span>
 					</div>
 					{num < 3 && (
@@ -458,7 +428,6 @@ export default function MemberForm({ onRegistered }) {
 					<label className='block text-sm font-medium text-gray-700 mb-1'>Student Number *</label>
 					<input
 						{...register('studentId', { required: true })}
-						onBlur={handleStudentIdBlur}
 						className='w-full p-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-primary outline-none'
 						placeholder=''
 					/>
@@ -534,10 +503,9 @@ export default function MemberForm({ onRegistered }) {
 			<div className='flex justify-center mt-8'>
 				<button
 					onClick={handleSubmit(onSubmit)}
-					disabled={checkingMemberId}
-					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors disabled:opacity-60 disabled:cursor-not-allowed'
+					className='bg-primary text-white px-8 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
 				>
-					{checkingMemberId ? 'Checking...' : 'Continue'}
+					Continue
 				</button>
 			</div>
 		</StepContainer>
@@ -622,36 +590,6 @@ export default function MemberForm({ onRegistered }) {
 	};
 
 	const renderStep3 = () => {
-		if (isExistingMember) {
-			return (
-				<StepContainer>
-					<StepHeading>Confirm Registration</StepHeading>
-
-					<div className='space-y-3 mb-10'>
-						<p className='text-gray-700'>
-							Your <span className='font-semibold'>2025/26 membership</span> is already on file — no
-							payment needed.
-						</p>
-						<p className='text-gray-500 text-sm'>
-							Hit the button below to complete your registration and we&apos;ll have your details in our
-							system.
-						</p>
-					</div>
-
-					<div className='flex justify-center'>
-						<button
-							onClick={handleSubmit(onSubmit)}
-							className='bg-primary text-white px-10 py-2 rounded-full font-bold hover:bg-[#5a1e1e] transition-colors'
-							disabled={loading}
-						>
-							{loading ? 'Submitting...' : 'Complete Registration'}
-						</button>
-					</div>
-					{apiError && <p className='text-red-500 text-sm mt-6 text-center'>{apiError}</p>}
-				</StepContainer>
-			);
-		}
-
 		const selectedPaymentMethod = watch('paymentMethod');
 
 		return (
@@ -845,23 +783,6 @@ export default function MemberForm({ onRegistered }) {
 				className='absolute bottom-0 left-0 opacity-100 pointer-events-none w-[40%] h-[40%] bg-contain bg-no-repeat bg-top-right z-0'
 				style={{ backgroundImage: `url(/form/batik.png)`, transform: 'rotate(180deg)' }}
 			></div>
-			<Snackbar
-				open={memberToastOpen}
-				autoHideDuration={6000}
-				onClose={(_, reason) => {
-					if (reason !== 'clickaway') setMemberToastOpen(false);
-				}}
-				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-			>
-				<Alert
-					onClose={() => setMemberToastOpen(false)}
-					severity='success'
-					variant='filled'
-					className='w-full text-white!'
-				>
-					You&apos;re recognized as a 2025/26 GISAU member — no payment required!
-				</Alert>
-			</Snackbar>
 		</div>
 	);
 }
