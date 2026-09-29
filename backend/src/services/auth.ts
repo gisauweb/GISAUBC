@@ -206,12 +206,14 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
     return newProfile;
   });
 
-  void sendWelcomeEmail({
-    to: newProfile.email,
-    firstName: newProfile.firstName,
-  }).catch((err) => {
+  try {
+    await sendWelcomeEmail({
+      to: newProfile.email,
+      firstName: newProfile.firstName,
+    });
+  } catch (err) {
     console.error("Welcome email failed", err);
-  });
+  }
 
   return newProfile;
 };
