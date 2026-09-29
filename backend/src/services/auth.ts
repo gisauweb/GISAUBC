@@ -2,11 +2,11 @@ import type { InferSelectModel } from "drizzle-orm";
 import { and, eq, inArray } from "drizzle-orm";
 import db from "../db/database.js";
 import {
-  existingMembers,
   memberMerch,
   merch as merchTable,
   profiles,
 } from "../db/schema/index.js";
+import { sendWelcomeEmail } from "./mail.js";
 
 const MEMBERSHIP_PRICES: Record<string, number> = {
   full: 9,
@@ -68,6 +68,7 @@ export type RegisterInput = {
     | "unpaid"
     | "paid_card"
     | "paid_cash"
+    | "paid_interac"
     | "paid_existing_member"
     | "refunded";
   paymentIntentId?: string;
@@ -148,7 +149,7 @@ export const get_profile = async (userId: string): Promise<Profile | null> => {
 };
 
 export const register_user = async (input: RegisterInput): Promise<Profile> => {
-  return await db.transaction(async (tx) => {
+  const newProfile = await db.transaction(async (tx) => {
     const currentYear = getCurrentAcademicYear();
 
     // Block duplicate registration for the same user in the same academic year
@@ -167,25 +168,7 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
       throw new Error("ALREADY_EXISTS");
     }
 
-    const existingMember = await tx
-      .select({ id: existingMembers.id })
-      .from(existingMembers)
-      .where(
-        and(
-          eq(existingMembers.studentId, input.studentId.trim()),
-          eq(existingMembers.academicYear, currentYear),
-        )
-      )
-      .limit(1);
-
-    if (input.paymentMethod === "payed") {
-      if (!existingMember.length) {
-        throw new Error("NOT_EXISTING_MEMBER");
-      }
-    } else if (existingMember.length) {
-      // card or cash: block if the student ID is in the existing members table
-      throw new Error("MUST_USE_PAYED");
-    }
+    // existing_members allowlist is deprecated — new signups must pay (card / cash / interac).
 
     const [newProfile] = await tx
       .insert(profiles)
@@ -222,4 +205,13 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
 
     return newProfile;
   });
+
+  void sendWelcomeEmail({
+    to: newProfile.email,
+    firstName: newProfile.firstName,
+  }).catch((err) => {
+    console.error("Welcome email failed", err);
+  });
+
+  return newProfile;
 };
