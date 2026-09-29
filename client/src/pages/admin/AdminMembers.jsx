@@ -2,7 +2,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { useEffect, useState } from 'react';
 
-const PAYMENT_STATUSES = ['unpaid', 'paid_card', 'paid_cash', 'paid_existing_member', 'refunded'];
+const PAYMENT_STATUSES = ['unpaid', 'paid_card', 'paid_cash', 'paid_interac', 'paid_existing_member', 'refunded'];
 const MEMBERSHIP_TYPES = ['full', 'half'];
 const ROLES = ['member', 'admin'];
 const PAYMENT_METHODS = ['card', 'cash', 'interac', 'payed'];
@@ -12,6 +12,7 @@ const STATUS_LABELS = {
 	unpaid: 'Unpaid',
 	paid_card: 'Paid (Card)',
 	paid_cash: 'Paid (Cash)',
+	paid_interac: 'Paid (Interac)',
 	paid_existing_member: 'Existing Member',
 	refunded: 'Refunded',
 };
@@ -30,6 +31,7 @@ function StatusBadge({ status }) {
 		unpaid: 'bg-red-100 text-red-700',
 		paid_card: 'bg-green-100 text-green-700',
 		paid_cash: 'bg-green-100 text-green-700',
+		paid_interac: 'bg-green-100 text-green-700',
 		paid_existing_member: 'bg-blue-100 text-blue-700',
 		refunded: 'bg-gray-100 text-gray-600',
 	};

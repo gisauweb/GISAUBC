@@ -7,6 +7,7 @@ const router = express.Router();
 /**
  * GET /members/check?studentId=<id>
  * Qualtrics integration: returns { isEligible: true | false } for a given student ID.
+ * Not used by membership signup (existing_members allowlist is deprecated).
  * Requires auth to prevent enumeration of student IDs.
  */
 router.get("/check", requireAuth, MemberController.checkStudentId);

@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec tsx src/app.ts",
-    "build": "tsc",
+    "build": "tsc && node -e \"const fs=require('fs');fs.mkdirSync('dist/emails',{recursive:true});fs.copyFileSync('src/emails/welcome-membership.html','dist/emails/welcome-membership.html')\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -21,6 +21,7 @@
     "jsonwebtoken": "^9.0.3",
     "pg-promise": "^12.2.0",
     "postgres": "^3.4.7",
+    "resend": "^6.30.0",
     "stripe": "^20.4.0"
   },
   "devDependencies": {
