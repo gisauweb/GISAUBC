@@ -42,6 +42,7 @@ export const sendWelcomeEmail = async (input: {
 }): Promise<void> => {
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.MAIL_FROM;
+  const replyTo = process.env.MAIL_REPLY_TO || "contact.gisau@gmail.com";
 
   if (!apiKey || !from) {
     console.warn(
@@ -75,6 +76,7 @@ export const sendWelcomeEmail = async (input: {
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from,
+    replyTo,
     to: input.to,
     subject: "Welcome to GISAU!",
     html,
