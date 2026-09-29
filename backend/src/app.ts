@@ -14,6 +14,10 @@ import registration from "./api/registration.route.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Vercel (and any reverse proxy) sets X-Forwarded-For. Required so
+// express-rate-limit does not throw ERR_ERL_UNEXPECTED_X_FORWARDED_FOR.
+app.set("trust proxy", 1);
+
 // ── Rate limiters ────────────────────────────────────────────────────────────
 
 // General: 120 requests per minute per IP (covers public browsing)
