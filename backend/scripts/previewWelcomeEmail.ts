@@ -37,7 +37,6 @@ const html = WELCOME_MEMBERSHIP_HTML.replace(
   .replaceAll("{{LOGO_URL}}", "gisau-logo.png")
   .replaceAll("{{MAPLE_URL}}", "maple-leaf.png")
   .replaceAll("{{GIFT_QR_URL}}", "iqiyi-qr.png")
-  .replaceAll("{{SOTO_RSVP_URL}}", "https://gisaubc.com/events")
   .replaceAll("{{APP_URL}}", "https://gisaubc.com")
   .replaceAll("{{ASSET_BASE}}", ".");
 

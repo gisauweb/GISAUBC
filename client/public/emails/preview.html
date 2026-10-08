@@ -20,11 +20,9 @@
       .container { width:100% !important; border-radius:0 !important; }
       .px { padding-left:20px !important; padding-right:20px !important; }
       .h1 { font-size:24px !important; }
-      .stack { display:block !important; width:100% !important; }
+      .stack { display:block !important; width:100% !important; max-width:100% !important; }
       .sprite-cell { padding:4px 20px 20px !important; }
       .sprite { margin:0 auto !important; }
-      .rsvp, .rsvp tr, .rsvp-copy, .rsvp-btn { display:block !important; width:100% !important; }
-      .rsvp-copy { padding:0 0 10px !important; }
       .qr { width:180px !important; height:180px !important; }
       .gift-title { font-size:18px !important; }
       .outer { padding:0 !important; }
@@ -35,7 +33,8 @@
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F5F5F5;">
     <tr>
       <td align="center" class="outer" style="padding:24px 12px;">
-        <table role="presentation" class="container" cellpadding="0" cellspacing="0" border="0" width="600" style="width:600px;max-width:600px;background-color:#FFFEF9;border-radius:16px;overflow:hidden;">
+        <!--[if mso]><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" align="center"><tr><td><![endif]-->
+        <table role="presentation" class="container" cellpadding="0" cellspacing="0" border="0" width="100%" style="width:100%;max-width:600px;background-color:#FFFEF9;border-radius:16px;">
 
           <!-- Header -->
           <tr>
@@ -45,21 +44,32 @@
             </td>
           </tr>
 
-          <!-- Intro -->
+          <!-- Intro. Columns are inline-blocks so the mascot wraps under the text on a phone without a media query. -->
           <tr>
-            <td bgcolor="#FFFEF9" style="background-color:#FFFEF9;">
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
-                <tr>
-                  <td class="stack px" valign="middle" style="padding:28px 12px 16px 32px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#3A1F1F;">
-                    <p style="margin:0 0 14px;font-weight:700;">Hello Gaida!</p>
-                    <p style="margin:0 0 14px;">Thank you so much for becoming a member of GISAU! We are so glad to have you with us.</p>
-                    <p style="margin:0;">We aim to foster an inclusive, close knitted, and connected community that exemplifies the signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and non Indonesian students alike.</p>
-                  </td>
-                  <td class="stack sprite-cell" valign="middle" align="center" width="140" style="width:140px;padding:20px 18px 12px 0;">
-                    <img class="sprite" src="maple-leaf.png" alt="GISAU maple leaf mascot" width="116" height="96" style="display:block;width:116px;height:96px;border:0;outline:none;" />
-                  </td>
-                </tr>
-              </table>
+            <td bgcolor="#FFFEF9" align="center" style="background-color:#FFFEF9;font-size:0;line-height:0;">
+              <!--[if mso]><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td width="440" valign="middle"><![endif]-->
+              <div class="stack" style="display:inline-block;width:100%;max-width:440px;vertical-align:middle;font-size:15px;line-height:1.7;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td class="px" style="padding:28px 16px 16px 32px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.7;color:#3A1F1F;word-wrap:break-word;overflow-wrap:break-word;">
+                      <p style="margin:0 0 14px;font-weight:700;">Hello Gaida!</p>
+                      <p style="margin:0 0 14px;">Thank you so much for becoming a member of GISAU! We are so glad to have you with us.</p>
+                      <p style="margin:0;">We aim to foster an inclusive, close knitted, and connected community that exemplifies the signature Indonesian warmth and welcomes the diverse UBC society of Indonesian and non Indonesian students alike.</p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso]></td><td width="140" valign="middle"><![endif]-->
+              <div class="stack sprite-cell" style="display:inline-block;width:100%;max-width:140px;vertical-align:middle;font-size:15px;line-height:normal;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td align="center" style="padding:12px 18px 16px 8px;">
+                      <img class="sprite" src="maple-leaf.png" alt="GISAU maple leaf mascot" width="116" height="96" style="display:block;width:116px;max-width:100%;height:auto;border:0;outline:none;" />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!--[if mso]></td></tr></table><![endif]-->
             </td>
           </tr>
 
@@ -73,23 +83,12 @@
                 </tr>
               </table>
 
-              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F8E1E1;border-radius:12px;margin-bottom:10px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#F4F4F4;border-radius:12px;margin-bottom:10px;">
                 <tr>
                   <td width="52" valign="middle" align="center" style="width:52px;padding:12px 0 12px 8px;"><img src="./icons/soto.png" alt="" width="28" height="28" style="display:block;width:28px;height:28px;border:0;outline:none;text-decoration:none;" /></td>
                   <td valign="middle" style="padding:14px 16px 14px 6px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.5;color:#5A4040;">
                     <strong style="font-size:15px;color:#3A1F1F;">SOTO</strong><br />
                     our big welcome bash, games + good vibes + the food we all miss
-                    <table role="presentation" class="rsvp" cellpadding="0" cellspacing="0" border="0" style="margin-top:12px;">
-                      <tr>
-                        <td class="rsvp-copy" valign="middle" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;font-weight:700;color:#B34949;padding-right:12px;padding-bottom:4px;">Happening Oct 1, sign up now!</td>
-                        <td class="rsvp-btn" valign="middle" style="padding-bottom:4px;">
-                          <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://gisaubc.com/events" style="height:32px;v-text-anchor:middle;width:80px;" arcsize="50%" stroke="f" fillcolor="#6B1C20"><w:anchorlock/><center style="color:#ffffff;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">RSVP</center></v:roundrect><![endif]-->
-                          <!--[if !mso]><!-->
-                          <a href="https://gisaubc.com/events" target="_blank" style="display:inline-block;background-color:#6B1C20;color:#FFFFFF;text-decoration:none;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;line-height:32px;padding:0 24px;border-radius:999px;">RSVP</a>
-                          <!--<![endif]-->
-                        </td>
-                      </tr>
-                    </table>
                   </td>
                 </tr>
               </table>
@@ -182,6 +181,7 @@
             </td>
           </tr>
         </table>
+        <!--[if mso]></td></tr></table><![endif]-->
       </td>
     </tr>
   </table>
