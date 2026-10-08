@@ -34,7 +34,12 @@ export const posts = pgTable("posts", {
     .defaultNow()
     .notNull(),
   registrationLink: varchar("registration_link", { length: 512 }),
+  registrationButtonText: varchar("registration_button_text", { length: 255 })
+    .default("Register Here"),
   infoLink: varchar("info_link", { length: 512 }),
+  infoButtonText: varchar("info_button_text", { length: 255 }).default(
+    "Hiring Package"
+  ),
   galleryLink: varchar("gallery_link", { length: 512 }),
   status: postStatus().default("draft").notNull(),
   priceMember: numeric("price_member", { precision: 10, scale: 2 }),
