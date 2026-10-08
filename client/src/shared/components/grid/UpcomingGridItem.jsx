@@ -75,13 +75,13 @@ export default function UpcomingGridItem({ item }) {
 								</div>
 							) : (
 								<Button
-									text='Register Here'
+									text={item.registrationButtonText || 'Register Here'}
 									handleClickButton={() => handleRegisterButton(item.registrationLink)}
 								/>
 							)}
 							{item.infoLink && (
 								<Button
-									text='Hiring Package'
+									text={item.infoButtonText || 'Info Package'}
 									background='transparentBg'
 									handleClickButton={() => handleRegisterButton(item.infoLink)}
 								/>
