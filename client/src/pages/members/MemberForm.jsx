@@ -66,6 +66,7 @@ export default function MemberForm({ onRegistered }) {
 			membershipType: 'full',
 			merch: [],
 			paymentMethod: 'interac',
+			marketingOptIn: false,
 		},
 	});
 
@@ -499,6 +500,17 @@ export default function MemberForm({ onRegistered }) {
 					))}
 				</div>
 			</div>
+
+			<label className='flex items-start space-x-3 cursor-pointer'>
+				<input
+					type='checkbox'
+					{...register('marketingOptIn')}
+					className='accent-primary w-5 h-5 mt-0.5 shrink-0'
+				/>
+				<span className='text-sm text-gray-700'>
+					Send me GISAU news and promotions. You can unsubscribe at any time.
+				</span>
+			</label>
 
 			<div className='flex justify-center mt-8'>
 				<button
