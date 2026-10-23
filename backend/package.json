@@ -8,6 +8,7 @@
     "dev": "nodemon --exec tsx src/app.ts",
     "build": "tsc",
     "email:preview": "tsx scripts/previewWelcomeEmail.ts",
+    "audience:backfill": "tsx scripts/backfillAudience.ts",
     "test": "node --import tsx --test \"src/**/*.test.ts\""
   },
   "author": "",
