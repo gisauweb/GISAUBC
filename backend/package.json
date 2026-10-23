@@ -8,7 +8,7 @@
     "dev": "nodemon --exec tsx src/app.ts",
     "build": "tsc",
     "email:preview": "tsx scripts/previewWelcomeEmail.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --import tsx --test \"src/**/*.test.ts\""
   },
   "author": "",
   "license": "ISC",
