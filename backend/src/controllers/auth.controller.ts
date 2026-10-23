@@ -1,5 +1,6 @@
 import type { Request, Response } from "express";
 import * as AuthService from "../services/auth.js";
+import { parseMarketingOptIn } from "../services/contacts.js";
 import * as PaymentService from "../services/payment.js";
 
 const VALID_PAYMENT_METHODS = new Set(["card", "cash", "interac"]);
@@ -50,6 +51,7 @@ export async function register(req: Request, res: Response) {
 		merch,
 		paymentIntentId,
 		paymentProofUrl,
+		marketingOptIn,
 	} = req.body;
 
 	const trimmedStudentId = typeof studentId === "string" ? studentId.trim() : studentId;
@@ -141,6 +143,7 @@ export async function register(req: Request, res: Response) {
 			paymentProofUrl: paymentMethod === "interac" ? paymentProofUrl : undefined,
 			totalPrice,
 			merch: merchIds,
+			marketingOptIn: parseMarketingOptIn(marketingOptIn),
 		});
 
 		res.json({ registered: true, profile });
