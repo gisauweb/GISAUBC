@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { afterEach, describe, it, mock } from "node:test";
 import type { Resend } from "resend";
 import {
+  backfillContact,
   dedupeByEmail,
   ensureContact,
   getContactDeps,
@@ -124,6 +125,48 @@ describe("ensureContact", () => {
     const { deps, calls } = makeFake({ get: err("internal_server_error") });
     await assert.rejects(ensureContact(input, deps));
     assert.deepEqual(names(calls), ["get"]);
+  });
+});
+
+describe("emails in URL paths", () => {
+  const odd = { ...input, email: "a/b@x.ca" };
+
+  it("encodes characters that would change the URL but leaves @ alone", async () => {
+    const { deps, calls } = makeFake();
+    await subscribeContact(odd, deps);
+    assert.equal(calls[0]?.arg.email, "a%2Fb@x.ca");
+    assert.equal(calls[1]?.arg.email, "a%2Fb@x.ca");
+  });
+
+  it("encodes the get lookup too", async () => {
+    const { deps, calls } = makeFake();
+    await ensureContact(odd, deps);
+    assert.equal(calls[0]?.arg, "a%2Fb@x.ca");
+  });
+
+  it("sends the real address in the create body", async () => {
+    const { deps, calls } = makeFake({ update: err("not_found") });
+    await subscribeContact(odd, deps);
+    assert.equal(calls[1]?.arg.email, "a/b@x.ca");
+  });
+});
+
+describe("backfillContact", () => {
+  it("re-subscribes a member who ticked the box, even if they had unsubscribed", async () => {
+    const { deps, calls } = makeFake();
+    assert.equal(await backfillContact({ ...input, marketingOptIn: true }, deps), "subscribed");
+    assert.deepEqual(names(calls), ["update", "add"]);
+  });
+
+  it("only ensures a member who never ticked, leaving an unsubscribed contact alone", async () => {
+    const { deps, calls } = makeFake({ get: { data: { unsubscribed: true }, error: null } });
+    assert.equal(await backfillContact({ ...input, marketingOptIn: false }, deps), "existing");
+    assert.deepEqual(names(calls), ["get", "add"]);
+  });
+
+  it("creates a missing contact for a member who never ticked", async () => {
+    const { deps } = makeFake({ get: err("not_found") });
+    assert.equal(await backfillContact({ ...input, marketingOptIn: false }, deps), "created");
   });
 });
 

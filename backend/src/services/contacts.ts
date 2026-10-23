@@ -30,6 +30,11 @@ export const getContactDeps = (): ContactDeps | null => {
   return { resend: new Resend(apiKey), segmentId };
 };
 
+// The SDK puts the email straight into the URL path. Encode anything that would change the
+// path (/ ? # %) but keep @, so ordinary addresses reach Resend exactly as before.
+const pathEmail = (email: string): string =>
+  encodeURIComponent(email).replaceAll("%40", "@");
+
 type ResendError = { name: string; message: string; statusCode: number | null };
 
 const failure = (what: string, e: ResendError): Error =>
@@ -52,7 +57,7 @@ const createContact = async (input: ContactInput, email: string, deps: ContactDe
 
 const addToSegment = async (email: string, deps: ContactDeps) => {
   const { error } = await deps.resend.contacts.segments.add({
-    email,
+    email: pathEmail(email),
     segmentId: deps.segmentId,
   });
   if (error && !isAlreadyInSegment(error)) throw failure("segments.add", error);
@@ -65,7 +70,7 @@ export const subscribeContact = async (
 ): Promise<void> => {
   const email = normalizeEmail(input.email);
   const { error } = await deps.resend.contacts.update({
-    email,
+    email: pathEmail(email),
     unsubscribed: false,
     firstName: input.firstName,
     lastName: input.lastName,
@@ -82,7 +87,7 @@ export const ensureContact = async (
   deps: ContactDeps
 ): Promise<"created" | "existing"> => {
   const email = normalizeEmail(input.email);
-  const { error } = await deps.resend.contacts.get(email);
+  const { error } = await deps.resend.contacts.get(pathEmail(email));
   if (error) {
     if (error.name !== "not_found") throw failure("get", error);
     await createContact(input, email, deps);
@@ -90,6 +95,21 @@ export const ensureContact = async (
   }
   await addToSegment(email, deps);
   return "existing";
+};
+
+/**
+ * Backfill row: someone who ticked the box is subscribed (a tick overrides an old unsubscribe);
+ * everyone else is only ensured, so an existing unsubscribe is never undone.
+ */
+export const backfillContact = async (
+  member: ContactInput & { marketingOptIn: boolean },
+  deps: ContactDeps
+): Promise<"subscribed" | "created" | "existing"> => {
+  if (member.marketingOptIn) {
+    await subscribeContact(member, deps);
+    return "subscribed";
+  }
+  return ensureContact(member, deps);
 };
 
 /** Called at signup. Never throws: a Resend problem must not block registration. */
