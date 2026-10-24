@@ -6,6 +6,7 @@ import {
   merch as merchTable,
   profiles,
 } from "../db/schema/index.js";
+import { syncOptIn } from "./contacts.js";
 import { sendWelcomeEmail } from "./mail.js";
 
 const MEMBERSHIP_PRICES: Record<string, number> = {
@@ -75,6 +76,7 @@ export type RegisterInput = {
   paymentProofUrl?: string;
   totalPrice: string;
   merch?: string[];
+  marketingOptIn?: boolean;
 };
 
 /**
@@ -189,6 +191,8 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
         paymentIntentId: input.paymentIntentId,
         paymentProofUrl: input.paymentProofUrl,
         totalPrice: input.totalPrice,
+        marketingOptIn: input.marketingOptIn ?? false,
+        marketingOptInAt: input.marketingOptIn ? new Date().toISOString() : null,
         role: "member",
       })
       .returning();
@@ -214,6 +218,14 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
   } catch (err) {
     console.error("Welcome email failed", err);
   }
+
+  // Never throws; only an explicit signup tick reaches Resend.
+  await syncOptIn({
+    email: newProfile.email,
+    firstName: newProfile.firstName,
+    lastName: newProfile.lastName,
+    marketingOptIn: newProfile.marketingOptIn,
+  });
 
   return newProfile;
 };
