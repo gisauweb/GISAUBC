@@ -43,6 +43,13 @@ export const profiles = pgTable(
       .default("0")
       .notNull(),
 
+    // Records the explicit signup tick; Resend decides who actually gets broadcasts.
+    marketingOptIn: boolean("marketing_opt_in").notNull().default(false),
+    marketingOptInAt: timestamp("marketing_opt_in_at", {
+      withTimezone: true,
+      mode: "string",
+    }),
+
     createdAt: timestamp("created_at", { withTimezone: true, mode: "string" })
       .defaultNow()
       .notNull(),
