@@ -219,7 +219,7 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
     console.error("Welcome email failed", err);
   }
 
-  // Never throws; only an explicit signup tick reaches Resend.
+  // Never throws. A tick subscribes; no tick unsubscribes an existing contact but never creates one.
   await syncOptIn({
     email: newProfile.email,
     firstName: newProfile.firstName,
