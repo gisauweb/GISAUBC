@@ -254,10 +254,17 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 			</div>
 
 			{/* Footer */}
-			<div className='px-5 py-4 border-t border-gray-100 shrink-0 flex items-center justify-between'>
+			<div className='px-5 py-4 border-t border-gray-100 shrink-0 flex items-center justify-end gap-3'>
 				{error && <p className='text-red-500 text-sm'>{error}</p>}
 				{saved && <p className='text-green-600 text-sm'>Saved ✓</p>}
 				{!error && !saved && <div />}
+				<button
+					onClick={onClose}
+					disabled={saving}
+					className='px-4 py-2 text-sm border border-gray-200 rounded-lg hover:bg-gray-50 disabled:opacity-50'
+				>
+					Close
+				</button>
 				<button
 					onClick={handleSave}
 					disabled={saving}
