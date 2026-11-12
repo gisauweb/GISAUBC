@@ -171,10 +171,16 @@ describe("backfillContact", () => {
 });
 
 describe("syncOptIn", () => {
-  it("makes no Resend call when the box was not ticked", async () => {
+  it("unsubscribes an existing contact when the box was not ticked", async () => {
     const { deps, calls } = makeFake();
     await syncOptIn({ ...input, marketingOptIn: false }, deps);
-    assert.deepEqual(calls, []);
+    assert.deepEqual(calls, [{ fn: "update", arg: { email: "a@x.ca", unsubscribed: true } }]);
+  });
+
+  it("creates nothing when the box was not ticked and the contact does not exist", async () => {
+    const { deps, calls } = makeFake({ update: err("not_found") });
+    await syncOptIn({ ...input, marketingOptIn: false }, deps);
+    assert.deepEqual(names(calls), ["update"]);
   });
 
   it("subscribes when the box was ticked", async () => {

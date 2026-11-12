@@ -81,6 +81,15 @@ export const subscribeContact = async (
   await createContact(input, email, deps);
 };
 
+/** Signup without the tick: the latest choice wins. Never creates a contact; a missing one is fine. */
+export const unsubscribeContact = async (email: string, deps: ContactDeps): Promise<void> => {
+  const { error } = await deps.resend.contacts.update({
+    email: pathEmail(normalizeEmail(email)),
+    unsubscribed: true,
+  });
+  if (error && error.name !== "not_found") throw failure("update", error);
+};
+
 /** Backfill: creates a missing contact as subscribed, never changes an existing `unsubscribed`. */
 export const ensureContact = async (
   input: ContactInput,
@@ -117,11 +126,11 @@ export const syncOptIn = async (
   input: ContactInput & { marketingOptIn: boolean },
   deps?: ContactDeps | null
 ): Promise<void> => {
-  if (!input.marketingOptIn) return;
   const resolved = deps === undefined ? getContactDeps() : deps;
   if (!resolved) return;
   try {
-    await subscribeContact(input, resolved);
+    if (input.marketingOptIn) await subscribeContact(input, resolved);
+    else await unsubscribeContact(input.email, resolved);
   } catch (err) {
     console.error("Marketing contact sync failed", err);
   }
