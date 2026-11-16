@@ -1,3 +1,5 @@
+import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
+import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import supabase from 'libs/supabaseClient';
 import { useEffect, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -9,7 +11,7 @@ import AdminSignIn from './AdminSignIn';
 function ComingSoon({ page }) {
 	return (
 		<div className='p-8 flex flex-col items-center justify-center h-full text-center'>
-			<div className='text-5xl mb-4'>🚧</div>
+			<ConstructionOutlinedIcon sx={{ fontSize: 48 }} className='text-gray-400 mb-4' />
 			<h2 className='text-xl font-bold text-gray-800 mb-2'>{page}</h2>
 			<p className='text-gray-500 text-sm'>This section is coming soon.</p>
 		</div>
@@ -112,7 +114,7 @@ export default function AdminApp() {
 		return (
 			<div className='h-screen flex items-center justify-center bg-gray-100'>
 				<div className='bg-white p-10 rounded-xl shadow-md text-center max-w-sm mx-4 border border-gray-200'>
-					<div className='text-4xl mb-4'>🚫</div>
+					<BlockOutlinedIcon sx={{ fontSize: 40 }} className='text-red-500 mb-4' />
 					<h2 className='text-xl font-bold text-gray-800 mb-2'>Access Denied</h2>
 					<p className='text-gray-500 text-sm mb-6'>
 						<span className='font-medium'>{email}</span> does not have admin privileges.

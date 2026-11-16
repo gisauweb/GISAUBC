@@ -1,5 +1,8 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CheckIcon from '@mui/icons-material/Check';
+import WarningAmberOutlinedIcon from '@mui/icons-material/WarningAmberOutlined';
 import { useEffect, useState } from 'react';
 
 const PAYMENT_STATUSES = ['unpaid', 'paid_card', 'paid_cash', 'paid_interac', 'paid_existing_member', 'refunded'];
@@ -64,7 +67,7 @@ function PromoteModal({ memberName, onConfirm, onCancel }) {
 	return (
 		<div className='fixed inset-0 z-50 flex items-center justify-center bg-black/40'>
 			<div className='bg-white rounded-xl shadow-xl p-6 max-w-sm w-full mx-4 border border-gray-200'>
-				<div className='text-3xl mb-3 text-center'>⚠️</div>
+				<div className='mb-3 text-center'><WarningAmberOutlinedIcon fontSize='large' className='text-amber-500' /></div>
 				<h2 className='text-base font-bold text-gray-900 text-center mb-1'>Promote to Admin?</h2>
 				<p className='text-sm text-gray-500 text-center mb-5'>
 					<span className='font-medium text-gray-700'>{memberName}</span> will gain full admin access
@@ -243,7 +246,7 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 							rel='noopener noreferrer'
 							className='text-sm text-primary underline hover:opacity-70 break-all'
 						>
-							View uploaded proof →
+							View uploaded proof <ArrowForwardIcon sx={{ fontSize: 14, verticalAlign: 'middle' }} />
 						</a>
 					</Field>
 				)}
@@ -256,7 +259,7 @@ function DetailPanel({ member, token, onClose, onSaved }) {
 			{/* Footer */}
 			<div className='px-5 py-4 border-t border-gray-100 shrink-0 flex items-center justify-between'>
 				{error && <p className='text-red-500 text-sm'>{error}</p>}
-				{saved && <p className='text-green-600 text-sm'>Saved ✓</p>}
+				{saved && <p className='text-green-600 text-sm flex items-center gap-1'>Saved <CheckIcon sx={{ fontSize: 16 }} /></p>}
 				{!error && !saved && <div />}
 				<button
 					onClick={handleSave}
