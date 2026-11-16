@@ -1,14 +1,21 @@
+import CheckroomOutlinedIcon from '@mui/icons-material/CheckroomOutlined';
+import ConfirmationNumberOutlinedIcon from '@mui/icons-material/ConfirmationNumberOutlined';
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const NAV_ITEMS = [
-	{ path: '/admin',                label: 'Dashboard',           icon: '🏠' },
-	{ path: '/admin/members',        label: 'Members',             icon: '👥' },
-	{ path: '/admin/cash',           label: 'Cash Payments',       icon: '💵' },
-	{ path: '/admin/events',         label: 'Events & Rantangan',  icon: '📅' },
-	{ path: '/admin/registrations',  label: 'Event Registrations', icon: '🎟️' },
-	{ path: '/admin/existing',       label: 'Existing Members',    icon: '🎓' },
-	{ path: '/admin/merch',          label: 'Merch',               icon: '👕' },
+	{ path: '/admin',                label: 'Dashboard',           icon: HomeOutlinedIcon },
+	{ path: '/admin/members',        label: 'Members',             icon: GroupOutlinedIcon },
+	{ path: '/admin/cash',           label: 'Cash Payments',       icon: PaymentsOutlinedIcon },
+	{ path: '/admin/events',         label: 'Events & Rantangan',  icon: EventOutlinedIcon },
+	{ path: '/admin/registrations',  label: 'Event Registrations', icon: ConfirmationNumberOutlinedIcon },
+	{ path: '/admin/existing',       label: 'Existing Members',    icon: SchoolOutlinedIcon },
+	{ path: '/admin/merch',          label: 'Merch',               icon: CheckroomOutlinedIcon },
 ];
 
 function Sidebar({ profile, onLogout, onClose }) {
@@ -50,7 +57,7 @@ function Sidebar({ profile, onLogout, onClose }) {
 									: 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
 							}`}
 						>
-							<span>{item.icon}</span>
+							<item.icon fontSize='small' />
 							{item.label}
 						</Link>
 					);

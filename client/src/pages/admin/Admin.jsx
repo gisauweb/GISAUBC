@@ -1,3 +1,5 @@
+import BlockOutlinedIcon from '@mui/icons-material/BlockOutlined';
+import ConstructionOutlinedIcon from '@mui/icons-material/ConstructionOutlined';
 import supabase from 'libs/supabaseClient';
 import { useEffect, useRef, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -5,11 +7,12 @@ import AdminDashboard from './AdminDashboard';
 import AdminLayout from './AdminLayout';
 import AdminMembers from './AdminMembers';
 import AdminSignIn from './AdminSignIn';
+import AdminCashPayments from './AdminCashPayments';
 
 function ComingSoon({ page }) {
 	return (
 		<div className='p-8 flex flex-col items-center justify-center h-full text-center'>
-			<div className='text-5xl mb-4'>🚧</div>
+			<ConstructionOutlinedIcon sx={{ fontSize: 48 }} className='text-gray-400 mb-4' />
 			<h2 className='text-xl font-bold text-gray-800 mb-2'>{page}</h2>
 			<p className='text-gray-500 text-sm'>This section is coming soon.</p>
 		</div>
@@ -112,7 +115,7 @@ export default function AdminApp() {
 		return (
 			<div className='h-screen flex items-center justify-center bg-gray-100'>
 				<div className='bg-white p-10 rounded-xl shadow-md text-center max-w-sm mx-4 border border-gray-200'>
-					<div className='text-4xl mb-4'>🚫</div>
+					<BlockOutlinedIcon sx={{ fontSize: 40 }} className='text-red-500 mb-4' />
 					<h2 className='text-xl font-bold text-gray-800 mb-2'>Access Denied</h2>
 					<p className='text-gray-500 text-sm mb-6'>
 						<span className='font-medium'>{email}</span> does not have admin privileges.
@@ -131,7 +134,7 @@ export default function AdminApp() {
 			<Routes>
 				<Route index element={<AdminDashboard profile={profile} />} />
 				<Route path='members' element={<AdminMembers token={token} />} />
-				<Route path='cash' element={<ComingSoon page='Cash Payments' />} />
+				<Route path='cash' element={<AdminCashPayments token={token} />} />
 				<Route path='events' element={<ComingSoon page='Events & Rantangan' />} />
 				<Route path='registrations' element={<ComingSoon page='Event Registrations' />} />
 				<Route path='existing' element={<ComingSoon page='Existing Members' />} />
