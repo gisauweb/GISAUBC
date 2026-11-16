@@ -5,6 +5,7 @@ import AdminDashboard from './AdminDashboard';
 import AdminLayout from './AdminLayout';
 import AdminMembers from './AdminMembers';
 import AdminSignIn from './AdminSignIn';
+import AdminCashPayments from './AdminCashPayments';
 
 function ComingSoon({ page }) {
 	return (
@@ -131,7 +132,7 @@ export default function AdminApp() {
 			<Routes>
 				<Route index element={<AdminDashboard profile={profile} />} />
 				<Route path='members' element={<AdminMembers token={token} />} />
-				<Route path='cash' element={<ComingSoon page='Cash Payments' />} />
+				<Route path='cash' element={<AdminCashPayments token={token} />} />
 				<Route path='events' element={<ComingSoon page='Events & Rantangan' />} />
 				<Route path='registrations' element={<ComingSoon page='Event Registrations' />} />
 				<Route path='existing' element={<ComingSoon page='Existing Members' />} />
