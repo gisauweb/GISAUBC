@@ -17,7 +17,6 @@ import rectangle from 'assets/games/Rectangle.png';
 import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import { FaGamepad, FaGift, FaSignOutAlt } from 'react-icons/fa';
 import { IoMdHome, IoMdSettings } from 'react-icons/io';
-import { useAuth0 } from '@auth0/auth0-react';
 import { useMediaQuery } from 'react-responsive';
 import close from 'assets/games/close.svg';
 import PersonIcon from '@mui/icons-material/Person';
@@ -45,8 +44,6 @@ export default function Sidebar({ username, picture, onCloseSidebar, currentPage
 	const [showLeaveConfirmation, setShowLeaveConfirmation] = useState(false);
 	const [nextPage, setNextPage] = useState(null);
 	const isMobileView = useMediaQuery({ query: '(max-width: 1023px)' });
-	// const { logout } = useAuth0();
-
 	const handleOpen = (value) => {
 		setOpen(open === value ? 0 : value);
 	};

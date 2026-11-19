@@ -1,15 +1,8 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import StyledTextField from './StyledTextField';
-import EditButton from './EditButton';
 
-export default function Profile({ account, email, picture, token, updateAccountState }) {
-	const [edit, setEdit] = useState(false);
-	const [nickname, setNickname] = useState(account.firstName);
-
-	const handleNicknameChange = (e) => {
-		setNickname(e.target.value);
-	};
+export default function Profile({ account, email, picture }) {
 	return (
 		<Box
 			className='w-full xl:w-1/2 xl:h-full flex flex-col justify-start items-center
@@ -30,26 +23,9 @@ export default function Profile({ account, email, picture, token, updateAccountS
 					<StyledTextField value={account.firstName} label='First name' edit={false} />
 					<StyledTextField value={account.lastName} label='Last name' edit={false} />
 				</Box>
-				<StyledTextField
-					value={nickname}
-					onChange={handleNicknameChange}
-					fullWidth
-					label='Preferred name'
-					edit={edit}
-				/>
+				<StyledTextField value={account.firstName} fullWidth label='Preferred name' edit={false} />
 				<StyledTextField value={account.studentId} fullWidth label='Student number' edit={false} />
 				<StyledTextField value={email} fullWidth label='Registered email address' edit={false} />
-				<Box className='flex justify-end mt-2 xl:mt-0'>
-					<EditButton
-						edit={edit}
-						setEdit={setEdit}
-						uid={account.studentId}
-						token={token}
-						nickname={nickname}
-						setNickname={setNickname}
-						updateAccountState={updateAccountState}
-					/>
-				</Box>
 			</Box>
 		</Box>
 	);

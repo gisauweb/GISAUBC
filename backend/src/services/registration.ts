@@ -9,7 +9,6 @@ export type EventRegistration = InferSelectModel<typeof eventRegistrations>;
 export type RegisterForEventInput = {
 	userId: string;
 	eventId: number;
-	paymentIntentId?: string;
 };
 
 export type RegistrationWithEvent = EventRegistration & {
@@ -28,7 +27,6 @@ export type RegistrationWithMember = EventRegistration & {
 
 /**
  * Determine the price in cents a user should pay for an event.
- * Also exported for use by the payment controller to create a Stripe intent.
  *
  * Throws named errors:
  *   - "EVENT_NOT_FOUND" — event does not exist or is not published
@@ -75,7 +73,7 @@ export const get_event_price_for_user = async (
 
 /**
  * Register a user for an event.
- * Payment verification is handled by the caller (controller or webhook handler).
+ * Payment checks are handled by the caller.
  *
  * Throws named errors:
  *   - "ALREADY_REGISTERED"  — user already has a confirmed registration
@@ -128,7 +126,6 @@ export const register_for_event = async (
 				eventId: input.eventId,
 				memberId: input.userId,
 				status: "confirmed",
-				paymentIntentId: input.paymentIntentId ?? null,
 			})
 			.returning();
 
@@ -248,25 +245,6 @@ export const get_event_registrations = async (
 		throw err;
 	}
 };
-
-/**
- * Confirm a registration from a Stripe webhook (payment_intent.succeeded).
- * Skips payment verification since Stripe already confirmed the payment.
- * Idempotent — silently ignores duplicate registrations.
- */
-export const confirm_registration_from_webhook = async (
-	userId: string,
-	eventId: number,
-	paymentIntentId: string,
-): Promise<void> => {
-	try {
-		await register_for_event({ userId, eventId, paymentIntentId });
-	} catch (e: any) {
-		if (e.message === "ALREADY_REGISTERED") return; // idempotent
-		throw e;
-	}
-};
-
 
 /**
  * Get the number of confirmed registrations for an event.

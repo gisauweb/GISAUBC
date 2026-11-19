@@ -3,7 +3,7 @@ import React from 'react';
 import Profile from './components/Profile';
 import ToggleSwitch from './components/ToggleSwitch';
 
-export default function Settings({ account, email, picture, token, updateAccountState }) {
+export default function Settings({ account, email, picture }) {
 	return (
 		<Box className='h-screen w-full overflow-y-auto'>
 			{/* <span className='text-xl xl:text-3xl font-bold hidden xl:inline-block'>Settings</span> */}
@@ -11,13 +11,7 @@ export default function Settings({ account, email, picture, token, updateAccount
 				className='flex flex-col xl:flex-row xl:px-7 xl:pt-10 xl:pb-7 justify-between
 				w-screen xl:w-full xl:h-full gap-y-14 xl:gap-y-0'
 			>
-				<Profile
-					account={account}
-					email={email}
-					picture={picture}
-					token={token}
-					updateAccountState={updateAccountState}
-				/>
+				<Profile account={account} email={email} picture={picture} />
 				{/* <Box
 					className='w-[85%] xl:w-1/2 xl:h-3/4 flex flex-col
 							justify-start xl:justify-between mx-auto gap-y-14 pb-4'

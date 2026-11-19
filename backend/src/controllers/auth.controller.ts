@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
 import * as AuthService from "../services/auth.js";
 import { parseMarketingOptIn } from "../services/contacts.js";
-import * as PaymentService from "../services/payment.js";
 
-const VALID_PAYMENT_METHODS = new Set(["card", "cash", "interac"]);
+const VALID_PAYMENT_METHODS = new Set(["cash", "interac"]);
 
 export async function me(req: Request, res: Response) {
 	const userId = req.user!.sub;
@@ -49,7 +48,6 @@ export async function register(req: Request, res: Response) {
 		recommendation,
 		paymentMethod,
 		merch,
-		paymentIntentId,
 		paymentProofUrl,
 		marketingOptIn,
 	} = req.body;
@@ -81,35 +79,7 @@ export async function register(req: Request, res: Response) {
 		| "paid_existing_member"
 		| "refunded" = "unpaid";
 
-	if (paymentMethod === "card") {
-		if (!paymentIntentId) {
-			return res.status(402).json({ error: "Payment required" });
-		}
-		// Verify the intent succeeded AND the amount matches what we expect.
-		const verified = await PaymentService.verifyPayment(paymentIntentId, expectedAmountCents);
-		if (!verified) {
-			return res.status(402).json({ error: "Payment not completed or amount mismatch" });
-		}
-		hasPayed = true;
-		resolvedPaymentStatus = "paid_card";
-
-		// Stamp the intent with recovery data so the webhook can recreate the profile
-		// if the registration insert below fails (e.g. server crash, network drop).
-		await PaymentService.stampMembershipMetadata(paymentIntentId, {
-			type: "membership",
-			userId,
-			firstName,
-			lastName,
-			studentId: trimmedStudentId,
-			email: email ?? "",
-			faculty: faculty ?? "",
-			dbMembershipType,
-			yearOfStudy: yearOfStudy ?? "",
-			recommendation: String(recommendation ?? "").slice(0, 450),
-			totalPrice,
-			merch: JSON.stringify(merchIds),
-		});
-	} else if (paymentMethod === "cash") {
+	if (paymentMethod === "cash") {
 		resolvedPaymentStatus = "unpaid"; // cash collected later by admin
 	} else if (paymentMethod === "interac") {
 		hasPayed = true;
@@ -139,7 +109,6 @@ export async function register(req: Request, res: Response) {
 			paymentMethod,
 			hasPayed,
 			paymentStatus: resolvedPaymentStatus,
-			paymentIntentId: paymentMethod === "card" ? paymentIntentId : undefined,
 			paymentProofUrl: paymentMethod === "interac" ? paymentProofUrl : undefined,
 			totalPrice,
 			merch: merchIds,
