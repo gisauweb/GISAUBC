@@ -68,15 +68,43 @@
     {
       "idx": 9,
       "version": "7",
-      "when": 1753948800000,
+      "when": 1787202577000,
       "tag": "0009_add_gallery_link",
       "breakpoints": true
     },
     {
       "idx": 10,
       "version": "7",
-      "when": 1757606400000,
+      "when": 1789104941000,
       "tag": "0010_profiles_academic_year",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1790057932000,
+      "tag": "0011_add_payment_proof_url",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1790658091000,
+      "tag": "0012_add_paid_interac",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1791430090000,
+      "tag": "0013_add_post_button_text",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1792798535000,
+      "tag": "0014_add_marketing_opt_in",
       "breakpoints": true
     }
   ]
