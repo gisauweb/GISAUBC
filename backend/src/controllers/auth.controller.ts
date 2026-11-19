@@ -64,6 +64,10 @@ export async function register(req: Request, res: Response) {
 		return res.status(400).json({ error: "Invalid payment method" });
 	}
 
+	if (!AuthService.isMembershipType(membershipType)) {
+		return res.status(400).json({ error: "Invalid membership type" });
+	}
+
 	// DB enum only supports 'full' | 'half'; map sem1/sem2 → 'half'
 	const dbMembershipType: "full" | "half" = membershipType === "full" ? "full" : "half";
 	const merchIds: string[] = Array.isArray(merch) ? merch.filter((id: string) => id !== "") : [];

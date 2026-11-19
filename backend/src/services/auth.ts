@@ -15,6 +15,9 @@ const MEMBERSHIP_PRICES: Record<string, number> = {
   sem2: 5,
 };
 
+export const isMembershipType = (value: unknown): value is string =>
+  typeof value === "string" && Object.hasOwn(MEMBERSHIP_PRICES, value);
+
 /**
  * Returns the current academic year string (e.g. "2026-2027").
  * Academic year starts June 1 — matches the convention used throughout the codebase.
@@ -35,7 +38,10 @@ export const calculateExpectedTotal = async (
   membershipType: string,
   merchIds: string[]
 ): Promise<number> => {
-  const membershipDollars = MEMBERSHIP_PRICES[membershipType] ?? 0;
+  if (!isMembershipType(membershipType)) {
+    throw new Error(`Unknown membership type: ${membershipType}`);
+  }
+  const membershipDollars = MEMBERSHIP_PRICES[membershipType]!;
 
   let merchDollars = 0;
   if (merchIds.length > 0) {
