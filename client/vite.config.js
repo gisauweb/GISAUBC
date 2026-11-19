@@ -26,8 +26,6 @@ export default defineConfig({
 					'vendor-react': ['react', 'react-dom', 'react-router-dom'],
 					// MUI — large, changes rarely
 					'vendor-mui': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
-					// Stripe — only needed on payment pages
-					'vendor-stripe': ['@stripe/stripe-js', '@stripe/react-stripe-js'],
 					// Charts / misc heavy libs
 					'vendor-charts': ['chart.js', 'react-chartjs-2'],
 				},

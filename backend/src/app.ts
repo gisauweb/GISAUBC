@@ -7,7 +7,6 @@ import * as AuthController from "./controllers/auth.controller.js";
 import { requireAuth } from "./middleware.js";
 import member from "./api/member.route.js";
 import merch from "./api/merch.route.js";
-import payment from "./api/payment.route.js";
 import post from "./api/post.route.js";
 import registration from "./api/registration.route.js";
 
@@ -29,7 +28,7 @@ const generalLimiter = rateLimit({
   message: { error: "Too many requests, please try again later." },
 });
 
-// Sensitive: 10 requests per 15 minutes per IP (registration, payment — actual writes)
+// Sensitive: 10 requests per 15 minutes per IP (registration — actual writes)
 const sensitiveLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 10,
@@ -57,11 +56,7 @@ app.use(
   })
 );
 
-// Exclude the Stripe webhook path from JSON parsing — it needs the raw body for signature verification
-app.use((req, res, next) => {
-  if (req.originalUrl === "/api/v1/payment/webhook") return next();
-  express.json()(req, res, next);
-});
+app.use(express.json());
 
 const api = Router();
 api.use("/posts", post);
@@ -70,7 +65,6 @@ api.get("/auth/me", authReadLimiter, requireAuth, AuthController.me);
 api.use("/auth", sensitiveLimiter, auth);   // register, google, callback — strict limit
 api.use("/members", authReadLimiter, member);
 api.use("/merch", merch);
-api.use("/payment", sensitiveLimiter, payment);
 api.use("/registrations", sensitiveLimiter, registration);
 
 app.use("/api/v1", api);

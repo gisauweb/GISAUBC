@@ -18,8 +18,8 @@ router.get("/:eventId", requireAuth, requireAdmin, RegistrationController.getEve
 
 /**
  * POST /registrations
- * Register the authenticated user for an event.
- * Body: { eventId: number, paymentIntentId?: string }
+ * Register the authenticated user for an event. Free events only for now.
+ * Body: { eventId: number }
  */
 router.post("/", requireAuth, RegistrationController.registerForEvent);
 

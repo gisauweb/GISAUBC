@@ -1,15 +1,14 @@
 import type { Request, Response } from "express";
-import * as PaymentService from "../services/payment.js";
 import * as RegistrationService from "../services/registration.js";
 
 /**
  * POST /api/v1/registrations
- * Register the authenticated user for an event.
- * Body: { eventId: number, paymentIntentId?: string }
+ * Register the authenticated user for an event. Free events only for now.
+ * Body: { eventId: number }
  */
 export async function registerForEvent(req: Request, res: Response) {
 	const userId = req.user!.sub;
-	const { eventId, paymentIntentId } = req.body;
+	const { eventId } = req.body;
 
 	if (typeof eventId !== "number") {
 		return res.status(400).json({ error: "eventId must be a number" });
@@ -19,22 +18,11 @@ export async function registerForEvent(req: Request, res: Response) {
 		// Determine the applicable price and validate access
 		const { amountCents } = await RegistrationService.get_event_price_for_user(userId, eventId);
 
-		// Verify payment for paid events
 		if (amountCents > 0) {
-			if (!paymentIntentId) {
-				return res.status(402).json({ error: "Payment required for this event" });
-			}
-			const valid = await PaymentService.verifyPayment(paymentIntentId, amountCents);
-			if (!valid) {
-				return res.status(402).json({ error: "Payment not completed or amount mismatch" });
-			}
+			return res.status(400).json({ error: "Online registration for paid events isn't available yet" });
 		}
 
-		const registration = await RegistrationService.register_for_event({
-			userId,
-			eventId,
-			paymentIntentId,
-		});
+		const registration = await RegistrationService.register_for_event({ userId, eventId });
 		return res.status(201).json(registration);
 	} catch (e: any) {
 		if (e.message === "EVENT_NOT_FOUND") {

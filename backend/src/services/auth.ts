@@ -72,66 +72,10 @@ export type RegisterInput = {
     | "paid_interac"
     | "paid_existing_member"
     | "refunded";
-  paymentIntentId?: string;
   paymentProofUrl?: string;
   totalPrice: string;
   merch?: string[];
   marketingOptIn?: boolean;
-};
-
-/**
- * Recreates a membership profile from a Stripe PaymentIntent's metadata.
- * Called by the webhook as a fallback when the normal registration flow fails.
- * Idempotent — silently ignores if the profile already exists.
- */
-export const register_user_from_webhook = async (
-  metadata: Record<string, string>,
-  paymentIntentId: string
-): Promise<void> => {
-  const {
-    userId,
-    firstName,
-    lastName,
-    studentId,
-    email,
-    faculty,
-    dbMembershipType,
-    yearOfStudy,
-    recommendation,
-    totalPrice,
-    merch,
-  } = metadata;
-
-  if (!userId || !firstName || !lastName || !studentId || !email) {
-    console.error(
-      "Webhook membership recovery: missing required metadata fields",
-      metadata
-    );
-    return;
-  }
-
-  try {
-    await register_user({
-      userId,
-      firstName,
-      lastName,
-      studentId,
-      email,
-      faculty: faculty ?? "",
-      membershipType: (dbMembershipType as "full" | "half") ?? "full",
-      yearOfStudy: yearOfStudy ?? "",
-      recommendation: recommendation ?? "",
-      paymentMethod: "card",
-      hasPayed: true,
-      paymentStatus: "paid_card",
-      paymentIntentId,
-      totalPrice: totalPrice ?? "0",
-      merch: merch ? JSON.parse(merch) : [],
-    });
-  } catch (e: any) {
-    if (e.message === "ALREADY_EXISTS") return; // idempotent
-    throw e;
-  }
 };
 
 export const get_profile = async (userId: string): Promise<Profile | null> => {
@@ -188,7 +132,6 @@ export const register_user = async (input: RegisterInput): Promise<Profile> => {
         paymentMethod: input.paymentMethod,
         hasPayed: input.hasPayed,
         paymentStatus: input.paymentStatus,
-        paymentIntentId: input.paymentIntentId,
         paymentProofUrl: input.paymentProofUrl,
         totalPrice: input.totalPrice,
         marketingOptIn: input.marketingOptIn ?? false,

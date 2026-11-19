@@ -16,20 +16,13 @@ import {
 } from '@mui/icons-material';
 import supabase from 'libs/supabaseClient';
 import BackButton from 'pages/games/BackButton';
-import CheckoutForm from 'pages/games/pages/CheckoutForm';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { StepContainer, StepHeading } from './components/index';
 
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import { FACULTIES, MEMBERSHIP_TYPES, YEARS } from './constants';
 
 const PROOF_MAX_BYTES = 10 * 1024 * 1024; // 10 MB — well above any real phone screenshot
-
-const stripe = loadStripe(
-	'pk_live_51T44Qd45eGGUOJeMDERAIxLrzKrRbAEgj2GCl6vwuMmz8kZ4ZVW9liVA9EwmSSqUX2G7pmojg7a2ejzuEkAvnIuu00VttEKTAs',
-);
 
 export default function MemberForm({ onRegistered }) {
 	const [step, setStep] = useState(1);
@@ -37,9 +30,6 @@ export default function MemberForm({ onRegistered }) {
 	const [registeredProfile, setRegisteredProfile] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [apiError, setApiError] = useState(null);
-	const [clientSecret, setClientSecret] = useState(null);
-	const [paymentIntentId, setPaymentIntentId] = useState(null);
-	const [intentAmount, setIntentAmount] = useState(null);
 	const [proofFile, setProofFile] = useState(null);
 	const [proofFileError, setProofFileError] = useState(null);
 	const [proofUploading, setProofUploading] = useState(false);
@@ -94,49 +84,6 @@ export default function MemberForm({ onRegistered }) {
 
 	useEffect(() => {
 		setApiError(null);
-
-		if (step !== 3 || paymentMethod !== 'card') return;
-
-		const currentTotal = calculateTotal();
-
-		// Reuse the existing intent if the amount hasn't changed — avoids creating
-		// orphaned PaymentIntents on Stripe every time the user navigates back and forward.
-		if (clientSecret && intentAmount === currentTotal) return;
-
-		// Amount changed (or first time here) — reset and create a fresh intent
-		setClientSecret(null);
-		setPaymentIntentId(null);
-
-		const fetchIntent = async () => {
-			try {
-				const { data: authData } = await supabase.auth.getSession();
-				const token = authData.session?.access_token;
-				if (!token) return;
-
-				const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/payment/create-intent`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: `Bearer ${token}`,
-					},
-					body: JSON.stringify({ amountCents: Math.round(currentTotal * 100) }),
-				});
-
-				if (res.ok) {
-					const { clientSecret: secret } = await res.json();
-					setClientSecret(secret);
-					setIntentAmount(currentTotal);
-				} else {
-					const body = await res.json().catch(() => ({}));
-					setApiError(body.error || 'Failed to initialize payment. Please try again.');
-				}
-			} catch (err) {
-				console.error('Failed to create payment intent', err);
-				setApiError('Could not connect to payment service. Please check your connection and try again.');
-			}
-		};
-
-		fetchIntent();
 	}, [step, paymentMethod]);
 
 	const formValues = watch();
@@ -168,11 +115,6 @@ export default function MemberForm({ onRegistered }) {
 		if (step < 3) {
 			setStep(step + 1);
 		} else {
-			if (data.paymentMethod === 'card' && !paymentIntentId) {
-				setApiError('Please complete the card payment before submitting.');
-				return;
-			}
-
 			if (data.paymentMethod === 'interac' && !proofFile) {
 				setApiError('Please upload your Interac proof of payment before submitting.');
 				return;
@@ -221,7 +163,6 @@ export default function MemberForm({ onRegistered }) {
 					body: JSON.stringify({
 						...data,
 						totalPrice: calculateTotal(),
-						...(data.paymentMethod === 'card' && { paymentIntentId }),
 						...(data.paymentMethod === 'interac' && { paymentProofUrl }),
 					}),
 				});
